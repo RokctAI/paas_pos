@@ -1,27 +1,41 @@
 name: Auto Release (Weekly)
 on:
   push:
-    branches: [main, develop]
+    branches:
+      - main
+      - develop
   schedule:
-    - cron: '0 23 * * 5'
+    - cron: '0 16 * * 5' # Weekly Release on Friday at 4 PM UTC
+  workflow_dispatch:
+    inputs:
+      release_strategy:
+        description: "Release Strategy"
+        required: true
+        default: "immediate"
+        type: choice
+        options:
+        - immediate
+        - weekly
+      one_time_cleanup_cutoff_date:
+        description: "Review One-time Cleanup Date (YYYY-MM-DD)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
 
 jobs:
-  release:
-    permissions:
-      contents: write
+  universal-release:
     uses: RokctAI/shared-workflows/.github/workflows/universal-release.yml@main
     with:
-      # Dogfooding: Use the new Weekly Strategy
-      release_strategy: 'weekly'
-
-      # RC Cleanup: Delete RC releases/tags after promotion to stable
-      cleanup_rc_releases: true
-      
-      # One-time cleanup: Set a cutoff date (YYYY-MM-DD) to run cleanup once if past this date
-      # After cleanup runs once, a marker file is created and cleanup won't run again
-      # Example: one_time_cleanup_cutoff_date: '2026-02-01'
-      one_time_cleanup_cutoff_date: '2026-01-30'
-      
-      # Brain Endpoint 
-      brain_endpoint: https://platform.rokct.ai/api/method/brain.api.generate_release_notes
-    secrets: inherit
+      release_strategy: ${{ inputs.release_strategy || 'weekly' }}
+      one_time_cleanup_cutoff_date: ${{ inputs.one_time_cleanup_cutoff_date }}
+      brain_endpoint: "https://api.control.rokct.ai/api/v1/release-notes/generate"
+      # Enable both Android and Windows builds
+      build_android: true
+      build_windows: true
+    secrets:
+      KEY_JKS: ${{ secrets.KEY_JKS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      ALIAS_PASSWORD: ${{ secrets.ALIAS_PASSWORD }}
+      GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
