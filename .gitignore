@@ -16,10 +16,10 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+
+# Visual Studio Code related
+.vscode/
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
@@ -29,25 +29,40 @@ migrate_working_dir/
 .packages
 .pub-cache/
 .pub/
-/app/build/
-firebase_cpp_sdk_windows_12.0.0.zip
-# Build related
-/build/*
-!build/windows/x64/x64/Release/
-!build/app/outputs/apk/
-!build/app/outputs/bundle/
-!build/app/outputs/flutter-apk/
+/build/
 
 # Symbolication related
 app.*.symbols
+
 # Obfuscation related
 app.*.map.json
+
 # Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile
 /android/app/release
-updated_files.txt
-updated_files.zip
-/scripts/gethashes.txt
-/scripts/manual.txt
 
+# Firebase configuration files
+google-services.json
+GoogleService-Info.plist
+
+# Environment variables and secrets
+.env
+.env.local
+*.env.development
+*.env.production
+*.jks
+**/*.jks
+key.properties
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart
+
+# Coverage reports
+/coverage/
+
+# App constants
+#lib/app_constants.dart
+#lib/infrastructure/services/app_constants.dart
