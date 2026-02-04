@@ -1,0 +1,25 @@
+name: Build Android/Windows
+
+on:
+  workflow_dispatch:
+    inputs:
+      build-type:
+        type: choice
+        description: "Artifact Type"
+        options:
+        - apk
+        - appbundle
+        - windows
+        default: "apk"
+
+jobs:
+  build:
+    uses: RokctAI/shared-workflows/.github/workflows/universal-flutter-build.yml@main
+    with:
+      build-type: ${{ inputs.build-type }}
+      upload-artifact: true
+    secrets:
+      KEY_JKS: ${{ secrets.KEY_JKS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      ALIAS_PASSWORD: ${{ secrets.ALIAS_PASSWORD }}
+      GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
