@@ -34,8 +34,4 @@ jobs:
       # Enable both Android and Windows builds
       build_android: true
       build_windows: true
-    secrets:
-      KEY_JKS: ${{ secrets.KEY_JKS }}
-      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-      ALIAS_PASSWORD: ${{ secrets.ALIAS_PASSWORD }}
-      GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+    secrets: inherit
