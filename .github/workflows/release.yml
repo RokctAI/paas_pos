@@ -5,8 +5,6 @@ on:
       - main
       - develop
       - "build_*"
-  schedule:
-    - cron: '0 23 * * 5' # Weekly Release on Friday at 11 PM UTC
   workflow_dispatch:
     inputs:
       release_strategy:
