@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:async';
 
 import '../../../app_constants.dart';
+import '../constants/constants.dart';
 
 class AppInitializer {
   Future<void> initializeApp() async {
@@ -64,6 +65,9 @@ class AppInitializer {
             if (getBool('weatherIcon') != null) AppConstants.weatherIcon = getBool('weatherIcon')!;
             if (getInt('rainPOP') != null) AppConstants.rainPOP = getInt('rainPOP')!;
             if (getString('chatGpt') != null) AppConstants.chatGpt = getString('chatGpt')!;
+            if (getString('yocoPublicKey') != null) AppConstants.yocoPublicKey = getString('yocoPublicKey')!;
+            if (getString('yocoPrivateKey') != null) AppConstants.yocoPrivateKey = getString('yocoPrivateKey')!;
+            if (getString('yocoEnvironment') != null) AppConstants.yocoEnvironment = getString('yocoEnvironment')!;
 
             if (getString('dateAt') != null) AppConstants.dateAt = getString('dateAt')!;
 
