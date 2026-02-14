@@ -1,4 +1,4 @@
-package org.foodyman.pos
+package org.foodyman
 
 import io.flutter.embedding.android.FlutterActivity
 
