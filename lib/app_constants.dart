@@ -1,27 +1,27 @@
 abstract class AppConstants {
   AppConstants._();
 
-  static const String baseUrl = 'https://juvo.tenant.rokct.ai/';
-  static const String adminPageUrl = baseUrl;
-  static String webUrl = "https://web.juvo.app";
+  static const String baseUrl = String.fromEnvironment('BASE_URL');
+  static const String adminPageUrl = String.fromEnvironment('ADMIN_URL');
+  static String webUrl = const String.fromEnvironment('WEB_URL');
 
-  static bool autoTrn = true;
-  static const bool isDemo = false;
+  static bool autoTrn = const bool.fromEnvironment('AUTO_TRN');
+  static const bool isDemo = bool.fromEnvironment('IS_DEMO');
 
   static bool playMusicOnOrderStatusChange = true;
   static bool keepPlayingOnNewOrder = true;
 
-  static const String demoSellerLogin = 'sellers@githubit.com';
-  static const String demoSellerPassword = 'seller';
-  static const String demoCookerLogin = 'cook@githubit.com';
-  static const String demoCookerPassword = 'cook';
-  static const String demoWaiterLogin = 'waiter@githubit.com';
-  static const String demoWaiterPassword = 'githubit';
+  static String demoSellerLogin = const String.fromEnvironment('DEMO_SELLER_LOGIN');
+  static String demoSellerPassword = const String.fromEnvironment('DEMO_SELLER_PASSWORD');
+  static String demoCookerLogin = const String.fromEnvironment('DEMO_COOKER_LOGIN');
+  static String demoCookerPassword = const String.fromEnvironment('DEMO_COOKER_PASSWORD');
+  static String demoWaiterLogin = const String.fromEnvironment('DEMO_WAITER_LOGIN');
+  static String demoWaiterPassword = const String.fromEnvironment('DEMO_WAITER_PASSWORD');
 
 
   static Duration refreshTime = const Duration(seconds: 10);
-  static double demoLatitude = -22.34058;
-  static double demoLongitude = 30.01341;
+  static double demoLatitude = double.parse(const String.fromEnvironment('DEMO_LATITUDE'));
+  static double demoLongitude = double.parse(const String.fromEnvironment('DEMO_LONGITUDE'));
   static double pinLoadingMin = 0.116666667;
   static double pinLoadingMax = 0.611111111;
   static Duration animationDuration = const Duration(milliseconds: 375);
@@ -43,19 +43,13 @@ abstract class AppConstants {
   static Duration idleTimeout = const Duration(minutes: 15);
   static Duration fetchTime = const Duration(seconds: 60);
   static Duration dashboardFetchTime = const Duration(minutes: 45);
-  static String googleApiKey = 'AIzaSyDJjLCq6HBCe7xae6l0D9DW1MWpE4900GU';
+  static String googleApiKey = const String.fromEnvironment('GOOGLE_MAPS_API_KEY');
   static bool weatherIcon = true;
   static int rainPOP = 60;
-  static String chatGpt = '';
+  static String chatGpt = const String.fromEnvironment('CHAT_GPT_KEY');
 
   /// Optimized stock ids
   static final OptimizedStockIds stockIds = OptimizedStockIds();
-
-  // Yoco related constants
-  static const String YOCO_PUBLIC_KEY = 'yoco_public_key';
-  static const String YOCO_PRIVATE_KEY = 'yoco_private_key';
-  static const String YOCO_PAIRED_DEVICE = 'yoco_paired_device';
-  static const String YOCO_ENVIRONMENT = 'yoco_environment';
 
   static const String terminal = 'terminal';
   static const String terminalPayment = 'terminal_payment';
@@ -63,9 +57,14 @@ abstract class AppConstants {
   static const String paymentComplete = 'payment_complete';
   static const String paymentFailed = 'payment_failed';
 
-  // Add Yoco test credentials
-  static const String YOCO_TEST_PUBLIC_KEY = 'pk_test_abba4d87oW2YObW00794';
-  static const String YOCO_TEST_PRIVATE_KEY = 'sk_test_7e518341k3nGzD35bcf4361b7342';
+  // Yoco credentials (Mutable for Remote Config, sourced from Shared Environment)
+  static String yocoPublicKey = const String.fromEnvironment('YOCO_PUBLIC_KEY');
+  static String yocoPrivateKey = const String.fromEnvironment('YOCO_PRIVATE_KEY');
+  static String yocoEnvironment = const String.fromEnvironment('YOCO_ENVIRONMENT');
+
+  // Yoco test credentials (sourced from Shared Environment)
+  static String yocoTestPublicKey = const String.fromEnvironment('YOCO_TEST_PUBLIC_KEY');
+  static String yocoTestPrivateKey = const String.fromEnvironment('YOCO_TEST_PRIVATE_KEY');
 
   ///OrderUsageDate
   static String dateAt = 'createdAt';
@@ -129,18 +128,6 @@ abstract class AppConstants {
     'carbonBlock': 'Carbon Block/CTO'
   };
 
-  /// shared preferences keys
-  static const String keyLangSelected = 'keyLangSelected';
-  static const String keyLanguageData = 'keyLanguageData';
-  static const String keyToken = 'keyToken';
-  static const String keyGlobalSettings = 'keyGlobalSettings';
-  static const String keyActiveLocale = 'keyActiveLocale';
-  static const String keyTranslations = 'keyTranslations';
-  static const String keySelectedCurrency = 'keySelectedCurrency';
-  static const String keyLangLtr = 'keyLangLtr';
-  static const String keyBags = 'keyBags';
-  static const String keyUser = 'keyUser';
-  static const String pinCode = 'pinCode';
 }
 
 class OptimizedStockIds {
