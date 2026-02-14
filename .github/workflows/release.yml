@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - develop
+      - "build_*"
   schedule:
     - cron: '0 23 * * 5' # Weekly Release on Friday at 11 PM UTC
   workflow_dispatch:
@@ -29,10 +30,12 @@ jobs:
     uses: RokctAI/shared-workflows/.github/workflows/universal-pipeline.yml@main
     with:
       project_type: 'flutter'
+      app-type: 'pos'
       release_strategy: ${{ inputs.release_strategy || 'weekly' }}
       one_time_cleanup_cutoff_date: ${{ inputs.one_time_cleanup_cutoff_date }}
       brain_endpoint: "https://api.control.rokct.ai/api/v1/release-notes/generate"
       # Enable both Android and Windows builds
       build_android: true
       build_windows: true
+      flutter-version: '3.24.0'
     secrets: inherit
