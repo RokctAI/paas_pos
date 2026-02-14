@@ -25,7 +25,5 @@ abstract class StorageKeys {
   static const String keyUserId = 'keyUserId';
   static const String keyUserImage = 'keyUser';
   static const String keyWalletData = 'keyWalletData';
-
-
 }
 
