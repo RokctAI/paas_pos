@@ -28,15 +28,7 @@ migrate_working_dir/
 .packages
 .pub-cache/
 .pub/
-/app/build/
-firebase_cpp_sdk_windows_12.0.0.zip
-# Build related
-/build/*
-!build/windows/x64/x64/Release/
-!build/app/outputs/apk/
-!build/app/outputs/bundle/
-!build/app/outputs/flutter-apk/
-
+/build/
 # Symbolication related
 app.*.symbols
 # Obfuscation related
@@ -49,4 +41,3 @@ updated_files.txt
 updated_files.zip
 /scripts/gethashes.txt
 /scripts/manual.txt
-
