@@ -18,18 +18,20 @@ class UserInformation extends StatelessWidget {
   final ValueChanged? onChanged;
   final VoidCallback setDeliveryman;
 
-  const UserInformation(
-      {super.key,
-      required this.user,
-      this.order,
-      this.selectUser,
-      this.onChanged,
-      required this.setDeliveryman});
+  const UserInformation({
+    super.key,
+    required this.user,
+    this.order,
+    this.selectUser,
+    this.onChanged,
+    required this.setDeliveryman,
+  });
 
   @override
   Widget build(BuildContext context) {
     num subTotal = 0;
-    subTotal = (order?.totalPrice ?? 0) -
+    subTotal =
+        (order?.totalPrice ?? 0) -
         (order?.tax ?? 0) -
         (order?.deliveryFee ?? 0) +
         (order?.totalDiscount ?? 0) +
@@ -59,7 +61,9 @@ class UserInformation extends StatelessWidget {
                   Text(
                     "${AppHelpers.getTranslation(TrKeys.order)} #${AppHelpers.getTranslation(TrKeys.id)}${order?.id}",
                     style: GoogleFonts.inter(
-                        fontSize: 22.sp, fontWeight: FontWeight.w600),
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   6.verticalSpace,
                   Row(
@@ -67,30 +71,35 @@ class UserInformation extends StatelessWidget {
                       Text(
                         "#${AppHelpers.getTranslation(TrKeys.id)}${order?.id}",
                         style: GoogleFonts.inter(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: AppStyle.icon),
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppStyle.icon,
+                        ),
                       ),
                       10.horizontalSpace,
                       Container(
                         width: 10.r,
                         height: 10.r,
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: AppStyle.icon),
+                          shape: BoxShape.circle,
+                          color: AppStyle.icon,
+                        ),
                       ),
                       10.horizontalSpace,
                       Text(
-                        DateFormat("MMM d, HH:mm").format(
-                            order?.createdAt?.toLocal() ?? DateTime.now()),
+                        DateFormat(
+                          "MMM d, HH:mm",
+                        ).format(order?.createdAt?.toLocal() ?? DateTime.now()),
                         style: GoogleFonts.inter(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: AppStyle.icon),
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppStyle.icon,
+                        ),
                       ),
                     ],
                   ),
                 ],
-              )
+              ),
             ],
           ),
           8.verticalSpace,
@@ -102,15 +111,15 @@ class UserInformation extends StatelessWidget {
               children: [
                 Text(
                   AppHelpers.getTranslation(TrKeys.deliveryAddress),
-                  style:
-                      GoogleFonts.inter(fontSize: 16.sp, color: AppStyle.icon),
+                  style: GoogleFonts.inter(
+                    fontSize: 16.sp,
+                    color: AppStyle.icon,
+                  ),
                 ),
                 12.verticalSpace,
                 Text(
                   order?.orderAddress?.address ?? "",
-                  style: GoogleFonts.inter(
-                    fontSize: 18.sp,
-                  ),
+                  style: GoogleFonts.inter(fontSize: 18.sp),
                 ),
               ],
             ),
@@ -121,15 +130,15 @@ class UserInformation extends StatelessWidget {
               children: [
                 Text(
                   AppHelpers.getTranslation(TrKeys.phoneNumber),
-                  style:
-                      GoogleFonts.inter(fontSize: 16.sp, color: AppStyle.icon),
+                  style: GoogleFonts.inter(
+                    fontSize: 16.sp,
+                    color: AppStyle.icon,
+                  ),
                 ),
                 12.verticalSpace,
                 Text(
                   order?.phone ?? "",
-                  style: GoogleFonts.inter(
-                    fontSize: 18.sp,
-                  ),
+                  style: GoogleFonts.inter(fontSize: 18.sp),
                 ),
               ],
             ),
@@ -139,15 +148,15 @@ class UserInformation extends StatelessWidget {
               children: [
                 Text(
                   AppHelpers.getTranslation(TrKeys.tableName),
-                  style:
-                      GoogleFonts.inter(fontSize: 16.sp, color: AppStyle.icon),
+                  style: GoogleFonts.inter(
+                    fontSize: 16.sp,
+                    color: AppStyle.icon,
+                  ),
                 ),
                 12.verticalSpace,
                 Text(
                   order?.table?.name ?? "",
-                  style: GoogleFonts.inter(
-                    fontSize: 18.sp,
-                  ),
+                  style: GoogleFonts.inter(fontSize: 18.sp),
                 ),
               ],
             ),
@@ -163,7 +172,7 @@ class UserInformation extends StatelessWidget {
             setDeliveryman: setDeliveryman,
             selectUser: selectUser,
             onChanged: onChanged,
-          )
+          ),
         ],
       ),
     );
@@ -185,10 +194,7 @@ class UserInformation extends StatelessWidget {
               ),
             ),
             Text(
-              AppHelpers.numberFormat(
-                subTotal,
-                currency: order?.currency,
-              ),
+              AppHelpers.numberFormat(subTotal, currency: order?.currency),
               style: GoogleFonts.inter(
                 color: AppStyle.black,
                 fontSize: 16.sp,
@@ -266,10 +272,7 @@ class UserInformation extends StatelessWidget {
               ),
             ),
             Text(
-              "-${AppHelpers.numberFormat(
-                order?.totalDiscount ?? 0,
-                currency: order?.currency,
-              )}",
+              "-${AppHelpers.numberFormat(order?.totalDiscount ?? 0, currency: order?.currency)}",
               style: GoogleFonts.inter(
                 color: AppStyle.red,
                 fontSize: 16.sp,
@@ -293,10 +296,7 @@ class UserInformation extends StatelessWidget {
               ),
             ),
             Text(
-              "-${AppHelpers.numberFormat(
-                order?.couponPrice ?? 0,
-                currency: order?.currency,
-              )}",
+              "-${AppHelpers.numberFormat(order?.couponPrice ?? 0, currency: order?.currency)}",
               style: GoogleFonts.inter(
                 color: AppStyle.red,
                 fontSize: 16.sp,

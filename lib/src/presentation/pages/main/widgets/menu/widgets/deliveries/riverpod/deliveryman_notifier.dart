@@ -31,7 +31,7 @@ class DeliverymanNotifier extends StateNotifier<DeliverymanState> {
     final response = await _usersRepository.searchUsers(
       page: ++_page,
       role: TrKeys.deliveryman,
-      query: _query
+      query: _query,
     );
     response.when(
       success: (data) {
@@ -41,7 +41,7 @@ class DeliverymanNotifier extends StateNotifier<DeliverymanState> {
         state = state.copyWith(
           isLoading: false,
           users: list,
-          hasMore: list.length < (data.meta?.total ?? 0)
+          hasMore: list.length < (data.meta?.total ?? 0),
         );
         if (isRefresh) {
           refreshController?.refreshCompleted();
@@ -59,9 +59,7 @@ class DeliverymanNotifier extends StateNotifier<DeliverymanState> {
     );
   }
 
-  void setQuery({
-    required String query,
-  }) {
+  void setQuery({required String query}) {
     if (_query == query) {
       return;
     }
@@ -70,58 +68,53 @@ class DeliverymanNotifier extends StateNotifier<DeliverymanState> {
       if (_timer?.isActive ?? false) {
         _timer?.cancel();
       }
-      _timer = Timer(
-        const Duration(milliseconds: 500),
-        () {
-          fetchDeliverymen(isRefresh: true);
-        },
-      );
+      _timer = Timer(const Duration(milliseconds: 500), () {
+        fetchDeliverymen(isRefresh: true);
+      });
     } else {
       if (_timer?.isActive ?? false) {
         _timer?.cancel();
       }
-      _timer = Timer(
-        const Duration(milliseconds: 500),
-        () {
-          fetchDeliverymen(isRefresh: true);
-        },
-      );
+      _timer = Timer(const Duration(milliseconds: 500), () {
+        fetchDeliverymen(isRefresh: true);
+      });
     }
   }
 
   void addCreatedUser(UserData? user) {
     if (user == null) return;
     List<UserData> users = List.from(state.users);
-    users.insert(0,user);
+    users.insert(0, user);
     state = state.copyWith(users: users);
   }
 
   void setStatusIndex(int? index) {
     state = state.copyWith(statusIndex: index ?? 0);
   }
+
   Future<void> updateStatus({
     required int? id,
     required String status,
     ValueChanged<int>? onSuccess,
   }) async {
-    state=state.copyWith(isUpdate:true);
+    state = state.copyWith(isUpdate: true);
     final response = await _usersRepository.updateStatus(
       id: id,
       status: status,
     );
     response.when(
       success: (data) {
-        state = state.copyWith(statusIndex: -1,isUpdate:false);
+        state = state.copyWith(statusIndex: -1, isUpdate: false);
         final List statuses = [
           TrKeys.newKey,
           TrKeys.accepted,
           TrKeys.canceled,
-          TrKeys.rejected
+          TrKeys.rejected,
         ];
         onSuccess?.call(statuses.indexOf(status));
       },
       failure: (failure) {
-        state=state.copyWith(isUpdate:false);
+        state = state.copyWith(isUpdate: false);
         debugPrint('===> update master status fail $failure');
       },
     );

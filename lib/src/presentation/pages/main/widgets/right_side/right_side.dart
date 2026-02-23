@@ -142,9 +142,9 @@ class _RightSideState extends ConsumerState<RightSide> {
                                             : AppStyle.unselectedTab,
                                         onTap: () => notifier.removeBag(index),
                                         size: 30,
-                                      )
+                                      ),
                                     ],
-                                  )
+                                  ),
                               ],
                             ),
                           ),
@@ -164,8 +164,9 @@ class _RightSideState extends ConsumerState<RightSide> {
                   width: 52.r,
                   height: 52.r,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: AppStyle.white),
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: AppStyle.white,
+                  ),
                   child: const Center(child: Icon(FlutterRemix.add_line)),
                 ),
               ),
@@ -179,7 +180,7 @@ class _RightSideState extends ConsumerState<RightSide> {
             physics: const NeverScrollableScrollPhysics(),
             children: state.bags.map((bag) => PageViewItem(bag: bag)).toList(),
           ),
-        )
+        ),
       ],
     );
   }

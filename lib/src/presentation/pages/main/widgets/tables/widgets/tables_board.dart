@@ -27,8 +27,11 @@ class TablesBoard extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        _topWidgets(ref.watch(tablesProvider),
-            ref.read(tablesProvider.notifier), context),
+        _topWidgets(
+          ref.watch(tablesProvider),
+          ref.read(tablesProvider.notifier),
+          context,
+        ),
         16.verticalSpace,
         if (tableListData.isNotEmpty || !state.isLoading)
           Expanded(
@@ -38,11 +41,44 @@ class TablesBoard extends ConsumerWidget {
                   children: [
                     for (int i = 0; i < tableListData.length; i++)
                       Padding(
-                          padding:
-                              REdgeInsets.only(right: 12, bottom: 12, top: 16),
-                          child: Draggable<int>(
-                            data: i,
-                            feedback: CustomTable(
+                        padding: REdgeInsets.only(
+                          right: 12,
+                          bottom: 12,
+                          top: 16,
+                        ),
+                        child: Draggable<int>(
+                          data: i,
+                          feedback: CustomTable(
+                            tableModel: TableModel(
+                              name: tableListData[i]?.name ?? "",
+                              chairCount: tableListData[i]?.chairCount ?? 0,
+                              tax: tableListData[i]?.tax ?? 0,
+                              shopSectionId:
+                                  tableListData[i]?.shopSectionId ?? 0,
+                            ),
+                            type:
+                                (state.tableStatistic?.occupiedIds.contains(
+                                      tableListData[i]?.id ?? 0,
+                                    ) ??
+                                    false)
+                                ? TrKeys.occupied
+                                : (state.tableStatistic?.bookedIds.contains(
+                                        tableListData[i]?.id ?? 0,
+                                      ) ??
+                                      false)
+                                ? TrKeys.booked
+                                : TrKeys.available,
+                          ),
+                          childWhenDragging: const SizedBox.shrink(),
+                          child: GestureDetector(
+                            onTap: () {
+                              notifier.setSelectTable(i);
+                              AppHelpers.showAlertDialog(
+                                context: context,
+                                child: const NewOrderScreen(),
+                              );
+                            },
+                            child: CustomTable(
                               tableModel: TableModel(
                                 name: tableListData[i]?.name ?? "",
                                 chairCount: tableListData[i]?.chairCount ?? 0,
@@ -50,45 +86,22 @@ class TablesBoard extends ConsumerWidget {
                                 shopSectionId:
                                     tableListData[i]?.shopSectionId ?? 0,
                               ),
-                              type: (state.tableStatistic?.occupiedIds.contains(
-                                          tableListData[i]?.id ?? 0) ??
+                              type:
+                                  (state.tableStatistic?.occupiedIds.contains(
+                                        tableListData[i]?.id ?? 0,
+                                      ) ??
                                       false)
                                   ? TrKeys.occupied
                                   : (state.tableStatistic?.bookedIds.contains(
-                                              tableListData[i]?.id ?? 0) ??
-                                          false)
-                                      ? TrKeys.booked
-                                      : TrKeys.available,
-                            ),
-                            childWhenDragging: const SizedBox.shrink(),
-                            child: GestureDetector(
-                              onTap: () {
-                                notifier.setSelectTable(i);
-                                AppHelpers.showAlertDialog(
-                                    context: context,
-                                    child: const NewOrderScreen());
-                              },
-                              child: CustomTable(
-                                tableModel: TableModel(
-                                  name: tableListData[i]?.name ?? "",
-                                  chairCount: tableListData[i]?.chairCount ?? 0,
-                                  tax: tableListData[i]?.tax ?? 0,
-                                  shopSectionId:
-                                      tableListData[i]?.shopSectionId ?? 0,
-                                ),
-                                type: (state.tableStatistic?.occupiedIds
-                                            .contains(
-                                                tableListData[i]?.id ?? 0) ??
+                                          tableListData[i]?.id ?? 0,
+                                        ) ??
                                         false)
-                                    ? TrKeys.occupied
-                                    : (state.tableStatistic?.bookedIds.contains(
-                                                tableListData[i]?.id ?? 0) ??
-                                            false)
-                                        ? TrKeys.booked
-                                        : TrKeys.available,
-                              ),
+                                  ? TrKeys.booked
+                                  : TrKeys.available,
                             ),
-                          ))
+                          ),
+                        ),
+                      ),
                   ],
                 ),
                 if (state.isLoading)
@@ -109,7 +122,10 @@ class TablesBoard extends ConsumerWidget {
   }
 
   Widget _topWidgets(
-      TablesState state, TablesNotifier notifier, BuildContext context) {
+    TablesState state,
+    TablesNotifier notifier,
+    BuildContext context,
+  ) {
     List statusList = [
       TrKeys.allTables,
       TrKeys.available,
@@ -146,10 +162,12 @@ class TablesBoard extends ConsumerWidget {
           onTap: () {
             if (!state.isSectionLoading && !state.isLoading) {
               AppHelpers.showAlertDialog(
-                  context: context, child: const AddNewTable());
+                context: context,
+                child: const AddNewTable(),
+              );
             }
           },
-        )
+        ),
       ],
     );
   }

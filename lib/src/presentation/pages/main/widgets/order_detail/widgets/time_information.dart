@@ -47,7 +47,7 @@ class TimeInformation extends StatelessWidget {
                   "${AppHelpers.getTranslation(TrKeys.address)}: ${orderData?.orderAddress?.address ?? ""}",
                   style: GoogleFonts.inter(fontSize: 20.sp),
                 ),
-              )
+              ),
             ],
           ),
           const Spacer(),
@@ -67,7 +67,7 @@ class TimeInformation extends StatelessWidget {
               Text(
                 "${AppHelpers.getTranslation(TrKeys.paymentType)}: ${orderData?.transaction?.paymentSystem?.tag ?? ""}",
                 style: GoogleFonts.inter(fontSize: 20.sp),
-              )
+              ),
             ],
           ),
           const Spacer(),

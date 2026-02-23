@@ -18,9 +18,10 @@ class NotFound extends StatelessWidget {
         Text(
           AppHelpers.getTranslation(TrKeys.notFound),
           style: GoogleFonts.inter(
-              fontSize: 18.sp,
-              color: AppStyle.black,
-              fontWeight: FontWeight.w600),
+            fontSize: 18.sp,
+            color: AppStyle.black,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ],
     );

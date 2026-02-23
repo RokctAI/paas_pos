@@ -46,7 +46,8 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(orderDetailsProvider);
     num subTotal = 0;
-    subTotal = ((state.order?.totalPrice ?? 0) -
+    subTotal =
+        ((state.order?.totalPrice ?? 0) -
         (state.order?.tax ?? 0) -
         (state.order?.deliveryFee ?? 0) +
         (state.order?.totalDiscount ?? 0));
@@ -62,15 +63,10 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   onTap: () => ref.read(mainProvider.notifier).setOrder(null),
                   child: Row(
                     children: [
-                      Icon(
-                        FlutterRemix.arrow_left_s_line,
-                        size: 32.r,
-                      ),
+                      Icon(FlutterRemix.arrow_left_s_line, size: 32.r),
                       Text(
                         AppHelpers.getTranslation(TrKeys.back),
-                        style: GoogleFonts.inter(
-                          fontSize: 16.sp,
-                        ),
+                        style: GoogleFonts.inter(fontSize: 16.sp),
                       ),
                     ],
                   ),
@@ -85,15 +81,16 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                         onTap: () {
                           if (LocalStorage.getUser()?.role != TrKeys.waiter) {
                             showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return _changeStatusDialog(state, context);
-                                });
+                              context: context,
+                              builder: (context) {
+                                return _changeStatusDialog(state, context);
+                              },
+                            );
                           }
                         },
                         height: 52.r,
                       )
-                    : const SizedBox.shrink()
+                    : const SizedBox.shrink(),
               ],
             ),
             16.verticalSpace,
@@ -114,15 +111,22 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                       ProductsScreen(
                         orderData: state.order,
                         subTotal: subTotal,
-                        onEdit: (id,status) {
-                          ref.read(orderDetailsProvider.notifier).changeDetailStatus(status);
+                        onEdit: (id, status) {
+                          ref
+                              .read(orderDetailsProvider.notifier)
+                              .changeDetailStatus(status);
                           showDialog(
-                              context: context,
-                              builder: (context) {
-                                return _changeDetailStatusDialog(status,id, context);
-                              });
+                            context: context,
+                            builder: (context) {
+                              return _changeDetailStatusDialog(
+                                status,
+                                id,
+                                context,
+                              );
+                            },
+                          );
                         },
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -142,14 +146,18 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  AlertDialog _changeDetailStatusDialog(String status,int? id, BuildContext context) {
+  AlertDialog _changeDetailStatusDialog(
+    String status,
+    int? id,
+    BuildContext context,
+  ) {
     return AlertDialog(
       content: PopupMenuButton<String>(
         itemBuilder: (context) {
@@ -159,20 +167,23 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               child: Text(
                 AppHelpers.getTranslation(status),
                 style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    color: AppStyle.black,
-                    fontWeight: FontWeight.w500),
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             PopupMenuItem<String>(
               value: AppHelpers.getNextOrderStatus(status),
               child: Text(
                 AppHelpers.getTranslation(
-                    AppHelpers.getNextOrderStatus(status)),
+                  AppHelpers.getNextOrderStatus(status),
+                ),
                 style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    color: AppStyle.black,
-                    fontWeight: FontWeight.w500),
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             PopupMenuItem<String>(
@@ -180,11 +191,12 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               child: Text(
                 AppHelpers.getTranslation(TrKeys.cancel),
                 style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    color: AppStyle.black,
-                    fontWeight: FontWeight.w500),
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            )
+            ),
           ];
         },
         onSelected: (s) {
@@ -195,11 +207,15 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         ),
         color: AppStyle.white,
         elevation: 10,
-        child: Consumer(builder: (context, ref, child) {
-          return SelectFromButton(
-            title: AppHelpers.getTranslation(ref.watch(orderDetailsProvider).detailStatus),
-          );
-        }),
+        child: Consumer(
+          builder: (context, ref, child) {
+            return SelectFromButton(
+              title: AppHelpers.getTranslation(
+                ref.watch(orderDetailsProvider).detailStatus,
+              ),
+            );
+          },
+        ),
       ),
       actions: [
         Padding(
@@ -207,18 +223,23 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
           child: SizedBox(
             width: 150.w,
             child: ConfirmButton(
-                title: AppHelpers.getTranslation(TrKeys.save), onTap: () {
-              ref.watch(orderDetailsProvider).detailStatus== status
-                  ? null
-                  : ref
-                  .read(orderDetailsProvider.notifier)
-                  .updateOrderDetailStatus(
-                  status: ref.watch(orderDetailsProvider).detailStatus,
-                  id: id,
-                  success: () {
-                    Navigator.pop(context);
-                  });
-            }),
+              title: AppHelpers.getTranslation(TrKeys.save),
+              onTap: () {
+                ref.watch(orderDetailsProvider).detailStatus == status
+                    ? null
+                    : ref
+                          .read(orderDetailsProvider.notifier)
+                          .updateOrderDetailStatus(
+                            status: ref
+                                .watch(orderDetailsProvider)
+                                .detailStatus,
+                            id: id,
+                            success: () {
+                              Navigator.pop(context);
+                            },
+                          );
+              },
+            ),
           ),
         ),
       ],
@@ -226,35 +247,51 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
   }
 
   AlertDialog _changeStatusDialog(
-      OrderDetailsState state, BuildContext context) {
+    OrderDetailsState state,
+    BuildContext context,
+  ) {
     return AlertDialog(
       content: PopupMenuButton<String>(
         itemBuilder: (context) {
           return [
             PopupMenuItem<String>(
               value: AppHelpers.getOrderStatusText(
-                  AppHelpers.getOrderStatus(state.order?.status)),
+                AppHelpers.getOrderStatus(state.order?.status),
+              ),
               child: Text(
-                AppHelpers.getTranslation(AppHelpers.getOrderStatusText(
-                    AppHelpers.getOrderStatus(state.order?.status))),
+                AppHelpers.getTranslation(
+                  AppHelpers.getOrderStatusText(
+                    AppHelpers.getOrderStatus(state.order?.status),
+                  ),
+                ),
                 style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    color: AppStyle.black,
-                    fontWeight: FontWeight.w500),
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             PopupMenuItem<String>(
-              value: AppHelpers.getOrderStatusText(AppHelpers.getOrderStatus(
+              value: AppHelpers.getOrderStatusText(
+                AppHelpers.getOrderStatus(
                   state.order?.status,
-                  isNextStatus: true)),
+                  isNextStatus: true,
+                ),
+              ),
               child: Text(
-                AppHelpers.getTranslation(AppHelpers.getOrderStatusText(
-                    AppHelpers.getOrderStatus(state.order?.status,
-                        isNextStatus: true))),
+                AppHelpers.getTranslation(
+                  AppHelpers.getOrderStatusText(
+                    AppHelpers.getOrderStatus(
+                      state.order?.status,
+                      isNextStatus: true,
+                    ),
+                  ),
+                ),
                 style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    color: AppStyle.black,
-                    fontWeight: FontWeight.w500),
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             PopupMenuItem<String>(
@@ -262,11 +299,12 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               child: Text(
                 AppHelpers.getTranslation(TrKeys.cancel),
                 style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    color: AppStyle.black,
-                    fontWeight: FontWeight.w500),
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            )
+            ),
           ];
         },
         onSelected: (s) {
@@ -277,15 +315,21 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
         ),
         color: AppStyle.white,
         elevation: 10,
-        child: Consumer(builder: (context, ref, child) {
-          return SelectFromButton(
-            title: AppHelpers.getTranslation(AppHelpers.getOrderStatusText(
-                AppHelpers.getOrderStatus(
+        child: Consumer(
+          builder: (context, ref, child) {
+            return SelectFromButton(
+              title: AppHelpers.getTranslation(
+                AppHelpers.getOrderStatusText(
+                  AppHelpers.getOrderStatus(
                     ref.watch(orderDetailsProvider).status.isEmpty
                         ? ref.watch(orderDetailsProvider).order?.status
-                        : ref.watch(orderDetailsProvider).status))),
-          );
-        }),
+                        : ref.watch(orderDetailsProvider).status,
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
       ),
       actions: [
         Padding(
@@ -293,42 +337,46 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
           child: SizedBox(
             width: 150.w,
             child: ConfirmButton(
-                title: AppHelpers.getTranslation(TrKeys.save),
-                onTap: () {
-                  ref.watch(orderDetailsProvider).status.isEmpty
-                      ? null
-                      : ref
+              title: AppHelpers.getTranslation(TrKeys.save),
+              onTap: () {
+                ref.watch(orderDetailsProvider).status.isEmpty
+                    ? null
+                    : ref
                           .read(orderDetailsProvider.notifier)
                           .updateOrderStatus(
-                              status: AppHelpers.getOrderStatus(
-                                ref.watch(orderDetailsProvider).status,
-                              ),
-                              success: () {
-                                Navigator.pop(context);
-                                if (AppHelpers.getAutoPrint() &&
-                                    AppHelpers.getOrderStatus(ref
-                                            .watch(orderDetailsProvider)
-                                            .status) ==
-                                        OrderStatus.accepted) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return LayoutBuilder(
-                                            builder: (context, constraints) {
-                                          return SimpleDialog(
-                                            title: SizedBox(
-                                              height:
-                                                  constraints.maxHeight * 0.7,
-                                              width: 300.r,
-                                              child: GenerateCheckPage(
-                                                  orderData: state.order),
+                            status: AppHelpers.getOrderStatus(
+                              ref.watch(orderDetailsProvider).status,
+                            ),
+                            success: () {
+                              Navigator.pop(context);
+                              if (AppHelpers.getAutoPrint() &&
+                                  AppHelpers.getOrderStatus(
+                                        ref.watch(orderDetailsProvider).status,
+                                      ) ==
+                                      OrderStatus.accepted) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return LayoutBuilder(
+                                      builder: (context, constraints) {
+                                        return SimpleDialog(
+                                          title: SizedBox(
+                                            height: constraints.maxHeight * 0.7,
+                                            width: 300.r,
+                                            child: GenerateCheckPage(
+                                              orderData: state.order,
                                             ),
-                                          );
-                                        });
-                                      });
-                                }
-                              });
-                }),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                          );
+              },
+            ),
           ),
         ),
       ],

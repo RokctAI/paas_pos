@@ -36,9 +36,10 @@ class CustomColumnWidget extends StatelessWidget {
         Text(
           trName,
           style: GoogleFonts.inter(
-              fontSize: 12.sp,
-              color: AppStyle.icon,
-              fontWeight: FontWeight.w500),
+            fontSize: 12.sp,
+            color: AppStyle.icon,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         4.verticalSpace,
         OutlinedBorderTextField(

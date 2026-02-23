@@ -84,9 +84,7 @@ class CartOrderItem extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppStyle.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10.r),
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(10.r)),
               ),
               child: Column(
                 children: [
@@ -102,14 +100,14 @@ class CartOrderItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               RichText(
-                                  text: TextSpan(
-                                      text: cart
-                                          ?.stock?.product?.translation?.title,
-                                      style: GoogleFonts.inter(
-                                        fontSize: 14.sp,
-                                        color: AppStyle.black,
-                                      ),
-                                      children: [
+                                text: TextSpan(
+                                  text:
+                                      cart?.stock?.product?.translation?.title,
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14.sp,
+                                    color: AppStyle.black,
+                                  ),
+                                  children: [
                                     if (cart?.stock?.extras?.isNotEmpty ??
                                         false)
                                       TextSpan(
@@ -119,8 +117,10 @@ class CartOrderItem extends StatelessWidget {
                                           fontSize: 14.sp,
                                           color: AppStyle.hint,
                                         ),
-                                      )
-                                  ])),
+                                      ),
+                                  ],
+                                ),
+                              ),
                               8.verticalSpace,
                               for (Addons e in (cart?.addons ?? []))
                                 Text(
@@ -144,8 +144,9 @@ class CartOrderItem extends StatelessWidget {
                                 width: 22.w,
                                 height: 22.h,
                                 decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppStyle.blue),
+                                  shape: BoxShape.circle,
+                                  color: AppStyle.blue,
+                                ),
                                 child: Icon(
                                   FlutterRemix.gift_2_fill,
                                   size: 14.r,
@@ -160,18 +161,23 @@ class CartOrderItem extends StatelessWidget {
                     children: [
                       Container(
                         padding: EdgeInsets.symmetric(
-                            vertical: 10.h, horizontal: 16.w),
+                          vertical: 10.h,
+                          horizontal: 16.w,
+                        ),
                         decoration: BoxDecoration(
-                            color: AppStyle.primary,
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(10.r),
-                                bottomRight: Radius.circular(10.r))),
+                          color: AppStyle.primary,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(10.r),
+                            bottomRight: Radius.circular(10.r),
+                          ),
+                        ),
                         child: Text(
                           "${(cart?.quantity ?? 1).toString()}x",
                           style: GoogleFonts.inter(
-                              fontSize: 14.sp,
-                              color: AppStyle.buttonFontColor,
-                              fontWeight: FontWeight.w700),
+                            fontSize: 14.sp,
+                            color: AppStyle.buttonFontColor,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                       24.horizontalSpace,
@@ -188,7 +194,9 @@ class CartOrderItem extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 8.h, horizontal: 25.w),
+                                vertical: 8.h,
+                                horizontal: 25.w,
+                              ),
                               child: const Icon(
                                 Icons.remove,
                                 color: AppStyle.black,
@@ -211,7 +219,9 @@ class CartOrderItem extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 8.h, horizontal: 25.w),
+                                vertical: 8.h,
+                                horizontal: 25.w,
+                              ),
                               child: const Icon(
                                 Icons.add,
                                 color: AppStyle.black,
@@ -232,27 +242,31 @@ class CartOrderItem extends StatelessWidget {
                                     currency: currency,
                                   ),
                                   style: GoogleFonts.inter(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: (cart?.discount ?? 0) != 0
-                                          ? 12.sp
-                                          : 16.sp,
-                                      color: AppStyle.black,
-                                      decoration: (cart?.discount ?? 0) != 0
-                                          ? TextDecoration.lineThrough
-                                          : TextDecoration.none),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: (cart?.discount ?? 0) != 0
+                                        ? 12.sp
+                                        : 16.sp,
+                                    color: AppStyle.black,
+                                    decoration: (cart?.discount ?? 0) != 0
+                                        ? TextDecoration.lineThrough
+                                        : TextDecoration.none,
+                                  ),
                                 ),
                                 (cart?.discount ?? 0) != 0
                                     ? Container(
                                         margin: EdgeInsets.only(top: 8.r),
                                         decoration: BoxDecoration(
-                                            color: AppStyle.red,
-                                            borderRadius:
-                                                BorderRadius.circular(30.r)),
+                                          color: AppStyle.red,
+                                          borderRadius: BorderRadius.circular(
+                                            30.r,
+                                          ),
+                                        ),
                                         padding: EdgeInsets.all(4.r),
                                         child: Row(
                                           children: [
                                             SvgPicture.asset(
-                                                "assets/svg/discount.svg"),
+                                              "assets/svg/discount.svg",
+                                            ),
                                             4.horizontalSpace,
                                             Text(
                                               AppHelpers.numberFormat(
@@ -261,16 +275,16 @@ class CartOrderItem extends StatelessWidget {
                                               ),
 
                                               /// usage
-
                                               style: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 14.sp,
-                                                  color: AppStyle.white),
-                                            )
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14.sp,
+                                                color: AppStyle.white,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       )
-                                    : const SizedBox.shrink()
+                                    : const SizedBox.shrink(),
                               ],
                             )
                           : const SizedBox.shrink(),
@@ -286,21 +300,22 @@ class CartOrderItem extends StatelessWidget {
               padding: EdgeInsets.all(16.r),
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: AppStyle.white,
-                  borderRadius: BorderRadius.circular(10.r),
-                  border: Border.all(color: AppStyle.border)),
+                color: AppStyle.white,
+                borderRadius: BorderRadius.circular(10.r),
+                border: Border.all(color: AppStyle.border),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   RichText(
-                      text: TextSpan(
-                          text: cart?.stock?.product?.translation?.title,
-                          style: GoogleFonts.inter(
-                            fontSize: 14.sp,
-                            color: AppStyle.black,
-                          ),
-                          children: [
+                    text: TextSpan(
+                      text: cart?.stock?.product?.translation?.title,
+                      style: GoogleFonts.inter(
+                        fontSize: 14.sp,
+                        color: AppStyle.black,
+                      ),
+                      children: [
                         if (cart?.stock?.extras?.isNotEmpty ?? false)
                           TextSpan(
                             text:
@@ -309,8 +324,10 @@ class CartOrderItem extends StatelessWidget {
                               fontSize: 14.sp,
                               color: AppStyle.hint,
                             ),
-                          )
-                      ])),
+                          ),
+                      ],
+                    ),
+                  ),
                   8.verticalSpace,
                   for (Addons e in (cart?.addons ?? []))
                     Text(
@@ -325,10 +342,7 @@ class CartOrderItem extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          "${AppHelpers.numberFormat(
-                            (cart?.stock?.price ?? 0) / (cart?.quantity ?? 1),
-                            currency: currency,
-                          )} X ${cart?.quantity ?? 1}",
+                          "${AppHelpers.numberFormat((cart?.stock?.price ?? 0) / (cart?.quantity ?? 1), currency: currency)} X ${cart?.quantity ?? 1}",
                           style: GoogleFonts.inter(
                             fontSize: 14.sp,
                             color: AppStyle.black,
@@ -339,7 +353,9 @@ class CartOrderItem extends StatelessWidget {
                         width: 32.w,
                         height: 32.h,
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: AppStyle.blue),
+                          shape: BoxShape.circle,
+                          color: AppStyle.blue,
+                        ),
                         child: Icon(
                           FlutterRemix.gift_2_fill,
                           size: 20.r,

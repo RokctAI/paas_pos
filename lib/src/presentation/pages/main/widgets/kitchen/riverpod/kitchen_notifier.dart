@@ -50,19 +50,23 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
   }
 
   Future<void> selectIndex(int index) async {
-    state =
-        state.copyWith(selectIndex: index, selectOrder: state.orders[index]);
+    state = state.copyWith(
+      selectIndex: index,
+      selectOrder: state.orders[index],
+    );
     fetchOrderDetails();
   }
 
   Future<void> fetchOrderDetails() async {
     final response = await _ordersRepository.getOrderDetailsKitchen(
-        orderId: state.selectOrder?.id);
+      orderId: state.selectOrder?.id,
+    );
     response.when(
-        success: (data) {
-          state = state.copyWith(selectOrder: data.data);
-        },
-        failure: (e) {});
+      success: (data) {
+        state = state.copyWith(selectOrder: data.data);
+      },
+      failure: (e) {},
+    );
   }
 
   void setOrdersQuery(BuildContext context, String query) {
@@ -74,41 +78,36 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
       if (_searchProductsTimer?.isActive ?? false) {
         _searchProductsTimer?.cancel();
       }
-      _searchProductsTimer = Timer(
-        const Duration(milliseconds: 500),
-        () {
-          state = state.copyWith(hasMore: true, orders: []);
-          _page = 0;
-          fetchOrders(
-            isRefresh: true,
-            checkYourNetwork: () {
-              AppHelpers.showSnackBar(
-                context,
-                AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-              );
-            },
-          );
-        },
-      );
+      _searchProductsTimer = Timer(const Duration(milliseconds: 500), () {
+        state = state.copyWith(hasMore: true, orders: []);
+        _page = 0;
+        fetchOrders(
+          isRefresh: true,
+          checkYourNetwork: () {
+            AppHelpers.showSnackBar(
+              context,
+              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+            );
+          },
+        );
+      });
     } else {
       if (_searchProductsTimer?.isActive ?? false) {
         _searchProductsTimer?.cancel();
       }
-      _searchProductsTimer = Timer(
-        const Duration(milliseconds: 500),
-        () {
-          state = state.copyWith(hasMore: true, orders: []);
-          _page = 0;
-          fetchOrders(
-              isRefresh: true,
-              checkYourNetwork: () {
-                AppHelpers.showSnackBar(
-                  context,
-                  AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-                );
-              });
-        },
-      );
+      _searchProductsTimer = Timer(const Duration(milliseconds: 500), () {
+        state = state.copyWith(hasMore: true, orders: []);
+        _page = 0;
+        fetchOrders(
+          isRefresh: true,
+          checkYourNetwork: () {
+            AppHelpers.showSnackBar(
+              context,
+              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+            );
+          },
+        );
+      });
     }
   }
 
@@ -132,8 +131,9 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
     );
     response.when(
       success: (data) {
-        List<OrderData> orders =
-            isRefresh || state.query.isNotEmpty ? [] : List.from(state.orders);
+        List<OrderData> orders = isRefresh || state.query.isNotEmpty
+            ? []
+            : List.from(state.orders);
         final List<OrderData> newOrders = data.orders ?? [];
         for (OrderData element in data.orders ?? []) {
           if (!orders.map((item) => item.id).contains(element.id)) {
@@ -155,21 +155,22 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
               search: state.query.isEmpty ? null : state.query,
             );
             response.when(
-                success: (data) {
-                  // bool isAdd = false;
-                  // List<OrderData> orders = List.from(state.orders);
-                  // for (OrderData element in data.orders ?? []) {
-                  //   if (!orders.map((item) => item.id).contains(element.id)) {
-                  //     orders.insert(0, element);
-                  //     isAdd = true;
-                  //   }
-                  // }
-                  state = state.copyWith(orders: data.orders ?? []);
-                  if (state.selectIndex > (data.orders?.length ?? 0)) {
-                    selectIndex(0);
-                  }
-                },
-                failure: (f) {});
+              success: (data) {
+                // bool isAdd = false;
+                // List<OrderData> orders = List.from(state.orders);
+                // for (OrderData element in data.orders ?? []) {
+                //   if (!orders.map((item) => item.id).contains(element.id)) {
+                //     orders.insert(0, element);
+                //     isAdd = true;
+                //   }
+                // }
+                state = state.copyWith(orders: data.orders ?? []);
+                if (state.selectIndex > (data.orders?.length ?? 0)) {
+                  selectIndex(0);
+                }
+              },
+              failure: (f) {},
+            );
           });
         } else if (isRefresh && (data.orders?.isEmpty ?? true)) {
           state = state.copyWith(selectOrder: null);
@@ -186,10 +187,13 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
 
   Future<void> changeStatus({String? status}) async {
     OrderData? newOrder = state.selectOrder?.copyWith(
-      status: status ??
+      status:
+          status ??
           AppHelpers.getOrderStatusText(
-            AppHelpers.getOrderStatus(state.selectOrder?.status,
-                isNextStatus: true),
+            AppHelpers.getOrderStatus(
+              state.selectOrder?.status,
+              isNextStatus: true,
+            ),
           ),
     );
     state = state.copyWith(selectOrder: newOrder);
@@ -206,8 +210,9 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
     state = state.copyWith(orders: orders);
 
     await _ordersRepository.updateOrderStatusKitchen(
-        status: AppHelpers.getOrderStatus(state.selectOrder?.status),
-        orderId: state.selectOrder?.id);
+      status: AppHelpers.getOrderStatus(state.selectOrder?.status),
+      orderId: state.selectOrder?.id,
+    );
     _page = 0;
     fetchOrders();
   }

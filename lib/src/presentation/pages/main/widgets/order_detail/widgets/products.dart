@@ -34,14 +34,13 @@ class ProductsScreen extends StatelessWidget {
         children: [
           Text(
             AppHelpers.getTranslation(TrKeys.compositionOrder),
-            style:
-                GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18.sp),
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              fontSize: 18.sp,
+            ),
           ),
           18.verticalSpace,
-          ProductTable(
-            orderData: orderData,
-            onEdit: onEdit,
-          ),
+          ProductTable(orderData: orderData, onEdit: onEdit),
         ],
       ),
     );

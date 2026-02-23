@@ -12,13 +12,14 @@ class BluetoothPrinter {
   PrinterType typePrinter;
   bool? state;
 
-  BluetoothPrinter(
-      {this.deviceName,
-      this.address,
-      this.port,
-      this.state,
-      this.vendorId,
-      this.productId,
-      this.typePrinter = PrinterType.bluetooth,
-      this.isBle = false});
+  BluetoothPrinter({
+    this.deviceName,
+    this.address,
+    this.port,
+    this.state,
+    this.vendorId,
+    this.productId,
+    this.typePrinter = PrinterType.bluetooth,
+    this.isBle = false,
+  });
 }

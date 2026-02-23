@@ -66,162 +66,147 @@ class _NotificationDialogState extends ConsumerState<NotificationDialog>
                 Text(
                   AppHelpers.getTranslation(TrKeys.notifications),
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22.sp,
-                      color: AppStyle.black),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22.sp,
+                    color: AppStyle.black,
+                  ),
                 ),
                 const Spacer(),
                 IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(FlutterRemix.close_fill))
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(FlutterRemix.close_fill),
+                ),
               ],
             ),
             16.verticalSpace,
             TabBar(
-                isScrollable: true,
-                unselectedLabelColor: AppStyle.icon,
-                labelPadding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  bottom: 15,
+              isScrollable: true,
+              unselectedLabelColor: AppStyle.icon,
+              labelPadding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+                bottom: 15,
+              ),
+              indicatorPadding: const EdgeInsets.symmetric(horizontal: 16),
+              indicatorColor: AppStyle.black,
+              labelColor: AppStyle.black,
+              labelStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 16.sp,
+              ),
+              controller: _controller,
+              tabs: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(AppHelpers.getTranslation(TrKeys.all)),
+                    8.horizontalSpace,
+                    NotificationCountsContainer(
+                      count: '${state.countOfNotifications?.notification ?? 0}',
+                    ),
+                  ],
                 ),
-                indicatorPadding: const EdgeInsets.symmetric(horizontal: 16),
-                indicatorColor: AppStyle.black,
-                labelColor: AppStyle.black,
-                labelStyle: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16.sp,
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(AppHelpers.getTranslation(TrKeys.transactions)),
+                  ],
                 ),
-                controller: _controller,
-                tabs: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        AppHelpers.getTranslation(TrKeys.all),
-                      ),
-                      8.horizontalSpace,
-                      NotificationCountsContainer(
-                        count:
-                            '${state.countOfNotifications?.notification ?? 0}',
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        AppHelpers.getTranslation(TrKeys.transactions),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    AppHelpers.getTranslation(TrKeys.messages),
-                  )
-                ]),
+                Text(AppHelpers.getTranslation(TrKeys.messages)),
+              ],
+            ),
             Expanded(
               child: TabBarView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: _controller,
-                  children: [
-                    state.isNotificationLoading
-                        ? const Center(
-                            child: CircularProgressIndicator(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _controller,
+                children: [
+                  state.isNotificationLoading
+                      ? const Center(
+                          child: CircularProgressIndicator(
                             color: AppStyle.black,
-                          ))
-                        : state.notifications.isNotEmpty
-                            ? ListView(
-                                children: [
-                                  26.verticalSpace,
-                                  ListView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: state.notifications.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return AllNotificationsPage(index);
+                          ),
+                        )
+                      : state.notifications.isNotEmpty
+                      ? ListView(
+                          children: [
+                            26.verticalSpace,
+                            ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: state.notifications.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return AllNotificationsPage(index);
+                              },
+                            ),
+                            4.verticalSpace,
+                            state.isMoreNotificationLoading
+                                ? const LineShimmer(isActiveLine: true)
+                                : state.hasMoreNotification
+                                ? ViewMoreButton(
+                                    onTap: () {
+                                      return notifier
+                                          .fetchNotificationsPaginate();
                                     },
-                                  ),
-                                  4.verticalSpace,
-                                  state.isMoreNotificationLoading
-                                      ? const LineShimmer(
-                                          isActiveLine: true,
-                                        )
-                                      : state.hasMoreNotification
-                                          ? ViewMoreButton(
-                                              onTap: () {
-                                                return notifier
-                                                    .fetchNotificationsPaginate();
-                                              },
-                                            )
-                                          : const SizedBox(),
-                                  25.verticalSpace,
-                                  if (state.notifications.isNotEmpty)
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                            FlutterRemix.check_double_fill),
-                                        5.horizontalSpace,
-                                        TextButton(
-                                          style: ButtonStyle(
-                                              overlayColor:
-                                                  MaterialStateProperty.all(
-                                                      AppStyle.primary)),
-                                          onPressed: () {
-                                            notifier.readAll(context);
-                                          },
-                                          child: Text(
-                                            AppHelpers.getTranslation(
-                                                TrKeys.readAll),
-                                            style: GoogleFonts.inter(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14.sp,
-                                                color: AppStyle.black),
-                                          ),
-                                        ),
-                                      ],
+                                  )
+                                : const SizedBox(),
+                            25.verticalSpace,
+                            if (state.notifications.isNotEmpty)
+                              Row(
+                                children: [
+                                  const Icon(FlutterRemix.check_double_fill),
+                                  5.horizontalSpace,
+                                  TextButton(
+                                    style: ButtonStyle(
+                                      overlayColor: MaterialStateProperty.all(
+                                        AppStyle.primary,
+                                      ),
                                     ),
+                                    onPressed: () {
+                                      notifier.readAll(context);
+                                    },
+                                    child: Text(
+                                      AppHelpers.getTranslation(TrKeys.readAll),
+                                      style: GoogleFonts.inter(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14.sp,
+                                        color: AppStyle.black,
+                                      ),
+                                    ),
+                                  ),
                                 ],
-                              )
-                            : Center(
-                                child: Text(
-                                  AppHelpers.getTranslation(
-                                      TrKeys.noNotification),
-                                ),
                               ),
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            AppHelpers.getTranslation(TrKeys.transactions),
+                          ],
+                        )
+                      : Center(
+                          child: Text(
+                            AppHelpers.getTranslation(TrKeys.noNotification),
                           ),
-                          16.verticalSpace,
-                          const Text(
-                            "Coming soon",
-                          ),
-                        ],
-                      ),
+                        ),
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(AppHelpers.getTranslation(TrKeys.transactions)),
+                        16.verticalSpace,
+                        const Text("Coming soon"),
+                      ],
                     ),
-                    Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            AppHelpers.getTranslation(TrKeys.messages),
-                          ),
-                          16.verticalSpace,
-                          const Text(
-                            "Coming soon",
-                          ),
-                        ],
-                      ),
-                    )
-                  ]),
-            )
+                  ),
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(AppHelpers.getTranslation(TrKeys.messages)),
+                        16.verticalSpace,
+                        const Text("Coming soon"),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

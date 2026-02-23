@@ -1,4 +1,3 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'network_exceptions.freezed.dart';
@@ -38,7 +37,6 @@ class NetworkExceptions with _$NetworkExceptions {
   const factory NetworkExceptions.defaultError(String error) = DefaultError;
 
   const factory NetworkExceptions.unexpectedError() = UnexpectedError;
-
 
   static String getErrorMessage(NetworkExceptions networkExceptions) {
     var errorMessage = "";

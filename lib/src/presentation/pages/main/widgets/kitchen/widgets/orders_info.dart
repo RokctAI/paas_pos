@@ -26,12 +26,14 @@ class OrdersInfo extends StatelessWidget {
         borderRadius: BorderRadiusDirectional.circular(10),
         boxShadow: [
           BoxShadow(
-              offset: const Offset(0, 5),
-              blurRadius: 8.r,
-              color: active ? AppStyle.shadowSecond : AppStyle.transparent)
+            offset: const Offset(0, 5),
+            blurRadius: 8.r,
+            color: active ? AppStyle.shadowSecond : AppStyle.transparent,
+          ),
         ],
-        border:
-            Border.all(color: active ? AppStyle.primary : AppStyle.transparent),
+        border: Border.all(
+          color: active ? AppStyle.primary : AppStyle.transparent,
+        ),
       ),
       child: Padding(
         padding: REdgeInsets.all(16),
@@ -58,33 +60,32 @@ class OrdersInfo extends StatelessWidget {
                       color: AppStyle.red,
                       shape: BoxShape.circle,
                     ),
-                  )
+                  ),
               ],
             ),
             4.verticalSpace,
-            Divider(
-              color: AppStyle.icon.withOpacity(0.6),
-            ),
+            Divider(color: AppStyle.icon.withOpacity(0.6)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   AppHelpers.getTranslation(TrKeys.orderTime),
                   style: GoogleFonts.inter(
-                      fontSize: 14.sp, fontWeight: FontWeight.w500),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 Text(
                   TimeService.dateFormatMDHm(orderData.createdAt?.toLocal()),
                   style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppStyle.icon),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: AppStyle.icon,
+                  ),
                 ),
               ],
             ),
-            Divider(
-              color: AppStyle.icon.withOpacity(0.6),
-            ),
+            Divider(color: AppStyle.icon.withOpacity(0.6)),
             4.verticalSpace,
             const Spacer(),
             Row(
@@ -93,42 +94,47 @@ class OrdersInfo extends StatelessWidget {
                   height: 30.r,
                   width: 30.r,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppStyle.black)),
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppStyle.black),
+                  ),
                   child: Center(
-                      child: orderData.deliveryType == TrKeys.dine
-                          ? SvgPicture.asset(Assets.svgDine)
-                          : Icon(
-                              orderData.deliveryType == TrKeys.pickup
-                                  ? FlutterRemix.walk_line
-                                  : FlutterRemix.e_bike_2_fill,
-                              size: 18,
-                            )),
+                    child: orderData.deliveryType == TrKeys.dine
+                        ? SvgPicture.asset(Assets.svgDine)
+                        : Icon(
+                            orderData.deliveryType == TrKeys.pickup
+                                ? FlutterRemix.walk_line
+                                : FlutterRemix.e_bike_2_fill,
+                            size: 18,
+                          ),
+                  ),
                 ),
                 8.horizontalSpace,
                 orderData.deliveryType == TrKeys.pickup
                     ? Text(
                         AppHelpers.getTranslation(TrKeys.takeAway),
                         style: GoogleFonts.inter(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
-                            color: AppStyle.black),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppStyle.black,
+                        ),
                       )
                     : orderData.deliveryType == TrKeys.dine
-                        ? Text(
-                            AppHelpers.getTranslation(TrKeys.dine),
-                            style: GoogleFonts.inter(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                color: AppStyle.black),
-                          )
-                        : Text(
-                            AppHelpers.getTranslation(TrKeys.delivery),
-                            style: GoogleFonts.inter(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                color: AppStyle.black),
-                          )
+                    ? Text(
+                        AppHelpers.getTranslation(TrKeys.dine),
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppStyle.black,
+                        ),
+                      )
+                    : Text(
+                        AppHelpers.getTranslation(TrKeys.delivery),
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppStyle.black,
+                        ),
+                      ),
               ],
             ),
             const Spacer(flex: 2),
@@ -141,11 +147,12 @@ class OrdersInfo extends StatelessWidget {
               child: Text(
                 AppHelpers.getTranslation(orderData.status ?? ''),
                 style: GoogleFonts.inter(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppStyle.white),
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppStyle.white,
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),

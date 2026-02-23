@@ -1,4 +1,3 @@
-
 import 'package:admin_desktop/src/core/utils/app_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,19 +8,19 @@ class AppbarItem extends StatelessWidget {
   final IconData icon;
   final String desc;
 
-  const AppbarItem(
-      {super.key, required this.title, required this.icon, required this.desc})
-     ;
+  const AppbarItem({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.desc,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(
-          icon,
-          size: 36.r,
-        ),
+        Icon(icon, size: 36.r),
         8.horizontalSpace,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,10 +32,12 @@ class AppbarItem extends StatelessWidget {
             Text(
               desc,
               style: GoogleFonts.inter(
-                  fontSize: 24.r, fontWeight: FontWeight.w700),
-            )
+                fontSize: 24.r,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ],
-        )
+        ),
       ],
     );
   }

@@ -53,7 +53,8 @@ class UsersRepositoryImpl extends UsersRepository {
 
   @override
   Future<ApiResult<UsersPaginateResponse>> searchDeliveryman(
-      String? query) async {
+    String? query,
+  ) async {
     final data = {
       if (query != null) 'search': query,
       'lang': LocalStorage.getLanguage()?.locale ?? 'en',
@@ -93,15 +94,12 @@ class UsersRepositoryImpl extends UsersRepository {
 
   @override
   Future<ApiResult<ProfileResponse>> getProfileDetails(
-      BuildContext context) async {
+    BuildContext context,
+  ) async {
     try {
       final client = dioHttp.client(requireAuth: true);
-      final response = await client.get(
-        '/api/v1/dashboard/user/profile/show',
-      );
-      return ApiResult.success(
-        data: ProfileResponse.fromJson(response.data),
-      );
+      final response = await client.get('/api/v1/dashboard/user/profile/show');
+      return ApiResult.success(data: ProfileResponse.fromJson(response.data));
     } catch (e) {
       if ((e as DioException).type == DioExceptionType.badResponse &&
           e.response?.statusCode == 401) {
@@ -130,10 +128,7 @@ class UsersRepositoryImpl extends UsersRepository {
     debugPrint('====> update delivery zone ${jsonEncode(data)}');
     try {
       final client = dioHttp.client(requireAuth: true);
-      await client.post(
-        '/api/v1/dashboard/seller/delivery-zones',
-        data: data,
-      );
+      await client.post('/api/v1/dashboard/seller/delivery-zones', data: data);
       return const ApiResult.success(data: null);
     } catch (e) {
       debugPrint('==> update delivery zones failure: $e');
@@ -144,9 +139,7 @@ class UsersRepositoryImpl extends UsersRepository {
   @override
   Future<ApiResult<DeliveryZonePaginate>> getDeliveryZone() async {
     final int? shopID = LocalStorage.getUser()?.shop?.id;
-    final data = {
-      'lang': LocalStorage.getLanguage()?.locale ?? 'en',
-    };
+    final data = {'lang': LocalStorage.getLanguage()?.locale ?? 'en'};
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(
@@ -173,17 +166,14 @@ class UsersRepositoryImpl extends UsersRepository {
       };
 
       final response = await client.get(
-          '/api/v1/rest/shop/$shopId/delivery-zone/check/distance',
-          queryParameters: data);
-
-      return ApiResult.success(
-        data: response.data["status"],
+        '/api/v1/rest/shop/$shopId/delivery-zone/check/distance',
+        queryParameters: data,
       );
+
+      return ApiResult.success(data: response.data["status"]);
     } catch (e) {
       debugPrint('==> get delivery zone failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
@@ -192,28 +182,22 @@ class UsersRepositoryImpl extends UsersRepository {
     required String coupon,
     required int shopId,
   }) async {
-    final data = {
-      'coupon': coupon,
-      'shop_id': shopId,
-    };
+    final data = {'coupon': coupon, 'shop_id': shopId};
     try {
       final client = dioHttp.client(requireAuth: true);
-      await client.post(
-        '/api/v1/rest/coupons/check',
-        data: data,
-      );
+      await client.post('/api/v1/rest/coupons/check', data: data);
       return const ApiResult.success(data: true);
     } catch (e) {
       debugPrint('==> check coupon failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
   @override
-  Future<ApiResult<ProfileResponse>> updatePassword(
-      {required String password, required String passwordConfirmation}) async {
+  Future<ApiResult<ProfileResponse>> updatePassword({
+    required String password,
+    required String passwordConfirmation,
+  }) async {
     final data = {
       'password': password,
       'password_confirmation': passwordConfirmation,
@@ -224,20 +208,18 @@ class UsersRepositoryImpl extends UsersRepository {
         '/api/v1/dashboard/user/profile/password/update',
         data: data,
       );
-      return ApiResult.success(
-        data: ProfileResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: ProfileResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> update password failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
   @override
-  Future<ApiResult<ProfileResponse>> updateProfileImage(
-      {required String firstName, required String imageUrl}) async {
+  Future<ApiResult<ProfileResponse>> updateProfileImage({
+    required String firstName,
+    required String imageUrl,
+  }) async {
     final data = {
       'firstname': firstName,
       'images': [imageUrl],
@@ -248,20 +230,17 @@ class UsersRepositoryImpl extends UsersRepository {
         '/api/v1/dashboard/user/profile/update',
         data: data,
       );
-      return ApiResult.success(
-        data: ProfileResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: ProfileResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> update profile image failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
   @override
-  Future<ApiResult<ProfileResponse>> editProfile(
-      {required EditProfile? user}) async {
+  Future<ApiResult<ProfileResponse>> editProfile({
+    required EditProfile? user,
+  }) async {
     final data = user?.toJson();
     debugPrint('===> update general info data ${jsonEncode(data)}');
     try {
@@ -270,20 +249,17 @@ class UsersRepositoryImpl extends UsersRepository {
         '/api/v1/dashboard/user/profile/update',
         data: data,
       );
-      return ApiResult.success(
-        data: ProfileResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: ProfileResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> update profile details failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
   @override
-  Future<ApiResult<ProfileResponse>> createUser(
-      {required CustomerModel query}) async {
+  Future<ApiResult<ProfileResponse>> createUser({
+    required CustomerModel query,
+  }) async {
     final data = query.toJson();
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -291,28 +267,22 @@ class UsersRepositoryImpl extends UsersRepository {
         '/api/v1/dashboard/${LocalStorage.getUser()?.role}/users',
         data: data,
       );
-      return ApiResult.success(
-        data: ProfileResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: ProfileResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> create user failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
   @override
   Future<ApiResult<UsersPaginateResponse>> getUsers({int? page}) async {
-    final data = {
-      'perPage': 6,
-      'page': page,
-    };
+    final data = {'perPage': 6, 'page': page};
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(
-          '/api/v1/dashboard/${LocalStorage.getUser()?.role}/users/paginate',
-          queryParameters: data);
+        '/api/v1/dashboard/${LocalStorage.getUser()?.role}/users/paginate',
+        queryParameters: data,
+      );
       return ApiResult.success(
         data: UsersPaginateResponse.fromJson(response.data),
       );
@@ -331,7 +301,7 @@ class UsersRepositoryImpl extends UsersRepository {
       TrKeys.newKey,
       TrKeys.viewed,
       TrKeys.accepted,
-      TrKeys.rejected
+      TrKeys.rejected,
     ];
     final data = {'status': list.indexOf(status) + 1};
     try {

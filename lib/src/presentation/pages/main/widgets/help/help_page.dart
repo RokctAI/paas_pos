@@ -14,7 +14,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'riverpod/help_provider.dart';
 
-
 @RoutePage()
 class HelpPage extends ConsumerStatefulWidget {
   const HelpPage({super.key});
@@ -56,23 +55,24 @@ class _HelpPageState extends ConsumerState<HelpPage> {
                   ),
                   Expanded(
                     child: GridView.builder(
-                        shrinkWrap: true,
-                        padding: EdgeInsets.only(
-                            top: 24.h,
-                            right: 16.w,
-                            left: 16.w,
-                            bottom:
-                                MediaQuery.of(context).padding.bottom + 72.h),
-                        itemCount: (state.data?.data?.length ?? 0),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          mainAxisExtent: 160.r,
-                          crossAxisSpacing: 12.r,
-                          mainAxisSpacing: 12.r,
-                        ),
-                        itemBuilder: (context, index) {
-                          return HelpItem(helpData: state.data?.data?[index]);
-                        }),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.only(
+                        top: 24.h,
+                        right: 16.w,
+                        left: 16.w,
+                        bottom: MediaQuery.of(context).padding.bottom + 72.h,
+                      ),
+                      itemCount: (state.data?.data?.length ?? 0),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        mainAxisExtent: 160.r,
+                        crossAxisSpacing: 12.r,
+                        mainAxisSpacing: 12.r,
+                      ),
+                      itemBuilder: (context, index) {
+                        return HelpItem(helpData: state.data?.data?[index]);
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -84,52 +84,56 @@ class _HelpPageState extends ConsumerState<HelpPage> {
               const PopButton(heroTag: ''),
               10.horizontalSpace,
               Expanded(
-                  child: Container(
-                height: 72.r,
-                padding: EdgeInsets.all(12.r),
-                width: double.infinity,
-                decoration: BoxDecoration(
+                child: Container(
+                  height: 72.r,
+                  padding: EdgeInsets.all(12.r),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
                     color: AppStyle.transparent,
                     borderRadius: BorderRadius.circular(10.r),
-                    border: Border.all(color: AppStyle.textGrey)),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset("assets/svg/contact.svg"),
-                    20.horizontalSpace,
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            AppHelpers.getTranslation(
-                                TrKeys.stillHaveQuestions),
-                            style: AppStyle.interSemi(size: 14.sp),
-                          ),
-                          10.verticalSpace,
-                          Text(
-                            AppHelpers.getTranslation(
-                                TrKeys.cantFindTheAnswer),
-                            style: AppStyle.interRegular(size: 12.sp),
-                          ),
-                        ],
+                    border: Border.all(color: AppStyle.textGrey),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset("assets/svg/contact.svg"),
+                      20.horizontalSpace,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppHelpers.getTranslation(
+                                TrKeys.stillHaveQuestions,
+                              ),
+                              style: AppStyle.interSemi(size: 14.sp),
+                            ),
+                            10.verticalSpace,
+                            Text(
+                              AppHelpers.getTranslation(
+                                TrKeys.cantFindTheAnswer,
+                              ),
+                              style: AppStyle.interRegular(size: 12.sp),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    CustomButton(
-                      background: AppStyle.black,
-                      textColor: AppStyle.white,
-                      title: AppHelpers.getTranslation(TrKeys.callToSupport),
-                      onTap: () async {
-                        final Uri launchUri = Uri(
-                          scheme: 'tel',
-                          path: AppHelpers.getAppPhone(),
-                        );
-                        await launchUrl(launchUri);
-                      },
-                    )
-                  ],
+                      CustomButton(
+                        background: AppStyle.black,
+                        textColor: AppStyle.white,
+                        title: AppHelpers.getTranslation(TrKeys.callToSupport),
+                        onTap: () async {
+                          final Uri launchUri = Uri(
+                            scheme: 'tel',
+                            path: AppHelpers.getAppPhone(),
+                          );
+                          await launchUrl(launchUri);
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ))
+              ),
             ],
           ),
         ),

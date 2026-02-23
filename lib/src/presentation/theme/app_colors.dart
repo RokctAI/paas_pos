@@ -48,8 +48,12 @@ class AppColors {
   static const Color notDoneOrderStatus = Color(0xFFF5F6F6);
   static const Color unselectedBottomBarBack = Color(0xFFEFEFEF);
   static const Color unselectedBottomBarItem = Color(0xFFB9B9B9);
-  static const Color bottomNavigationShadow =
-      Color.fromRGBO(207, 207, 207, 0.65);
+  static const Color bottomNavigationShadow = Color.fromRGBO(
+    207,
+    207,
+    207,
+    0.65,
+  );
   static const Color profileModalBack = Color(0xFFF5F5F5);
   static const Color arrowRightProfileButton = Color(0xFFCCCCCC);
   static const Color customMarkerShadow = Color.fromRGBO(117, 117, 117, 0.29);
@@ -74,8 +78,6 @@ class AppColors {
   static const Color pendingDark = Color(0xFFF19204);
   static const Color blueColor = Color(0xff3a92f5);
   static const Color orange = Color(0xffF26110);
-
-
 
   /// dark theme based colors
   static const Color mainBackDark = Color(0xFF1E272E);

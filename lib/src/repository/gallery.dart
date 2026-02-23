@@ -6,12 +6,12 @@ import '../models/response/gallery_upload_response.dart';
 
 abstract class GalleryRepositoryFacade {
   Future<ApiResult<GalleryUploadResponse>> uploadImage(
-      String file,
-      UploadType uploadType,
-      );
+    String file,
+    UploadType uploadType,
+  );
 
   Future<ApiResult<MultiGalleryUploadResponse>> uploadMultiImage(
-      List<String?> filePaths,
-      UploadType uploadType,
-      );
+    List<String?> filePaths,
+    UploadType uploadType,
+  );
 }

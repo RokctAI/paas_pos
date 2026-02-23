@@ -34,9 +34,10 @@ class TransactionsPage extends ConsumerWidget {
                 Text(
                   '${transactionState[index].user?.firstname}',
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16.sp,
-                      color: AppStyle.black),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16.sp,
+                    color: AppStyle.black,
+                  ),
                 ),
                 2.verticalSpace,
                 SizedBox(
@@ -46,20 +47,22 @@ class TransactionsPage extends ConsumerWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
-                        color: AppStyle.black),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14.sp,
+                      color: AppStyle.black,
+                    ),
                   ),
                 ),
                 8.verticalSpace,
                 Text(
                   '${transactionState[index].status}',
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12.sp,
-                      color: transactionState[index].status == 'progress'
-                          ? AppStyle.rate
-                          : AppStyle.icon),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12.sp,
+                    color: transactionState[index].status == 'progress'
+                        ? AppStyle.rate
+                        : AppStyle.icon,
+                  ),
                 ),
               ],
             ),
@@ -68,11 +71,7 @@ class TransactionsPage extends ConsumerWidget {
         22.verticalSpace,
         Row(
           children: [
-            Expanded(
-              child: Divider(
-                color: AppStyle.black.withOpacity(0.3),
-              ),
-            ),
+            Expanded(child: Divider(color: AppStyle.black.withOpacity(0.3))),
           ],
         ),
       ],

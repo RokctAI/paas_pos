@@ -11,15 +11,16 @@ class CustomButton extends StatelessWidget {
   final Function()? onTap;
   final bool? isLoading;
   final Widget? loadingwidget;
-  const CustomButton(
-      {super.key,
-      this.border,
-      this.title,
-      this.textColor,
-      this.background,
-      this.onTap,
-      this.isLoading,
-      this.loadingwidget});
+  const CustomButton({
+    super.key,
+    this.border,
+    this.title,
+    this.textColor,
+    this.background,
+    this.onTap,
+    this.isLoading,
+    this.loadingwidget,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +30,21 @@ class CustomButton extends StatelessWidget {
         height: 40.r,
         width: 148.r,
         decoration: BoxDecoration(
-            color: background,
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: border ?? AppStyle.transparent)),
+          color: background,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: border ?? AppStyle.transparent),
+        ),
         child: Center(
           child: isLoading ?? false
               ? loadingwidget
               : Text(
-            title ?? '',
-            style: GoogleFonts.inter(
-                fontSize: 16.sp,
-                color: textColor,
-                fontWeight: FontWeight.w500),
-          ),
+                  title ?? '',
+                  style: GoogleFonts.inter(
+                    fontSize: 16.sp,
+                    color: textColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
         ),
       ),
     );

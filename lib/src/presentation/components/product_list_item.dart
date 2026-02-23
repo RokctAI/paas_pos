@@ -40,7 +40,8 @@ class ProductListItem extends StatelessWidget {
                   color: isSelected ? AppStyle.primary : AppStyle.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
-                      color: !isSelected ? AppStyle.hint : AppStyle.primary),
+                    color: !isSelected ? AppStyle.hint : AppStyle.primary,
+                  ),
                 ),
                 child: Icon(
                   FlutterRemix.check_line,

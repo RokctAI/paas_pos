@@ -33,7 +33,8 @@ class CustomDropdown extends StatefulWidget {
     this.hintText,
     this.searchHintText,
     this.onChanged,
-    this.initialValue, this.initialId,
+    this.initialValue,
+    this.initialId,
   });
 
   @override
@@ -43,7 +44,6 @@ class CustomDropdown extends StatefulWidget {
 class _CustomDropdownState extends State<CustomDropdown> {
   final layerLink = LayerLink();
   late TextEditingController controller;
-
 
   @override
   void initState() {

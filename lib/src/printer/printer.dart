@@ -1,8 +1,14 @@
 import 'package:flutter/services.dart';
 
-const flutterPrinterChannel = MethodChannel('com.sersoluciones.flutter_pos_printer_platform');
-const flutterPrinterEventChannelBT = EventChannel('com.sersoluciones.flutter_pos_printer_platform/bt_state');
-const flutterPrinterEventChannelUSB = EventChannel('com.sersoluciones.flutter_pos_printer_platform/usb_state');
+const flutterPrinterChannel = MethodChannel(
+  'com.sersoluciones.flutter_pos_printer_platform',
+);
+const flutterPrinterEventChannelBT = EventChannel(
+  'com.sersoluciones.flutter_pos_printer_platform/bt_state',
+);
+const flutterPrinterEventChannelUSB = EventChannel(
+  'com.sersoluciones.flutter_pos_printer_platform/usb_state',
+);
 const iosChannel = MethodChannel('flutter_pos_printer_platform/methods');
 const iosStateChannel = EventChannel('flutter_pos_printer_platform/state');
 

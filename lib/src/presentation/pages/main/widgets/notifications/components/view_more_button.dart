@@ -11,10 +11,7 @@ import 'package:admin_desktop/src/presentation/theme/theme.dart';
 class ViewMoreButton extends ConsumerWidget {
   final Function()? onTap;
 
-  const ViewMoreButton({
-    super.key,
-    this.onTap,
-  });
+  const ViewMoreButton({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

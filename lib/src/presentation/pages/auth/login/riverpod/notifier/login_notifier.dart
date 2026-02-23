@@ -14,8 +14,10 @@ class LoginNotifier extends StateNotifier<LoginState> {
   final CurrenciesRepository _currenciesRepository;
 
   LoginNotifier(
-      this._authRepository, this._currenciesRepository, this._usersRepository)
-      : super(const LoginState());
+    this._authRepository,
+    this._currenciesRepository,
+    this._usersRepository,
+  ) : super(const LoginState());
 
   void setPassword(String text) {
     state = state.copyWith(
@@ -75,15 +77,16 @@ class LoginNotifier extends StateNotifier<LoginState> {
           final res = await _usersRepository.getProfileDetails(context);
 
           res.when(
-              success: (s) {
-                LocalStorage.setUser(s.data);
-              },
-              failure: (failure) {});
+            success: (s) {
+              LocalStorage.setUser(s.data);
+            },
+            failure: (failure) {},
+          );
 
           if (Platform.isAndroid || Platform.isIOS) {
             String? fcmToken;
             try {
-               // fcmToken = await FirebaseMessaging.instance.getToken();
+              // fcmToken = await FirebaseMessaging.instance.getToken();
             } catch (e) {
               debugPrint('===> error with getting firebase token $e');
             }

@@ -19,5 +19,8 @@ abstract class ProductsRepository {
     required int page,
   });
   Future<ApiResult<ProductCalculateResponse>> getAllCalculations(
-      List<BagProductData> bagProducts,String type, {String? coupon});
+    List<BagProductData> bagProducts,
+    String type, {
+    String? coupon,
+  });
 }

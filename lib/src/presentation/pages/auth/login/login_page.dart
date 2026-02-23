@@ -56,9 +56,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 child: Text(
                                   AppHelpers.getAppName(),
                                   style: GoogleFonts.inter(
-                                      fontSize: 32.sp,
-                                      color: AppStyle.black,
-                                      fontWeight: FontWeight.bold),
+                                    fontSize: 32.sp,
+                                    color: AppStyle.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ],
@@ -67,21 +68,24 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           Text(
                             AppHelpers.getTranslation(TrKeys.login),
                             style: GoogleFonts.inter(
-                                fontSize: 32.sp,
-                                color: AppStyle.black,
-                                fontWeight: FontWeight.bold),
+                              fontSize: 32.sp,
+                              color: AppStyle.black,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           36.verticalSpace,
                           Text(
                             AppHelpers.getTranslation(TrKeys.email),
                             style: GoogleFonts.inter(
-                                fontSize: 10.sp,
-                                color: AppStyle.black,
-                                fontWeight: FontWeight.w500),
+                              fontSize: 10.sp,
+                              color: AppStyle.black,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           CustomTextField(
-                            hintText:
-                                AppHelpers.getTranslation(TrKeys.typeSomething),
+                            hintText: AppHelpers.getTranslation(
+                              TrKeys.typeSomething,
+                            ),
                             onChanged: notifier.setEmail,
                             textController: login,
                             inputType: TextInputType.emailAddress,
@@ -90,11 +94,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 state.isLoginError || state.isEmailNotValid,
                             descriptionText: state.isEmailNotValid
                                 ? AppHelpers.getTranslation(
-                                    TrKeys.emailIsNotValid)
+                                    TrKeys.emailIsNotValid,
+                                  )
                                 : (state.isLoginError
-                                    ? AppHelpers.getTranslation(
-                                        TrKeys.loginCredentialsAreNotValid)
-                                    : null),
+                                      ? AppHelpers.getTranslation(
+                                          TrKeys.loginCredentialsAreNotValid,
+                                        )
+                                      : null),
                             onFieldSubmitted: (value) => notifier.login(
                               context: context,
                               goToMain: () {
@@ -106,14 +112,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           Text(
                             AppHelpers.getTranslation(TrKeys.password),
                             style: GoogleFonts.inter(
-                                fontSize: 10.sp,
-                                color: AppStyle.black,
-                                fontWeight: FontWeight.w500),
+                              fontSize: 10.sp,
+                              color: AppStyle.black,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           CustomTextField(
                             textController: password,
-                            hintText:
-                                AppHelpers.getTranslation(TrKeys.typeSomething),
+                            hintText: AppHelpers.getTranslation(
+                              TrKeys.typeSomething,
+                            ),
                             obscure: state.showPassword,
                             // label: AppHelpers.getTranslation(TrKeys.password),
                             onChanged: notifier.setPassword,
@@ -121,12 +129,15 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             isError:
                                 state.isLoginError || state.isPasswordNotValid,
                             descriptionText: state.isPasswordNotValid
-                                ? AppHelpers.getTranslation(TrKeys
-                                    .passwordShouldContainMinimum8Characters)
+                                ? AppHelpers.getTranslation(
+                                    TrKeys
+                                        .passwordShouldContainMinimum8Characters,
+                                  )
                                 : (state.isLoginError
-                                    ? AppHelpers.getTranslation(
-                                        TrKeys.loginCredentialsAreNotValid)
-                                    : null),
+                                      ? AppHelpers.getTranslation(
+                                          TrKeys.loginCredentialsAreNotValid,
+                                        )
+                                      : null),
                             suffixIcon: IconButton(
                               splashRadius: 25.r,
                               icon: Icon(
@@ -145,7 +156,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 bool checkPin =
                                     LocalStorage.getPinCode().isEmpty;
                                 context.replaceRoute(
-                                    PinCodeRoute(isNewPassword: checkPin));
+                                  PinCodeRoute(isNewPassword: checkPin),
+                                );
                               },
                             ),
                           ),
@@ -157,9 +169,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               Text(
                                 AppHelpers.getTranslation(TrKeys.keepMe),
                                 style: GoogleFonts.inter(
-                                    fontSize: 14.sp,
-                                    color: AppStyle.black,
-                                    fontWeight: FontWeight.w500),
+                                  fontSize: 14.sp,
+                                  color: AppStyle.black,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ],
                           ),
@@ -171,14 +184,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               context: context,
                               goToMain: () {
                                 context.replaceRoute(
-                                    PinCodeRoute(isNewPassword: true));
+                                  PinCodeRoute(isNewPassword: true),
+                                );
                               },
                             ),
                           ),
                           if (AppConstants.isDemo)
                             Expanded(
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   CustomPasswords(
                                     type: TrKeys.seller,
@@ -186,10 +201,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                       login.text = AppConstants.demoSellerLogin;
                                       password.text =
                                           AppConstants.demoSellerPassword;
-                                      notifier
-                                          .setEmail(AppConstants.demoSellerLogin);
+                                      notifier.setEmail(
+                                        AppConstants.demoSellerLogin,
+                                      );
                                       notifier.setPassword(
-                                          AppConstants.demoSellerPassword);
+                                        AppConstants.demoSellerPassword,
+                                      );
                                     },
                                   ),
                                   CustomPasswords(
@@ -198,10 +215,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                       login.text = AppConstants.demoCookerLogin;
                                       password.text =
                                           AppConstants.demoCookerPassword;
-                                      notifier
-                                          .setEmail(AppConstants.demoCookerLogin);
+                                      notifier.setEmail(
+                                        AppConstants.demoCookerLogin,
+                                      );
                                       notifier.setPassword(
-                                          AppConstants.demoCookerPassword);
+                                        AppConstants.demoCookerPassword,
+                                      );
                                     },
                                   ),
                                   CustomPasswords(
@@ -210,27 +229,30 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                       login.text = AppConstants.demoWaiterLogin;
                                       password.text =
                                           AppConstants.demoWaiterPassword;
-                                      notifier
-                                          .setEmail(AppConstants.demoWaiterLogin);
+                                      notifier.setEmail(
+                                        AppConstants.demoWaiterLogin,
+                                      );
                                       notifier.setPassword(
-                                          AppConstants.demoWaiterPassword);
+                                        AppConstants.demoWaiterPassword,
+                                      );
                                     },
                                   ),
                                   8.verticalSpace,
                                 ],
                               ),
-                            )
+                            ),
                         ],
                       ),
                     ),
                   ),
                 ),
                 Expanded(
-                    child: Image.asset(
-                  Assets.pngManImage,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
-                )),
+                  child: Image.asset(
+                    Assets.pngManImage,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ],
             ),
           ),

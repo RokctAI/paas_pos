@@ -1,4 +1,3 @@
-
 class TableData {
   int? id;
   String? name;
@@ -10,7 +9,17 @@ class TableData {
   String? updatedAt;
   ShopSection? shopSection;
 
-  TableData({this.id, this.name, this.shopSectionId, this.tax, this.chairCount, this.active, this.createdAt, this.updatedAt, this.shopSection});
+  TableData({
+    this.id,
+    this.name,
+    this.shopSectionId,
+    this.tax,
+    this.chairCount,
+    this.active,
+    this.createdAt,
+    this.updatedAt,
+    this.shopSection,
+  });
 
   TableData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -21,7 +30,9 @@ class TableData {
     active = json['active'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    shopSection = json['shop_section'] != null ? ShopSection.fromJson(json['shop_section']) : null;
+    shopSection = json['shop_section'] != null
+        ? ShopSection.fromJson(json['shop_section'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -50,7 +61,15 @@ class ShopSection {
   String? updatedAt;
   Translation? translation;
 
-  ShopSection({this.id, this.shopId, this.area, this.img, this.createdAt, this.updatedAt, this.translation});
+  ShopSection({
+    this.id,
+    this.shopId,
+    this.area,
+    this.img,
+    this.createdAt,
+    this.updatedAt,
+    this.translation,
+  });
 
   ShopSection.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -59,7 +78,9 @@ class ShopSection {
     img = json['img'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    translation = json['translation'] != null ? Translation.fromJson(json['translation']) : null;
+    translation = json['translation'] != null
+        ? Translation.fromJson(json['translation'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -98,7 +119,3 @@ class Translation {
     return data;
   }
 }
-
-
-
-

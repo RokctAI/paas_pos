@@ -30,7 +30,7 @@ class CustomPopup extends ConsumerWidget {
     required this.orderData,
     required this.isLocation,
     this.index,
-    this.isResponsive=false,
+    this.isResponsive = false,
   });
 
   @override
@@ -38,14 +38,17 @@ class CustomPopup extends ConsumerWidget {
     return _CustomPopupItem(
       onLocation: () {
         AppHelpers.showAlertDialog(
-            context: context, child: MapDialog(orderData: orderData));
+          context: context,
+          child: MapDialog(orderData: orderData),
+        );
       },
       onEdit: () => ref.read(mainProvider.notifier).setOrder(orderData),
       onDownload: () {
         showDialog(
-            context: context,
-            builder: (context) {
-              return LayoutBuilder(builder: (context, constraints) {
+          context: context,
+          builder: (context) {
+            return LayoutBuilder(
+              builder: (context, constraints) {
                 return SimpleDialog(
                   title: SizedBox(
                     height: constraints.maxHeight * 0.7,
@@ -53,84 +56,73 @@ class CustomPopup extends ConsumerWidget {
                     child: GenerateCheckPage(orderData: orderData),
                   ),
                 );
-              });
-            });
+              },
+            );
+          },
+        );
       },
       onDelete: () {
         Navigator.pop(context);
         showDialog(
-            context: context,
-            builder: (_) => AlertDialog(
-                  titlePadding: const EdgeInsets.all(16),
-                  actionsPadding: const EdgeInsets.all(16),
-                  title: Text(
-                    AppHelpers.getTranslation(TrKeys.deleteOrder),
-                    style: GoogleFonts.inter(
-                      fontSize: 18,
-                      color: AppStyle.black,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  actions: [
-                    SizedBox(
-                      width: 100,
-                      child: ConfirmButton(
-                          title: AppHelpers.getTranslation(TrKeys.no),
-                          onTap: () {
-                            Navigator.pop(context);
-                          }),
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: ConfirmButton(
-                          title: AppHelpers.getTranslation(TrKeys.yes),
-                          onTap: () {
-                            if (orderData.status == 'accepted') {
-                              ref
-                                  .read(acceptedOrdersProvider.notifier)
-                                  .deleteOrder(
-                                    context,
-                                    orderId: orderData.id,
-                                  );
-                            } else if (orderData.status == 'ready') {
-                              ref
-                                  .read(readyOrdersProvider.notifier)
-                                  .deleteOrder(
-                                    context,
-                                    orderId: orderData.id,
-                                  );
-                            } else if (orderData.status == 'on_a_way') {
-                              ref
-                                  .read(onAWayOrdersProvider.notifier)
-                                  .deleteOrder(
-                                    context,
-                                    orderId: orderData.id,
-                                  );
-                            } else if (orderData.status == 'delivered') {
-                              ref
-                                  .read(deliveredOrdersProvider.notifier)
-                                  .deleteOrder(
-                                    context,
-                                    orderId: orderData.id,
-                                  );
-                            } else if (orderData.status == 'canceled') {
-                              ref
-                                  .read(canceledOrdersProvider.notifier)
-                                  .deleteOrder(
-                                    context,
-                                    orderId: orderData.id,
-                                  );
-                            } else {
-                              ref.read(newOrdersProvider.notifier).deleteOrder(
-                                    context,
-                                    orderId: orderData.id,
-                                  );
-                            }
-                            Navigator.pop(context);
-                          }),
-                    ),
-                  ],
-                ));
+          context: context,
+          builder: (_) => AlertDialog(
+            titlePadding: const EdgeInsets.all(16),
+            actionsPadding: const EdgeInsets.all(16),
+            title: Text(
+              AppHelpers.getTranslation(TrKeys.deleteOrder),
+              style: GoogleFonts.inter(
+                fontSize: 18,
+                color: AppStyle.black,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            actions: [
+              SizedBox(
+                width: 100,
+                child: ConfirmButton(
+                  title: AppHelpers.getTranslation(TrKeys.no),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+              SizedBox(
+                width: 100,
+                child: ConfirmButton(
+                  title: AppHelpers.getTranslation(TrKeys.yes),
+                  onTap: () {
+                    if (orderData.status == 'accepted') {
+                      ref
+                          .read(acceptedOrdersProvider.notifier)
+                          .deleteOrder(context, orderId: orderData.id);
+                    } else if (orderData.status == 'ready') {
+                      ref
+                          .read(readyOrdersProvider.notifier)
+                          .deleteOrder(context, orderId: orderData.id);
+                    } else if (orderData.status == 'on_a_way') {
+                      ref
+                          .read(onAWayOrdersProvider.notifier)
+                          .deleteOrder(context, orderId: orderData.id);
+                    } else if (orderData.status == 'delivered') {
+                      ref
+                          .read(deliveredOrdersProvider.notifier)
+                          .deleteOrder(context, orderId: orderData.id);
+                    } else if (orderData.status == 'canceled') {
+                      ref
+                          .read(canceledOrdersProvider.notifier)
+                          .deleteOrder(context, orderId: orderData.id);
+                    } else {
+                      ref
+                          .read(newOrdersProvider.notifier)
+                          .deleteOrder(context, orderId: orderData.id);
+                    }
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
       },
       isLocation: isLocation,
     );

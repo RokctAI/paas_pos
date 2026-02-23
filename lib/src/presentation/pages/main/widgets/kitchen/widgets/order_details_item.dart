@@ -13,8 +13,11 @@ class OrderDetailsItem extends StatelessWidget {
   final OrderDetail? orderDetail;
   final Function(int?, String) onEdit;
 
-  const OrderDetailsItem(
-      {super.key, required this.orderDetail, required this.onEdit});
+  const OrderDetailsItem({
+    super.key,
+    required this.orderDetail,
+    required this.onEdit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +33,10 @@ class OrderDetailsItem extends StatelessWidget {
                 Text(
                   "${orderDetail?.stock?.product?.translation?.title ?? ""} x ${orderDetail?.quantity ?? ""} ${orderDetail?.stock?.product?.unit?.translation?.title ?? ""}",
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.sp,
-                      color: AppStyle.black),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.sp,
+                    color: AppStyle.black,
+                  ),
                 ),
                 2.verticalSpace,
                 Wrap(
@@ -69,8 +73,9 @@ class OrderDetailsItem extends StatelessWidget {
             child: Container(
               padding: REdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                  color: AppHelpers.getStatusColor(orderDetail?.status),
-                  borderRadius: BorderRadius.circular(16.r)),
+                color: AppHelpers.getStatusColor(orderDetail?.status),
+                borderRadius: BorderRadius.circular(16.r),
+              ),
               child: Row(
                 children: [
                   Text(
@@ -85,12 +90,12 @@ class OrderDetailsItem extends StatelessWidget {
                       orderDetail?.status != TrKeys.ready)
                     Padding(
                       padding: REdgeInsets.only(left: 6),
-                      child:  Icon(
+                      child: Icon(
                         FlutterRemix.pencil_fill,
                         color: AppStyle.white,
                         size: 21.r,
                       ),
-                    )
+                    ),
                 ],
               ),
             ),

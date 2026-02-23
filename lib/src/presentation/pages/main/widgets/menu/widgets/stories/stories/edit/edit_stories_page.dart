@@ -54,11 +54,14 @@ class EditStoriesPage extends ConsumerWidget {
                               label: AppHelpers.getTranslation(TrKeys.product),
                               onTap: () {
                                 AppHelpers.showAlertDialog(
-                                    context: context,
-                                    child: SizedBox(
-                                        height: MediaQuery.sizeOf(context).height/3,
-                                        width: MediaQuery.sizeOf(context).width/3,
-                                        child: const ProductsModal()));
+                                  context: context,
+                                  child: SizedBox(
+                                    height:
+                                        MediaQuery.sizeOf(context).height / 3,
+                                    width: MediaQuery.sizeOf(context).width / 3,
+                                    child: const ProductsModal(),
+                                  ),
+                                );
                               },
                             ),
                             24.verticalSpace,
@@ -82,12 +85,15 @@ class EditStoriesPage extends ConsumerWidget {
                 AppHelpers.showSnackBar(context, TrKeys.imageCantEmpty);
                 return;
               }
-              notifier.updateStories(context, updated: () {
-                ref
-                    .read(storiesProvider.notifier)
-                    .fetchStories(isRefresh: true);
-                context.maybePop();
-              });
+              notifier.updateStories(
+                context,
+                updated: () {
+                  ref
+                      .read(storiesProvider.notifier)
+                      .fetchStories(isRefresh: true);
+                  context.maybePop();
+                },
+              );
             },
           ),
         ),

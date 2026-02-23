@@ -76,8 +76,9 @@ class AppHelpers {
   static bool isNumberRequiredToOrder() {
     return LocalStorage.getSettingsList()
             .firstWhere(
-                (element) => element.key == "before_order_phone_required",
-                orElse: () => SettingsData(key: "", value: "0"))
+              (element) => element.key == "before_order_phone_required",
+              orElse: () => SettingsData(key: "", value: "0"),
+            )
             .value ==
         '1';
   }
@@ -146,8 +147,10 @@ class AppHelpers {
     final List<SettingsData> settings = LocalStorage.getSettingsList();
     for (final setting in settings) {
       if (setting.key == 'location') {
-        final String? latString =
-            setting.value?.substring(0, setting.value?.indexOf(','));
+        final String? latString = setting.value?.substring(
+          0,
+          setting.value?.indexOf(','),
+        );
         if (latString == null) {
           return null;
         }
@@ -202,13 +205,17 @@ class AppHelpers {
     final List<SettingsData> settings = LocalStorage.getSettingsList();
     for (final setting in settings) {
       if (setting.key == 'location') {
-        final String? latString =
-            setting.value?.substring(0, setting.value?.indexOf(','));
+        final String? latString = setting.value?.substring(
+          0,
+          setting.value?.indexOf(','),
+        );
         if (latString == null) {
           return null;
         }
-        final String? lonString = setting.value
-            ?.substring((latString.length) + 2, setting.value?.length);
+        final String? lonString = setting.value?.substring(
+          (latString.length) + 2,
+          setting.value?.length,
+        );
         if (lonString == null) {
           return null;
         }
@@ -244,15 +251,22 @@ class AppHelpers {
     );
   }
 
-  static void showSnackBar(BuildContext context, String title,
-      {bool isIcon = false}) {
+  static void showSnackBar(
+    BuildContext context,
+    String title, {
+    bool isIcon = false,
+  }) {
     ScaffoldMessenger.of(context).clearSnackBars();
     final snackBar = SnackBar(
       backgroundColor: AppStyle.white,
       behavior: SnackBarBehavior.floating,
       duration: const Duration(seconds: 3),
-      margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width - 400.w, 0,
-          32, MediaQuery.of(context).size.height - 160.h),
+      margin: EdgeInsets.fromLTRB(
+        MediaQuery.of(context).size.width - 400.w,
+        0,
+        32,
+        MediaQuery.of(context).size.height - 160.h,
+      ),
       content: Row(
         children: [
           if (isIcon)
@@ -266,10 +280,7 @@ class AppHelpers {
           Expanded(
             child: Text(
               title,
-              style: GoogleFonts.inter(
-                fontSize: 14,
-                color: AppStyle.black,
-              ),
+              style: GoogleFonts.inter(fontSize: 14, color: AppStyle.black),
             ),
           ),
         ],
@@ -291,8 +302,13 @@ class AppHelpers {
     if (AppConstants.autoTrn) {
       return (translations[trKey] ??
           (trKey.isNotEmpty
-              ? trKey.replaceAll(".", " ").replaceAll("_", " ").replaceFirst(
-                  trKey.substring(0, 1), trKey.substring(0, 1).toUpperCase())
+              ? trKey
+                    .replaceAll(".", " ")
+                    .replaceAll("_", " ")
+                    .replaceFirst(
+                      trKey.substring(0, 1),
+                      trKey.substring(0, 1).toUpperCase(),
+                    )
               : ''));
     } else {
       return translations[trKey] ?? trKey;
@@ -446,10 +462,10 @@ class AppHelpers {
         color: text == "new"
             ? AppStyle.blue
             : text == "accept"
-                ? Colors.deepPurple
-                : text == "ready"
-                    ? AppStyle.rate
-                    : AppStyle.primary,
+            ? Colors.deepPurple
+            : text == "ready"
+            ? AppStyle.rate
+            : AppStyle.primary,
       ),
       child: Text(
         getTranslation(text),
@@ -500,22 +516,22 @@ class AppHelpers {
     try {
       return (e.runtimeType == DioException)
           ? ((e as DioException).response?.data["message"] == "Bad request."
-              ? (e.response?.data["params"] as Map).values.first[0]
-              : e.response?.data["message"])
+                ? (e.response?.data["params"] as Map).values.first[0]
+                : e.response?.data["message"])
           : e.toString();
     } catch (s) {
       try {
         return (e.runtimeType == DioException)
             ? ((e as DioException).response?.data.toString().substring(
-                    (e.response?.data.toString().indexOf("<title>") ?? 0) + 7,
-                    e.response?.data.toString().indexOf("</title") ?? 0))
-                .toString()
+                (e.response?.data.toString().indexOf("<title>") ?? 0) + 7,
+                e.response?.data.toString().indexOf("</title") ?? 0,
+              )).toString()
             : e.toString();
       } catch (r) {
         try {
           return (e.runtimeType == DioException)
               ? ((e as DioException).response?.data["error"]["message"])
-                  .toString()
+                    .toString()
               : e.toString();
         } catch (f) {
           return e.toString();

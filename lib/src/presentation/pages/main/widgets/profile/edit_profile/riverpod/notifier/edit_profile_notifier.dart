@@ -20,7 +20,7 @@ import '../state/edit_profile_state.dart';
 class EditProfileNotifier extends StateNotifier<EditProfileState> {
   final GalleryRepositoryFacade _galleryRepository;
   EditProfileNotifier(this._galleryRepository)
-      : super(const EditProfileState());
+    : super(const EditProfileState());
 
   Future<void> getPhoto() async {
     final ImagePicker picker = ImagePicker();
@@ -46,9 +46,11 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
   void changeIndex(int index) {
     state = state.copyWith(selectIndex: index);
   }
+
   void setShopEdit(int isShopEdit) {
     state = state.copyWith(isShopEdit: isShopEdit);
   }
+
   void setShowPassword(bool show) {
     state = state.copyWith(showPassword: show);
   }
@@ -79,14 +81,15 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
       }
 
       final response = await usersRepository.editProfile(
-          user: EditProfile(
-        firstname: state.firstName.isEmpty ? user.firstname : state.firstName,
-        lastname: state.lastName.isEmpty ? user.lastname : state.lastName,
-        birthday: state.birth.isEmpty ? user.birthday : state.birth,
-        phone: state.phone.isEmpty ? user.phone : state.phone,
-        images: state.url.isEmpty ? user.img ?? "" : state.url,
-        gender: state.gender,
-      ));
+        user: EditProfile(
+          firstname: state.firstName.isEmpty ? user.firstname : state.firstName,
+          lastname: state.lastName.isEmpty ? user.lastname : state.lastName,
+          birthday: state.birth.isEmpty ? user.birthday : state.birth,
+          phone: state.phone.isEmpty ? user.phone : state.phone,
+          images: state.url.isEmpty ? user.img ?? "" : state.url,
+          gender: state.gender,
+        ),
+      );
       response.when(
         success: (data) {
           LocalStorage.setUser(data.data);
@@ -98,20 +101,22 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
           );
 
           showDialog(
-              context: context,
-              builder: (_) => Dialog(child: Consumer(
-                    builder:
-                        (BuildContext context, WidgetRef ref, Widget? child) {
-                      return SuccessfullDialog(
-                          title:
-                              AppHelpers.getTranslation(TrKeys.profileEdited),
-                          content: AppHelpers.getTranslation(TrKeys.goToHome),
-                          onPressed: () {
-                            Navigator.pop(context);
-                            ref.read(mainProvider.notifier).changeIndex(0);
-                          });
+            context: context,
+            builder: (_) => Dialog(
+              child: Consumer(
+                builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                  return SuccessfullDialog(
+                    title: AppHelpers.getTranslation(TrKeys.profileEdited),
+                    content: AppHelpers.getTranslation(TrKeys.goToHome),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      ref.read(mainProvider.notifier).changeIndex(0);
                     },
-                  )));
+                  );
+                },
+              ),
+            ),
+          );
         },
         failure: (failure) {
           state = state.copyWith(isLoading: false);
@@ -131,8 +136,11 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
     }
   }
 
-  Future<void> updatePassword(BuildContext context,
-      {required String password, required String confirmPassword}) async {
+  Future<void> updatePassword(
+    BuildContext context, {
+    required String password,
+    required String confirmPassword,
+  }) async {
     final connected = await AppConnectivity.connectivity();
     if (connected) {
       state = state.copyWith(isLoading: true, isSuccess: false);
@@ -167,8 +175,10 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
     final connected = await AppConnectivity.connectivity();
     if (connected) {
       String? url;
-      final imageResponse =
-          await _galleryRepository.uploadImage(path, UploadType.users);
+      final imageResponse = await _galleryRepository.uploadImage(
+        path,
+        UploadType.users,
+      );
       imageResponse.when(
         success: (data) {
           url = data.imageData?.title;

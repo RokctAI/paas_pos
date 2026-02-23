@@ -17,7 +17,7 @@ class CategoriesRepositoryImpl extends CategoriesRepository {
       'perPage': 100,
       'page': page,
       if (type == null) 'type': 'main',
-    "has_products": 1,
+      "has_products": 1,
       if (query != null && query.isNotEmpty) 'search': query,
       if (type != null && type.isNotEmpty) 'type': type,
       type == 'combo' ? "c_shop_id" : "p_shop_id":

@@ -10,7 +10,7 @@ class PopButton extends ConsumerWidget {
   final String heroTag;
   final VoidCallback? onTap;
 
-  const PopButton( {super.key, required this.heroTag,this.onTap,});
+  const PopButton({super.key, required this.heroTag, this.onTap});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,7 +27,8 @@ class PopButton extends ConsumerWidget {
               borderRadius: BorderRadius.circular(10.r),
             ),
             alignment: Alignment.center,
-            child: Icon( FlutterRemix.arrow_left_s_line,
+            child: Icon(
+              FlutterRemix.arrow_left_s_line,
               color: AppStyle.white,
               size: 20.r,
             ),

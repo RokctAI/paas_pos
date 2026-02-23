@@ -1,7 +1,5 @@
-
 import 'package:admin_desktop/src/models/data/order_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 
 part 'new_orders_state.freezed.dart';
 

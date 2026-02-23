@@ -17,7 +17,7 @@ class CustomerNotifier extends StateNotifier<CustomerState> {
   int _page = 0;
 
   CustomerNotifier(this._usersRepository, this._galleryRepository)
-      : super(const CustomerState());
+    : super(const CustomerState());
 
   void setUser(UserData? user) {
     state = state.copyWith(selectUser: user);
@@ -33,15 +33,10 @@ class CustomerNotifier extends StateNotifier<CustomerState> {
       if (_page == 0) {
         state = state.copyWith(isLoading: true, users: []);
 
-        final response = await _usersRepository.getUsers(
-          page: ++_page,
-        );
+        final response = await _usersRepository.getUsers(page: ++_page);
         response.when(
           success: (data) {
-            state = state.copyWith(
-              users: data.users ?? [],
-              isLoading: false,
-            );
+            state = state.copyWith(users: data.users ?? [], isLoading: false);
             if ((data.users?.length ?? 0) < 5) {
               state = state.copyWith(hasMore: false);
             }
@@ -58,10 +53,7 @@ class CustomerNotifier extends StateNotifier<CustomerState> {
           success: (data) async {
             final List<UserData> newList = List.from(state.users);
             newList.addAll(data.users ?? []);
-            state = state.copyWith(
-              users: newList,
-              isMoreLoading: false,
-            );
+            state = state.copyWith(users: newList, isMoreLoading: false);
             if ((data.users?.length ?? 0) < 5) {
               state = state.copyWith(hasMore: false);
             }
@@ -77,60 +69,74 @@ class CustomerNotifier extends StateNotifier<CustomerState> {
     }
   }
 
-  Future<void> createCustomer(BuildContext context,
-      {required String name,
-      required String lastName,
-      required String email,
-      required String phone,
-      String? createRole,
-      String? password,
-      Function(UserData?)? created,
-      bool needAlert = true}) async {
+  Future<void> createCustomer(
+    BuildContext context, {
+    required String name,
+    required String lastName,
+    required String email,
+    required String phone,
+    String? createRole,
+    String? password,
+    Function(UserData?)? created,
+    bool needAlert = true,
+  }) async {
     final connected = await AppConnectivity.connectivity();
     if (connected) {
       state = state.copyWith(createUserLoading: true);
       String? imageUrl;
       if (state.imageFile?.isNotEmpty ?? false) {
         final res = await _galleryRepository.uploadImage(
-            state.imageFile!, UploadType.users);
-        res.when(success: (success) {
-          imageUrl = success.imageData?.title;
-        }, failure: (failure) {
-          debugPrint('==> upload service image fail: $failure');
-          AppHelpers.showSnackBar(context, failure.toString());
-        });
+          state.imageFile!,
+          UploadType.users,
+        );
+        res.when(
+          success: (success) {
+            imageUrl = success.imageData?.title;
+          },
+          failure: (failure) {
+            debugPrint('==> upload service image fail: $failure');
+            AppHelpers.showSnackBar(context, failure.toString());
+          },
+        );
       }
       final response = await _usersRepository.createUser(
-          query: CustomerModel(
-              imageUrl: imageUrl,
-              role: createRole ?? 'user',
-              firstname: name,
-              lastname: lastName,
-              email: email,
-              phone: int.tryParse(phone),
-              password: password));
+        query: CustomerModel(
+          imageUrl: imageUrl,
+          role: createRole ?? 'user',
+          firstname: name,
+          lastname: lastName,
+          email: email,
+          phone: int.tryParse(phone),
+          password: password,
+        ),
+      );
       response.when(
         success: (data) {
-          _page=0;
+          _page = 0;
           fetchAllUsers();
           state = state.copyWith(user: data.data, createUserLoading: false);
           created?.call(data.data);
           if (needAlert) {
             showDialog(
-                context: context,
-                builder: (_) => Dialog(child: Consumer(
-                      builder:
-                          (BuildContext context, WidgetRef ref, Widget? child) {
+              context: context,
+              builder: (_) => Dialog(
+                child: Consumer(
+                  builder:
+                      (BuildContext context, WidgetRef ref, Widget? child) {
                         return SuccessfullDialog(
-                            title:
-                                AppHelpers.getTranslation(TrKeys.customerAdded),
-                            content: AppHelpers.getTranslation(TrKeys.goToHome),
-                            onPressed: () {
-                              Navigator.pop(context);
-                              ref.read(mainProvider.notifier).changeIndex(0);
-                            });
+                          title: AppHelpers.getTranslation(
+                            TrKeys.customerAdded,
+                          ),
+                          content: AppHelpers.getTranslation(TrKeys.goToHome),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            ref.read(mainProvider.notifier).changeIndex(0);
+                          },
+                        );
                       },
-                    )));
+                ),
+              ),
+            );
           }
         },
         failure: (failure) {

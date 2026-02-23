@@ -2,7 +2,6 @@ import 'package:admin_desktop/src/presentation/components/buttons/button_effect_
 import 'package:admin_desktop/src/presentation/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-
 class CircleButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
@@ -34,11 +33,8 @@ class CircleButton extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: Center(
-            child: Icon(
-              icon,
-              color: AppStyle.buttonFontColor,
-              size: iconSize,
-            )),
+          child: Icon(icon, color: AppStyle.buttonFontColor, size: iconSize),
+        ),
       ),
     );
   }

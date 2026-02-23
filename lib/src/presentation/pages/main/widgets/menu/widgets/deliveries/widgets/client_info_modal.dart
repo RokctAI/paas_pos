@@ -26,7 +26,9 @@ class ClientInfoModal extends ConsumerWidget {
                 width: 4,
                 margin: REdgeInsets.symmetric(vertical: 12),
                 decoration: ShapeDecoration(
-                  color: (user?.active ?? false) ? AppStyle.primary : AppStyle.red,
+                  color: (user?.active ?? false)
+                      ? AppStyle.primary
+                      : AppStyle.red,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(10.r),
@@ -59,22 +61,19 @@ class ClientInfoModal extends ConsumerWidget {
                               Text(
                                 '${user?.firstname ?? ""} ${user?.lastname ?? ''}',
                                 style: GoogleFonts.inter(
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w700,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                               4.verticalSpace,
                               Text(
                                 user?.phone ?? '',
                                 style: GoogleFonts.inter(
-                                    fontSize: 14.sp,
-                                    color: AppStyle.selectedItemsText,
+                                  fontSize: 14.sp,
+                                  color: AppStyle.selectedItemsText,
                                 ),
                               ),
-                              const Divider(
-                                height: 6,
-                                thickness: 1,
-                              ),
+                              const Divider(height: 6, thickness: 1),
                             ],
                           ),
                         ),

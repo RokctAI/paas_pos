@@ -35,8 +35,9 @@ class DocumentScreen extends StatelessWidget {
                   readOnly: true,
                   label: null,
                   textController: TextEditingController(
-                      text:
-                          "${orderData?.user?.firstname ?? ""} ${orderData?.user?.lastname ?? ""}"),
+                    text:
+                        "${orderData?.user?.firstname ?? ""} ${orderData?.user?.lastname ?? ""}",
+                  ),
                   suffixIcon: const Icon(FlutterRemix.arrow_down_s_line),
                 ),
               ),
@@ -45,7 +46,8 @@ class DocumentScreen extends StatelessWidget {
                 child: OutlinedBorderTextField(
                   readOnly: true,
                   textController: TextEditingController(
-                      text: orderData?.orderAddress?.address ?? ""),
+                    text: orderData?.orderAddress?.address ?? "",
+                  ),
                   label: null,
                   suffixIcon: const Icon(FlutterRemix.arrow_down_s_line),
                 ),
@@ -59,8 +61,9 @@ class DocumentScreen extends StatelessWidget {
                 child: OutlinedBorderTextField(
                   readOnly: true,
                   textController: TextEditingController(
-                      text:
-                          "${orderData?.currency?.title ?? ""} (${orderData?.currency?.symbol ?? ""})"),
+                    text:
+                        "${orderData?.currency?.title ?? ""} (${orderData?.currency?.symbol ?? ""})",
+                  ),
                   label: null,
                   suffixIcon: const Icon(FlutterRemix.arrow_down_s_line),
                 ),
@@ -70,8 +73,10 @@ class DocumentScreen extends StatelessWidget {
                 child: OutlinedBorderTextField(
                   readOnly: true,
                   textController: TextEditingController(
-                      text: AppHelpers.getTranslation(
-                          orderData?.transaction?.paymentSystem?.tag ?? "")),
+                    text: AppHelpers.getTranslation(
+                      orderData?.transaction?.paymentSystem?.tag ?? "",
+                    ),
+                  ),
                   label: null,
                   suffixIcon: const Icon(FlutterRemix.arrow_down_s_line),
                 ),
@@ -83,8 +88,10 @@ class DocumentScreen extends StatelessWidget {
           8.verticalSpace,
           Text(
             AppHelpers.getTranslation(TrKeys.shippingInformation),
-            style:
-                GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18.r),
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              fontSize: 18.r,
+            ),
           ),
           16.verticalSpace,
           _paymentType(),
@@ -106,7 +113,8 @@ class DocumentScreen extends StatelessWidget {
                 child: OutlinedBorderTextField(
                   readOnly: true,
                   textController: TextEditingController(
-                      text: orderData?.deliveryTime ?? ""),
+                    text: orderData?.deliveryTime ?? "",
+                  ),
                   label: null,
                   suffixIcon: const Icon(FlutterRemix.arrow_down_s_line),
                 ),
@@ -121,14 +129,17 @@ class DocumentScreen extends StatelessWidget {
                 Text(
                   AppHelpers.getTranslation(TrKeys.note),
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600, fontSize: 18.r),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18.r,
+                  ),
                 ),
                 Text(
                   orderData?.note ?? '',
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16.r,
-                      color: AppStyle.reviewText),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16.r,
+                    color: AppStyle.reviewText,
+                  ),
                 ),
               ],
             ),
@@ -160,17 +171,16 @@ class DocumentScreen extends StatelessWidget {
                       border: Border.all(color: AppStyle.black),
                     ),
                     padding: EdgeInsets.all(6.r),
-                    child: Icon(
-                      FlutterRemix.takeaway_fill,
-                      size: 18.sp,
-                    ),
+                    child: Icon(FlutterRemix.takeaway_fill, size: 18.sp),
                   ),
                   8.horizontalSpace,
                   Text(
                     AppHelpers.getTranslation(TrKeys.delivery),
                     style: GoogleFonts.inter(
-                        fontSize: 14.sp, fontWeight: FontWeight.w600),
-                  )
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -203,8 +213,10 @@ class DocumentScreen extends StatelessWidget {
                   Text(
                     AppHelpers.getTranslation(TrKeys.takeAway),
                     style: GoogleFonts.inter(
-                        fontSize: 14.sp, fontWeight: FontWeight.w600),
-                  )
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -237,13 +249,15 @@ class DocumentScreen extends StatelessWidget {
                   Text(
                     AppHelpers.getTranslation(TrKeys.dine),
                     style: GoogleFonts.inter(
-                        fontSize: 14.sp, fontWeight: FontWeight.w600),
-                  )
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

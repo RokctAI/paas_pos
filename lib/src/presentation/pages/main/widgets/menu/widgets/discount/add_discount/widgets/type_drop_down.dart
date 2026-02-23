@@ -71,14 +71,7 @@ class _DiscountTypeDropDownState extends State<DiscountTypeDropDown> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.label != null)
-          Column(
-            children: [
-              Text(
-                widget.label ?? "",
-              ),
-              4.verticalSpace,
-            ],
-          ),
+          Column(children: [Text(widget.label ?? ""), 4.verticalSpace]),
         DropdownButtonFormField<String>(
           padding: EdgeInsets.zero,
           value: selectedOption,
@@ -89,57 +82,66 @@ class _DiscountTypeDropDownState extends State<DiscountTypeDropDown> {
             widget.onTap(value);
           },
           items: <String>['fix', 'percent'].map((String option) {
-            return DropdownMenuItem<String>(
-              value: option,
-              child: Text(option),
-            );
+            return DropdownMenuItem<String>(value: option, child: Text(option));
           }).toList(),
           decoration: InputDecoration(
             counterText: '',
-            suffixIconConstraints: BoxConstraints(maxWidth: 48.r, minWidth: 36.r),
-            contentPadding: REdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 10,
+            suffixIconConstraints: BoxConstraints(
+              maxWidth: 48.r,
+              minWidth: 36.r,
             ),
+            contentPadding: REdgeInsets.symmetric(horizontal: 16, vertical: 10),
             floatingLabelStyle: GoogleFonts.inter(
               fontWeight: FontWeight.w400,
-              fontSize:14.sp,
+              fontSize: 14.sp,
               color: AppStyle.black,
               letterSpacing: -14 * 0.01,
             ),
-            fillColor:  AppStyle.white,
+            fillColor: AppStyle.white,
             filled: true,
             hoverColor: AppStyle.transparent,
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide.merge(
-                    const BorderSide(color: AppStyle.border, width: 0.5),
-                    const BorderSide(color: AppStyle.border, width: 0.5)),
-                borderRadius: BorderRadius.circular(14.r)),
+              borderSide: BorderSide.merge(
+                const BorderSide(color: AppStyle.border, width: 0.5),
+                const BorderSide(color: AppStyle.border, width: 0.5),
+              ),
+              borderRadius: BorderRadius.circular(14.r),
+            ),
             errorBorder: OutlineInputBorder(
-                borderSide: BorderSide.merge(
-                    const BorderSide(color: AppStyle.border, width: 0.5),
-                    const BorderSide(color: AppStyle.border, width: 0.5)),
-                borderRadius: BorderRadius.circular(14.r)),
+              borderSide: BorderSide.merge(
+                const BorderSide(color: AppStyle.border, width: 0.5),
+                const BorderSide(color: AppStyle.border, width: 0.5),
+              ),
+              borderRadius: BorderRadius.circular(14.r),
+            ),
             border: OutlineInputBorder(
-                borderSide: BorderSide.merge(
-                    const BorderSide(color: AppStyle.border, width: 0.5),
-                    const BorderSide(color: AppStyle.border, width: 0.5)),
-                borderRadius: BorderRadius.circular(14.r)),
+              borderSide: BorderSide.merge(
+                const BorderSide(color: AppStyle.border, width: 0.5),
+                const BorderSide(color: AppStyle.border, width: 0.5),
+              ),
+              borderRadius: BorderRadius.circular(14.r),
+            ),
             focusedErrorBorder: OutlineInputBorder(
-                borderSide: BorderSide.merge(
-                    const BorderSide(color: AppStyle.border, width: 0.5),
-                    const BorderSide(color: AppStyle.border, width: 0.5)),
-                borderRadius: BorderRadius.circular(14.r)),
+              borderSide: BorderSide.merge(
+                const BorderSide(color: AppStyle.border, width: 0.5),
+                const BorderSide(color: AppStyle.border, width: 0.5),
+              ),
+              borderRadius: BorderRadius.circular(14.r),
+            ),
             disabledBorder: OutlineInputBorder(
-                borderSide: BorderSide.merge(
-                    const BorderSide(color: AppStyle.border, width: 0.5),
-                    const BorderSide(color: AppStyle.border, width: 0.5)),
-                borderRadius: BorderRadius.circular(14.r)),
+              borderSide: BorderSide.merge(
+                const BorderSide(color: AppStyle.border, width: 0.5),
+                const BorderSide(color: AppStyle.border, width: 0.5),
+              ),
+              borderRadius: BorderRadius.circular(14.r),
+            ),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide.merge(
-                    const BorderSide(color: AppStyle.border, width: 0.5),
-                    const BorderSide(color: AppStyle.border, width: 0.5)),
-                borderRadius: BorderRadius.circular(14.r)),
+              borderSide: BorderSide.merge(
+                const BorderSide(color: AppStyle.border, width: 0.5),
+                const BorderSide(color: AppStyle.border, width: 0.5),
+              ),
+              borderRadius: BorderRadius.circular(14.r),
+            ),
           ),
         ),
       ],

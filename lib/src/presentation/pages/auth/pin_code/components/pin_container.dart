@@ -14,9 +14,11 @@ class PinContainer extends StatelessWidget {
       width: 24.r,
       margin: EdgeInsets.only(right: 12.w),
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: isActive ? AppStyle.primary: AppStyle.transparent,
-        border: Border.all(color: isActive? AppStyle.transparent: AppStyle.outlineButtonBorder)
+        shape: BoxShape.circle,
+        color: isActive ? AppStyle.primary : AppStyle.transparent,
+        border: Border.all(
+          color: isActive ? AppStyle.transparent : AppStyle.outlineButtonBorder,
+        ),
       ),
     );
   }

@@ -73,17 +73,16 @@ class BagData {
     CurrencyData? selectedCurrency,
     PaymentData? selectedPayment,
     List<BagProductData>? bagProducts,
-  }) =>
-      BagData(
-        index: index ?? _index,
-        selectedUser: selectedUser,
-        selectedSection: selectedSection,
-        selectedTable: selectedTable,
-        selectedAddress: selectedAddress,
-        selectedCurrency: selectedCurrency ?? _selectedCurrency,
-        selectedPayment: selectedPayment ?? _selectedPayment,
-        bagProducts: bagProducts ?? _bagProducts,
-      );
+  }) => BagData(
+    index: index ?? _index,
+    selectedUser: selectedUser,
+    selectedSection: selectedSection,
+    selectedTable: selectedTable,
+    selectedAddress: selectedAddress,
+    selectedCurrency: selectedCurrency ?? _selectedCurrency,
+    selectedPayment: selectedPayment ?? _selectedPayment,
+    bagProducts: bagProducts ?? _bagProducts,
+  );
 
   int? get index => _index;
 
@@ -135,12 +134,7 @@ class BagProductData {
   final int? quantity;
   final List<BagProductData>? carts;
 
-  BagProductData({
-    this.stockId,
-    this.parentId,
-    this.quantity,
-    this.carts,
-  });
+  BagProductData({this.stockId, this.parentId, this.quantity, this.carts});
 
   factory BagProductData.fromJson(Map data) {
     List<BagProductData> newList = [];
@@ -148,18 +142,20 @@ class BagProductData {
       newList.add(BagProductData.fromJson(e));
     });
     return BagProductData(
-        stockId: data["stock_id"],
-        parentId: data["parent_id"],
-        quantity: data["quantity"],
-        carts: newList);
+      stockId: data["stock_id"],
+      parentId: data["parent_id"],
+      quantity: data["quantity"],
+      carts: newList,
+    );
   }
 
   BagProductData copyWith({int? quantity}) {
     return BagProductData(
-        stockId: stockId,
-        parentId: parentId,
-        quantity: quantity ?? this.quantity,
-        carts: carts);
+      stockId: stockId,
+      parentId: parentId,
+      quantity: quantity ?? this.quantity,
+      carts: carts,
+    );
   }
 
   Map<String, dynamic> toJson() {

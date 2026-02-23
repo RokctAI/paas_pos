@@ -15,7 +15,7 @@ class OrderDetailsNotifier extends StateNotifier<OrderDetailsState> {
   final UsersRepository _usersRepository;
 
   OrderDetailsNotifier(this._ordersRepository, this._usersRepository)
-      : super(const OrderDetailsState());
+    : super(const OrderDetailsState());
   Timer? _searchUsersTimer;
 
   Future<void> updateOrderStatus({
@@ -86,8 +86,9 @@ class OrderDetailsNotifier extends StateNotifier<OrderDetailsState> {
 
   Future<void> fetchOrderDetails({OrderData? order}) async {
     state = state.copyWith(isLoading: true, order: order);
-    final response =
-        await _ordersRepository.getOrderDetails(orderId: order?.id);
+    final response = await _ordersRepository.getOrderDetails(
+      orderId: order?.id,
+    );
     response.when(
       success: (data) {
         state = state.copyWith(isLoading: false, order: data.data);
@@ -108,7 +109,8 @@ class OrderDetailsNotifier extends StateNotifier<OrderDetailsState> {
         users: [],
       );
       final response = await _usersRepository.searchDeliveryman(
-          state.usersQuery.isEmpty ? null : state.usersQuery);
+        state.usersQuery.isEmpty ? null : state.usersQuery,
+      );
       response.when(
         success: (data) async {
           final List<UserData> users = data.users ?? [];
@@ -146,27 +148,22 @@ class OrderDetailsNotifier extends StateNotifier<OrderDetailsState> {
     if (_searchUsersTimer?.isActive ?? false) {
       _searchUsersTimer?.cancel();
     }
-    _searchUsersTimer = Timer(
-      const Duration(milliseconds: 500),
-      () {
-        state = state.copyWith(users: [], dropdownUsers: []);
-        fetchUsers(
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
-              context,
-              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-            );
-          },
-        );
-      },
-    );
+    _searchUsersTimer = Timer(const Duration(milliseconds: 500), () {
+      state = state.copyWith(users: [], dropdownUsers: []);
+      fetchUsers(
+        checkYourNetwork: () {
+          AppHelpers.showSnackBar(
+            context,
+            AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+          );
+        },
+      );
+    });
   }
 
   void setSelectedUser(BuildContext context, int index) {
     final user = state.users[index];
-    state = state.copyWith(
-      selectedUser: user,
-    );
+    state = state.copyWith(selectedUser: user);
 
     setUsersQuery(context, '');
   }
@@ -192,8 +189,6 @@ class OrderDetailsNotifier extends StateNotifier<OrderDetailsState> {
   }
 
   void removeSelectedUser() {
-    state = state.copyWith(
-      selectedUser: null,
-    );
+    state = state.copyWith(selectedUser: null);
   }
 }

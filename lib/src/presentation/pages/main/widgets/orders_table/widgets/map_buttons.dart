@@ -10,12 +10,12 @@ class MapButtons extends StatelessWidget {
   final VoidCallback zoomOut;
   final VoidCallback navigate;
 
-  const MapButtons(
-      {super.key,
-      required this.zoomIn,
-      required this.zoomOut,
-      required this.navigate})
-     ;
+  const MapButtons({
+    super.key,
+    required this.zoomIn,
+    required this.zoomOut,
+    required this.navigate,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,10 @@ class MapButtons extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
-                  color: AppStyle.shadow, offset: Offset(0, 2), blurRadius: 2)
+                color: AppStyle.shadow,
+                offset: Offset(0, 2),
+                blurRadius: 2,
+              ),
             ],
             borderRadius: BorderRadius.circular(5.r),
             color: AppStyle.white,
@@ -38,19 +41,13 @@ class MapButtons extends StatelessWidget {
                 child: AnimationButtonEffect(
                   child: GestureDetector(
                     onTap: zoomIn,
-                    child: Icon(
-                      Icons.add,
-                      size: 24.r,
-                      color: AppStyle.black,
-                    ),
+                    child: Icon(Icons.add, size: 24.r, color: AppStyle.black),
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 6.r),
-                child: const Divider(
-                  color: AppStyle.unselectedBottomBarItem,
-                ),
+                child: const Divider(color: AppStyle.unselectedBottomBarItem),
               ),
               Expanded(
                 child: AnimationButtonEffect(
@@ -63,7 +60,7 @@ class MapButtons extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -81,7 +78,7 @@ class MapButtons extends StatelessWidget {
                     color: AppStyle.shadow,
                     offset: Offset(0, 2),
                     blurRadius: 2,
-                  )
+                  ),
                 ],
                 borderRadius: BorderRadius.circular(5.r),
                 color: AppStyle.white,
@@ -89,7 +86,7 @@ class MapButtons extends StatelessWidget {
               child: Icon(FlutterRemix.navigation_line, size: 20.r),
             ),
           ),
-        )
+        ),
       ],
     );
   }

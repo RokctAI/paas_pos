@@ -7,16 +7,15 @@ class CustomerModel {
   String? role;
   String? imageUrl;
 
-  CustomerModel(
-      {
-        this.firstname,
-        this.lastname,
-        this.email,
-        this.phone,
-        this.role,
-        this.password,
-        this.imageUrl
-      });
+  CustomerModel({
+    this.firstname,
+    this.lastname,
+    this.email,
+    this.phone,
+    this.role,
+    this.password,
+    this.imageUrl,
+  });
 
   CustomerModel copyWith({
     String? firstname,
@@ -26,16 +25,15 @@ class CustomerModel {
     String? role,
     String? password,
     String? imageUrl,
-  }) =>
-      CustomerModel(
-        firstname: firstname ?? this.firstname,
-        lastname: lastname ?? this.lastname,
-        email: email ?? this.email,
-        phone: phone ?? this.phone,
-        role: role ?? this.role,
-        password: password ?? this.password,
-        imageUrl: imageUrl ?? this.imageUrl,
-      );
+  }) => CustomerModel(
+    firstname: firstname ?? this.firstname,
+    lastname: lastname ?? this.lastname,
+    email: email ?? this.email,
+    phone: phone ?? this.phone,
+    role: role ?? this.role,
+    password: password ?? this.password,
+    imageUrl: imageUrl ?? this.imageUrl,
+  );
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) => CustomerModel(
     firstname: json["firstname"],
@@ -67,6 +65,4 @@ class CustomerModel {
 
     return jsonMap;
   }
-
 }
-

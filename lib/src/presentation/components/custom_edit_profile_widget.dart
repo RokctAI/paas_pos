@@ -34,45 +34,51 @@ class CustomEditWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        isLoading ? MakeShimmer(child: Container(
-          height: height.r,
-          width: width.r,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(radius.r),
-            color: AppStyle.shimmerBase,
-          ),)) :
-        Container(
-          height: height.r,
-          width: width.r,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(radius.r),
-            color: AppStyle.shimmerBase,
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(radius.r),
-            child: (isEmptyorNot)
-                ? CommonImage(
-                imageUrl: localStoreImage,
+        isLoading
+            ? MakeShimmer(
+                child: Container(
+                  height: height.r,
+                  width: width.r,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(radius.r),
+                    color: AppStyle.shimmerBase,
+                  ),
+                ),
+              )
+            : Container(
                 height: height.r,
                 width: width.r,
-                radius: radius.r)
-                : isEmptyorNot2
-                ? Image.file(
-              File(imagePath),
-              fit: BoxFit.fitWidth,
-              width: width.r,
-              height: height.r,
-            )
-                : CommonImage(
-                imageUrl: image,
-                height: height.r,
-                width: width.r,
-                radius: radius.r),
-          ),
-        ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(radius.r),
+                  color: AppStyle.shimmerBase,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(radius.r),
+                  child: (isEmptyorNot)
+                      ? CommonImage(
+                          imageUrl: localStoreImage,
+                          height: height.r,
+                          width: width.r,
+                          radius: radius.r,
+                        )
+                      : isEmptyorNot2
+                      ? Image.file(
+                          File(imagePath),
+                          fit: BoxFit.fitWidth,
+                          width: width.r,
+                          height: height.r,
+                        )
+                      : CommonImage(
+                          imageUrl: image,
+                          height: height.r,
+                          width: width.r,
+                          radius: radius.r,
+                        ),
+                ),
+              ),
         Positioned(
           right: radius != 100 ? 4 : 0,
-          bottom:  radius != 100 ? 4 : 0,
+          bottom: radius != 100 ? 4 : 0,
           child: GestureDetector(
             onTap: onthisTap,
             child: Container(
@@ -82,10 +88,7 @@ class CustomEditWidget extends StatelessWidget {
                 color: AppStyle.editProfileCircle,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
-                FlutterRemix.pencil_line,
-                size: 14,
-              ),
+              child: const Icon(FlutterRemix.pencil_line, size: 14),
             ),
           ),
         ),

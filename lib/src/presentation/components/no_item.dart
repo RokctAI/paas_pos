@@ -16,8 +16,9 @@ class NoItem extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-              width: MediaQuery.sizeOf(context).width/3.5,
-              child: Lottie.asset(Assets.lottieNotFound)),
+            width: MediaQuery.sizeOf(context).width / 3.5,
+            child: Lottie.asset(Assets.lottieNotFound),
+          ),
           8.verticalSpace,
           Padding(
             padding: REdgeInsets.symmetric(horizontal: 24),
@@ -25,7 +26,7 @@ class NoItem extends StatelessWidget {
               AppHelpers.getTranslation(title),
               style: GoogleFonts.inter(
                 fontSize: 16.sp,
-                fontWeight: FontWeight.w500
+                fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
             ),

@@ -16,9 +16,7 @@ import 'custom_drop_down_field.dart';
 import 'table_form_field.dart';
 
 class NewOrderScreen extends ConsumerStatefulWidget {
-  const NewOrderScreen({
-    super.key,
-  });
+  const NewOrderScreen({super.key});
 
   @override
   ConsumerState<NewOrderScreen> createState() => _NewOrderScreenState();
@@ -53,9 +51,13 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
             height: MediaQuery.of(context).size.height / 2,
             child: Center(
               child: state.isBookingLoading
-                  ? CircularProgressIndicator(color: AppStyle.primary,strokeWidth: 3.3,)
+                  ? CircularProgressIndicator(
+                      color: AppStyle.primary,
+                      strokeWidth: 3.3,
+                    )
                   : Text(AppHelpers.getTranslation(TrKeys.noBooking)),
-            ))
+            ),
+          )
         : Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -74,9 +76,9 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                     ),
                   ),
                   GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: Icon(Icons.close,
-                          color: AppStyle.black, size: 24.r)),
+                    onTap: () => Navigator.pop(context),
+                    child: Icon(Icons.close, color: AppStyle.black, size: 24.r),
+                  ),
                 ],
               ),
               Form(
@@ -116,8 +118,9 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                             if (selectDate != null) {
                               notifier.setDateTime(selectDate).then((value) {
                                 if (value) {
-                                  date.text = DateFormat("MM/dd/yyyy")
-                                      .format(selectDate);
+                                  date.text = DateFormat(
+                                    "MM/dd/yyyy",
+                                  ).format(selectDate);
                                 }
                               });
                             }
@@ -127,8 +130,9 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                         prefixSvg: Assets.svgTax,
                         inputType: TextInputType.number,
                         validator: ValidatorUtils.validateEmpty,
-                        hintText:
-                            DateFormat("MM/dd/yyyy").format(DateTime.now()),
+                        hintText: DateFormat(
+                          "MM/dd/yyyy",
+                        ).format(DateTime.now()),
                         textEditingController: date,
                         readOnly: true,
                       ),
@@ -168,7 +172,7 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                             ).then((selectTime) {
                               if (selectTime != null) {
                                 if (notifier.setTimeOfDay(selectTime)) {
-                                  if(context.mounted) {
+                                  if (context.mounted) {
                                     time.text = selectTime.format(context);
                                   }
                                 }
@@ -196,8 +200,11 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                       CustomDropDownField(
                         validator: ValidatorUtils.validateEmpty,
                         list: state.times
-                            .map((e) =>
-                                DateFormat("HH:mm").format(e ?? DateTime.now()))
+                            .map(
+                              (e) => DateFormat(
+                                "HH:mm",
+                              ).format(e ?? DateTime.now()),
+                            )
                             .toList(),
                         onChanged: (value) {
                           if (ref.watch(tablesProvider).selectDateTime !=
@@ -209,14 +216,15 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                       ),
                       30.verticalSpace,
                       LoginButton(
-                          isActive: state.bookingsData != null,
-                          title: AppHelpers.getTranslation(TrKeys.confirm),
-                          onPressed: () {
-                            if (formKey.currentState?.validate() ?? false) {
-                              notifier.createOrder();
-                              context.maybePop();
-                            }
-                          }),
+                        isActive: state.bookingsData != null,
+                        title: AppHelpers.getTranslation(TrKeys.confirm),
+                        onPressed: () {
+                          if (formKey.currentState?.validate() ?? false) {
+                            notifier.createOrder();
+                            context.maybePop();
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ),

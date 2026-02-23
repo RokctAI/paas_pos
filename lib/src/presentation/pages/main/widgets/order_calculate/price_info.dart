@@ -23,12 +23,13 @@ class PriceInfo extends StatelessWidget {
   final RightSideNotifier notifier;
   final MainNotifier mainNotifier;
 
-  const PriceInfo(
-      {super.key,
-      required this.state,
-      required this.notifier,
-      required this.bag,
-      required this.mainNotifier});
+  const PriceInfo({
+    super.key,
+    required this.state,
+    required this.notifier,
+    required this.bag,
+    required this.mainNotifier,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -155,10 +156,7 @@ class PriceInfo extends StatelessWidget {
               ),
             ),
             Text(
-              "-${AppHelpers.numberFormat(
-                state.paginateResponse?.totalDiscount ?? 0,
-                currency: bag.selectedCurrency,
-              )}",
+              "-${AppHelpers.numberFormat(state.paginateResponse?.totalDiscount ?? 0, currency: bag.selectedCurrency)}",
               style: GoogleFonts.inter(
                 color: AppStyle.red,
                 fontSize: 16.sp,
@@ -183,10 +181,7 @@ class PriceInfo extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "-${AppHelpers.numberFormat(
-                      state.paginateResponse?.couponPrice ?? 0,
-                      currency: bag.selectedCurrency,
-                    )}",
+                    "-${AppHelpers.numberFormat(state.paginateResponse?.couponPrice ?? 0, currency: bag.selectedCurrency)}",
                     style: GoogleFonts.inter(
                       color: AppStyle.red,
                       fontSize: 16.sp,
@@ -242,9 +237,9 @@ class PriceInfo extends StatelessWidget {
                   ),
                   Text(
                     AppHelpers.numberFormat(
-                      (state.paginateResponse?.totalPrice ?? 0)
-                              -
-                          (double.tryParse(state.calculate) ?? 0) /  (bag.selectedCurrency?.rate ?? 1),
+                      (state.paginateResponse?.totalPrice ?? 0) -
+                          (double.tryParse(state.calculate) ?? 0) /
+                              (bag.selectedCurrency?.rate ?? 1),
                       currency: bag.selectedCurrency,
                     ),
                     style: GoogleFonts.inter(
@@ -260,35 +255,38 @@ class PriceInfo extends StatelessWidget {
         Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) {
             return LoginButton(
-                isLoading: state.isOrderLoading,
-                title: AppHelpers.getTranslation(TrKeys.confirmOrder),
-                onPressed: () {
-                  notifier.createOrder(
-                      context,
-                      OrderBodyData(
-                        bagData: bag,
-                        coupon: state.coupon,
-                        phone: state.selectedUser?.phone,
-                        note: state.comment,
-                        userId: state.selectedUser?.id,
-                        deliveryFee: (state.paginateResponse?.deliveryFee),
-                        deliveryType: state.orderType,
-                        location: state.selectedAddress?.location,
-                        address: AddressModel(
-                            address: state.selectedAddress?.address),
-                        deliveryDate: intl.DateFormat("yyyy-MM-dd")
-                            .format(state.orderDate ?? DateTime.now()),
-                        deliveryTime: state.orderTime != null
-                            ? (state.orderTime?.hour.toString().length == 2
-                                ? "${state.orderTime?.hour}:${state.orderTime?.minute.toString().padLeft(2, '0')}"
-                                : "0${state.orderTime?.hour}:${state.orderTime?.minute.toString().padLeft(2, '0')}")
-                            : (TimeOfDay.now().hour.toString().length == 2
-                                ? "${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"
-                                : "0${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"),
-                        currencyId: state.selectedCurrency?.id,
-                        rate: state.selectedCurrency?.rate,
-                        tableId: state.selectedTable?.id,
-                      ), onSuccess: () {
+              isLoading: state.isOrderLoading,
+              title: AppHelpers.getTranslation(TrKeys.confirmOrder),
+              onPressed: () {
+                notifier.createOrder(
+                  context,
+                  OrderBodyData(
+                    bagData: bag,
+                    coupon: state.coupon,
+                    phone: state.selectedUser?.phone,
+                    note: state.comment,
+                    userId: state.selectedUser?.id,
+                    deliveryFee: (state.paginateResponse?.deliveryFee),
+                    deliveryType: state.orderType,
+                    location: state.selectedAddress?.location,
+                    address: AddressModel(
+                      address: state.selectedAddress?.address,
+                    ),
+                    deliveryDate: intl.DateFormat(
+                      "yyyy-MM-dd",
+                    ).format(state.orderDate ?? DateTime.now()),
+                    deliveryTime: state.orderTime != null
+                        ? (state.orderTime?.hour.toString().length == 2
+                              ? "${state.orderTime?.hour}:${state.orderTime?.minute.toString().padLeft(2, '0')}"
+                              : "0${state.orderTime?.hour}:${state.orderTime?.minute.toString().padLeft(2, '0')}")
+                        : (TimeOfDay.now().hour.toString().length == 2
+                              ? "${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"
+                              : "0${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"),
+                    currencyId: state.selectedCurrency?.id,
+                    rate: state.selectedCurrency?.rate,
+                    tableId: state.selectedTable?.id,
+                  ),
+                  onSuccess: () {
                     ref
                         .read(newOrdersProvider.notifier)
                         .fetchNewOrders(isRefresh: true);
@@ -296,44 +294,51 @@ class PriceInfo extends StatelessWidget {
                         .read(acceptedOrdersProvider.notifier)
                         .fetchAcceptedOrders(isRefresh: true);
                     AppHelpers.showAlertDialog(
-                        context: context,
-                        child: Container(
-                          width: 200.w,
-                          height: 200.w,
-                          padding: EdgeInsets.all(30.r),
-                          decoration: BoxDecoration(
-                              color: AppStyle.white,
-                              borderRadius: BorderRadius.circular(10.r)),
-                          child: Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: AppStyle.primary,
-                                    shape: BoxShape.circle),
-                                padding: EdgeInsets.all(12.r),
-                                child: Icon(
-                                  Icons.check,
-                                  size: 56.r,
-                                  color: AppStyle.white,
-                                ),
+                      context: context,
+                      child: Container(
+                        width: 200.w,
+                        height: 200.w,
+                        padding: EdgeInsets.all(30.r),
+                        decoration: BoxDecoration(
+                          color: AppStyle.white,
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: AppStyle.primary,
+                                shape: BoxShape.circle,
                               ),
-                              const Spacer(),
-                              Text(
-                                AppHelpers.getTranslation(
-                                    TrKeys.thankYouForOrder),
-                                style: GoogleFonts.inter(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 22.r),
-                                textAlign: TextAlign.center,
-                              )
-                            ],
-                          ),
-                        ));
+                              padding: EdgeInsets.all(12.r),
+                              child: Icon(
+                                Icons.check,
+                                size: 56.r,
+                                color: AppStyle.white,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              AppHelpers.getTranslation(
+                                TrKeys.thankYouForOrder,
+                              ),
+                              style: GoogleFonts.inter(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 22.r,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
                     mainNotifier.setPriceDate(null);
-                  });
-                });
+                  },
+                );
+              },
+            );
           },
-        )
+        ),
       ],
     );
   }

@@ -18,10 +18,7 @@ class StockNotifier extends StateNotifier<StockState> {
       refreshController?.loadNoData();
       return;
     }
-    final response = await _stockRepository.getStocks(
-      page: ++_page,
-
-    );
+    final response = await _stockRepository.getStocks(page: ++_page);
     response.when(
       success: (data) {
         List<Stocks> stocks = List.from(state.stocks);
@@ -63,9 +60,7 @@ class StockNotifier extends StateNotifier<StockState> {
     refreshController?.resetNoData();
     _hasMore = true;
     _page = 0;
-    final response = await _stockRepository.getStocks(
-      page: ++_page,
-    );
+    final response = await _stockRepository.getStocks(page: ++_page);
     response.when(
       success: (data) {
         final List<Stocks> stocks = data.data ?? [];
@@ -79,5 +74,4 @@ class StockNotifier extends StateNotifier<StockState> {
       },
     );
   }
-
 }

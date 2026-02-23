@@ -9,9 +9,12 @@ class IconTitle extends StatelessWidget {
   final IconData icon;
   final String value;
 
-  const IconTitle(
-      {super.key, required this.title, required this.icon, required this.value})
-     ;
+  const IconTitle({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.value,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +27,10 @@ class IconTitle extends StatelessWidget {
           Expanded(
             child: Text(
               "$title: $value",
-              style: GoogleFonts.inter(
-                fontSize: 15,
-                color: AppStyle.black,
-              ),
+              style: GoogleFonts.inter(fontSize: 15, color: AppStyle.black),
               maxLines: 1,
             ),
-          )
+          ),
         ],
       ),
     );

@@ -35,8 +35,10 @@ class _NoteDialogState extends ConsumerState<StatusNoteDialog> {
         children: [
           Text(
             AppHelpers.getTranslation(TrKeys.addComment),
-            style:
-                GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 22.r),
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              fontSize: 22.r,
+            ),
           ),
           24.verticalSpace,
           OutlinedBorderTextField(
@@ -50,7 +52,7 @@ class _NoteDialogState extends ConsumerState<StatusNoteDialog> {
             onPressed: () {
               context.maybePop();
             },
-          )
+          ),
         ],
       ),
     );

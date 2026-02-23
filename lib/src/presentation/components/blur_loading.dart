@@ -18,9 +18,7 @@ class BlurLoadingWidget extends StatelessWidget {
             child: Container(
               width: double.infinity,
               height: double.infinity,
-              decoration: BoxDecoration(
-                color: AppStyle.white.withOpacity(0.5),
-              ),
+              decoration: BoxDecoration(color: AppStyle.white.withOpacity(0.5)),
               child: Container(
                 width: 80,
                 height: 80,

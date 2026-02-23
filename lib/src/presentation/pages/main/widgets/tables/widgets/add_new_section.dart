@@ -60,9 +60,10 @@ class _AddNewSectionState extends ConsumerState<AddNewSection> {
                 ),
               ),
               InkWell(
-                  borderRadius: BorderRadius.circular(10.r),
-                  onTap: () => Navigator.pop(context),
-                  child: Icon(Icons.close, color: AppStyle.black, size: 24.r)),
+                borderRadius: BorderRadius.circular(10.r),
+                onTap: () => Navigator.pop(context),
+                child: Icon(Icons.close, color: AppStyle.black, size: 24.r),
+              ),
             ],
           ),
           Form(
@@ -88,17 +89,20 @@ class _AddNewSectionState extends ConsumerState<AddNewSection> {
                   ),
                   30.verticalSpace,
                   LoginButton(
-                      title: AppHelpers.getTranslation(TrKeys.create),
-                      onPressed: () {
-                        if (formKey.currentState?.validate() ?? false) {
-                          ref.read(tablesProvider.notifier).addNewSection(
-                            name: name.text,
-                            area: double.tryParse(area.text) ?? 0,
-                            context: context,
-                          );
-                          context.maybePop();
-                        }
-                      }),
+                    title: AppHelpers.getTranslation(TrKeys.create),
+                    onPressed: () {
+                      if (formKey.currentState?.validate() ?? false) {
+                        ref
+                            .read(tablesProvider.notifier)
+                            .addNewSection(
+                              name: name.text,
+                              area: double.tryParse(area.text) ?? 0,
+                              context: context,
+                            );
+                        context.maybePop();
+                      }
+                    },
+                  ),
                 ],
               ),
             ),

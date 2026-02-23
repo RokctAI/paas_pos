@@ -31,7 +31,7 @@ class BoardTopBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 12),
-     margin: const EdgeInsets.only(right: 6,left: 6,bottom: 6),
+      margin: const EdgeInsets.only(right: 6, left: 6, bottom: 6),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -47,7 +47,9 @@ class BoardTopBar extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100), color: color),
+              borderRadius: BorderRadius.circular(100),
+              color: color,
+            ),
             child: Text(
               count,
               style: GoogleFonts.inter(
@@ -67,7 +69,7 @@ class BoardTopBar extends StatelessWidget {
                     height: 32,
                     fit: BoxFit.fill,
                   )
-                :  const Icon(FlutterRemix.refresh_line,size: 24,),
+                : const Icon(FlutterRemix.refresh_line, size: 24),
           ),
         ],
       ),

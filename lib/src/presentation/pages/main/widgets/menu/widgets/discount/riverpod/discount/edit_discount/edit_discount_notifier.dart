@@ -12,15 +12,21 @@ class EditDiscountNotifier extends StateNotifier<EditDiscountState> {
   final GalleryRepositoryFacade _galleryRepository;
 
   EditDiscountNotifier(this._discountRepository, this._galleryRepository)
-      : super(EditDiscountState(dateController: TextEditingController()));
+    : super(EditDiscountState(dateController: TextEditingController()));
 
   void changeActive(bool? active) {
     state = state.copyWith(active: !state.active);
   }
 
   void clear() {
-    state =
-        state.copyWith(active: false, stocks: [], price: 0, imageFile: null,startDate: null, endDate: null);
+    state = state.copyWith(
+      active: false,
+      stocks: [],
+      price: 0,
+      imageFile: null,
+      startDate: null,
+      endDate: null,
+    );
     state.dateController?.clear();
   }
 
@@ -30,10 +36,10 @@ class EditDiscountNotifier extends StateNotifier<EditDiscountState> {
 
   void setDate(List<DateTime?> list) {
     if (list.isNotEmpty) {
-      final startDate  = AppHelpers.dateFormat(list.first!);
-      final endDate  = AppHelpers.dateFormat(list.last!);
-      state.dateController?.text= '$startDate - $endDate';
-      state=state.copyWith(startDate: list.first,endDate: list.last);
+      final startDate = AppHelpers.dateFormat(list.first!);
+      final endDate = AppHelpers.dateFormat(list.last!);
+      state.dateController?.text = '$startDate - $endDate';
+      state = state.copyWith(startDate: list.first, endDate: list.last);
     }
   }
 
@@ -64,18 +70,23 @@ class EditDiscountNotifier extends StateNotifier<EditDiscountState> {
     state = state.copyWith(imageFile: file);
   }
 
-  Future<void> fetchDiscountDetails(
-      {required BuildContext context, required int id}) async {
+  Future<void> fetchDiscountDetails({
+    required BuildContext context,
+    required int id,
+  }) async {
     state = state.copyWith(isLoading: true);
     final res = await _discountRepository.getDiscountDetails(id: id);
-    res.when(success: (data) {
-      List<Stocks> list = [];
-      list.addAll(data.orders.stocks ?? []);
-      state = state.copyWith(isLoading: false, stocks: list);
-    }, failure: (failure) {
-      state = state.copyWith(isLoading: false);
-      AppHelpers.showSnackBar(context, failure.toString());
-    });
+    res.when(
+      success: (data) {
+        List<Stocks> list = [];
+        list.addAll(data.orders.stocks ?? []);
+        state = state.copyWith(isLoading: false, stocks: list);
+      },
+      failure: (failure) {
+        state = state.copyWith(isLoading: false);
+        AppHelpers.showSnackBar(context, failure.toString());
+      },
+    );
   }
 
   Future<void> updateDiscount(
@@ -96,7 +107,7 @@ class EditDiscountNotifier extends StateNotifier<EditDiscountState> {
         success: (data) {
           imageUrl = data.imageData?.title;
         },
-        failure: (failure,) {
+        failure: (failure) {
           debugPrint('==> upload discount image fail: $failure');
           AppHelpers.showSnackBar(context, failure.toString());
         },
@@ -127,11 +138,13 @@ class EditDiscountNotifier extends StateNotifier<EditDiscountState> {
   }
 
   Future<void> setDiscountDetails(
-      DiscountData? discount, ValueChanged<DiscountData?> onSuccess) async {
-    final startDate  = AppHelpers.dateFormat(discount?.start);
-    final endDate  = AppHelpers.dateFormat(discount?.end);
-    state.dateController?.text= '$startDate - $endDate';
-    state=state.copyWith(startDate: discount?.start,endDate: discount?.end);
+    DiscountData? discount,
+    ValueChanged<DiscountData?> onSuccess,
+  ) async {
+    final startDate = AppHelpers.dateFormat(discount?.start);
+    final endDate = AppHelpers.dateFormat(discount?.end);
+    state.dateController?.text = '$startDate - $endDate';
+    state = state.copyWith(startDate: discount?.start, endDate: discount?.end);
     state = state.copyWith(
       discount: discount,
       type: discount?.type ?? 'fix',

@@ -61,17 +61,14 @@ class _DropdownOverlayState extends ConsumerState<_DropdownOverlay> {
           notifier.setUsersQuery(context, '');
           break;
         case DropDownType.users:
-          rightSideNotifier.setUsersQuery(
-              context, '');
+          rightSideNotifier.setUsersQuery(context, '');
           break;
         case DropDownType.section:
-          rightSideNotifier.setSectionQuery(
-              context, '');
+          rightSideNotifier.setSectionQuery(context, '');
           break;
 
         case DropDownType.table:
-          rightSideNotifier.setTableQuery(
-              context, '');
+          rightSideNotifier.setTableQuery(context, '');
           break;
       }
     });
@@ -103,23 +100,33 @@ class _DropdownOverlayState extends ConsumerState<_DropdownOverlay> {
     final isLoadingItems = (widget.dropDownType == DropDownType.deliveryman
         ? state.isUsersLoading
         : widget.dropDownType == DropDownType.section
-            ? rightSideState.isSectionLoading
-            : widget.dropDownType == DropDownType.table
-                ? rightSideState.isTableLoading
-                : rightSideState.isUsersLoading);
-    final List<DropDownItemData> items = (widget.dropDownType == DropDownType.section
-        ? rightSideState.sections.mapIndexed((e, i) =>
-            DropDownItemData(index: i, title: e.translation?.title ?? ''))
+        ? rightSideState.isSectionLoading
         : widget.dropDownType == DropDownType.table
-            ? rightSideState.tables.mapIndexed(
-                (e, i) => DropDownItemData(index: i, title: e.name ?? ''))
-            : widget.dropDownType == DropDownType.deliveryman
-                ? state.users.mapIndexed((e, i) => DropDownItemData(
-                    index: i,
-                    title: "${e.firstname ?? ''} ${e.lastname ?? ''}"))
-                : rightSideState.users.mapIndexed((e, i) => DropDownItemData(
-                    index: i,
-                    title: "${e.firstname ?? ''} ${e.lastname ?? ''}")));
+        ? rightSideState.isTableLoading
+        : rightSideState.isUsersLoading);
+    final List<DropDownItemData> items =
+        (widget.dropDownType == DropDownType.section
+        ? rightSideState.sections.mapIndexed(
+            (e, i) =>
+                DropDownItemData(index: i, title: e.translation?.title ?? ''),
+          )
+        : widget.dropDownType == DropDownType.table
+        ? rightSideState.tables.mapIndexed(
+            (e, i) => DropDownItemData(index: i, title: e.name ?? ''),
+          )
+        : widget.dropDownType == DropDownType.deliveryman
+        ? state.users.mapIndexed(
+            (e, i) => DropDownItemData(
+              index: i,
+              title: "${e.firstname ?? ''} ${e.lastname ?? ''}",
+            ),
+          )
+        : rightSideState.users.mapIndexed(
+            (e, i) => DropDownItemData(
+              index: i,
+              title: "${e.firstname ?? ''} ${e.lastname ?? ''}",
+            ),
+          ));
     final list = items.isNotEmpty
         ? _ItemsList(
             scrollController: scrollController,
@@ -164,8 +171,9 @@ class _DropdownOverlayState extends ConsumerState<_DropdownOverlay> {
           width: 291.r,
           child: CompositedTransformFollower(
             link: widget.layerLink,
-            followerAnchor:
-                displayOverlayBottom ? Alignment.topLeft : Alignment.bottomLeft,
+            followerAnchor: displayOverlayBottom
+                ? Alignment.topLeft
+                : Alignment.bottomLeft,
             showWhenUnlinked: false,
             offset: overlayOffset,
             child: Container(
@@ -194,117 +202,133 @@ class _DropdownOverlayState extends ConsumerState<_DropdownOverlay> {
                       height: items.length > 4 ? 300.r : null,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10.r),
-                        child: NotificationListener<
-                            OverscrollIndicatorNotification>(
-                          onNotification: (notification) {
-                            notification.disallowIndicator();
-                            return true;
-                          },
-                          child: Theme(
-                            data: Theme.of(context).copyWith(
-                              scrollbarTheme: ScrollbarThemeData(
-                                thumbVisibility: MaterialStateProperty.all(
-                                  true,
+                        child:
+                            NotificationListener<
+                              OverscrollIndicatorNotification
+                            >(
+                              onNotification: (notification) {
+                                notification.disallowIndicator();
+                                return true;
+                              },
+                              child: Theme(
+                                data: Theme.of(context).copyWith(
+                                  scrollbarTheme: ScrollbarThemeData(
+                                    thumbVisibility: MaterialStateProperty.all(
+                                      true,
+                                    ),
+                                    thickness: MaterialStateProperty.all(5),
+                                    radius: const Radius.circular(4),
+                                    thumbColor: MaterialStateProperty.all(
+                                      Colors.grey[300],
+                                    ),
+                                  ),
                                 ),
-                                thickness: MaterialStateProperty.all(5),
-                                radius: const Radius.circular(4),
-                                thumbColor: MaterialStateProperty.all(
-                                  Colors.grey[300],
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Padding(
+                                      padding: _headerPadding,
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              widget.hintText,
+                                              style: GoogleFonts.inter(
+                                                color: AppStyle.black,
+                                                fontSize: 14.sp,
+                                                fontWeight: FontWeight.w500,
+                                                letterSpacing: -0.4,
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 12),
+                                          Row(
+                                            children: [
+                                              if (widget.dropDownType ==
+                                                  DropDownType.users)
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    setState(
+                                                      () =>
+                                                          displayOverly = false,
+                                                    );
+                                                    showDialog(
+                                                      context: context,
+                                                      builder: (_) =>
+                                                          const AddCustomerDialog(
+                                                            needAlert: false,
+                                                          ),
+                                                    );
+                                                  },
+                                                  child: const Icon(
+                                                    FlutterRemix.user_add_line,
+                                                  ),
+                                                ),
+                                              12.horizontalSpace,
+                                              overlayIcon,
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    _SearchField(
+                                      items: items,
+                                      searchHintText: widget.searchHintText,
+                                      onChanged: widget.onChanged,
+                                      onCleared: () {
+                                        switch (widget.dropDownType) {
+                                          case DropDownType.deliveryman:
+                                            notifier.setUsersQuery(context, '');
+                                            break;
+                                          case DropDownType.users:
+                                            rightSideNotifier.setUsersQuery(
+                                              context,
+                                              '',
+                                            );
+                                            break;
+                                          case DropDownType.section:
+                                            rightSideNotifier.setSectionQuery(
+                                              context,
+                                              '',
+                                            );
+                                            break;
+
+                                          case DropDownType.table:
+                                            rightSideNotifier.setTableQuery(
+                                              context,
+                                              '',
+                                            );
+                                            break;
+                                        }
+                                      },
+                                    ),
+                                    isLoadingItems
+                                        ? Padding(
+                                            padding: REdgeInsets.symmetric(
+                                              vertical: 16,
+                                            ),
+                                            child: Center(
+                                              child: SizedBox(
+                                                width: 18.r,
+                                                height: 18.r,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                      strokeWidth: 2.r,
+                                                      color: AppStyle.black,
+                                                    ),
+                                              ),
+                                            ),
+                                          )
+                                        : items.length > 4
+                                        ? Expanded(child: list)
+                                        : list,
+                                  ],
                                 ),
                               ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                  padding: _headerPadding,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          widget.hintText,
-                                          style: GoogleFonts.inter(
-                                            color: AppStyle.black,
-                                            fontSize: 14.sp,
-                                            fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.4,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      Row(
-                                        children: [
-                                          if(widget.dropDownType==DropDownType.users)
-                                          GestureDetector(
-                                              onTap: () {
-                                                setState(() =>
-                                                    displayOverly = false);
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (_) =>
-                                                      const AddCustomerDialog(
-                                                          needAlert: false),
-                                                );
-                                              },
-                                              child: const Icon(
-                                                  FlutterRemix.user_add_line)),
-                                          12.horizontalSpace,
-                                          overlayIcon,
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                _SearchField(
-                                  items: items,
-                                  searchHintText: widget.searchHintText,
-                                  onChanged: widget.onChanged,
-                                  onCleared: () {
-                                    switch (widget.dropDownType) {
-                                      case DropDownType.deliveryman:
-                                        notifier.setUsersQuery(context, '');
-                                        break;
-                                      case DropDownType.users:
-                                        rightSideNotifier.setUsersQuery(
-                                            context, '');
-                                        break;
-                                      case DropDownType.section:
-                                        rightSideNotifier.setSectionQuery(
-                                            context, '');
-                                        break;
-
-                                      case DropDownType.table:
-                                        rightSideNotifier.setTableQuery(
-                                            context, '');
-                                        break;
-                                    }
-                                  },
-                                ),
-                                isLoadingItems
-                                    ? Padding(
-                                        padding:
-                                            REdgeInsets.symmetric(vertical: 16),
-                                        child: Center(
-                                          child: SizedBox(
-                                            width: 18.r,
-                                            height: 18.r,
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: 2.r,
-                                              color: AppStyle.black,
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    : items.length > 4
-                                        ? Expanded(child: list)
-                                        : list
-                              ],
-                            ),
-                          ),
-                        ),
                       ),
                     ),
                   ),
@@ -374,7 +398,7 @@ class _ItemsList extends StatelessWidget {
                   height: 1.r,
                   thickness: 1.r,
                   color: AppStyle.unselectedBottomBarBack,
-                )
+                ),
               ],
             ),
           );

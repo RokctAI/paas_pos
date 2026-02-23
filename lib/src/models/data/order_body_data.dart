@@ -43,10 +43,7 @@ class OrderBodyData {
     for (BagProductData stock in bagData.bagProducts ?? []) {
       List<Map<String, dynamic>> addons = [];
       for (BagProductData addon in stock.carts ?? []) {
-        addons.add({
-          'stock_id': addon.stockId,
-          'quantity': addon.quantity,
-        });
+        addons.add({'stock_id': addon.stockId, 'quantity': addon.quantity});
       }
       products.add({
         'stock_id': stock.stockId,
@@ -83,19 +80,14 @@ class AddressModel {
   final String? house;
   final String? floor;
 
-  AddressModel({
-    this.address,
-    this.office,
-    this.house,
-    this.floor,
-  });
+  AddressModel({this.address, this.office, this.house, this.floor});
 
   Map toJson() {
     return {
       "address": address,
       "office": office,
       "house": house,
-      "floor": floor
+      "floor": floor,
     };
   }
 

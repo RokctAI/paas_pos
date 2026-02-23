@@ -18,13 +18,13 @@ List<DragAndDropItem> BoardItem({
 }) {
   return list.isNotEmpty || isLoading
       ? [
-          ...list
-              .map((OrderData item) => DragAndDropItem(
-                    canDrag: true,
-                    child: DragItem(orderData: item),
-            feedbackWidget: DragItem(orderData: item,isDrag: true,),
-                  ))
-              ,
+          ...list.map(
+            (OrderData item) => DragAndDropItem(
+              canDrag: true,
+              child: DragItem(orderData: item),
+              feedbackWidget: DragItem(orderData: item, isDrag: true),
+            ),
+          ),
           if (isLoading)
             for (int i = 0; i < 3; i++)
               DragAndDropItem(
@@ -36,9 +36,7 @@ List<DragAndDropItem> BoardItem({
                     color: AppStyle.shimmerBase,
                   ),
                   margin: const EdgeInsets.all(6),
-                  child: const SizedBox(
-                    width: double.infinity,
-                  ),
+                  child: const SizedBox(width: double.infinity),
                 ),
               ),
           (hasMore
@@ -50,8 +48,11 @@ List<DragAndDropItem> BoardItem({
                       borderRadius: BorderRadius.circular(10),
                       onTap: () => onViewMore(),
                       child: Container(
-                        margin:
-                            const EdgeInsets.only(right: 8, left: 8, top: 8),
+                        margin: const EdgeInsets.only(
+                          right: 8,
+                          left: 8,
+                          top: 8,
+                        ),
                         height: 44,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -74,10 +75,7 @@ List<DragAndDropItem> BoardItem({
                   ),
                 )
               : DragAndDropItem(child: const SizedBox())),
-          DragAndDropItem(
-            canDrag: false,
-            child: const SizedBox(height: 100),
-          ),
+          DragAndDropItem(canDrag: false, child: const SizedBox(height: 100)),
         ]
       : [
           DragAndDropItem(
@@ -85,9 +83,7 @@ List<DragAndDropItem> BoardItem({
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: 200),
-                child: Text(
-                  AppHelpers.getTranslation(TrKeys.emptyOrders),
-                ),
+                child: Text(AppHelpers.getTranslation(TrKeys.emptyOrders)),
               ),
             ),
           ),

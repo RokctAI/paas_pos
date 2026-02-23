@@ -20,18 +20,17 @@ class ProductsRepositoryImpl extends ProductsRepository {
     final data = {
       if (brandId != null) 'brand_id': brandId,
       if (categoryId != null) 'category_id': categoryId,
-      if (shopId != null ||
-          LocalStorage.getUser()?.role == TrKeys.waiter)
+      if (shopId != null || LocalStorage.getUser()?.role == TrKeys.waiter)
         'shop_id': LocalStorage.getUser()?.role == TrKeys.waiter
             ? LocalStorage.getUser()?.invite?.shopId
             : shopId,
       if (query != null) 'search': query,
-       'type': 'single',
+      'type': 'single',
       'perPage': 12,
       'page': page,
       'lang': LocalStorage.getLanguage()?.locale ?? 'en',
       "status": "published",
-      "addon_status": "published"
+      "addon_status": "published",
     };
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -61,8 +60,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
     final data = {
       if (brandId != null) 'brand_id': brandId,
       if (categoryId != null) 'category_id': categoryId,
-      if (shopId != null ||
-          LocalStorage.getUser()?.role == TrKeys.waiter)
+      if (shopId != null || LocalStorage.getUser()?.role == TrKeys.waiter)
         'shop_id': LocalStorage.getUser()?.role == TrKeys.waiter
             ? LocalStorage.getUser()?.invite?.shopId
             : shopId,
@@ -72,7 +70,7 @@ class ProductsRepositoryImpl extends ProductsRepository {
       'page': page,
       'lang': LocalStorage.getLanguage()?.locale ?? 'en',
       "status": "published",
-      "addon_status": "published"
+      "addon_status": "published",
     };
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -93,8 +91,10 @@ class ProductsRepositoryImpl extends ProductsRepository {
 
   @override
   Future<ApiResult<ProductCalculateResponse>> getAllCalculations(
-      List<BagProductData> bagProducts, String type,
-      {String? coupon}) async {
+    List<BagProductData> bagProducts,
+    String type, {
+    String? coupon,
+  }) async {
     UserData? userData = LocalStorage.getUser();
     final data = {
       'currency_id': LocalStorage.getSelectedCurrency().id,
@@ -103,27 +103,20 @@ class ProductsRepositoryImpl extends ProductsRepository {
           : userData?.shop?.id ?? 0,
       'type': type.isEmpty ? TrKeys.pickup : type,
       if (coupon != null) "coupon": coupon,
-      'address[latitude]': LocalStorage
-              .getBags()
-              .first
-              .selectedAddress
-              ?.location
-              ?.latitude ??
+      'address[latitude]':
+          LocalStorage.getBags().first.selectedAddress?.location?.latitude ?? 0,
+      'address[longitude]':
+          LocalStorage.getBags().first.selectedAddress?.location?.longitude ??
           0,
-      'address[longitude]': LocalStorage
-              .getBags()
-              .first
-              .selectedAddress
-              ?.location
-              ?.longitude ??
-          0
     };
     for (int i = 0; i < (bagProducts.length); i++) {
       data['products[$i][stock_id]'] = bagProducts[i].stockId;
       data['products[$i][quantity]'] = bagProducts[i].quantity;
       for (int j = 0; j < (bagProducts[i].carts?.length ?? 0); j++) {
-        data['products[$i][addons][$j][stock_id]'] = bagProducts[i].carts?[j].stockId;
-        data['products[$i][addons][$j][quantity]'] = bagProducts[i].carts?[j].quantity;
+        data['products[$i][addons][$j][stock_id]'] =
+            bagProducts[i].carts?[j].stockId;
+        data['products[$i][addons][$j][quantity]'] =
+            bagProducts[i].carts?[j].quantity;
       }
     }
 

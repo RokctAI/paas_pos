@@ -68,7 +68,9 @@ class CustomColorSet {
 
     const icon = AppStyle.icon;
 
-    final backgroundColor = isLight ? AppStyle.mainBack : AppStyle.iconButtonBack;
+    final backgroundColor = isLight
+        ? AppStyle.mainBack
+        : AppStyle.iconButtonBack;
 
     final newBoxColor = isLight ? AppStyle.icon : AppStyle.iconButtonBack;
 
@@ -78,8 +80,7 @@ class CustomColorSet {
 
     const transparent = AppStyle.transparent;
 
-    final socialButtonColor =
-        isLight ? AppStyle.icon : AppStyle.iconButtonBack;
+    final socialButtonColor = isLight ? AppStyle.icon : AppStyle.iconButtonBack;
 
     final bottomBarColor = isLight
         ? AppStyle.icon.withOpacity(0.8)

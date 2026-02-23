@@ -20,18 +20,13 @@ abstract class UsersRepository {
 
   Future<ApiResult<ProfileResponse>> getProfileDetails(BuildContext context);
 
-  Future<ApiResult<void>> updateDeliveryZones({
-    required List<LatLng> points,
-  });
+  Future<ApiResult<void>> updateDeliveryZones({required List<LatLng> points});
 
   Future<ApiResult<DeliveryZonePaginate>> getDeliveryZone();
 
   Future<ApiResult<bool>> checkDriverZone(LatLng location, int? shopId);
 
-  Future<ApiResult> checkCoupon({
-    required String coupon,
-    required int shopId,
-  });
+  Future<ApiResult> checkCoupon({required String coupon, required int shopId});
 
   Future<ApiResult<ProfileResponse>> editProfile({required EditProfile? user});
 
@@ -49,8 +44,5 @@ abstract class UsersRepository {
 
   Future<ApiResult<ProfileResponse>> createUser({required CustomerModel query});
 
-  Future<ApiResult> updateStatus({
-    required int? id,
-    required String status,
-  });
+  Future<ApiResult> updateStatus({required int? id, required String status});
 }

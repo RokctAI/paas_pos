@@ -26,7 +26,6 @@ class OrderCalculate extends ConsumerStatefulWidget {
 }
 
 class _OrderCalculateState extends ConsumerState<OrderCalculate> {
-
   late FocusNode _focusNode;
 
   @override
@@ -61,7 +60,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     LogicalKeyboardKey.numpad7: '7',
     LogicalKeyboardKey.numpad8: '8',
     LogicalKeyboardKey.numpad9: '9',
-     LogicalKeyboardKey.numpadDecimal: '.',
+    LogicalKeyboardKey.numpadDecimal: '.',
   };
 
   @override
@@ -86,7 +85,6 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
             if (key == LogicalKeyboardKey.backspace) {
               rightNotifier.setCalculate("-1");
             }
-            
           }
         },
         child: Padding(
@@ -96,7 +94,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
             children: [
               _informationWidget(notifier, rightNotifier, state, stateRight),
               16.horizontalSpace,
-              calculator(stateRight, rightNotifier)
+              calculator(stateRight, rightNotifier),
             ],
           ),
         ),
@@ -105,7 +103,9 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   Widget calculator(
-      RightSideState stateRight, RightSideNotifier rightSideNotifier) {
+    RightSideState stateRight,
+    RightSideNotifier rightSideNotifier,
+  ) {
     return Expanded(
       child: Container(
         decoration: const BoxDecoration(color: AppStyle.white),
@@ -123,19 +123,25 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                         Text(
                           AppHelpers.getTranslation(TrKeys.payableAmount),
                           style: GoogleFonts.inter(
-                              fontSize: 18.sp, fontWeight: FontWeight.w600),
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         6.verticalSpace,
                         Text(
                           AppHelpers.numberFormat(
                             stateRight.selectedUser?.wallet?.price ?? 0,
-                            currency: stateRight.bags[stateRight.selectedBagIndex].selectedCurrency,
+                            currency: stateRight
+                                .bags[stateRight.selectedBagIndex]
+                                .selectedCurrency,
                           ),
                           style: GoogleFonts.inter(
-                              fontSize: 26.sp, fontWeight: FontWeight.w600),
+                            fontSize: 26.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
                 const Spacer(),
@@ -155,14 +161,17 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                           Text(
                             "${stateRight.selectedUser?.firstname ?? ""} ${stateRight.selectedUser?.lastname ?? ""}",
                             style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w600, fontSize: 18.sp),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18.sp,
+                            ),
                           ),
                           Text(
                             "#${AppHelpers.getTranslation(TrKeys.id)}${stateRight.selectedUser?.id ?? ""}",
                             style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14.sp,
-                                color: AppStyle.icon),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14.sp,
+                              color: AppStyle.icon,
+                            ),
                           ),
                         ],
                       ),
@@ -177,64 +186,71 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
               width: double.infinity,
               padding: EdgeInsets.all(20.r),
               decoration: BoxDecoration(
-                  border: Border.all(color: AppStyle.differborder),
-                  borderRadius: BorderRadius.circular(8.r)),
+                border: Border.all(color: AppStyle.differborder),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   stateRight.calculate,
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600, fontSize: 24.sp),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 24.sp,
+                  ),
                   maxLines: 1,
                 ),
               ),
             ),
             const Spacer(),
             GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 12,
-                shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 28.w,
-                  mainAxisSpacing: 24.h,
-                  mainAxisExtent: 78.r,
-                ),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      rightSideNotifier.setCalculate(index == 9
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 12,
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 28.w,
+                mainAxisSpacing: 24.h,
+                mainAxisExtent: 78.r,
+              ),
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    rightSideNotifier.setCalculate(
+                      index == 9
                           ? "00"
                           : index == 10
-                              ? "0"
-                              : index == 11
-                                  ? "-1"
-                                  : (index + 1).toString());
-                    },
-                    child: AnimationButtonEffect(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppStyle.addButtonColor,
-                          borderRadius: BorderRadius.circular(6.r),
-                        ),
-                        child: Center(
-                          child: index == 11
-                              ? const Icon(FlutterRemix.delete_back_2_line)
-                              : Text(
-                                  index == 9
-                                      ? "00"
-                                      : index == 10
-                                          ? "0"
-                                          : (index + 1).toString(),
-                                  style: GoogleFonts.inter(
-                                      fontSize: 24.sp,
-                                      fontWeight: FontWeight.w600),
+                          ? "0"
+                          : index == 11
+                          ? "-1"
+                          : (index + 1).toString(),
+                    );
+                  },
+                  child: AnimationButtonEffect(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppStyle.addButtonColor,
+                        borderRadius: BorderRadius.circular(6.r),
+                      ),
+                      child: Center(
+                        child: index == 11
+                            ? const Icon(FlutterRemix.delete_back_2_line)
+                            : Text(
+                                index == 9
+                                    ? "00"
+                                    : index == 10
+                                    ? "0"
+                                    : (index + 1).toString(),
+                                style: GoogleFonts.inter(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.w600,
                                 ),
-                        ),
+                              ),
                       ),
                     ),
-                  );
-                }),
+                  ),
+                );
+              },
+            ),
             16.verticalSpace,
             Row(
               children: [
@@ -255,7 +271,9 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                           child: Text(
                             ".",
                             style: GoogleFonts.inter(
-                                fontSize: 24.sp, fontWeight: FontWeight.w600),
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
@@ -276,14 +294,16 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                         child: Text(
                           AppHelpers.getTranslation(TrKeys.ok),
                           style: GoogleFonts.inter(
-                              fontSize: 24.sp, fontWeight: FontWeight.w600),
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -291,10 +311,11 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   Widget _informationWidget(
-      MainNotifier notifier,
-      RightSideNotifier rightSideNotifier,
-      MainState state,
-      RightSideState stateRight) {
+    MainNotifier notifier,
+    RightSideNotifier rightSideNotifier,
+    MainState state,
+    RightSideState stateRight,
+  ) {
     return Expanded(
       child: SingleChildScrollView(
         child: Column(
@@ -307,15 +328,10 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                   },
                   child: Row(
                     children: [
-                      Icon(
-                        FlutterRemix.arrow_left_s_line,
-                        size: 32.r,
-                      ),
+                      Icon(FlutterRemix.arrow_left_s_line, size: 32.r),
                       Text(
                         AppHelpers.getTranslation(TrKeys.back),
-                        style: GoogleFonts.inter(
-                          fontSize: 16.sp,
-                        ),
+                        style: GoogleFonts.inter(fontSize: 16.sp),
                       ),
                     ],
                   ),
@@ -327,21 +343,24 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                   },
                   child: AnimationButtonEffect(
                     child: Container(
-                        decoration: BoxDecoration(
-                            color: AppStyle.white,
-                            borderRadius: BorderRadius.circular(10.r)),
-                        padding: EdgeInsets.all(8.r),
-                        child: const Icon(FlutterRemix.restart_line)),
+                      decoration: BoxDecoration(
+                        color: AppStyle.white,
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      padding: EdgeInsets.all(8.r),
+                      child: const Icon(FlutterRemix.restart_line),
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             16.verticalSpace,
             Container(
               padding: EdgeInsets.symmetric(vertical: 20.r, horizontal: 16.r),
               decoration: BoxDecoration(
-                  color: AppStyle.white,
-                  borderRadius: BorderRadius.circular(10.r)),
+                color: AppStyle.white,
+                borderRadius: BorderRadius.circular(10.r),
+              ),
               child: ListView(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -349,7 +368,9 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                   Text(
                     AppHelpers.getTranslation(TrKeys.order),
                     style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w600, fontSize: 22.sp),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 22.sp,
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -357,12 +378,16 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                       Text(
                         "${stateRight.bags[stateRight.selectedBagIndex].selectedUser?.firstname ?? ""} ${stateRight.bags[stateRight.selectedBagIndex].selectedUser?.lastname ?? ""}",
                         style: GoogleFonts.inter(
-                            fontSize: 16.sp, color: AppStyle.icon),
+                          fontSize: 16.sp,
+                          color: AppStyle.icon,
+                        ),
                       ),
                       Text(
-                       AppHelpers.getTranslation( stateRight.orderType),
+                        AppHelpers.getTranslation(stateRight.orderType),
                         style: GoogleFonts.inter(
-                            fontSize: 16.sp, color: AppStyle.icon),
+                          fontSize: 16.sp,
+                          color: AppStyle.icon,
+                        ),
                       ),
                     ],
                   ),
@@ -372,75 +397,84 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                   Text(
                     AppHelpers.getTranslation(TrKeys.totalItem),
                     style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w600, fontSize: 18.sp),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18.sp,
+                    ),
                   ),
                   ListView.builder(
-                      padding: EdgeInsets.only(top: 16.r),
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount:
-                          stateRight.paginateResponse?.stocks?.length ?? 0,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.only(bottom: 16.r),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    stateRight
+                    padding: EdgeInsets.only(top: 16.r),
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: stateRight.paginateResponse?.stocks?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 16.r),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  stateRight
+                                          .paginateResponse
+                                          ?.stocks?[index]
+                                          .stock
+                                          ?.product
+                                          ?.translation
+                                          ?.title ??
+                                      "",
+                                  style: GoogleFonts.inter(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16.sp,
+                                    color: AppStyle.black,
+                                  ),
+                                ),
+                                for (Addons e
+                                    in (stateRight
                                             .paginateResponse
                                             ?.stocks?[index]
-                                            .stock
-                                            ?.product
-                                            ?.translation
-                                            ?.title ??
-                                        "",
+                                            .addons ??
+                                        []))
+                                  Text(
+                                    "${e.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat((e.price ?? 0) / (e.quantity ?? 1))} x ${(e.quantity ?? 1)} )",
                                     style: GoogleFonts.inter(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16.sp,
-                                        color: AppStyle.black),
-                                  ),
-                                  for (Addons e in (stateRight.paginateResponse
-                                          ?.stocks?[index].addons ??
-                                      []))
-                                    Text(
-                                      "${e.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat(
-                                        (e.price ?? 0) / (e.quantity ?? 1),
-                                      )} x ${(e.quantity ?? 1)} )",
-                                      style: GoogleFonts.inter(
-                                        fontSize: 15.sp,
-                                        color: AppStyle.unselectedTab,
-                                      ),
+                                      fontSize: 15.sp,
+                                      color: AppStyle.unselectedTab,
                                     ),
-                                ],
+                                  ),
+                              ],
+                            ),
+                            Text(
+                              AppHelpers.numberFormat(
+                                stateRight
+                                        .paginateResponse
+                                        ?.stocks?[index]
+                                        .totalPrice ??
+                                    0,
+                                currency: stateRight
+                                    .bags[stateRight.selectedBagIndex]
+                                    .selectedCurrency,
                               ),
-                              Text(
-                                AppHelpers.numberFormat(
-                                    stateRight.paginateResponse
-                                        ?.stocks?[index].totalPrice ??
-                                        0,
-                                  currency: stateRight.bags[stateRight.selectedBagIndex].selectedCurrency,
-                                ),
-                                style: GoogleFonts.inter(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14.sp,
-                                    color: AppStyle.black),
-                              )
-                            ],
-                          ),
-                        );
-                      }),
+                              style: GoogleFonts.inter(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14.sp,
+                                color: AppStyle.black,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                   const Divider(),
                   PriceInfo(
                     bag: stateRight.bags[stateRight.selectedBagIndex],
                     state: stateRight,
                     notifier: rightSideNotifier,
                     mainNotifier: notifier,
-                  )
+                  ),
                 ],
               ),
             ),

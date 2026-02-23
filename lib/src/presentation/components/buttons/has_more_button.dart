@@ -34,7 +34,9 @@ class HasMoreButton extends StatelessWidget {
               child: Text(
                 AppHelpers.getTranslation(TrKeys.viewMore),
                 style: GoogleFonts.inter(
-                    fontSize: 16.sp, fontWeight: FontWeight.w600),
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           )

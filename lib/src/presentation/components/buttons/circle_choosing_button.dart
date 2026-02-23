@@ -12,24 +12,21 @@ class CircleChoosingButton extends StatelessWidget {
       height: 18.h,
       width: 18.w,
       decoration: BoxDecoration(
-          color: isActive
-              ? AppStyle.primary
-              : AppStyle.transparent,
-          shape: BoxShape.circle,
-          border: Border.all(
-              color: !isActive
-                  ? AppStyle.icon
-                  : AppStyle.transparent,
-              width: 2)),
+        color: isActive ? AppStyle.primary : AppStyle.transparent,
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: !isActive ? AppStyle.icon : AppStyle.transparent,
+          width: 2,
+        ),
+      ),
       child: Center(
         child: Container(
           height: 6.h,
           width: 6.w,
           decoration: BoxDecoration(
-              color:isActive
-                  ? AppStyle.locationAddress
-                  : AppStyle.transparent,
-              shape: BoxShape.circle),
+            color: isActive ? AppStyle.locationAddress : AppStyle.transparent,
+            shape: BoxShape.circle,
+          ),
         ),
       ),
     );

@@ -10,8 +10,7 @@ class PinButton extends StatelessWidget {
   final IconData? iconData;
   final VoidCallback onTap;
 
-  const PinButton({super.key, this.title, this.iconData, required this.onTap})
-     ;
+  const PinButton({super.key, this.title, this.iconData, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +22,9 @@ class PinButton extends StatelessWidget {
           height: 68.r,
           width: 68.r,
           decoration: BoxDecoration(
-              border: Border.all(width: 2, color: AppStyle.outlineButtonBorder),
-              borderRadius: BorderRadius.circular(5.r)),
+            border: Border.all(width: 2, color: AppStyle.outlineButtonBorder),
+            borderRadius: BorderRadius.circular(5.r),
+          ),
           child: Center(
             child: title != null
                 ? Text(
@@ -36,11 +36,8 @@ class PinButton extends StatelessWidget {
                     ),
                   )
                 : iconData != null
-                    ? Icon(
-                        iconData!,
-                        size: 26.r,
-                      )
-                    : const Placeholder(),
+                ? Icon(iconData!, size: 26.r)
+                : const Placeholder(),
           ),
         ),
       ),

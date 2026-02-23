@@ -32,7 +32,6 @@ class AppConstants {
   static const double radius = 12;
 }
 
-
 enum DropDownType { categories, users }
 
 enum ExtrasType { color, text, image }
@@ -50,9 +49,8 @@ enum UploadType {
   products,
   reviews,
   users,
-  discounts
+  discounts,
 }
-
 
 enum OrderStatus {
   newOrder,

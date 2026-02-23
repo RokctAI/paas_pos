@@ -24,11 +24,7 @@ import 'riverpod/right_side_state.dart';
 class OrderInformation extends ConsumerWidget {
   OrderInformation({super.key});
 
-  List listOfType = [
-    TrKeys.delivery,
-    TrKeys.pickup,
-    TrKeys.dine,
-  ];
+  List listOfType = [TrKeys.delivery, TrKeys.pickup, TrKeys.dine];
 
   List listDine = [TrKeys.dine];
 
@@ -57,12 +53,15 @@ class OrderInformation extends ConsumerWidget {
                   Text(
                     AppHelpers.getTranslation(TrKeys.order),
                     style: GoogleFonts.inter(
-                        fontSize: 22.r, fontWeight: FontWeight.w600),
+                      fontSize: 22.r,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const Spacer(),
                   IconButton(
-                      onPressed: context.maybePop,
-                      icon: const Icon(FlutterRemix.close_line))
+                    onPressed: context.maybePop,
+                    icon: const Icon(FlutterRemix.close_line),
+                  ),
                 ],
               ),
               16.verticalSpace,
@@ -88,9 +87,11 @@ class OrderInformation extends ConsumerWidget {
                                 padding: EdgeInsets.only(left: 16.r),
                                 child: CustomDropdown(
                                   hintText: AppHelpers.getTranslation(
-                                      TrKeys.selectUser),
+                                    TrKeys.selectUser,
+                                  ),
                                   searchHintText: AppHelpers.getTranslation(
-                                      TrKeys.searchUser),
+                                    TrKeys.searchUser,
+                                  ),
                                   dropDownType: DropDownType.users,
                                   onChanged: (value) =>
                                       notifier.setUsersQuery(context, value),
@@ -104,9 +105,12 @@ class OrderInformation extends ConsumerWidget {
                                   padding: EdgeInsets.only(top: 6.r, left: 4.r),
                                   child: Text(
                                     AppHelpers.getTranslation(
-                                        state.selectUserError ?? ""),
+                                      state.selectUserError ?? "",
+                                    ),
                                     style: GoogleFonts.inter(
-                                        color: AppStyle.red, fontSize: 14.sp),
+                                      color: AppStyle.red,
+                                      fontSize: 14.sp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -130,15 +134,17 @@ class OrderInformation extends ConsumerWidget {
                                 padding: EdgeInsets.only(left: 16.r),
                                 child: CustomDropdown(
                                   hintText: AppHelpers.getTranslation(
-                                      TrKeys.selectSection),
-                                  searchHintText:
-                                      AppHelpers.getTranslation(TrKeys.search),
+                                    TrKeys.selectSection,
+                                  ),
+                                  searchHintText: AppHelpers.getTranslation(
+                                    TrKeys.search,
+                                  ),
                                   dropDownType: DropDownType.section,
                                   onChanged: (value) =>
                                       notifier.setSectionQuery(context, value),
                                   initialValue:
                                       bag.selectedSection?.translation?.title ??
-                                          '',
+                                      '',
                                 ),
                               ),
                               Visibility(
@@ -147,9 +153,12 @@ class OrderInformation extends ConsumerWidget {
                                   padding: EdgeInsets.only(top: 6.r, left: 4.r),
                                   child: Text(
                                     AppHelpers.getTranslation(
-                                        state.selectSectionError ?? ""),
+                                      state.selectSectionError ?? "",
+                                    ),
                                     style: GoogleFonts.inter(
-                                        color: AppStyle.red, fontSize: 14.sp),
+                                      color: AppStyle.red,
+                                      fontSize: 14.sp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -182,9 +191,11 @@ class OrderInformation extends ConsumerWidget {
                           color: AppStyle.white,
                           elevation: 10,
                           child: SelectFromButton(
-                            title: state.selectedCurrency?.title ??
+                            title:
+                                state.selectedCurrency?.title ??
                                 AppHelpers.getTranslation(
-                                    TrKeys.selectCurrency),
+                                  TrKeys.selectCurrency,
+                                ),
                           ),
                         ),
                         Visibility(
@@ -193,9 +204,12 @@ class OrderInformation extends ConsumerWidget {
                             padding: EdgeInsets.only(top: 6.r, left: 4.r),
                             child: Text(
                               AppHelpers.getTranslation(
-                                  state.selectCurrencyError ?? ""),
+                                state.selectCurrencyError ?? "",
+                              ),
                               style: GoogleFonts.inter(
-                                  color: AppStyle.red, fontSize: 14.sp),
+                                color: AppStyle.red,
+                                fontSize: 14.sp,
+                              ),
                             ),
                           ),
                         ),
@@ -215,30 +229,33 @@ class OrderInformation extends ConsumerWidget {
                                     state.selectedAddress?.address ?? "",
                                 itemBuilder: (context) {
                                   AppHelpers.showAlertDialog(
-                                      context: context,
-                                      child: SizedBox(
-                                        child: SelectAddressPage(
-                                          location:
-                                              state.selectedAddress?.location,
-                                          onSelect: (address) {
-                                            notifier.setSelectedAddress(
-                                                address: address);
-                                            ref
-                                                .read(
-                                                    rightSideProvider.notifier)
-                                                .fetchCarts(
-                                                    checkYourNetwork: () {
-                                                      AppHelpers.showSnackBar(
-                                                        context,
-                                                        AppHelpers.getTranslation(
-                                                            TrKeys
-                                                                .checkYourNetworkConnection),
-                                                      );
-                                                    },
-                                                    isNotLoading: true);
-                                          },
-                                        ),
-                                      ));
+                                    context: context,
+                                    child: SizedBox(
+                                      child: SelectAddressPage(
+                                        location:
+                                            state.selectedAddress?.location,
+                                        onSelect: (address) {
+                                          notifier.setSelectedAddress(
+                                            address: address,
+                                          );
+                                          ref
+                                              .read(rightSideProvider.notifier)
+                                              .fetchCarts(
+                                                checkYourNetwork: () {
+                                                  AppHelpers.showSnackBar(
+                                                    context,
+                                                    AppHelpers.getTranslation(
+                                                      TrKeys
+                                                          .checkYourNetworkConnection,
+                                                    ),
+                                                  );
+                                                },
+                                                isNotLoading: true,
+                                              );
+                                        },
+                                      ),
+                                    ),
+                                  );
 
                                   return [];
                                 },
@@ -250,9 +267,11 @@ class OrderInformation extends ConsumerWidget {
                                 color: AppStyle.white,
                                 elevation: 10,
                                 child: SelectFromButton(
-                                  title: state.selectedAddress?.address ??
+                                  title:
+                                      state.selectedAddress?.address ??
                                       AppHelpers.getTranslation(
-                                          TrKeys.selectAddress),
+                                        TrKeys.selectAddress,
+                                      ),
                                 ),
                               ),
                               Visibility(
@@ -261,9 +280,12 @@ class OrderInformation extends ConsumerWidget {
                                   padding: EdgeInsets.only(top: 6.r, left: 4.r),
                                   child: Text(
                                     AppHelpers.getTranslation(
-                                        state.selectAddressError ?? ""),
+                                      state.selectAddressError ?? "",
+                                    ),
                                     style: GoogleFonts.inter(
-                                        color: AppStyle.red, fontSize: 14.sp),
+                                      color: AppStyle.red,
+                                      fontSize: 14.sp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -287,9 +309,11 @@ class OrderInformation extends ConsumerWidget {
                                 padding: EdgeInsets.only(left: 16.r),
                                 child: CustomDropdown(
                                   hintText: AppHelpers.getTranslation(
-                                      TrKeys.selectTable),
-                                  searchHintText:
-                                      AppHelpers.getTranslation(TrKeys.search),
+                                    TrKeys.selectTable,
+                                  ),
+                                  searchHintText: AppHelpers.getTranslation(
+                                    TrKeys.search,
+                                  ),
                                   dropDownType: DropDownType.table,
                                   onChanged: (value) =>
                                       notifier.setTableQuery(context, value),
@@ -302,9 +326,12 @@ class OrderInformation extends ConsumerWidget {
                                   padding: EdgeInsets.only(top: 6.r, left: 4.r),
                                   child: Text(
                                     AppHelpers.getTranslation(
-                                        state.selectTableError ?? ""),
+                                      state.selectTableError ?? "",
+                                    ),
                                     style: GoogleFonts.inter(
-                                        color: AppStyle.red, fontSize: 14.sp),
+                                      color: AppStyle.red,
+                                      fontSize: 14.sp,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -320,7 +347,8 @@ class OrderInformation extends ConsumerWidget {
                                     value: payment.id,
                                     child: Text(
                                       AppHelpers.getTranslation(
-                                          payment.tag ?? ""),
+                                        payment.tag ?? "",
+                                      ),
                                       style: GoogleFonts.inter(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 14.sp,
@@ -340,8 +368,9 @@ class OrderInformation extends ConsumerWidget {
                           elevation: 10,
                           child: SelectFromButton(
                             title: AppHelpers.getTranslation(
-                                state.selectedPayment?.tag ??
-                                    TrKeys.selectPayment),
+                              state.selectedPayment?.tag ??
+                                  TrKeys.selectPayment,
+                            ),
                           ),
                         ),
                         Visibility(
@@ -350,9 +379,12 @@ class OrderInformation extends ConsumerWidget {
                             padding: EdgeInsets.only(top: 6.r, left: 4.r),
                             child: Text(
                               AppHelpers.getTranslation(
-                                  state.selectPaymentError ?? ""),
+                                state.selectPaymentError ?? "",
+                              ),
                               style: GoogleFonts.inter(
-                                  color: AppStyle.red, fontSize: 14.sp),
+                                color: AppStyle.red,
+                                fontSize: 14.sp,
+                              ),
                             ),
                           ),
                         ),
@@ -390,7 +422,9 @@ class OrderInformation extends ConsumerWidget {
               Text(
                 AppHelpers.getTranslation(TrKeys.shippingInformation),
                 style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w600, fontSize: 22.r),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 22.r,
+                ),
               ),
               16.verticalSpace,
               Row(
@@ -398,96 +432,115 @@ class OrderInformation extends ConsumerWidget {
                   ...(LocalStorage.getUser()?.role == TrKeys.waiter
                           ? listDine
                           : listOfType)
-                      .map((e) => Expanded(
-                            child: InkWell(
-                              onTap: () {
-                                notifier.setSelectedOrderType(e);
-                                if (state.orderType.toLowerCase() !=
-                                    e.toString().toLowerCase()) {
-                                  ref
-                                      .read(rightSideProvider.notifier)
-                                      .fetchCarts(
-                                          checkYourNetwork: () {
-                                            AppHelpers.showSnackBar(
-                                              context,
-                                              AppHelpers.getTranslation(TrKeys
-                                                  .checkYourNetworkConnection),
-                                            );
-                                          },
-                                          isNotLoading: true);
-                                }
-                              },
-                              child: AnimationButtonEffect(
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 4.r),
-                                  decoration: BoxDecoration(
-                                    color: state.orderType.toLowerCase() ==
-                                            e.toString().toLowerCase()
-                                        ? AppStyle.primary
-                                        : AppStyle.editProfileCircle,
-                                    borderRadius: BorderRadius.circular(6.r),
-                                  ),
-                                  padding: EdgeInsets.symmetric(vertical: 10.r),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: AppStyle.transparent,
-                                            shape: BoxShape.circle,
-                                            border: Border.all(
-                                                color:state.orderType
-                                                .toLowerCase() ==
-                                                e.toString().toLowerCase()
-                                                ? AppStyle.buttonFontColor
-                                                : AppStyle.black,),
+                      .map(
+                        (e) => Expanded(
+                          child: InkWell(
+                            onTap: () {
+                              notifier.setSelectedOrderType(e);
+                              if (state.orderType.toLowerCase() !=
+                                  e.toString().toLowerCase()) {
+                                ref
+                                    .read(rightSideProvider.notifier)
+                                    .fetchCarts(
+                                      checkYourNetwork: () {
+                                        AppHelpers.showSnackBar(
+                                          context,
+                                          AppHelpers.getTranslation(
+                                            TrKeys.checkYourNetworkConnection,
                                           ),
-                                          padding: EdgeInsets.all(6.r),
-                                          child: e == TrKeys.delivery
-                                              ? Icon(
-                                                  FlutterRemix.takeaway_fill,
-                                                  size: 18.sp,
-                                            color: state.orderType
-                                                .toLowerCase() ==
-                                                e.toString().toLowerCase()
+                                        );
+                                      },
+                                      isNotLoading: true,
+                                    );
+                              }
+                            },
+                            child: AnimationButtonEffect(
+                              child: Container(
+                                margin: EdgeInsets.symmetric(horizontal: 4.r),
+                                decoration: BoxDecoration(
+                                  color:
+                                      state.orderType.toLowerCase() ==
+                                          e.toString().toLowerCase()
+                                      ? AppStyle.primary
+                                      : AppStyle.editProfileCircle,
+                                  borderRadius: BorderRadius.circular(6.r),
+                                ),
+                                padding: EdgeInsets.symmetric(vertical: 10.r),
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: AppStyle.transparent,
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color:
+                                                state.orderType.toLowerCase() ==
+                                                    e.toString().toLowerCase()
                                                 ? AppStyle.buttonFontColor
                                                 : AppStyle.black,
-                                                )
-                                              : e == TrKeys.pickup
-                                                  ? SvgPicture.asset(
-                                                      "assets/svg/pickup.svg",color: state.orderType
-                                              .toLowerCase() ==
-                                              e.toString().toLowerCase()
-                                              ? AppStyle.buttonFontColor
-                                              : AppStyle.black,)
-                                                  : SvgPicture.asset(
-                                                      "assets/svg/dine.svg",color:state.orderType
-                                              .toLowerCase() ==
-                                              e.toString().toLowerCase()
-                                              ? AppStyle.buttonFontColor
-                                              : AppStyle.black,),
+                                          ),
                                         ),
-                                        8.horizontalSpace,
-                                        Text(
-                                          AppHelpers.getTranslation(e),
-                                          style: GoogleFonts.inter(
-                                              fontSize: 14.sp,
-                                              color: state.orderType
-                                                          .toLowerCase() ==
-                                                      e.toString().toLowerCase()
-                                                  ? AppStyle.buttonFontColor
-                                                  : AppStyle.black,
-                                              fontWeight: FontWeight.w600),
-                                        )
-                                      ],
-                                    ),
+                                        padding: EdgeInsets.all(6.r),
+                                        child: e == TrKeys.delivery
+                                            ? Icon(
+                                                FlutterRemix.takeaway_fill,
+                                                size: 18.sp,
+                                                color:
+                                                    state.orderType
+                                                            .toLowerCase() ==
+                                                        e
+                                                            .toString()
+                                                            .toLowerCase()
+                                                    ? AppStyle.buttonFontColor
+                                                    : AppStyle.black,
+                                              )
+                                            : e == TrKeys.pickup
+                                            ? SvgPicture.asset(
+                                                "assets/svg/pickup.svg",
+                                                color:
+                                                    state.orderType
+                                                            .toLowerCase() ==
+                                                        e
+                                                            .toString()
+                                                            .toLowerCase()
+                                                    ? AppStyle.buttonFontColor
+                                                    : AppStyle.black,
+                                              )
+                                            : SvgPicture.asset(
+                                                "assets/svg/dine.svg",
+                                                color:
+                                                    state.orderType
+                                                            .toLowerCase() ==
+                                                        e
+                                                            .toString()
+                                                            .toLowerCase()
+                                                    ? AppStyle.buttonFontColor
+                                                    : AppStyle.black,
+                                              ),
+                                      ),
+                                      8.horizontalSpace,
+                                      Text(
+                                        AppHelpers.getTranslation(e),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14.sp,
+                                          color:
+                                              state.orderType.toLowerCase() ==
+                                                  e.toString().toLowerCase()
+                                              ? AppStyle.buttonFontColor
+                                              : AppStyle.black,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                          )),
+                          ),
+                        ),
+                      ),
                 ],
               ),
               12.verticalSpace,
@@ -537,9 +590,11 @@ class OrderInformation extends ConsumerWidget {
                         child: SelectFromButton(
                           title: state.orderDate == null
                               ? AppHelpers.getTranslation(
-                                  TrKeys.selectDeliveryDate)
-                              : DateFormat("MMM dd")
-                                  .format(state.orderDate ?? DateTime.now()),
+                                  TrKeys.selectDeliveryDate,
+                                )
+                              : DateFormat(
+                                  "MMM dd",
+                                ).format(state.orderDate ?? DateTime.now()),
                         ),
                       ),
                     ),
@@ -583,7 +638,8 @@ class OrderInformation extends ConsumerWidget {
                         child: SelectFromButton(
                           title: state.orderTime == null
                               ? AppHelpers.getTranslation(
-                                  TrKeys.selectDeliveryTime)
+                                  TrKeys.selectDeliveryTime,
+                                )
                               : "${state.orderTime?.format(context)}",
                         ),
                       ),
@@ -601,31 +657,33 @@ class OrderInformation extends ConsumerWidget {
                   SizedBox(
                     width: 186.w,
                     child: LoginButton(
-                        title: AppHelpers.getTranslation(TrKeys.placeOrder),
-                        onPressed: () {
-                          if (AppHelpers.isNumberRequiredToOrder() &&
-                              state.selectedUser?.phone == null &&
-                              state.selectedUser != null) {
-                            if (!(formKey.currentState?.validate() ?? false)) {
-                              return;
-                            }
+                      title: AppHelpers.getTranslation(TrKeys.placeOrder),
+                      onPressed: () {
+                        if (AppHelpers.isNumberRequiredToOrder() &&
+                            state.selectedUser?.phone == null &&
+                            state.selectedUser != null) {
+                          if (!(formKey.currentState?.validate() ?? false)) {
+                            return;
                           }
-                          notifier.placeOrder(
-                            checkYourNetwork: () {
-                              AppHelpers.showSnackBar(
-                                context,
-                                AppHelpers.getTranslation(
-                                    TrKeys.checkYourNetworkConnection),
-                              );
-                            },
-                            openSelectDeliveriesDrawer: () {
-                              ref
-                                  .read(mainProvider.notifier)
-                                  .setPriceDate(state.paginateResponse);
-                              context.maybePop();
-                            },
-                          );
-                        }),
+                        }
+                        notifier.placeOrder(
+                          checkYourNetwork: () {
+                            AppHelpers.showSnackBar(
+                              context,
+                              AppHelpers.getTranslation(
+                                TrKeys.checkYourNetworkConnection,
+                              ),
+                            );
+                          },
+                          openSelectDeliveriesDrawer: () {
+                            ref
+                                .read(mainProvider.notifier)
+                                .setPriceDate(state.paginateResponse);
+                            context.maybePop();
+                          },
+                        );
+                      },
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -662,10 +720,11 @@ class OrderInformation extends ConsumerWidget {
     );
   }
 
-  Widget _priceInformation(
-      {required RightSideState state,
-      required BagData bag,
-      required BuildContext context}) {
+  Widget _priceInformation({
+    required RightSideState state,
+    required BagData bag,
+    required BuildContext context,
+  }) {
     return Column(
       children: [
         _priceItem(

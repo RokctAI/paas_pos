@@ -12,7 +12,7 @@ class AddDiscountNotifier extends StateNotifier<AddDiscountState> {
   final GalleryRepositoryFacade _galleryRepository;
 
   AddDiscountNotifier(this._discountsRepository, this._galleryRepository)
-      : super(AddDiscountState(dateController: TextEditingController()));
+    : super(AddDiscountState(dateController: TextEditingController()));
 
   void setActiveIndex(String? value) {
     if (state.type == value || value == null) {
@@ -27,12 +27,13 @@ class AddDiscountNotifier extends StateNotifier<AddDiscountState> {
 
   void clear() {
     state = state.copyWith(
-        active: false,
-        stocks: [],
-        price: 0,
-        imageFile: null,
-        startDate: null,
-        endDate: null);
+      active: false,
+      stocks: [],
+      price: 0,
+      imageFile: null,
+      startDate: null,
+      endDate: null,
+    );
     state.dateController?.clear();
   }
 
@@ -75,9 +76,10 @@ class AddDiscountNotifier extends StateNotifier<AddDiscountState> {
     VoidCallback? onError,
   }) async {
     if (state.stocks.isEmpty) {
-      AppHelpers.showSnackBar(context,
-         AppHelpers.getTranslation(TrKeys.errorQuantity),
-         );
+      AppHelpers.showSnackBar(
+        context,
+        AppHelpers.getTranslation(TrKeys.errorQuantity),
+      );
       return;
     }
     state = state.copyWith(isLoading: true);
@@ -108,9 +110,7 @@ class AddDiscountNotifier extends StateNotifier<AddDiscountState> {
     );
     response.when(
       success: (data) {
-        state = state.copyWith(
-          isLoading: false,
-        );
+        state = state.copyWith(isLoading: false);
         created?.call();
       },
       failure: (failure) {

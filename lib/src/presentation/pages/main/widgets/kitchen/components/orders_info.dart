@@ -28,12 +28,14 @@ class OrdersInfo extends StatelessWidget {
         borderRadius: BorderRadiusDirectional.circular(10),
         boxShadow: [
           BoxShadow(
-              offset: const Offset(0, 5),
-              blurRadius: 8.r,
-              color: active ? AppColors.shadowSecond : AppColors.transparent)
+            offset: const Offset(0, 5),
+            blurRadius: 8.r,
+            color: active ? AppColors.shadowSecond : AppColors.transparent,
+          ),
         ],
         border: Border.all(
-            color: active ? AppColors.brandColor : AppColors.transparent),
+          color: active ? AppColors.brandColor : AppColors.transparent,
+        ),
       ),
       child: Padding(
         padding: REdgeInsets.all(16),
@@ -69,42 +71,43 @@ class OrdersInfo extends StatelessWidget {
                         Text(
                           "#${AppHelpers.getTranslation(TrKeys.id)}${orderData.id ?? ''}",
                           style: GoogleFonts.inter(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColors.iconColor),
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.iconColor,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  Icon(FlutterRemix.more_2_fill, size: 22.r)
+                  Icon(FlutterRemix.more_2_fill, size: 22.r),
                 ],
               ),
             ),
-            Divider(
-              color: AppColors.iconColor.withOpacity(0.6),
-            ),
+            Divider(color: AppColors.iconColor.withOpacity(0.6)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   AppHelpers.getTranslation(TrKeys.orderTime),
                   style: GoogleFonts.inter(
-                      fontSize: 14.sp, fontWeight: FontWeight.w500),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 Text(
                   DateFormat("MMM d,h:mm a").format(
-                      DateTime.tryParse(orderData.createdAt ?? "")?.toLocal() ??
-                          DateTime.now()),
+                    DateTime.tryParse(orderData.createdAt ?? "")?.toLocal() ??
+                        DateTime.now(),
+                  ),
                   style: GoogleFonts.inter(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.iconColor),
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.iconColor,
+                  ),
                 ),
               ],
             ),
-            Divider(
-              color: AppColors.iconColor.withOpacity(0.6),
-            ),
+            Divider(color: AppColors.iconColor.withOpacity(0.6)),
             4.verticalSpace,
             const Spacer(),
             Row(
@@ -113,70 +116,79 @@ class OrdersInfo extends StatelessWidget {
                   height: 30.r,
                   width: 30.r,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppColors.black)),
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppColors.black),
+                  ),
                   child: Center(
-                      child: orderData.deliveryType == TrKeys.dine
-                          ? SvgPicture.asset(Assets.svgDine)
-                          : Icon(
-                              orderData.deliveryType == TrKeys.pickup
-                                  ? FlutterRemix.walk_line
-                                  : FlutterRemix.e_bike_2_fill,
-                              size: 18,
-                            )),
+                    child: orderData.deliveryType == TrKeys.dine
+                        ? SvgPicture.asset(Assets.svgDine)
+                        : Icon(
+                            orderData.deliveryType == TrKeys.pickup
+                                ? FlutterRemix.walk_line
+                                : FlutterRemix.e_bike_2_fill,
+                            size: 18,
+                          ),
+                  ),
                 ),
                 8.horizontalSpace,
                 orderData.deliveryType == TrKeys.pickup
                     ? Text(
                         AppHelpers.getTranslation(TrKeys.takeAway),
                         style: GoogleFonts.inter(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.black),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.black,
+                        ),
                       )
                     : orderData.deliveryType == TrKeys.dine
-                        ? Text(
-                            AppHelpers.getTranslation(TrKeys.dine),
-                            style: GoogleFonts.inter(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.black),
-                          )
-                        : Text(
-                            AppHelpers.getTranslation(TrKeys.delivery),
-                            style: GoogleFonts.inter(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.black),
-                          )
+                    ? Text(
+                        AppHelpers.getTranslation(TrKeys.dine),
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.black,
+                        ),
+                      )
+                    : Text(
+                        AppHelpers.getTranslation(TrKeys.delivery),
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.black,
+                        ),
+                      ),
               ],
             ),
             const Spacer(flex: 2),
             Container(
               padding: REdgeInsets.symmetric(horizontal: 14, vertical: 7),
               decoration: BoxDecoration(
-                  color: orderData.status == TrKeys.accepted
-                      ? AppColors.blue
-                      : orderData.status == TrKeys.ready
-                          ? AppColors.brandColor
-                          : orderData.status == TrKeys.canceled
-                              ? AppColors.red
-                              : AppColors.revenueColor,
-                  borderRadius: BorderRadiusDirectional.circular(100)),
-              child: Text(
-                AppHelpers.getTranslation(orderData.status == TrKeys.accepted
-                    ? TrKeys.newKey
+                color: orderData.status == TrKeys.accepted
+                    ? AppColors.blue
                     : orderData.status == TrKeys.ready
-                        ? TrKeys.done
-                        : orderData.status == TrKeys.canceled
-                            ? TrKeys.cancel
-                            : TrKeys.cooking),
-                style: GoogleFonts.inter(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.white),
+                    ? AppColors.brandColor
+                    : orderData.status == TrKeys.canceled
+                    ? AppColors.red
+                    : AppColors.revenueColor,
+                borderRadius: BorderRadiusDirectional.circular(100),
               ),
-            )
+              child: Text(
+                AppHelpers.getTranslation(
+                  orderData.status == TrKeys.accepted
+                      ? TrKeys.newKey
+                      : orderData.status == TrKeys.ready
+                      ? TrKeys.done
+                      : orderData.status == TrKeys.canceled
+                      ? TrKeys.cancel
+                      : TrKeys.cooking,
+                ),
+                style: GoogleFonts.inter(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.white,
+                ),
+              ),
+            ),
           ],
         ),
       ),

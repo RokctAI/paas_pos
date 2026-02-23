@@ -55,17 +55,19 @@ class ViewMode extends StatelessWidget {
               children: [
                 icon != null
                     ? Icon(
-                  icon,
-                  color: isActive ? AppStyle.white : AppStyle.reviewText,
-                  size: 20,
-                )
+                        icon,
+                        color: isActive ? AppStyle.white : AppStyle.reviewText,
+                        size: 20,
+                      )
                     : const SizedBox.shrink(),
                 icon != null ? 14.horizontalSpace : SizedBox.shrink(),
                 Text(
                   AppHelpers.getTranslation(title),
                   style: AppStyle.interNormal(
                     size: textSize,
-                    color: isActive ? AppStyle.buttonFontColor : AppStyle.reviewText,
+                    color: isActive
+                        ? AppStyle.buttonFontColor
+                        : AppStyle.reviewText,
                   ),
                 ),
               ],

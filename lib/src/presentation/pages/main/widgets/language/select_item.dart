@@ -16,7 +16,8 @@ class SelectItem extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.isLast,
-    required this.title, required this.isActive,
+    required this.title,
+    required this.isActive,
   });
 
   @override
@@ -37,7 +38,8 @@ class SelectItem extends StatelessWidget {
                   color: isActive ? AppStyle.primary : AppStyle.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
-                      color: !isActive ? AppStyle.hint : AppStyle.primary),
+                    color: !isActive ? AppStyle.hint : AppStyle.primary,
+                  ),
                 ),
                 child: Icon(
                   FlutterRemix.check_line,
@@ -57,7 +59,7 @@ class SelectItem extends StatelessWidget {
             ],
           ),
           10.verticalSpace,
-          if(!isLast)const Divider(color: AppStyle.hint),
+          if (!isLast) const Divider(color: AppStyle.hint),
           5.verticalSpace,
         ],
       ),

@@ -2,9 +2,7 @@ import 'package:admin_desktop/src/core/handlers/handlers.dart';
 import '../models/response/stories_response.dart';
 
 abstract class StoriesRepository {
-  Future<ApiResult<StoriesResponse>> getStories({
-    int? page,
-  });
+  Future<ApiResult<StoriesResponse>> getStories({int? page});
 
   Future<ApiResult<void>> deleteStories(int id);
 

@@ -30,10 +30,15 @@ class _MapDialogState extends ConsumerState<MapDialog> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(orderTableProvider.notifier).setMarkerIcon(LatLng(
-            widget.orderData.location?.latitude ?? AppConstants.demoLatitude,
-            widget.orderData.location?.longitude ?? AppConstants.demoLongitude,
-          ));
+      ref
+          .read(orderTableProvider.notifier)
+          .setMarkerIcon(
+            LatLng(
+              widget.orderData.location?.latitude ?? AppConstants.demoLatitude,
+              widget.orderData.location?.longitude ??
+                  AppConstants.demoLongitude,
+            ),
+          );
     });
     _target = LatLng(
       widget.orderData.location?.latitude ?? AppConstants.demoLatitude,
@@ -66,9 +71,10 @@ class _MapDialogState extends ConsumerState<MapDialog> {
                 ),
               ),
               IconButton(
-                  splashRadius: 32.r,
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(FlutterRemix.close_line))
+                splashRadius: 32.r,
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(FlutterRemix.close_line),
+              ),
             ],
           ),
         ),
@@ -115,8 +121,9 @@ class _MapDialogState extends ConsumerState<MapDialog> {
                       children: [
                         Text(
                           DateFormat("yyyy MMMM dd, hh:mm:ss").format(
-                              widget.orderData.createdAt?.toLocal() ??
-                                  DateTime.now()),
+                            widget.orderData.createdAt?.toLocal() ??
+                                DateTime.now(),
+                          ),
                           style: GoogleFonts.inter(
                             fontSize: 14.sp,
                             color: AppStyle.brandTitleDivider,
@@ -160,53 +167,61 @@ class _MapDialogState extends ConsumerState<MapDialog> {
                           ),
                           8.horizontalSpace,
                           AppHelpers.getStatusType(
-                              widget.orderData.status ?? ""),
+                            widget.orderData.status ?? "",
+                          ),
                         ],
                       ),
                       8.verticalSpace,
                       RichText(
                         text: TextSpan(
-                            text:
-                                "${AppHelpers.getTranslation(TrKeys.paymentType)}  ",
-                            style: GoogleFonts.inter(
-                              fontSize: 14.sp,
-                              color: AppStyle.brandTitleDivider,
-                              fontWeight: FontWeight.w500,
+                          text:
+                              "${AppHelpers.getTranslation(TrKeys.paymentType)}  ",
+                          style: GoogleFonts.inter(
+                            fontSize: 14.sp,
+                            color: AppStyle.brandTitleDivider,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          children: [
+                            TextSpan(
+                              text:
+                                  widget
+                                      .orderData
+                                      .transaction
+                                      ?.paymentSystem
+                                      ?.tag ??
+                                  "- -",
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: AppStyle.black,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                            children: [
-                              TextSpan(
-                                text: widget.orderData.transaction
-                                        ?.paymentSystem?.tag ??
-                                    "- -",
-                                style: GoogleFonts.inter(
-                                  fontSize: 14.sp,
-                                  color: AppStyle.black,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )
-                            ]),
+                          ],
+                        ),
                       ),
                       8.verticalSpace,
                       RichText(
                         text: TextSpan(
-                            text:
-                                "${AppHelpers.getTranslation(TrKeys.orderType)}  ",
-                            style: GoogleFonts.inter(
-                              fontSize: 14.sp,
-                              color: AppStyle.brandTitleDivider,
-                              fontWeight: FontWeight.w500,
+                          text:
+                              "${AppHelpers.getTranslation(TrKeys.orderType)}  ",
+                          style: GoogleFonts.inter(
+                            fontSize: 14.sp,
+                            color: AppStyle.brandTitleDivider,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: AppHelpers.getTranslation(
+                                widget.orderData.deliveryType ?? "--",
+                              ),
+                              style: GoogleFonts.inter(
+                                fontSize: 14.sp,
+                                color: AppStyle.black,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                            children: [
-                              TextSpan(
-                                text: AppHelpers.getTranslation(
-                                    widget.orderData.deliveryType ?? "--"),
-                                style: GoogleFonts.inter(
-                                  fontSize: 14.sp,
-                                  color: AppStyle.black,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              )
-                            ]),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -217,44 +232,45 @@ class _MapDialogState extends ConsumerState<MapDialog> {
         ),
         32.verticalSpace,
         Expanded(
-            child: Stack(
-          children: [
-            GoogleMap(
-              markers: ref.watch(orderTableProvider).setOfMarker,
-              tiltGesturesEnabled: false,
-              myLocationButtonEnabled: false,
-              zoomControlsEnabled: false,
-              onMapCreated: (GoogleMapController controller) {
-                mapController = controller;
-              },
-              initialCameraPosition: CameraPosition(
-                bearing: 0,
-                target: _target,
-                tilt: 0,
-                zoom: 17,
+          child: Stack(
+            children: [
+              GoogleMap(
+                markers: ref.watch(orderTableProvider).setOfMarker,
+                tiltGesturesEnabled: false,
+                myLocationButtonEnabled: false,
+                zoomControlsEnabled: false,
+                onMapCreated: (GoogleMapController controller) {
+                  mapController = controller;
+                },
+                initialCameraPosition: CameraPosition(
+                  bearing: 0,
+                  target: _target,
+                  tilt: 0,
+                  zoom: 17,
+                ),
               ),
-            ),
-            Positioned(
-              bottom: 20.r,
-              right: 20.r,
-              child: MapButtons(
-                zoomIn: () {
-                  mapController.animateCamera(CameraUpdate.zoomIn());
-                },
-                zoomOut: () {
-                  mapController.animateCamera(CameraUpdate.zoomOut());
-                },
-                navigate: () {
-                  mapController.animateCamera(
-                    CameraUpdate.newCameraPosition(
-                      CameraPosition(target: _target, zoom: 17),
-                    ),
-                  );
-                },
+              Positioned(
+                bottom: 20.r,
+                right: 20.r,
+                child: MapButtons(
+                  zoomIn: () {
+                    mapController.animateCamera(CameraUpdate.zoomIn());
+                  },
+                  zoomOut: () {
+                    mapController.animateCamera(CameraUpdate.zoomOut());
+                  },
+                  navigate: () {
+                    mapController.animateCamera(
+                      CameraUpdate.newCameraPosition(
+                        CameraPosition(target: _target, zoom: 17),
+                      ),
+                    );
+                  },
+                ),
               ),
-            )
-          ],
-        ))
+            ],
+          ),
+        ),
       ],
     );
   }

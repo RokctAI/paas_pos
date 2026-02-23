@@ -8,13 +8,13 @@ class InviteData {
   DateTime? updatedAt;
 
   InviteData({
-     this.id,
-     this.shopId,
-     this.userId,
-     this.role,
-     this.status,
-     this.createdAt,
-     this.updatedAt,
+    this.id,
+    this.shopId,
+    this.userId,
+    this.role,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
   });
 
   InviteData copyWith({
@@ -25,16 +25,15 @@ class InviteData {
     String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
-  }) =>
-      InviteData(
-        id: id ?? this.id,
-        shopId: shopId ?? this.shopId,
-        userId: userId ?? this.userId,
-        role: role ?? this.role,
-        status: status ?? this.status,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-      );
+  }) => InviteData(
+    id: id ?? this.id,
+    shopId: shopId ?? this.shopId,
+    userId: userId ?? this.userId,
+    role: role ?? this.role,
+    status: status ?? this.status,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
 
   factory InviteData.fromJson(Map<String, dynamic> json) => InviteData(
     id: json["id"],

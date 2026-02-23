@@ -8,7 +8,6 @@ import 'package:admin_desktop/src/core/handlers/handlers.dart';
 import 'package:admin_desktop/src/models/models.dart';
 import '../../models/response/gallery_upload_response.dart';
 
-
 class GalleryRepository implements GalleryRepositoryFacade {
   @override
   Future<ApiResult<GalleryUploadResponse>> uploadImage(
@@ -45,12 +44,10 @@ class GalleryRepository implements GalleryRepositoryFacade {
         type = 'discounts';
         break;
     }
-    final data = FormData.fromMap(
-      {
-        'image': await MultipartFile.fromFile(file),
-        'type': type,
-      },
-    );
+    final data = FormData.fromMap({
+      'image': await MultipartFile.fromFile(file),
+      'type': type,
+    });
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.post(
@@ -62,14 +59,15 @@ class GalleryRepository implements GalleryRepositoryFacade {
       );
     } catch (e) {
       debugPrint('==> upload image failure: $e');
-      return ApiResult.failure(error: AppHelpers.errorHandler(e),);
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
   @override
   Future<ApiResult<MultiGalleryUploadResponse>> uploadMultiImage(
-      List<String?> filePaths,
-      UploadType uploadType,) async {
+    List<String?> filePaths,
+    UploadType uploadType,
+  ) async {
     String type = '';
     switch (uploadType) {
       case UploadType.shopsLogo:
@@ -82,14 +80,12 @@ class GalleryRepository implements GalleryRepositoryFacade {
         type = uploadType.name;
         break;
     }
-    final data = FormData.fromMap(
-      {
-        for (int i = 0; i < filePaths.length; i++)
-          if(filePaths[i] != null)
-            'images[$i]': await MultipartFile.fromFile(filePaths[i]!),
-        'type': type,
-      },
-    );
+    final data = FormData.fromMap({
+      for (int i = 0; i < filePaths.length; i++)
+        if (filePaths[i] != null)
+          'images[$i]': await MultipartFile.fromFile(filePaths[i]!),
+      'type': type,
+    });
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.post(

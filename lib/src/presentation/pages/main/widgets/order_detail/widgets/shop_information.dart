@@ -8,7 +8,6 @@ import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class ShopInformation extends StatelessWidget {
   final ShopData? shop;
 
@@ -29,8 +28,10 @@ class ShopInformation extends StatelessWidget {
         children: [
           Text(
             "${AppHelpers.getTranslation(TrKeys.shop)}/${AppHelpers.getTranslation(TrKeys.restaurant)} ${AppHelpers.getTranslation(TrKeys.information)}",
-            style:
-                GoogleFonts.inter(fontSize: 24.sp, fontWeight: FontWeight.w700),
+            style: GoogleFonts.inter(
+              fontSize: 24.sp,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           16.verticalSpace,
           Row(
@@ -55,10 +56,8 @@ class ShopInformation extends StatelessWidget {
                       8.horizontalSpace,
                       Text(
                         shop?.phone ?? "",
-                        style: GoogleFonts.inter(
-                          fontSize: 20.sp,
-                        ),
-                      )
+                        style: GoogleFonts.inter(fontSize: 20.sp),
+                      ),
                     ],
                   ),
                   8.verticalSpace,
@@ -67,13 +66,9 @@ class ShopInformation extends StatelessWidget {
                       const Icon(FlutterRemix.money_dollar_circle_fill),
                       8.horizontalSpace,
                       Text(
-                        AppHelpers.numberFormat(
-                          shop?.tax ?? 0,
-                        ),
-                        style: GoogleFonts.inter(
-                          fontSize: 20.sp,
-                        ),
-                      )
+                        AppHelpers.numberFormat(shop?.tax ?? 0),
+                        style: GoogleFonts.inter(fontSize: 20.sp),
+                      ),
                     ],
                   ),
                   8.verticalSpace,
@@ -85,17 +80,15 @@ class ShopInformation extends StatelessWidget {
                         width: 200.w,
                         child: Text(
                           shop?.translation?.address ?? "",
-                          style: GoogleFonts.inter(
-                            fontSize: 20.sp,
-                          ),
+                          style: GoogleFonts.inter(fontSize: 20.sp),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
               ),
             ],
-          )
+          ),
         ],
       ),
     );

@@ -14,8 +14,9 @@ class NotificationCountsContainer extends StatelessWidget {
       height: 24.r,
       width: 38.r,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: AppStyle.primary),
+        borderRadius: BorderRadius.circular(100),
+        color: AppStyle.primary,
+      ),
       child: Center(
         child: Text(
           count ?? '',

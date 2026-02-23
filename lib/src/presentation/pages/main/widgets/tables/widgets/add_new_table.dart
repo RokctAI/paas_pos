@@ -71,8 +71,9 @@ class _AddNewTableState extends ConsumerState<AddNewTable> {
               ),
             ),
             GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Icon(Icons.close, color: AppStyle.black, size: 24.r)),
+              onTap: () => Navigator.pop(context),
+              child: Icon(Icons.close, color: AppStyle.black, size: 24.r),
+            ),
           ],
         ),
         Form(
@@ -82,8 +83,9 @@ class _AddNewTableState extends ConsumerState<AddNewTable> {
                 ? SizedBox(
                     height: 100.r,
                     child: Center(
-                      child:
-                          Text(AppHelpers.getTranslation(TrKeys.addNewSection)),
+                      child: Text(
+                        AppHelpers.getTranslation(TrKeys.addNewSection),
+                      ),
                     ),
                   )
                 : Column(
@@ -121,21 +123,22 @@ class _AddNewTableState extends ConsumerState<AddNewTable> {
                       ),
                       30.verticalSpace,
                       LoginButton(
-                          title: AppHelpers.getTranslation(TrKeys.create),
-                          onPressed: () {
-                            if (formKey.currentState?.validate() ?? false) {
-                              notifier.addTable(
-                                tableModel: TableModel(
-                                  name: name.text,
-                                  chairCount: int.tryParse(count.text) ?? 4,
-                                  tax: int.tryParse(tax.text) ?? 0,
-                                  shopSectionId: state.selectAddSection,
-                                ),
-                                context: context,
-                              );
-                              Navigator.pop(context);
-                            }
-                          }),
+                        title: AppHelpers.getTranslation(TrKeys.create),
+                        onPressed: () {
+                          if (formKey.currentState?.validate() ?? false) {
+                            notifier.addTable(
+                              tableModel: TableModel(
+                                name: name.text,
+                                chairCount: int.tryParse(count.text) ?? 4,
+                                tax: int.tryParse(tax.text) ?? 0,
+                                shopSectionId: state.selectAddSection,
+                              ),
+                              context: context,
+                            );
+                            Navigator.pop(context);
+                          }
+                        },
+                      ),
                     ],
                   ),
           ),

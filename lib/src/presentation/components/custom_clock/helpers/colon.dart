@@ -34,11 +34,9 @@ class _ColonWidgetState extends State<ColonWidget> {
     return AnimatedOpacity(
       opacity: visible ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 500),
-      child: widget.colon ??
-          Text(
-            ":",
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
+      child:
+          widget.colon ??
+          Text(":", style: Theme.of(context).textTheme.bodySmall),
     );
   }
 }

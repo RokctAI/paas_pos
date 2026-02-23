@@ -9,8 +9,12 @@ import '../login_button.dart';
 class SuccessfullDialog extends StatelessWidget {
   final String? title, content;
   final Function()? onPressed;
-  const SuccessfullDialog(
-      {super.key, this.title, this.content, this.onPressed});
+  const SuccessfullDialog({
+    super.key,
+    this.title,
+    this.content,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,8 @@ class SuccessfullDialog extends StatelessWidget {
       width: 355.w,
       height: 311.h,
       decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
       child: Column(
         children: [
           30.verticalSpace,
@@ -26,12 +31,10 @@ class SuccessfullDialog extends StatelessWidget {
             height: 68.h,
             width: 68.w,
             decoration: BoxDecoration(
-                color: AppStyle.primary, shape: BoxShape.circle),
-            child: const Center(
-                child: Icon(
-              Icons.done,
-              color: AppStyle.white,
-            )),
+              color: AppStyle.primary,
+              shape: BoxShape.circle,
+            ),
+            child: const Center(child: Icon(Icons.done, color: AppStyle.white)),
           ),
           22.verticalSpace,
           Padding(
@@ -39,26 +42,29 @@ class SuccessfullDialog extends StatelessWidget {
             child: Text(
               title ?? '',
               style: GoogleFonts.inter(
-                  fontSize: 22.sp,
-                  color: AppStyle.black,
-                  fontWeight: FontWeight.w600),
+                fontSize: 22.sp,
+                color: AppStyle.black,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           6.verticalSpace,
           Text(
             content ?? '',
             style: GoogleFonts.inter(
-                fontSize: 12.sp,
-                color: AppStyle.icon,
-                fontWeight: FontWeight.w500),
+              fontSize: 12.sp,
+              color: AppStyle.icon,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           48.verticalSpace,
           Padding(
             padding: const EdgeInsets.only(right: 87, left: 82),
             child: LoginButton(
-                title: AppHelpers.getTranslation(TrKeys.homePage),
-                onPressed: onPressed),
-          )
+              title: AppHelpers.getTranslation(TrKeys.homePage),
+              onPressed: onPressed,
+            ),
+          ),
         ],
       ),
     );

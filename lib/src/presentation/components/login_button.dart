@@ -28,7 +28,9 @@ class LoginButton extends StatelessWidget {
     return AnimationButtonEffect(
       child: Material(
         borderRadius: BorderRadius.circular(8.r),
-        color: isActive ? (bgColor ?? AppStyle.primary) : AppStyle.selectedItemsText,
+        color: isActive
+            ? (bgColor ?? AppStyle.primary)
+            : AppStyle.selectedItemsText,
         child: InkWell(
           onTap: onPressed,
           borderRadius: BorderRadius.circular(8.r),
@@ -36,11 +38,13 @@ class LoginButton extends StatelessWidget {
             height: 56.r,
             padding: EdgeInsets.symmetric(horizontal: 12.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.r),
-                border: Border.all(
-                    color: bgColor == AppStyle.transparent
-                        ? AppStyle.selectedItemsText
-                        : AppStyle.transparent)),
+              borderRadius: BorderRadius.circular(8.r),
+              border: Border.all(
+                color: bgColor == AppStyle.transparent
+                    ? AppStyle.selectedItemsText
+                    : AppStyle.transparent,
+              ),
+            ),
             alignment: Alignment.center,
             child: isLoading
                 ? SizedBox(
@@ -55,7 +59,9 @@ class LoginButton extends StatelessWidget {
                     title,
                     style: GoogleFonts.inter(
                       fontSize: 16.sp,
-                      color: isActive ? titleColor?? AppStyle.buttonFontColor : AppStyle.black,
+                      color: isActive
+                          ? titleColor ?? AppStyle.buttonFontColor
+                          : AppStyle.black,
                       fontWeight: FontWeight.w400,
                     ),
                   ),

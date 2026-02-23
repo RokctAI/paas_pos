@@ -9,9 +9,7 @@ import '../stories_repository.dart';
 
 class StoriesRepositoryImpl extends StoriesRepository {
   @override
-  Future<ApiResult<StoriesResponse>> getStories({
-    int? page,
-  }) async {
+  Future<ApiResult<StoriesResponse>> getStories({int? page}) async {
     final data = {
       'page': page,
       'perPage': 12,
@@ -24,9 +22,7 @@ class StoriesRepositoryImpl extends StoriesRepository {
         "/api/v1/dashboard/seller/stories",
         queryParameters: data,
       );
-      return ApiResult.success(
-        data: StoriesResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: StoriesResponse.fromJson(response.data));
     } catch (e, s) {
       debugPrint('==> get stories failure: $e,$s');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -36,7 +32,7 @@ class StoriesRepositoryImpl extends StoriesRepository {
   @override
   Future<ApiResult<void>> deleteStories(int id) async {
     final data = {
-      'ids': [id]
+      'ids': [id],
     };
     debugPrint('====> delete brand request ${jsonEncode(data)}');
     try {
@@ -53,11 +49,13 @@ class StoriesRepositoryImpl extends StoriesRepository {
   }
 
   @override
-  Future<ApiResult<void>> createStories(
-      {required List<String> img, int? id}) async {
+  Future<ApiResult<void>> createStories({
+    required List<String> img,
+    int? id,
+  }) async {
     final data = {
       for (int i = 0; i < img.length; i++) 'file_urls[$i]': img[i],
-      if (id != null) 'product_id': id
+      if (id != null) 'product_id': id,
     };
     debugPrint('====> add stories request ${jsonEncode(data)}');
     try {
@@ -74,11 +72,14 @@ class StoriesRepositoryImpl extends StoriesRepository {
   }
 
   @override
-  Future<ApiResult<void>> updateStories(
-      {required List<String> img, int? id, required int storyId}) async {
+  Future<ApiResult<void>> updateStories({
+    required List<String> img,
+    int? id,
+    required int storyId,
+  }) async {
     final data = {
       for (int i = 0; i < img.length; i++) 'file_urls[$i]': img[i],
-      if (id != null) 'product_id': id
+      if (id != null) 'product_id': id,
     };
     debugPrint('====> update stories request ${jsonEncode(data)}');
     try {

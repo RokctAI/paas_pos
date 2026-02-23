@@ -32,8 +32,9 @@ class ShopNotifier extends StateNotifier<ShopState> {
   void setCloseDay(int index) {
     EditShopData? closeDays = state.editShopData;
     ShopWorkingDays? workingDays = closeDays?.shopWorkingDays?[index];
-    workingDays =
-        workingDays?.copyWith(disabled: !(workingDays.disabled ?? false));
+    workingDays = workingDays?.copyWith(
+      disabled: !(workingDays.disabled ?? false),
+    );
     closeDays?.shopWorkingDays?[index] = workingDays ?? ShopWorkingDays();
     state = state.copyWith(editShopData: closeDays);
   }
@@ -87,8 +88,10 @@ class ShopNotifier extends StateNotifier<ShopState> {
     _percentage = value.trim();
   }
 
-  Future<void> fetchShopData(
-      {VoidCallback? checkYourNetwork, VoidCallback? onSuccess}) async {
+  Future<void> fetchShopData({
+    VoidCallback? checkYourNetwork,
+    VoidCallback? onSuccess,
+  }) async {
     final connected = await AppConnectivity.connectivity();
     if (connected) {
       state = state.copyWith(isEditShopData: true);
@@ -98,7 +101,10 @@ class ShopNotifier extends StateNotifier<ShopState> {
       response.when(
         success: (data) async {
           state = state.copyWith(
-              isEditShopData: false, editShopData: data, isUpdate: false);
+            isEditShopData: false,
+            editShopData: data,
+            isUpdate: false,
+          );
           onSuccess?.call();
         },
         failure: (failure) {
@@ -155,48 +161,51 @@ class ShopNotifier extends StateNotifier<ShopState> {
   }) async {
     state = state.copyWith(isSave: true);
     final response = await shopsRepository.updateShopData(
-        displayName: displayName,
-        category: category,
-        tag: tag,
-        type: type,
-        editShopData: EditShopData(
-            location: Location(
-                longitude: location?.longitude.toString(),
-                latitude: location?.latitude.toString()),
-            status: state.editShopData?.status,
-            statusNote: _statusNote.isNotEmpty
-                ? _statusNote
-                : state.editShopData?.statusNote,
-            translation: Translation(
-                title: _title.isNotEmpty
-                    ? _title
-                    : state.editShopData?.translation?.title,
-                description: _description.isNotEmpty
-                    ? _description
-                    : state.editShopData?.translation?.description),
-            phone: _phone.isNotEmpty ? _phone : state.editShopData?.phone,
-            price: _price.isNotEmpty
-                ? num.tryParse(_price)
-                : state.editShopData?.price,
-            minAmount: _minAmount.isNotEmpty
-                ? num.tryParse(_minAmount)
-                : state.editShopData?.minAmount,
-            perKm: _perKm.isNotEmpty
-                ? num.tryParse(_perKm)
-                : state.editShopData?.perKm,
-            deliveryTime: DeliveryTime(
-                from: _from.isNotEmpty
-                    ? _from
-                    : state.editShopData?.deliveryTime?.from,
-                to: _to.isNotEmpty
-                    ? _to
-                    : state.editShopData?.deliveryTime?.to),
-            tax: _tax.isNotEmpty ? num.tryParse(_tax) : state.editShopData?.tax,
-            percentage: _percentage.isNotEmpty
-                ? num.tryParse(_percentage)
-                : state.editShopData?.percentage),
-        logoImg: state.logoImageUrl,
-        backImg: state.backImageUrl);
+      displayName: displayName,
+      category: category,
+      tag: tag,
+      type: type,
+      editShopData: EditShopData(
+        location: Location(
+          longitude: location?.longitude.toString(),
+          latitude: location?.latitude.toString(),
+        ),
+        status: state.editShopData?.status,
+        statusNote: _statusNote.isNotEmpty
+            ? _statusNote
+            : state.editShopData?.statusNote,
+        translation: Translation(
+          title: _title.isNotEmpty
+              ? _title
+              : state.editShopData?.translation?.title,
+          description: _description.isNotEmpty
+              ? _description
+              : state.editShopData?.translation?.description,
+        ),
+        phone: _phone.isNotEmpty ? _phone : state.editShopData?.phone,
+        price: _price.isNotEmpty
+            ? num.tryParse(_price)
+            : state.editShopData?.price,
+        minAmount: _minAmount.isNotEmpty
+            ? num.tryParse(_minAmount)
+            : state.editShopData?.minAmount,
+        perKm: _perKm.isNotEmpty
+            ? num.tryParse(_perKm)
+            : state.editShopData?.perKm,
+        deliveryTime: DeliveryTime(
+          from: _from.isNotEmpty
+              ? _from
+              : state.editShopData?.deliveryTime?.from,
+          to: _to.isNotEmpty ? _to : state.editShopData?.deliveryTime?.to,
+        ),
+        tax: _tax.isNotEmpty ? num.tryParse(_tax) : state.editShopData?.tax,
+        percentage: _percentage.isNotEmpty
+            ? num.tryParse(_percentage)
+            : state.editShopData?.percentage,
+      ),
+      logoImg: state.logoImageUrl,
+      backImg: state.backImageUrl,
+    );
     response.when(
       success: (data) {
         state = state.copyWith(isSave: false, isUpdate: true);
@@ -229,8 +238,10 @@ class ShopNotifier extends StateNotifier<ShopState> {
     );
   }
 
-  Future<void> getPhoto(
-      {bool isLogoImage = false, required BuildContext context}) async {
+  Future<void> getPhoto({
+    bool isLogoImage = false,
+    required BuildContext context,
+  }) async {
     final ImagePicker picker = ImagePicker();
     XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -264,23 +275,32 @@ class ShopNotifier extends StateNotifier<ShopState> {
   }
 
   Future<void> updateShopImage(
-      BuildContext context, String path, bool isLogoImage) async {
+    BuildContext context,
+    String path,
+    bool isLogoImage,
+  ) async {
     final connected = await AppConnectivity.connectivity();
     if (connected) {
       state = isLogoImage
           ? state.copyWith(isLogoImageLoading: true)
           : state.copyWith(isBackImageLoading: true);
       String? url;
-      final imageResponse =
-          await galleryRepository.uploadImage(path, UploadType.users);
+      final imageResponse = await galleryRepository.uploadImage(
+        path,
+        UploadType.users,
+      );
       imageResponse.when(
         success: (data) {
           url = data.imageData?.title;
           state = isLogoImage
               ? state.copyWith(
-                  logoImageUrl: url ?? "", isLogoImageLoading: false)
+                  logoImageUrl: url ?? "",
+                  isLogoImageLoading: false,
+                )
               : state.copyWith(
-                  backImageUrl: url ?? "", isBackImageLoading: false);
+                  backImageUrl: url ?? "",
+                  isBackImageLoading: false,
+                );
         },
         failure: (failure) {
           state = isLogoImage

@@ -18,31 +18,28 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      Duration.zero,
-      () {
-        if(mounted) {
-          ref.read(splashProvider.notifier).fetchGlobalSettings(
-          context,
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
+    Future.delayed(Duration.zero, () {
+      if (mounted) {
+        ref
+            .read(splashProvider.notifier)
+            .fetchGlobalSettings(
               context,
-              TrKeys.checkYourNetworkConnection,
+              checkYourNetwork: () {
+                AppHelpers.showSnackBar(
+                  context,
+                  TrKeys.checkYourNetworkConnection,
+                );
+              },
             );
-          },
-        );
-        }
-      },
-    );
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: AppStyle.white,
-      body: Center(
-        child: CircularProgressIndicator(color: AppStyle.black),
-      ),
+      body: Center(child: CircularProgressIndicator(color: AppStyle.black)),
     );
   }
 }

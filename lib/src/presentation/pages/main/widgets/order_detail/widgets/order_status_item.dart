@@ -10,13 +10,13 @@ class OrderStatusItem extends StatelessWidget {
   final bool isProgress;
   final Color? bgColor;
 
-  const OrderStatusItem(
-      {super.key,
-      required this.icon,
-      required this.isActive,
-      required this.isProgress,
-      this.bgColor})
-     ;
+  const OrderStatusItem({
+    super.key,
+    required this.icon,
+    required this.isActive,
+    required this.isProgress,
+    this.bgColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +24,18 @@ class OrderStatusItem extends StatelessWidget {
       duration: const Duration(milliseconds: 500),
       padding: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
-          color: isActive ? (bgColor ?? AppStyle.primary) : AppStyle.white, shape: BoxShape.circle),
+        color: isActive ? (bgColor ?? AppStyle.primary) : AppStyle.white,
+        shape: BoxShape.circle,
+      ),
       child: Stack(
         children: [
-          Positioned(top: 12.r, left: 12.r,bottom: 10.r,right: 10.r, child: icon),
+          Positioned(
+            top: 12.r,
+            left: 12.r,
+            bottom: 10.r,
+            right: 10.r,
+            child: icon,
+          ),
           isProgress
               ? SvgPicture.asset(
                   Assets.svgOrderTime,
@@ -35,10 +43,7 @@ class OrderStatusItem extends StatelessWidget {
                   width: 52.r,
                   height: 52.r,
                 )
-              : SizedBox(
-                  width: 52.r,
-                  height: 52.r,
-                ),
+              : SizedBox(width: 52.r, height: 52.r),
         ],
       ),
     );

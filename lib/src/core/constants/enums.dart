@@ -1,4 +1,4 @@
-enum DropDownType { deliveryman, users,section, table }
+enum DropDownType { deliveryman, users, section, table }
 
 enum ExtrasType { color, text, image }
 
@@ -15,9 +15,8 @@ enum UploadType {
   products,
   reviews,
   users,
-  discounts
+  discounts,
 }
-
 
 enum OrderStatus {
   newOrder,

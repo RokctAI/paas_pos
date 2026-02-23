@@ -10,8 +10,7 @@ class CustomPasswords extends StatelessWidget {
   final VoidCallback onTap;
   final String type;
 
-  const CustomPasswords({super.key, required this.onTap, required this.type})
-     ;
+  const CustomPasswords({super.key, required this.onTap, required this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -24,27 +23,32 @@ class CustomPasswords extends StatelessWidget {
             children: [
               RichText(
                 text: TextSpan(
-                  text: '${AppHelpers.getTranslation(
-                    type == TrKeys.seller
-                        ? TrKeys.sellerLogin
-                        : type == TrKeys.cooker
-                            ? TrKeys.cookerLogin
-                            : TrKeys.waiterLogin,
-                  )}:',
+                  text:
+                      '${AppHelpers.getTranslation(type == TrKeys.seller
+                          ? TrKeys.sellerLogin
+                          : type == TrKeys.cooker
+                          ? TrKeys.cookerLogin
+                          : TrKeys.waiterLogin)}:',
                   style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      letterSpacing: -0.3,
-                      color: AppStyle.black),
+                    fontSize: 14.sp,
+                    letterSpacing: -0.3,
+                    color: AppStyle.black,
+                  ),
                   children: [
                     TextSpan(
                       text:
-                          ' ${type == TrKeys.seller ? AppConstants.demoSellerLogin : type == TrKeys.cooker ? AppConstants.demoCookerLogin : AppConstants.demoWaiterLogin}',
+                          ' ${type == TrKeys.seller
+                              ? AppConstants.demoSellerLogin
+                              : type == TrKeys.cooker
+                              ? AppConstants.demoCookerLogin
+                              : AppConstants.demoWaiterLogin}',
                       style: GoogleFonts.inter(
-                          letterSpacing: -0.3,
-                          fontSize: 14.sp,
-                          fontStyle: FontStyle.italic,
-                          color: AppStyle.black),
-                    )
+                        letterSpacing: -0.3,
+                        fontSize: 14.sp,
+                        fontStyle: FontStyle.italic,
+                        color: AppStyle.black,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -53,19 +57,25 @@ class CustomPasswords extends StatelessWidget {
                 text: TextSpan(
                   text: '${AppHelpers.getTranslation(TrKeys.password)}:',
                   style: GoogleFonts.inter(
-                      letterSpacing: -0.3,
-                      color: AppStyle.black,
-                      fontSize: 14.sp),
+                    letterSpacing: -0.3,
+                    color: AppStyle.black,
+                    fontSize: 14.sp,
+                  ),
                   children: [
                     TextSpan(
                       text:
-                          ' ${type == TrKeys.seller ? AppConstants.demoSellerPassword : type == TrKeys.cooker ? AppConstants.demoCookerPassword : AppConstants.demoWaiterPassword}',
+                          ' ${type == TrKeys.seller
+                              ? AppConstants.demoSellerPassword
+                              : type == TrKeys.cooker
+                              ? AppConstants.demoCookerPassword
+                              : AppConstants.demoWaiterPassword}',
                       style: GoogleFonts.inter(
-                          letterSpacing: -0.3,
-                          fontSize: 14.sp,
-                          fontStyle: FontStyle.italic,
-                          color: AppStyle.black),
-                    )
+                        letterSpacing: -0.3,
+                        fontSize: 14.sp,
+                        fontStyle: FontStyle.italic,
+                        color: AppStyle.black,
+                      ),
+                    ),
                   ],
                 ),
               ),

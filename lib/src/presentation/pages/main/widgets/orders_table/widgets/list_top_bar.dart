@@ -31,10 +31,12 @@ class ListTopBar extends StatelessWidget {
         decoration: BoxDecoration(
           color: isActive ? AppStyle.white : AppStyle.transparent,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16.r), topRight: Radius.circular(16.r)),
+            topLeft: Radius.circular(16.r),
+            topRight: Radius.circular(16.r),
+          ),
         ),
         child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 16.r),
+          padding: EdgeInsets.symmetric(horizontal: 16.r),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,7 +53,9 @@ class ListTopBar extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(vertical: 6.r, horizontal: 16.r),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100.r), color: color),
+                  borderRadius: BorderRadius.circular(100.r),
+                  color: color,
+                ),
                 child: Text(
                   count,
                   style: GoogleFonts.inter(

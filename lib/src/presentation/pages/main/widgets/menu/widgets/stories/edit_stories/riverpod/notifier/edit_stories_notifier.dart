@@ -12,7 +12,7 @@ class EditStoriesNotifier extends StateNotifier<EditStoriesState> {
   final GalleryRepositoryFacade _galleryRepository;
 
   EditStoriesNotifier(this._storiesRepository, this._galleryRepository)
-      : super(EditStoriesState(textEditingController: TextEditingController()));
+    : super(EditStoriesState(textEditingController: TextEditingController()));
 
   Future<void> updateStories(
     BuildContext context, {
@@ -32,8 +32,7 @@ class EditStoriesNotifier extends StateNotifier<EditStoriesState> {
         },
         failure: (failure) {
           debugPrint('==> upload product image fail: $failure');
-          AppHelpers.showSnackBar(context,
-              failure.toString());
+          AppHelpers.showSnackBar(context, failure.toString());
           state = state.copyWith(isLoading: true);
         },
       );
@@ -49,8 +48,7 @@ class EditStoriesNotifier extends StateNotifier<EditStoriesState> {
         updated?.call();
       },
       failure: (fail) {
-        AppHelpers.showSnackBar(context,
-             fail.toString());
+        AppHelpers.showSnackBar(context, fail.toString());
         state = state.copyWith(isLoading: false);
         debugPrint('===> brand update fail $fail');
         failed?.call();
@@ -79,10 +77,11 @@ class EditStoriesNotifier extends StateNotifier<EditStoriesState> {
 
   Future<void> setStoryDetails(StoriesData? story) async {
     state = state.copyWith(
-        story: story,
-        listOfUrls: story?.fileUrls ?? [],
-        images: [],
-        selectProduct: story?.product);
+      story: story,
+      listOfUrls: story?.fileUrls ?? [],
+      images: [],
+      selectProduct: story?.product,
+    );
     state.textEditingController?.text =
         story?.product?.translation?.title ?? '';
   }
@@ -105,8 +104,7 @@ class EditStoriesNotifier extends StateNotifier<EditStoriesState> {
         },
         failure: (failure) {
           debugPrint('==> upload product image fail: $failure');
-          AppHelpers.showSnackBar(context,
-               failure.toString());
+          AppHelpers.showSnackBar(context, failure.toString());
           state = state.copyWith(isLoading: true);
         },
       );
@@ -120,7 +118,7 @@ class EditStoriesNotifier extends StateNotifier<EditStoriesState> {
         state = state.copyWith(isLoading: false);
         created?.call();
       },
-      failure: (fail, ) {
+      failure: (fail) {
         AppHelpers.showSnackBar(context, fail.toString());
         state = state.copyWith(isLoading: false);
         debugPrint('===> brand update fail $fail');

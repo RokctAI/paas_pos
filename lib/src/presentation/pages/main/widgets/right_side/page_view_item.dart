@@ -51,7 +51,8 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
     final notifier = ref.read(rightSideProvider.notifier);
     final state = ref.watch(rightSideProvider);
     return AbsorbPointer(
-      absorbing: state.isUserDetailsLoading ||
+      absorbing:
+          state.isUserDetailsLoading ||
           state.isPaymentsLoading ||
           state.isBagsLoading ||
           state.isUsersLoading ||
@@ -86,8 +87,9 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                                   Text(
                                     AppHelpers.getTranslation(TrKeys.products),
                                     style: GoogleFonts.inter(
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w500),
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                   InkWell(
                                     onTap: () {
@@ -115,21 +117,24 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                                   currency: widget.bag.selectedCurrency,
                                   add: () {
                                     notifier.increaseProductCount(
-                                        productIndex: index);
+                                      productIndex: index,
+                                    );
                                   },
                                   remove: () {
                                     notifier.decreaseProductCount(
-                                        productIndex: index);
+                                      productIndex: index,
+                                    );
                                   },
                                   cart:
                                       state.paginateResponse?.stocks?[index] ??
-                                          ProductData(),
+                                      ProductData(),
                                   delete: () {
                                     notifier.deleteProductCount(
-                                        bagProductData: state
-                                            .bags[state.selectedBagIndex]
-                                            .bagProducts?[index],
-                                        productIndex: index);
+                                      bagProductData: state
+                                          .bags[state.selectedBagIndex]
+                                          .bagProducts?[index],
+                                      productIndex: index,
+                                    );
                                   },
                                 );
                               },
@@ -138,15 +143,17 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                             Column(
                               children: [
                                 Padding(
-                                  padding:
-                                      REdgeInsets.symmetric(horizontal: 20),
+                                  padding: REdgeInsets.symmetric(
+                                    horizontal: 20,
+                                  ),
                                   child: Row(
                                     children: [
                                       Text(
                                         AppHelpers.getTranslation(TrKeys.add),
                                         style: GoogleFonts.inter(
-                                            color: AppStyle.black,
-                                            fontSize: 14.sp),
+                                          color: AppStyle.black,
+                                          fontSize: 14.sp,
+                                        ),
                                       ),
                                       const Spacer(),
                                       // InkWell(
@@ -178,24 +185,28 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                                       InkWell(
                                         onTap: () {
                                           AppHelpers.showAlertDialog(
-                                              context: context,
-                                              child: const NoteDialog());
+                                            context: context,
+                                            child: const NoteDialog(),
+                                          );
                                         },
                                         child: AnimationButtonEffect(
                                           child: Container(
                                             padding: EdgeInsets.symmetric(
-                                                vertical: 10.r,
-                                                horizontal: 18.r),
+                                              vertical: 10.r,
+                                              horizontal: 18.r,
+                                            ),
                                             decoration: BoxDecoration(
-                                                color: AppStyle.addButtonColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.r)),
+                                              color: AppStyle.addButtonColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
+                                            ),
                                             child: Text(
                                               AppHelpers.getTranslation(
-                                                  TrKeys.note),
+                                                TrKeys.note,
+                                              ),
                                               style: GoogleFonts.inter(
-                                                  fontSize: 14.sp),
+                                                fontSize: 14.sp,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -247,7 +258,8 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
             ),
           ),
           BlurLoadingWidget(
-            isLoading: state.isUserDetailsLoading ||
+            isLoading:
+                state.isUserDetailsLoading ||
                 state.isPaymentsLoading ||
                 state.isBagsLoading ||
                 state.isUsersLoading ||
@@ -347,7 +359,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                     child: OrderInformation(),
                   );
                 },
-              )
+              ),
             ],
           ),
         ),

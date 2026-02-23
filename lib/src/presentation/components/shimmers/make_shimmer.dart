@@ -7,11 +7,7 @@ class MakeShimmer extends StatelessWidget {
   final Widget child;
   final bool isLoading;
 
-  const MakeShimmer({
-    super.key,
-    required this.child,
-    this.isLoading = true,
-  });
+  const MakeShimmer({super.key, required this.child, this.isLoading = true});
 
   @override
   Widget build(BuildContext context) {

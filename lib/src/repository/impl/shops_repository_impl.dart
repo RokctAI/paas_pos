@@ -83,7 +83,7 @@ class ShopsRepositoryImpl extends ShopsRepository {
   Future<ApiResult<CategoriesPaginateResponse>> getShopCategory() async {
     final data = <String, dynamic>{
       'lang': LocalStorage.getLanguage()?.locale ?? 'en',
-      'type': 'shop'
+      'type': 'shop',
     };
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -123,14 +123,15 @@ class ShopsRepositoryImpl extends ShopsRepository {
   }
 
   @override
-  Future<ApiResult<EditShopData>> updateShopData(
-      {required EditShopData editShopData,
-      required String? logoImg,
-      required String? backImg,
-      List<DropdownItem<String>>? category,
-      List<DropdownItem<String>>? tag,
-      List<DropdownItem<String>>? type,
-      String? displayName}) async {
+  Future<ApiResult<EditShopData>> updateShopData({
+    required EditShopData editShopData,
+    required String? logoImg,
+    required String? backImg,
+    List<DropdownItem<String>>? category,
+    List<DropdownItem<String>>? tag,
+    List<DropdownItem<String>>? type,
+    String? displayName,
+  }) async {
     final data = <String, dynamic>{
       for (int i = 0; i < (category?.length ?? 0); i++)
         'categories[]': category?[i].value,
@@ -150,8 +151,9 @@ class ShopsRepositoryImpl extends ShopsRepository {
       'price_per_km': editShopData.perKm,
       'delivery_time_from': editShopData.deliveryTime?.from,
       'delivery_time_to': editShopData.deliveryTime?.to,
-      'delivery_time_type':
-          type?.isNotEmpty ?? false ? type?.first.value : 'hour',
+      'delivery_time_type': type?.isNotEmpty ?? false
+          ? type?.first.value
+          : 'hour',
       'min_amount': editShopData.minAmount,
       'tax': editShopData.tax,
       'percentage': editShopData.percentage,
@@ -159,7 +161,7 @@ class ShopsRepositoryImpl extends ShopsRepository {
       'location[longitude]': editShopData.location?.longitude,
       if (displayName?.isNotEmpty ?? false)
         'address[${LocalStorage.getLanguage()?.locale ?? 'en'}]': displayName,
-      'type': 'restaurant'
+      'type': 'restaurant',
     };
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -187,7 +189,7 @@ class ShopsRepositoryImpl extends ShopsRepository {
         'day': workingDay.day,
         'from': workingDay.from,
         'to': workingDay.to,
-        'disabled': workingDay.disabled
+        'disabled': workingDay.disabled,
       };
       days.add(data);
     }
@@ -208,9 +210,7 @@ class ShopsRepositoryImpl extends ShopsRepository {
 
   @override
   Future<ApiResult<ShopDeliveriesResponse>> getOnlyDeliveries() async {
-    final data = {
-      'currency_id': LocalStorage.getSelectedCurrency().id,
-    };
+    final data = {'currency_id': LocalStorage.getSelectedCurrency().id};
     try {
       final client = dioHttp.client(requireAuth: false);
       final response = await client.get(

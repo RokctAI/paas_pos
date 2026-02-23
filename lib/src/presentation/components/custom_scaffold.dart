@@ -16,16 +16,17 @@ class CustomScaffold extends StatefulWidget {
   final bool bgImage;
   final bool extendBody;
 
-  const CustomScaffold(
-      {super.key,
-      required this.body,
-      this.appBar,
-      this.floatingActionButton,
-      this.floatingActionButtonLocation,
-      this.backgroundColor,
-      this.bottomNavigationBar,
-      this.bgImage = false,
-      this.extendBody = false});
+  const CustomScaffold({
+    super.key,
+    required this.body,
+    this.appBar,
+    this.floatingActionButton,
+    this.floatingActionButtonLocation,
+    this.backgroundColor,
+    this.bottomNavigationBar,
+    this.bgImage = false,
+    this.extendBody = false,
+  });
 
   @override
   State<CustomScaffold> createState() => _CustomScaffoldState();
@@ -38,18 +39,19 @@ class _CustomScaffoldState extends State<CustomScaffold>
 
   void _checkCurrentNetworkState() {
     Connectivity().checkConnectivity().then((connectivityResult) {
-      isNetworkDisabled.value =
-          connectivityResult.contains(ConnectivityResult.none);
+      isNetworkDisabled.value = connectivityResult.contains(
+        ConnectivityResult.none,
+      );
     });
   }
 
   void initStateFunc() {
     _checkCurrentNetworkState();
-    connectivitySubscription = Connectivity().onConnectivityChanged.listen(
-      (result) {
-        isNetworkDisabled.value = result.contains(ConnectivityResult.none);
-      },
-    );
+    connectivitySubscription = Connectivity().onConnectivityChanged.listen((
+      result,
+    ) {
+      isNetworkDisabled.value = result.contains(ConnectivityResult.none);
+    });
   }
 
   @override
@@ -79,27 +81,31 @@ class _CustomScaffoldState extends State<CustomScaffold>
     return Stack(
       fit: StackFit.expand,
       children: [
-        ThemeWrapper(builder: (colors, controller) {
-          return KeyboardDismisser(
-            child: Directionality(
-              textDirection: LocalStorage.getLangLtr()
-                  ? TextDirection.ltr
-                  : TextDirection.rtl,
-              child: Scaffold(
-                extendBody: widget.extendBody,
-                resizeToAvoidBottomInset: false,
-                appBar: widget.appBar?.call(colors),
-                backgroundColor:
-                    widget.backgroundColor ?? colors.backgroundColor,
-                body: widget.body(colors),
-                floatingActionButton: widget.floatingActionButton?.call(colors),
-                floatingActionButtonLocation:
-                    widget.floatingActionButtonLocation,
-                bottomNavigationBar: widget.bottomNavigationBar?.call(colors),
+        ThemeWrapper(
+          builder: (colors, controller) {
+            return KeyboardDismisser(
+              child: Directionality(
+                textDirection: LocalStorage.getLangLtr()
+                    ? TextDirection.ltr
+                    : TextDirection.rtl,
+                child: Scaffold(
+                  extendBody: widget.extendBody,
+                  resizeToAvoidBottomInset: false,
+                  appBar: widget.appBar?.call(colors),
+                  backgroundColor:
+                      widget.backgroundColor ?? colors.backgroundColor,
+                  body: widget.body(colors),
+                  floatingActionButton: widget.floatingActionButton?.call(
+                    colors,
+                  ),
+                  floatingActionButtonLocation:
+                      widget.floatingActionButtonLocation,
+                  bottomNavigationBar: widget.bottomNavigationBar?.call(colors),
+                ),
               ),
-            ),
-          );
-        }),
+            );
+          },
+        ),
         ValueListenableBuilder(
           valueListenable: isNetworkDisabled,
           builder: (_, bool networkDisabled, _) => Visibility(

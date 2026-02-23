@@ -29,10 +29,13 @@ class DragItem extends ConsumerWidget {
         angle: isDrag ? (3.14 * (0.03)) : 0,
         child: Container(
           foregroundDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: isDrag ? AppStyle.icon.withOpacity(0.3) : null),
+            borderRadius: BorderRadius.circular(16),
+            color: isDrag ? AppStyle.icon.withOpacity(0.3) : null,
+          ),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16), color: AppStyle.white),
+            borderRadius: BorderRadius.circular(16),
+            color: AppStyle.white,
+          ),
           padding: const EdgeInsets.all(12),
           margin: const EdgeInsets.all(6),
           child: Column(
@@ -60,14 +63,17 @@ class DragItem extends ConsumerWidget {
                             orderData.user?.firstname ?? "",
                             maxLines: 1,
                             style: GoogleFonts.inter(
-                                fontSize: 14,
-                                color: AppStyle.black,
-                                fontWeight: FontWeight.w600),
+                              fontSize: 14,
+                              color: AppStyle.black,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                           Text(
                             "#${orderData.id}",
                             style: GoogleFonts.inter(
-                                fontSize: 14, color: AppStyle.hint),
+                              fontSize: 14,
+                              color: AppStyle.hint,
+                            ),
                           ),
                         ],
                       ),
@@ -85,8 +91,9 @@ class DragItem extends ConsumerWidget {
               IconTitle(
                 title: AppHelpers.getTranslation(TrKeys.date),
                 icon: FlutterRemix.calendar_2_line,
-                value: DateFormat("MMMM dd HH:mm")
-                    .format(orderData.createdAt?.toLocal() ?? DateTime.now()),
+                value: DateFormat(
+                  "MMMM dd HH:mm",
+                ).format(orderData.createdAt?.toLocal() ?? DateTime.now()),
               ),
               IconTitle(
                 title: AppHelpers.getTranslation(TrKeys.amount),
@@ -129,47 +136,52 @@ class DragItem extends ConsumerWidget {
                   : const SizedBox.shrink(),
               12.verticalSpace,
               Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: AppStyle.border),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 8),
-                          child: Text(
-                            AppHelpers.getTranslation(
-                                orderData.deliveryType ?? ""),
-                            style: GoogleFonts.inter(
-                              fontSize: 14,
-                              color: AppStyle.black,
-                            ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: AppStyle.border),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        child: Text(
+                          AppHelpers.getTranslation(
+                            orderData.deliveryType ?? "",
+                          ),
+                          style: GoogleFonts.inter(
+                            fontSize: 14,
+                            color: AppStyle.black,
                           ),
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.all(4),
-                        height: 28,
-                        width: 28,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: AppStyle.black),
-                            shape: BoxShape.circle),
-                        child: (orderData.deliveryType ?? "") == TrKeys.dine
-                            ? Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: SvgPicture.asset(Assets.svgDine))
-                            : Icon(
-                                (orderData.deliveryType ?? "") ==
-                                        TrKeys.delivery
-                                    ? FlutterRemix.e_bike_2_fill
-                                    : FlutterRemix.walk_line,
-                                size: 16,
-                              ),
-                      )
-                    ],
-                  ))
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(4),
+                      height: 28,
+                      width: 28,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppStyle.black),
+                        shape: BoxShape.circle,
+                      ),
+                      child: (orderData.deliveryType ?? "") == TrKeys.dine
+                          ? Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: SvgPicture.asset(Assets.svgDine),
+                            )
+                          : Icon(
+                              (orderData.deliveryType ?? "") == TrKeys.delivery
+                                  ? FlutterRemix.e_bike_2_fill
+                                  : FlutterRemix.walk_line,
+                              size: 16,
+                            ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

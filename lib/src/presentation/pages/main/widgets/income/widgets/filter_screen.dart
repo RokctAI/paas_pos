@@ -46,7 +46,10 @@ class _FilterScreenState extends State<FilterScreen> {
           child: Text(
             AppHelpers.getTranslation(TrKeys.selectDesiredOrderHistory),
             style: GoogleFonts.inter(
-                fontSize: 14.sp, color: AppStyle.black, letterSpacing: -0.3),
+              fontSize: 14.sp,
+              color: AppStyle.black,
+              letterSpacing: -0.3,
+            ),
           ),
         ),
         CustomDatePicker(
@@ -60,21 +63,29 @@ class _FilterScreenState extends State<FilterScreen> {
           width: 200.w,
           child: Padding(
             padding: EdgeInsets.only(left: 16.r),
-            child: Consumer(builder: (context, ref, child) {
-              return LoginButton(
-                title: AppHelpers.getTranslation(TrKeys.save),
-                onPressed: () {
-                  ref.read(incomeProvider.notifier)
-                    ..fetchIncomeCarts(
-                        start: _newList.first, end: _newList.last)
-                    ..fetchIncomeCharts(
-                        start: _newList.first, end: _newList.last)
-                    ..fetchIncomeStatistic(
-                        start: _newList.first, end: _newList.last);
-                  context.maybePop();
-                },
-              );
-            }),
+            child: Consumer(
+              builder: (context, ref, child) {
+                return LoginButton(
+                  title: AppHelpers.getTranslation(TrKeys.save),
+                  onPressed: () {
+                    ref.read(incomeProvider.notifier)
+                      ..fetchIncomeCarts(
+                        start: _newList.first,
+                        end: _newList.last,
+                      )
+                      ..fetchIncomeCharts(
+                        start: _newList.first,
+                        end: _newList.last,
+                      )
+                      ..fetchIncomeStatistic(
+                        start: _newList.first,
+                        end: _newList.last,
+                      );
+                    context.maybePop();
+                  },
+                );
+              },
+            ),
           ),
         ),
         8.verticalSpace,

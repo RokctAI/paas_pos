@@ -18,7 +18,7 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
   Timer? _refreshTime;
 
   AcceptedOrdersNotifier(this._ordersRepository)
-      : super(const AcceptedOrdersState());
+    : super(const AcceptedOrdersState());
 
   void setOrdersQuery(BuildContext context, String query) {
     if (state.query == query) {
@@ -29,50 +29,47 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
       if (_searchProductsTimer?.isActive ?? false) {
         _searchProductsTimer?.cancel();
       }
-      _searchProductsTimer = Timer(
-        const Duration(milliseconds: 500),
-        () {
-          state = state.copyWith(hasMore: true, orders: []);
-          _page = 0;
-          fetchAcceptedOrders(
-            checkYourNetwork: () {
-              AppHelpers.showSnackBar(
-                context,
-                AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-              );
-            },
-          );
-        },
-      );
-    } else {
-      if (_searchProductsTimer?.isActive ?? false) {
-        _searchProductsTimer?.cancel();
-      }
-      _searchProductsTimer = Timer(
-        const Duration(milliseconds: 500),
-        () {
-          state = state.copyWith(hasMore: true, orders: []);
-          _page = 0;
-          fetchAcceptedOrders(checkYourNetwork: () {
+      _searchProductsTimer = Timer(const Duration(milliseconds: 500), () {
+        state = state.copyWith(hasMore: true, orders: []);
+        _page = 0;
+        fetchAcceptedOrders(
+          checkYourNetwork: () {
             AppHelpers.showSnackBar(
               context,
               AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
             );
-          });
-        },
-      );
+          },
+        );
+      });
+    } else {
+      if (_searchProductsTimer?.isActive ?? false) {
+        _searchProductsTimer?.cancel();
+      }
+      _searchProductsTimer = Timer(const Duration(milliseconds: 500), () {
+        state = state.copyWith(hasMore: true, orders: []);
+        _page = 0;
+        fetchAcceptedOrders(
+          checkYourNetwork: () {
+            AppHelpers.showSnackBar(
+              context,
+              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+            );
+          },
+        );
+      });
     }
   }
 
-  Future<void> fetchAcceptedOrders(
-      {bool isRefresh = false,
-      VoidCallback? checkYourNetwork,
-      Function(int)? updateTotal,
-      DateTime? start,
-      DateTime? end}) async {
+  Future<void> fetchAcceptedOrders({
+    bool isRefresh = false,
+    VoidCallback? checkYourNetwork,
+    Function(int)? updateTotal,
+    DateTime? start,
+    DateTime? end,
+  }) async {
     if (isRefresh) {
       _page = 0;
-      state = state.copyWith(hasMore: true,orders: []);
+      state = state.copyWith(hasMore: true, orders: []);
       _refreshTime?.cancel();
     }
     if (!state.hasMore) {
@@ -88,15 +85,18 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
     );
     response.when(
       success: (data) {
-        List<OrderData> orders =
-            isRefresh || state.query.isNotEmpty ? [] : List.from(state.orders);
+        List<OrderData> orders = isRefresh || state.query.isNotEmpty
+            ? []
+            : List.from(state.orders);
         final List<OrderData> newOrders = data.data?.orders ?? [];
         for (OrderData element in newOrders) {
           if (!orders.map((item) => item.id).contains(element.id)) {
             orders.add(element);
           }
         }
-        state = state.copyWith(hasMore: newOrders.length >= (end == null ? 7 : 15));
+        state = state.copyWith(
+          hasMore: newOrders.length >= (end == null ? 7 : 15),
+        );
         if (_page == 1 && !isRefresh) {
           state = state.copyWith(
             isLoading: false,
@@ -122,17 +122,23 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
               from: start,
             );
             response.when(
-                success: (data) {
-                  // List<OrderData> orders = List.from(state.orders);
-                  // for (OrderData element in data.data?.orders ?? []) {
-                  //   if (!orders.map((item) => item.id).contains(element.id)) {
-                  //     orders.insert(0, element);
-                  //   }
-                  // }
-                  state = state.copyWith(orders: data.data?.orders??[],totalCount: data.data?.statistic?.acceptedOrdersCount??0);
-                  updateTotal?.call(data.data?.statistic?.acceptedOrdersCount??0);
-                },
-                failure: (f) {});
+              success: (data) {
+                // List<OrderData> orders = List.from(state.orders);
+                // for (OrderData element in data.data?.orders ?? []) {
+                //   if (!orders.map((item) => item.id).contains(element.id)) {
+                //     orders.insert(0, element);
+                //   }
+                // }
+                state = state.copyWith(
+                  orders: data.data?.orders ?? [],
+                  totalCount: data.data?.statistic?.acceptedOrdersCount ?? 0,
+                );
+                updateTotal?.call(
+                  data.data?.statistic?.acceptedOrdersCount ?? 0,
+                );
+              },
+              failure: (f) {},
+            );
           });
         }
       },
@@ -155,29 +161,36 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
     );
     response.when(
       success: (data) {
-        AppHelpers.showSnackBar(context,
-            "#${orderData.id} ${AppHelpers.getTranslation(TrKeys.orderStatusChanged)}",
-            isIcon: true);
-        if(AppHelpers.getAutoPrint()) {
+        AppHelpers.showSnackBar(
+          context,
+          "#${orderData.id} ${AppHelpers.getTranslation(TrKeys.orderStatusChanged)}",
+          isIcon: true,
+        );
+        if (AppHelpers.getAutoPrint()) {
           showDialog(
             context: context,
             builder: (context) {
-              return LayoutBuilder(builder: (context, constraints) {
-                return SimpleDialog(
-                  title: SizedBox(
-                    height: constraints.maxHeight * 0.7,
-                    width: 300.r,
-                    child: GenerateCheckPage(orderData: orderData),
-                  ),
-                );
-              });
-            });
+              return LayoutBuilder(
+                builder: (context, constraints) {
+                  return SimpleDialog(
+                    title: SizedBox(
+                      height: constraints.maxHeight * 0.7,
+                      width: 300.r,
+                      child: GenerateCheckPage(orderData: orderData),
+                    ),
+                  );
+                },
+              );
+            },
+          );
         }
       },
       failure: (failure) {
         debugPrint('===> update order status fail $failure');
-        AppHelpers.showSnackBar(context,
-            AppHelpers.getTranslation(TrKeys.somethingWentWrongWithTheServer));
+        AppHelpers.showSnackBar(
+          context,
+          AppHelpers.getTranslation(TrKeys.somethingWentWrongWithTheServer),
+        );
       },
     );
   }
@@ -188,24 +201,23 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
     state = state.copyWith(orders: list, totalCount: state.totalCount - 1);
   }
 
-  Future<void> deleteOrder(BuildContext context,
-      {required orderId,}) async {
-   
-
+  Future<void> deleteOrder(BuildContext context, {required orderId}) async {
     removeList(getIndex(orderId));
-    final response = await _ordersRepository.deleteOrder(
-      orderId: orderId,
-    );
+    final response = await _ordersRepository.deleteOrder(orderId: orderId);
     response.when(
       success: (data) {
         AppHelpers.showSnackBar(
-            context, "#$orderId ${AppHelpers.getTranslation(TrKeys.deleted)}",
-            isIcon: true);
+          context,
+          "#$orderId ${AppHelpers.getTranslation(TrKeys.deleted)}",
+          isIcon: true,
+        );
       },
       failure: (failure) {
         debugPrint('===> delete order fail $failure');
-        AppHelpers.showSnackBar(context,
-            AppHelpers.getTranslation(TrKeys.somethingWentWrongWithTheServer));
+        AppHelpers.showSnackBar(
+          context,
+          AppHelpers.getTranslation(TrKeys.somethingWentWrongWithTheServer),
+        );
       },
     );
   }
@@ -220,7 +232,7 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
     return 0;
   }
 
-  void stopTimer(){
+  void stopTimer() {
     _refreshTime?.cancel();
   }
 }

@@ -31,10 +31,12 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(addProductProvider.notifier).setProduct(
-        widget.product,
-        ref.watch(rightSideProvider).selectedBagIndex,
-      );
+      ref
+          .read(addProductProvider.notifier)
+          .setProduct(
+            widget.product,
+            ref.watch(rightSideProvider).selectedBagIndex,
+          );
     });
   }
 
@@ -55,10 +57,7 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
             borderRadius: BorderRadius.circular(10.r),
             color: AppStyle.white,
           ),
-          constraints: BoxConstraints(
-            maxHeight: 700.r,
-            maxWidth: 600.r,
-          ),
+          constraints: BoxConstraints(maxHeight: 700.r, maxWidth: 600.r),
           padding: REdgeInsets.symmetric(horizontal: 40, vertical: 50),
           child: Text(
             '${state.product?.translation?.title} ${AppHelpers.getTranslation(TrKeys.outOfStock).toLowerCase()}',
@@ -66,19 +65,19 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
         ),
       );
     }
-    final bool hasDiscount = (state.selectedStock?.discount != null &&
+    final bool hasDiscount =
+        (state.selectedStock?.discount != null &&
         (state.selectedStock?.discount ?? 0) > 0);
-    final String price = AppHelpers.numberFormat(hasDiscount
-        ? (state.selectedStock?.totalPrice ?? 0)
-        : state.selectedStock?.price,
+    final String price = AppHelpers.numberFormat(
+      hasDiscount
+          ? (state.selectedStock?.totalPrice ?? 0)
+          : state.selectedStock?.price,
     );
     final lineThroughPrice = AppHelpers.numberFormat(
-        state.selectedStock?.price,
+      state.selectedStock?.price,
     );
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.r),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
@@ -122,13 +121,15 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                       24.verticalSpace,
                       Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.r),
-                            border: Border.all(color: AppStyle.icon)),
+                          borderRadius: BorderRadius.circular(6.r),
+                          border: Border.all(color: AppStyle.icon),
+                        ),
                         child: Row(
                           children: [
                             IconButton(
                               onPressed: () => notifier.decreaseStockCount(
-                                  rightSideState.selectedBagIndex),
+                                rightSideState.selectedBagIndex,
+                              ),
                               icon: const Icon(FlutterRemix.subtract_line),
                             ),
                             13.horizontalSpace,
@@ -144,7 +145,8 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                             12.horizontalSpace,
                             IconButton(
                               onPressed: () => notifier.increaseStockCount(
-                                  rightSideState.selectedBagIndex),
+                                rightSideState.selectedBagIndex,
+                              ),
                               icon: const Icon(FlutterRemix.add_line),
                             ),
                           ],
@@ -169,7 +171,8 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                         ),
                         8.verticalSpace,
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.6 - 370.w,
+                          width:
+                              MediaQuery.of(context).size.width / 1.6 - 370.w,
                           child: Text(
                             '${widget.product?.translation?.description}',
                             style: GoogleFonts.inter(
@@ -182,13 +185,15 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                         ),
                         8.verticalSpace,
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.6 - 370.w,
+                          width:
+                              MediaQuery.of(context).size.width / 1.6 - 370.w,
                           child: Divider(
                             color: AppStyle.black.withOpacity(0.2),
                           ),
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.6 - 370.w,
+                          width:
+                              MediaQuery.of(context).size.width / 1.6 - 370.w,
                           child: ListView.builder(
                             physics: const CustomBouncingScrollPhysics(),
                             shrinkWrap: true,
@@ -232,20 +237,20 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                                             },
                                           )
                                         : typedExtra.type == ExtrasType.color
-                                            ? ColorExtras(
-                                                uiExtras: typedExtra.uiExtras,
-                                                groupIndex: typedExtra.groupIndex,
-                                              )
-                                            : typedExtra.type == ExtrasType.image
-                                                ? ImageExtras(
-                                                    uiExtras: typedExtra.uiExtras,
-                                                    groupIndex:
-                                                        typedExtra.groupIndex,
-                                                  )
-                                                : const SizedBox(),
+                                        ? ColorExtras(
+                                            uiExtras: typedExtra.uiExtras,
+                                            groupIndex: typedExtra.groupIndex,
+                                          )
+                                        : typedExtra.type == ExtrasType.image
+                                        ? ImageExtras(
+                                            uiExtras: typedExtra.uiExtras,
+                                            groupIndex: typedExtra.groupIndex,
+                                          )
+                                        : const SizedBox(),
                                     8.verticalSpace,
                                     SizedBox(
-                                      width: MediaQuery.of(context).size.width /
+                                      width:
+                                          MediaQuery.of(context).size.width /
                                               1.6 -
                                           370.w,
                                       child: Divider(
@@ -260,7 +265,8 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                         ),
                         8.verticalSpace,
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.6 - 370.w,
+                          width:
+                              MediaQuery.of(context).size.width / 1.6 - 370.w,
                           child: WIngredientScreen(
                             list: state.selectedStock?.addons ?? [],
                             onChange: (int value) {

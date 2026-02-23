@@ -71,34 +71,34 @@ class _CustomClockState extends State<CustomClock> {
   }
 
   Widget _hour() => Container(
-        padding: const EdgeInsets.all(2),
-        alignment: AlignmentDirectional.center,
-        child: SpinnerText(
-          text: _clockModel.is24HourTimeFormat
-              ? hTOhh_24hTrue(_clockModel.hour)
-              : hTOhh_24hFalse(_clockModel.hour)[0],
-          textStyle: Theme.of(context).textTheme.bodyLarge,
-        ),
-      );
+    padding: const EdgeInsets.all(2),
+    alignment: AlignmentDirectional.center,
+    child: SpinnerText(
+      text: _clockModel.is24HourTimeFormat
+          ? hTOhh_24hTrue(_clockModel.hour)
+          : hTOhh_24hFalse(_clockModel.hour)[0],
+      textStyle: Theme.of(context).textTheme.bodyLarge,
+    ),
+  );
 
   Widget get _minute => Container(
-        padding: const EdgeInsets.all(2),
-        alignment: AlignmentDirectional.center,
-        child: SpinnerText(
-          text: mTOmm(_clockModel.minute),
-          textStyle: Theme.of(context).textTheme.bodyLarge,
-        ),
-      );
+    padding: const EdgeInsets.all(2),
+    alignment: AlignmentDirectional.center,
+    child: SpinnerText(
+      text: mTOmm(_clockModel.minute),
+      textStyle: Theme.of(context).textTheme.bodyLarge,
+    ),
+  );
 
   Widget get _second => Container(
-        margin: const EdgeInsets.all(1),
-        padding: const EdgeInsets.all(2),
-        alignment: AlignmentDirectional.center,
-        child: SpinnerText(
-            text: sTOss(_clockModel.second),
-            textStyle:
-                Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 10)),
-      );
+    margin: const EdgeInsets.all(1),
+    padding: const EdgeInsets.all(2),
+    alignment: AlignmentDirectional.center,
+    child: SpinnerText(
+      text: sTOss(_clockModel.second),
+      textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 10),
+    ),
+  );
 
   Widget get _amPm => _clockModel.is24HourTimeFormat
       ? const SizedBox()
@@ -107,10 +107,10 @@ class _CustomClockState extends State<CustomClock> {
           alignment: AlignmentDirectional.center,
           child: Text(
             " ${hTOhh_24hFalse(_clockModel.hour)[1]}",
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall!
-                .copyWith(fontSize: 10, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         );
 }

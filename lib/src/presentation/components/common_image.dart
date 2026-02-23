@@ -16,13 +16,13 @@ class CommonImage extends StatelessWidget {
   final bool isResponsive;
   final File? fileImage;
 
-
   const CommonImage({
     super.key,
     required this.imageUrl,
     this.width = double.infinity,
     this.height = 50,
-    this.radius = 10,  this.isResponsive=true,
+    this.radius = 10,
+    this.isResponsive = true,
     this.fileImage,
   });
 
@@ -30,57 +30,63 @@ class CommonImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(radius.r),
-      child: fileImage != null ? Image.file(
-        fileImage!,
-        height: height,
-        width: width,
-        fit: BoxFit.cover,
-      ) : AppHelpers.checkIsSvg(imageUrl)
-        ? SvgPicture.network(
-      '$imageUrl',
-      width: isResponsive? width.r :width,
-      height: isResponsive? height.r :height,
-      fit: BoxFit.cover,
-      placeholderBuilder: (_) => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius.r),
-          color: AppStyle.white,
-        ),
-      ),
-    ):
-      CachedNetworkImage(
-        imageUrl: '$imageUrl',
-        width: isResponsive? width.r :width,
-        height:  isResponsive? height.r :height,
-        fit: BoxFit.cover,
-        progressIndicatorBuilder: (context, url, progress) {
-          return MakeShimmer(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(isResponsive ?radius.r :radius),
-                color: AppStyle.mainBack,
+      child: fileImage != null
+          ? Image.file(
+              fileImage!,
+              height: height,
+              width: width,
+              fit: BoxFit.cover,
+            )
+          : AppHelpers.checkIsSvg(imageUrl)
+          ? SvgPicture.network(
+              '$imageUrl',
+              width: isResponsive ? width.r : width,
+              height: isResponsive ? height.r : height,
+              fit: BoxFit.cover,
+              placeholderBuilder: (_) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(radius.r),
+                  color: AppStyle.white,
+                ),
               ),
+            )
+          : CachedNetworkImage(
+              imageUrl: '$imageUrl',
+              width: isResponsive ? width.r : width,
+              height: isResponsive ? height.r : height,
+              fit: BoxFit.cover,
+              progressIndicatorBuilder: (context, url, progress) {
+                return MakeShimmer(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        isResponsive ? radius.r : radius,
+                      ),
+                      color: AppStyle.mainBack,
+                    ),
+                  ),
+                );
+              },
+              errorWidget: (context, url, error) {
+                return Container(
+                  width: isResponsive ? width.r : width,
+                  height: isResponsive ? height.r : height,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      isResponsive ? radius.r : radius,
+                    ),
+                    border: Border.all(color: AppStyle.border),
+                    color: AppStyle.mainBack,
+                  ),
+                  alignment: Alignment.center,
+                  child: Icon(
+                    FlutterRemix.image_line,
+                    color: AppStyle.black.withOpacity(0.5),
+                    size: isResponsive ? 20.r : 20,
+                  ),
+                );
+              },
             ),
-          );
-        },
-        errorWidget: (context, url, error) {
-          return Container(
-            width: isResponsive? width.r :width,
-            height:  isResponsive? height.r :height,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(isResponsive ?radius.r :radius),
-              border: Border.all(color: AppStyle.border),
-              color: AppStyle.mainBack,
-            ),
-            alignment: Alignment.center,
-            child: Icon(
-              FlutterRemix.image_line,
-              color: AppStyle.black.withOpacity(0.5),
-              size: isResponsive? 20.r :20,
-            ),
-          );
-        },
-      ),
     );
   }
 }

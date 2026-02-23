@@ -53,37 +53,43 @@ class _MultiSelectionWidgetState extends ConsumerState<MultiSelectionWidget> {
           child: stockState.isLoading
               ? const Loading()
               : SmartRefresher(
-            controller: _refreshController,
-            enablePullUp: true,
-            onRefresh: () => stockEvent.refreshStocks(
-              refreshController: _refreshController,
-            ),
-            onLoading: () => stockEvent.fetchMoreStocks(
-              refreshController: _refreshController,
-            ),
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: stockState.stocks.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return FoodProductItem(
-                  stockData: stockState.stocks[index],
-                  isSelected: widget.isEdit
-                      ? editDiscountState.stocks.any((element) =>
-                  element.id == stockState.stocks[index].id)
-                      : addDiscountState.stocks.any((element) =>
-                  element.id == stockState.stocks[index].id),
-                  onTap: () {
-                    widget.isEdit
-                        ? editDiscountEvent.setDiscountProducts(
-                        stockState.stocks[index])
-                        : addDiscountEvent.setDiscountProducts(
-                        stockState.stocks[index]);
-                  },
-                );
-              },
-            ),
-          ),
+                  controller: _refreshController,
+                  enablePullUp: true,
+                  onRefresh: () => stockEvent.refreshStocks(
+                    refreshController: _refreshController,
+                  ),
+                  onLoading: () => stockEvent.fetchMoreStocks(
+                    refreshController: _refreshController,
+                  ),
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: stockState.stocks.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return FoodProductItem(
+                        stockData: stockState.stocks[index],
+                        isSelected: widget.isEdit
+                            ? editDiscountState.stocks.any(
+                                (element) =>
+                                    element.id == stockState.stocks[index].id,
+                              )
+                            : addDiscountState.stocks.any(
+                                (element) =>
+                                    element.id == stockState.stocks[index].id,
+                              ),
+                        onTap: () {
+                          widget.isEdit
+                              ? editDiscountEvent.setDiscountProducts(
+                                  stockState.stocks[index],
+                                )
+                              : addDiscountEvent.setDiscountProducts(
+                                  stockState.stocks[index],
+                                );
+                        },
+                      );
+                    },
+                  ),
+                ),
         ),
         Row(
           children: [

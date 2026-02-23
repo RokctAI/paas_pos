@@ -10,13 +10,14 @@ import 'package:admin_desktop/src/core/handlers/handlers.dart';
 
 class NotificationRepositoryImpl extends NotificationRepository {
   @override
-  Future<ApiResult<TransactionListResponse>> getTransactions(
-      {int? page}) async {
+  Future<ApiResult<TransactionListResponse>> getTransactions({
+    int? page,
+  }) async {
     final data = {
       if (page != null) 'page': page,
       'perPage': 4,
       'lang': LocalStorage.getLanguage()?.locale ?? 'en',
-      'model': 'orders'
+      'model': 'orders',
     };
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -34,9 +35,7 @@ class NotificationRepositoryImpl extends NotificationRepository {
   }
 
   @override
-  Future<ApiResult<NotificationResponse>> getNotifications({
-    int? page,
-  }) async {
+  Future<ApiResult<NotificationResponse>> getNotifications({int? page}) async {
     final data = {
       if (page != null) 'page': page,
       'column': 'created_at',
@@ -119,9 +118,7 @@ class NotificationRepositoryImpl extends NotificationRepository {
 
   @override
   Future<ApiResult<NotificationResponse>> getAllNotifications() async {
-    final data = {
-      'lang': LocalStorage.getLanguage()?.locale ?? 'en',
-    };
+    final data = {'lang': LocalStorage.getLanguage()?.locale ?? 'en'};
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(

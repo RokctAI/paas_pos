@@ -24,71 +24,74 @@ class TablesList extends ConsumerWidget {
     final notifier = ref.read(tablesProvider.notifier);
     return Column(
       children: [
-        _topWidgets(ref.watch(tablesProvider),
-            ref.read(tablesProvider.notifier), context),
-        8.verticalSpace,
-        Expanded(
-          child: _bodyWidgets(state,notifier),
+        _topWidgets(
+          ref.watch(tablesProvider),
+          ref.read(tablesProvider.notifier),
+          context,
         ),
+        8.verticalSpace,
+        Expanded(child: _bodyWidgets(state, notifier)),
       ],
     );
   }
 
-
-  Widget _bodyWidgets(TablesState state, TablesNotifier notifier){
+  Widget _bodyWidgets(TablesState state, TablesNotifier notifier) {
     return ListView(
       padding: REdgeInsets.only(top: 8),
       children: [
         state.tableBookingData.isNotEmpty
             ? AnimationLimiter(
-          child: GridView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: 12,
-                crossAxisCount: 3,
-                mainAxisExtent: 270.r),
-            itemCount: state.tableBookingData.length,
-            itemBuilder: (BuildContext context, int index) {
-              return AnimationConfiguration.staggeredGrid(
-                columnCount: state.tableBookingData.length,
-                position: index,
-                duration: const Duration(milliseconds: 375),
-                child: ScaleAnimation(
-                  scale: 0.5,
-                  child: FadeInAnimation(
-                    child: GestureDetector(
-                      onTap: () {
-                        if (index != state.selectOrderIndex) {
-                          notifier.changeSelectOrder(index);
-                        }
-                      },
-                      child: AnimationButtonEffect(
-                        child: TableOrder(
-                          active: state.selectOrderIndex == index,
-                          tableBookingData:
-                          state.tableBookingData[index],
+                child: GridView.builder(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 12,
+                    crossAxisCount: 3,
+                    mainAxisExtent: 270.r,
+                  ),
+                  itemCount: state.tableBookingData.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return AnimationConfiguration.staggeredGrid(
+                      columnCount: state.tableBookingData.length,
+                      position: index,
+                      duration: const Duration(milliseconds: 375),
+                      child: ScaleAnimation(
+                        scale: 0.5,
+                        child: FadeInAnimation(
+                          child: GestureDetector(
+                            onTap: () {
+                              if (index != state.selectOrderIndex) {
+                                notifier.changeSelectOrder(index);
+                              }
+                            },
+                            child: AnimationButtonEffect(
+                              child: TableOrder(
+                                active: state.selectOrderIndex == index,
+                                tableBookingData: state.tableBookingData[index],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-        )
+              )
             : state.isLoading
             ? const SizedBox.shrink()
             : Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.r),
-              child: Text(
-                AppHelpers.getTranslation(TrKeys.thereAreNoOrders),
-                style: GoogleFonts.inter(
-                    fontSize: 20.sp, fontWeight: FontWeight.w600),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.r),
+                  child: Text(
+                    AppHelpers.getTranslation(TrKeys.thereAreNoOrders),
+                    style: GoogleFonts.inter(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
               ),
-            )),
         if (state.isLoading)
           AnimationLimiter(
             child: GridView.builder(
@@ -96,9 +99,10 @@ class TablesList extends ConsumerWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 12,
-                  crossAxisCount: 3,
-                  mainAxisExtent: 270.r),
+                crossAxisSpacing: 12,
+                crossAxisCount: 3,
+                mainAxisExtent: 270.r,
+              ),
               itemCount: 6,
               itemBuilder: (BuildContext context, int index) {
                 return AnimationConfiguration.staggeredGrid(
@@ -113,8 +117,7 @@ class TablesList extends ConsumerWidget {
                         width: 228.w,
                         decoration: BoxDecoration(
                           color: AppStyle.shimmerBase,
-                          borderRadius:
-                          BorderRadiusDirectional.circular(10),
+                          borderRadius: BorderRadiusDirectional.circular(10),
                         ),
                       ),
                     ),
@@ -124,17 +127,16 @@ class TablesList extends ConsumerWidget {
             ),
           ),
         if (state.isLoading)
-          Center(
-            child: CircularProgressIndicator(
-              color: AppStyle.primary,
-            ),
-          ),
+          Center(child: CircularProgressIndicator(color: AppStyle.primary)),
       ],
     );
   }
 
   Widget _topWidgets(
-      TablesState state, TablesNotifier notifier, BuildContext context) {
+    TablesState state,
+    TablesNotifier notifier,
+    BuildContext context,
+  ) {
     List statusList = [
       TrKeys.all,
       TrKeys.newKey,
@@ -161,7 +163,7 @@ class TablesList extends ConsumerWidget {
         CustomRefresher(
           onTap: () => notifier.changeListTabIndex(state.selectListTabIndex),
           isLoading: state.isLoading,
-        )
+        ),
       ],
     );
   }

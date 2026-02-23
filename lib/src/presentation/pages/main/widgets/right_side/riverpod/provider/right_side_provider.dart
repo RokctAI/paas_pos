@@ -5,13 +5,14 @@ import '../notifier/right_side_notifier.dart';
 import '../state/right_side_state.dart';
 
 final rightSideProvider =
-StateNotifierProvider<RightSideNotifier, RightSideState>(
-        (ref) => RightSideNotifier(
+    StateNotifierProvider<RightSideNotifier, RightSideState>(
+      (ref) => RightSideNotifier(
         usersRepository,
         currenciesRepository,
         paymentsRepository,
         productsRepository,
         ordersRepository,
         shopsRepository,
-        galleryRepository),
-);
+        galleryRepository,
+      ),
+    );

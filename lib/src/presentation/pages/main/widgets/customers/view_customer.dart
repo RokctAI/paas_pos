@@ -17,10 +17,7 @@ class ViewCustomer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        top: 24.r,
-        bottom: 16.r,
-      ),
+      padding: EdgeInsets.only(top: 24.r, bottom: 16.r),
       child: Column(
         children: [
           InkWell(
@@ -29,15 +26,10 @@ class ViewCustomer extends StatelessWidget {
             },
             child: Row(
               children: [
-                Icon(
-                  FlutterRemix.arrow_left_s_line,
-                  size: 32.r,
-                ),
+                Icon(FlutterRemix.arrow_left_s_line, size: 32.r),
                 Text(
                   AppHelpers.getTranslation(TrKeys.back),
-                  style: GoogleFonts.inter(
-                    fontSize: 16.sp,
-                  ),
+                  style: GoogleFonts.inter(fontSize: 16.sp),
                 ),
               ],
             ),
@@ -47,8 +39,9 @@ class ViewCustomer extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 30.r),
               decoration: BoxDecoration(
-                  color: AppStyle.white,
-                  borderRadius: BorderRadius.circular(10.r)),
+                color: AppStyle.white,
+                borderRadius: BorderRadius.circular(10.r),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -67,18 +60,21 @@ class ViewCustomer extends StatelessWidget {
                           Text(
                             "${user?.firstname ?? ""} ${user?.lastname ?? ""}",
                             style: GoogleFonts.inter(
-                                fontSize: 24.sp, fontWeight: FontWeight.w600),
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                           8.verticalSpace,
                           Text(
                             "#${AppHelpers.getTranslation(TrKeys.id)}${user?.id ?? ""}",
                             style: GoogleFonts.inter(
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w500,
-                                color: AppStyle.icon),
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppStyle.icon,
+                            ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                   46.verticalSpace,
@@ -86,10 +82,13 @@ class ViewCustomer extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                            color: AppStyle.black,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: AppStyle.primary, width: 5.r)),
+                          color: AppStyle.black,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppStyle.primary,
+                            width: 5.r,
+                          ),
+                        ),
                         width: 18.r,
                         height: 18.r,
                       ),
@@ -98,8 +97,9 @@ class ViewCustomer extends StatelessWidget {
                       32.horizontalSpace,
                       Container(
                         decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: AppStyle.icon)),
+                          shape: BoxShape.circle,
+                          border: Border.all(color: AppStyle.icon),
+                        ),
                         width: 18.r,
                         height: 18.r,
                       ),
@@ -177,7 +177,7 @@ class ViewCustomer extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

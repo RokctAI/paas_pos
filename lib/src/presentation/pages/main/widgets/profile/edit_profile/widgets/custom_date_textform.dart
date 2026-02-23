@@ -19,21 +19,23 @@ class CustomDateFormField extends StatelessWidget {
         Text(
           text ?? '',
           style: GoogleFonts.inter(
-              fontSize: 12.sp,
-              color: AppStyle.icon,
-              fontWeight: FontWeight.w500),
+            fontSize: 12.sp,
+            color: AppStyle.icon,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         4.verticalSpace,
         TextFormField(
           onTap: () {
             showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(1970),
-                    lastDate: DateTime.now())
-                .then((value) {
-              controller?.text =
-                  DateFormat('yyy-MM-dd').format(value ?? DateTime.now());
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1970),
+              lastDate: DateTime.now(),
+            ).then((value) {
+              controller?.text = DateFormat(
+                'yyy-MM-dd',
+              ).format(value ?? DateTime.now());
             });
           },
           readOnly: true,
@@ -56,9 +58,7 @@ class CustomDateFormField extends StatelessWidget {
             ),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: SvgPicture.asset(
-                'assets/svg/calendar.svg',
-              ),
+              child: SvgPicture.asset('assets/svg/calendar.svg'),
             ),
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: AppStyle.border),

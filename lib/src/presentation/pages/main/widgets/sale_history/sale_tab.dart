@@ -15,36 +15,38 @@ class SaleTab extends StatelessWidget {
   final bool hasMore;
   final VoidCallback viewMore;
 
-  const SaleTab(
-      {super.key,
-      required this.list,
-      required this.isLoading,
-      required this.hasMore,
-      required this.viewMore,
-      required this.isMoreLoading});
+  const SaleTab({
+    super.key,
+    required this.list,
+    required this.isLoading,
+    required this.hasMore,
+    required this.viewMore,
+    required this.isMoreLoading,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 22.r),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.r), color: AppStyle.white),
+        borderRadius: BorderRadius.circular(10.r),
+        color: AppStyle.white,
+      ),
       child: isLoading
           ? const Center(
-              child: CircularProgressIndicator(
-              color: AppStyle.black,
-            ))
+              child: CircularProgressIndicator(color: AppStyle.black),
+            )
           : SingleChildScrollView(
               child: Column(
                 children: [
                   Table(
                     columnWidths: {
-                      0:FixedColumnWidth(112.w),
-                      1:FixedColumnWidth(260.w),
-                      2:FixedColumnWidth(172.w),
-                      3:FixedColumnWidth(132.w),
-                      4:FixedColumnWidth(200.w),
-                      5:FixedColumnWidth(200.w),
+                      0: FixedColumnWidth(112.w),
+                      1: FixedColumnWidth(260.w),
+                      2: FixedColumnWidth(172.w),
+                      3: FixedColumnWidth(132.w),
+                      4: FixedColumnWidth(200.w),
+                      5: FixedColumnWidth(200.w),
                     },
                     // defaultColumnWidth: FixedColumnWidth(
                     //     (MediaQuery.of(context).size.height) / 4.6.r),
@@ -66,7 +68,7 @@ class SaleTab extends StatelessWidget {
                                     letterSpacing: -0.3,
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Column(
@@ -80,7 +82,7 @@ class SaleTab extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: -0.3,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Column(
@@ -94,7 +96,7 @@ class SaleTab extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: -0.3,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Column(
@@ -108,7 +110,7 @@ class SaleTab extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: -0.3,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Column(
@@ -122,7 +124,7 @@ class SaleTab extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: -0.3,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                           Column(
@@ -136,7 +138,7 @@ class SaleTab extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                   letterSpacing: -0.3,
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ],
@@ -177,8 +179,8 @@ class SaleTab extends StatelessWidget {
                                       color: AppStyle.icon,
                                       letterSpacing: -0.3,
                                     ),
-                                    maxLines: 2
-                                  )
+                                    maxLines: 2,
+                                  ),
                                 ],
                               ),
                             ),
@@ -195,7 +197,7 @@ class SaleTab extends StatelessWidget {
                                       color: AppStyle.icon,
                                       letterSpacing: -0.3,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -207,19 +209,21 @@ class SaleTab extends StatelessWidget {
                                   const Divider(),
                                   Text(
                                     (list[i].transactions?.isNotEmpty ?? false)
-                                        ? AppHelpers.getTranslation(list[i]
-                                                .transactions
-                                                ?.first
-                                                .paymentSystem
-                                                ?.tag ??
-                                            "")
+                                        ? AppHelpers.getTranslation(
+                                            list[i]
+                                                    .transactions
+                                                    ?.first
+                                                    .paymentSystem
+                                                    ?.tag ??
+                                                "",
+                                          )
                                         : AppHelpers.getTranslation(TrKeys.na),
                                     style: GoogleFonts.inter(
                                       fontSize: 14.sp,
                                       color: AppStyle.icon,
                                       letterSpacing: -0.3,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -237,7 +241,7 @@ class SaleTab extends StatelessWidget {
                                       color: AppStyle.icon,
                                       letterSpacing: -0.3,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -249,13 +253,14 @@ class SaleTab extends StatelessWidget {
                                   const Divider(),
                                   Text(
                                     DateFormat('d MMM yyyy HH:mm').format(
-                                        list[i].createdAt ?? DateTime.now()),
+                                      list[i].createdAt ?? DateTime.now(),
+                                    ),
                                     style: GoogleFonts.inter(
                                       fontSize: 14.sp,
                                       color: AppStyle.icon,
                                       letterSpacing: -0.3,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -267,41 +272,44 @@ class SaleTab extends StatelessWidget {
                       ? const Padding(
                           padding: EdgeInsets.only(top: 18),
                           child: Center(
-                              child: CircularProgressIndicator(
-                            color: AppStyle.black,
-                          )),
+                            child: CircularProgressIndicator(
+                              color: AppStyle.black,
+                            ),
+                          ),
                         )
                       : hasMore
-                          ? InkWell(
-                              borderRadius: BorderRadius.circular(10.r),
-                              onTap: () {
-                                viewMore.call();
-                              },
-                              child: AnimationButtonEffect(
-                                child: Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: 64.r, vertical: 16.r),
-                                  height: 50.r,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.r),
-                                    border: Border.all(
-                                      color: AppStyle.black.withOpacity(0.17),
-                                      width: 1.r,
-                                    ),
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    AppHelpers.getTranslation(TrKeys.viewMore),
-                                    style: GoogleFonts.inter(
-                                      fontSize: 16.sp,
-                                      color: AppStyle.black,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
+                      ? InkWell(
+                          borderRadius: BorderRadius.circular(10.r),
+                          onTap: () {
+                            viewMore.call();
+                          },
+                          child: AnimationButtonEffect(
+                            child: Container(
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 64.r,
+                                vertical: 16.r,
+                              ),
+                              height: 50.r,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.r),
+                                border: Border.all(
+                                  color: AppStyle.black.withOpacity(0.17),
+                                  width: 1.r,
                                 ),
                               ),
-                            )
-                          : const SizedBox.shrink()
+                              alignment: Alignment.center,
+                              child: Text(
+                                AppHelpers.getTranslation(TrKeys.viewMore),
+                                style: GoogleFonts.inter(
+                                  fontSize: 16.sp,
+                                  color: AppStyle.black,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                 ],
               ),
             ),

@@ -73,42 +73,38 @@ class _PinCodePageState extends ConsumerState<PinCodePage> {
       body: RawKeyboardListener(
         focusNode: _focusNode,
         autofocus: true,
-          onKey: (event) {
-            if (event is RawKeyDownEvent) {
-              final key = event.logicalKey;
+        onKey: (event) {
+          if (event is RawKeyDownEvent) {
+            final key = event.logicalKey;
 
-              if (numberKeys.containsKey(key)) {
-                if (widget.isNewPassword) {
-                  notifier.setNewPinCode(
-                    code: numberKeys[key]!,
-                    onSuccess: () {
-                      context.replaceRoute(
-                        const MainRoute(),
-                      );
-                    },
-                  );
-                } else {
-                  notifier.setPinCode(
-                    code: numberKeys[key]!,
-                    onSuccess: () {
-                      context.replaceRoute(
-                        const MainRoute(),
-                      );
-                    },
-                  );
-                }
+            if (numberKeys.containsKey(key)) {
+              if (widget.isNewPassword) {
+                notifier.setNewPinCode(
+                  code: numberKeys[key]!,
+                  onSuccess: () {
+                    context.replaceRoute(const MainRoute());
+                  },
+                );
+              } else {
+                notifier.setPinCode(
+                  code: numberKeys[key]!,
+                  onSuccess: () {
+                    context.replaceRoute(const MainRoute());
+                  },
+                );
               }
-
-              if (key == LogicalKeyboardKey.backspace) {
-                notifier.removePinCode();
-              }
-
-              // if (key == LogicalKeyboardKey.enter ||
-              //     key == LogicalKeyboardKey.numpadEnter) {
-              //   onSubmit();
-              // }
             }
-          },
+
+            if (key == LogicalKeyboardKey.backspace) {
+              notifier.removePinCode();
+            }
+
+            // if (key == LogicalKeyboardKey.enter ||
+            //     key == LogicalKeyboardKey.numpadEnter) {
+            //   onSubmit();
+            // }
+          }
+        },
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Row(

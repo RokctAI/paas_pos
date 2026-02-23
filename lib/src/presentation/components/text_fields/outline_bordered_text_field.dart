@@ -59,7 +59,9 @@ class OutlinedBorderTextField extends StatelessWidget {
     this.color,
     this.style,
     this.border,
-    this.validator,   this.textInputAction, this.inputFormatters,
+    this.validator,
+    this.textInputAction,
+    this.inputFormatters,
   });
 
   @override
@@ -68,13 +70,8 @@ class OutlinedBorderTextField extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(label != null)
-          Column(
-            children: [
-              Text(label ?? "",),
-              4.verticalSpace,
-            ],
-          ),
+        if (label != null)
+          Column(children: [Text(label ?? ""), 4.verticalSpace]),
         Container(
           width: width.r,
           decoration: BoxDecoration(
@@ -116,16 +113,20 @@ class OutlinedBorderTextField extends StatelessWidget {
               initialValue: initialText,
               readOnly: readOnly,
               textCapitalization:
-              textCapitalization ?? TextCapitalization.sentences,
+                  textCapitalization ?? TextCapitalization.sentences,
               decoration: InputDecoration(
                 counterText: '',
                 suffixIcon: suffixIcon,
-                suffixIconConstraints:
-                BoxConstraints(maxWidth: 24.r, minWidth: 24.r),
+                suffixIconConstraints: BoxConstraints(
+                  maxWidth: 24.r,
+                  minWidth: 24.r,
+                ),
                 labelStyle: style,
                 prefix: prefixIcon,
                 contentPadding: REdgeInsets.symmetric(
-                    horizontal: 16, vertical: verticalPadding ?? 10),
+                  horizontal: 16,
+                  vertical: verticalPadding ?? 10,
+                ),
                 floatingLabelStyle: GoogleFonts.inter(
                   fontWeight: FontWeight.w400,
                   fontSize: labelSize ?? 14.sp,
@@ -165,7 +166,7 @@ class OutlinedBorderTextField extends StatelessWidget {
                 ),
               ),
             ],
-          )
+          ),
       ],
     );
   }

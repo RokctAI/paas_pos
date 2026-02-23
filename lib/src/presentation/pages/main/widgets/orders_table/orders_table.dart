@@ -73,152 +73,153 @@ class _OrdersTablesState extends ConsumerState<OrdersTablesPage> {
     final stateMain = ref.watch(mainProvider);
 
     return CustomScaffold(
-        body: (c) => stateMain.selectedOrder != null
-            ? OrderDetailPage(order: stateMain.selectedOrder ?? OrderData())
-            : SafeArea(
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                          vertical: state.showFilter ? 20.r : 10.r,
-                          horizontal: 16.r),
-                      decoration: const BoxDecoration(color: AppStyle.white),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
+      body: (c) => stateMain.selectedOrder != null
+          ? OrderDetailPage(order: stateMain.selectedOrder ?? OrderData())
+          : SafeArea(
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: state.showFilter ? 20.r : 10.r,
+                      horizontal: 16.r,
+                    ),
+                    decoration: const BoxDecoration(color: AppStyle.white),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              AppHelpers.getTranslation(TrKeys.order),
+                              style: GoogleFonts.inter(
+                                color: AppStyle.black,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20.sp,
+                              ),
+                            ),
+                            const Spacer(),
+                            IconButton(
+                              onPressed: () => notifier.changeFilter(),
+                              icon: state.showFilter
+                                  ? const Icon(FlutterRemix.arrow_up_s_line)
+                                  : const Icon(FlutterRemix.arrow_down_s_line),
+                            ),
+                          ],
+                        ),
+                        Visibility(
+                          visible: state.showFilter,
+                          child: Column(
                             children: [
-                              Text(AppHelpers.getTranslation(TrKeys.order),
-                                  style: GoogleFonts.inter(
-                                    color: AppStyle.black,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20.sp,
-                                  )),
-                              const Spacer(),
-                              IconButton(
-                                  onPressed: () => notifier.changeFilter(),
-                                  icon: state.showFilter
-                                      ? const Icon(FlutterRemix.arrow_up_s_line)
-                                      : const Icon(
-                                          FlutterRemix.arrow_down_s_line))
-                            ],
-                          ),
-                          Visibility(
-                              visible: state.showFilter,
-                              child: Column(
+                              16.verticalSpace,
+                              Row(
                                 children: [
-                                  16.verticalSpace,
-                                  Row(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          ref
-                                              .read(orderTableProvider.notifier)
-                                              .setTime(null, null);
-                                          ref
-                                              .read(newOrdersProvider.notifier)
-                                              .fetchNewOrders(isRefresh: true);
-                                          ref
-                                              .read(cookingOrdersProvider
-                                                  .notifier)
-                                              .fetchCookingOrders(
-                                                  isRefresh: true);
-                                          ref
-                                              .read(acceptedOrdersProvider
-                                                  .notifier)
-                                              .fetchAcceptedOrders(
-                                                  isRefresh: true);
-                                          if (LocalStorage.getUser()?.role !=
-                                              TrKeys.waiter) {
-                                            ref
-                                                .read(onAWayOrdersProvider
-                                                    .notifier)
-                                                .fetchOnAWayOrders(
-                                                    isRefresh: true);
-                                          }
-                                          ref
-                                              .read(
-                                                  readyOrdersProvider.notifier)
-                                              .fetchReadyOrders(
-                                                  isRefresh: true);
-                                          ref
-                                              .read(deliveredOrdersProvider
-                                                  .notifier)
-                                              .fetchDeliveredOrders(
-                                                  isRefresh: true);
-                                          ref
-                                              .read(canceledOrdersProvider
-                                                  .notifier)
-                                              .fetchCanceledOrders(
-                                                  isRefresh: true);
-                                        },
-                                        child: AnimationButtonEffect(
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                  color: AppStyle.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.r),
-                                                  border: Border.all(
-                                                      color: AppStyle
-                                                          .unselectedBottomBarBack)),
-                                              padding: EdgeInsets.all(8.r),
-                                              child: const Icon(
-                                                  FlutterRemix.restart_line)),
+                                  InkWell(
+                                    onTap: () {
+                                      ref
+                                          .read(orderTableProvider.notifier)
+                                          .setTime(null, null);
+                                      ref
+                                          .read(newOrdersProvider.notifier)
+                                          .fetchNewOrders(isRefresh: true);
+                                      ref
+                                          .read(cookingOrdersProvider.notifier)
+                                          .fetchCookingOrders(isRefresh: true);
+                                      ref
+                                          .read(acceptedOrdersProvider.notifier)
+                                          .fetchAcceptedOrders(isRefresh: true);
+                                      if (LocalStorage.getUser()?.role !=
+                                          TrKeys.waiter) {
+                                        ref
+                                            .read(onAWayOrdersProvider.notifier)
+                                            .fetchOnAWayOrders(isRefresh: true);
+                                      }
+                                      ref
+                                          .read(readyOrdersProvider.notifier)
+                                          .fetchReadyOrders(isRefresh: true);
+                                      ref
+                                          .read(
+                                            deliveredOrdersProvider.notifier,
+                                          )
+                                          .fetchDeliveredOrders(
+                                            isRefresh: true,
+                                          );
+                                      ref
+                                          .read(canceledOrdersProvider.notifier)
+                                          .fetchCanceledOrders(isRefresh: true);
+                                    },
+                                    child: AnimationButtonEffect(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: AppStyle.white,
+                                          borderRadius: BorderRadius.circular(
+                                            10.r,
+                                          ),
+                                          border: Border.all(
+                                            color: AppStyle
+                                                .unselectedBottomBarBack,
+                                          ),
+                                        ),
+                                        padding: EdgeInsets.all(8.r),
+                                        child: const Icon(
+                                          FlutterRemix.restart_line,
                                         ),
                                       ),
-                                      16.horizontalSpace,
-                                      StartEndDate(
-                                        start: state.start,
-                                        end: state.end,
-                                        filterScreen: const FilterScreen(
-                                          isOrder: true,
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      ViewMode(
-                                        title: TrKeys.board,
-                                        isActive: !state.isListView,
-                                        icon: FlutterRemix.dashboard_line,
-                                        onTap: () => notifier.changeViewMode(0),
-                                      ),
-                                      ViewMode(
-                                        title: TrKeys.list,
-                                        isActive: state.isListView,
-                                        isLeft: false,
-                                        icon: FlutterRemix.menu_fill,
-                                        onTap: () => notifier.changeViewMode(1),
-                                      ),
-                                    ],
+                                    ),
+                                  ),
+                                  16.horizontalSpace,
+                                  StartEndDate(
+                                    start: state.start,
+                                    end: state.end,
+                                    filterScreen: const FilterScreen(
+                                      isOrder: true,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  ViewMode(
+                                    title: TrKeys.board,
+                                    isActive: !state.isListView,
+                                    icon: FlutterRemix.dashboard_line,
+                                    onTap: () => notifier.changeViewMode(0),
+                                  ),
+                                  ViewMode(
+                                    title: TrKeys.list,
+                                    isActive: state.isListView,
+                                    isLeft: false,
+                                    icon: FlutterRemix.menu_fill,
+                                    onTap: () => notifier.changeViewMode(1),
                                   ),
                                 ],
-                              ))
-                        ],
-                      ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child: !state.isListView
-                          ? BoardViewMode(
-                              listAccepts: listAccepts,
-                              listNew: listNew,
-                              listOnAWay: listOnAWay,
-                              listReady: listReady,
-                              listCanceled: listCancel,
-                              listDelivered: listDelivered,
-                              listCooking: listCooking,
-                            )
-                          : ListViewMode(
-                              listAccepts: listAccepts,
-                              listNew: listNew,
-                              listOnAWay: listOnAWay,
-                              listReady: listReady,
-                              listCanceled: listCancel,
-                              listDelivered: listDelivered,
-                              listCooking: listCooking,
-                            ),
-                    ),
-                  ],
-                ),
-              ));
+                  ),
+                  Expanded(
+                    child: !state.isListView
+                        ? BoardViewMode(
+                            listAccepts: listAccepts,
+                            listNew: listNew,
+                            listOnAWay: listOnAWay,
+                            listReady: listReady,
+                            listCanceled: listCancel,
+                            listDelivered: listDelivered,
+                            listCooking: listCooking,
+                          )
+                        : ListViewMode(
+                            listAccepts: listAccepts,
+                            listNew: listNew,
+                            listOnAWay: listOnAWay,
+                            listReady: listReady,
+                            listCanceled: listCancel,
+                            listDelivered: listDelivered,
+                            listCooking: listCooking,
+                          ),
+                  ),
+                ],
+              ),
+            ),
+    );
   }
 }

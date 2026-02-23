@@ -44,8 +44,10 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
         children: [
           Text(
             AppHelpers.getTranslation(TrKeys.saleHistory),
-            style:
-                GoogleFonts.inter(fontSize: 22.r, fontWeight: FontWeight.w600),
+            style: GoogleFonts.inter(
+              fontSize: 22.r,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           16.verticalSpace,
           _topWidgets(state, event),
@@ -58,13 +60,13 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
             list: state.selectIndex == 0
                 ? state.listDriver
                 : state.selectIndex == 1
-                    ? state.listToday
-                    : state.listHistory,
+                ? state.listToday
+                : state.listHistory,
             hasMore: state.hasMore,
             viewMore: () {
               event.fetchSalePage();
             },
-          )
+          ),
         ],
       ),
     );
@@ -77,8 +79,9 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppStyle.white),
+              borderRadius: BorderRadius.circular(10.r),
+              color: AppStyle.white,
+            ),
             child: Row(
               children: [
                 Column(
@@ -90,27 +93,30 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
                     ),
                     20.verticalSpace,
                     Text(
-                      AppHelpers.numberFormat(
-                        state.saleCart?.deliveryFee ?? 0,
-                      ),
+                      AppHelpers.numberFormat(state.saleCart?.deliveryFee ?? 0),
                       style: GoogleFonts.inter(
-                          fontSize: 24.sp, fontWeight: FontWeight.w600),
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ],
                 ),
                 const Spacer(),
                 Container(
-                    padding: EdgeInsets.all(8.r),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppStyle.primary.withOpacity(0.01),
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 32.r,
-                              spreadRadius: 12.r,
-                              color: AppStyle.primary.withOpacity(0.5))
-                        ]),
-                    child: SvgPicture.asset(Assets.svgCart))
+                  padding: EdgeInsets.all(8.r),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppStyle.primary.withOpacity(0.01),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 32.r,
+                        spreadRadius: 12.r,
+                        color: AppStyle.primary.withOpacity(0.5),
+                      ),
+                    ],
+                  ),
+                  child: SvgPicture.asset(Assets.svgCart),
+                ),
               ],
             ),
           ),
@@ -120,8 +126,9 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppStyle.white),
+              borderRadius: BorderRadius.circular(10.r),
+              color: AppStyle.white,
+            ),
             child: Row(
               children: [
                 Column(
@@ -133,27 +140,30 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
                     ),
                     20.verticalSpace,
                     Text(
-                      AppHelpers.numberFormat(
-                        state.saleCart?.cash ?? 0,
-                      ),
+                      AppHelpers.numberFormat(state.saleCart?.cash ?? 0),
                       style: GoogleFonts.inter(
-                          fontSize: 24.sp, fontWeight: FontWeight.w600),
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ],
                 ),
                 const Spacer(),
                 Container(
-                    padding: EdgeInsets.all(8.r),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppStyle.starColor.withOpacity(0.01),
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 32.r,
-                              spreadRadius: 12.r,
-                              color: AppStyle.starColor.withOpacity(0.5))
-                        ]),
-                    child: SvgPicture.asset(Assets.svgDollar))
+                  padding: EdgeInsets.all(8.r),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppStyle.starColor.withOpacity(0.01),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 32.r,
+                        spreadRadius: 12.r,
+                        color: AppStyle.starColor.withOpacity(0.5),
+                      ),
+                    ],
+                  ),
+                  child: SvgPicture.asset(Assets.svgDollar),
+                ),
               ],
             ),
           ),
@@ -163,8 +173,9 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppStyle.white),
+              borderRadius: BorderRadius.circular(10.r),
+              color: AppStyle.white,
+            ),
             child: Row(
               children: [
                 Column(
@@ -176,31 +187,34 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
                     ),
                     20.verticalSpace,
                     Text(
-                      AppHelpers.numberFormat(
-                        state.saleCart?.other ?? 0,
-                      ),
+                      AppHelpers.numberFormat(state.saleCart?.other ?? 0),
                       style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w600, fontSize: 24.sp),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 24.sp,
+                      ),
                     ),
                   ],
                 ),
                 const Spacer(),
                 Container(
-                    padding: EdgeInsets.all(8.r),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppStyle.blue.withOpacity(0.01),
-                        boxShadow: [
-                          BoxShadow(
-                              blurRadius: 32.r,
-                              spreadRadius: 12.r,
-                              color: AppStyle.blue.withOpacity(0.5))
-                        ]),
-                    child: SvgPicture.asset(Assets.svgCart2))
+                  padding: EdgeInsets.all(8.r),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppStyle.blue.withOpacity(0.01),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 32.r,
+                        spreadRadius: 12.r,
+                        color: AppStyle.blue.withOpacity(0.5),
+                      ),
+                    ],
+                  ),
+                  child: SvgPicture.asset(Assets.svgCart2),
+                ),
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -222,7 +236,7 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
               isShadow: true,
               onTap: () => notifier.changeIndex(i),
             ),
-          )
+          ),
       ],
     );
   }

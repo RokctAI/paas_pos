@@ -31,11 +31,14 @@ abstract class OrdersRepository {
 
   Future<ApiResult<SingleOrderResponse>> getOrderDetails({int? orderId});
 
-  Future<ApiResult<SingleKitchenOrderResponse>> getOrderDetailsKitchen(
-      {int? orderId});
+  Future<ApiResult<SingleKitchenOrderResponse>> getOrderDetailsKitchen({
+    int? orderId,
+  });
 
-  Future<ApiResult<dynamic>> setDeliverMan(
-      {required int orderId, required int deliverymanId});
+  Future<ApiResult<dynamic>> setDeliverMan({
+    required int orderId,
+    required int deliverymanId,
+  });
 
   Future<ApiResult<dynamic>> deleteOrder({required int orderId});
 

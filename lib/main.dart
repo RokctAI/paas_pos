@@ -13,7 +13,7 @@ import 'dart:io' show Platform;
 void main() async {
   setUpDependencies();
   WidgetsFlutterBinding.ensureInitialized();
-  if(Platform.isAndroid || Platform.isIOS){
+  if (Platform.isAndroid || Platform.isIOS) {
     await Firebase.initializeApp();
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   }
@@ -30,7 +30,10 @@ void main() async {
   }
 
   await LocalStorage.init();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft,DeviceOrientation.landscapeRight]);
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
   runApp(const ProviderScope(child: AppWidget()));
 }
 

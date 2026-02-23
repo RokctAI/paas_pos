@@ -1,4 +1,5 @@
 import 'package:admin_desktop/src/core/utils/utils.dart';
+
 class LanguagesResponse {
   LanguagesResponse({
     String? timestamp,
@@ -34,13 +35,12 @@ class LanguagesResponse {
     bool? status,
     String? message,
     List<LanguageData>? data,
-  }) =>
-      LanguagesResponse(
-        timestamp: timestamp ?? _timestamp,
-        status: status ?? _status,
-        message: message ?? _message,
-        data: data ?? _data,
-      );
+  }) => LanguagesResponse(
+    timestamp: timestamp ?? _timestamp,
+    status: status ?? _status,
+    message: message ?? _message,
+    data: data ?? _data,
+  );
 
   String? get timestamp => _timestamp;
 
@@ -62,7 +62,7 @@ class LanguagesResponse {
   }
 }
 
-class  LanguageData {
+class LanguageData {
   LanguageData({
     int? id,
     String? title,
@@ -107,16 +107,15 @@ class  LanguageData {
     bool? isDefault,
     bool? active,
     String? img,
-  }) =>
-      LanguageData(
-        id: id ?? _id,
-        title: title ?? _title,
-        locale: locale ?? _locale,
-        backward: backward ?? _backward,
-        isDefault: isDefault ?? _default,
-        active: active ?? _active,
-        img: img ?? _img,
-      );
+  }) => LanguageData(
+    id: id ?? _id,
+    title: title ?? _title,
+    locale: locale ?? _locale,
+    backward: backward ?? _backward,
+    isDefault: isDefault ?? _default,
+    active: active ?? _active,
+    img: img ?? _img,
+  );
 
   int? get id => _id;
 
@@ -144,4 +143,3 @@ class  LanguageData {
     return map;
   }
 }
-

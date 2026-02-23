@@ -35,8 +35,9 @@ class AddonTable extends StatelessWidget {
           ),
           padding: EdgeInsets.all(24.r),
           child: Table(
-            defaultColumnWidth:
-                FixedColumnWidth(MediaQuery.of(context).size.height / 9.6),
+            defaultColumnWidth: FixedColumnWidth(
+              MediaQuery.of(context).size.height / 9.6,
+            ),
             border: TableBorder.all(color: AppStyle.transparent),
             children: [
               TableRow(
@@ -52,7 +53,7 @@ class AddonTable extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   Column(
@@ -65,7 +66,7 @@ class AddonTable extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   Column(
@@ -78,7 +79,7 @@ class AddonTable extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   Column(
@@ -91,7 +92,7 @@ class AddonTable extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   Column(
@@ -104,7 +105,7 @@ class AddonTable extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   Column(
@@ -117,7 +118,7 @@ class AddonTable extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
@@ -137,7 +138,7 @@ class AddonTable extends StatelessWidget {
                               color: AppStyle.black,
                               letterSpacing: -0.3,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -148,14 +149,17 @@ class AddonTable extends StatelessWidget {
                           const Divider(),
                           Text(
                             (orderDetail
-                                    ?.addons?[j].stocks?.translation?.title ??
+                                    ?.addons?[j]
+                                    .stocks
+                                    ?.translation
+                                    ?.title ??
                                 ""),
                             style: GoogleFonts.inter(
                               fontSize: 16.sp,
                               color: AppStyle.black,
                               letterSpacing: -0.3,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -173,7 +177,7 @@ class AddonTable extends StatelessWidget {
                               color: AppStyle.black,
                               letterSpacing: -0.3,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -189,7 +193,7 @@ class AddonTable extends StatelessWidget {
                               color: AppStyle.black,
                               letterSpacing: -0.3,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -207,7 +211,7 @@ class AddonTable extends StatelessWidget {
                               color: AppStyle.black,
                               letterSpacing: -0.3,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -225,7 +229,7 @@ class AddonTable extends StatelessWidget {
                               color: AppStyle.black,
                               letterSpacing: -0.3,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),

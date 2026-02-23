@@ -235,7 +235,7 @@ class _MainPageState extends ConsumerState<MainPage>
                 Text(
                   LocalStorage.getUser()?.shop?.translation?.title ??
                       AppHelpers.getAppName(),
-                  style: AppStyle.interNoSemi(color: AppStyle.black,size: 16),
+                  style: AppStyle.interNoSemi(color: AppStyle.black, size: 16),
                 ),
                 const VerticalDivider(),
                 30.horizontalSpace,

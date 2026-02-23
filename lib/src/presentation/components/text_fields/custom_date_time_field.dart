@@ -63,7 +63,8 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
   void initState() {
     super.initState();
     _selectedDateTime = widget.initialDate;
-    _selectedDateTimeSpinner = widget.initialDate ?? DateTime.now().add(const Duration(minutes: 1));
+    _selectedDateTimeSpinner =
+        widget.initialDate ?? DateTime.now().add(const Duration(minutes: 1));
     _controller = TimePickerSpinnerController();
     _controller?.addListener(_updateView);
     setInitialTimes();
@@ -75,15 +76,18 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
 
     _colorTween = Tween(begin: 0, end: 1);
     _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 150));
+      vsync: this,
+      duration: const Duration(milliseconds: 150),
+    );
     _animation = _colorTween.animate(_animationController);
   }
 
   @override
   void didUpdateWidget(covariant CustomDateTimeField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    _selectedDateTime =  widget.initialDate;
-    _selectedDateTimeSpinner = widget.initialDate ?? DateTime.now().add(const Duration(minutes: 1));
+    _selectedDateTime = widget.initialDate;
+    _selectedDateTimeSpinner =
+        widget.initialDate ?? DateTime.now().add(const Duration(minutes: 1));
   }
 
   void setInitialTimes() {
@@ -122,21 +126,22 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
   @override
   Widget build(BuildContext context) {
     return FormField(
-        validator: widget.validation,
-        initialValue: time,
-        builder: (FormFieldState<String> state) {
-          var child = _timeWidget(state);
-          setStateValue = () => state.didChange(time);
-          if (Platform.isIOS) {
-            return child;
-          } else {
-            return PopScope(
-              onPopInvoked: (s) => _hideMenu(),
-              canPop: true,
-              child: child,
-            );
-          }
-        });
+      validator: widget.validation,
+      initialValue: time,
+      builder: (FormFieldState<String> state) {
+        var child = _timeWidget(state);
+        setStateValue = () => state.didChange(time);
+        if (Platform.isIOS) {
+          return child;
+        } else {
+          return PopScope(
+            onPopInvoked: (s) => _hideMenu(),
+            canPop: true,
+            child: child,
+          );
+        }
+      },
+    );
   }
 
   void _showMenu() {
@@ -149,28 +154,28 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
         final offset = _childBox!.localToGlobal(const Offset(0, 0));
 
         final confirmButton = Expanded(
-            child: GestureDetector(
-          onTap: () {
-            _animationController.reverse();
-            setState(() => _selectedDateTime = _selectedDateTimeSpinner);
-            Future.delayed(const Duration(milliseconds: 150), () {
-              if (widget.mode == CupertinoDatePickerMode.time) {
-                widget.onTimeChange
-                    ?.call(_selectedDateTimeSpinner.toTime);
-              } else {
-                widget.onDateChange?.call(_selectedDateTimeSpinner);
-              }
-              setInitialTimes();
-              setStateValue();
-              _hideMenu();
-            });
-          },
-          child: Text(
-            AppHelpers.getTranslation(TrKeys.ok),
-            style: AppStyle.interNormal(size: 14),
-            textAlign: TextAlign.center,
+          child: GestureDetector(
+            onTap: () {
+              _animationController.reverse();
+              setState(() => _selectedDateTime = _selectedDateTimeSpinner);
+              Future.delayed(const Duration(milliseconds: 150), () {
+                if (widget.mode == CupertinoDatePickerMode.time) {
+                  widget.onTimeChange?.call(_selectedDateTimeSpinner.toTime);
+                } else {
+                  widget.onDateChange?.call(_selectedDateTimeSpinner);
+                }
+                setInitialTimes();
+                setStateValue();
+                _hideMenu();
+              });
+            },
+            child: Text(
+              AppHelpers.getTranslation(TrKeys.ok),
+              style: AppStyle.interNormal(size: 14),
+              textAlign: TextAlign.center,
+            ),
           ),
-        ));
+        );
 
         final cancelButton = Expanded(
           child: GestureDetector(
@@ -201,7 +206,7 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                 spreadRadius: 0,
                 blurRadius: 8,
                 offset: const Offset(0, 2), // changes position of shadow
-              )
+              ),
             ],
           ),
           child: Column(
@@ -212,14 +217,13 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                 child: CupertinoTheme(
                   data: CupertinoThemeData(
                     textTheme: CupertinoTextThemeData(
-                        dateTimePickerTextStyle: AppStyle.interNormal()),
+                      dateTimePickerTextStyle: AppStyle.interNormal(),
+                    ),
                   ),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxWidth: size.width + 2,
-                      ),
+                      constraints: BoxConstraints(maxWidth: size.width + 2),
                       child: CupertinoDatePicker(
                         minimumDate: widget.minDate,
                         maximumDate: widget.maxDate,
@@ -246,9 +250,10 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
               DefaultTextStyle(
                 style: AppStyle.interNormal(),
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [cancelButton, confirmButton]),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [cancelButton, confirmButton],
+                ),
               ),
               const SizedBox(height: 10),
             ],
@@ -294,10 +299,9 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
               top: top == null ? null : (top - 10),
               bottom: bottom == null ? null : (bottom - 10),
               child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: 270 * value,
-                  ),
-                  child: SingleChildScrollView(child: menu)),
+                constraints: BoxConstraints(maxHeight: 270 * value),
+                child: SingleChildScrollView(child: menu),
+              ),
             );
           },
         );
@@ -350,7 +354,8 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
               ),
               borderRadius: BorderRadius.circular(AppConstants.radius.r),
             ),
-            padding: widget.contentPadding ??
+            padding:
+                widget.contentPadding ??
                 REdgeInsets.symmetric(vertical: 14, horizontal: 12),
             child: Row(
               children: [
@@ -360,7 +365,9 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                         AppHelpers.getTranslation(TrKeys.pleaseSelect),
                     style: AppStyle.interNormal(
                       size: 14,
-                      color: state.value == null ? AppStyle.hint : AppStyle.black,
+                      color: state.value == null
+                          ? AppStyle.hint
+                          : AppStyle.black,
                     ),
                   ),
                 ),
@@ -381,7 +388,7 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                   style: AppStyle.interRegular(size: 12, color: AppStyle.red),
                 ),
               )
-            : Container()
+            : Container(),
       ],
     );
   }

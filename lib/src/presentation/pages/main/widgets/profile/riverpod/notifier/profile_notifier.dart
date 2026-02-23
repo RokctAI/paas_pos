@@ -14,13 +14,19 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
   final GalleryRepositoryFacade _galleryRepository;
 
   ProfileNotifier(
-      this._userRepository, this._galleryRepository, this._shopsRepository)
-      : super(const ProfileState());
+    this._userRepository,
+    this._galleryRepository,
+    this._shopsRepository,
+  ) : super(const ProfileState());
   int page = 1;
 
   void resetShopData() {
     state = state.copyWith(
-        bgImage: "", logoImage: "", addressModel: null, isSaveLoading: false);
+      bgImage: "",
+      logoImage: "",
+      addressModel: null,
+      isSaveLoading: false,
+    );
   }
 
   void setBgImage(String bgImage) {
@@ -69,28 +75,28 @@ class ProfileNotifier extends StateNotifier<ProfileState> {
     // LocalStorage.logout();
   }
 
-// Future<void> deleteAccount(BuildContext context) async {
-//   final connected = await AppConnectivity.connectivity();
-//   if (connected) {
-//     state = state.copyWith(isLoading: true);
-//     final response = await _userRepository.deleteAccount();
-//     response.when(
-//       success: (data) async {
-//         context.router.popUntilRoot();
-//         context.replaceRoute(const LoginRoute());
-//       },
-//       failure: (activeFailure, status) {
-//         state = state.copyWith(isLoading: false);
-//         AppHelpers.showSnackBar(
-//           context,
-//           AppHelpers.getTranslation(status.toString()),
-//         );
-//       },
-//     );
-//   } else {
-//     if (mounted) {
-//       AppHelpers.showSnackBar(context, 'No internet connection');
-//     }
-//   }
-// }
+  // Future<void> deleteAccount(BuildContext context) async {
+  //   final connected = await AppConnectivity.connectivity();
+  //   if (connected) {
+  //     state = state.copyWith(isLoading: true);
+  //     final response = await _userRepository.deleteAccount();
+  //     response.when(
+  //       success: (data) async {
+  //         context.router.popUntilRoot();
+  //         context.replaceRoute(const LoginRoute());
+  //       },
+  //       failure: (activeFailure, status) {
+  //         state = state.copyWith(isLoading: false);
+  //         AppHelpers.showSnackBar(
+  //           context,
+  //           AppHelpers.getTranslation(status.toString()),
+  //         );
+  //       },
+  //     );
+  //   } else {
+  //     if (mounted) {
+  //       AppHelpers.showSnackBar(context, 'No internet connection');
+  //     }
+  //   }
+  // }
 }

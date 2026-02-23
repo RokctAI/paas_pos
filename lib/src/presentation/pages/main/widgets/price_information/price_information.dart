@@ -28,14 +28,16 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(rightSideProvider.notifier).fetchCarts(
-        checkYourNetwork: () {
-          AppHelpers.showSnackBar(
-            context,
-            AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+      ref
+          .read(rightSideProvider.notifier)
+          .fetchCarts(
+            checkYourNetwork: () {
+              AppHelpers.showSnackBar(
+                context,
+                AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+              );
+            },
           );
-        },
-      );
     });
   }
 
@@ -80,7 +82,7 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
                           remove: () {},
                           cart:
                               rightSideState.paginateResponse?.stocks?[index] ??
-                                  ProductData(),
+                              ProductData(),
                         );
                       },
                     ),
@@ -127,7 +129,8 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
                           NumberFormat.currency(
                             symbol: LocalStorage.getSelectedCurrency().symbol,
                           ).format(
-                              rightSideState.paginateResponse?.totalTax ?? 0),
+                            rightSideState.paginateResponse?.totalTax ?? 0,
+                          ),
                           style: GoogleFonts.inter(
                             color: AppColors.black,
                             fontSize: 18.sp,
@@ -153,8 +156,9 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
                                 ),
                               ),
                               Text(
-                                AppHelpers.numberFormat(rightSideState
-                                    .paginateResponse?.serviceFee),
+                                AppHelpers.numberFormat(
+                                  rightSideState.paginateResponse?.serviceFee,
+                                ),
                                 style: GoogleFonts.inter(
                                   color: AppColors.black,
                                   fontSize: 14.sp,
@@ -184,8 +188,8 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
                           NumberFormat.currency(
                             symbol: LocalStorage.getSelectedCurrency().symbol,
                           ).format(
-                              rightSideState.paginateResponse?.deliveryFee ??
-                                  0),
+                            rightSideState.paginateResponse?.deliveryFee ?? 0,
+                          ),
                           style: GoogleFonts.inter(
                             color: AppColors.black,
                             fontSize: 18.sp,
@@ -209,9 +213,7 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
                           ),
                         ),
                         Text(
-                          "-${NumberFormat.currency(
-                            symbol: LocalStorage.getSelectedCurrency().symbol,
-                          ).format(rightSideState.paginateResponse?.totalDiscount ?? 0)}",
+                          "-${NumberFormat.currency(symbol: LocalStorage.getSelectedCurrency().symbol).format(rightSideState.paginateResponse?.totalDiscount ?? 0)}",
                           style: GoogleFonts.inter(
                             color: AppColors.red,
                             fontSize: 18.sp,
@@ -236,10 +238,7 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
                                 ),
                               ),
                               Text(
-                                "-${NumberFormat.currency(
-                                  symbol:
-                                      LocalStorage.getSelectedCurrency().symbol,
-                                ).format(rightSideState.paginateResponse?.couponPrice ?? 0)}",
+                                "-${NumberFormat.currency(symbol: LocalStorage.getSelectedCurrency().symbol).format(rightSideState.paginateResponse?.couponPrice ?? 0)}",
                                 style: GoogleFonts.inter(
                                   color: AppColors.red,
                                   fontSize: 18.sp,
@@ -269,7 +268,8 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
                           NumberFormat.currency(
                             symbol: LocalStorage.getSelectedCurrency().symbol,
                           ).format(
-                              rightSideState.paginateResponse?.totalPrice ?? 0),
+                            rightSideState.paginateResponse?.totalPrice ?? 0,
+                          ),
                           style: GoogleFonts.inter(
                             color: AppColors.black,
                             fontSize: 18.sp,
@@ -286,46 +286,49 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
                         Expanded(
                           child: ConfirmButton(
                             height: 72.r,
-                            title:
-                                AppHelpers.getTranslation(TrKeys.confirmOrder),
+                            title: AppHelpers.getTranslation(
+                              TrKeys.confirmOrder,
+                            ),
                             onTap: () {
                               rightSideNotifier.createOrder(
-                                  context,
-                                  OrderBodyData(
-                                      currencyId:
-                                          rightSideState.selectedCurrency?.id ??
-                                              0,
-                                      rate: rightSideState
-                                              .selectedCurrency?.rate ??
-                                          0,
-                                      bagData: widget.bag,
-                                      phone:
-                                          rightSideState.selectedUser?.phone ??
-                                              "",
-                                      userId:
-                                          rightSideState.selectedUser?.id ?? 0,
-                                      deliveryFee: (rightSideState
-                                              .paginateResponse?.deliveryFee ??
-                                          0),
-                                      deliveryType: rightSideState.orderType,
-                                      location: rightSideState
-                                              .selectedAddress?.location ??
-                                          LocationData(
-                                              latitude: 0, longitude: 0),
-                                      address: AddressModel(
-                                        address:
-                                            "${rightSideState.selectedAddress?.title}, ${rightSideState.selectedAddress?.address}",
-                                      ),
-                                      deliveryDate: DateFormat("yyyy-MM-dd")
-                                          .format(rightSideState.orderDate ??
-                                              DateTime.now()),
-                                      deliveryTime: rightSideState
-                                                  .orderTime?.hour
-                                                  .toString()
-                                                  .length ==
-                                              2
-                                          ? "${rightSideState.orderTime?.hour}:${rightSideState.orderTime?.minute.toString().padLeft(2, '0')}"
-                                          : "0${rightSideState.orderTime?.hour}:${rightSideState.orderTime?.minute.toString().padLeft(2, '0')}"));
+                                context,
+                                OrderBodyData(
+                                  currencyId:
+                                      rightSideState.selectedCurrency?.id ?? 0,
+                                  rate:
+                                      rightSideState.selectedCurrency?.rate ??
+                                      0,
+                                  bagData: widget.bag,
+                                  phone:
+                                      rightSideState.selectedUser?.phone ?? "",
+                                  userId: rightSideState.selectedUser?.id ?? 0,
+                                  deliveryFee:
+                                      (rightSideState
+                                          .paginateResponse
+                                          ?.deliveryFee ??
+                                      0),
+                                  deliveryType: rightSideState.orderType,
+                                  location:
+                                      rightSideState
+                                          .selectedAddress
+                                          ?.location ??
+                                      LocationData(latitude: 0, longitude: 0),
+                                  address: AddressModel(
+                                    address:
+                                        "${rightSideState.selectedAddress?.title}, ${rightSideState.selectedAddress?.address}",
+                                  ),
+                                  deliveryDate: DateFormat("yyyy-MM-dd").format(
+                                    rightSideState.orderDate ?? DateTime.now(),
+                                  ),
+                                  deliveryTime:
+                                      rightSideState.orderTime?.hour
+                                              .toString()
+                                              .length ==
+                                          2
+                                      ? "${rightSideState.orderTime?.hour}:${rightSideState.orderTime?.minute.toString().padLeft(2, '0')}"
+                                      : "0${rightSideState.orderTime?.hour}:${rightSideState.orderTime?.minute.toString().padLeft(2, '0')}",
+                                ),
+                              );
                             },
                             isLoading: rightSideState.isOrderLoading,
                           ),
@@ -344,7 +347,7 @@ class _DeliveriesDrawerState extends ConsumerState<PriceInformation> {
                           ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),

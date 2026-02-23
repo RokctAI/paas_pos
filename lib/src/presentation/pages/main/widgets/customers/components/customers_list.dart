@@ -18,48 +18,46 @@ class CustomersList extends StatelessWidget {
         14.verticalSpace,
         Row(
           children: [
-            Expanded(
-              child: Divider(color: AppStyle.black.withOpacity(0.2)),
-            )
+            Expanded(child: Divider(color: AppStyle.black.withOpacity(0.2))),
           ],
         ),
         14.verticalSpace,
         Row(
           children: [
-            CommonImage(
-              imageUrl: user?.img,
-              radius: 25,
-              height: 50,
-              width: 50,
-            ),
+            CommonImage(imageUrl: user?.img, radius: 25, height: 50, width: 50),
             14.horizontalSpace,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${user?.firstname ?? ''} ${user?.lastname  ?? ''}',
+                  '${user?.firstname ?? ''} ${user?.lastname ?? ''}',
                   style: GoogleFonts.inter(
-                      fontSize: 16.sp,
-                      color: AppStyle.black,
-                      fontWeight: FontWeight.w600),
+                    fontSize: 16.sp,
+                    color: AppStyle.black,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 4.verticalSpace,
                 Text(
                   user?.email ?? '',
                   style: GoogleFonts.inter(
-                      fontSize: 12.sp,
-                      color: AppStyle.icon,
-                      fontWeight: FontWeight.w400),
-                )
+                    fontSize: 12.sp,
+                    color: AppStyle.icon,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
             const Spacer(),
             Text(
-              TimeService.dateFormatYMDHm(DateTime.tryParse(user?.registeredAt ?? '')),
+              TimeService.dateFormatYMDHm(
+                DateTime.tryParse(user?.registeredAt ?? ''),
+              ),
               style: GoogleFonts.inter(
-                  fontSize: 12.sp,
-                  color: AppStyle.icon,
-                  fontWeight: FontWeight.w400),
+                fontSize: 12.sp,
+                color: AppStyle.icon,
+                fontWeight: FontWeight.w400,
+              ),
             ),
             8.r.horizontalSpace,
           ],

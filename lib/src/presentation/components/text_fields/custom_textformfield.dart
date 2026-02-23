@@ -38,7 +38,8 @@ class CustomTextField extends StatelessWidget {
     this.textCapitalization,
     this.onFieldSubmitted,
     this.onTap,
-    this.hintText, this.validator,
+    this.hintText,
+    this.validator,
   });
 
   @override
@@ -102,12 +103,12 @@ class CustomTextField extends StatelessWidget {
                   color: isError
                       ? AppStyle.red
                       : isSuccess
-                          ? AppStyle.primary
-                          : AppStyle.black,
+                      ? AppStyle.primary
+                      : AppStyle.black,
                 ),
               ),
             ],
-          )
+          ),
       ],
     );
   }

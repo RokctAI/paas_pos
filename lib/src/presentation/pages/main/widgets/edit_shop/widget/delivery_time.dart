@@ -19,12 +19,13 @@ class DeliveryTimeWidget extends ConsumerWidget {
   final List<DropdownItem<String>> selectedType;
   final GlobalKey<FormState> formKey;
 
-  const DeliveryTimeWidget(
-      {super.key,
-      required this.selectedTag,
-      required this.selectedCategory,
-      required this.selectedType,
-      required this.formKey});
+  const DeliveryTimeWidget({
+    super.key,
+    required this.selectedTag,
+    required this.selectedCategory,
+    required this.selectedType,
+    required this.formKey,
+  });
 
   @override
   Widget build(BuildContext context, ref) {
@@ -74,140 +75,165 @@ class DeliveryTimeWidget extends ConsumerWidget {
             ),
           ),
           child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: state.editShopData?.shopWorkingDays?.length ?? 0,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    12.verticalSpace,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                            width: (MediaQuery.sizeOf(context).width - 100) / 8,
-                            child: Text(
-                              AppHelpers.getTranslation(workingDays[index].day ?? ""),
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: state.editShopData?.shopWorkingDays?.length ?? 0,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  12.verticalSpace,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: (MediaQuery.sizeOf(context).width - 100) / 8,
+                        child: Text(
+                          AppHelpers.getTranslation(
+                            workingDays[index].day ?? "",
+                          ),
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 22.r,
+                          ),
+                        ),
+                      ),
+                      workingDays[index].disabled ?? false
+                          ? Text(
+                              AppHelpers.getTranslation(TrKeys.shopClosed),
                               style: GoogleFonts.inter(
-                                  fontWeight: FontWeight.w400, fontSize: 22.r),
-                            )),
-                        workingDays[index].disabled ?? false
-                            ? Text(
-                                AppHelpers.getTranslation(TrKeys.shopClosed),
-                                style: GoogleFonts.inter(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 18.r),
-                              )
-                            : SizedBox(
-                                width:
-                                    (MediaQuery.sizeOf(context).width - 100) /
-                                        3,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                      height: 36.h,
-                                      width: 140.w,
-                                      child: CupertinoDatePicker(
-                                        key: UniqueKey(),
-                                        mode: CupertinoDatePickerMode.time,
-                                        initialDateTime: DateTime(
-                                          2024,
-                                          1,
-                                          1,
-                                          int.parse(workingDays[index]
-                                                  .from
-                                                  ?.substring(0, 2) ??
-                                              ''),
-                                          int.parse(workingDays[index]
-                                                  .from
-                                                  ?.substring(3, 5) ??
-                                              ''),
-                                        ),
-                                        onDateTimeChanged:
-                                            (DateTime newDateTime) {
-                                          setTimeToDay(
-                                            time: TimeOfDay.fromDateTime(
-                                                newDateTime),
-                                            currentIndex: index,
-                                          );
-                                        },
-                                        use24hFormat: true,
-                                        minuteInterval: 1,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 36.h,
-                                      width: 140.w,
-                                      child: CupertinoDatePicker(
-                                        key: UniqueKey(),
-                                        mode: CupertinoDatePickerMode.time,
-                                        initialDateTime: DateTime(
-                                          2024,
-                                          1,
-                                          1,
-                                          int.parse(workingDays[index]
-                                                  .to
-                                                  ?.substring(0, 2) ??
-                                              ''),
-                                          int.parse(workingDays[index]
-                                                  .to
-                                                  ?.substring(3, 5) ??
-                                              ''),
-                                        ),
-                                        onDateTimeChanged:
-                                            (DateTime newDateTime) {
-                                          setTimeToDay(
-                                              time: TimeOfDay.fromDateTime(
-                                                  newDateTime),
-                                              currentIndex: index,
-                                              isFrom: false);
-                                        },
-                                        use24hFormat: true,
-                                        minuteInterval: 1,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18.r,
                               ),
-                        CupertinoSwitch(
-                            value: workingDays[index].disabled ?? false,
-                            onChanged: (s) {
-                              notifier.setCloseDay(index);
-                            })
-                      ],
-                    ),
-                    12.verticalSpace,
-                    if (index < (workingDays.length) - 1) const Divider(),
-                  ],
-                );
-              }),
+                            )
+                          : SizedBox(
+                              width:
+                                  (MediaQuery.sizeOf(context).width - 100) / 3,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    height: 36.h,
+                                    width: 140.w,
+                                    child: CupertinoDatePicker(
+                                      key: UniqueKey(),
+                                      mode: CupertinoDatePickerMode.time,
+                                      initialDateTime: DateTime(
+                                        2024,
+                                        1,
+                                        1,
+                                        int.parse(
+                                          workingDays[index].from?.substring(
+                                                0,
+                                                2,
+                                              ) ??
+                                              '',
+                                        ),
+                                        int.parse(
+                                          workingDays[index].from?.substring(
+                                                3,
+                                                5,
+                                              ) ??
+                                              '',
+                                        ),
+                                      ),
+                                      onDateTimeChanged:
+                                          (DateTime newDateTime) {
+                                            setTimeToDay(
+                                              time: TimeOfDay.fromDateTime(
+                                                newDateTime,
+                                              ),
+                                              currentIndex: index,
+                                            );
+                                          },
+                                      use24hFormat: true,
+                                      minuteInterval: 1,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 36.h,
+                                    width: 140.w,
+                                    child: CupertinoDatePicker(
+                                      key: UniqueKey(),
+                                      mode: CupertinoDatePickerMode.time,
+                                      initialDateTime: DateTime(
+                                        2024,
+                                        1,
+                                        1,
+                                        int.parse(
+                                          workingDays[index].to?.substring(
+                                                0,
+                                                2,
+                                              ) ??
+                                              '',
+                                        ),
+                                        int.parse(
+                                          workingDays[index].to?.substring(
+                                                3,
+                                                5,
+                                              ) ??
+                                              '',
+                                        ),
+                                      ),
+                                      onDateTimeChanged:
+                                          (DateTime newDateTime) {
+                                            setTimeToDay(
+                                              time: TimeOfDay.fromDateTime(
+                                                newDateTime,
+                                              ),
+                                              currentIndex: index,
+                                              isFrom: false,
+                                            );
+                                          },
+                                      use24hFormat: true,
+                                      minuteInterval: 1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                      CupertinoSwitch(
+                        value: workingDays[index].disabled ?? false,
+                        onChanged: (s) {
+                          notifier.setCloseDay(index);
+                        },
+                      ),
+                    ],
+                  ),
+                  12.verticalSpace,
+                  if (index < (workingDays.length) - 1) const Divider(),
+                ],
+              );
+            },
+          ),
         ),
         40.verticalSpace,
         SizedBox(
           width: 250.w,
           child: LoginButton(
-              isLoading: state.isSave,
-              title: AppHelpers.getTranslation(TrKeys.save),
-              onPressed: () async {
-                final stateLocation = ref.watch(selectAddressProvider);
-                if (formKey.currentState?.validate() ?? false) {
-                  await notifier.updateWorkingDays(
-                      days: workingDays,
-                      shopUuid: state.editShopData?.uuid ?? "");
-                  await notifier.updateShopData(
-                      displayName: stateLocation.textController?.text,
-                      location: stateLocation.location,
-                      category: selectedCategory,
-                      tag: selectedTag,
-                      type: selectedType,
-                      onSuccess: () {
-                        profileNotifier.setShopEdit(0);
-                      });
-                }
-              }),
-        )
+            isLoading: state.isSave,
+            title: AppHelpers.getTranslation(TrKeys.save),
+            onPressed: () async {
+              final stateLocation = ref.watch(selectAddressProvider);
+              if (formKey.currentState?.validate() ?? false) {
+                await notifier.updateWorkingDays(
+                  days: workingDays,
+                  shopUuid: state.editShopData?.uuid ?? "",
+                );
+                await notifier.updateShopData(
+                  displayName: stateLocation.textController?.text,
+                  location: stateLocation.location,
+                  category: selectedCategory,
+                  tag: selectedTag,
+                  type: selectedType,
+                  onSuccess: () {
+                    profileNotifier.setShopEdit(0);
+                  },
+                );
+              }
+            },
+          ),
+        ),
       ],
     );
   }

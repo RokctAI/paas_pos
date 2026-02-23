@@ -38,81 +38,85 @@ class StoriesImagePicker extends StatelessWidget {
         SizedBox(
           height: 130.r,
           child: ListView.builder(
-              padding: REdgeInsets.symmetric(horizontal: 16),
-              itemCount: itemCount + 1,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: REdgeInsets.only(right: 12),
-                  height: 130,
-                  width: 116,
-                  child: itemCount == index
-                      ? SingleImagePicker(
-                          width: 116,
-                          height: 130,
-                          onImageChange: onImageChange,
-                          onDelete: () {},
-                        )
-                      : Stack(
-                          children: [
-                            Positioned(
-                              left: 0,
-                              right: 0,
-                              top: 0,
-                              bottom: 0,
-                              child: CommonImage(
-                                fileImage: (imageUrls?.length ?? 0) > index
-                                    ? null
-                                    : File(listOfImages?[
-                                            index - (imageUrls?.length ?? 0)] ??
-                                        ""),
-                                imageUrl: (imageUrls?.length ?? 0) > index
-                                    ? imageUrls![index]
-                                    : null,
-                                radius: 12,
-                              ),
+            padding: REdgeInsets.symmetric(horizontal: 16),
+            itemCount: itemCount + 1,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: REdgeInsets.only(right: 12),
+                height: 130,
+                width: 116,
+                child: itemCount == index
+                    ? SingleImagePicker(
+                        width: 116,
+                        height: 130,
+                        onImageChange: onImageChange,
+                        onDelete: () {},
+                      )
+                    : Stack(
+                        children: [
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: CommonImage(
+                              fileImage: (imageUrls?.length ?? 0) > index
+                                  ? null
+                                  : File(
+                                      listOfImages?[index -
+                                              (imageUrls?.length ?? 0)] ??
+                                          "",
+                                    ),
+                              imageUrl: (imageUrls?.length ?? 0) > index
+                                  ? imageUrls![index]
+                                  : null,
+                              radius: 12,
                             ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: REdgeInsets.all(6),
-                                child: ButtonEffectAnimation(
-                                  onTap: () {
-                                    String path;
-                                    try {
-                                      path = imageUrls?[index] ?? "";
-                                    } catch (e) {
-                                      path = listOfImages?[(index -
-                                              (imageUrls?.length ?? 0))] ??
-                                          "";
-                                    }
-                                    onDelete(path);
-                                  },
-                                  child: BlurWrap(
-                                    blur: 8,
-                                    radius: BorderRadius.circular(20.r),
-                                    child: Container(
-                                      height: 32.r,
-                                      width: 32.r,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: AppStyle.white.withOpacity(0.15),
-                                      ),
-                                      child: Icon(
-                                        FlutterRemix.delete_bin_fill,
-                                        color: AppStyle.white,
-                                        size: 16.r,
-                                      ),
+                          ),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: Padding(
+                              padding: REdgeInsets.all(6),
+                              child: ButtonEffectAnimation(
+                                onTap: () {
+                                  String path;
+                                  try {
+                                    path = imageUrls?[index] ?? "";
+                                  } catch (e) {
+                                    path =
+                                        listOfImages?[(index -
+                                            (imageUrls?.length ?? 0))] ??
+                                        "";
+                                  }
+                                  onDelete(path);
+                                },
+                                child: BlurWrap(
+                                  blur: 8,
+                                  radius: BorderRadius.circular(20.r),
+                                  child: Container(
+                                    height: 32.r,
+                                    width: 32.r,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppStyle.white.withOpacity(0.15),
+                                    ),
+                                    child: Icon(
+                                      FlutterRemix.delete_bin_fill,
+                                      color: AppStyle.white,
+                                      size: 16.r,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                );
-              }),
-        )
+                          ),
+                        ],
+                      ),
+              );
+            },
+          ),
+        ),
       ],
     );
   }

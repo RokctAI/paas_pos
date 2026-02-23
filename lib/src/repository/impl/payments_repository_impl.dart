@@ -15,9 +15,7 @@ class PaymentsRepositoryImpl extends PaymentsRepository {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get('/api/v1/rest/payments');
 
-      return ApiResult.success(
-        data: PaymentsResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: PaymentsResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> get payments failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));

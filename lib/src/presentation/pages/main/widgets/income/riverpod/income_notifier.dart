@@ -16,18 +16,19 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
     fetchIncomeStatistic();
   }
 
-
   Future<void> fetchIncomeCarts({DateTime? start, DateTime? end}) async {
     state = state.copyWith(start: start, end: end);
     final response = await _settingsRepository.getIncomeCart(
-        type: state.selectType,
-        from: start ??
-            (state.selectType == TrKeys.day
-                ? DateTime.now()
-                : state.selectType == TrKeys.month
-                    ? DateTime.now().subtract(const Duration(days: 30))
-                    : DateTime.now().subtract(const Duration(days: 7))),
-        to: end ?? DateTime.now());
+      type: state.selectType,
+      from:
+          start ??
+          (state.selectType == TrKeys.day
+              ? DateTime.now()
+              : state.selectType == TrKeys.month
+              ? DateTime.now().subtract(const Duration(days: 30))
+              : DateTime.now().subtract(const Duration(days: 7))),
+      to: end ?? DateTime.now(),
+    );
     response.when(
       success: (data) async {
         state = state.copyWith(incomeCart: data);
@@ -38,14 +39,16 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
 
   Future<void> fetchIncomeStatistic({DateTime? start, DateTime? end}) async {
     final response = await _settingsRepository.getIncomeStatistic(
-        type: state.selectType,
-        from: start ??
-            (state.selectType == TrKeys.day
-                ? DateTime.now()
-                : state.selectType == TrKeys.month
-                    ? DateTime.now().subtract(const Duration(days: 30))
-                    : DateTime.now().subtract(const Duration(days: 7))),
-        to: end ?? DateTime.now());
+      type: state.selectType,
+      from:
+          start ??
+          (state.selectType == TrKeys.day
+              ? DateTime.now()
+              : state.selectType == TrKeys.month
+              ? DateTime.now().subtract(const Duration(days: 30))
+              : DateTime.now().subtract(const Duration(days: 7))),
+      to: end ?? DateTime.now(),
+    );
     response.when(
       success: (data) async {
         state = state.copyWith(incomeStatistic: data);
@@ -56,14 +59,16 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
 
   Future<void> fetchIncomeCharts({DateTime? start, DateTime? end}) async {
     final response = await _settingsRepository.getIncomeChart(
-        type: start == null ? state.selectType : TrKeys.month,
-        from: start ??
-            (state.selectType == TrKeys.day
-                ? DateTime.now()
-                : state.selectType == TrKeys.month
-                    ? DateTime.now().subtract(const Duration(days: 30))
-                    : DateTime.now().subtract(const Duration(days: 7))),
-        to: end ?? DateTime.now());
+      type: start == null ? state.selectType : TrKeys.month,
+      from:
+          start ??
+          (state.selectType == TrKeys.day
+              ? DateTime.now()
+              : state.selectType == TrKeys.month
+              ? DateTime.now().subtract(const Duration(days: 30))
+              : DateTime.now().subtract(const Duration(days: 7))),
+      to: end ?? DateTime.now(),
+    );
     response.when(
       success: (data) async {
         List<num> prices = [];
@@ -81,22 +86,25 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
             state.selectType == TrKeys.day
                 ? 24
                 : state.selectType == TrKeys.month
-                    ? 30
-                    : state.selectType == TrKeys.week
-                        ? 7
-                        : data.length,
+                ? 30
+                : state.selectType == TrKeys.week
+                ? 7
+                : data.length,
             (index) => state.selectType == TrKeys.day
                 ? DateTime.now().subtract(Duration(hours: index))
                 : state.selectType == TrKeys.month
-                    ? DateTime.now().subtract(Duration(days: index))
-                    : state.selectType == TrKeys.week
-                        ? DateTime.now().subtract(Duration(days: index))
-                        : DateTime.now().subtract(Duration(days: index)),
+                ? DateTime.now().subtract(Duration(days: index))
+                : state.selectType == TrKeys.week
+                ? DateTime.now().subtract(Duration(days: index))
+                : DateTime.now().subtract(Duration(days: index)),
           );
         }
 
         state = state.copyWith(
-            incomeCharts: data, prices: prices.reversed.toList(), time: times);
+          incomeCharts: data,
+          prices: prices.reversed.toList(),
+          time: times,
+        );
       },
       failure: (failure) {},
     );

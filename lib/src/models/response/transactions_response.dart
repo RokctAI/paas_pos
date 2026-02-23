@@ -15,7 +15,7 @@ class TransactionsResponse {
     _timestamp = json['timestamp'];
     _status = json['status'];
     _message = json['message'];
-   if (json['data'] != null) {
+    if (json['data'] != null) {
       _data = [];
       json['data'].forEach((v) {
         _data?.add(TransactionData.fromJson(v));
@@ -26,20 +26,19 @@ class TransactionsResponse {
   String? _timestamp;
   bool? _status;
   String? _message;
-   List<TransactionData>? _data;
+  List<TransactionData>? _data;
 
   TransactionsResponse copyWith({
     String? timestamp,
     bool? status,
     String? message,
-     List <TransactionData>? data,
-  }) =>
-      TransactionsResponse(
-        timestamp: timestamp ?? _timestamp,
-        status: status ?? _status,
-        message: message ?? _message,
-        data: data ?? _data,
-      );
+    List<TransactionData>? data,
+  }) => TransactionsResponse(
+    timestamp: timestamp ?? _timestamp,
+    status: status ?? _status,
+    message: message ?? _message,
+    data: data ?? _data,
+  );
 
   String? get timestamp => _timestamp;
 
@@ -47,14 +46,14 @@ class TransactionsResponse {
 
   String? get message => _message;
 
-   List<TransactionData>?  get data => _data;
+  List<TransactionData>? get data => _data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['timestamp'] = _timestamp;
     map['status'] = _status;
     map['message'] = _message;
-     if (_data != null) {
+    if (_data != null) {
       map['data'] = _data?.map((v) => v.toJson()).toList();
     }
     return map;
@@ -116,17 +115,16 @@ class TransactionData {
     String? createdAt,
     String? updatedAt,
     List<TransactionDetails>? details,
-  }) =>
-      TransactionData(
-        id: id ?? _id,
-        userId: userId ?? _userId,
-        price: price ?? _price,
-        currencyPrice: currencyPrice ?? _currencyPrice,
-        rate: rate ?? _rate,
-        createdAt: createdAt ?? _createdAt,
-        updatedAt: updatedAt ?? _updatedAt,
-        details: details ?? _details,
-      );
+  }) => TransactionData(
+    id: id ?? _id,
+    userId: userId ?? _userId,
+    price: price ?? _price,
+    currencyPrice: currencyPrice ?? _currencyPrice,
+    rate: rate ?? _rate,
+    createdAt: createdAt ?? _createdAt,
+    updatedAt: updatedAt ?? _updatedAt,
+    details: details ?? _details,
+  );
 
   int? get id => _id;
 
@@ -220,19 +218,18 @@ class TransactionDetails {
     String? deliveryTime,
     String? createdAt,
     String? updatedAt,
-  }) =>
-      TransactionDetails(
-        id: id ?? _id,
-        shopId: shopId ?? _shopId,
-        deliveryFee: deliveryFee ?? _deliveryFee,
-        price: price ?? _price,
-        tax: tax ?? _tax,
-        status: status ?? _status,
-        deliveryDate: deliveryDate ?? _deliveryDate,
-        deliveryTime: deliveryTime ?? _deliveryTime,
-        createdAt: createdAt ?? _createdAt,
-        updatedAt: updatedAt ?? _updatedAt,
-      );
+  }) => TransactionDetails(
+    id: id ?? _id,
+    shopId: shopId ?? _shopId,
+    deliveryFee: deliveryFee ?? _deliveryFee,
+    price: price ?? _price,
+    tax: tax ?? _tax,
+    status: status ?? _status,
+    deliveryDate: deliveryDate ?? _deliveryDate,
+    deliveryTime: deliveryTime ?? _deliveryTime,
+    createdAt: createdAt ?? _createdAt,
+    updatedAt: updatedAt ?? _updatedAt,
+  );
 
   int? get id => _id;
 
@@ -268,7 +265,4 @@ class TransactionDetails {
     map['updated_at'] = _updatedAt;
     return map;
   }
-  
 }
-
-

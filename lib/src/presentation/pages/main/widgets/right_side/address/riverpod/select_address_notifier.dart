@@ -20,19 +20,16 @@ class SelectAddressNotifier extends StateNotifier<SelectAddressState> {
   final GeolocatorPlatform _geolocatorPlatform = GeolocatorPlatform.instance;
 
   SelectAddressNotifier(this._usersRepository)
-      : super(SelectAddressState(textController: TextEditingController()));
+    : super(SelectAddressState(textController: TextEditingController()));
 
   void setQuery(BuildContext context) {
     if (state.textController?.text.trim().isNotEmpty ?? false) {
       if (_timer?.isActive ?? false) {
         _timer?.cancel();
       }
-      _timer = Timer(
-        const Duration(milliseconds: 500),
-        () {
-          searchLocations();
-        },
-      );
+      _timer = Timer(const Duration(milliseconds: 500), () {
+        searchLocations();
+      });
     }
   }
 
@@ -40,7 +37,6 @@ class SelectAddressNotifier extends StateNotifier<SelectAddressState> {
     state = state.copyWith(isSearching: true, isSearchLoading: true);
     try {
       final result = await Nominatim(userAgent: "Foodyman_pos").searchByName(
-
         query: state.textController?.text.trim() ?? '',
         limit: 5,
         addressDetails: true,
@@ -120,7 +116,7 @@ class SelectAddressNotifier extends StateNotifier<SelectAddressState> {
 
   Future<void> goToMyLocation() async {
     var check = await _geolocatorPlatform.checkPermission();
-    dynamic  latLng;
+    dynamic latLng;
     if (check == LocationPermission.denied ||
         check == LocationPermission.deniedForever) {
       check = await Geolocator.requestPermission();
@@ -128,15 +124,17 @@ class SelectAddressNotifier extends StateNotifier<SelectAddressState> {
           check != LocationPermission.deniedForever) {
         var loc = await Geolocator.getCurrentPosition();
         latLng = LatLng(loc.latitude, loc.longitude);
-        state.mapController!
-            .animateCamera(CameraUpdate.newLatLngZoom(latLng, 15));
+        state.mapController!.animateCamera(
+          CameraUpdate.newLatLngZoom(latLng, 15),
+        );
       }
     } else {
       if (check != LocationPermission.deniedForever) {
         var loc = await Geolocator.getCurrentPosition();
-          latLng = LatLng(loc.latitude, loc.longitude);
-        state.mapController!
-            .animateCamera(CameraUpdate.newLatLngZoom(latLng, 15));
+        latLng = LatLng(loc.latitude, loc.longitude);
+        state.mapController!.animateCamera(
+          CameraUpdate.newLatLngZoom(latLng, 15),
+        );
       }
     }
     state = state.copyWith(searchedPlaces: [], isSearching: false);
@@ -171,7 +169,6 @@ class SelectAddressNotifier extends StateNotifier<SelectAddressState> {
     }
   }
 
-
   Future<void> saveLocalAddress(
     bool? hasBack, {
     VoidCallback? onBack,
@@ -203,20 +200,24 @@ class SelectAddressNotifier extends StateNotifier<SelectAddressState> {
     }
   }
 
-  Future<void> checkDriverZone(
-      {required BuildContext context, required LatLng? location, bool? isShopEdit}) async {
-    if(isShopEdit ?? false){
-      state = state.copyWith( isActive: true);
+  Future<void> checkDriverZone({
+    required BuildContext context,
+    required LatLng? location,
+    bool? isShopEdit,
+  }) async {
+    if (isShopEdit ?? false) {
+      state = state.copyWith(isActive: true);
       return;
     }
     final connected = await AppConnectivity.connectivity();
     if (connected) {
       state = state.copyWith(isLoading: true, isActive: false);
       final response = await _usersRepository.checkDriverZone(
-          location ?? const LatLng(0.0, 0.0),
-          LocalStorage.getUser()?.role == TrKeys.waiter
-              ? LocalStorage.getUser()?.invite?.shopId ?? 0
-              : LocalStorage.getUser()?.shop?.id ?? 0);
+        location ?? const LatLng(0.0, 0.0),
+        LocalStorage.getUser()?.role == TrKeys.waiter
+            ? LocalStorage.getUser()?.invite?.shopId ?? 0
+            : LocalStorage.getUser()?.shop?.id ?? 0,
+      );
       response.when(
         success: (data) async {
           state = state.copyWith(isLoading: false, isActive: data);
@@ -234,7 +235,9 @@ class SelectAddressNotifier extends StateNotifier<SelectAddressState> {
     } else {
       if (context.mounted) {
         AppHelpers.showSnackBar(
-            context, AppHelpers.getTranslation(TrKeys.noInternetConnection));
+          context,
+          AppHelpers.getTranslation(TrKeys.noInternetConnection),
+        );
       }
     }
   }

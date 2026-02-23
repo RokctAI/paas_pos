@@ -30,11 +30,7 @@ class InComePage extends ConsumerStatefulWidget {
 }
 
 class _InComePageState extends ConsumerState<InComePage> {
-  List list = [
-    TrKeys.day,
-    TrKeys.week,
-    TrKeys.month,
-  ];
+  List list = [TrKeys.day, TrKeys.week, TrKeys.month];
 
   @override
   void initState() {
@@ -61,7 +57,9 @@ class _InComePageState extends ConsumerState<InComePage> {
               Text(
                 AppHelpers.getTranslation(TrKeys.income),
                 style: GoogleFonts.inter(
-                    fontSize: 22.r, fontWeight: FontWeight.w600),
+                  fontSize: 22.r,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               16.verticalSpace,
               _filter(state, event),
@@ -82,9 +80,9 @@ class _InComePageState extends ConsumerState<InComePage> {
                         state.incomeStatistic ?? IncomeStatisticResponse(),
                   ),
                   16.horizontalSpace,
-                  StatisticPage(statistic: state.incomeStatistic)
+                  StatisticPage(statistic: state.incomeStatistic),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -99,8 +97,9 @@ class _InComePageState extends ConsumerState<InComePage> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppStyle.white),
+              borderRadius: BorderRadius.circular(10.r),
+              color: AppStyle.white,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -110,7 +109,9 @@ class _InComePageState extends ConsumerState<InComePage> {
                     Text(
                       AppHelpers.getTranslation(TrKeys.revenue),
                       style: GoogleFonts.inter(
-                          fontSize: 22.sp, fontWeight: FontWeight.w600),
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     20.verticalSpace,
                     Row(
@@ -129,7 +130,9 @@ class _InComePageState extends ConsumerState<InComePage> {
                             state.incomeCart?.revenue ?? 0,
                           ),
                           style: GoogleFonts.inter(
-                              fontSize: 24.sp, fontWeight: FontWeight.w600),
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
@@ -153,13 +156,14 @@ class _InComePageState extends ConsumerState<InComePage> {
                     Text(
                       "${state.incomeCart?.revenuePercent?.ceil() ?? 0}%",
                       style: GoogleFonts.inter(
-                          fontSize: 16.sp,
-                          color: state.incomeCart?.revenueType == TrKeys.plus
-                              ? AppStyle.primary
-                              : AppStyle.red),
+                        fontSize: 16.sp,
+                        color: state.incomeCart?.revenueType == TrKeys.plus
+                            ? AppStyle.primary
+                            : AppStyle.red,
+                      ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -169,8 +173,9 @@ class _InComePageState extends ConsumerState<InComePage> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppStyle.white),
+              borderRadius: BorderRadius.circular(10.r),
+              color: AppStyle.white,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -180,7 +185,9 @@ class _InComePageState extends ConsumerState<InComePage> {
                     Text(
                       AppHelpers.getTranslation(TrKeys.orders),
                       style: GoogleFonts.inter(
-                          fontSize: 22.sp, fontWeight: FontWeight.w600),
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     20.verticalSpace,
                     Row(
@@ -202,7 +209,9 @@ class _InComePageState extends ConsumerState<InComePage> {
                             state.incomeCart?.orders ?? 0,
                           ),
                           style: GoogleFonts.inter(
-                              fontSize: 24.sp, fontWeight: FontWeight.w600),
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
@@ -226,13 +235,14 @@ class _InComePageState extends ConsumerState<InComePage> {
                     Text(
                       "${state.incomeCart?.ordersPercent?.ceil() ?? 0}%",
                       style: GoogleFonts.inter(
-                          fontSize: 16.sp,
-                          color: state.incomeCart?.ordersType == TrKeys.plus
-                              ? AppStyle.primary
-                              : AppStyle.red),
+                        fontSize: 16.sp,
+                        color: state.incomeCart?.ordersType == TrKeys.plus
+                            ? AppStyle.primary
+                            : AppStyle.red,
+                      ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
@@ -242,8 +252,9 @@ class _InComePageState extends ConsumerState<InComePage> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppStyle.white),
+              borderRadius: BorderRadius.circular(10.r),
+              color: AppStyle.white,
+            ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -253,7 +264,9 @@ class _InComePageState extends ConsumerState<InComePage> {
                     Text(
                       AppHelpers.getTranslation(TrKeys.average),
                       style: GoogleFonts.inter(
-                          fontSize: 22.sp, fontWeight: FontWeight.w600),
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     20.verticalSpace,
                     Row(
@@ -272,7 +285,9 @@ class _InComePageState extends ConsumerState<InComePage> {
                             state.incomeCart?.average ?? 0,
                           ),
                           style: GoogleFonts.inter(
-                              fontSize: 24.sp, fontWeight: FontWeight.w600),
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
@@ -296,17 +311,18 @@ class _InComePageState extends ConsumerState<InComePage> {
                     Text(
                       "${state.incomeCart?.averagePercent?.ceil() ?? 0}%",
                       style: GoogleFonts.inter(
-                          fontSize: 16.sp,
-                          color: state.incomeCart?.averageType == TrKeys.plus
-                              ? AppStyle.primary
-                              : AppStyle.red),
+                        fontSize: 16.sp,
+                        color: state.incomeCart?.averageType == TrKeys.plus
+                            ? AppStyle.primary
+                            : AppStyle.red,
+                      ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -324,10 +340,11 @@ class _InComePageState extends ConsumerState<InComePage> {
                 padding: EdgeInsets.symmetric(vertical: 12.r, horizontal: 18.r),
                 margin: EdgeInsets.only(right: 8.r),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
-                    color: state.selectType == e
-                        ? AppStyle.primary
-                        : AppStyle.white),
+                  borderRadius: BorderRadius.circular(10.r),
+                  color: state.selectType == e
+                      ? AppStyle.primary
+                      : AppStyle.white,
+                ),
                 child: Text(
                   AppHelpers.getTranslation(e),
                   style: GoogleFonts.inter(
@@ -351,21 +368,25 @@ class _InComePageState extends ConsumerState<InComePage> {
           },
           child: AnimationButtonEffect(
             child: Container(
-                decoration: BoxDecoration(
-                    color: AppStyle.white,
-                    borderRadius: BorderRadius.circular(10.r)),
-                padding: EdgeInsets.all(10.r),
-                child: const Icon(FlutterRemix.restart_line)),
+              decoration: BoxDecoration(
+                color: AppStyle.white,
+                borderRadius: BorderRadius.circular(10.r),
+              ),
+              padding: EdgeInsets.all(10.r),
+              child: const Icon(FlutterRemix.restart_line),
+            ),
           ),
         ),
         8.horizontalSpace,
         InkWell(
           onTap: () {
             AppHelpers.showAlertDialog(
-                context: context,
-                child: SizedBox(
-                    width: MediaQuery.of(context).size.width / 3,
-                    child: const FilterScreen()));
+              context: context,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width / 3,
+                child: const FilterScreen(),
+              ),
+            );
           },
           child: AnimationButtonEffect(
             child: Container(
@@ -383,12 +404,12 @@ class _InComePageState extends ConsumerState<InComePage> {
                         ? AppHelpers.getTranslation(TrKeys.startEnd)
                         : "${DateFormat("MMM d,yyyy").format(state.start ?? DateTime.now())} - ${DateFormat("MMM d,yyyy").format(state.end ?? DateTime.now())}",
                     style: GoogleFonts.inter(fontSize: 14.sp),
-                  )
+                  ),
                 ],
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

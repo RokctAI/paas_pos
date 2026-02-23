@@ -4,6 +4,5 @@ import '../notifier/profile_notifier.dart';
 import '../state/profile_state.dart';
 
 final profileProvider = StateNotifierProvider<ProfileNotifier, ProfileState>(
-  (ref) =>
-      ProfileNotifier(usersRepository, galleryRepository, shopsRepository),
+  (ref) => ProfileNotifier(usersRepository, galleryRepository, shopsRepository),
 );

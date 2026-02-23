@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SpinnerText extends StatefulWidget {
-  const SpinnerText(
-      {super.key, required this.text, this.textStyle, this.animationStyle});
+  const SpinnerText({
+    super.key,
+    required this.text,
+    this.textStyle,
+    this.animationStyle,
+  });
 
   final String text;
   final TextStyle? textStyle;
@@ -24,22 +28,26 @@ class _SpinnerTextState extends State<SpinnerText>
   void initState() {
     super.initState();
     bottomText = widget.text;
-    _spinTextAnimationController = AnimationController(
-        duration: const Duration(milliseconds: 500), vsync: this)
-      ..addListener(() => setState(() {}))
-      ..addStatusListener((AnimationStatus status) {
-        if (status == AnimationStatus.completed) {
-          setState(() {
-            bottomText = topText;
-            topText = "";
-            _spinTextAnimationController.value = 0.0;
+    _spinTextAnimationController =
+        AnimationController(
+            duration: const Duration(milliseconds: 500),
+            vsync: this,
+          )
+          ..addListener(() => setState(() {}))
+          ..addStatusListener((AnimationStatus status) {
+            if (status == AnimationStatus.completed) {
+              setState(() {
+                bottomText = topText;
+                topText = "";
+                _spinTextAnimationController.value = 0.0;
+              });
+            }
           });
-        }
-      });
 
     _spinAnimation = CurvedAnimation(
-        parent: _spinTextAnimationController,
-        curve: widget.animationStyle ?? Curves.ease);
+      parent: _spinTextAnimationController,
+      curve: widget.animationStyle ?? Curves.ease,
+    );
   }
 
   @override

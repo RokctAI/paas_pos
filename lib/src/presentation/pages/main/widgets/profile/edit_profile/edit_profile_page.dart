@@ -76,9 +76,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     phoneNumber.text = LocalStorage.getUser()?.phone ?? '';
     email.text = LocalStorage.getUser()?.email ?? '';
     dateOfBirth.text = intl.DateFormat("yyy-MM-dd").format(
-        DateTime.tryParse(LocalStorage.getUser()?.birthday ?? '')?.toLocal() ??
-            DateTime.now());
-    WidgetsBinding.instance.addPostFrameCallback((_){
+      DateTime.tryParse(LocalStorage.getUser()?.birthday ?? '')?.toLocal() ??
+          DateTime.now(),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(editProfileProvider.notifier)
           .setGender(LocalStorage.getUser()?.gender ?? '');
@@ -93,12 +94,17 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     return state.isShopEdit == 0
         ? CustomScaffold(
             body: (c) => Padding(
-              padding:
-                  REdgeInsets.only(left: 16, top: 24, bottom: 16, right: 16),
+              padding: REdgeInsets.only(
+                left: 16,
+                top: 24,
+                bottom: 16,
+                right: 16,
+              ),
               child: Container(
                 decoration: const BoxDecoration(
-                    color: AppStyle.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                  color: AppStyle.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
                 child: Padding(
                   padding: EdgeInsets.only(left: 16.r),
                   child: Column(
@@ -108,18 +114,18 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       Row(
                         children: [
                           CustomEditWidget(
-                              image: state.url,
-                              imagePath: state.imagePath,
-                              isEmptyorNot:
-                                  (LocalStorage.getUser()?.img?.isNotEmpty ??
-                                          false) &&
-                                      state.imagePath.isEmpty,
-                              isEmptyorNot2: state.imagePath.isNotEmpty,
-                              localStoreImage:
-                                  LocalStorage.getUser()?.img ?? "",
-                              onthisTap: () {
-                                notifier.getPhoto();
-                              }),
+                            image: state.url,
+                            imagePath: state.imagePath,
+                            isEmptyorNot:
+                                (LocalStorage.getUser()?.img?.isNotEmpty ??
+                                    false) &&
+                                state.imagePath.isEmpty,
+                            isEmptyorNot2: state.imagePath.isNotEmpty,
+                            localStoreImage: LocalStorage.getUser()?.img ?? "",
+                            onthisTap: () {
+                              notifier.getPhoto();
+                            },
+                          ),
                           Padding(
                             padding: REdgeInsets.only(left: 28),
                             child: Column(
@@ -128,17 +134,19 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                 Text(
                                   '${LocalStorage.getUser()?.firstname} ${LocalStorage.getUser()?.lastname?.substring(0, 1).toUpperCase()}.',
                                   style: GoogleFonts.inter(
-                                      fontSize: 24.sp,
-                                      color: AppStyle.black,
-                                      fontWeight: FontWeight.bold),
+                                    fontSize: 24.sp,
+                                    color: AppStyle.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 8.r.verticalSpace,
                                 Text(
                                   '${LocalStorage.getUser()?.role}',
                                   style: GoogleFonts.inter(
-                                      fontSize: 18.sp,
-                                      color: AppStyle.icon,
-                                      fontWeight: FontWeight.bold),
+                                    fontSize: 18.sp,
+                                    color: AppStyle.icon,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ],
                             ),
@@ -146,11 +154,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           const Spacer(),
                           if (LocalStorage.getUser()?.role == 'seller')
                             ConfirmButton(
-                                title:
-                                    AppHelpers.getTranslation(TrKeys.editShop),
-                                onTap: () {
-                                  notifier.setShopEdit(1);
-                                }),
+                              title: AppHelpers.getTranslation(TrKeys.editShop),
+                              onTap: () {
+                                notifier.setShopEdit(1);
+                              },
+                            ),
                           12.r.horizontalSpace,
                         ],
                       ),
@@ -165,9 +173,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                     ref
                                         .read(editProfileProvider.notifier)
                                         .changeIndex(index);
-                                    notifier.setGender(index == 0
-                                        ? TrKeys.male
-                                        : TrKeys.female);
+                                    notifier.setGender(
+                                      index == 0 ? TrKeys.male : TrKeys.female,
+                                    );
                                   },
                                   child: CircleChoosingButton(
                                     isActive: state.selectIndex == index,
@@ -180,15 +188,17 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                     index == 0
                                         ? AppHelpers.getTranslation(TrKeys.male)
                                         : AppHelpers.getTranslation(
-                                            TrKeys.female),
+                                            TrKeys.female,
+                                          ),
                                     style: GoogleFonts.inter(
-                                        fontSize: 15.sp,
-                                        color: AppStyle.black,
-                                        fontWeight: FontWeight.w500),
+                                      fontSize: 15.sp,
+                                      color: AppStyle.black,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
-                                )
+                                ),
                               ],
-                            )
+                            ),
                         ],
                       ),
                       18.r.verticalSpace,
@@ -199,8 +209,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               padding: REdgeInsets.only(right: 80),
                               child: CustomColumnWidget(
                                 controller: firstName,
-                                trName:
-                                    AppHelpers.getTranslation(TrKeys.firstname),
+                                trName: AppHelpers.getTranslation(
+                                  TrKeys.firstname,
+                                ),
                               ),
                             ),
                           ),
@@ -209,11 +220,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               padding: REdgeInsets.only(right: 16),
                               child: CustomColumnWidget(
                                 controller: lastName,
-                                trName:
-                                    AppHelpers.getTranslation(TrKeys.lastname),
+                                trName: AppHelpers.getTranslation(
+                                  TrKeys.lastname,
+                                ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                       24.r.verticalSpace,
@@ -234,7 +246,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               padding: REdgeInsets.only(right: 16),
                               child: CustomColumnWidget(
                                 trName: AppHelpers.getTranslation(
-                                    TrKeys.newPassword),
+                                  TrKeys.newPassword,
+                                ),
                                 controller: confirmPassword,
                                 obscure: state.showOldPassword,
                                 suffixIcon: GestureDetector(
@@ -246,11 +259,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                     size: 20.r,
                                   ),
                                   onTap: () => notifier.setShowOldPassword(
-                                      !state.showOldPassword),
+                                    !state.showOldPassword,
+                                  ),
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                       24.r.verticalSpace,
@@ -271,7 +285,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               padding: REdgeInsets.only(right: 16),
                               child: CustomColumnWidget(
                                 trName: AppHelpers.getTranslation(
-                                    TrKeys.confirmNewPassword),
+                                  TrKeys.confirmNewPassword,
+                                ),
                                 controller: newPassword,
                                 obscure: state.showPassword,
                                 suffixIcon: IconButton(
@@ -283,8 +298,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                     color: AppStyle.black,
                                     size: 20.r,
                                   ),
-                                  onPressed: () => notifier
-                                      .setShowPassword(!state.showPassword),
+                                  onPressed: () => notifier.setShowPassword(
+                                    !state.showPassword,
+                                  ),
                                 ),
                               ),
                             ),
@@ -300,7 +316,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               child: CustomDateFormField(
                                 controller: dateOfBirth,
                                 text: AppHelpers.getTranslation(
-                                    TrKeys.dateOfBirth),
+                                  TrKeys.dateOfBirth,
+                                ),
                               ),
                             ),
                           ),
@@ -310,7 +327,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                               child: CustomColumnWidget(
                                 maxLength: 4,
                                 trName: AppHelpers.getTranslation(
-                                    TrKeys.personalPincode),
+                                  TrKeys.personalPincode,
+                                ),
                                 controller: personalPinCode,
                                 inputType: TextInputType.number,
                                 obscure: state.showPincode,
@@ -325,41 +343,46 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                   ),
                                   onPressed: () =>
                                       notifier.setShowPersonalPincode(
-                                          !state.showPincode),
+                                        !state.showPincode,
+                                      ),
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                       const Spacer(),
                       SizedBox(
                         width: 250.r,
                         child: LoginButton(
-                            isLoading: state.isLoading,
-                            title: AppHelpers.getTranslation(TrKeys.save),
-                            onPressed: () {
-                              notifier.editProfile(
-                                  context,
-                                  UserData(
-                                    birthday: dateOfBirth.text,
-                                    img: state.imagePath,
-                                    firstname: firstName.text,
-                                    lastname: lastName.text,
-                                    email: email.text,
-                                    phone: phoneNumber.text,
-                                  ));
-                              if (newPassword.text.isNotEmpty &&
-                                  confirmPassword.text.isNotEmpty) {
-                                notifier.updatePassword(context,
-                                    password: confirmPassword.text,
-                                    confirmPassword: newPassword.text);
-                              }
-                              if (personalPinCode.text.isNotEmpty &&
-                                  personalPinCode.text.length == 4) {
-                                LocalStorage.setPinCode(personalPinCode.text);
-                              }
-                            }),
+                          isLoading: state.isLoading,
+                          title: AppHelpers.getTranslation(TrKeys.save),
+                          onPressed: () {
+                            notifier.editProfile(
+                              context,
+                              UserData(
+                                birthday: dateOfBirth.text,
+                                img: state.imagePath,
+                                firstname: firstName.text,
+                                lastname: lastName.text,
+                                email: email.text,
+                                phone: phoneNumber.text,
+                              ),
+                            );
+                            if (newPassword.text.isNotEmpty &&
+                                confirmPassword.text.isNotEmpty) {
+                              notifier.updatePassword(
+                                context,
+                                password: confirmPassword.text,
+                                confirmPassword: newPassword.text,
+                              );
+                            }
+                            if (personalPinCode.text.isNotEmpty &&
+                                personalPinCode.text.length == 4) {
+                              LocalStorage.setPinCode(personalPinCode.text);
+                            }
+                          },
+                        ),
                       ),
                       24.r.verticalSpace,
                     ],
@@ -369,26 +392,31 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             ),
           )
         : state.isShopEdit == 1
-            ? const EditShop()
-            : state.isShopEdit == 2
-                ? SelectAddressPage(
-                    isShopEdit: true,
-                    location: LocationData(
-                        latitude: double.tryParse(
-                            stateRight.editShopData?.location?.latitude ??
-                                AppConstants.demoLatitude.toString()),
-                        longitude: double.tryParse(
-                            stateRight.editShopData?.location?.longitude ??
-                                AppConstants.demoLongitude.toString())),
-                    onSelect: (address) {
-                      notifier.setShopEdit(1);
-                      ref.read(shopProvider.notifier).updateShopData(
-                            onSuccess: () {},
-                            location: address.location,
-                            displayName: address.address ?? '',
-                          );
-                    },
-                  )
-                : const DeliveryZonePage();
+        ? const EditShop()
+        : state.isShopEdit == 2
+        ? SelectAddressPage(
+            isShopEdit: true,
+            location: LocationData(
+              latitude: double.tryParse(
+                stateRight.editShopData?.location?.latitude ??
+                    AppConstants.demoLatitude.toString(),
+              ),
+              longitude: double.tryParse(
+                stateRight.editShopData?.location?.longitude ??
+                    AppConstants.demoLongitude.toString(),
+              ),
+            ),
+            onSelect: (address) {
+              notifier.setShopEdit(1);
+              ref
+                  .read(shopProvider.notifier)
+                  .updateShopData(
+                    onSuccess: () {},
+                    location: address.location,
+                    displayName: address.address ?? '',
+                  );
+            },
+          )
+        : const DeliveryZonePage();
   }
 }

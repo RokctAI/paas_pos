@@ -4,10 +4,7 @@ class _OverlayBuilder extends StatefulWidget {
   final Widget Function(Size, VoidCallback) overlay;
   final Widget Function(VoidCallback) child;
 
-  const _OverlayBuilder({
-    required this.overlay,
-    required this.child,
-  });
+  const _OverlayBuilder({required this.overlay, required this.child});
 
   @override
   _OverlayBuilderState createState() => _OverlayBuilderState();
@@ -38,7 +35,6 @@ class _OverlayBuilderState extends State<_OverlayBuilder> {
     overlayEntry!.remove();
     overlayEntry = null;
   }
-
 
   @override
   Widget build(BuildContext context) => widget.child(showOverlay);

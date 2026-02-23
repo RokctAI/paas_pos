@@ -16,10 +16,7 @@ class HelpNotifier extends StateNotifier<HelpState> {
       final response = await settingsRepository.getFaq();
       response.when(
         success: (data) async {
-          state = state.copyWith(
-            isLoading: false,
-            data: data,
-          );
+          state = state.copyWith(isLoading: false, data: data);
         },
         failure: (failure) {
           state = state.copyWith(isLoading: false);

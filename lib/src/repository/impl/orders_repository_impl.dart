@@ -10,14 +10,15 @@ import '../repository.dart';
 class OrdersRepositoryImpl extends OrdersRepository {
   @override
   Future<ApiResult<CreateOrderResponse>> createOrder(
-      OrderBodyData orderBody) async {
+    OrderBodyData orderBody,
+  ) async {
     try {
       final client = dioHttp.client(requireAuth: true);
       final data = orderBody.toJson();
       debugPrint('==> order create data: ${jsonEncode(data)}');
       final response = await client.post(
         '/api/v1/dashboard/${LocalStorage.getUser()?.role}/orders',
-        data: data
+        data: data,
       );
 
       return ApiResult.success(
@@ -165,9 +166,7 @@ class OrdersRepositoryImpl extends OrdersRepository {
             : '/api/v1/dashboard/${LocalStorage.getUser()?.role}/order/$orderId/status',
         data: data,
       );
-      return const ApiResult.success(
-        data: null,
-      );
+      return const ApiResult.success(data: null);
     } catch (e) {
       debugPrint('==> update order status failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -187,13 +186,11 @@ class OrdersRepositoryImpl extends OrdersRepository {
         LocalStorage.getUser()?.role == TrKeys.waiter
             ? '/api/v1/dashboard/waiter/order/details/$orderId/status/update'
             : LocalStorage.getUser()?.role == TrKeys.cook
-                ? '/api/v1/dashboard/cook/order-detail/$orderId/status/update'
-                : '/api/v1/dashboard/${LocalStorage.getUser()?.role}/order/details/$orderId/status',
+            ? '/api/v1/dashboard/cook/order-detail/$orderId/status/update'
+            : '/api/v1/dashboard/${LocalStorage.getUser()?.role}/order/details/$orderId/status',
         data: data,
       );
-      return const ApiResult.success(
-        data: null,
-      );
+      return const ApiResult.success(data: null);
     } catch (e) {
       debugPrint('==> update order status failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -237,9 +234,7 @@ class OrdersRepositoryImpl extends OrdersRepository {
         '/api/v1/dashboard/cook/orders/$orderId/status/update',
         data: data,
       );
-      return const ApiResult.success(
-        data: null,
-      );
+      return const ApiResult.success(data: null);
     } catch (e) {
       debugPrint('==> update order status failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -250,12 +245,11 @@ class OrdersRepositoryImpl extends OrdersRepository {
   Future<ApiResult<SingleOrderResponse>> getOrderDetails({int? orderId}) async {
     try {
       final client = dioHttp.client(requireAuth: true);
-      final data = {
-        'lang': LocalStorage.getLanguage()?.locale ?? 'en',
-      };
+      final data = {'lang': LocalStorage.getLanguage()?.locale ?? 'en'};
       final response = await client.get(
-          '/api/v1/dashboard/${LocalStorage.getUser()?.role}/orders/$orderId',
-          queryParameters: data);
+        '/api/v1/dashboard/${LocalStorage.getUser()?.role}/orders/$orderId',
+        queryParameters: data,
+      );
       return ApiResult.success(
         data: SingleOrderResponse.fromJson(response.data),
       );
@@ -266,15 +260,16 @@ class OrdersRepositoryImpl extends OrdersRepository {
   }
 
   @override
-  Future<ApiResult<SingleKitchenOrderResponse>> getOrderDetailsKitchen(
-      {int? orderId}) async {
+  Future<ApiResult<SingleKitchenOrderResponse>> getOrderDetailsKitchen({
+    int? orderId,
+  }) async {
     try {
       final client = dioHttp.client(requireAuth: true);
-      final data = {
-        'lang': LocalStorage.getLanguage()?.locale ?? 'en',
-      };
-      final response = await client
-          .get('/api/v1/dashboard/cook/orders/$orderId', queryParameters: data);
+      final data = {'lang': LocalStorage.getLanguage()?.locale ?? 'en'};
+      final response = await client.get(
+        '/api/v1/dashboard/cook/orders/$orderId',
+        queryParameters: data,
+      );
       return ApiResult.success(
         data: SingleKitchenOrderResponse.fromJson(response.data),
       );
@@ -285,16 +280,17 @@ class OrdersRepositoryImpl extends OrdersRepository {
   }
 
   @override
-  Future<ApiResult<dynamic>> setDeliverMan(
-      {required int orderId, required int deliverymanId}) async {
+  Future<ApiResult<dynamic>> setDeliverMan({
+    required int orderId,
+    required int deliverymanId,
+  }) async {
     try {
       final client = dioHttp.client(requireAuth: true);
-      final data = {
-        'deliveryman': deliverymanId,
-      };
+      final data = {'deliveryman': deliverymanId};
       final response = await client.post(
-          '/api/v1/dashboard/${LocalStorage.getUser()?.role}/order/$orderId/deliveryman',
-          data: data);
+        '/api/v1/dashboard/${LocalStorage.getUser()?.role}/order/$orderId/deliveryman',
+        data: data,
+      );
       return ApiResult.success(
         data: SingleOrderResponse.fromJson(response.data),
       );
@@ -313,9 +309,7 @@ class OrdersRepositoryImpl extends OrdersRepository {
         '/api/v1/dashboard/${LocalStorage.getUser()?.role}/orders/delete',
         queryParameters: data,
       );
-      return const ApiResult.success(
-        data: null,
-      );
+      return const ApiResult.success(data: null);
     } catch (e) {
       debugPrint('==> update order status failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));

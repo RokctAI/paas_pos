@@ -44,14 +44,18 @@ class _PromoCodeDialogState extends ConsumerState<PromoCodeDialog> {
       height: 240.w,
       padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
-          color: AppStyle.white, borderRadius: BorderRadius.circular(10.r)),
+        color: AppStyle.white,
+        borderRadius: BorderRadius.circular(10.r),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             AppHelpers.getTranslation(TrKeys.addPromoCode),
-            style:
-                GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 22.r),
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              fontSize: 22.r,
+            ),
           ),
           24.verticalSpace,
           OutlinedBorderTextField(
@@ -63,18 +67,18 @@ class _PromoCodeDialogState extends ConsumerState<PromoCodeDialog> {
           ),
           const Spacer(),
           LoginButton(
-              isLoading: ref.watch(rightSideProvider).isPromoCodeLoading,
-              isActive: ref.watch(rightSideProvider).isActive,
-              title: AppHelpers.getTranslation(TrKeys.save),
-              onPressed: () {
-                if(ref.watch(rightSideProvider).isActive){
-                  ref
-                      .read(rightSideProvider.notifier)
-                      .setCoupon(controller.text, context);
-                  context.maybePop();
-                }
-
-              })
+            isLoading: ref.watch(rightSideProvider).isPromoCodeLoading,
+            isActive: ref.watch(rightSideProvider).isActive,
+            title: AppHelpers.getTranslation(TrKeys.save),
+            onPressed: () {
+              if (ref.watch(rightSideProvider).isActive) {
+                ref
+                    .read(rightSideProvider.notifier)
+                    .setCoupon(controller.text, context);
+                context.maybePop();
+              }
+            },
+          ),
         ],
       ),
     );

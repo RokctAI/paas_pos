@@ -81,7 +81,7 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
               onListReorder: onReorderList,
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -101,8 +101,8 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         list = widget.listNew;
         header = AppHelpers.getTranslation(TrKeys.newKey);
         hasMore = ref.watch(newOrdersProvider).hasMore;
-        onViewMore =
-            () => ref.read(newOrdersProvider.notifier).fetchNewOrders();
+        onViewMore = () =>
+            ref.read(newOrdersProvider.notifier).fetchNewOrders();
         itemColor = AppStyle.blue;
         count = ref.watch(newOrdersProvider).totalCount.toString();
         isLoading = ref.watch(newOrdersProvider).isLoading;
@@ -129,8 +129,8 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         list = widget.listCooking;
         header = AppHelpers.getTranslation(TrKeys.cooking);
         hasMore = ref.watch(cookingOrdersProvider).hasMore;
-        onViewMore =
-            () => ref.read(cookingOrdersProvider.notifier).fetchCookingOrders();
+        onViewMore = () =>
+            ref.read(cookingOrdersProvider.notifier).fetchCookingOrders();
         itemColor = AppStyle.rate;
         count = ref.watch(cookingOrdersProvider).totalCount.toString();
         isLoading = ref.watch(cookingOrdersProvider).isLoading;
@@ -144,8 +144,8 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         list = widget.listReady;
         header = AppHelpers.getTranslation(TrKeys.ready);
         hasMore = ref.watch(readyOrdersProvider).hasMore;
-        onViewMore =
-            () => ref.read(readyOrdersProvider.notifier).fetchReadyOrders();
+        onViewMore = () =>
+            ref.read(readyOrdersProvider.notifier).fetchReadyOrders();
         itemColor = AppStyle.revenueColor;
         count = ref.watch(readyOrdersProvider).totalCount.toString();
         isLoading = ref.watch(readyOrdersProvider).isLoading;
@@ -159,8 +159,8 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         list = widget.listOnAWay;
         header = AppHelpers.getTranslation(TrKeys.onAWay);
         hasMore = ref.watch(onAWayOrdersProvider).hasMore;
-        onViewMore =
-            () => ref.read(onAWayOrdersProvider.notifier).fetchOnAWayOrders();
+        onViewMore = () =>
+            ref.read(onAWayOrdersProvider.notifier).fetchOnAWayOrders();
         itemColor = AppStyle.black;
         count = ref.watch(onAWayOrdersProvider).totalCount.toString();
         isLoading = ref.watch(onAWayOrdersProvider).isLoading;
@@ -210,11 +210,12 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
       canDrag: false,
       decoration: const BoxDecoration(color: AppStyle.mainBack),
       header: BoardTopBar(
-          title: header,
-          count: count,
-          onTap: onRefresh,
-          isLoading: isLoading,
-          color: itemColor),
+        title: header,
+        count: count,
+        onTap: onRefresh,
+        isLoading: isLoading,
+        color: itemColor,
+      ),
       children: BoardItem(
         list: list,
         context: context,
@@ -235,76 +236,76 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
       switch (newListIndex) {
         case 1:
           {
-            ref.read(acceptedOrdersProvider.notifier).addList(
-                ref.watch(newOrdersProvider).orders[oldItemIndex], context);
+            ref
+                .read(acceptedOrdersProvider.notifier)
+                .addList(
+                  ref.watch(newOrdersProvider).orders[oldItemIndex],
+                  context,
+                );
             break;
           }
         case 2:
           {
             if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-              ref.read(cookingOrdersProvider.notifier).addList(
-                  oldListIndex == 0
-                      ? ref.watch(newOrdersProvider).orders[oldItemIndex]
-                      : ref.watch(acceptedOrdersProvider).orders[oldItemIndex],
-                  context);
+              ref
+                  .read(cookingOrdersProvider.notifier)
+                  .addList(
+                    oldListIndex == 0
+                        ? ref.watch(newOrdersProvider).orders[oldItemIndex]
+                        : ref
+                              .watch(acceptedOrdersProvider)
+                              .orders[oldItemIndex],
+                    context,
+                  );
             }
             break;
           }
         case 3:
           {
             if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-              ref.read(readyOrdersProvider.notifier).addList(
-                  oldListIndex == 0
-                      ? ref.watch(newOrdersProvider).orders[oldItemIndex]
-                      : oldListIndex == 1
-                          ? ref
-                              .watch(acceptedOrdersProvider)
-                              .orders[oldItemIndex]
-                          : ref
-                              .watch(cookingOrdersProvider)
-                              .orders[oldItemIndex],
-                  context);
+              ref
+                  .read(readyOrdersProvider.notifier)
+                  .addList(
+                    oldListIndex == 0
+                        ? ref.watch(newOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 1
+                        ? ref.watch(acceptedOrdersProvider).orders[oldItemIndex]
+                        : ref.watch(cookingOrdersProvider).orders[oldItemIndex],
+                    context,
+                  );
             }
             break;
           }
         case 4:
           {
             if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-              ref.read(onAWayOrdersProvider.notifier).addList(
-                  oldListIndex == 0
-                      ? ref.watch(newOrdersProvider).orders[oldItemIndex]
-                      : oldListIndex == 1
-                          ? ref
-                              .watch(acceptedOrdersProvider)
-                              .orders[oldItemIndex]
-                          : oldListIndex == 2
-                              ? ref
-                                  .watch(cookingOrdersProvider)
-                                  .orders[oldItemIndex]
-                              : ref
-                                  .watch(readyOrdersProvider)
-                                  .orders[oldItemIndex],
-                  context);
+              ref
+                  .read(onAWayOrdersProvider.notifier)
+                  .addList(
+                    oldListIndex == 0
+                        ? ref.watch(newOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 1
+                        ? ref.watch(acceptedOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 2
+                        ? ref.watch(cookingOrdersProvider).orders[oldItemIndex]
+                        : ref.watch(readyOrdersProvider).orders[oldItemIndex],
+                    context,
+                  );
             } else {
-              ref.read(deliveredOrdersProvider.notifier).addList(
-                  oldListIndex == 0
-                      ? ref.watch(newOrdersProvider).orders[oldItemIndex]
-                      : oldListIndex == 1
-                          ? ref
-                              .watch(acceptedOrdersProvider)
-                              .orders[oldItemIndex]
-                          : oldListIndex == 2
-                              ? ref
-                                  .watch(cookingOrdersProvider)
-                                  .orders[oldItemIndex]
-                              : oldListIndex == 3
-                                  ? ref
-                                      .watch(readyOrdersProvider)
-                                      .orders[oldItemIndex]
-                                  : ref
-                                      .watch(onAWayOrdersProvider)
-                                      .orders[oldItemIndex],
-                  context);
+              ref
+                  .read(deliveredOrdersProvider.notifier)
+                  .addList(
+                    oldListIndex == 0
+                        ? ref.watch(newOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 1
+                        ? ref.watch(acceptedOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 2
+                        ? ref.watch(cookingOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 3
+                        ? ref.watch(readyOrdersProvider).orders[oldItemIndex]
+                        : ref.watch(onAWayOrdersProvider).orders[oldItemIndex],
+                    context,
+                  );
             }
             break;
           }
@@ -312,74 +313,61 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         case 5:
           {
             if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-              ref.read(deliveredOrdersProvider.notifier).addList(
-                  oldListIndex == 0
-                      ? ref.watch(newOrdersProvider).orders[oldItemIndex]
-                      : oldListIndex == 1
-                          ? ref
-                              .watch(acceptedOrdersProvider)
-                              .orders[oldItemIndex]
-                          : oldListIndex == 2
-                              ? ref
-                                  .watch(cookingOrdersProvider)
-                                  .orders[oldItemIndex]
-                              : oldListIndex == 3
-                                  ? ref
-                                      .watch(readyOrdersProvider)
-                                      .orders[oldItemIndex]
-                                  : ref
-                                      .watch(onAWayOrdersProvider)
-                                      .orders[oldItemIndex],
-                  context);
+              ref
+                  .read(deliveredOrdersProvider.notifier)
+                  .addList(
+                    oldListIndex == 0
+                        ? ref.watch(newOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 1
+                        ? ref.watch(acceptedOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 2
+                        ? ref.watch(cookingOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 3
+                        ? ref.watch(readyOrdersProvider).orders[oldItemIndex]
+                        : ref.watch(onAWayOrdersProvider).orders[oldItemIndex],
+                    context,
+                  );
             } else {
-              ref.read(canceledOrdersProvider.notifier).addList(
-                  oldListIndex == 0
-                      ? ref.watch(newOrdersProvider).orders[oldItemIndex]
-                      : oldListIndex == 1
-                          ? ref
-                              .watch(acceptedOrdersProvider)
-                              .orders[oldItemIndex]
-                          : oldListIndex == 2
-                              ? ref
-                                  .watch(cookingOrdersProvider)
-                                  .orders[oldItemIndex]
-                              : oldListIndex == 3
-                                  ? ref
-                                      .watch(readyOrdersProvider)
-                                      .orders[oldItemIndex]
-                                  : ref
-                                      .watch(deliveredOrdersProvider)
-                                      .orders[oldItemIndex],
-                  context);
+              ref
+                  .read(canceledOrdersProvider.notifier)
+                  .addList(
+                    oldListIndex == 0
+                        ? ref.watch(newOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 1
+                        ? ref.watch(acceptedOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 2
+                        ? ref.watch(cookingOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 3
+                        ? ref.watch(readyOrdersProvider).orders[oldItemIndex]
+                        : ref
+                              .watch(deliveredOrdersProvider)
+                              .orders[oldItemIndex],
+                    context,
+                  );
             }
             break;
           }
         case 6:
           {
             if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-              ref.read(canceledOrdersProvider.notifier).addList(
-                  oldListIndex == 0
-                      ? ref.watch(newOrdersProvider).orders[oldItemIndex]
-                      : oldListIndex == 1
-                          ? ref
-                              .watch(acceptedOrdersProvider)
-                              .orders[oldItemIndex]
-                          : oldListIndex == 2
-                              ? ref
-                                  .watch(cookingOrdersProvider)
-                                  .orders[oldItemIndex]
-                              : oldListIndex == 3
-                                  ? ref
-                                      .watch(readyOrdersProvider)
-                                      .orders[oldItemIndex]
-                                  : oldListIndex == 4
-                                      ? ref
-                                          .watch(onAWayOrdersProvider)
-                                          .orders[oldItemIndex]
-                                      : ref
-                                          .watch(deliveredOrdersProvider)
-                                          .orders[oldItemIndex],
-                  context);
+              ref
+                  .read(canceledOrdersProvider.notifier)
+                  .addList(
+                    oldListIndex == 0
+                        ? ref.watch(newOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 1
+                        ? ref.watch(acceptedOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 2
+                        ? ref.watch(cookingOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 3
+                        ? ref.watch(readyOrdersProvider).orders[oldItemIndex]
+                        : oldListIndex == 4
+                        ? ref.watch(onAWayOrdersProvider).orders[oldItemIndex]
+                        : ref
+                              .watch(deliveredOrdersProvider)
+                              .orders[oldItemIndex],
+                    context,
+                  );
             }
             break;
           }
@@ -432,8 +420,5 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
     }
   }
 
-  void onReorderList(
-    int oldListIndex,
-    int newListIndex,
-  ) {}
+  void onReorderList(int oldListIndex, int newListIndex) {}
 }
