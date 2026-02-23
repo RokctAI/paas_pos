@@ -24,6 +24,10 @@ permissions:
   contents: write
 
 jobs:
+  release:
+    permissions:
+      contents: write
+      issues: write
   universal-pipeline:
     uses: RokctAI/shared-workflows/.github/workflows/universal-pipeline.yml@main
     with:
