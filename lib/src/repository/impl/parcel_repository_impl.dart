@@ -38,7 +38,9 @@ class ParcelRepositoryImpl implements ParcelRepository {
         if (data == null) {
           return [];
         }
-        return (data as List).map((e) => ParcelOrderListData.fromJson(e)).toList();
+        return (data as List)
+            .map((e) => ParcelOrderListData.fromJson(e))
+            .toList();
       });
     } catch (e) {
       return SingleResponse(
@@ -54,10 +56,7 @@ class ParcelRepositoryImpl implements ParcelRepository {
     required String status,
   }) async {
     try {
-      final data = {
-        "parcel_order_id": parcelOrderId,
-        "status": status,
-      };
+      final data = {"parcel_order_id": parcelOrderId, "status": status};
       final client = dioHttp.client(requireAuth: true);
       final response = await client.post(
         '/api/v1/method/paas.api.parcel.update_parcel_status',

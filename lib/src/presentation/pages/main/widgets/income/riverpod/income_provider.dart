@@ -6,10 +6,11 @@ import '../../JuvoONE/widgets/expenses/repository/expense_repository.dart';
 import 'income_notifier.dart';
 import 'income_state.dart';
 
-final incomeProvider = StateNotifierProvider<IncomeNotifier, IncomeState>((ref) {
+final incomeProvider = StateNotifierProvider<IncomeNotifier, IncomeState>((
+  ref,
+) {
   return IncomeNotifier(
     getIt<SettingsRepository>(),
     getIt<ExpenseRepository>(),
   );
 });
-

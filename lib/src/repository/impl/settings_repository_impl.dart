@@ -19,7 +19,9 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
   Future<ApiResult<GlobalSettingsResponse>> getGlobalSettings() async {
     try {
       final client = dioHttp.client(requireAuth: false);
-      final response = await client.get('/api/v1/method/paas.api.get_global_settings');
+      final response = await client.get(
+        '/api/v1/method/paas.api.get_global_settings',
+      );
       debugPrint('==> get global settings response: $response');
       return ApiResult.success(
         data: GlobalSettingsResponse.fromJson(response.data),
@@ -31,8 +33,9 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
   }
 
   @override
-  Future<ApiResult<MobileTranslationsResponse>> getMobileTranslations(
-      {String? lang}) async {
+  Future<ApiResult<MobileTranslationsResponse>> getMobileTranslations({
+    String? lang,
+  }) async {
     final data = {'lang': lang ?? LocalStorage.getLanguage()?.locale ?? 'en'};
     try {
       final dioHttp = HttpService();
@@ -42,8 +45,11 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
         queryParameters: data,
       );
       await LocalStorage.setTranslations(
-          MobileTranslationsResponse.fromJson(response.data).data);
-      return  ApiResult.success(data: MobileTranslationsResponse.fromJson(response.data));
+        MobileTranslationsResponse.fromJson(response.data).data,
+      );
+      return ApiResult.success(
+        data: MobileTranslationsResponse.fromJson(response.data),
+      );
     } catch (e) {
       debugPrint('==> get translations failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -68,13 +74,15 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
 
   @override
   Future<ApiResult<SaleHistoryResponse>> getSaleHistory(
-      int type, int page) async {
+    int type,
+    int page,
+  ) async {
     final data = {
       'type': type == 0
           ? "deliveryman"
           : type == 1
-              ? "today"
-              : "history",
+          ? "today"
+          : "history",
       "perPage": 10,
       "page": page,
     };
@@ -100,31 +108,30 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
       final response = await client.get(
         '/api/v1/method/paas.api.get_seller_statistics',
       );
-      return ApiResult.success(
-        data: SaleCartResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: SaleCartResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> get sale cart failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
-
   @override
-  Future<ApiResult<IncomeStatisticResponse>> getIncomeStatistic(
-      {required String type,
-        required DateTime? from,
-        required DateTime? to}) async {
+  Future<ApiResult<IncomeStatisticResponse>> getIncomeStatistic({
+    required String type,
+    required DateTime? from,
+    required DateTime? to,
+  }) async {
     try {
       final data = {
         "type": type,
         "date_from": from.toString().substring(0, from.toString().indexOf(" ")),
-        "date_to": to.toString().substring(0, to.toString().indexOf(" "))
+        "date_to": to.toString().substring(0, to.toString().indexOf(" ")),
       };
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(
-          '/api/v1/method/paas.api.get_seller_statistics',
-          queryParameters: data);
+        '/api/v1/method/paas.api.get_seller_statistics',
+        queryParameters: data,
+      );
       return ApiResult.success(
         data: IncomeStatisticResponse.fromJson(response.data),
       );
@@ -135,20 +142,22 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
   }
 
   @override
-  Future<ApiResult<IncomeCartResponse>> getIncomeCart(
-      {required String type,
-      required DateTime? from,
-      required DateTime? to}) async {
+  Future<ApiResult<IncomeCartResponse>> getIncomeCart({
+    required String type,
+    required DateTime? from,
+    required DateTime? to,
+  }) async {
     try {
       final data = {
         "type": type,
         "date_from": from.toString().substring(0, from.toString().indexOf(" ")),
-        "date_to": to.toString().substring(0, to.toString().indexOf(" "))
+        "date_to": to.toString().substring(0, to.toString().indexOf(" ")),
       };
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(
-          '/api/v1/method/paas.api.get_seller_statistics',
-          queryParameters: data);
+        '/api/v1/method/paas.api.get_seller_statistics',
+        queryParameters: data,
+      );
       return ApiResult.success(
         data: IncomeCartResponse.fromJson(response.data),
       );
@@ -159,19 +168,22 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
   }
 
   @override
-  Future<ApiResult<List<IncomeChartResponse>>> getIncomeChart(
-      {required String type,
-      required DateTime? from,
-      required DateTime? to}) async {
+  Future<ApiResult<List<IncomeChartResponse>>> getIncomeChart({
+    required String type,
+    required DateTime? from,
+    required DateTime? to,
+  }) async {
     try {
       final data = {
         "type": type == TrKeys.week ? TrKeys.month : type,
         "date_from": from.toString().substring(0, from.toString().indexOf(" ")),
-        "date_to": to.toString().substring(0, to.toString().indexOf(" "))
+        "date_to": to.toString().substring(0, to.toString().indexOf(" ")),
       };
       final client = dioHttp.client(requireAuth: true);
-      final response = await client.get('/api/v1/method/paas.api.get_seller_statistics',
-          queryParameters: data);
+      final response = await client.get(
+        '/api/v1/method/paas.api.get_seller_statistics',
+        queryParameters: data,
+      );
       return ApiResult.success(
         data: incomeChartResponseFromJson(jsonEncode(response.data)),
       );
@@ -185,12 +197,13 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
   Future<ApiResult<LanguagesResponse>> getLanguages() async {
     try {
       final client = HttpService().client(requireAuth: false);
-      final response = await client.get('/api/v1/method/paas.api.get_languages');
+      final response = await client.get(
+        '/api/v1/method/paas.api.get_languages',
+      );
       if (LocalStorage.getLanguage() == null ||
-          !(LanguagesResponse.fromJson(response.data)
-              .data
-              ?.map((e) => e.id)
-              .contains(LocalStorage.getLanguage()?.id) ??
+          !(LanguagesResponse.fromJson(response.data).data
+                  ?.map((e) => e.id)
+                  .contains(LocalStorage.getLanguage()?.id) ??
               true)) {
         LanguagesResponse.fromJson(response.data).data?.forEach((element) {
           if (element.isDefault ?? false) {
@@ -199,22 +212,19 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
           }
         });
       }
-      return ApiResult.success(
-        data: LanguagesResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: LanguagesResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> get languages failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
+
   @override
   Future<ApiResult<HelpModel>> getFaq() async {
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get('/api/v1/method/paas.api.get_faqs');
-      return ApiResult.success(
-        data: HelpModel.fromJson(response.data),
-      );
+      return ApiResult.success(data: HelpModel.fromJson(response.data));
     } catch (e) {
       debugPrint('==> get faq failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));

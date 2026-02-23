@@ -1,4 +1,3 @@
-
 class ExpenseTypeStats {
   final String name;
   final double totalAmount;
@@ -34,10 +33,10 @@ class ExpenseTypeStatsParams {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is ExpenseTypeStatsParams &&
-              runtimeType == other.runtimeType &&
-              startDate == other.startDate &&
-              endDate == other.endDate;
+      other is ExpenseTypeStatsParams &&
+          runtimeType == other.runtimeType &&
+          startDate == other.startDate &&
+          endDate == other.endDate;
 
   @override
   int get hashCode => startDate.hashCode ^ endDate.hashCode;

@@ -12,7 +12,8 @@ part of 'add_product_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$AddProductState {
@@ -35,18 +36,20 @@ mixin _$AddProductState {
 /// @nodoc
 abstract class $AddProductStateCopyWith<$Res> {
   factory $AddProductStateCopyWith(
-          AddProductState value, $Res Function(AddProductState) then) =
-      _$AddProductStateCopyWithImpl<$Res, AddProductState>;
+    AddProductState value,
+    $Res Function(AddProductState) then,
+  ) = _$AddProductStateCopyWithImpl<$Res, AddProductState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isReviewing,
-      List<TypedExtra> typedExtras,
-      List<Stocks> initialStocks,
-      List<int> selectedIndexes,
-      int stockCount,
-      ProductData? product,
-      Stocks? selectedStock});
+  $Res call({
+    bool isLoading,
+    bool isReviewing,
+    List<TypedExtra> typedExtras,
+    List<Stocks> initialStocks,
+    List<int> selectedIndexes,
+    int stockCount,
+    ProductData? product,
+    Stocks? selectedStock,
+  });
 }
 
 /// @nodoc
@@ -73,60 +76,65 @@ class _$AddProductStateCopyWithImpl<$Res, $Val extends AddProductState>
     Object? product = freezed,
     Object? selectedStock = freezed,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReviewing: null == isReviewing
-          ? _value.isReviewing
-          : isReviewing // ignore: cast_nullable_to_non_nullable
-              as bool,
-      typedExtras: null == typedExtras
-          ? _value.typedExtras
-          : typedExtras // ignore: cast_nullable_to_non_nullable
-              as List<TypedExtra>,
-      initialStocks: null == initialStocks
-          ? _value.initialStocks
-          : initialStocks // ignore: cast_nullable_to_non_nullable
-              as List<Stocks>,
-      selectedIndexes: null == selectedIndexes
-          ? _value.selectedIndexes
-          : selectedIndexes // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      stockCount: null == stockCount
-          ? _value.stockCount
-          : stockCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as ProductData?,
-      selectedStock: freezed == selectedStock
-          ? _value.selectedStock
-          : selectedStock // ignore: cast_nullable_to_non_nullable
-              as Stocks?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isReviewing: null == isReviewing
+                ? _value.isReviewing
+                : isReviewing // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            typedExtras: null == typedExtras
+                ? _value.typedExtras
+                : typedExtras // ignore: cast_nullable_to_non_nullable
+                      as List<TypedExtra>,
+            initialStocks: null == initialStocks
+                ? _value.initialStocks
+                : initialStocks // ignore: cast_nullable_to_non_nullable
+                      as List<Stocks>,
+            selectedIndexes: null == selectedIndexes
+                ? _value.selectedIndexes
+                : selectedIndexes // ignore: cast_nullable_to_non_nullable
+                      as List<int>,
+            stockCount: null == stockCount
+                ? _value.stockCount
+                : stockCount // ignore: cast_nullable_to_non_nullable
+                      as int,
+            product: freezed == product
+                ? _value.product
+                : product // ignore: cast_nullable_to_non_nullable
+                      as ProductData?,
+            selectedStock: freezed == selectedStock
+                ? _value.selectedStock
+                : selectedStock // ignore: cast_nullable_to_non_nullable
+                      as Stocks?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$AddProductStateImplCopyWith<$Res>
     implements $AddProductStateCopyWith<$Res> {
-  factory _$$AddProductStateImplCopyWith(_$AddProductStateImpl value,
-          $Res Function(_$AddProductStateImpl) then) =
-      __$$AddProductStateImplCopyWithImpl<$Res>;
+  factory _$$AddProductStateImplCopyWith(
+    _$AddProductStateImpl value,
+    $Res Function(_$AddProductStateImpl) then,
+  ) = __$$AddProductStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isReviewing,
-      List<TypedExtra> typedExtras,
-      List<Stocks> initialStocks,
-      List<int> selectedIndexes,
-      int stockCount,
-      ProductData? product,
-      Stocks? selectedStock});
+  $Res call({
+    bool isLoading,
+    bool isReviewing,
+    List<TypedExtra> typedExtras,
+    List<Stocks> initialStocks,
+    List<int> selectedIndexes,
+    int stockCount,
+    ProductData? product,
+    Stocks? selectedStock,
+  });
 }
 
 /// @nodoc
@@ -134,8 +142,9 @@ class __$$AddProductStateImplCopyWithImpl<$Res>
     extends _$AddProductStateCopyWithImpl<$Res, _$AddProductStateImpl>
     implements _$$AddProductStateImplCopyWith<$Res> {
   __$$AddProductStateImplCopyWithImpl(
-      _$AddProductStateImpl _value, $Res Function(_$AddProductStateImpl) _then)
-      : super(_value, _then);
+    _$AddProductStateImpl _value,
+    $Res Function(_$AddProductStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of AddProductState
   /// with the given fields replaced by the non-null parameter values.
@@ -151,59 +160,61 @@ class __$$AddProductStateImplCopyWithImpl<$Res>
     Object? product = freezed,
     Object? selectedStock = freezed,
   }) {
-    return _then(_$AddProductStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReviewing: null == isReviewing
-          ? _value.isReviewing
-          : isReviewing // ignore: cast_nullable_to_non_nullable
-              as bool,
-      typedExtras: null == typedExtras
-          ? _value._typedExtras
-          : typedExtras // ignore: cast_nullable_to_non_nullable
-              as List<TypedExtra>,
-      initialStocks: null == initialStocks
-          ? _value._initialStocks
-          : initialStocks // ignore: cast_nullable_to_non_nullable
-              as List<Stocks>,
-      selectedIndexes: null == selectedIndexes
-          ? _value._selectedIndexes
-          : selectedIndexes // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      stockCount: null == stockCount
-          ? _value.stockCount
-          : stockCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as ProductData?,
-      selectedStock: freezed == selectedStock
-          ? _value.selectedStock
-          : selectedStock // ignore: cast_nullable_to_non_nullable
-              as Stocks?,
-    ));
+    return _then(
+      _$AddProductStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isReviewing: null == isReviewing
+            ? _value.isReviewing
+            : isReviewing // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        typedExtras: null == typedExtras
+            ? _value._typedExtras
+            : typedExtras // ignore: cast_nullable_to_non_nullable
+                  as List<TypedExtra>,
+        initialStocks: null == initialStocks
+            ? _value._initialStocks
+            : initialStocks // ignore: cast_nullable_to_non_nullable
+                  as List<Stocks>,
+        selectedIndexes: null == selectedIndexes
+            ? _value._selectedIndexes
+            : selectedIndexes // ignore: cast_nullable_to_non_nullable
+                  as List<int>,
+        stockCount: null == stockCount
+            ? _value.stockCount
+            : stockCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        product: freezed == product
+            ? _value.product
+            : product // ignore: cast_nullable_to_non_nullable
+                  as ProductData?,
+        selectedStock: freezed == selectedStock
+            ? _value.selectedStock
+            : selectedStock // ignore: cast_nullable_to_non_nullable
+                  as Stocks?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$AddProductStateImpl extends _AddProductState {
-  const _$AddProductStateImpl(
-      {this.isLoading = false,
-      this.isReviewing = false,
-      final List<TypedExtra> typedExtras = const [],
-      final List<Stocks> initialStocks = const [],
-      final List<int> selectedIndexes = const [],
-      this.stockCount = 0,
-      this.product,
-      this.selectedStock})
-      : _typedExtras = typedExtras,
-        _initialStocks = initialStocks,
-        _selectedIndexes = selectedIndexes,
-        super._();
+  const _$AddProductStateImpl({
+    this.isLoading = false,
+    this.isReviewing = false,
+    final List<TypedExtra> typedExtras = const [],
+    final List<Stocks> initialStocks = const [],
+    final List<int> selectedIndexes = const [],
+    this.stockCount = 0,
+    this.product,
+    this.selectedStock,
+  }) : _typedExtras = typedExtras,
+       _initialStocks = initialStocks,
+       _selectedIndexes = selectedIndexes,
+       super._();
 
   @override
   @JsonKey()
@@ -260,12 +271,18 @@ class _$AddProductStateImpl extends _AddProductState {
                 other.isLoading == isLoading) &&
             (identical(other.isReviewing, isReviewing) ||
                 other.isReviewing == isReviewing) &&
-            const DeepCollectionEquality()
-                .equals(other._typedExtras, _typedExtras) &&
-            const DeepCollectionEquality()
-                .equals(other._initialStocks, _initialStocks) &&
-            const DeepCollectionEquality()
-                .equals(other._selectedIndexes, _selectedIndexes) &&
+            const DeepCollectionEquality().equals(
+              other._typedExtras,
+              _typedExtras,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._initialStocks,
+              _initialStocks,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._selectedIndexes,
+              _selectedIndexes,
+            ) &&
             (identical(other.stockCount, stockCount) ||
                 other.stockCount == stockCount) &&
             (identical(other.product, product) || other.product == product) &&
@@ -275,15 +292,16 @@ class _$AddProductStateImpl extends _AddProductState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      isReviewing,
-      const DeepCollectionEquality().hash(_typedExtras),
-      const DeepCollectionEquality().hash(_initialStocks),
-      const DeepCollectionEquality().hash(_selectedIndexes),
-      stockCount,
-      product,
-      selectedStock);
+    runtimeType,
+    isLoading,
+    isReviewing,
+    const DeepCollectionEquality().hash(_typedExtras),
+    const DeepCollectionEquality().hash(_initialStocks),
+    const DeepCollectionEquality().hash(_selectedIndexes),
+    stockCount,
+    product,
+    selectedStock,
+  );
 
   /// Create a copy of AddProductState
   /// with the given fields replaced by the non-null parameter values.
@@ -292,19 +310,22 @@ class _$AddProductStateImpl extends _AddProductState {
   @pragma('vm:prefer-inline')
   _$$AddProductStateImplCopyWith<_$AddProductStateImpl> get copyWith =>
       __$$AddProductStateImplCopyWithImpl<_$AddProductStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _AddProductState extends AddProductState {
-  const factory _AddProductState(
-      {final bool isLoading,
-      final bool isReviewing,
-      final List<TypedExtra> typedExtras,
-      final List<Stocks> initialStocks,
-      final List<int> selectedIndexes,
-      final int stockCount,
-      final ProductData? product,
-      final Stocks? selectedStock}) = _$AddProductStateImpl;
+  const factory _AddProductState({
+    final bool isLoading,
+    final bool isReviewing,
+    final List<TypedExtra> typedExtras,
+    final List<Stocks> initialStocks,
+    final List<int> selectedIndexes,
+    final int stockCount,
+    final ProductData? product,
+    final Stocks? selectedStock,
+  }) = _$AddProductStateImpl;
   const _AddProductState._() : super._();
 
   @override
@@ -331,4 +352,3 @@ abstract class _AddProductState extends AddProductState {
   _$$AddProductStateImplCopyWith<_$AddProductStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

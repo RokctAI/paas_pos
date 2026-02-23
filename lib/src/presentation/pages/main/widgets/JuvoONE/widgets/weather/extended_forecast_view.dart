@@ -35,15 +35,15 @@ class ExtendedForecastView extends ConsumerWidget {
                 ),
                 child: AppConstants.weatherIcon
                     ? Image.network(
-                  OpenWeatherIconMapper.getIconUrl(condition['icon']),
-                  width: 60.sp,
-                  height: 60.sp,
-                )
+                        OpenWeatherIconMapper.getIconUrl(condition['icon']),
+                        width: 60.sp,
+                        height: 60.sp,
+                      )
                     : Icon(
-                  OpenWeatherIconMapper.getRemixIcon(condition['icon']),
-                  size: 60.sp,
-                  color: AppStyle.black,
-                ),
+                        OpenWeatherIconMapper.getRemixIcon(condition['icon']),
+                        size: 60.sp,
+                        color: AppStyle.black,
+                      ),
               ),
               Positioned(
                 right: -4,
@@ -104,10 +104,7 @@ class ExtendedForecastView extends ConsumerWidget {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.h),
-              child: Divider(
-                color: AppStyle.black.withOpacity(0.1),
-                height: 1,
-              ),
+              child: Divider(color: AppStyle.black.withOpacity(0.1), height: 1),
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -146,10 +143,7 @@ class ExtendedForecastView extends ConsumerWidget {
         child: Center(
           child: Text(
             'Failed to load extended forecast',
-            style: GoogleFonts.inter(
-              fontSize: 14.sp,
-              color: AppStyle.icon,
-            ),
+            style: GoogleFonts.inter(fontSize: 14.sp, color: AppStyle.icon),
           ),
         ),
       ),

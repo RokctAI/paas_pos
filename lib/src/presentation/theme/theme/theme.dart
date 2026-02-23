@@ -17,23 +17,14 @@ class AppTheme with ChangeNotifier {
 
   bool get isDark => _mode.isDark;
 
-
-  AppTheme._(
-    this._colorSet,
-    this._preference,
-    this._mode,
-  );
+  AppTheme._(this._colorSet, this._preference, this._mode);
 
   static Future<AppTheme> get create async {
     final themePreference = await _ThemePreference.create;
     final mode = themePreference.getMode();
     final colorSet = CustomColorSet.createOrUpdate(mode);
 
-    return AppTheme._(
-      colorSet,
-      themePreference,
-      mode,
-    );
+    return AppTheme._(colorSet, themePreference, mode);
   }
 
   Future<void> setLight() async {
@@ -62,4 +53,3 @@ class AppTheme with ChangeNotifier {
     await _preference.setMode(mode);
   }
 }
-

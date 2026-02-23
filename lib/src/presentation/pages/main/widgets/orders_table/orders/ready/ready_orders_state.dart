@@ -16,4 +16,3 @@ class ReadyOrdersState with _$ReadyOrdersState {
 
   const ReadyOrdersState._();
 }
-

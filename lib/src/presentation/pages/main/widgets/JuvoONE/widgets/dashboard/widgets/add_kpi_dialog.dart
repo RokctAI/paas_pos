@@ -70,9 +70,13 @@ class _AddKpiDialogState extends State<AddKpiDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.isEditing ? 'Edit KPI' : 'Add KPI',
-      style: const TextStyle(
-        fontWeight: FontWeight.bold, color: AppStyle.black)),
+      title: Text(
+        widget.isEditing ? 'Edit KPI' : 'Add KPI',
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppStyle.black,
+        ),
+      ),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -104,7 +108,7 @@ class _AddKpiDialogState extends State<AddKpiDialog> {
                       widget.objective.title,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                          color: AppStyle.black
+                        color: AppStyle.black,
                       ),
                     ),
                   ],
@@ -173,14 +177,19 @@ class _AddKpiDialogState extends State<AddKpiDialog> {
               const SizedBox(height: 16),
               const Text(
                 'Due Date',
-                style: TextStyle(fontWeight: FontWeight.bold, color: AppStyle.black),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: AppStyle.black,
+                ),
               ),
               const SizedBox(height: 8),
               InkWell(
                 onTap: _selectDueDate,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: AppStyle.grey),
                     borderRadius: BorderRadius.circular(4),
@@ -190,7 +199,10 @@ class _AddKpiDialogState extends State<AddKpiDialog> {
                     children: [
                       Text(
                         '${_dueDate.day}/${_dueDate.month}/${_dueDate.year}',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: AppStyle.black),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: AppStyle.black,
+                        ),
                       ),
                       const Icon(Icons.calendar_today, color: AppStyle.black),
                     ],
@@ -200,15 +212,17 @@ class _AddKpiDialogState extends State<AddKpiDialog> {
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: _status,
-                decoration: AppStyle.inputDecoration(
-                  labelText: 'Status',
-                ),
+                decoration: AppStyle.inputDecoration(labelText: 'Status'),
                 items: _statuses.map((status) {
                   return DropdownMenuItem<String>(
                     value: status,
-                    child: Text(status,
-                      style: TextStyle(fontWeight: FontWeight.bold, color: AppStyle.black)),
-
+                    child: Text(
+                      status,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppStyle.black,
+                      ),
+                    ),
                   );
                 }).toList(),
                 onChanged: (value) {
@@ -226,14 +240,17 @@ class _AddKpiDialogState extends State<AddKpiDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel',
-            style: TextStyle(fontWeight: FontWeight.bold, color: AppStyle.black),),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppStyle.black,
+            ),
+          ),
         ),
         ElevatedButton(
           onPressed: _isLoading ? null : _submitForm,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppStyle.primary,
-          ),
+          style: ElevatedButton.styleFrom(backgroundColor: AppStyle.primary),
           child: _isLoading
               ? const SizedBox(
                   width: 20,
@@ -243,7 +260,7 @@ class _AddKpiDialogState extends State<AddKpiDialog> {
               : Text(widget.isEditing ? 'Update' : 'Create'),
         ),
       ],
-      backgroundColor: AppStyle.white
+      backgroundColor: AppStyle.white,
     );
   }
 
@@ -296,9 +313,11 @@ class _AddKpiDialogState extends State<AddKpiDialog> {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(widget.isEditing
-                ? 'KPI updated successfully'
-                : 'KPI created successfully'),
+            content: Text(
+              widget.isEditing
+                  ? 'KPI updated successfully'
+                  : 'KPI created successfully',
+            ),
             backgroundColor: AppStyle.green,
           ),
         );
@@ -306,4 +325,3 @@ class _AddKpiDialogState extends State<AddKpiDialog> {
     }
   }
 }
-

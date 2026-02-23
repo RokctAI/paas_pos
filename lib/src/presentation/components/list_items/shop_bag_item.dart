@@ -42,8 +42,7 @@ class ShopBagItem extends StatelessWidget {
                 ),
               ),
               Text(
-                '${bagShopData.bagProducts.length} ${AppHelpers.getTranslation(
-                    TrKeys.products)}',
+                '${bagShopData.bagProducts.length} ${AppHelpers.getTranslation(TrKeys.products)}',
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.w600,
                   fontSize: 14.sp,
@@ -60,9 +59,7 @@ class ShopBagItem extends StatelessWidget {
           thickness: 1.r,
           color: AppStyle.black.withOpacity(0.1),
         ),
-
       ],
     );
   }
 }
-

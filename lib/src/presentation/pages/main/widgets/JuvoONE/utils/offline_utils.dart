@@ -4,9 +4,14 @@ import 'package:http/http.dart' as http;
 
 const String offlineRequestsKey = 'offlineRequests';
 
-Future<void> saveOfflineRequest(String url, String method, Map<String, dynamic> data) async {
+Future<void> saveOfflineRequest(
+  String url,
+  String method,
+  Map<String, dynamic> data,
+) async {
   final prefs = await SharedPreferences.getInstance();
-  final offlineRequests = jsonDecode(prefs.getString(offlineRequestsKey) ?? '[]') as List;
+  final offlineRequests =
+      jsonDecode(prefs.getString(offlineRequestsKey) ?? '[]') as List;
   offlineRequests.add({
     'url': url,
     'method': method,
@@ -18,7 +23,8 @@ Future<void> saveOfflineRequest(String url, String method, Map<String, dynamic> 
 
 Future<List<Map<String, dynamic>>> getOfflineRequests() async {
   final prefs = await SharedPreferences.getInstance();
-  final offlineRequests = jsonDecode(prefs.getString(offlineRequestsKey) ?? '[]') as List;
+  final offlineRequests =
+      jsonDecode(prefs.getString(offlineRequestsKey) ?? '[]') as List;
   return offlineRequests.cast<Map<String, dynamic>>();
 }
 

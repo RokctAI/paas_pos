@@ -50,7 +50,9 @@ class _ViewModeButtonState extends ConsumerState<ViewModeButton> {
   bool _shouldShowViewMode(int currentIndex, String? userRole) {
     switch (currentIndex) {
       case 1: // Orders Tables page
-        return userRole == TrKeys.seller || userRole == TrKeys.waiter || userRole == 'admin';
+        return userRole == TrKeys.seller ||
+            userRole == TrKeys.waiter ||
+            userRole == 'admin';
       case 2: // Customers page
         return userRole == TrKeys.seller || userRole == 'admin';
       case 3: // Tables page
@@ -67,11 +69,7 @@ class _ViewModeButtonState extends ConsumerState<ViewModeButton> {
   }
 
   List<String> _getIncomeList() {
-    return [
-      TrKeys.day,
-      TrKeys.week,
-      TrKeys.month,
-    ];
+    return [TrKeys.day, TrKeys.week, TrKeys.month];
   }
 
   bool _getListViewState(WidgetRef ref, int currentIndex) {
@@ -120,13 +118,16 @@ class _ViewModeButtonState extends ConsumerState<ViewModeButton> {
       return Row(
         children: [
           ...list.map(
-                (e) => GestureDetector(
+            (e) => GestureDetector(
               onTap: () {
                 event.changeIndex(e);
               },
               child: AnimationButtonEffect(
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 12.r, horizontal: 18.r),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 12.r,
+                    horizontal: 18.r,
+                  ),
                   margin: EdgeInsets.only(right: 8.r),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.r),
@@ -155,7 +156,11 @@ class _ViewModeButtonState extends ConsumerState<ViewModeButton> {
     if (currentIndex == 4 && userRole == TrKeys.seller) {
       final state = ref.watch(saleHistoryProvider);
       final notifier = ref.read(saleHistoryProvider.notifier);
-      List statusList = [TrKeys.cashDrawer, TrKeys.todaySale, TrKeys.saleHistory];
+      List statusList = [
+        TrKeys.cashDrawer,
+        TrKeys.todaySale,
+        TrKeys.saleHistory,
+      ];
 
       return Row(
         children: [
@@ -180,7 +185,7 @@ class _ViewModeButtonState extends ConsumerState<ViewModeButton> {
       );
     }
 
-  ///For Dashboard
+    ///For Dashboard
     if (currentIndex == 7 && userRole == TrKeys.seller) {
       final selectedViewMode = ref.watch(dashboardViewModeProvider);
 
@@ -201,12 +206,14 @@ class _ViewModeButtonState extends ConsumerState<ViewModeButton> {
                 isShadow: true,
                 onTap: () {
                   // Change view mode
-                  ref.read(dashboardViewModeProvider.notifier).changeViewMode(i);
+                  ref
+                      .read(dashboardViewModeProvider.notifier)
+                      .changeViewMode(i);
 
                   // Change content based on tab
-                  ref.read(dashboardContentProvider.notifier).changeContent(
-                      dashboardTabWidgets[i]
-                  );
+                  ref
+                      .read(dashboardContentProvider.notifier)
+                      .changeContent(dashboardTabWidgets[i]);
                 },
               ),
             );
@@ -235,12 +242,14 @@ class _ViewModeButtonState extends ConsumerState<ViewModeButton> {
                 isShadow: true,
                 onTap: () {
                   // Change view mode
-                  ref.read(dashboardViewModeProvider.notifier).changeViewMode(i);
+                  ref
+                      .read(dashboardViewModeProvider.notifier)
+                      .changeViewMode(i);
 
                   // Change content based on tab
-                  ref.read(dashboardContentProvider.notifier).changeContent(
-                      dashboardTabWidgets[i]
-                  );
+                  ref
+                      .read(dashboardContentProvider.notifier)
+                      .changeContent(dashboardTabWidgets[i]);
                 },
               ),
             );

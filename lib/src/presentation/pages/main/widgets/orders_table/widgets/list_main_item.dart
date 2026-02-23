@@ -125,40 +125,44 @@ class ListMainItem extends ConsumerWidget {
               ? ListView(
                   children: [
                     ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: orderList.length,
-                        itemBuilder: (context, index) {
-                          return ListItem(
-                            orderData: orderList[index],
-                            color: color,
-                            onSelect: () => notifier.addSelectOrder(
-                                id: orderList[index].id,
-                                orderLength: orderList.length),
-                            isSelect: state.selectOrders
-                                .contains(orderList[index].id),
-                          );
-                        }),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: orderList.length,
+                      itemBuilder: (context, index) {
+                        return ListItem(
+                          orderData: orderList[index],
+                          color: color,
+                          onSelect: () => notifier.addSelectOrder(
+                            id: orderList[index].id,
+                            orderLength: orderList.length,
+                          ),
+                          isSelect: state.selectOrders.contains(
+                            orderList[index].id,
+                          ),
+                        );
+                      },
+                    ),
                     if (isLoading)
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                          itemCount: 6,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  height: 72.r,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(1),
-                                    color: AppStyle.shimmerBase,
-                                  ),
+                        itemCount: 6,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                height: 72.r,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(1),
+                                  color: AppStyle.shimmerBase,
                                 ),
-                                Divider(height: 2.r, color: AppStyle.white),
-                              ],
-                            );
-                          }),
+                              ),
+                              Divider(height: 2.r, color: AppStyle.white),
+                            ],
+                          );
+                        },
+                      ),
                     24.verticalSpace,
                     (hasMore
                         ? InkWell(
@@ -184,20 +188,17 @@ class ListMainItem extends ConsumerWidget {
                               ),
                             ),
                           )
-                        : const SizedBox())
+                        : const SizedBox()),
                   ],
                 )
               : Center(
                   child: Padding(
                     padding: EdgeInsets.only(top: 16.r, bottom: 200.r),
-                    child: Text(
-                      AppHelpers.getTranslation(TrKeys.emptyOrders),
-                    ),
+                    child: Text(AppHelpers.getTranslation(TrKeys.emptyOrders)),
                   ),
                 ),
-        )
+        ),
       ],
     );
   }
 }
-

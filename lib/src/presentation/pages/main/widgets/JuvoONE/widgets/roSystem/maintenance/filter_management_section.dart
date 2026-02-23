@@ -17,7 +17,8 @@ class FilterManagementSection extends StatefulWidget {
   });
 
   @override
-  State<FilterManagementSection> createState() => _FilterManagementSectionState();
+  State<FilterManagementSection> createState() =>
+      _FilterManagementSectionState();
 }
 
 class _FilterManagementSectionState extends State<FilterManagementSection> {
@@ -49,12 +50,14 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
 
     // Group existing filters by location
     for (var filter in widget.initialFilters) {
-      _filtersByLocation[filter.location]?.add(Filter(
-        id: filter.id,
-        type: filter.type,
-        location: filter.location,
-        installationDate: filter.installationDate,
-      ));
+      _filtersByLocation[filter.location]?.add(
+        Filter(
+          id: filter.id,
+          type: filter.type,
+          location: filter.location,
+          installationDate: filter.installationDate,
+        ),
+      );
     }
 
     // Reset date picker visibility
@@ -84,9 +87,15 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
     });
   }
 
-  void _updateFilterType(FilterLocation location, String filterId, FilterType newType) {
+  void _updateFilterType(
+    FilterLocation location,
+    String filterId,
+    FilterType newType,
+  ) {
     setState(() {
-      final filterIndex = _filtersByLocation[location]?.indexWhere((f) => f.id == filterId) ?? -1;
+      final filterIndex =
+          _filtersByLocation[location]?.indexWhere((f) => f.id == filterId) ??
+          -1;
       if (filterIndex != -1) {
         final filter = _filtersByLocation[location]![filterIndex];
         _filtersByLocation[location]![filterIndex] = Filter(
@@ -100,11 +109,17 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
     });
   }
 
-  void _updateFilterDate(FilterLocation location, String filterId, DateTime? newDate) {
+  void _updateFilterDate(
+    FilterLocation location,
+    String filterId,
+    DateTime? newDate,
+  ) {
     if (newDate == null) return;
 
     setState(() {
-      final filterIndex = _filtersByLocation[location]?.indexWhere((f) => f.id == filterId) ?? -1;
+      final filterIndex =
+          _filtersByLocation[location]?.indexWhere((f) => f.id == filterId) ??
+          -1;
       if (filterIndex != -1) {
         final filter = _filtersByLocation[location]![filterIndex];
         _filtersByLocation[location]![filterIndex] = filter.copyWith(
@@ -165,7 +180,9 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
                   icon: const Icon(FlutterRemix.add_line, size: 20),
                   label: const Text('Add Filter'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppConstants.enableJuvoONE ? AppStyle.blueBonus : AppStyle.primary,
+                    backgroundColor: AppConstants.enableJuvoONE
+                        ? AppStyle.blueBonus
+                        : AppStyle.primary,
                     foregroundColor: AppStyle.white,
                   ),
                 ),
@@ -197,9 +214,7 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
                       Expanded(
                         child: DropdownButtonFormField<FilterType>(
                           value: filter.type,
-                          style: const TextStyle(
-                            color: AppStyle.black,
-                          ),
+                          style: const TextStyle(color: AppStyle.black),
                           decoration: InputDecoration(
                             labelText: 'Filter Type',
                             border: OutlineInputBorder(
@@ -210,7 +225,11 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
                             return DropdownMenuItem(
                               value: type,
                               child: Text(
-                                AppConstants.filterTypes[type.toString().split('.').last] ?? '',
+                                AppConstants.filterTypes[type
+                                        .toString()
+                                        .split('.')
+                                        .last] ??
+                                    '',
                                 style: GoogleFonts.inter(),
                               ),
                             );
@@ -237,19 +256,31 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
                                 });
                               },
                               child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 16,
+                                ),
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: AppStyle.black.withOpacity(0.2)),
+                                  border: Border.all(
+                                    color: AppStyle.black.withOpacity(0.2),
+                                  ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       '${filter.installationDate.day}/${filter.installationDate.month}/${filter.installationDate.year}',
-                                      style: GoogleFonts.inter(color: AppStyle.black),
+                                      style: GoogleFonts.inter(
+                                        color: AppStyle.black,
+                                      ),
                                     ),
-                                    const Icon(Icons.calendar_today, size: 20, color: AppStyle.black,),
+                                    const Icon(
+                                      Icons.calendar_today,
+                                      size: 20,
+                                      color: AppStyle.black,
+                                    ),
                                   ],
                                 ),
                               ),
@@ -258,7 +289,9 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
                               Container(
                                 margin: const EdgeInsets.only(top: 8),
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: AppStyle.black.withOpacity(0.1)),
+                                  border: Border.all(
+                                    color: AppStyle.black.withOpacity(0.1),
+                                  ),
                                   borderRadius: BorderRadius.circular(8),
                                   color: AppStyle.white,
                                   boxShadow: [
@@ -272,8 +305,13 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
                                 child: CustomDatePicker(
                                   range: [filter.installationDate],
                                   onChange: (dates) {
-                                    if (dates.isNotEmpty && dates.first != null) {
-                                      _updateFilterDate(location, filter.id, dates.first);
+                                    if (dates.isNotEmpty &&
+                                        dates.first != null) {
+                                      _updateFilterDate(
+                                        location,
+                                        filter.id,
+                                        dates.first,
+                                      );
                                     }
                                   },
                                 ),

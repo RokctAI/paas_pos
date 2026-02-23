@@ -54,9 +54,13 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.isEditing ? 'Edit Vision' : 'Add Vision',
-          style: const TextStyle(
-              fontWeight: FontWeight.bold, color: AppStyle.black)),
+      title: Text(
+        widget.isEditing ? 'Edit Vision' : 'Add Vision',
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppStyle.black,
+        ),
+      ),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -98,15 +102,16 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
               const SizedBox(height: 16),
               const Text(
                 'Effective Date',
-                  style: const TextStyle(
-                      color: AppStyle.black)
+                style: const TextStyle(color: AppStyle.black),
               ),
               const SizedBox(height: 8),
               InkWell(
                 onTap: _selectEffectiveDate,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: AppStyle.grey),
                     borderRadius: BorderRadius.circular(4),
@@ -116,10 +121,9 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
                     children: [
                       Text(
                         '${_effectiveDate.day}/${_effectiveDate.month}/${_effectiveDate.year}',
-                      style: const TextStyle(color: AppStyle.black)
+                        style: const TextStyle(color: AppStyle.black),
                       ),
-                      const Icon(Icons.calendar_today,
-                           color: AppStyle.black),
+                      const Icon(Icons.calendar_today, color: AppStyle.black),
                     ],
                   ),
                 ),
@@ -127,14 +131,16 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
               const SizedBox(height: 16),
               const Text(
                 'End Date (Optional)',
-                  style: const TextStyle( color: AppStyle.black)
+                style: const TextStyle(color: AppStyle.black),
               ),
               const SizedBox(height: 8),
               InkWell(
                 onTap: _selectEndDate,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: AppStyle.grey),
                     borderRadius: BorderRadius.circular(4),
@@ -146,8 +152,8 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
                         _endDate != null
                             ? '${_endDate!.day}/${_endDate!.month}/${_endDate!.year}'
                             : 'Select End Date',
-                      style: const TextStyle(
-                       color: AppStyle.black)),
+                        style: const TextStyle(color: AppStyle.black),
+                      ),
                       Row(
                         children: [
                           if (_endDate != null)
@@ -163,8 +169,10 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
                               constraints: const BoxConstraints(),
                             ),
                           const SizedBox(width: 8),
-                          const Icon(Icons.calendar_today,
-                              color: AppStyle.black),
+                          const Icon(
+                            Icons.calendar_today,
+                            color: AppStyle.black,
+                          ),
                         ],
                       ),
                     ],
@@ -173,9 +181,13 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
               ),
               const SizedBox(height: 16),
               SwitchListTile(
-                title: const Text('Active',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: AppStyle.black)),
+                title: const Text(
+                  'Active',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: AppStyle.black,
+                  ),
+                ),
                 value: _isActive,
                 onChanged: (value) {
                   setState(() {
@@ -191,15 +203,14 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
       actions: [
         TextButton(
           onPressed: _isLoading ? null : () => Navigator.of(context).pop(),
-          child: const Text('Cancel',
-              style: const TextStyle(
-                  color: AppStyle.black)),
+          child: const Text(
+            'Cancel',
+            style: const TextStyle(color: AppStyle.black),
+          ),
         ),
         ElevatedButton(
           onPressed: _isLoading ? null : _submitForm,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppStyle.primary,
-          ),
+          style: ElevatedButton.styleFrom(backgroundColor: AppStyle.primary),
           child: _isLoading
               ? const SizedBox(
                   width: 20,
@@ -209,7 +220,7 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
               : Text(widget.isEditing ? 'Update' : 'Create'),
         ),
       ],
-      backgroundColor: AppStyle.white
+      backgroundColor: AppStyle.white,
     );
   }
 
@@ -269,7 +280,9 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
         bool success;
         if (widget.isEditing && widget.initialVision != null) {
           success = await _planProvider.updateVision(
-              widget.initialVision!.uuid, data);
+            widget.initialVision!.uuid,
+            data,
+          );
         } else {
           success = await _planProvider.createVision(data);
         }
@@ -280,9 +293,11 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
             Navigator.of(context).pop();
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(widget.isEditing
-                    ? 'Vision updated successfully'
-                    : 'Vision created successfully'),
+                content: Text(
+                  widget.isEditing
+                      ? 'Vision updated successfully'
+                      : 'Vision created successfully',
+                ),
                 backgroundColor: AppStyle.green,
               ),
             );
@@ -291,7 +306,8 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
           // If not success, show error message from provider
           setState(() {
             _isLoading = false;
-            _errorMessage = _planProvider.error ??
+            _errorMessage =
+                _planProvider.error ??
                 'Failed to save vision. Please try again.';
           });
         }
@@ -305,4 +321,3 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
     }
   }
 }
-

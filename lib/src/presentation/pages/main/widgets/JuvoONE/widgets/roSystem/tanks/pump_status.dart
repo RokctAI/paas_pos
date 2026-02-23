@@ -15,7 +15,7 @@ class PumpStatus extends StatefulWidget {
   final double currentLevel;
   final double capacity;
   final List<Tank> tanks;
-  final double Function(Tank) calculateWaterLevel;  // Add this line
+  final double Function(Tank) calculateWaterLevel; // Add this line
 
   const PumpStatus({
     super.key,
@@ -24,7 +24,7 @@ class PumpStatus extends StatefulWidget {
     required this.currentLevel,
     required this.capacity,
     required this.tanks,
-    required this.calculateWaterLevel,  // Add this line
+    required this.calculateWaterLevel, // Add this line
     this.tankId,
     this.onStatusChanged,
   });
@@ -44,7 +44,7 @@ class _PumpStatusState extends State<PumpStatus> {
         widget.onStatusChanged?.call();
       },
       tanks: widget.tanks,
-      calculateWaterLevel: widget.calculateWaterLevel,  // Add this line
+      calculateWaterLevel: widget.calculateWaterLevel, // Add this line
     );
   }
 
@@ -60,13 +60,23 @@ class _PumpStatusState extends State<PumpStatus> {
     try {
       final newStatus = !widget.isOn;
       if (kDebugMode) {
-        print('Toggling pump for tank ${widget.tankId} from ${widget.isOn} to $newStatus');
+        print(
+          'Toggling pump for tank ${widget.tankId} from ${widget.isOn} to $newStatus',
+        );
       }
 
       if (newStatus) {
         // When turning on, update both status and flow rate
-        await TankApiService.updatePumpStatus(widget.tankId!, true, widget.flowRate);
-        await _pumpManager.startPump(widget.tankId!, widget.flowRate, widget.currentLevel);
+        await TankApiService.updatePumpStatus(
+          widget.tankId!,
+          true,
+          widget.flowRate,
+        );
+        await _pumpManager.startPump(
+          widget.tankId!,
+          widget.flowRate,
+          widget.currentLevel,
+        );
       } else {
         // When turning off, only update status
         await TankApiService.updatePumpOnlyStatus(widget.tankId!, false);
@@ -106,10 +116,7 @@ class _PumpStatusState extends State<PumpStatus> {
             children: [
               Text(
                 'Pump Status',
-                style: TextStyle(
-                  color: AppStyle.grey[600],
-                  fontSize: 14.sp,
-                ),
+                style: TextStyle(color: AppStyle.grey[600], fontSize: 14.sp),
               ),
               SizedBox(height: 4.h),
               Text(
@@ -144,7 +151,9 @@ class _PumpStatusState extends State<PumpStatus> {
             IconButton(
               onPressed: _togglePump,
               icon: Icon(
-                widget.isOn ? Icons.power_settings_new : Icons.power_settings_new_outlined,
+                widget.isOn
+                    ? Icons.power_settings_new
+                    : Icons.power_settings_new_outlined,
                 color: widget.isOn ? Colors.green : Colors.red,
               ),
             ),

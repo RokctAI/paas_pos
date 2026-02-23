@@ -8,7 +8,6 @@ import 'package:admin_desktop/src/core/handlers/handlers.dart';
 import 'package:admin_desktop/src/models/models.dart';
 import '../../models/response/gallery_upload_response.dart';
 
-
 class GalleryRepository implements GalleryRepositoryFacade {
   @override
   Future<ApiResult<GalleryUploadResponse>> uploadImage(
@@ -16,14 +15,12 @@ class GalleryRepository implements GalleryRepositoryFacade {
     String docType,
     String docName,
   ) async {
-    final data = FormData.fromMap(
-      {
-        'file': await MultipartFile.fromFile(file),
-        'doctype': docType,
-        'docname': docName,
-        'is_private': 0,
-      },
-    );
+    final data = FormData.fromMap({
+      'file': await MultipartFile.fromFile(file),
+      'doctype': docType,
+      'docname': docName,
+      'is_private': 0,
+    });
     try {
       final client = dioHttp.client(requireAuth: true);
       // NOTE: Using Frappe's standard file upload method
@@ -38,7 +35,7 @@ class GalleryRepository implements GalleryRepositoryFacade {
       );
     } catch (e) {
       debugPrint('==> upload image failure: $e');
-      return ApiResult.failure(error: AppHelpers.errorHandler(e),);
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
@@ -46,9 +43,9 @@ class GalleryRepository implements GalleryRepositoryFacade {
   // images can be uploaded by calling `uploadImage` multiple times.
   @override
   Future<ApiResult<MultiGalleryUploadResponse>> uploadMultiImage(
-      List<String?> filePaths,
-      UploadType uploadType,
-      ) {
+    List<String?> filePaths,
+    UploadType uploadType,
+  ) {
     throw UnimplementedError();
   }
 }

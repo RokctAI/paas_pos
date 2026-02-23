@@ -33,7 +33,6 @@ import 'package:admin_desktop/src/repository/impl/delivery_points_repository_imp
 import 'package:admin_desktop/src/repository/parcel_repository.dart';
 import 'package:admin_desktop/src/repository/impl/parcel_repository_impl.dart';
 
-
 final GetIt getIt = GetIt.instance;
 
 void setUpDependencies() {
@@ -54,22 +53,31 @@ void setUpDependencies() {
   getIt.registerSingleton<DiscountsRepository>(DiscountsRepositoryImpl());
   getIt.registerSingleton<StockRepository>(StockRepositoryImpl());
   getIt.registerSingleton<StoriesRepository>(StoriesRepositoryImpl());
-  getIt.registerSingleton<ExpenseRepository>(ExpenseRepository(ExpenseService()));
+  getIt.registerSingleton<ExpenseRepository>(
+    ExpenseRepository(ExpenseService()),
+  );
   getIt.registerSingleton<ExpenseService>(ExpenseService());
   getIt.registerSingleton<PlanRepository>(PlanRepositoryImpl(dioHttp));
   getIt.registerSingleton<TaskRepository>(TaskRepositoryImpl(dioHttp));
-  getIt.registerSingleton<PersonalMasteryRepository>(PersonalMasteryRepositoryImpl(dioHttp));
+  getIt.registerSingleton<PersonalMasteryRepository>(
+    PersonalMasteryRepositoryImpl(dioHttp),
+  );
   getIt.registerSingleton<RoadmapRepository>(RoadmapRepositoryImpl(dioHttp));
-  getIt.registerSingleton<DeliveryPointsRepository>(DeliveryPointsRepositoryImpl());
+  getIt.registerSingleton<DeliveryPointsRepository>(
+    DeliveryPointsRepositoryImpl(),
+  );
 
   getIt.registerSingleton<PlanProvider>(PlanProvider(getIt<PlanRepository>()));
   getIt.registerSingleton<TaskProvider>(TaskProvider(getIt<TaskRepository>()));
-  getIt.registerSingleton<PersonalMasteryProvider>(PersonalMasteryProvider(getIt<PersonalMasteryRepository>()));
-  getIt.registerSingleton<RoadmapProvider>(RoadmapProvider(getIt<RoadmapRepository>()));
+  getIt.registerSingleton<PersonalMasteryProvider>(
+    PersonalMasteryProvider(getIt<PersonalMasteryRepository>()),
+  );
+  getIt.registerSingleton<RoadmapProvider>(
+    RoadmapProvider(getIt<RoadmapRepository>()),
+  );
   getIt.registerSingleton<ParcelRepository>(ParcelRepositoryImpl());
   //getIt.registerSingleton<TenderRepository>(TenderRepository());
   //getIt.registerSingleton<TenderProvider>(TenderProvider(getIt<TenderRepository>(),getIt<TaskProvider>()));
-
 }
 
 final dioHttp = getIt.get<HttpService>();
@@ -98,4 +106,3 @@ final deliveryPointsRepository = getIt.get<DeliveryPointsRepository>();
 final parcelRepository = getIt.get<ParcelRepository>();
 //final tenderRepository = getIt.get<TenderRepository>();
 //final tenderProvider = getIt.get<TenderProvider>();
-

@@ -65,16 +65,18 @@ class _AddDeliverymanPageState extends ConsumerState<AddDeliverymanPage> {
                 Text(
                   AppHelpers.getTranslation(TrKeys.addDeliveryman),
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22,
-                      color: AppStyle.black),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22,
+                    color: AppStyle.black,
+                  ),
                 ),
                 const Spacer(),
                 IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(FlutterRemix.close_fill))
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(FlutterRemix.close_fill),
+                ),
               ],
             ),
             Expanded(
@@ -109,47 +111,58 @@ class _AddDeliverymanPageState extends ConsumerState<AddDeliverymanPage> {
                                   children: [
                                     OutlinedBorderTextField(
                                       label:
-                                      '${AppHelpers.getTranslation(TrKeys.firstname)}*',
+                                          '${AppHelpers.getTranslation(TrKeys.firstname)}*',
                                       inputType: TextInputType.text,
-                                      textCapitalization: TextCapitalization.sentences,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
                                       textInputAction: TextInputAction.next,
                                       textController: firstName,
                                       validator: AppValidators.emptyCheck,
                                     ),
                                     16.verticalSpace,
                                     OutlinedBorderTextField(
-                                      label: AppHelpers.getTranslation(TrKeys.lastname),
+                                      label: AppHelpers.getTranslation(
+                                        TrKeys.lastname,
+                                      ),
                                       inputType: TextInputType.text,
-                                      textCapitalization: TextCapitalization.sentences,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
                                       textInputAction: TextInputAction.next,
                                       textController: lastName,
                                     ),
                                     16.verticalSpace,
                                     OutlinedBorderTextField(
-                                      label: '${AppHelpers.getTranslation(TrKeys.phone)}*',
+                                      label:
+                                          '${AppHelpers.getTranslation(TrKeys.phone)}*',
                                       inputType: TextInputType.phone,
-                                      textCapitalization: TextCapitalization.none,
+                                      textCapitalization:
+                                          TextCapitalization.none,
                                       textInputAction: TextInputAction.next,
                                       textController: phone,
-                                      validator: AppValidators.isNumberValidator,
+                                      validator:
+                                          AppValidators.isNumberValidator,
                                     ),
                                     16.verticalSpace,
                                     OutlinedBorderTextField(
-                                      label: '${AppHelpers.getTranslation(TrKeys.email)}*',
+                                      label:
+                                          '${AppHelpers.getTranslation(TrKeys.email)}*',
                                       inputType: TextInputType.emailAddress,
-                                      textCapitalization: TextCapitalization.none,
+                                      textCapitalization:
+                                          TextCapitalization.none,
                                       textInputAction: TextInputAction.next,
                                       textController: email,
                                       validator: AppValidators.emailCheck,
                                     ),
                                     16.verticalSpace,
                                     OutlinedBorderTextField(
-                                      label: '${AppHelpers.getTranslation(TrKeys.password)}*',
-                                      textCapitalization: TextCapitalization.none,
+                                      label:
+                                          '${AppHelpers.getTranslation(TrKeys.password)}*',
+                                      textCapitalization:
+                                          TextCapitalization.none,
                                       textInputAction: TextInputAction.done,
                                       textController: password,
                                       validator: AppValidators.emptyCheck,
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -161,29 +174,35 @@ class _AddDeliverymanPageState extends ConsumerState<AddDeliverymanPage> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Padding(
-                                    padding: REdgeInsets.symmetric(horizontal: 16),
-                                    child: CustomButton(
-                                      title: AppHelpers.getTranslation(TrKeys.save),
-                                      isLoading: state.isLoading,
-                                      onTap: () {
-                                        if (formKey.currentState?.validate() ?? false) {
-                                          notifier.createCustomer(
-                                            context,
-                                            createRole: TrKeys.deliveryman,
-                                            name: firstName.text,
-                                            lastName: lastName.text,
-                                            email: email.text,
-                                            phone: phone.text,
-                                            created: (user) {
-                                              context.maybePop();
-                                              ref.read(deliverymanProvider.notifier).addCreatedUser(user);
-                                            },
-                                          );
-                                        }
-                                      },
-                                    ),),
+                                padding: REdgeInsets.symmetric(horizontal: 16),
+                                child: CustomButton(
+                                  title: AppHelpers.getTranslation(TrKeys.save),
+                                  isLoading: state.isLoading,
+                                  onTap: () {
+                                    if (formKey.currentState?.validate() ??
+                                        false) {
+                                      notifier.createCustomer(
+                                        context,
+                                        createRole: TrKeys.deliveryman,
+                                        name: firstName.text,
+                                        lastName: lastName.text,
+                                        email: email.text,
+                                        phone: phone.text,
+                                        created: (user) {
+                                          context.maybePop();
+                                          ref
+                                              .read(
+                                                deliverymanProvider.notifier,
+                                              )
+                                              .addCreatedUser(user);
+                                        },
+                                      );
+                                    }
+                                  },
+                                ),
+                              ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     );
@@ -296,4 +315,3 @@ class _AddDeliverymanPageState extends ConsumerState<AddDeliverymanPage> {
     );
   }
 }
-

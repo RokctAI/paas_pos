@@ -1,16 +1,11 @@
-
-
-List<DisableDates> disableDatesFromJson(dynamic str) => List<DisableDates>.from(str.map((x) => DisableDates.fromJson(x)));
-
+List<DisableDates> disableDatesFromJson(dynamic str) =>
+    List<DisableDates>.from(str.map((x) => DisableDates.fromJson(x)));
 
 class DisableDates {
   DateTime startDate;
   DateTime endDate;
 
-  DisableDates({
-    required this.startDate,
-    required this.endDate,
-  });
+  DisableDates({required this.startDate, required this.endDate});
 
   factory DisableDates.fromJson(Map<String, dynamic> json) => DisableDates(
     startDate: DateTime.parse(json["start_date"]),
@@ -22,4 +17,3 @@ class DisableDates {
     "end_date": endDate.toIso8601String(),
   };
 }
-

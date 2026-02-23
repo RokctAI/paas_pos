@@ -10,10 +10,8 @@ import 'repository/expenses_api.dart';
 class AddExpense extends StatefulWidget {
   final int shopId;
 
-  AddExpense({
-    super.key,
-    int? providedShopId,
-  }) : shopId = providedShopId ?? _getDefaultShopId();
+  AddExpense({super.key, int? providedShopId})
+    : shopId = providedShopId ?? _getDefaultShopId();
 
   static int _getDefaultShopId() {
     final userData = LocalStorage.getUser();
@@ -51,7 +49,6 @@ class _AddExpenseState extends State<AddExpense> {
   final _supplierController = TextEditingController();
   final _invoiceNumberController = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
@@ -80,7 +77,9 @@ class _AddExpenseState extends State<AddExpense> {
         // Show a more detailed error message
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to load expense types. Please check your connection and try again.'),
+            content: Text(
+              'Failed to load expense types. Please check your connection and try again.',
+            ),
             backgroundColor: AppStyle.red,
             duration: const Duration(seconds: 5),
           ),
@@ -103,18 +102,30 @@ class _AddExpenseState extends State<AddExpense> {
 
         final expense = Expense(
           shopId: widget.shopId,
-          itemCode: _itemCodeController.text.isEmpty ? null : _itemCodeController.text,
+          itemCode: _itemCodeController.text.isEmpty
+              ? null
+              : _itemCodeController.text,
           qty: double.parse(_qtyController.text),
           price: double.parse(_priceController.text),
           description: _descriptionController.text,
           note: _noteController.text.isEmpty ? null : _noteController.text,
-          meterId: _meterIdController.text.isEmpty ? null : int.parse(_meterIdController.text),
-          kwh: _kwhController.text.isEmpty ? null : double.parse(_kwhController.text),
-          litres: _litresController.text.isEmpty ? null : double.parse(_litresController.text),
+          meterId: _meterIdController.text.isEmpty
+              ? null
+              : int.parse(_meterIdController.text),
+          kwh: _kwhController.text.isEmpty
+              ? null
+              : double.parse(_kwhController.text),
+          litres: _litresController.text.isEmpty
+              ? null
+              : double.parse(_litresController.text),
           status: 'progress',
           typeId: _selectedTypeId!,
-          supplier: _supplierController.text.isEmpty ? null : _supplierController.text,
-          invoiceNumber: _invoiceNumberController.text.isEmpty ? null : _invoiceNumberController.text,
+          supplier: _supplierController.text.isEmpty
+              ? null
+              : _supplierController.text,
+          invoiceNumber: _invoiceNumberController.text.isEmpty
+              ? null
+              : _invoiceNumberController.text,
         );
 
         await _expenseService.createExpense(expense);
@@ -163,16 +174,18 @@ class _AddExpenseState extends State<AddExpense> {
         decoration: InputDecoration(
           labelText: label,
           labelStyle: GoogleFonts.inter(color: AppStyle.black),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        validator: validator ?? (required ? (value) {
-          if (value == null || value.isEmpty) {
-            return 'This field is required';
-          }
-          return null;
-        } : null),
+        validator:
+            validator ??
+            (required
+                ? (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'This field is required';
+                    }
+                    return null;
+                  }
+                : null),
       ),
     );
   }
@@ -245,15 +258,15 @@ class _AddExpenseState extends State<AddExpense> {
 
                         // Expense Type Dropdown
                         if (_isLoadingTypes)
-                          const Center(
-                            child: CircularProgressIndicator(),
-                          )
+                          const Center(child: CircularProgressIndicator())
                         else
                           DropdownButtonFormField<int>(
                             value: _selectedTypeId,
                             decoration: InputDecoration(
                               labelText: 'Expense Type',
-                              labelStyle: GoogleFonts.inter(color: AppStyle.black),
+                              labelStyle: GoogleFonts.inter(
+                                color: AppStyle.black,
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -327,7 +340,8 @@ class _AddExpenseState extends State<AddExpense> {
                         ),
 
                         // Conditional fields based on type
-                        if (_selectedTypeId == 2) ...[  // Energy type
+                        if (_selectedTypeId == 2) ...[
+                          // Energy type
                           _buildFormField(
                             label: 'Meter ID',
                             controller: _meterIdController,
@@ -342,7 +356,8 @@ class _AddExpenseState extends State<AddExpense> {
                           ),
                         ],
 
-                        if (_selectedTypeId == 3) ...[  // Water type
+                        if (_selectedTypeId == 3) ...[
+                          // Water type
                           _buildFormField(
                             label: 'Litres',
                             controller: _litresController,
@@ -373,21 +388,23 @@ class _AddExpenseState extends State<AddExpense> {
                           onPressed: _isLoading ? null : _handleSubmit,
                           child: _isLoading
                               ? const SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              valueColor: AlwaysStoppedAnimation<Color>(AppStyle.white),
-                            ),
-                          )
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      AppStyle.white,
+                                    ),
+                                  ),
+                                )
                               : Text(
-                            'Save Expense',
-                            style: GoogleFonts.inter(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: AppStyle.white,
-                            ),
-                          ),
+                                  'Save Expense',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppStyle.white,
+                                  ),
+                                ),
                         ),
                       ],
                     ),
@@ -433,9 +450,7 @@ class _AddExpenseState extends State<AddExpense> {
             padding: EdgeInsets.symmetric(horizontal: 5),
             child: Row(
               mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.add, color: AppStyle.black, size: 20.sp),
-              ],
+              children: [Icon(Icons.add, color: AppStyle.black, size: 20.sp)],
             ),
           ),
         ),

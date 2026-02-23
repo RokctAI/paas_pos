@@ -51,22 +51,24 @@ class _ButtonEffectAnimationState extends State<ButtonEffectAnimation>
   Widget build(BuildContext context) {
     return widget.disabled
         ? Listener(
-      onPointerDown: (_) {
-        _controllerA!.reverse();
-      },
-      onPointerUp: (_) {
-        _controllerA!.forward(from: 1.0);
-        if (!widget.disabled) {}
-      },
-      child: Transform.scale(
-        scale: squareScaleA,
-        child: GestureDetector(
-            onTap: widget.onTap,
-            child:
-            Container(color: AppStyle.transparent, child: widget.child)),
-      ),
-    )
+            onPointerDown: (_) {
+              _controllerA!.reverse();
+            },
+            onPointerUp: (_) {
+              _controllerA!.forward(from: 1.0);
+              if (!widget.disabled) {}
+            },
+            child: Transform.scale(
+              scale: squareScaleA,
+              child: GestureDetector(
+                onTap: widget.onTap,
+                child: Container(
+                  color: AppStyle.transparent,
+                  child: widget.child,
+                ),
+              ),
+            ),
+          )
         : GestureDetector(onTap: widget.onTap, child: widget.child);
   }
 }
-

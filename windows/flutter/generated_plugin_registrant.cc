@@ -39,4 +39,3 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
   WindowManagerPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("WindowManagerPlugin"));
 }
-

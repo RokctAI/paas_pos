@@ -14,4 +14,3 @@ class DiscountState with _$DiscountState {
 
   const DiscountState._();
 }
-

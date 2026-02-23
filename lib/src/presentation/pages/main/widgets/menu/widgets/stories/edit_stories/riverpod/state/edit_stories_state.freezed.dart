@@ -12,7 +12,8 @@ part of 'edit_stories_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$EditStoriesState {
@@ -35,17 +36,19 @@ mixin _$EditStoriesState {
 /// @nodoc
 abstract class $EditStoriesStateCopyWith<$Res> {
   factory $EditStoriesStateCopyWith(
-          EditStoriesState value, $Res Function(EditStoriesState) then) =
-      _$EditStoriesStateCopyWithImpl<$Res, EditStoriesState>;
+    EditStoriesState value,
+    $Res Function(EditStoriesState) then,
+  ) = _$EditStoriesStateCopyWithImpl<$Res, EditStoriesState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      ProductData? selectProduct,
-      List<ProductData> products,
-      List<String> images,
-      List<String> listOfUrls,
-      StoriesData? story,
-      TextEditingController? textEditingController});
+  $Res call({
+    bool isLoading,
+    ProductData? selectProduct,
+    List<ProductData> products,
+    List<String> images,
+    List<String> listOfUrls,
+    StoriesData? story,
+    TextEditingController? textEditingController,
+  });
 }
 
 /// @nodoc
@@ -71,64 +74,70 @@ class _$EditStoriesStateCopyWithImpl<$Res, $Val extends EditStoriesState>
     Object? story = freezed,
     Object? textEditingController = freezed,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectProduct: freezed == selectProduct
-          ? _value.selectProduct
-          : selectProduct // ignore: cast_nullable_to_non_nullable
-              as ProductData?,
-      products: null == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductData>,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      listOfUrls: null == listOfUrls
-          ? _value.listOfUrls
-          : listOfUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      story: freezed == story
-          ? _value.story
-          : story // ignore: cast_nullable_to_non_nullable
-              as StoriesData?,
-      textEditingController: freezed == textEditingController
-          ? _value.textEditingController
-          : textEditingController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            selectProduct: freezed == selectProduct
+                ? _value.selectProduct
+                : selectProduct // ignore: cast_nullable_to_non_nullable
+                      as ProductData?,
+            products: null == products
+                ? _value.products
+                : products // ignore: cast_nullable_to_non_nullable
+                      as List<ProductData>,
+            images: null == images
+                ? _value.images
+                : images // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            listOfUrls: null == listOfUrls
+                ? _value.listOfUrls
+                : listOfUrls // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            story: freezed == story
+                ? _value.story
+                : story // ignore: cast_nullable_to_non_nullable
+                      as StoriesData?,
+            textEditingController: freezed == textEditingController
+                ? _value.textEditingController
+                : textEditingController // ignore: cast_nullable_to_non_nullable
+                      as TextEditingController?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$EditStoriesStateImplCopyWith<$Res>
     implements $EditStoriesStateCopyWith<$Res> {
-  factory _$$EditStoriesStateImplCopyWith(_$EditStoriesStateImpl value,
-          $Res Function(_$EditStoriesStateImpl) then) =
-      __$$EditStoriesStateImplCopyWithImpl<$Res>;
+  factory _$$EditStoriesStateImplCopyWith(
+    _$EditStoriesStateImpl value,
+    $Res Function(_$EditStoriesStateImpl) then,
+  ) = __$$EditStoriesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      ProductData? selectProduct,
-      List<ProductData> products,
-      List<String> images,
-      List<String> listOfUrls,
-      StoriesData? story,
-      TextEditingController? textEditingController});
+  $Res call({
+    bool isLoading,
+    ProductData? selectProduct,
+    List<ProductData> products,
+    List<String> images,
+    List<String> listOfUrls,
+    StoriesData? story,
+    TextEditingController? textEditingController,
+  });
 }
 
 /// @nodoc
 class __$$EditStoriesStateImplCopyWithImpl<$Res>
     extends _$EditStoriesStateCopyWithImpl<$Res, _$EditStoriesStateImpl>
     implements _$$EditStoriesStateImplCopyWith<$Res> {
-  __$$EditStoriesStateImplCopyWithImpl(_$EditStoriesStateImpl _value,
-      $Res Function(_$EditStoriesStateImpl) _then)
-      : super(_value, _then);
+  __$$EditStoriesStateImplCopyWithImpl(
+    _$EditStoriesStateImpl _value,
+    $Res Function(_$EditStoriesStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of EditStoriesState
   /// with the given fields replaced by the non-null parameter values.
@@ -143,54 +152,56 @@ class __$$EditStoriesStateImplCopyWithImpl<$Res>
     Object? story = freezed,
     Object? textEditingController = freezed,
   }) {
-    return _then(_$EditStoriesStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectProduct: freezed == selectProduct
-          ? _value.selectProduct
-          : selectProduct // ignore: cast_nullable_to_non_nullable
-              as ProductData?,
-      products: null == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductData>,
-      images: null == images
-          ? _value._images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      listOfUrls: null == listOfUrls
-          ? _value._listOfUrls
-          : listOfUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      story: freezed == story
-          ? _value.story
-          : story // ignore: cast_nullable_to_non_nullable
-              as StoriesData?,
-      textEditingController: freezed == textEditingController
-          ? _value.textEditingController
-          : textEditingController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-    ));
+    return _then(
+      _$EditStoriesStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        selectProduct: freezed == selectProduct
+            ? _value.selectProduct
+            : selectProduct // ignore: cast_nullable_to_non_nullable
+                  as ProductData?,
+        products: null == products
+            ? _value._products
+            : products // ignore: cast_nullable_to_non_nullable
+                  as List<ProductData>,
+        images: null == images
+            ? _value._images
+            : images // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        listOfUrls: null == listOfUrls
+            ? _value._listOfUrls
+            : listOfUrls // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        story: freezed == story
+            ? _value.story
+            : story // ignore: cast_nullable_to_non_nullable
+                  as StoriesData?,
+        textEditingController: freezed == textEditingController
+            ? _value.textEditingController
+            : textEditingController // ignore: cast_nullable_to_non_nullable
+                  as TextEditingController?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$EditStoriesStateImpl extends _EditStoriesState {
-  const _$EditStoriesStateImpl(
-      {this.isLoading = false,
-      this.selectProduct = null,
-      final List<ProductData> products = const [],
-      final List<String> images = const [],
-      final List<String> listOfUrls = const [],
-      this.story = null,
-      this.textEditingController = null})
-      : _products = products,
-        _images = images,
-        _listOfUrls = listOfUrls,
-        super._();
+  const _$EditStoriesStateImpl({
+    this.isLoading = false,
+    this.selectProduct = null,
+    final List<ProductData> products = const [],
+    final List<String> images = const [],
+    final List<String> listOfUrls = const [],
+    this.story = null,
+    this.textEditingController = null,
+  }) : _products = products,
+       _images = images,
+       _listOfUrls = listOfUrls,
+       super._();
 
   @override
   @JsonKey()
@@ -248,8 +259,10 @@ class _$EditStoriesStateImpl extends _EditStoriesState {
                 other.selectProduct == selectProduct) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
-            const DeepCollectionEquality()
-                .equals(other._listOfUrls, _listOfUrls) &&
+            const DeepCollectionEquality().equals(
+              other._listOfUrls,
+              _listOfUrls,
+            ) &&
             (identical(other.story, story) || other.story == story) &&
             (identical(other.textEditingController, textEditingController) ||
                 other.textEditingController == textEditingController));
@@ -257,14 +270,15 @@ class _$EditStoriesStateImpl extends _EditStoriesState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      selectProduct,
-      const DeepCollectionEquality().hash(_products),
-      const DeepCollectionEquality().hash(_images),
-      const DeepCollectionEquality().hash(_listOfUrls),
-      story,
-      textEditingController);
+    runtimeType,
+    isLoading,
+    selectProduct,
+    const DeepCollectionEquality().hash(_products),
+    const DeepCollectionEquality().hash(_images),
+    const DeepCollectionEquality().hash(_listOfUrls),
+    story,
+    textEditingController,
+  );
 
   /// Create a copy of EditStoriesState
   /// with the given fields replaced by the non-null parameter values.
@@ -273,19 +287,21 @@ class _$EditStoriesStateImpl extends _EditStoriesState {
   @pragma('vm:prefer-inline')
   _$$EditStoriesStateImplCopyWith<_$EditStoriesStateImpl> get copyWith =>
       __$$EditStoriesStateImplCopyWithImpl<_$EditStoriesStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _EditStoriesState extends EditStoriesState {
-  const factory _EditStoriesState(
-          {final bool isLoading,
-          final ProductData? selectProduct,
-          final List<ProductData> products,
-          final List<String> images,
-          final List<String> listOfUrls,
-          final StoriesData? story,
-          final TextEditingController? textEditingController}) =
-      _$EditStoriesStateImpl;
+  const factory _EditStoriesState({
+    final bool isLoading,
+    final ProductData? selectProduct,
+    final List<ProductData> products,
+    final List<String> images,
+    final List<String> listOfUrls,
+    final StoriesData? story,
+    final TextEditingController? textEditingController,
+  }) = _$EditStoriesStateImpl;
   const _EditStoriesState._() : super._();
 
   @override
@@ -310,4 +326,3 @@ abstract class _EditStoriesState extends EditStoriesState {
   _$$EditStoriesStateImplCopyWith<_$EditStoriesStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

@@ -19,4 +19,3 @@ class AppNotifier extends StateNotifier<AppState> {
     state = state.copyWith(lang: language?.locale ?? 'en');
   }
 }
-

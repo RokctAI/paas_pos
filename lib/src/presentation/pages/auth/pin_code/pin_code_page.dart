@@ -84,7 +84,7 @@ class _PinCodePageState extends ConsumerState<PinCodePage> {
   @override
   Widget build(BuildContext context) {
     if (AppConstants.skipPin) {
-      return const SizedBox.shrink();  // Return an empty widget if skipping PIN
+      return const SizedBox.shrink(); // Return an empty widget if skipping PIN
     }
 
     final state = ref.watch(pinCodeProvider);
@@ -140,11 +140,13 @@ class _PinCodePageState extends ConsumerState<PinCodePage> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        AppHelpers.getTranslation(widget.isNewPassword
-                            ? TrKeys.enterNewPinCode
-                            : state.isPinCodeNotValid == false
-                            ? TrKeys.enterPinCode
-                            : TrKeys.enterPinCodeError),
+                        AppHelpers.getTranslation(
+                          widget.isNewPassword
+                              ? TrKeys.enterNewPinCode
+                              : state.isPinCodeNotValid == false
+                              ? TrKeys.enterPinCode
+                              : TrKeys.enterPinCodeError,
+                        ),
                         style: GoogleFonts.inter(
                           color: state.isPinCodeNotValid == false
                               ? AppStyle.black
@@ -157,9 +159,10 @@ class _PinCodePageState extends ConsumerState<PinCodePage> {
                       12.r.verticalSpace,
                       Text(
                         AppHelpers.getTranslation(
-                            state.isPinCodeNotValid == false
-                                ? TrKeys.pinCodeDesc
-                                : TrKeys.pinCodeDescError),
+                          state.isPinCodeNotValid == false
+                              ? TrKeys.pinCodeDesc
+                              : TrKeys.pinCodeDescError,
+                        ),
                         style: GoogleFonts.inter(
                           color: state.isPinCodeNotValid == false
                               ? AppStyle.black
@@ -216,7 +219,8 @@ class _PinCodePageState extends ConsumerState<PinCodePage> {
                                 handlePinCodeInput('backspace');
                               } else {
                                 handlePinCodeInput(
-                                    AppHelpers.getPinCodeText(index));
+                                  AppHelpers.getPinCodeText(index),
+                                );
                               }
                             },
                           );
@@ -230,13 +234,17 @@ class _PinCodePageState extends ConsumerState<PinCodePage> {
                         onPressed: () {
                           final notifier = ref.read(pinCodeProvider.notifier);
                           if (widget.isNewPassword) {
-                            notifier.checkNewCode(onSuccess: () {
-                              context.replaceRoute(const MainRoute());
-                            });
+                            notifier.checkNewCode(
+                              onSuccess: () {
+                                context.replaceRoute(const MainRoute());
+                              },
+                            );
                           } else {
-                            notifier.checkCode(onSuccess: () {
-                              context.replaceRoute(const MainRoute());
-                            });
+                            notifier.checkCode(
+                              onSuccess: () {
+                                context.replaceRoute(const MainRoute());
+                              },
+                            );
                           }
                         },
                       ),

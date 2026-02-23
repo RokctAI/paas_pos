@@ -21,7 +21,9 @@ class _SendToPickupDialogState extends ConsumerState<SendToPickupDialog> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final shopLocation = widget.order?.shop?.location;
       if (shopLocation?.latitude != null && shopLocation?.longitude != null) {
-        ref.read(sendToPickupProvider.notifier).fetchDeliveryPoints(
+        ref
+            .read(sendToPickupProvider.notifier)
+            .fetchDeliveryPoints(
               context,
               latitude: shopLocation!.latitude!,
               longitude: shopLocation.longitude!,

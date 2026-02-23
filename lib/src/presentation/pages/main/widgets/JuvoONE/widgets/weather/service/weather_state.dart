@@ -13,10 +13,11 @@ class WeatherState {
     int? version,
     DateTime? lastUpdated,
     this.hasError = false,
-  })  : version = version ?? DateTime.now().millisecondsSinceEpoch,
-        lastUpdated = lastUpdated ?? DateTime.now() {
+  }) : version = version ?? DateTime.now().millisecondsSinceEpoch,
+       lastUpdated = lastUpdated ?? DateTime.now() {
     // Basic validation only
-    if (!weatherData.containsKey('current') || !weatherData.containsKey('forecast')) {
+    if (!weatherData.containsKey('current') ||
+        !weatherData.containsKey('forecast')) {
       throw ArgumentError('Missing required weather data fields');
     }
   }
@@ -72,8 +73,9 @@ class WeatherState {
       if (dayIndex < 0 || dayIndex >= forecast.length) return [];
       final dayForecast = forecast[dayIndex];
       return (dayForecast['hour'] as List<dynamic>?)
-          ?.map((hour) => hour as Map<String, dynamic>)
-          .toList() ?? [];
+              ?.map((hour) => hour as Map<String, dynamic>)
+              .toList() ??
+          [];
     } catch (e) {
       print('Error getting hourly forecast: $e');
       return [];
@@ -93,8 +95,11 @@ class WeatherState {
         'maxtemp_c': dayForecast['day']?['maxtemp_c'] ?? 0.0,
         'mintemp_c': dayForecast['day']?['mintemp_c'] ?? 0.0,
         'avgtemp_c': dayForecast['day']?['avgtemp_c'] ?? 0.0,
-        'daily_chance_of_rain': dayForecast['day']?['daily_chance_of_rain'] ?? 0,
-        'condition': dayForecast['day']?['condition'] ?? {'text': 'Unknown', 'code': 1000},
+        'daily_chance_of_rain':
+            dayForecast['day']?['daily_chance_of_rain'] ?? 0,
+        'condition':
+            dayForecast['day']?['condition'] ??
+            {'text': 'Unknown', 'code': 1000},
         'sunrise': dayForecast['astro']?['sunrise'] ?? 'Unknown',
         'sunset': dayForecast['astro']?['sunset'] ?? 'Unknown',
       };
@@ -120,9 +125,11 @@ class WeatherState {
 
   // Helper method to check if there are any severe weather alerts
   bool get hasSevereAlerts {
-    return alerts.any((alert) =>
-    alert['severity']?.toString().toLowerCase() == 'severe' ||
-        alert['severity']?.toString().toLowerCase() == 'extreme');
+    return alerts.any(
+      (alert) =>
+          alert['severity']?.toString().toLowerCase() == 'severe' ||
+          alert['severity']?.toString().toLowerCase() == 'extreme',
+    );
   }
 
   // Create a new instance with updated fields

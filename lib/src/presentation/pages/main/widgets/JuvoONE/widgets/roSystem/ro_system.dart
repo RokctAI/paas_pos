@@ -5,7 +5,6 @@ import '../../../../../../../core/constants/enums.dart';
 import '../../../../../../theme/app_style.dart';
 import 'maintenance/maintenance_service.dart';
 
-
 class ROSystemUI extends StatelessWidget {
   final String status;
   final double efficiency;
@@ -115,10 +114,7 @@ class ROSystemUI extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               status,
-              style: TextStyle(
-                fontSize: 14,
-                color: AppStyle.grey[800],
-              ),
+              style: TextStyle(fontSize: 14, color: AppStyle.grey[800]),
             ),
           ],
         ),
@@ -149,7 +145,9 @@ class ROSystemUI extends StatelessWidget {
     return LinearProgressIndicator(
       value: efficiency / 100,
       backgroundColor: AppStyle.grey[200],
-      valueColor: AlwaysStoppedAnimation<Color>(_getEfficiencyColor(efficiency)),
+      valueColor: AlwaysStoppedAnimation<Color>(
+        _getEfficiencyColor(efficiency),
+      ),
       borderRadius: BorderRadius.circular(2),
     );
   }
@@ -171,9 +169,12 @@ class ROSystemUI extends StatelessWidget {
 
 // Utility class for calculating RO System efficiency
 class ROSystemEfficiency {
-  static const int maintenanceEffectDays = 30; // Maintenance effect lasts 30 days
-  static const int replacementLifespanDays = 365; // Items should be replaced yearly
-  static const double maintenanceBoost = 20.0; // Maintenance can boost efficiency by 20%
+  static const int maintenanceEffectDays =
+      30; // Maintenance effect lasts 30 days
+  static const int replacementLifespanDays =
+      365; // Items should be replaced yearly
+  static const double maintenanceBoost =
+      20.0; // Maintenance can boost efficiency by 20%
 
   static Future<double> calculateSystemEfficiency() async {
     final system = await MaintenanceService.getROSystem();
@@ -222,7 +223,8 @@ class ROSystemEfficiency {
         return 90; // 3 months
     }
   }
-// Add this static method to ROSystemEfficiency class if it's not already there
+
+  // Add this static method to ROSystemEfficiency class if it's not already there
   static double calculateComponentEfficiency({
     required DateTime installationDate,
     DateTime? lastMaintenanceDate,
@@ -233,7 +235,8 @@ class ROSystemEfficiency {
 
     if (replacementLifespan != null) {
       // For components that need replacement (filters, membranes)
-      return 100.0 * (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
+      return 100.0 *
+          (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
     } else {
       // For components that need maintenance (vessels)
       final daysSinceLastMaintenance = lastMaintenanceDate != null
@@ -242,18 +245,22 @@ class ROSystemEfficiency {
 
       // Efficiency drops after maintenance interval
       return 100.0 *
-          (1 - (daysSinceLastMaintenance / AppConstants.maintenanceCheckDays)).clamp(0.0, 1.0);
+          (1 - (daysSinceLastMaintenance / AppConstants.maintenanceCheckDays))
+              .clamp(0.0, 1.0);
     }
   }
 
   // Add this method to ROSystemEfficiency class
-  static Future<double> calculateSystemEfficiencyForShopData(Map<String, dynamic> roSystemData) async {
+  static Future<double> calculateSystemEfficiencyForShopData(
+    Map<String, dynamic> roSystemData,
+  ) async {
     try {
       // Extract vessel data
       List<dynamic> vessels = roSystemData['vessels'] ?? [];
       List<dynamic> filters = roSystemData['filters'] ?? [];
       int membraneCount = roSystemData['membrane_count'] ?? 0;
-      String? membraneInstallationDateStr = roSystemData['membrane_installation_date'];
+      String? membraneInstallationDateStr =
+          roSystemData['membrane_installation_date'];
 
       DateTime? membraneInstallationDate = membraneInstallationDateStr != null
           ? DateTime.parse(membraneInstallationDateStr)
@@ -296,8 +303,10 @@ class ROSystemEfficiency {
               : DateTime.now();
 
           FilterLocation location = FilterLocation.pre;
-          if (locationStr == 'ro') location = FilterLocation.ro;
-          else if (locationStr == 'post') location = FilterLocation.post;
+          if (locationStr == 'ro')
+            location = FilterLocation.ro;
+          else if (locationStr == 'post')
+            location = FilterLocation.post;
 
           totalFilterEfficiency += calculateComponentEfficiency(
             installationDate: installDate,
@@ -343,40 +352,41 @@ class ROSystemEfficiency {
     }
   }
 
-    static double _calculateComponentEfficiency({
-      required DateTime installationDate,
-      DateTime? lastMaintenanceDate,
-      int? replacementLifespan,
-    }) {
-      final now = DateTime.now();
-      final daysSinceInstallation = now
-          .difference(installationDate)
-          .inDays;
+  static double _calculateComponentEfficiency({
+    required DateTime installationDate,
+    DateTime? lastMaintenanceDate,
+    int? replacementLifespan,
+  }) {
+    final now = DateTime.now();
+    final daysSinceInstallation = now.difference(installationDate).inDays;
 
-      // Base efficiency based on age
-      double baseEfficiency = 100.0;
-      if (replacementLifespan != null) {
-        baseEfficiency = 100.0 *
-            (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
-      }
-
-      // Maintenance boost if applicable
-      if (lastMaintenanceDate != null) {
-        final daysSinceMaintenance = now
-            .difference(lastMaintenanceDate)
-            .inDays;
-        if (daysSinceMaintenance <= maintenanceEffectDays) {
-          final maintenanceMultiplier = 1 + (maintenanceBoost / 100) *
-              (1 - daysSinceMaintenance / maintenanceEffectDays);
-          baseEfficiency =
-              (baseEfficiency * maintenanceMultiplier).clamp(0.0, 100.0);
-        }
-      }
-
-      return baseEfficiency;
+    // Base efficiency based on age
+    double baseEfficiency = 100.0;
+    if (replacementLifespan != null) {
+      baseEfficiency =
+          100.0 *
+          (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
     }
 
-    /*static double calculateComponentEfficiency({
+    // Maintenance boost if applicable
+    if (lastMaintenanceDate != null) {
+      final daysSinceMaintenance = now.difference(lastMaintenanceDate).inDays;
+      if (daysSinceMaintenance <= maintenanceEffectDays) {
+        final maintenanceMultiplier =
+            1 +
+            (maintenanceBoost / 100) *
+                (1 - daysSinceMaintenance / maintenanceEffectDays);
+        baseEfficiency = (baseEfficiency * maintenanceMultiplier).clamp(
+          0.0,
+          100.0,
+        );
+      }
+    }
+
+    return baseEfficiency;
+  }
+
+  /*static double calculateComponentEfficiency({
       required DateTime installationDate,
       DateTime? lastMaintenanceDate,
       int? replacementLifespan,
@@ -387,4 +397,4 @@ class ROSystemEfficiency {
         replacementLifespan: replacementLifespan,
       );
     }*/
-  }
+}

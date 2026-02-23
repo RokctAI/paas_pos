@@ -12,6 +12,7 @@ import '../../../core/utils/utils.dart';
 import '../../components/components.dart';
 import 'package:admin_desktop/src/presentation/theme/theme.dart';
 import 'riverpod/provider/splash_provider.dart';
+
 @RoutePage()
 class SplashPage extends ConsumerStatefulWidget {
   const SplashPage({super.key});
@@ -27,22 +28,21 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      Duration.zero,
-      () {
-        if(mounted) {
-          ref.read(splashProvider.notifier).fetchGlobalSettings(
-          context,
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
+    Future.delayed(Duration.zero, () {
+      if (mounted) {
+        ref
+            .read(splashProvider.notifier)
+            .fetchGlobalSettings(
               context,
-              TrKeys.checkYourNetworkConnection,
+              checkYourNetwork: () {
+                AppHelpers.showSnackBar(
+                  context,
+                  TrKeys.checkYourNetworkConnection,
+                );
+              },
             );
-          },
-        );
-	}
-      },
-    );
+      }
+    });
   }
 
   @override

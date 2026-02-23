@@ -17,7 +17,8 @@ class NinetyDayDashboardScreen extends StatefulWidget {
   const NinetyDayDashboardScreen({super.key, this.shopId});
 
   @override
-  _NinetyDayDashboardScreenState createState() => _NinetyDayDashboardScreenState();
+  _NinetyDayDashboardScreenState createState() =>
+      _NinetyDayDashboardScreenState();
 }
 
 class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
@@ -62,7 +63,8 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton(
-                      onPressed: () => planProvider.fetchPlanOnPage(widget.shopId),
+                      onPressed: () =>
+                          planProvider.fetchPlanOnPage(widget.shopId),
                       child: const Text('Retry'),
                     ),
                   ],
@@ -72,7 +74,9 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
 
             if (planProvider.vision == null) {
               return const Center(
-                child: Text('No active vision found. Create one to get started.'),
+                child: Text(
+                  'No active vision found. Create one to get started.',
+                ),
               );
             }
 
@@ -86,7 +90,10 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
               }
             }
 
-            final filteredPriorities = _filterPriorities(priorities, planProvider);
+            final filteredPriorities = _filterPriorities(
+              priorities,
+              planProvider,
+            );
 
             if (filteredPriorities.isEmpty) {
               return Center(
@@ -119,7 +126,9 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
                         onTap: _showStatusFilterDialog,
                         child: Chip(
                           label: Text('Status: $_selectedStatus'),
-                          backgroundColor: AppStyle.accentColor.withOpacity(0.1),
+                          backgroundColor: AppStyle.accentColor.withOpacity(
+                            0.1,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -137,12 +146,13 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
                 Expanded(
                   child: GridView.builder(
                     padding: const EdgeInsets.all(16),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                      childAspectRatio: 1.2,
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                          childAspectRatio: 1.2,
+                        ),
                     itemCount: filteredPriorities.length,
                     itemBuilder: (context, index) {
                       return _buildPriorityCard(
@@ -183,21 +193,27 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
   }
 
   List<StrategicObjective> _filterPriorities(
-      List<StrategicObjective> priorities,
-      PlanProvider planProvider
-      ) {
+    List<StrategicObjective> priorities,
+    PlanProvider planProvider,
+  ) {
     return priorities.where((objective) {
-      final statusMatch = _selectedStatus == 'All Statuses' ||
+      final statusMatch =
+          _selectedStatus == 'All Statuses' ||
           objective.status == _selectedStatus;
-      final pillarMatch = _selectedPillar == 'All Pillars' ||
+      final pillarMatch =
+          _selectedPillar == 'All Pillars' ||
           _getPillarName(objective, planProvider) == _selectedPillar;
       return statusMatch && pillarMatch;
     }).toList();
   }
 
-  String _getPillarName(StrategicObjective objective, PlanProvider planProvider) {
-    final pillar = planProvider.vision!.pillars
-        .firstWhere((p) => p.id == objective.pillarId);
+  String _getPillarName(
+    StrategicObjective objective,
+    PlanProvider planProvider,
+  ) {
+    final pillar = planProvider.vision!.pillars.firstWhere(
+      (p) => p.id == objective.pillarId,
+    );
     return pillar.name;
   }
 
@@ -223,7 +239,7 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
               child: const Text('Close'),
             ),
           ],
-            backgroundColor: AppStyle.white
+          backgroundColor: AppStyle.white,
         );
       },
     );
@@ -267,7 +283,7 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
               child: const Text('Close'),
             ),
           ],
-            backgroundColor: AppStyle.white
+          backgroundColor: AppStyle.white,
         );
       },
     );
@@ -279,51 +295,56 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
     // Add unique pillar names from the vision
     if (_planProvider.vision != null) {
       pillarOptions.addAll(
-          _planProvider.vision!.pillars.map((pillar) => pillar.name).toSet()
+        _planProvider.vision!.pillars.map((pillar) => pillar.name).toSet(),
       );
     }
 
-    return pillarOptions.map((pillar) =>
-        ListTile(
-          title: Text(pillar),
-          leading: Radio<String>(
-            value: pillar,
-            groupValue: _selectedPillar,
-            onChanged: (String? value) {
+    return pillarOptions
+        .map(
+          (pillar) => ListTile(
+            title: Text(pillar),
+            leading: Radio<String>(
+              value: pillar,
+              groupValue: _selectedPillar,
+              onChanged: (String? value) {
+                setState(() {
+                  _selectedPillar = value!;
+                });
+                Navigator.of(context).pop();
+              },
+            ),
+            onTap: () {
               setState(() {
-                _selectedPillar = value!;
+                _selectedPillar = pillar;
               });
               Navigator.of(context).pop();
             },
           ),
-          onTap: () {
-            setState(() {
-              _selectedPillar = pillar;
-            });
-            Navigator.of(context).pop();
-          },
         )
-    ).toList();
+        .toList();
   }
 
   Widget _buildPriorityCard(
-      StrategicObjective objective,
-      PlanProvider planProvider
-      ) {
-    final pillar = planProvider.vision!.pillars
-        .firstWhere((p) => p.id == objective.pillarId);
+    StrategicObjective objective,
+    PlanProvider planProvider,
+  ) {
+    final pillar = planProvider.vision!.pillars.firstWhere(
+      (p) => p.id == objective.pillarId,
+    );
 
     Color pillarColor = _getPillarColor(pillar.color);
 
     // Calculate progress based on KPIs
     int totalKpis = objective.kpis.length;
-    int completedKpis = objective.kpis.where((kpi) => kpi.status == 'Completed').length;
+    int completedKpis = objective.kpis
+        .where((kpi) => kpi.status == 'Completed')
+        .length;
     double progress = totalKpis > 0 ? completedKpis / totalKpis : 0;
 
     // Determine if any KPIs are overdue
-    bool hasOverdueKpis = objective.kpis.any((kpi) =>
-    kpi.status != 'Completed' &&
-        kpi.dueDate.isBefore(DateTime.now())
+    bool hasOverdueKpis = objective.kpis.any(
+      (kpi) =>
+          kpi.status != 'Completed' && kpi.dueDate.isBefore(DateTime.now()),
     );
 
     return Card(
@@ -368,12 +389,19 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
-                      color: hasOverdueKpis ? AppStyle.red.withOpacity(0.1) : AppStyle.accentColor.withOpacity(0.1),
+                      color: hasOverdueKpis
+                          ? AppStyle.red.withOpacity(0.1)
+                          : AppStyle.accentColor.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(4),
                       border: Border.all(
-                        color: hasOverdueKpis ? AppStyle.red : AppStyle.accentColor,
+                        color: hasOverdueKpis
+                            ? AppStyle.red
+                            : AppStyle.accentColor,
                       ),
                     ),
                     child: Text(
@@ -381,7 +409,9 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
-                        color: hasOverdueKpis ? AppStyle.red : AppStyle.accentColor,
+                        color: hasOverdueKpis
+                            ? AppStyle.red
+                            : AppStyle.accentColor,
                       ),
                     ),
                   ),
@@ -398,14 +428,12 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 8),
-              if (objective.description != null && objective.description!.isNotEmpty)
+              if (objective.description != null &&
+                  objective.description!.isNotEmpty)
                 Expanded(
                   child: Text(
                     objective.description!,
-                    style: TextStyle(
-                      color: AppStyle.grey[600],
-                      fontSize: 12,
-                    ),
+                    style: TextStyle(color: AppStyle.grey[600], fontSize: 12),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -425,10 +453,7 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
                   ),
                   Text(
                     '$completedKpis/$totalKpis KPIs',
-                    style: TextStyle(
-                      color: AppStyle.grey[600],
-                      fontSize: 12,
-                    ),
+                    style: TextStyle(color: AppStyle.grey[600], fontSize: 12),
                   ),
                 ],
               ),
@@ -557,7 +582,7 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
               child: const Text('Cancel'),
             ),
           ],
-            backgroundColor: AppStyle.white
+          backgroundColor: AppStyle.white,
         );
       },
     );
@@ -567,10 +592,7 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AddObjectiveDialog(
-          pillar: pillar,
-          isEditing: false,
-        );
+        return AddObjectiveDialog(pillar: pillar, isEditing: false);
       },
     );
   }

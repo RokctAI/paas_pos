@@ -118,7 +118,7 @@ class _MainPageState extends ConsumerState<MainPage>
     IndexedStackChild(child: const ParcelsPage()),
     if (AppConstants.enableJuvoONE) ...[
       IndexedStackChild(child: const InventoryPage()),
-      IndexedStackChild(child: const DashboardEntry(), preload: true)
+      IndexedStackChild(child: const DashboardEntry(), preload: true),
     ],
   ];
 
@@ -136,7 +136,7 @@ class _MainPageState extends ConsumerState<MainPage>
     IndexedStackChild(child: const OrdersTablesPage()),
     IndexedStackChild(child: const CustomersPage(), preload: true),
     if (AppConstants.enableJuvoONE) ...[
-      IndexedStackChild(child: const DashboardEntry(), preload: true)
+      IndexedStackChild(child: const DashboardEntry(), preload: true),
     ],
   ];
 
@@ -179,8 +179,9 @@ class _MainPageState extends ConsumerState<MainPage>
             children: [
               TextFormField(
                 controller: _floatController,
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
                 style: TextStyle(color: AppStyle.black),
                 decoration: InputDecoration(
                   hintText: AppHelpers.getTranslation(TrKeys.amount),
@@ -214,7 +215,9 @@ class _MainPageState extends ConsumerState<MainPage>
                           double amount = double.parse(_floatController.text);
                           await LocalStorage.setFloatAmount(amount);
                           await prefs.setBool(
-                              'has_shown_float_dialog', true); // Save the flag
+                            'has_shown_float_dialog',
+                            true,
+                          ); // Save the flag
                           if (context.mounted) {
                             Navigator.of(context).pop();
                           }
@@ -376,8 +379,9 @@ class _MainPageState extends ConsumerState<MainPage>
     _searchFocusNode.dispose();
     _floatController.dispose();
     if (AppConstants.enableJuvoONE) {
-      WidgetsBinding.instance
-          .removeObserver(_ActivityObserver(onActivity: _resetIdleTimer));
+      WidgetsBinding.instance.removeObserver(
+        _ActivityObserver(onActivity: _resetIdleTimer),
+      );
     }
     super.dispose();
   }
@@ -421,14 +425,16 @@ class _MainPageState extends ConsumerState<MainPage>
           )
           ..fetchUserDetail(context)
           ..changeIndex(0);
-        ref.read(rightSideProvider.notifier).fetchUsers(
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
-              context,
-              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+        ref
+            .read(rightSideProvider.notifier)
+            .fetchUsers(
+              checkYourNetwork: () {
+                AppHelpers.showSnackBar(
+                  context,
+                  AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+                );
+              },
             );
-          },
-        );
 
         if (AppConstants.enableJuvoONE) {
           _resetIdleTimer();
@@ -461,18 +467,16 @@ class _MainPageState extends ConsumerState<MainPage>
       }
 
       if (mounted) {
-        Timer.periodic(
-          AppConstants.refreshTime,
-          (s) {
-            ref.read(notificationProvider.notifier).fetchCount(context);
-          },
-        );
+        Timer.periodic(AppConstants.refreshTime, (s) {
+          ref.read(notificationProvider.notifier).fetchCount(context);
+        });
       }
     });
 
     if (AppConstants.enableJuvoONE) {
-      WidgetsBinding.instance
-          .addObserver(_ActivityObserver(onActivity: _resetIdleTimer));
+      WidgetsBinding.instance.addObserver(
+        _ActivityObserver(onActivity: _resetIdleTimer),
+      );
     }
 
     _showJuvoONEAnimation = AppConstants.enableJuvoONE;
@@ -500,7 +504,9 @@ class _MainPageState extends ConsumerState<MainPage>
   }
 
   PreferredSizeWidget customAppBar(
-      MainNotifier notifier, CustomerNotifier customerNotifier) {
+    MainNotifier notifier,
+    CustomerNotifier customerNotifier,
+  ) {
     final state = ref.watch(mainProvider);
     final userRole = user?.role;
 
@@ -525,7 +531,7 @@ class _MainPageState extends ConsumerState<MainPage>
                   }
                   return const SizedBox.shrink();
                 },
-              )
+              ),
             ],
             const Spacer(),
             if (state.selectIndex == 0 && user?.role != TrKeys.cooker) ...[
@@ -552,7 +558,7 @@ class _MainPageState extends ConsumerState<MainPage>
             if (state.selectIndex == 0 &&
                 user?.role != TrKeys.cooker &&
                 AppConstants.enableJuvoONE) ...[
-              _buildSettingsAndNotifications()
+              _buildSettingsAndNotifications(),
             ],
             SizedBox(width: 5.w),
             const ApiStatusIndicator(),
@@ -581,10 +587,9 @@ class _MainPageState extends ConsumerState<MainPage>
                 if (snapshot.hasData && snapshot.data == true) {
                   return const WeatherWidget();
                 }
-                return const SizedBox
-                    .shrink(); // Returns an empty widget when no connection
+                return const SizedBox.shrink(); // Returns an empty widget when no connection
               },
-            )
+            ),
           ],
           30.horizontalSpace,
           Expanded(
@@ -635,7 +640,7 @@ class _MainPageState extends ConsumerState<MainPage>
               _shouldShowStoreFeatures()) ...[
             QuickSale(key: QuickSale.globalKey),
             const VerticalDivider(),
-            AddExpense()
+            AddExpense(),
           ],
           if (state.selectIndex == 0 && user?.role != TrKeys.cooker) ...[
             const CashDrawerButton(),
@@ -660,7 +665,9 @@ class _MainPageState extends ConsumerState<MainPage>
           ],
           if (state.selectIndex == 0 &&
               user?.role != TrKeys.cooker &&
-              AppConstants.enableJuvoONE) ...[_buildSettingsAndNotifications()],
+              AppConstants.enableJuvoONE) ...[
+            _buildSettingsAndNotifications(),
+          ],
           SizedBox(width: 5.w),
           const ApiStatusIndicator(),
           SizedBox(width: 12.w),
@@ -713,7 +720,10 @@ class _MainPageState extends ConsumerState<MainPage>
                     .watch(notificationProvider)
                     .countOfNotifications!
                     .notification! >
-                0) ...[5.horizontalSpace, const NotificationIcon()],
+                0) ...[
+          5.horizontalSpace,
+          const NotificationIcon(),
+        ],
       ],
     );
   }
@@ -818,8 +828,9 @@ class _MainPageState extends ConsumerState<MainPage>
           },
           child: GestureDetector(
             onTap: AppConstants.enableJuvoONE ? _resetIdleTimer : null,
-            onPanDown:
-                AppConstants.enableJuvoONE ? (_) => _resetIdleTimer() : null,
+            onPanDown: AppConstants.enableJuvoONE
+                ? (_) => _resetIdleTimer()
+                : null,
             child: SafeArea(
               child: CustomScaffold(
                 extendBody: true,
@@ -838,20 +849,20 @@ class _MainPageState extends ConsumerState<MainPage>
                           isAdmin
                               ? bottomLeftNavigationBarAdmin(state)
                               : user?.role == TrKeys.seller
-                                  ? bottomLeftNavigationBar(state)
-                                  : user?.role == TrKeys.cooker
-                                      ? bottomLeftNavigationBarKitchen(state)
-                                      : bottomLeftNavigationBarWaiter(state),
+                              ? bottomLeftNavigationBar(state)
+                              : user?.role == TrKeys.cooker
+                              ? bottomLeftNavigationBarKitchen(state)
+                              : bottomLeftNavigationBarWaiter(state),
                         Expanded(
                           child: ProsteIndexedStack(
                             index: state.selectIndex,
                             children: isAdmin
                                 ? listAdmin
                                 : user?.role == TrKeys.seller
-                                    ? list
-                                    : user?.role == TrKeys.cooker
-                                        ? listKitchen
-                                        : listWaiter,
+                                ? list
+                                : user?.role == TrKeys.cooker
+                                ? listKitchen
+                                : listWaiter,
                           ),
                         ),
                       ],
@@ -880,8 +891,8 @@ class _MainPageState extends ConsumerState<MainPage>
             decoration: BoxDecoration(
               color: state.selectIndex == 0
                   ? (AppConstants.enableJuvoONE
-                      ? AppStyle.blueBonus
-                      : AppStyle.brandGreen)
+                        ? AppStyle.blueBonus
+                        : AppStyle.brandGreen)
                   : AppStyle.transparent,
               borderRadius: BorderRadius.circular(10.r),
             ),
@@ -902,8 +913,8 @@ class _MainPageState extends ConsumerState<MainPage>
             decoration: BoxDecoration(
               color: state.selectIndex == 1
                   ? (AppConstants.enableJuvoONE
-                      ? AppStyle.blueBonus
-                      : AppStyle.brandGreen)
+                        ? AppStyle.blueBonus
+                        : AppStyle.brandGreen)
                   : AppStyle.transparent,
               borderRadius: BorderRadius.circular(10.r),
             ),
@@ -936,8 +947,9 @@ class _MainPageState extends ConsumerState<MainPage>
                   state.selectIndex == 2
                       ? Remix.drop_fill
                       : Remix.blur_off_fill,
-                  color:
-                      state.selectIndex == 2 ? AppStyle.white : AppStyle.black,
+                  color: state.selectIndex == 2
+                      ? AppStyle.white
+                      : AppStyle.black,
                 ),
               ),
             ),
@@ -948,10 +960,7 @@ class _MainPageState extends ConsumerState<MainPage>
               context.replaceRoute(const LoginRoute());
               LocalStorage.clearStore();
             },
-            icon: const Icon(
-              Remix.logout_circle_line,
-              color: AppStyle.red,
-            ),
+            icon: const Icon(Remix.logout_circle_line, color: AppStyle.red),
           ),
           32.verticalSpace,
         ],
@@ -973,8 +982,8 @@ class _MainPageState extends ConsumerState<MainPage>
             decoration: BoxDecoration(
               color: state.selectIndex == 0
                   ? (AppConstants.enableJuvoONE
-                      ? AppStyle.blueBonus
-                      : AppStyle.brandGreen)
+                        ? AppStyle.blueBonus
+                        : AppStyle.brandGreen)
                   : AppStyle.transparent,
               borderRadius: BorderRadius.circular(10.r),
             ),
@@ -993,8 +1002,8 @@ class _MainPageState extends ConsumerState<MainPage>
             decoration: BoxDecoration(
               color: state.selectIndex == 1
                   ? (AppConstants.enableJuvoONE
-                      ? AppStyle.blueBonus
-                      : AppStyle.brandGreen)
+                        ? AppStyle.blueBonus
+                        : AppStyle.brandGreen)
                   : AppStyle.transparent,
               borderRadius: BorderRadius.circular(10.r),
             ),
@@ -1015,8 +1024,8 @@ class _MainPageState extends ConsumerState<MainPage>
             decoration: BoxDecoration(
               color: state.selectIndex == 2
                   ? (AppConstants.enableJuvoONE
-                      ? AppStyle.blueBonus
-                      : AppStyle.brandGreen)
+                        ? AppStyle.blueBonus
+                        : AppStyle.brandGreen)
                   : AppStyle.transparent,
               borderRadius: BorderRadius.circular(10.r),
             ),
@@ -1037,8 +1046,8 @@ class _MainPageState extends ConsumerState<MainPage>
             decoration: BoxDecoration(
               color: state.selectIndex == 3
                   ? (AppConstants.enableJuvoONE
-                      ? AppStyle.blueBonus
-                      : AppStyle.brandGreen)
+                        ? AppStyle.blueBonus
+                        : AppStyle.brandGreen)
                   : AppStyle.transparent,
               borderRadius: BorderRadius.circular(10.r),
             ),
@@ -1099,8 +1108,8 @@ class _MainPageState extends ConsumerState<MainPage>
             decoration: BoxDecoration(
               color: state.selectIndex == 6
                   ? (AppConstants.enableJuvoONE
-                      ? AppStyle.blueBonus
-                      : AppStyle.brandGreen)
+                        ? AppStyle.blueBonus
+                        : AppStyle.brandGreen)
                   : AppStyle.transparent,
               borderRadius: BorderRadius.circular(10.r),
             ),
@@ -1109,9 +1118,7 @@ class _MainPageState extends ConsumerState<MainPage>
                 ref.read(mainProvider.notifier).changeIndex(6);
               },
               icon: Icon(
-                state.selectIndex == 6
-                    ? Remix.truck_fill
-                    : Remix.truck_line,
+                state.selectIndex == 6 ? Remix.truck_fill : Remix.truck_line,
                 color: state.selectIndex == 6 ? AppStyle.white : AppStyle.black,
               ),
             ),
@@ -1133,8 +1140,9 @@ class _MainPageState extends ConsumerState<MainPage>
                   state.selectIndex == 6
                       ? Remix.drop_fill
                       : Remix.blur_off_fill,
-                  color:
-                      state.selectIndex == 6 ? AppStyle.white : AppStyle.black,
+                  color: state.selectIndex == 6
+                      ? AppStyle.white
+                      : AppStyle.black,
                 ),
               ),
             ),
@@ -1154,8 +1162,9 @@ class _MainPageState extends ConsumerState<MainPage>
                 },
                 icon: Icon(
                   state.selectIndex == 6 ? Remix.bread_fill : Remix.bread_fill,
-                  color:
-                      state.selectIndex == 6 ? AppStyle.white : AppStyle.black,
+                  color: state.selectIndex == 6
+                      ? AppStyle.white
+                      : AppStyle.black,
                 ),
               ),
             ),
@@ -1175,15 +1184,16 @@ class _MainPageState extends ConsumerState<MainPage>
                   state.selectIndex == 7
                       ? Remix.drop_fill
                       : Remix.blur_off_fill,
-                  color:
-                      state.selectIndex == 7 ? AppStyle.white : AppStyle.black,
+                  color: state.selectIndex == 7
+                      ? AppStyle.white
+                      : AppStyle.black,
                 ),
               ),
             ),
           ],
           const Spacer(),
-          // Replace the existing logout IconButton with this new implementation:
 
+          // Replace the existing logout IconButton with this new implementation:
           IconButton(
             onPressed: () async {
               final float = LocalStorage.getFloatAmount();
@@ -1221,10 +1231,7 @@ class _MainPageState extends ConsumerState<MainPage>
                 LocalStorage.clearStore();
               }
             },
-            icon: const Icon(
-              Remix.logout_circle_line,
-              color: AppStyle.red,
-            ),
+            icon: const Icon(Remix.logout_circle_line, color: AppStyle.red),
           ),
           32.verticalSpace,
         ],
@@ -1268,10 +1275,7 @@ class _MainPageState extends ConsumerState<MainPage>
               ref.read(kitchenProvider.notifier).stopTimer();
               LocalStorage.clearStore();
             },
-            icon: const Icon(
-              Remix.logout_circle_line,
-              color: AppStyle.red,
-            ),
+            icon: const Icon(Remix.logout_circle_line, color: AppStyle.red),
           ),
           32.verticalSpace,
         ],
@@ -1331,8 +1335,8 @@ class _MainPageState extends ConsumerState<MainPage>
             decoration: BoxDecoration(
               color: state.selectIndex == 2
                   ? (AppConstants.enableJuvoONE
-                      ? AppStyle.blueBonus
-                      : AppStyle.brandGreen)
+                        ? AppStyle.blueBonus
+                        : AppStyle.brandGreen)
                   : AppStyle.transparent,
               borderRadius: BorderRadius.circular(10.r),
             ),
@@ -1361,10 +1365,7 @@ class _MainPageState extends ConsumerState<MainPage>
               ref.read(canceledOrdersProvider.notifier).stopTimer();
               LocalStorage.clearStore();
             },
-            icon: const Icon(
-              Remix.logout_circle_line,
-              color: AppStyle.red,
-            ),
+            icon: const Icon(Remix.logout_circle_line, color: AppStyle.red),
           ),
           32.verticalSpace,
         ],
@@ -1385,4 +1386,3 @@ class _ActivityObserver extends WidgetsBindingObserver {
     }
   }
 }
-

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/theme.dart';
 
-
 class CustomIconButton extends StatelessWidget {
   final IconData? iconData;
   final Function()? onTap;
@@ -28,13 +27,8 @@ class CustomIconButton extends StatelessWidget {
           color: AppStyle.primary,
         ),
         alignment: Alignment.center,
-        child: Icon(
-          iconData,
-          size: 24.r,
-          color: AppStyle.black,
-        ),
+        child: Icon(iconData, size: 24.r, color: AppStyle.black),
       ),
     );
   }
 }
-

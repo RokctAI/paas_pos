@@ -5,5 +5,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final sendToPickupProvider =
     StateNotifierProvider<SendToPickupNotifier, SendToPickupState>(
-  (ref) => SendToPickupNotifier(deliveryPointsRepository),
-);
+      (ref) => SendToPickupNotifier(deliveryPointsRepository),
+    );

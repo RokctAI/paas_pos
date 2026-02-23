@@ -14,7 +14,7 @@ class SectionsItem extends StatelessWidget {
     required this.title,
     required this.icon,
     required this.onTap,
-    this.isDivider = true
+    this.isDivider = true,
   });
 
   @override
@@ -33,19 +33,18 @@ class SectionsItem extends StatelessWidget {
                 Text(
                   title,
                   style: GoogleFonts.inter(
-                      fontSize: 16.sp,
-                      color: AppStyle.black,
-                      fontWeight: FontWeight.bold)
+                    fontSize: 16.sp,
+                    color: AppStyle.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
             12.verticalSpace,
-            if(isDivider)
-              const Divider(color: AppStyle.hint),
+            if (isDivider) const Divider(color: AppStyle.hint),
           ],
         ),
       ),
     );
   }
 }
-

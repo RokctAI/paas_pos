@@ -29,7 +29,8 @@ class SettingsMenu extends ConsumerWidget {
     final user = LocalStorage.getUser();
     final isSeller = user?.role == TrKeys.seller;
     final double menuHeight = isSeller
-        ? MediaQuery.of(context).size.height / 1.2  // Original height for sellers
+        ? MediaQuery.of(context).size.height /
+              1.2 // Original height for sellers
         : MediaQuery.of(context).size.height / 1.8;
 
     return ClipRRect(
@@ -44,8 +45,7 @@ class SettingsMenu extends ConsumerWidget {
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
-                  const Icon(Remix.settings_6_fill,
-                      color: AppStyle.black),
+                  const Icon(Remix.settings_6_fill, color: AppStyle.black),
                   const SizedBox(width: 3),
                   Text(
                     'Settings',
@@ -58,8 +58,10 @@ class SettingsMenu extends ConsumerWidget {
                   const Spacer(),
                   IconButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(FlutterRemix.close_fill,
-                        color: AppStyle.black),
+                    icon: const Icon(
+                      FlutterRemix.close_fill,
+                      color: AppStyle.black,
+                    ),
                   ),
                   const Divider(),
                 ],
@@ -73,16 +75,16 @@ class SettingsMenu extends ConsumerWidget {
                     icon: Remix.account_pin_box_fill,
                     title: AppHelpers.getTranslation(TrKeys.profile),
                     onTap: () => AppHelpers.showAlertDialog(
-                          context: context,
-                          child: const ProfilePage(),
-                      width: MediaQuery.of(context).size.width - 30.w,),
-
+                      context: context,
+                      child: const ProfilePage(),
+                      width: MediaQuery.of(context).size.width - 30.w,
+                    ),
                   ),
                   _buildMenuItem(
                     context,
                     icon: Remix.question_line,
                     title: AppHelpers.getTranslation(TrKeys.help),
-                    onTap: () =>  context.pushRoute(const HelpRoute())
+                    onTap: () => context.pushRoute(const HelpRoute()),
                   ),
                   const Divider(),
                   _buildMenuItem(
@@ -124,7 +126,9 @@ class SettingsMenu extends ConsumerWidget {
                         ),
                         child: Center(
                           child: Icon(
-                            AppConstants.secondScreen ? Remix.tv_2_fill : Remix.tv_2_line,
+                            AppConstants.secondScreen
+                                ? Remix.tv_2_fill
+                                : Remix.tv_2_line,
                             color: AppStyle.black,
                             size: 18,
                           ),
@@ -134,58 +138,61 @@ class SettingsMenu extends ConsumerWidget {
                       onTap: () {},
                       trailing: const SecondScreenToggle(),
                     ),
-                  const Divider(),
-                  _buildMenuItemWithCustomLeading(
-                    context,
-                    leading: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppStyle.black, width: 2),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Center(
-                        child: Icon(
-                          AppConstants.skipPin ? FlutterRemix.lock_unlock_fill : FlutterRemix.lock_fill,
-                          color: AppStyle.black,
-                          size: 18,
+                    const Divider(),
+                    _buildMenuItemWithCustomLeading(
+                      context,
+                      leading: Container(
+                        width: 30,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppStyle.black, width: 2),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            AppConstants.skipPin
+                                ? FlutterRemix.lock_unlock_fill
+                                : FlutterRemix.lock_fill,
+                            color: AppStyle.black,
+                            size: 18,
+                          ),
                         ),
                       ),
+                      title: 'Skip PIN',
+                      onTap: () {},
+                      trailing: const SkipPINToggle(),
                     ),
-                    title: 'Skip PIN',
-                    onTap: () {},
-                    trailing: const SkipPINToggle(),
-                  ),
-                  _buildMenuItemWithCustomLeading(
-                    context,
-                    leading: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: AppStyle.black, width: 2),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Center(
-                        child: Icon(
-                          AppConstants.autoDeliver ? FlutterRemix.truck_fill : FlutterRemix.truck_fill,
-                          color: AppStyle.black,
-                          size: 18,
+                    _buildMenuItemWithCustomLeading(
+                      context,
+                      leading: Container(
+                        width: 30,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppStyle.black, width: 2),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: Icon(
+                            AppConstants.autoDeliver
+                                ? FlutterRemix.truck_fill
+                                : FlutterRemix.truck_fill,
+                            color: AppStyle.black,
+                            size: 18,
+                          ),
                         ),
                       ),
+                      title: 'Auto update Order Status',
+                      onTap: () {},
+                      trailing: const autoDeliver(),
                     ),
-                    title: 'Auto update Order Status',
-                    onTap: () {},
-                    trailing: const autoDeliver(),
-                  ),
-                  _buildMenuItem(
-                    context,
-                    icon: FlutterRemix.list_settings_line,
-                    title: AppHelpers.getTranslation(TrKeys.cashDrawer),
-                    onTap: () =>  _showCashDrawerConfigScreenDialog(context),
-                  ),
+                    _buildMenuItem(
+                      context,
+                      icon: FlutterRemix.list_settings_line,
+                      title: AppHelpers.getTranslation(TrKeys.cashDrawer),
+                      onTap: () => _showCashDrawerConfigScreenDialog(context),
+                    ),
                     16.verticalSpace,
                   ],
-
                 ],
               ),
             ),
@@ -195,8 +202,13 @@ class SettingsMenu extends ConsumerWidget {
     );
   }
 
-  Widget _buildMenuItem(BuildContext context,
-      {required IconData icon, required String title, required VoidCallback onTap, Widget? trailing}) {
+  Widget _buildMenuItem(
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+    Widget? trailing,
+  }) {
     return ListTile(
       leading: Icon(icon, color: AppStyle.black),
       title: Text(
@@ -212,8 +224,13 @@ class SettingsMenu extends ConsumerWidget {
     );
   }
 
-  Widget _buildMenuItemWithCustomLeading(BuildContext context,
-      {required Widget leading, required String title, required VoidCallback onTap, Widget? trailing}) {
+  Widget _buildMenuItemWithCustomLeading(
+    BuildContext context, {
+    required Widget leading,
+    required String title,
+    required VoidCallback onTap,
+    Widget? trailing,
+  }) {
     return ListTile(
       leading: leading,
       title: Text(
@@ -232,70 +249,72 @@ class SettingsMenu extends ConsumerWidget {
   void _showLanguageDialog(BuildContext context, WidgetRef ref) {
     ref.read(languagesProvider.notifier).getLanguages(context);
     showDialog(
-        context: context,
-        builder: (_) => Dialog(
-          alignment: Alignment.center,
-          backgroundColor: AppStyle.white,
-          child: Container(
-            width: MediaQuery.of(context).size.width / 4,
-            constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.5
-            ),
-            child: Consumer(
-              builder: (context, ref, child) => LanguagesModal(
-                afterUpdate: () {
-                  Navigator.of(context).pop();
-                },
-              ),
+      context: context,
+      builder: (_) => Dialog(
+        alignment: Alignment.center,
+        backgroundColor: AppStyle.white,
+        child: Container(
+          width: MediaQuery.of(context).size.width / 4,
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.5,
+          ),
+          child: Consumer(
+            builder: (context, ref, child) => LanguagesModal(
+              afterUpdate: () {
+                Navigator.of(context).pop();
+              },
             ),
           ),
-        )
+        ),
+      ),
     );
   }
 
   void _showDiscountDialog(BuildContext context) {
     AppHelpers.showAlertDialog(
-        context: context,
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height / 1.5,
-          width: MediaQuery.of(context).size.width / 2,
-          child: const DiscountPage(),
-        ),
-        backgroundColor: AppStyle.bg
+      context: context,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height / 1.5,
+        width: MediaQuery.of(context).size.width / 2,
+        child: const DiscountPage(),
+      ),
+      backgroundColor: AppStyle.bg,
     );
   }
 
   void _showStoriesDialog(BuildContext context) {
     AppHelpers.showAlertDialog(
-        context: context,
-        child: SizedBox(
-            height: MediaQuery.of(context).size.height / 1.5,
-            width: MediaQuery.of(context).size.width / 2,
-            child: const StoriesPage()
-        ),
-        backgroundColor: AppStyle.white);
+      context: context,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height / 1.5,
+        width: MediaQuery.of(context).size.width / 2,
+        child: const StoriesPage(),
+      ),
+      backgroundColor: AppStyle.white,
+    );
   }
 
   void _showCashDrawerConfigScreenDialog(BuildContext context) {
     AppHelpers.showAlertDialog(
-        context: context,
-        child: SizedBox(
-            height: MediaQuery.of(context).size.height / 1.5,
-            width: MediaQuery.of(context).size.width / 2,
-            child: const CashDrawerConfigScreen()
-        ),
-        backgroundColor: AppStyle.white);
+      context: context,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height / 1.5,
+        width: MediaQuery.of(context).size.width / 2,
+        child: const CashDrawerConfigScreen(),
+      ),
+      backgroundColor: AppStyle.white,
+    );
   }
 
   void _showDeliveriesDialog(BuildContext context) {
     AppHelpers.showAlertDialog(
-        backgroundColor: AppStyle.bg,
-        context: context,
-        child: SizedBox(
-            height: MediaQuery.of(context).size.height / 1.5,
-            width: MediaQuery.of(context).size.width / 2,
-            child: const DeliveriesPage()
-        )
+      backgroundColor: AppStyle.bg,
+      context: context,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height / 1.5,
+        width: MediaQuery.of(context).size.width / 2,
+        child: const DeliveriesPage(),
+      ),
     );
   }
 }

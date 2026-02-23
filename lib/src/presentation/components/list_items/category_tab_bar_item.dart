@@ -43,10 +43,7 @@ class CategoryTabBarItem extends StatelessWidget {
             children: [
               Text(
                 '$title',
-                style: AppStyle.interNormal(
-                  size: 13.sp,
-                  color: AppStyle.black,
-                ),
+                style: AppStyle.interNormal(size: 13.sp, color: AppStyle.black),
               ),
             ],
           ),
@@ -55,4 +52,3 @@ class CategoryTabBarItem extends StatelessWidget {
     );
   }
 }
-

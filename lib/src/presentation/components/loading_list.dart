@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../theme/theme.dart';
 
-
 class LoadingList extends StatelessWidget {
   final int itemCount;
   final int horizontalPadding;
@@ -45,4 +44,3 @@ class LoadingList extends StatelessWidget {
     );
   }
 }
-

@@ -71,16 +71,22 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
         setState(() {
           switch (widget.mode) {
             case CupertinoDatePickerMode.time:
-              _selectedDateTimeSpinner = datetime.add(const Duration(minutes: 1));
+              _selectedDateTimeSpinner = datetime.add(
+                const Duration(minutes: 1),
+              );
               break;
             case CupertinoDatePickerMode.date:
               _selectedDateTimeSpinner = datetime.add(const Duration(days: 1));
               break;
             case CupertinoDatePickerMode.dateAndTime:
               if (isShiftPressed) {
-                _selectedDateTimeSpinner = datetime.add(const Duration(days: 1));
+                _selectedDateTimeSpinner = datetime.add(
+                  const Duration(days: 1),
+                );
               } else {
-                _selectedDateTimeSpinner = datetime.add(const Duration(minutes: 1));
+                _selectedDateTimeSpinner = datetime.add(
+                  const Duration(minutes: 1),
+                );
               }
               break;
             default:
@@ -91,16 +97,24 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
         setState(() {
           switch (widget.mode) {
             case CupertinoDatePickerMode.time:
-              _selectedDateTimeSpinner = datetime.subtract(const Duration(minutes: 1));
+              _selectedDateTimeSpinner = datetime.subtract(
+                const Duration(minutes: 1),
+              );
               break;
             case CupertinoDatePickerMode.date:
-              _selectedDateTimeSpinner = datetime.subtract(const Duration(days: 1));
+              _selectedDateTimeSpinner = datetime.subtract(
+                const Duration(days: 1),
+              );
               break;
             case CupertinoDatePickerMode.dateAndTime:
               if (isShiftPressed) {
-                _selectedDateTimeSpinner = datetime.subtract(const Duration(days: 1));
+                _selectedDateTimeSpinner = datetime.subtract(
+                  const Duration(days: 1),
+                );
               } else {
-                _selectedDateTimeSpinner = datetime.subtract(const Duration(minutes: 1));
+                _selectedDateTimeSpinner = datetime.subtract(
+                  const Duration(minutes: 1),
+                );
               }
               break;
             default:
@@ -115,7 +129,8 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
   void initState() {
     super.initState();
     _selectedDateTime = widget.initialDate;
-    _selectedDateTimeSpinner = widget.initialDate ?? DateTime.now().add(const Duration(minutes: 1));
+    _selectedDateTimeSpinner =
+        widget.initialDate ?? DateTime.now().add(const Duration(minutes: 1));
     _controller = TimePickerSpinnerController();
     _controller?.addListener(_updateView);
     setInitialTimes();
@@ -127,7 +142,9 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
 
     _colorTween = Tween(begin: 0, end: 1);
     _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 150));
+      vsync: this,
+      duration: const Duration(milliseconds: 150),
+    );
     _animation = _colorTween.animate(_animationController);
   }
 
@@ -135,7 +152,8 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
   void didUpdateWidget(covariant CustomDateTimeField oldWidget) {
     super.didUpdateWidget(oldWidget);
     _selectedDateTime = widget.initialDate;
-    _selectedDateTimeSpinner = widget.initialDate ?? DateTime.now().add(const Duration(minutes: 1));
+    _selectedDateTimeSpinner =
+        widget.initialDate ?? DateTime.now().add(const Duration(minutes: 1));
   }
 
   setInitialTimes() {
@@ -175,21 +193,22 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
   @override
   Widget build(BuildContext context) {
     return FormField(
-        validator: widget.validation,
-        initialValue: time,
-        builder: (FormFieldState<String> state) {
-          var child = _timeWidget(state);
-          setStateValue = () => state.didChange(time);
-          if (Platform.isIOS) {
-            return child;
-          } else {
-            return PopScope(
-              onPopInvoked: (s) => _hideMenu(),
-              canPop: true,
-              child: child,
-            );
-          }
-        });
+      validator: widget.validation,
+      initialValue: time,
+      builder: (FormFieldState<String> state) {
+        var child = _timeWidget(state);
+        setStateValue = () => state.didChange(time);
+        if (Platform.isIOS) {
+          return child;
+        } else {
+          return PopScope(
+            onPopInvoked: (s) => _hideMenu(),
+            canPop: true,
+            child: child,
+          );
+        }
+      },
+    );
   }
 
   Widget _buildWindowsPicker() {
@@ -204,9 +223,9 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
               onPressed: () {
                 setState(() {
                   _selectedDateTimeSpinner = _selectedDateTimeSpinner.add(
-                      widget.mode == CupertinoDatePickerMode.date ?
-                      const Duration(days: 1) :
-                      const Duration(minutes: 1)
+                    widget.mode == CupertinoDatePickerMode.date
+                        ? const Duration(days: 1)
+                        : const Duration(minutes: 1),
                   );
                 });
               },
@@ -216,13 +235,10 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
         Container(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            widget.mode == CupertinoDatePickerMode.date ?
-            DateFormat('MMM dd, yyyy').format(_selectedDateTimeSpinner) :
-            DateFormat('HH:mm').format(_selectedDateTimeSpinner),
-            style: AppStyle.interNormal(
-              size: 24,
-              color: AppStyle.white,
-            ),
+            widget.mode == CupertinoDatePickerMode.date
+                ? DateFormat('MMM dd, yyyy').format(_selectedDateTimeSpinner)
+                : DateFormat('HH:mm').format(_selectedDateTimeSpinner),
+            style: AppStyle.interNormal(size: 24, color: AppStyle.white),
           ),
         ),
         Row(
@@ -233,9 +249,9 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
               onPressed: () {
                 setState(() {
                   _selectedDateTimeSpinner = _selectedDateTimeSpinner.subtract(
-                      widget.mode == CupertinoDatePickerMode.date ?
-                      const Duration(days: 1) :
-                      const Duration(minutes: 1)
+                    widget.mode == CupertinoDatePickerMode.date
+                        ? const Duration(days: 1)
+                        : const Duration(minutes: 1),
                   );
                 });
               },
@@ -245,10 +261,7 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
         const SizedBox(height: 10),
         Text(
           'Use Up/Down arrows or click buttons',
-          style: AppStyle.interNormal(
-            size: 12,
-            color: AppStyle.white,
-          ),
+          style: AppStyle.interNormal(size: 12, color: AppStyle.white),
         ),
       ],
     );
@@ -275,7 +288,7 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                 spreadRadius: 0,
                 blurRadius: 8,
                 offset: const Offset(0, 2),
-              )
+              ),
             ],
           ),
           child: Material(
@@ -293,42 +306,48 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                       return KeyEventResult.handled;
                     },
                     autofocus: true,
-                    child: Platform.isWindows ?
-                    _buildWindowsPicker()
+                    child: Platform.isWindows
+                        ? _buildWindowsPicker()
                         : CupertinoTheme(
-                      data: CupertinoThemeData(
-                        textTheme: CupertinoTextThemeData(
-                          dateTimePickerTextStyle: AppStyle.interNormal(color: AppStyle.white),
-                        ),
-                        primaryColor: AppStyle.white,
-                        brightness: Brightness.dark,
-                      ),
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: CupertinoDatePicker(
-                          backgroundColor: Theme.of(context).colorScheme.surface,
-                          minimumDate: widget.minDate,
-                          maximumDate: widget.maxDate,
-                          minuteInterval: widget.minuteInterval,
-                          initialDateTime: _selectedDateTimeSpinner,
-                          use24hFormat: true,
-                          mode: widget.mode,
-                          onDateTimeChanged: (dateTime) {
-                            setState(() {
-                              if (widget.minDate != null &&
-                                  dateTime.isBefore(widget.minDate!)) {
-                                _selectedDateTimeSpinner = widget.minDate!;
-                              } else if (widget.maxDate != null &&
-                                  dateTime.isAfter(widget.maxDate!)) {
-                                _selectedDateTimeSpinner = widget.maxDate!;
-                              } else {
-                                _selectedDateTimeSpinner = dateTime;
-                              }
-                            });
-                          },
-                        ),
-                      ),
-                    ),
+                            data: CupertinoThemeData(
+                              textTheme: CupertinoTextThemeData(
+                                dateTimePickerTextStyle: AppStyle.interNormal(
+                                  color: AppStyle.white,
+                                ),
+                              ),
+                              primaryColor: AppStyle.white,
+                              brightness: Brightness.dark,
+                            ),
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: CupertinoDatePicker(
+                                backgroundColor: Theme.of(
+                                  context,
+                                ).colorScheme.surface,
+                                minimumDate: widget.minDate,
+                                maximumDate: widget.maxDate,
+                                minuteInterval: widget.minuteInterval,
+                                initialDateTime: _selectedDateTimeSpinner,
+                                use24hFormat: true,
+                                mode: widget.mode,
+                                onDateTimeChanged: (dateTime) {
+                                  setState(() {
+                                    if (widget.minDate != null &&
+                                        dateTime.isBefore(widget.minDate!)) {
+                                      _selectedDateTimeSpinner =
+                                          widget.minDate!;
+                                    } else if (widget.maxDate != null &&
+                                        dateTime.isAfter(widget.maxDate!)) {
+                                      _selectedDateTimeSpinner =
+                                          widget.maxDate!;
+                                    } else {
+                                      _selectedDateTimeSpinner = dateTime;
+                                    }
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
                   ),
                 ),
                 DefaultTextStyle(
@@ -340,25 +359,35 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                       TextButton(
                         onPressed: () {
                           _animationController.reverse();
-                          _selectedDateTimeSpinner = _selectedDateTime ?? DateTime.now();
+                          _selectedDateTimeSpinner =
+                              _selectedDateTime ?? DateTime.now();
                           Future.delayed(const Duration(milliseconds: 150), () {
                             _hideMenu();
                           });
                         },
                         child: Text(
                           AppHelpers.getTranslation(TrKeys.cancel),
-                          style: AppStyle.interNormal(size: 14, color: AppStyle.white),
+                          style: AppStyle.interNormal(
+                            size: 14,
+                            color: AppStyle.white,
+                          ),
                         ),
                       ),
                       TextButton(
                         onPressed: () {
                           _animationController.reverse();
-                          setState(() => _selectedDateTime = _selectedDateTimeSpinner);
+                          setState(
+                            () => _selectedDateTime = _selectedDateTimeSpinner,
+                          );
                           Future.delayed(const Duration(milliseconds: 150), () {
                             if (widget.mode == CupertinoDatePickerMode.time) {
-                              widget.onTimeChange?.call(_selectedDateTimeSpinner.toTime);
+                              widget.onTimeChange?.call(
+                                _selectedDateTimeSpinner.toTime,
+                              );
                             } else {
-                              widget.onDateChange?.call(_selectedDateTimeSpinner);
+                              widget.onDateChange?.call(
+                                _selectedDateTimeSpinner,
+                              );
                             }
                             setInitialTimes();
                             setStateValue();
@@ -367,7 +396,10 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                         },
                         child: Text(
                           AppHelpers.getTranslation(TrKeys.ok),
-                          style: AppStyle.interNormal(size: 14, color: AppStyle.white),
+                          style: AppStyle.interNormal(
+                            size: 14,
+                            color: AppStyle.white,
+                          ),
                         ),
                       ),
                     ],
@@ -388,7 +420,8 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
             final menuWidth = 300.0;
 
             double left = centerHorizontal - ((menuWidth / 2) * value);
-            double right = screenWidth - (centerHorizontal + ((menuWidth / 2) * value));
+            double right =
+                screenWidth - (centerHorizontal + ((menuWidth / 2) * value));
             double? top = offset.dy - ((220 / 2) * value);
             double? bottom;
 
@@ -419,9 +452,7 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
               bottom: bottom,
               child: Container(
                 width: menuWidth,
-                constraints: BoxConstraints(
-                  maxHeight: 270 * value,
-                ),
+                constraints: BoxConstraints(maxHeight: 270 * value),
                 child: SingleChildScrollView(child: menu),
               ),
             );
@@ -464,8 +495,8 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
           onTap: widget.readOnly
               ? null
               : () {
-            _controller?.showMenu();
-          },
+                  _controller?.showMenu();
+                },
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
@@ -477,7 +508,8 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
               ),
               borderRadius: BorderRadius.circular(AppConstants.radius.r),
             ),
-            padding: widget.contentPadding ??
+            padding:
+                widget.contentPadding ??
                 REdgeInsets.symmetric(vertical: 14, horizontal: 12),
             child: Row(
               children: [
@@ -487,14 +519,18 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                         AppHelpers.getTranslation(TrKeys.pleaseSelect),
                     style: AppStyle.interNormal(
                       size: 14,
-                      color: state.value == null ? AppStyle.textHint : AppStyle.white,
+                      color: state.value == null
+                          ? AppStyle.textHint
+                          : AppStyle.white,
                     ),
                   ),
                 ),
                 Icon(
                   iconAssets,
                   size: widget.iconSize,
-                  color: state.value == null ? AppStyle.textHint : AppStyle.white,
+                  color: state.value == null
+                      ? AppStyle.textHint
+                      : AppStyle.white,
                 ),
               ],
             ),
@@ -502,13 +538,13 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
         ),
         state.hasError
             ? Padding(
-          padding: REdgeInsets.only(left: 14, top: 4),
-          child: Text(
-            state.errorText ?? '',
-            style: AppStyle.interRegular(size: 12, color: AppStyle.red),
-          ),
-        )
-            : Container()
+                padding: REdgeInsets.only(left: 14, top: 4),
+                child: Text(
+                  state.errorText ?? '',
+                  style: AppStyle.interRegular(size: 12, color: AppStyle.red),
+                ),
+              )
+            : Container(),
       ],
     );
   }

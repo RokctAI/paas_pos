@@ -26,7 +26,9 @@ class YocoTerminalDialog extends StatefulWidget {
 }
 
 class _YocoTerminalDialogState extends State<YocoTerminalDialog> {
-  static const platform = MethodChannel('app.juvo.pos/yoco');  // Update this line in YocoTerminalDialog
+  static const platform = MethodChannel(
+    'app.juvo.pos/yoco',
+  ); // Update this line in YocoTerminalDialog
   TerminalPaymentStatus status = TerminalPaymentStatus.initiating;
   String errorMessage = '';
   Timer? _timeoutTimer;
@@ -66,7 +68,10 @@ class _YocoTerminalDialogState extends State<YocoTerminalDialog> {
     }
   }
 
-  Future<Map<String, dynamic>> _invokeYocoMethod(String method, [Map<String, dynamic>? arguments]) async {
+  Future<Map<String, dynamic>> _invokeYocoMethod(
+    String method, [
+    Map<String, dynamic>? arguments,
+  ]) async {
     try {
       final result = await platform.invokeMethod(method, arguments);
       return Map<String, dynamic>.from(result);
@@ -76,10 +81,7 @@ class _YocoTerminalDialogState extends State<YocoTerminalDialog> {
         'error': e.message ?? 'Platform error occurred',
       };
     } catch (e) {
-      return {
-        'success': false,
-        'error': e.toString(),
-      };
+      return {'success': false, 'error': e.toString()};
     }
   }
 

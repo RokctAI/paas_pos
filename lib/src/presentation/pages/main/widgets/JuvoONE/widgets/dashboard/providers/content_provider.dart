@@ -1,13 +1,13 @@
-
 // Provider to manage the current content of DashboardEntry
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../shop_dashboard_grid.dart';
 
-final dashboardContentProvider = StateNotifierProvider<DashboardContentNotifier, Widget>((ref) {
-  return DashboardContentNotifier();
-});
+final dashboardContentProvider =
+    StateNotifierProvider<DashboardContentNotifier, Widget>((ref) {
+      return DashboardContentNotifier();
+    });
 
 class DashboardContentNotifier extends StateNotifier<Widget> {
   DashboardContentNotifier() : super(const ShopsDashboardGrid());
@@ -18,9 +18,10 @@ class DashboardContentNotifier extends StateNotifier<Widget> {
 }
 
 // Provider to manage dashboard view mode
-final dashboardViewModeProvider = StateNotifierProvider<DashboardViewModeNotifier, int>((ref) {
-  return DashboardViewModeNotifier();
-});
+final dashboardViewModeProvider =
+    StateNotifierProvider<DashboardViewModeNotifier, int>((ref) {
+      return DashboardViewModeNotifier();
+    });
 
 class DashboardViewModeNotifier extends StateNotifier<int> {
   DashboardViewModeNotifier() : super(0);

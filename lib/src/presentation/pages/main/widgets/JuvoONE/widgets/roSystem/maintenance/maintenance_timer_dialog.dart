@@ -11,10 +11,7 @@ import 'maintenance_service.dart';
 class MaintenanceTimerDialog extends StatefulWidget {
   final Vessel vessel;
 
-  const MaintenanceTimerDialog({
-    super.key,
-    required this.vessel,
-  });
+  const MaintenanceTimerDialog({super.key, required this.vessel});
 
   @override
   State<MaintenanceTimerDialog> createState() => _MaintenanceTimerDialogState();
@@ -62,24 +59,30 @@ class _MaintenanceTimerDialogState extends State<MaintenanceTimerDialog> {
     final rawName = stage.toString().split('.').last;
 
     // Split at capital letters, trim spaces, and capitalize first letter of each word
-    final words = rawName.split(RegExp('(?=[A-Z])')).map((word) {
-      return word.trim().isEmpty ? '' :
-      word[0].toUpperCase() + word.substring(1).toLowerCase();
-    }).where((word) => word.isNotEmpty).toList();
+    final words = rawName
+        .split(RegExp('(?=[A-Z])'))
+        .map((word) {
+          return word.trim().isEmpty
+              ? ''
+              : word[0].toUpperCase() + word.substring(1).toLowerCase();
+        })
+        .where((word) => word.isNotEmpty)
+        .toList();
 
     // Join with spaces
     return words.join(' ');
   }
 
-
   Future<void> _loadSavedProgress() async {
     try {
-      final savedProgress = await MaintenanceService.getMaintenanceProgress(widget.vessel.id);
+      final savedProgress = await MaintenanceService.getMaintenanceProgress(
+        widget.vessel.id,
+      );
 
       if (savedProgress != null) {
         setState(() {
           _currentStage = MaintenanceStage.values.firstWhere(
-                (s) => s.toString() == savedProgress.currentStage,
+            (s) => s.toString() == savedProgress.currentStage,
           );
           _stageStartTime = savedProgress.stageStartTime;
 
@@ -117,29 +120,28 @@ class _MaintenanceTimerDialogState extends State<MaintenanceTimerDialog> {
     }
   }
 
-
   void _moveToNextStage() async {
     final stages = widget.vessel.type == 'megaChar'
         ? [
-      MaintenanceStage.initialCheck,
-      MaintenanceStage.pressureRelease,
-      MaintenanceStage.backwash,
-      MaintenanceStage.settling,
-      MaintenanceStage.fastWash,
-      MaintenanceStage.stabilization,
-      MaintenanceStage.returnToFilter,
-    ]
+            MaintenanceStage.initialCheck,
+            MaintenanceStage.pressureRelease,
+            MaintenanceStage.backwash,
+            MaintenanceStage.settling,
+            MaintenanceStage.fastWash,
+            MaintenanceStage.stabilization,
+            MaintenanceStage.returnToFilter,
+          ]
         : [
-      MaintenanceStage.initialCheck,
-      MaintenanceStage.pressureRelease,
-      MaintenanceStage.backwash,
-      MaintenanceStage.settling,
-      MaintenanceStage.brineAndSlowRinse,
-      MaintenanceStage.fastRinse,
-      MaintenanceStage.brineRefill,
-      MaintenanceStage.stabilization,
-      MaintenanceStage.returnToService,
-    ];
+            MaintenanceStage.initialCheck,
+            MaintenanceStage.pressureRelease,
+            MaintenanceStage.backwash,
+            MaintenanceStage.settling,
+            MaintenanceStage.brineAndSlowRinse,
+            MaintenanceStage.fastRinse,
+            MaintenanceStage.brineRefill,
+            MaintenanceStage.stabilization,
+            MaintenanceStage.returnToService,
+          ];
 
     final currentIndex = stages.indexOf(_currentStage);
     if (currentIndex < stages.length - 1) {
@@ -231,17 +233,25 @@ class _MaintenanceTimerDialogState extends State<MaintenanceTimerDialog> {
 
   String _getStageInstructions() {
     return switch (_currentStage) {
-      MaintenanceStage.initialCheck => 'Check all connections and ensure system is ready for maintenance.',
-      MaintenanceStage.pressureRelease => 'Release pressure from the system carefully.',
-      MaintenanceStage.backwash => 'System is in backwash mode. Monitor pressure gauge.',
-      MaintenanceStage.settling => 'Allow system to settle. Check for any irregularities.',
-      MaintenanceStage.fastWash => 'System is in fast wash mode. Monitor water clarity.',
-      MaintenanceStage.stabilization => 'Allow system to stabilize. Check pressure readings.',
+      MaintenanceStage.initialCheck =>
+        'Check all connections and ensure system is ready for maintenance.',
+      MaintenanceStage.pressureRelease =>
+        'Release pressure from the system carefully.',
+      MaintenanceStage.backwash =>
+        'System is in backwash mode. Monitor pressure gauge.',
+      MaintenanceStage.settling =>
+        'Allow system to settle. Check for any irregularities.',
+      MaintenanceStage.fastWash =>
+        'System is in fast wash mode. Monitor water clarity.',
+      MaintenanceStage.stabilization =>
+        'Allow system to stabilize. Check pressure readings.',
       MaintenanceStage.returnToFilter => 'Return system to filtration mode.',
-      MaintenanceStage.brineAndSlowRinse => 'System is in brine and slow rinse mode.',
-      MaintenanceStage.fastRinse => 'System is in fast rinse mode. Monitor water quality.',
+      MaintenanceStage.brineAndSlowRinse =>
+        'System is in brine and slow rinse mode.',
+      MaintenanceStage.fastRinse =>
+        'System is in fast rinse mode. Monitor water quality.',
       MaintenanceStage.brineRefill => 'Brine tank is being refilled.',
-      MaintenanceStage.returnToService => 'Return system to service mode.'
+      MaintenanceStage.returnToService => 'Return system to service mode.',
     };
   }
 
@@ -271,10 +281,7 @@ class _MaintenanceTimerDialogState extends State<MaintenanceTimerDialog> {
                 if (_currentStage == MaintenanceStage.initialCheck)
                   IconButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(
-                      Remix.close_line,
-                      color: AppStyle.black,
-                    ),
+                    icon: const Icon(Remix.close_line, color: AppStyle.black),
                   ),
               ],
             ),
@@ -306,10 +313,7 @@ class _MaintenanceTimerDialogState extends State<MaintenanceTimerDialog> {
               ),
               child: Text(
                 _getStageInstructions(),
-                style: GoogleFonts.inter(
-                  fontSize: 14,
-                  color: AppStyle.black,
-                ),
+                style: GoogleFonts.inter(fontSize: 14, color: AppStyle.black),
                 textAlign: TextAlign.center,
               ),
             ),

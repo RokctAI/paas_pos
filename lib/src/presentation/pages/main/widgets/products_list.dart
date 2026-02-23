@@ -40,15 +40,14 @@ extension ProductStockStatus on ProductData {
 
 // Sort products by stock status
 List<ProductData> sortProductsByStock(List<ProductData> products) {
-  return List<ProductData>.from(products)
-    ..sort((a, b) {
-      // First compare by stock priority
-      final priorityComparison = a.stockPriority.compareTo(b.stockPriority);
-      if (priorityComparison != 0) return priorityComparison;
+  return List<ProductData>.from(products)..sort((a, b) {
+    // First compare by stock priority
+    final priorityComparison = a.stockPriority.compareTo(b.stockPriority);
+    if (priorityComparison != 0) return priorityComparison;
 
-      // If priorities are equal, maintain original order
-      return products.indexOf(a).compareTo(products.indexOf(b));
-    });
+    // If priorities are equal, maintain original order
+    return products.indexOf(a).compareTo(products.indexOf(b));
+  });
 }
 
 class ProductsList extends ConsumerWidget {
@@ -68,22 +67,27 @@ class ProductsList extends ConsumerWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-                '${product.translation?.title ?? 'This product'} is out of stock'),
+              '${product.translation?.title ?? 'This product'} is out of stock',
+            ),
           ),
         );
         return;
       }
 
       if (product.stocks?.first.extras?.isEmpty ?? true) {
-        final selectedBag = rightSideState.bags[rightSideState.selectedBagIndex];
-        final existingProductIndex = selectedBag.bagProducts
-            ?.indexWhere((p) => p.stockId == product.stocks?.first.id) ??
+        final selectedBag =
+            rightSideState.bags[rightSideState.selectedBagIndex];
+        final existingProductIndex =
+            selectedBag.bagProducts?.indexWhere(
+              (p) => p.stockId == product.stocks?.first.id,
+            ) ??
             -1;
 
         if (existingProductIndex != -1) {
           // Product exists, increase quantity
           rightSideNotifier.increaseProductCount(
-              productIndex: existingProductIndex);
+            productIndex: existingProductIndex,
+          );
         } else {
           // Product doesn't exist, add as new
           addProductNotifier.setProduct(
@@ -111,141 +115,142 @@ class ProductsList extends ConsumerWidget {
         ? const ProductGridListShimmer()
         : state.products.isNotEmpty
         ? ScrollConfiguration(
-      behavior:
-      ScrollConfiguration.of(context).copyWith(dragDevices: {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        PointerDeviceKind.trackpad,
-      }),
-      child: ListView(
-        shrinkWrap: false,
-        cacheExtent: (state.products.length / 4) * 250,
-        children: [
-          AnimationLimiter(
-            child: GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              primary: false,
-              itemCount: state.products.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 200 / 300,
-                mainAxisSpacing: 10.r,
-                crossAxisSpacing: 10.r,
-                crossAxisCount: 4,
-              ),
-              padding: REdgeInsets.only(top: 8, bottom: 10),
-              itemBuilder: (context, index) {
-                // Get sorted products
-                final sortedProducts = sortProductsByStock(state.products);
-                final product = sortedProducts[index];
+            behavior: ScrollConfiguration.of(context).copyWith(
+              dragDevices: {
+                PointerDeviceKind.touch,
+                PointerDeviceKind.mouse,
+                PointerDeviceKind.trackpad,
+              },
+            ),
+            child: ListView(
+              shrinkWrap: false,
+              cacheExtent: (state.products.length / 4) * 250,
+              children: [
+                AnimationLimiter(
+                  child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    primary: false,
+                    itemCount: state.products.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 200 / 300,
+                      mainAxisSpacing: 10.r,
+                      crossAxisSpacing: 10.r,
+                      crossAxisCount: 4,
+                    ),
+                    padding: REdgeInsets.only(top: 8, bottom: 10),
+                    itemBuilder: (context, index) {
+                      // Get sorted products
+                      final sortedProducts = sortProductsByStock(
+                        state.products,
+                      );
+                      final product = sortedProducts[index];
 
-                return AnimationConfiguration.staggeredGrid(
-                  columnCount: sortedProducts.length,
-                  position: index,
-                  duration: const Duration(milliseconds: 375),
-                  child: ScaleAnimation(
-                    scale: 0.5,
-                    child: FadeInAnimation(
-                      child: GestureDetector(
-                        onTap: product.isOutOfStock
-                            ? null
-                            : () => handleProductTap(product, false),
-                        onDoubleTap: product.isOutOfStock
-                            ? null
-                            : () => handleProductTap(product, true),
-                        child: Opacity(
-                          opacity: product.isOutOfStock ? 0.5 : 1.0,
-                          child: ProductGridItem(
-                            product: product,
+                      return AnimationConfiguration.staggeredGrid(
+                        columnCount: sortedProducts.length,
+                        position: index,
+                        duration: const Duration(milliseconds: 375),
+                        child: ScaleAnimation(
+                          scale: 0.5,
+                          child: FadeInAnimation(
+                            child: GestureDetector(
+                              onTap: product.isOutOfStock
+                                  ? null
+                                  : () => handleProductTap(product, false),
+                              onDoubleTap: product.isOutOfStock
+                                  ? null
+                                  : () => handleProductTap(product, true),
+                              child: Opacity(
+                                opacity: product.isOutOfStock ? 0.5 : 1.0,
+                                child: ProductGridItem(product: product),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          10.verticalSpace,
-          state.isMoreProductsLoading
-              ? const ProductGridListShimmer(verticalPadding: 0)
-              : (state.hasMore
-              ? Material(
-            borderRadius: BorderRadius.circular(10.r),
-            color: AppStyle.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(10.r),
-              onTap: () {
-                notifier.fetchProducts(
-                  checkYourNetwork: () {
-                    AppHelpers.showSnackBar(
-                      context,
-                      AppHelpers.getTranslation(
-                          TrKeys.checkYourNetworkConnection
-                      ),
-                    );
-                  },
-                );
-              },
-              child: Container(
-                height: 50.r,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  border: Border.all(
-                    color: AppStyle.black.withOpacity(0.17),
-                    width: 1.r,
+                      );
+                    },
                   ),
                 ),
-                alignment: Alignment.center,
-                child: Text(
-                  AppHelpers.getTranslation(TrKeys.viewMore),
-                  style: GoogleFonts.inter(
-                    fontSize: 16.sp,
-                    color: AppStyle.black,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
+                10.verticalSpace,
+                state.isMoreProductsLoading
+                    ? const ProductGridListShimmer(verticalPadding: 0)
+                    : (state.hasMore
+                          ? Material(
+                              borderRadius: BorderRadius.circular(10.r),
+                              color: AppStyle.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(10.r),
+                                onTap: () {
+                                  notifier.fetchProducts(
+                                    checkYourNetwork: () {
+                                      AppHelpers.showSnackBar(
+                                        context,
+                                        AppHelpers.getTranslation(
+                                          TrKeys.checkYourNetworkConnection,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  height: 50.r,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.r),
+                                    border: Border.all(
+                                      color: AppStyle.black.withOpacity(0.17),
+                                      width: 1.r,
+                                    ),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    AppHelpers.getTranslation(TrKeys.viewMore),
+                                    style: GoogleFonts.inter(
+                                      fontSize: 16.sp,
+                                      color: AppStyle.black,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox()),
+                15.verticalSpace,
+              ],
             ),
           )
-              : const SizedBox()),
-          15.verticalSpace,
-        ],
-      ),
-    )
         : Padding(
-      padding: EdgeInsets.only(left: 64.r),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          170.verticalSpace,
-          Container(
-            width: 142.r,
-            height: 142.r,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.r),
-              color: AppStyle.white,
+            padding: EdgeInsets.only(left: 64.r),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                170.verticalSpace,
+                Container(
+                  width: 142.r,
+                  height: 142.r,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.r),
+                    color: AppStyle.white,
+                  ),
+                  alignment: Alignment.center,
+                  child: Image.asset(
+                    Assets.pngNoProducts,
+                    width: 87.r,
+                    height: 60.r,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                14.verticalSpace,
+                Text(
+                  '${AppHelpers.getTranslation(TrKeys.thereAreNoItemsInThe)} ${AppHelpers.getTranslation(TrKeys.products).toLowerCase()}',
+                  style: GoogleFonts.inter(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: -14 * 0.02,
+                    color: AppStyle.black,
+                  ),
+                ),
+              ],
             ),
-            alignment: Alignment.center,
-            child: Image.asset(
-              Assets.pngNoProducts,
-              width: 87.r,
-              height: 60.r,
-              fit: BoxFit.cover,
-            ),
-          ),
-          14.verticalSpace,
-          Text(
-            '${AppHelpers.getTranslation(TrKeys.thereAreNoItemsInThe)} ${AppHelpers.getTranslation(TrKeys.products).toLowerCase()}',
-            style: GoogleFonts.inter(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w600,
-              letterSpacing: -14 * 0.02,
-              color: AppStyle.black,
-            ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 }

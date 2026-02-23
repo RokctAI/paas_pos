@@ -18,9 +18,10 @@ import '../icon_title.dart';
 import 'custom_popup_item.dart';
 
 // Timer state provider
-final orderTimerProvider = StateNotifierProvider.family<OrderTimerNotifier, OrderTimerState, String>(
+final orderTimerProvider =
+    StateNotifierProvider.family<OrderTimerNotifier, OrderTimerState, String>(
       (ref, orderId) => OrderTimerNotifier(),
-);
+    );
 
 // Timer state
 class OrderTimerState {
@@ -67,10 +68,7 @@ class OrderTimerNotifier extends StateNotifier<OrderTimerState> {
       final shouldUseEndTime = status == TrKeys.ready && endTime != null;
       final finalEndTime = shouldUseEndTime ? endTime : null;
 
-      state = state.copyWith(
-        status: status,
-        endTime: finalEndTime,
-      );
+      state = state.copyWith(status: status, endTime: finalEndTime);
 
       _timer = Timer.periodic(const Duration(seconds: 1), (_) {
         final now = DateTime.now();
@@ -98,7 +96,9 @@ class OrderTimerNotifier extends StateNotifier<OrderTimerState> {
   }
 
   String _formatTimeRange(DateTime start, DateTime end) {
-    final startFormat = DateFormat('h:mma').format(start.toLocal()).toLowerCase();
+    final startFormat = DateFormat(
+      'h:mma',
+    ).format(start.toLocal()).toLowerCase();
     final endFormat = DateFormat('h:mma').format(end.toLocal()).toLowerCase();
     return '$startFormat - $endFormat';
   }
@@ -145,11 +145,13 @@ class _DragItemState extends ConsumerState<DragItem> {
 
   void _initializeTimer() {
     final currentStatus = widget.orderData.status ?? '';
-    ref.read(orderTimerProvider(widget.orderData.id.toString()).notifier).updateTimer(
-      currentStatus,
-      widget.orderData.createdAt ?? DateTime.now(),
-      currentStatus == TrKeys.ready ? widget.orderData.updatedAt : null,
-    );
+    ref
+        .read(orderTimerProvider(widget.orderData.id.toString()).notifier)
+        .updateTimer(
+          currentStatus,
+          widget.orderData.createdAt ?? DateTime.now(),
+          currentStatus == TrKeys.ready ? widget.orderData.updatedAt : null,
+        );
   }
 
   @override
@@ -224,15 +226,15 @@ class _DragItemState extends ConsumerState<DragItem> {
               child: LinearProgressIndicator(
                 value: progress,
                 backgroundColor: AppStyle.border,
-                valueColor: AlwaysStoppedAnimation<Color>(color.withOpacity(0.5)),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  color.withOpacity(0.5),
+                ),
                 minHeight: 44,
               ),
             ),
           ),
           Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-            ),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: Row(
               children: [
                 Expanded(
@@ -277,16 +279,17 @@ class _DragItemState extends ConsumerState<DragItem> {
                   ),
                   child: (widget.orderData.deliveryType ?? "") == TrKeys.dine
                       ? Padding(
-                    padding: const EdgeInsets.all(4),
-                    child: SvgPicture.asset(Assets.svgDine),
-                  )
+                          padding: const EdgeInsets.all(4),
+                          child: SvgPicture.asset(Assets.svgDine),
+                        )
                       : Icon(
-                    (widget.orderData.deliveryType ?? "") == TrKeys.delivery
-                        ? FlutterRemix.e_bike_2_fill
-                        : FlutterRemix.walk_line,
-                    size: 16,
-                    color: AppStyle.black,
-                  ),
+                          (widget.orderData.deliveryType ?? "") ==
+                                  TrKeys.delivery
+                              ? FlutterRemix.e_bike_2_fill
+                              : FlutterRemix.walk_line,
+                          size: 16,
+                          color: AppStyle.black,
+                        ),
                 ),
               ],
             ),
@@ -347,7 +350,9 @@ class _DragItemState extends ConsumerState<DragItem> {
                             "№${widget.orderData.id}",
                             style: GoogleFonts.inter(
                               fontSize: (showUserInfo) ? 14 : 22,
-                              color: (showUserInfo) ? AppStyle.hint : AppStyle.black,
+                              color: (showUserInfo)
+                                  ? AppStyle.hint
+                                  : AppStyle.black,
                             ),
                           ),
                         ],
@@ -356,7 +361,8 @@ class _DragItemState extends ConsumerState<DragItem> {
                   ),
                   CustomPopup(
                     orderData: widget.orderData,
-                    isLocation: widget.orderData.deliveryType == TrKeys.delivery,
+                    isLocation:
+                        widget.orderData.deliveryType == TrKeys.delivery,
                   ),
                 ],
               ),
@@ -365,8 +371,9 @@ class _DragItemState extends ConsumerState<DragItem> {
               12.verticalSpace,
               IconTitle(
                 icon: FlutterRemix.calendar_2_line,
-                value: DateFormat("d MMM yy")
-                    .format(widget.orderData.createdAt?.toLocal() ?? DateTime.now()),
+                value: DateFormat("d MMM yy").format(
+                  widget.orderData.createdAt?.toLocal() ?? DateTime.now(),
+                ),
               ),
               IconTitle(
                 icon: FlutterRemix.money_dollar_circle_line,
@@ -377,7 +384,8 @@ class _DragItemState extends ConsumerState<DragItem> {
               ),
               IconTitle(
                 icon: FlutterRemix.money_euro_circle_line,
-                value: widget.orderData.transaction?.paymentSystem?.tag ?? "- -",
+                value:
+                    widget.orderData.transaction?.paymentSystem?.tag ?? "- -",
               ),
               if (widget.orderData.deliveryman?.firstname?.isNotEmpty ?? false)
                 IconTitle(

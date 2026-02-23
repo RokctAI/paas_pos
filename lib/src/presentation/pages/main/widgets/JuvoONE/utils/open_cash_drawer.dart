@@ -5,11 +5,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
-enum CashDrawerType {
-  direct,
-  network,
-  bluetooth,
-}
+enum CashDrawerType { direct, network, bluetooth }
 
 class CashDrawerConfig {
   final String id;
@@ -28,7 +24,9 @@ class CashDrawerConfig {
     return CashDrawerConfig(
       id: json['id'],
       name: json['name'],
-      type: CashDrawerType.values.firstWhere((e) => e.toString() == 'CashDrawerType.${json['type']}'),
+      type: CashDrawerType.values.firstWhere(
+        (e) => e.toString() == 'CashDrawerType.${json['type']}',
+      ),
       settings: json['settings'],
     );
   }
@@ -51,7 +49,9 @@ class CashDrawerManager {
     final String? configsJson = prefs.getString(_configKey);
     if (configsJson != null) {
       final List<dynamic> configsList = json.decode(configsJson);
-      return configsList.map((config) => CashDrawerConfig.fromJson(config)).toList();
+      return configsList
+          .map((config) => CashDrawerConfig.fromJson(config))
+          .toList();
     }
     return [];
   }
@@ -65,14 +65,20 @@ class CashDrawerManager {
     } else {
       configs.add(config);
     }
-    await prefs.setString(_configKey, json.encode(configs.map((c) => c.toJson()).toList()));
+    await prefs.setString(
+      _configKey,
+      json.encode(configs.map((c) => c.toJson()).toList()),
+    );
   }
 
   static Future<void> deleteConfiguration(String id) async {
     final prefs = await SharedPreferences.getInstance();
     final List<CashDrawerConfig> configs = await getConfigurations();
     configs.removeWhere((c) => c.id == id);
-    await prefs.setString(_configKey, json.encode(configs.map((c) => c.toJson()).toList()));
+    await prefs.setString(
+      _configKey,
+      json.encode(configs.map((c) => c.toJson()).toList()),
+    );
   }
 
   static Future<void> openCashDrawer(CashDrawerConfig config) async {
@@ -98,9 +104,13 @@ class CashDrawerManager {
     }
   }
 
-  static Future<void> _openCashDrawerDirect(Map<String, dynamic> settings) async {
+  static Future<void> _openCashDrawerDirect(
+    Map<String, dynamic> settings,
+  ) async {
     if (kIsWeb) {
-      throw UnsupportedError('Direct cash drawer opening is not supported on web');
+      throw UnsupportedError(
+        'Direct cash drawer opening is not supported on web',
+      );
     }
 
     final openCommand = [0x1B, 0x70, 0x00, 0x19, 0xFA]; // ESC p 0 25 250
@@ -117,11 +127,15 @@ class CashDrawerManager {
       await file.writeFrom(bytes);
       await file.close();
     } else {
-      throw UnsupportedError('Direct cash drawer opening is not supported on this platform');
+      throw UnsupportedError(
+        'Direct cash drawer opening is not supported on this platform',
+      );
     }
   }
 
-  static Future<void> _openCashDrawerNetwork(Map<String, dynamic> settings) async {
+  static Future<void> _openCashDrawerNetwork(
+    Map<String, dynamic> settings,
+  ) async {
     final address = settings['address'];
     final port = settings['port'];
 
@@ -132,7 +146,9 @@ class CashDrawerManager {
     await socket.close();
   }
 
-  static Future<void> _openCashDrawerBluetooth(Map<String, dynamic> settings) async {
+  static Future<void> _openCashDrawerBluetooth(
+    Map<String, dynamic> settings,
+  ) async {
     final deviceName = settings['deviceName'];
 
     if (!await FlutterBluePlus.isAvailable) {
@@ -315,7 +331,11 @@ class CashDrawerConfigForm extends StatefulWidget {
   final CashDrawerConfig? initialConfig;
   final Function(CashDrawerConfig) onSave;
 
-  const CashDrawerConfigForm({super.key, this.initialConfig, required this.onSave});
+  const CashDrawerConfigForm({
+    super.key,
+    this.initialConfig,
+    required this.onSave,
+  });
 
   @override
   _CashDrawerConfigFormState createState() => _CashDrawerConfigFormState();
@@ -329,7 +349,9 @@ class _CashDrawerConfigFormState extends State<CashDrawerConfigForm> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: widget.initialConfig?.name ?? '');
+    _nameController = TextEditingController(
+      text: widget.initialConfig?.name ?? '',
+    );
     _selectedType = widget.initialConfig?.type ?? CashDrawerType.direct;
     _settings = widget.initialConfig?.settings ?? {};
   }
@@ -338,7 +360,9 @@ class _CashDrawerConfigFormState extends State<CashDrawerConfigForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.initialConfig == null ? 'Add Cash Drawer' : 'Edit Cash Drawer'),
+        title: Text(
+          widget.initialConfig == null ? 'Add Cash Drawer' : 'Edit Cash Drawer',
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -383,7 +407,9 @@ class _CashDrawerConfigFormState extends State<CashDrawerConfigForm> {
       case CashDrawerType.direct:
         return [
           TextField(
-            decoration: const InputDecoration(labelText: 'Port (Windows) or Device (macOS/Linux)'),
+            decoration: const InputDecoration(
+              labelText: 'Port (Windows) or Device (macOS/Linux)',
+            ),
             onChanged: (value) => _settings['port'] = value,
             controller: TextEditingController(text: _settings['port'] ?? ''),
           ),
@@ -398,8 +424,11 @@ class _CashDrawerConfigFormState extends State<CashDrawerConfigForm> {
           TextField(
             decoration: const InputDecoration(labelText: 'Port'),
             keyboardType: TextInputType.number,
-            onChanged: (value) => _settings['port'] = int.tryParse(value) ?? 9100,
-            controller: TextEditingController(text: _settings['port']?.toString() ?? '9100'),
+            onChanged: (value) =>
+                _settings['port'] = int.tryParse(value) ?? 9100,
+            controller: TextEditingController(
+              text: _settings['port']?.toString() ?? '9100',
+            ),
           ),
         ];
       case CashDrawerType.bluetooth:
@@ -407,7 +436,9 @@ class _CashDrawerConfigFormState extends State<CashDrawerConfigForm> {
           TextField(
             decoration: const InputDecoration(labelText: 'Device Name'),
             onChanged: (value) => _settings['deviceName'] = value,
-            controller: TextEditingController(text: _settings['deviceName'] ?? ''),
+            controller: TextEditingController(
+              text: _settings['deviceName'] ?? '',
+            ),
           ),
         ];
     }
@@ -415,7 +446,9 @@ class _CashDrawerConfigFormState extends State<CashDrawerConfigForm> {
 
   void _saveConfiguration() {
     final newConfig = CashDrawerConfig(
-      id: widget.initialConfig?.id ?? DateTime.now().millisecondsSinceEpoch.toString(),
+      id:
+          widget.initialConfig?.id ??
+          DateTime.now().millisecondsSinceEpoch.toString(),
       name: _nameController.text,
       type: _selectedType,
       settings: _settings,

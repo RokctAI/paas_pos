@@ -16,19 +16,24 @@ Future<int> getOtherTranslation(int arg) async {
   final settingsRepository = SettingsSettingsRepositoryImpl();
   final res = await settingsRepository.getLanguages();
   res.when(
-      success: (l) {
-        l.data?.forEach((e) async {
-          final translations =
-          await settingsRepository.getMobileTranslations(lang: e.locale);
-          translations.when(
-              success: (d) {
-                LocalStorage.setOtherTranslations(
-                    translations: d.data, key: e.id.toString());
-              },
-              failure: (f) => null);
-        });
-      },
-      failure: (f) => null);
+    success: (l) {
+      l.data?.forEach((e) async {
+        final translations = await settingsRepository.getMobileTranslations(
+          lang: e.locale,
+        );
+        translations.when(
+          success: (d) {
+            LocalStorage.setOtherTranslations(
+              translations: d.data,
+              key: e.id.toString(),
+            );
+          },
+          failure: (f) => null,
+        );
+      });
+    },
+    failure: (f) => null,
+  );
   return 0;
 }
 
@@ -74,49 +79,52 @@ class _AppWidgetState extends State<AppWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Future.wait({
-          AppTheme.create,
-          if (LocalStorage.getTranslations().isEmpty) fetchSetting(),
-        }),
-        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
-          if (snapshot.hasData) {
-            final AppTheme theme = snapshot.data?[0];
-            return ScreenUtilInit(
-              designSize: const Size(1194, 900),
-              builder: (context, child) {
-                return ChangeNotifierProvider(
-                  create: (BuildContext context) => theme,
-                  child: MaterialApp.router(
-                    theme: ThemeData(
-                      useMaterial3: false,
-                      primaryColor: AppStyle.primary,
-                    ),
-                    scrollBehavior: CustomScrollBehavior(),
-                    debugShowCheckedModeBanner: false,
-                    routerDelegate: appRouter.delegate(),
-                    routeInformationParser: appRouter.defaultRouteParser(),
-                    locale: Locale(LocalStorage.getLanguage()?.locale ?? 'en'),
-                    color: AppStyle.white,
-                    builder: (context, child) => ScrollConfiguration(
-                      behavior: MyBehavior(),
-                      child: child ?? const SizedBox.shrink(),
-                    ),
+      future: Future.wait({
+        AppTheme.create,
+        if (LocalStorage.getTranslations().isEmpty) fetchSetting(),
+      }),
+      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        if (snapshot.hasData) {
+          final AppTheme theme = snapshot.data?[0];
+          return ScreenUtilInit(
+            designSize: const Size(1194, 900),
+            builder: (context, child) {
+              return ChangeNotifierProvider(
+                create: (BuildContext context) => theme,
+                child: MaterialApp.router(
+                  theme: ThemeData(
+                    useMaterial3: false,
+                    primaryColor: AppStyle.primary,
                   ),
-                );
-              },
-            );
-          } else {
-            return const SizedBox.shrink();
-          }
-        });
+                  scrollBehavior: CustomScrollBehavior(),
+                  debugShowCheckedModeBanner: false,
+                  routerDelegate: appRouter.delegate(),
+                  routeInformationParser: appRouter.defaultRouteParser(),
+                  locale: Locale(LocalStorage.getLanguage()?.locale ?? 'en'),
+                  color: AppStyle.white,
+                  builder: (context, child) => ScrollConfiguration(
+                    behavior: MyBehavior(),
+                    child: child ?? const SizedBox.shrink(),
+                  ),
+                ),
+              );
+            },
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
+    );
   }
 }
 
 class MyBehavior extends ScrollBehavior {
   @override
   Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
     return child;
   }
 }
-

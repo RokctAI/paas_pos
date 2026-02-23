@@ -7,4 +7,3 @@ import '../state/stories_state.dart';
 final storiesProvider = StateNotifierProvider<StoriesNotifier, StoriesState>(
   (ref) => StoriesNotifier(storiesRepository),
 );
-

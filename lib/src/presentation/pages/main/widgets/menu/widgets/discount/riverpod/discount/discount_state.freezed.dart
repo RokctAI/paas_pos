@@ -12,7 +12,8 @@ part of 'discount_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$DiscountState {
@@ -30,8 +31,9 @@ mixin _$DiscountState {
 /// @nodoc
 abstract class $DiscountStateCopyWith<$Res> {
   factory $DiscountStateCopyWith(
-          DiscountState value, $Res Function(DiscountState) then) =
-      _$DiscountStateCopyWithImpl<$Res, DiscountState>;
+    DiscountState value,
+    $Res Function(DiscountState) then,
+  ) = _$DiscountStateCopyWithImpl<$Res, DiscountState>;
   @useResult
   $Res call({bool isLoading, bool hasMore, List<DiscountData> discounts});
 }
@@ -55,20 +57,23 @@ class _$DiscountStateCopyWithImpl<$Res, $Val extends DiscountState>
     Object? hasMore = null,
     Object? discounts = null,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      discounts: null == discounts
-          ? _value.discounts
-          : discounts // ignore: cast_nullable_to_non_nullable
-              as List<DiscountData>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            hasMore: null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            discounts: null == discounts
+                ? _value.discounts
+                : discounts // ignore: cast_nullable_to_non_nullable
+                      as List<DiscountData>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -76,8 +81,9 @@ class _$DiscountStateCopyWithImpl<$Res, $Val extends DiscountState>
 abstract class _$$DiscountStateImplCopyWith<$Res>
     implements $DiscountStateCopyWith<$Res> {
   factory _$$DiscountStateImplCopyWith(
-          _$DiscountStateImpl value, $Res Function(_$DiscountStateImpl) then) =
-      __$$DiscountStateImplCopyWithImpl<$Res>;
+    _$DiscountStateImpl value,
+    $Res Function(_$DiscountStateImpl) then,
+  ) = __$$DiscountStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isLoading, bool hasMore, List<DiscountData> discounts});
@@ -88,8 +94,9 @@ class __$$DiscountStateImplCopyWithImpl<$Res>
     extends _$DiscountStateCopyWithImpl<$Res, _$DiscountStateImpl>
     implements _$$DiscountStateImplCopyWith<$Res> {
   __$$DiscountStateImplCopyWithImpl(
-      _$DiscountStateImpl _value, $Res Function(_$DiscountStateImpl) _then)
-      : super(_value, _then);
+    _$DiscountStateImpl _value,
+    $Res Function(_$DiscountStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DiscountState
   /// with the given fields replaced by the non-null parameter values.
@@ -100,32 +107,34 @@ class __$$DiscountStateImplCopyWithImpl<$Res>
     Object? hasMore = null,
     Object? discounts = null,
   }) {
-    return _then(_$DiscountStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      discounts: null == discounts
-          ? _value._discounts
-          : discounts // ignore: cast_nullable_to_non_nullable
-              as List<DiscountData>,
-    ));
+    return _then(
+      _$DiscountStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        discounts: null == discounts
+            ? _value._discounts
+            : discounts // ignore: cast_nullable_to_non_nullable
+                  as List<DiscountData>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$DiscountStateImpl extends _DiscountState {
-  const _$DiscountStateImpl(
-      {this.isLoading = false,
-      this.hasMore = true,
-      final List<DiscountData> discounts = const []})
-      : _discounts = discounts,
-        super._();
+  const _$DiscountStateImpl({
+    this.isLoading = false,
+    this.hasMore = true,
+    final List<DiscountData> discounts = const [],
+  }) : _discounts = discounts,
+       super._();
 
   @override
   @JsonKey()
@@ -155,13 +164,19 @@ class _$DiscountStateImpl extends _DiscountState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
-            const DeepCollectionEquality()
-                .equals(other._discounts, _discounts));
+            const DeepCollectionEquality().equals(
+              other._discounts,
+              _discounts,
+            ));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, hasMore,
-      const DeepCollectionEquality().hash(_discounts));
+  int get hashCode => Object.hash(
+    runtimeType,
+    isLoading,
+    hasMore,
+    const DeepCollectionEquality().hash(_discounts),
+  );
 
   /// Create a copy of DiscountState
   /// with the given fields replaced by the non-null parameter values.
@@ -173,10 +188,11 @@ class _$DiscountStateImpl extends _DiscountState {
 }
 
 abstract class _DiscountState extends DiscountState {
-  const factory _DiscountState(
-      {final bool isLoading,
-      final bool hasMore,
-      final List<DiscountData> discounts}) = _$DiscountStateImpl;
+  const factory _DiscountState({
+    final bool isLoading,
+    final bool hasMore,
+    final List<DiscountData> discounts,
+  }) = _$DiscountStateImpl;
   const _DiscountState._() : super._();
 
   @override
@@ -193,4 +209,3 @@ abstract class _DiscountState extends DiscountState {
   _$$DiscountStateImplCopyWith<_$DiscountStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

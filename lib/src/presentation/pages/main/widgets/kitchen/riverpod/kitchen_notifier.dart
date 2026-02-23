@@ -21,10 +21,7 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
   }
 
   void clearSelectedOrder() {
-    state = state.copyWith(
-      selectOrder: null,
-      selectIndex: -1,
-    );
+    state = state.copyWith(selectOrder: null, selectIndex: -1);
   }
 
   void changeType(String type) {
@@ -76,8 +73,8 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
     final details = state.selectOrder!.details ?? [];
     if (details.isEmpty) return;
 
-    final allDetailsCanceled = details.every((detail) =>
-    detail.status == TrKeys.canceled
+    final allDetailsCanceled = details.every(
+      (detail) => detail.status == TrKeys.canceled,
     );
 
     if (allDetailsCanceled && state.selectOrder?.status != TrKeys.canceled) {
@@ -87,10 +84,11 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
 
     if (!allDetailsCanceled) {
       if (state.selectOrder?.status == TrKeys.cooking) {
-        final allDetailsReady = details.every((detail) =>
-        detail.status == TrKeys.ready ||
-            detail.status == TrKeys.canceled ||
-            detail.status == TrKeys.ended
+        final allDetailsReady = details.every(
+          (detail) =>
+              detail.status == TrKeys.ready ||
+              detail.status == TrKeys.canceled ||
+              detail.status == TrKeys.ended,
         );
 
         if (allDetailsReady) {
@@ -100,12 +98,13 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
       }
 
       if (state.selectOrder?.status == TrKeys.ready) {
-        final allDetailsEnded = details.every((detail) =>
-        detail.status == TrKeys.ended
+        final allDetailsEnded = details.every(
+          (detail) => detail.status == TrKeys.ended,
         );
 
         if (allDetailsEnded) {
-          final deliveryType = state.selectOrder?.deliveryType?.toLowerCase() ?? "";
+          final deliveryType =
+              state.selectOrder?.deliveryType?.toLowerCase() ?? "";
 
           if (deliveryType == TrKeys.pickup.toLowerCase() ||
               deliveryType == TrKeys.dine.toLowerCase()) {
@@ -145,10 +144,7 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
     _isAutoDeselect = false;
     final index = state.orders.indexWhere((o) => o.id == order.id);
     if (index != -1) {
-      state = state.copyWith(
-        selectIndex: index,
-        selectOrder: order,
-      );
+      state = state.copyWith(selectIndex: index, selectOrder: order);
       await fetchOrderDetails();
     }
   }
@@ -157,7 +153,7 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
     if (state.selectOrder?.id == null) return;
 
     final response = await _ordersRepository.getOrderDetailsKitchen(
-        orderId: state.selectOrder?.id
+      orderId: state.selectOrder?.id,
     );
 
     response.when(
@@ -165,8 +161,8 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
         state = state.copyWith(selectOrder: data.data);
 
         final details = data.data?.details ?? [];
-        final allDetailsCanceled = details.every((detail) =>
-        detail.status == TrKeys.canceled
+        final allDetailsCanceled = details.every(
+          (detail) => detail.status == TrKeys.canceled,
         );
 
         if (allDetailsCanceled && data.data?.status != TrKeys.canceled) {
@@ -175,10 +171,9 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
         }
 
         if (_isAutoDeselect &&
-            data.data?.status != TrKeys.canceled && (
-            data.data?.status == TrKeys.onAWay ||
-                data.data?.status == TrKeys.delivered
-        )) {
+            data.data?.status != TrKeys.canceled &&
+            (data.data?.status == TrKeys.onAWay ||
+                data.data?.status == TrKeys.delivered)) {
           clearSelectedOrder();
         }
       },
@@ -194,27 +189,24 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
     _searchProductsTimer?.cancel();
     state = state.copyWith(query: query.trim());
 
-    _searchProductsTimer = Timer(
-      const Duration(milliseconds: 500),
-          () {
-        state = state.copyWith(
-          hasMore: true,
-          orders: [],
-          selectOrder: null,
-          selectIndex: -1,
-        );
-        _page = 0;
-        fetchOrders(
-          isRefresh: true,
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
-              context,
-              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-            );
-          },
-        );
-      },
-    );
+    _searchProductsTimer = Timer(const Duration(milliseconds: 500), () {
+      state = state.copyWith(
+        hasMore: true,
+        orders: [],
+        selectOrder: null,
+        selectIndex: -1,
+      );
+      _page = 0;
+      fetchOrders(
+        isRefresh: true,
+        checkYourNetwork: () {
+          AppHelpers.showSnackBar(
+            context,
+            AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+          );
+        },
+      );
+    });
   }
 
   Future<void> fetchOrders({
@@ -246,7 +238,9 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
             final List<OrderData> updatedOrders = [];
             if (state.orders.isNotEmpty) {
               for (var order in newOrders) {
-                final existingIndex = state.orders.indexWhere((o) => o.id == order.id);
+                final existingIndex = state.orders.indexWhere(
+                  (o) => o.id == order.id,
+                );
                 if (existingIndex != -1) {
                   // Preserve the selected state if this was the selected order
                   if (state.selectOrder?.id == order.id) {
@@ -331,7 +325,7 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
             selectIndex(orders.isEmpty ? -1 : 0);
           } else if (state.selectOrder != null) {
             final updatedOrder = orders.firstWhere(
-                  (order) => order.id == state.selectOrder!.id,
+              (order) => order.id == state.selectOrder!.id,
               orElse: () => state.selectOrder!,
             );
             state = state.copyWith(selectOrder: updatedOrder);
@@ -347,17 +341,22 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
   Future<void> changeStatus({String? status}) async {
     if (state.selectOrder == null) return;
 
-    final newStatus = status ?? AppHelpers.getOrderStatusText(
-      AppHelpers.getOrderStatus(state.selectOrder?.status, isNextStatus: true),
-    );
+    final newStatus =
+        status ??
+        AppHelpers.getOrderStatusText(
+          AppHelpers.getOrderStatus(
+            state.selectOrder?.status,
+            isNextStatus: true,
+          ),
+        );
 
     try {
       if (newStatus == TrKeys.ready &&
           state.selectOrder?.status == TrKeys.cooking) {
         final details = state.selectOrder?.details ?? [];
-        final hasReadyItems = details.any((detail) =>
-        detail.status == TrKeys.ready ||
-            detail.status == TrKeys.ended
+        final hasReadyItems = details.any(
+          (detail) =>
+              detail.status == TrKeys.ready || detail.status == TrKeys.ended,
         );
 
         if (!hasReadyItems) {
@@ -386,7 +385,6 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
 
       // Refresh orders to update all timers and states
       await fetchOrders(isRefresh: true);
-
     } catch (e) {
       debugPrint('===> change status error $e');
       await fetchOrderDetails();

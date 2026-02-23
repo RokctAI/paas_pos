@@ -33,7 +33,9 @@ class RoadmapVersion {
       status: json['status'],
       description: json['description'],
       features: featuresList,
-      releaseDate: json['release_date'] != null ? DateTime.parse(json['release_date']) : null,
+      releaseDate: json['release_date'] != null
+          ? DateTime.parse(json['release_date'])
+          : null,
     );
   }
 

@@ -10,7 +10,8 @@ class ParcelsNotifier extends StateNotifier<ParcelsState> {
 
   Future<void> fetchParcels(BuildContext context) async {
     state = state.copyWith(isLoading: true);
-    final response = await _parcelRepository.getParcelOrders(); // Assuming getParcelOrders is in the repo
+    final response = await _parcelRepository
+        .getParcelOrders(); // Assuming getParcelOrders is in the repo
     response.when(
       success: (data) {
         state = state.copyWith(isLoading: false, parcelOrders: data.data ?? []);
@@ -22,7 +23,8 @@ class ParcelsNotifier extends StateNotifier<ParcelsState> {
     );
   }
 
-  Future<void> updateParcelStatus(BuildContext context, {
+  Future<void> updateParcelStatus(
+    BuildContext context, {
     required String parcelOrderId,
     required String status,
   }) async {

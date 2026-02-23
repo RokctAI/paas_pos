@@ -22,29 +22,30 @@ class StoriesNotifier extends StateNotifier<StoriesState> {
       _page = 0;
       state = state.copyWith(stories: [], isLoading: true);
     }
-    final res = await _storiesRepository.getStories(
-      page: ++_page,
+    final res = await _storiesRepository.getStories(page: ++_page);
+    res.when(
+      success: (data) {
+        List<StoriesData> list = List.from(state.stories);
+        list.addAll(data.data ?? []);
+        state = state.copyWith(isLoading: false, stories: list);
+        if (isRefresh ?? false) {
+          controller?.refreshCompleted();
+          return;
+        } else if (data.data?.isEmpty ?? true) {
+          controller?.loadNoData();
+          return;
+        }
+        controller?.loadComplete();
+        return;
+      },
+      failure: (failure) {
+        state = state.copyWith(isLoading: false);
+        debugPrint(" ==> fetch brands fail: $failure");
+        if (context != null) {
+          AppHelpers.showSnackBar(context, failure.toString());
+        }
+      },
     );
-    res.when(success: (data) {
-      List<StoriesData> list = List.from(state.stories);
-      list.addAll(data.data ?? []);
-      state = state.copyWith(isLoading: false, stories: list);
-      if (isRefresh ?? false) {
-        controller?.refreshCompleted();
-        return;
-      } else if (data.data?.isEmpty ?? true) {
-        controller?.loadNoData();
-        return;
-      }
-      controller?.loadComplete();
-      return;
-    }, failure: (failure) {
-      state = state.copyWith(isLoading: false);
-      debugPrint(" ==> fetch brands fail: $failure");
-      if (context != null) {
-        AppHelpers.showSnackBar(context, failure.toString());
-      }
-    });
   }
 
   deleteStories({BuildContext? context, int? id}) async {
@@ -54,14 +55,14 @@ class StoriesNotifier extends StateNotifier<StoriesState> {
     state = state.copyWith(stories: list);
     final res = await _storiesRepository.deleteStories(id);
     res.when(
-        success: (data) {},
-        failure: (failure) {
-          state = state.copyWith(isLoading: false);
-          debugPrint(" ==> delete stories fail: $failure");
-          if (context != null) {
-            AppHelpers.showSnackBar(context, failure.toString());
-          }
-        });
+      success: (data) {},
+      failure: (failure) {
+        state = state.copyWith(isLoading: false);
+        debugPrint(" ==> delete stories fail: $failure");
+        if (context != null) {
+          AppHelpers.showSnackBar(context, failure.toString());
+        }
+      },
+    );
   }
 }
-

@@ -11,10 +11,7 @@ import 'buttons/confirm_button.dart';
 class CustomDatePickerModal extends StatefulWidget {
   final Function(DateTime? date) onDateSaved;
 
-  const CustomDatePickerModal({
-    super.key,
-    required this.onDateSaved,
-  });
+  const CustomDatePickerModal({super.key, required this.onDateSaved});
 
   @override
   State<CustomDatePickerModal> createState() => _CustomDatePickerModalState();
@@ -43,9 +40,7 @@ class _CustomDatePickerModalState extends State<CustomDatePickerModal> {
             SizedBox(
               height: 300.r,
               child: CupertinoTheme(
-                data: const CupertinoThemeData(
-                  brightness: Brightness.light,
-                ),
+                data: const CupertinoThemeData(brightness: Brightness.light),
                 child: CupertinoDatePicker(
                   mode: CupertinoDatePickerMode.date,
                   initialDateTime: date,
@@ -71,4 +66,3 @@ class _CustomDatePickerModalState extends State<CustomDatePickerModal> {
     );
   }
 }
-

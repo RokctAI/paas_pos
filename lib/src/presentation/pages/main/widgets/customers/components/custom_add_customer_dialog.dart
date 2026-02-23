@@ -11,7 +11,7 @@ import '../riverpod/provider/customer_provider.dart';
 
 class AddCustomerDialog extends ConsumerStatefulWidget {
   final bool needAlert;
-  const AddCustomerDialog({super.key , this.needAlert = true});
+  const AddCustomerDialog({super.key, this.needAlert = true});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -63,15 +63,16 @@ class _AddCustomDialogState extends ConsumerState<AddCustomerDialog> {
           Text(
             AppHelpers.getTranslation(TrKeys.addCustomer),
             style: GoogleFonts.inter(
-                fontSize: 22.sp,
-                color: AppStyle.black,
-                fontWeight: FontWeight.w600),
+              fontSize: 22.sp,
+              color: AppStyle.black,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           IconButton(
-              splashRadius: 28.r,
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(FlutterRemix.close_fill,
-              color: AppStyle.black))
+            splashRadius: 28.r,
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(FlutterRemix.close_fill, color: AppStyle.black),
+          ),
         ],
       ),
       content: SingleChildScrollView(
@@ -92,58 +93,65 @@ class _AddCustomDialogState extends ConsumerState<AddCustomerDialog> {
                 color: AppStyle.editProfileCircle,
                 label: '${AppHelpers.getTranslation(TrKeys.firstname)}*',
                 style: GoogleFonts.inter(
-                    fontSize: 14.sp,
-                    color: AppStyle.black,
-                    fontWeight: FontWeight.w500),
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               12.r.verticalSpace,
               OutlinedBorderTextField(
-                  validator: (s) {
-                    if (s?.isEmpty ?? true) {
-                      return AppHelpers.getTranslation(TrKeys.enterLastName);
-                    }
-                    return null;
-                  },
-                  textController: lastName,
-                  border: AppStyle.transparent,
-                  style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      color: AppStyle.black,
-                      fontWeight: FontWeight.w500),
-                  color: AppStyle.editProfileCircle,
-                  label: '${AppHelpers.getTranslation(TrKeys.lastname)}*'),
+                validator: (s) {
+                  if (s?.isEmpty ?? true) {
+                    return AppHelpers.getTranslation(TrKeys.enterLastName);
+                  }
+                  return null;
+                },
+                textController: lastName,
+                border: AppStyle.transparent,
+                style: GoogleFonts.inter(
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
+                color: AppStyle.editProfileCircle,
+                label: '${AppHelpers.getTranslation(TrKeys.lastname)}*',
+              ),
               12.r.verticalSpace,
               OutlinedBorderTextField(
-                  validator: (s) {
-                    if (s?.isEmpty ?? true) {
-                      return AppHelpers.getTranslation(TrKeys.enterPhone);
-                    }
-                    return null;
-                  },
-                  textController: phone,
-                  border: AppStyle.transparent,
-                  style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      color: AppStyle.black,
-                      fontWeight: FontWeight.w500),
-                  color: AppStyle.editProfileCircle,
-                  label: '${AppHelpers.getTranslation(TrKeys.phone)}*'),
+                validator: (s) {
+                  if (s?.isEmpty ?? true) {
+                    return AppHelpers.getTranslation(TrKeys.enterPhone);
+                  }
+                  return null;
+                },
+                textController: phone,
+                border: AppStyle.transparent,
+                style: GoogleFonts.inter(
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
+                color: AppStyle.editProfileCircle,
+                label: '${AppHelpers.getTranslation(TrKeys.phone)}*',
+              ),
               12.r.verticalSpace,
               OutlinedBorderTextField(
-                  validator: (s) {
-                    if (s?.isEmpty ?? true) {
-                      return AppHelpers.getTranslation(TrKeys.enterEmail);
-                    }
-                    return null;
-                  },
-                  textController: email,
-                  border: AppStyle.transparent,
-                  style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      color: AppStyle.black,
-                      fontWeight: FontWeight.w500),
-                  color: AppStyle.editProfileCircle,
-                  label: '${AppHelpers.getTranslation(TrKeys.email)}*'),
+                validator: (s) {
+                  if (s?.isEmpty ?? true) {
+                    return AppHelpers.getTranslation(TrKeys.enterEmail);
+                  }
+                  return null;
+                },
+                textController: email,
+                border: AppStyle.transparent,
+                style: GoogleFonts.inter(
+                  fontSize: 14.sp,
+                  color: AppStyle.black,
+                  fontWeight: FontWeight.w500,
+                ),
+                color: AppStyle.editProfileCircle,
+                label: '${AppHelpers.getTranslation(TrKeys.email)}*',
+              ),
               48.r.verticalSpace,
               Row(
                 children: [
@@ -151,20 +159,24 @@ class _AddCustomDialogState extends ConsumerState<AddCustomerDialog> {
                     height: 40.r,
                     width: 148.r,
                     child: LoginButton(
-                        isLoading: state.createUserLoading,
-                        title: AppHelpers.getTranslation(TrKeys.save),
-                        onPressed: () {
-                          if (formKey.currentState?.validate() ?? false) {
-                            notifier.createCustomer(context,
-                                email: email.text,
-                                needAlert: widget.needAlert,
-                                lastName: lastName.text,
-                                name: firstName.text,
-                                phone: phone.text, created: (w) {
-                                  Navigator.pop(context);
-                                });
-                          }
-                        }),
+                      isLoading: state.createUserLoading,
+                      title: AppHelpers.getTranslation(TrKeys.save),
+                      onPressed: () {
+                        if (formKey.currentState?.validate() ?? false) {
+                          notifier.createCustomer(
+                            context,
+                            email: email.text,
+                            needAlert: widget.needAlert,
+                            lastName: lastName.text,
+                            name: firstName.text,
+                            phone: phone.text,
+                            created: (w) {
+                              Navigator.pop(context);
+                            },
+                          );
+                        }
+                      },
+                    ),
                   ),
                   21.r.horizontalSpace,
                   CustomButton(
@@ -175,7 +187,7 @@ class _AddCustomDialogState extends ConsumerState<AddCustomerDialog> {
                     border: AppStyle.icon,
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
@@ -183,4 +195,3 @@ class _AddCustomDialogState extends ConsumerState<AddCustomerDialog> {
     );
   }
 }
-

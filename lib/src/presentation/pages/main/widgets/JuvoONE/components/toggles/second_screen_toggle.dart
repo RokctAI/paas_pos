@@ -4,8 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../../core/constants/constants.dart';
 import '../../../../../../theme/app_style.dart';
 
-
-final secondScreenToggleProvider = StateNotifierProvider<SecondScreenToggleNotifier, bool>((ref) => SecondScreenToggleNotifier());
+final secondScreenToggleProvider =
+    StateNotifierProvider<SecondScreenToggleNotifier, bool>(
+      (ref) => SecondScreenToggleNotifier(),
+    );
 
 class SecondScreenToggleNotifier extends StateNotifier<bool> {
   SecondScreenToggleNotifier() : super(AppConstants.secondScreen) {
@@ -36,15 +38,14 @@ class SecondScreenToggle extends ConsumerWidget {
     final isSecondScreenEnabled = ref.watch(secondScreenToggleProvider);
 
     return Switch(
-              value: isSecondScreenEnabled,
-              onChanged: (bool value) {
-                ref.read(secondScreenToggleProvider.notifier).toggle(value);
-              },
-              activeColor: AppStyle.blue[900],
-              activeTrackColor: AppStyle.blue[900]?.withOpacity(0.5),
-              inactiveThumbColor: AppStyle.black,
-              inactiveTrackColor: AppStyle.black.withOpacity(0.5),
-
+      value: isSecondScreenEnabled,
+      onChanged: (bool value) {
+        ref.read(secondScreenToggleProvider.notifier).toggle(value);
+      },
+      activeColor: AppStyle.blue[900],
+      activeTrackColor: AppStyle.blue[900]?.withOpacity(0.5),
+      inactiveThumbColor: AppStyle.black,
+      inactiveTrackColor: AppStyle.black.withOpacity(0.5),
     );
   }
 }

@@ -23,7 +23,8 @@ class MiniatureWaterTank extends StatefulWidget {
   State<MiniatureWaterTank> createState() => _MiniatureWaterTankState();
 }
 
-class _MiniatureWaterTankState extends State<MiniatureWaterTank> with TickerProviderStateMixin {
+class _MiniatureWaterTankState extends State<MiniatureWaterTank>
+    with TickerProviderStateMixin {
   late AnimationController _tiltController;
   late AnimationController _bounceController;
   late Animation<double> _tiltAnimation;
@@ -50,10 +51,7 @@ class _MiniatureWaterTankState extends State<MiniatureWaterTank> with TickerProv
     )..repeat(reverse: true);
 
     _bounceAnimation = Tween<double>(begin: -0.005, end: 0.005).animate(
-      CurvedAnimation(
-        parent: _bounceController,
-        curve: Curves.easeInOut,
-      ),
+      CurvedAnimation(parent: _bounceController, curve: Curves.easeInOut),
     );
   }
 
@@ -67,7 +65,9 @@ class _MiniatureWaterTankState extends State<MiniatureWaterTank> with TickerProv
   @override
   Widget build(BuildContext context) {
     final percentage = ((widget.level / widget.capacity) * 100).round();
-    final baseWaterColor = widget.type == 'raw' ? AppStyle.green : AppStyle.blue[500]!;
+    final baseWaterColor = widget.type == 'raw'
+        ? AppStyle.green
+        : AppStyle.blue[500]!;
     final backgroundColor = AppStyle.grey[700];
 
     // Updated proportions - taller tank with less whitespace
@@ -98,18 +98,26 @@ class _MiniatureWaterTankState extends State<MiniatureWaterTank> with TickerProv
                   children: [
                     // Water animation - keep this the same
                     AnimatedBuilder(
-                      animation: Listenable.merge([_tiltAnimation, _bounceAnimation]),
+                      animation: Listenable.merge([
+                        _tiltAnimation,
+                        _bounceAnimation,
+                      ]),
                       builder: (context, child) {
                         return Positioned(
                           bottom: 0,
                           left: 0,
                           right: 0,
-                          height: height * (widget.level / widget.capacity + _bounceAnimation.value),
+                          height:
+                              height *
+                              (widget.level / widget.capacity +
+                                  _bounceAnimation.value),
                           child: CustomPaint(
                             painter: WaterSurfacePainter(
                               tiltFactor: _tiltAnimation.value,
                               baseColor: baseWaterColor,
-                              level: widget.level / widget.capacity + _bounceAnimation.value,
+                              level:
+                                  widget.level / widget.capacity +
+                                  _bounceAnimation.value,
                               percentage: percentage,
                             ),
                             size: Size.infinite,

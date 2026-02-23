@@ -59,10 +59,13 @@ class ListItem extends ConsumerWidget {
                     children: [
                       Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 10.r, vertical: 4.r),
+                          horizontal: 10.r,
+                          vertical: 4.r,
+                        ),
                         decoration: BoxDecoration(
-                            color: color.withOpacity(0.25),
-                            borderRadius: BorderRadius.circular(100.r)),
+                          color: color.withOpacity(0.25),
+                          borderRadius: BorderRadius.circular(100.r),
+                        ),
                         child: Text(
                           AppHelpers.getTranslation(orderData.status ?? "--"),
                           style: GoogleFonts.inter(
@@ -107,8 +110,9 @@ class ListItem extends ConsumerWidget {
                 SizedBox(
                   width: 180.w,
                   child: Text(
-                    DateFormat("MMMM dd, HH:mm").format(
-                        orderData.createdAt?.toLocal() ?? DateTime.now()),
+                    DateFormat(
+                      "MMMM dd, HH:mm",
+                    ).format(orderData.createdAt?.toLocal() ?? DateTime.now()),
                     style: GoogleFonts.inter(
                       fontSize: 16.sp,
                       color: AppStyle.brandTitleDivider,
@@ -132,7 +136,6 @@ class ListItem extends ConsumerWidget {
                 CustomPopup(
                   isLocation: orderData.deliveryType == TrKeys.delivery,
                   orderData: orderData,
-
                 ),
               ],
             ),
@@ -143,4 +146,3 @@ class ListItem extends ConsumerWidget {
     );
   }
 }
-

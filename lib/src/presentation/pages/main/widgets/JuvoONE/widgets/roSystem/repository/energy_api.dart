@@ -35,19 +35,20 @@ class EnergyService {
 
       final uri = Uri.parse('$baseUrl/energy-consumption/$targetShopId');
 
-      final response = await http.get(
-        uri,
-        headers: _headers,
-      );
+      final response = await http.get(uri, headers: _headers);
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data['success']) {
           return EnergyConsumptionData.fromJson(data['data']);
         }
-        throw Exception(data['message'] ?? 'Failed to load energy consumption data');
+        throw Exception(
+          data['message'] ?? 'Failed to load energy consumption data',
+        );
       }
-      throw Exception('Failed to load energy consumption data. Status: ${response.statusCode}');
+      throw Exception(
+        'Failed to load energy consumption data. Status: ${response.statusCode}',
+      );
     } catch (e) {
       if (kDebugMode) {
         print('Error in fetchEnergyConsumption: $e');

@@ -12,10 +12,7 @@ class CategoriesRepositoryImpl extends CategoriesRepository {
   Future<ApiResult<CategoriesPaginateResponse>> searchCategories(
     String? query,
   ) async {
-    final data = {
-      'search': query,
-      'limit_page_length': 100,
-    };
+    final data = {'search': query, 'limit_page_length': 100};
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(

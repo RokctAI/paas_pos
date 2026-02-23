@@ -32,13 +32,12 @@ class LoginResponse {
     bool? status,
     String? message,
     User? data,
-  }) =>
-      LoginResponse(
-        timestamp: timestamp ?? _timestamp,
-        status: status ?? _status,
-        message: message ?? _message,
-        data: data ?? _data,
-      );
+  }) => LoginResponse(
+    timestamp: timestamp ?? _timestamp,
+    status: status ?? _status,
+    message: message ?? _message,
+    data: data ?? _data,
+  );
 
   String? get timestamp => _timestamp;
 
@@ -61,11 +60,7 @@ class LoginResponse {
 }
 
 class User {
-  User({
-    String? accessToken,
-    String? tokenType,
-    UserData? user,
-  }) {
+  User({String? accessToken, String? tokenType, UserData? user}) {
     _accessToken = accessToken;
     _tokenType = tokenType;
     _user = user;
@@ -81,11 +76,7 @@ class User {
   String? _tokenType;
   UserData? _user;
 
-  User copyWith({
-    String? accessToken,
-    String? tokenType,
-    UserData? user,
-  }) =>
+  User copyWith({String? accessToken, String? tokenType, UserData? user}) =>
       User(
         accessToken: accessToken ?? _accessToken,
         tokenType: tokenType ?? _tokenType,
@@ -108,4 +99,3 @@ class User {
     return map;
   }
 }
-

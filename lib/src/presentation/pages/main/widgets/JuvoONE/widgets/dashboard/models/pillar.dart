@@ -30,7 +30,9 @@ class Pillar {
     List<StrategicObjective> objectives = [];
     if (json['strategic_objectives'] != null) {
       objectives = List<StrategicObjective>.from(
-        json['strategic_objectives'].map((objective) => StrategicObjective.fromJson(objective)),
+        json['strategic_objectives'].map(
+          (objective) => StrategicObjective.fromJson(objective),
+        ),
       );
     }
 
@@ -59,9 +61,9 @@ class Pillar {
       'icon': icon,
       'color': color,
       'display_order': displayOrder,
-      'strategic_objectives': strategicObjectives.map((objective) => objective.toJson()).toList(),
+      'strategic_objectives': strategicObjectives
+          .map((objective) => objective.toJson())
+          .toList(),
     };
   }
 }
-
-

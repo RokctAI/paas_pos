@@ -5,7 +5,10 @@ import '../../../../../../../core/constants/constants.dart';
 import '../../../../../../theme/app_style.dart';
 
 // StateNotifierProvider for the WaterOS toggle
-final waterOSToggleProvider = StateNotifierProvider<WaterOSToggleNotifier, bool>((ref) => WaterOSToggleNotifier());
+final waterOSToggleProvider =
+    StateNotifierProvider<WaterOSToggleNotifier, bool>(
+      (ref) => WaterOSToggleNotifier(),
+    );
 
 class WaterOSToggleNotifier extends StateNotifier<bool> {
   WaterOSToggleNotifier() : super(AppConstants.enableJuvoONE) {

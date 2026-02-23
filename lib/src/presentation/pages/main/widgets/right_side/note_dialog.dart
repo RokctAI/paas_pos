@@ -53,8 +53,10 @@ class _NoteDialogState extends ConsumerState<NoteDialog> {
         children: [
           Text(
             AppHelpers.getTranslation(TrKeys.addComment),
-            style:
-                GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 22.r),
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              fontSize: 22.r,
+            ),
           ),
           24.verticalSpace,
           OutlinedBorderTextField(
@@ -68,10 +70,9 @@ class _NoteDialogState extends ConsumerState<NoteDialog> {
               ref.read(rightSideProvider.notifier).setNote(controller.text);
               context.maybePop();
             },
-          )
+          ),
         ],
       ),
     );
   }
 }
-

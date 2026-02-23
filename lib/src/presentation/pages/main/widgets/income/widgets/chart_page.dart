@@ -14,12 +14,13 @@ class ChartPage extends StatefulWidget {
   final List<IncomeChartResponse> chart;
   final bool isDay;
 
-  const ChartPage(
-      {super.key,
-        required this.price,
-        required this.chart,
-        required this.times,
-        required this.isDay});
+  const ChartPage({
+    super.key,
+    required this.price,
+    required this.chart,
+    required this.times,
+    required this.isDay,
+  });
 
   @override
   State<ChartPage> createState() => _ChartPageState();
@@ -37,38 +38,40 @@ class _ChartPageState extends State<ChartPage> {
       width: double.infinity,
       height: 260.h,
       padding: EdgeInsets.only(
-        left: 12.r,  // Reduced left padding to accommodate axis labels
+        left: 12.r, // Reduced left padding to accommodate axis labels
         //right: 12.r,
         top: 30.r,
         bottom: 12.r, // Reduced bottom padding
       ),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.r), color: AppStyle.white),
+        borderRadius: BorderRadius.circular(10.r),
+        color: AppStyle.white,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             AppHelpers.getTranslation(TrKeys.saleChart),
             style: GoogleFonts.inter(
-                fontSize: 22.sp,
-                fontWeight: FontWeight.w600,
-                color: AppStyle.black),
+              fontSize: 22.sp,
+              fontWeight: FontWeight.w600,
+              color: AppStyle.black,
+            ),
           ),
           24.verticalSpace,
           Expanded(
             child: widget.chart.isNotEmpty
-                ? LineChart(
-              mainData(),
-            )
+                ? LineChart(mainData())
                 : Center(
-              child: Text(
-                AppHelpers.getTranslation(TrKeys.needOrder),
-                style: GoogleFonts.inter(
-                    fontSize: 22.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppStyle.black),
-              ),
-            ),
+                    child: Text(
+                      AppHelpers.getTranslation(TrKeys.needOrder),
+                      style: GoogleFonts.inter(
+                        fontSize: 22.sp,
+                        fontWeight: FontWeight.w600,
+                        color: AppStyle.black,
+                      ),
+                    ),
+                  ),
           ),
         ],
       ),
@@ -76,41 +79,32 @@ class _ChartPageState extends State<ChartPage> {
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    final style = GoogleFonts.inter(
-      fontSize: 10.sp,
-      color: AppStyle.black,
-    );
+    final style = GoogleFonts.inter(fontSize: 10.sp, color: AppStyle.black);
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
       child: Text(
-          DateFormat(widget.isDay ? "HH:00" : "MMM d")
-              .format(widget.times[value.ceil()]),
-          style: style),
+        DateFormat(
+          widget.isDay ? "HH:00" : "MMM d",
+        ).format(widget.times[value.ceil()]),
+        style: style,
+      ),
     );
   }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
-    final style = GoogleFonts.inter(
-      fontSize: 12.sp,
-      color: AppStyle.black,
-    );
+    final style = GoogleFonts.inter(fontSize: 12.sp, color: AppStyle.black);
     return Text(
-        AppHelpers.numberFormat(
-          widget.price[value.toInt()],
-          decimalDigits: 0,
-        ),
-        style: style,
-        textAlign: TextAlign.left);
+      AppHelpers.numberFormat(widget.price[value.toInt()], decimalDigits: 0),
+      style: style,
+      textAlign: TextAlign.left,
+    );
   }
 
   String getTooltipText(double x, double y) {
     final date = widget.times[x.toInt()];
     final amount = widget.price[y.toInt()];
-    return '${DateFormat(widget.isDay ? "HH:00" : "MMM d").format(date)}\n${NumberFormat.currency(
-      decimalDigits: 0,
-      symbol: LocalStorage.getSelectedCurrency().symbol,
-    ).format(amount)}';
+    return '${DateFormat(widget.isDay ? "HH:00" : "MMM d").format(date)}\n${NumberFormat.currency(decimalDigits: 0, symbol: LocalStorage.getSelectedCurrency().symbol).format(amount)}';
   }
 
   LineChartData mainData() {
@@ -122,7 +116,10 @@ class _ChartPageState extends State<ChartPage> {
         verticalInterval: 1,
         getDrawingHorizontalLine: (value) {
           return const FlLine(
-              color: AppStyle.iconButtonBack, strokeWidth: 1, dashArray: [10]);
+            color: AppStyle.iconButtonBack,
+            strokeWidth: 1,
+            dashArray: [10],
+          );
         },
       ),
       lineTouchData: LineTouchData(
@@ -145,33 +142,30 @@ class _ChartPageState extends State<ChartPage> {
           },
         ),
         handleBuiltInTouches: true,
-        getTouchedSpotIndicator: (LineChartBarData barData, List<int> spotIndexes) {
-          return spotIndexes.map((index) {
-            return TouchedSpotIndicatorData(
-              FlLine(
-                color: AppStyle.primary,
-                strokeWidth: 2,
-              ),
-              FlDotData(
-                getDotPainter: (spot, percent, barData, index) => FlDotCirclePainter(
-                  radius: 4,
-                  color: AppStyle.white,
-                  strokeWidth: 2,
-                  strokeColor: AppStyle.primary,
-                ),
-              ),
-            );
-          }).toList();
-        },
+        getTouchedSpotIndicator:
+            (LineChartBarData barData, List<int> spotIndexes) {
+              return spotIndexes.map((index) {
+                return TouchedSpotIndicatorData(
+                  FlLine(color: AppStyle.primary, strokeWidth: 2),
+                  FlDotData(
+                    getDotPainter: (spot, percent, barData, index) =>
+                        FlDotCirclePainter(
+                          radius: 4,
+                          color: AppStyle.white,
+                          strokeWidth: 2,
+                          strokeColor: AppStyle.primary,
+                        ),
+                  ),
+                );
+              }).toList();
+            },
       ),
       titlesData: FlTitlesData(
         show: true,
         rightTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        topTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
+        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
@@ -189,9 +183,7 @@ class _ChartPageState extends State<ChartPage> {
           ),
         ),
       ),
-      borderData: FlBorderData(
-        show: false,
-      ),
+      borderData: FlBorderData(show: false),
       minX: 0,
       maxX: widget.times.length.toDouble() - 1,
       minY: 0,
@@ -201,18 +193,19 @@ class _ChartPageState extends State<ChartPage> {
           spots: [
             for (int index = 0; index < widget.times.length; index++)
               FlSpot(
-                  index.toDouble(),
-                  widget.price.findPriceIndex(widget.isDay
+                index.toDouble(),
+                widget.price.findPriceIndex(
+                  widget.isDay
                       ? widget.chart.findPriceWithHour(widget.times[index])
-                      : widget.chart.findPrice(widget.times[index]))),
+                      : widget.chart.findPrice(widget.times[index]),
+                ),
+              ),
           ],
           isCurved: true,
           color: AppStyle.primary,
           barWidth: 5,
           isStrokeCapRound: true,
-          dotData: const FlDotData(
-            show: false,
-          ),
+          dotData: const FlDotData(show: false),
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(

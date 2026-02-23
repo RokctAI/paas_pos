@@ -41,8 +41,8 @@ class SwipeButton extends StatefulWidget {
     this.onSwipe,
     this.onSwipeEnd,
     this.duration = const Duration(milliseconds: 250),
-  })  : assert(elevationThumb >= 0.0),
-        assert(elevationTrack >= 0.0);
+  }) : assert(elevationThumb >= 0.0),
+       assert(elevationTrack >= 0.0);
 
   @override
   State<SwipeButton> createState() => _SwipeState();
@@ -146,8 +146,10 @@ class _SwipeState extends State<SwipeButton> with TickerProviderStateMixin {
       animation: swipeAnimationController,
       builder: (context, child) => Transform(
         transform: Matrix4.identity()
-          ..translate(swipeAnimationController.value *
-              (constraints.maxWidth - widget.height)),
+          ..translate(
+            swipeAnimationController.value *
+                (constraints.maxWidth - widget.height),
+          ),
         child: Container(
           padding: widget.thumbPadding,
           child: GestureDetector(
@@ -163,16 +165,19 @@ class _SwipeState extends State<SwipeButton> with TickerProviderStateMixin {
               child: AnimatedBuilder(
                 animation: expandAnimationController,
                 builder: (context, child) => SizedBox(
-                  width: 16.r +
+                  width:
+                      16.r +
                       widget.height +
                       (expandAnimationController.value *
                           (constraints.maxWidth - widget.height)) -
                       widget.thumbPadding.horizontal,
                   height: widget.height - widget.thumbPadding.vertical,
-                  child: widget.thumb ??
+                  child:
+                      widget.thumb ??
                       Icon(
                         Icons.arrow_forward,
-                        color: widget.activeTrackColor ??
+                        color:
+                            widget.activeTrackColor ??
                             widget.inactiveTrackColor,
                       ),
                 ),
@@ -196,24 +201,19 @@ class _SwipeState extends State<SwipeButton> with TickerProviderStateMixin {
       expandAnimationController.value +=
           details.primaryDelta! / (width - widget.height);
       if (expandAnimationController.value == 1) {
-        setState(
-          () {
-            swiped = true;
-            widget.onSwipe?.call();
-          },
-        );
+        setState(() {
+          swiped = true;
+          widget.onSwipe?.call();
+        });
       }
     }
   }
 
   _onHorizontalDragEnd(DragEndDetails details) {
-    setState(
-      () {
-        swipeAnimationController.animateTo(0);
-        expandAnimationController.animateTo(0);
-      },
-    );
+    setState(() {
+      swipeAnimationController.animateTo(0);
+      expandAnimationController.animateTo(0);
+    });
     widget.onSwipeEnd?.call();
   }
 }
-

@@ -43,7 +43,7 @@ class ProductGridListShimmer extends StatelessWidget {
                   height: 246.r,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),
-                    color:  AppStyle.shimmerBase,
+                    color: AppStyle.shimmerBase,
                   ),
                 ),
               ),

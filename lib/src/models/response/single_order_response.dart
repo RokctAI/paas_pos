@@ -31,8 +31,7 @@ class SingleKitchenOrderResponse {
   }
 
   SingleKitchenOrderResponse.fromJson(dynamic json) {
-    _data =
-        json['data'] != null ? OrderData.fromJson(json['data']) : null;
+    _data = json['data'] != null ? OrderData.fromJson(json['data']) : null;
   }
 
   OrderData? _data;
@@ -50,4 +49,3 @@ class SingleKitchenOrderResponse {
     return map;
   }
 }
-

@@ -55,21 +55,26 @@ class _PrintPageState extends State<PrintPage> {
     _scan();
 
     // subscription to listen change status of bluetooth connection
-    _subscriptionBtStatus =
-        PrinterManager.instance.stateBluetooth.listen((status) {
+    _subscriptionBtStatus = PrinterManager.instance.stateBluetooth.listen((
+      status,
+    ) {
       log(' ----------------- status bt $status ------------------ ');
       _currentStatus = status;
 
       if (status == BTStatus.connected && pendingTask != null) {
         if (Platform.isAndroid) {
           Future.delayed(const Duration(milliseconds: 1000), () {
-            PrinterManager.instance
-                .send(type: PrinterType.bluetooth, bytes: pendingTask!);
+            PrinterManager.instance.send(
+              type: PrinterType.bluetooth,
+              bytes: pendingTask!,
+            );
             pendingTask = null;
           });
         } else if (Platform.isIOS) {
-          PrinterManager.instance
-              .send(type: PrinterType.bluetooth, bytes: pendingTask!);
+          PrinterManager.instance.send(
+            type: PrinterType.bluetooth,
+            bytes: pendingTask!,
+          );
           pendingTask = null;
         }
       }
@@ -80,8 +85,10 @@ class _PrintPageState extends State<PrintPage> {
       if (Platform.isAndroid) {
         if (status == USBStatus.connected && pendingTask != null) {
           Future.delayed(const Duration(milliseconds: 1000), () {
-            PrinterManager.instance
-                .send(type: PrinterType.usb, bytes: pendingTask!);
+            PrinterManager.instance.send(
+              type: PrinterType.usb,
+              bytes: pendingTask!,
+            );
             pendingTask = null;
           });
         }
@@ -106,16 +113,18 @@ class _PrintPageState extends State<PrintPage> {
     _subscription = printerManager
         .discovery(type: defaultPrinterType, isBle: _isBle)
         .listen((device) {
-      devices.add(BluetoothPrinter(
-        deviceName: device.name,
-        address: device.address,
-        isBle: _isBle,
-        vendorId: device.vendorId,
-        productId: device.productId,
-        typePrinter: defaultPrinterType,
-      ));
-      setState(() {});
-    });
+          devices.add(
+            BluetoothPrinter(
+              deviceName: device.name,
+              address: device.address,
+              isBle: _isBle,
+              vendorId: device.vendorId,
+              productId: device.productId,
+              typePrinter: defaultPrinterType,
+            ),
+          );
+          setState(() {});
+        });
   }
 
   void setPort(String value) {
@@ -148,8 +157,9 @@ class _PrintPageState extends State<PrintPage> {
       if ((device.address != selectedPrinter!.address) ||
           (device.typePrinter == PrinterType.usb &&
               selectedPrinter!.vendorId != device.vendorId)) {
-        await PrinterManager.instance
-            .disconnect(type: selectedPrinter!.typePrinter);
+        await PrinterManager.instance.disconnect(
+          type: selectedPrinter!.typePrinter,
+        );
       }
     }
 
@@ -160,7 +170,8 @@ class _PrintPageState extends State<PrintPage> {
   Future _printReceiveTest() async {
     List<int> bytes = [];
     num subTotal = 0;
-    subTotal = ((widget.orderData?.totalPrice ?? 0) -
+    subTotal =
+        ((widget.orderData?.totalPrice ?? 0) -
         (widget.orderData?.tax ?? 0) -
         (widget.orderData?.deliveryFee ?? 0) +
         (widget.orderData?.totalDiscount ?? 0));
@@ -172,22 +183,27 @@ class _PrintPageState extends State<PrintPage> {
     final generator = Generator(PaperSize.mm80, profile);
     bytes += generator.setGlobalCodeTable('CP1252');
     bytes += generator.setStyles(const PosStyles(align: PosAlign.center));
-    bytes += generator.text(AppHelpers.getTranslation(TrKeys.orderSummary),
-        styles: const PosStyles(align: PosAlign.center, bold: true));
+    bytes += generator.text(
+      AppHelpers.getTranslation(TrKeys.orderSummary),
+      styles: const PosStyles(align: PosAlign.center, bold: true),
+    );
 
     bytes += generator.text(
-        "${AppHelpers.getTranslation(TrKeys.order)} #${AppHelpers.getTranslation(TrKeys.id)}${widget.orderData?.id}",
-        styles: const PosStyles(align: PosAlign.center));
+      "${AppHelpers.getTranslation(TrKeys.order)} #${AppHelpers.getTranslation(TrKeys.id)}${widget.orderData?.id}",
+      styles: const PosStyles(align: PosAlign.center),
+    );
     bytes += generator.text(customDivider);
     bytes += generator.row([
       PosColumn(
-          width: 7,
-          text: customSpace + AppHelpers.getTranslation(TrKeys.shopName),
-          styles: const PosStyles(align: PosAlign.left, codeTable: 'CP1252')),
+        width: 7,
+        text: customSpace + AppHelpers.getTranslation(TrKeys.shopName),
+        styles: const PosStyles(align: PosAlign.left, codeTable: 'CP1252'),
+      ),
       PosColumn(
-          width: 5,
-          text: widget.orderData?.shop?.translation?.title ?? "",
-          styles: const PosStyles(align: PosAlign.right, codeTable: 'CP1252')),
+        width: 5,
+        text: widget.orderData?.shop?.translation?.title ?? "",
+        styles: const PosStyles(align: PosAlign.right, codeTable: 'CP1252'),
+      ),
     ]);
     bytes += generator.row([
       PosColumn(
@@ -210,16 +226,19 @@ class _PrintPageState extends State<PrintPage> {
       ),
       PosColumn(
         width: 6,
-        text: DateFormat("MM/dd/yy HH:mm")
-            .format(widget.orderData?.createdAt?.toLocal() ?? DateTime.now()),
+        text: DateFormat(
+          "MM/dd/yy HH:mm",
+        ).format(widget.orderData?.createdAt?.toLocal() ?? DateTime.now()),
         styles: const PosStyles(align: PosAlign.right),
       ),
     ]);
 
     bytes += generator.text(customLine);
-    for (int index = 0;
-        index < (widget.orderData?.details?.length ?? 0);
-        index++) {
+    for (
+      int index = 0;
+      index < (widget.orderData?.details?.length ?? 0);
+      index++
+    ) {
       bytes += generator.setStyles(const PosStyles(align: PosAlign.center));
       bytes += generator.row([
         PosColumn(
@@ -237,18 +256,17 @@ class _PrintPageState extends State<PrintPage> {
           styles: const PosStyles(align: PosAlign.right, bold: true),
         ),
       ]);
-      for (int i = 0;
-          i < (widget.orderData?.details?[index].addons?.length ?? 0);
-          i++) {
+      for (
+        int i = 0;
+        i < (widget.orderData?.details?[index].addons?.length ?? 0);
+        i++
+      ) {
         Addons addons = widget.orderData!.details![index].addons![i];
         bytes += generator.row([
           PosColumn(
             width: 10,
             text:
-                "$customSpace${addons.stocks?.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat(
-              (addons.price ?? 0) / (addons.quantity ?? 1),
-              symbol: widget.orderData?.currency?.symbol ?? "",
-            )} x ${(addons.quantity ?? 1)} )",
+                "$customSpace${addons.stocks?.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat((addons.price ?? 0) / (addons.quantity ?? 1), symbol: widget.orderData?.currency?.symbol ?? "")} x ${(addons.quantity ?? 1)} )",
             styles: const PosStyles(align: PosAlign.left),
           ),
           PosColumn(
@@ -270,9 +288,7 @@ class _PrintPageState extends State<PrintPage> {
       ),
       PosColumn(
         width: 6,
-        text: AppHelpers.numberFormat(
-          subTotal,
-        ),
+        text: AppHelpers.numberFormat(subTotal),
         styles: const PosStyles(align: PosAlign.right, bold: true),
       ),
     ]);
@@ -284,9 +300,7 @@ class _PrintPageState extends State<PrintPage> {
       ),
       PosColumn(
         width: 6,
-        text: AppHelpers.numberFormat(
-          widget.orderData?.tax ?? 0,
-        ),
+        text: AppHelpers.numberFormat(widget.orderData?.tax ?? 0),
         styles: const PosStyles(align: PosAlign.right, bold: true),
       ),
     ]);
@@ -299,9 +313,7 @@ class _PrintPageState extends State<PrintPage> {
       ),
       PosColumn(
         width: 6,
-        text: AppHelpers.numberFormat(
-          widget.orderData?.deliveryFee ?? 0,
-        ),
+        text: AppHelpers.numberFormat(widget.orderData?.deliveryFee ?? 0),
         styles: const PosStyles(align: PosAlign.right, bold: true),
       ),
     ]);
@@ -313,9 +325,7 @@ class _PrintPageState extends State<PrintPage> {
       ),
       PosColumn(
         width: 6,
-        text: AppHelpers.numberFormat(
-          widget.orderData?.totalDiscount ?? 0,
-        ),
+        text: AppHelpers.numberFormat(widget.orderData?.totalDiscount ?? 0),
         styles: const PosStyles(align: PosAlign.right, bold: true),
       ),
     ]);
@@ -327,9 +337,7 @@ class _PrintPageState extends State<PrintPage> {
       ),
       PosColumn(
         width: 6,
-        text: AppHelpers.numberFormat(
-          widget.orderData?.totalPrice ?? 0,
-        ),
+        text: AppHelpers.numberFormat(widget.orderData?.totalPrice ?? 0),
         styles: const PosStyles(align: PosAlign.right, bold: true),
       ),
     ]);
@@ -351,22 +359,26 @@ class _PrintPageState extends State<PrintPage> {
         bytes += generator.feed(2);
         bytes += generator.cut();
         await printerManager.connect(
-            type: bluetoothPrinter.typePrinter,
-            model: UsbPrinterInput(
-                name: bluetoothPrinter.deviceName,
-                productId: bluetoothPrinter.productId,
-                vendorId: bluetoothPrinter.vendorId));
+          type: bluetoothPrinter.typePrinter,
+          model: UsbPrinterInput(
+            name: bluetoothPrinter.deviceName,
+            productId: bluetoothPrinter.productId,
+            vendorId: bluetoothPrinter.vendorId,
+          ),
+        );
         pendingTask = null;
         break;
       case PrinterType.bluetooth:
         bytes += generator.cut();
         await printerManager.connect(
-            type: bluetoothPrinter.typePrinter,
-            model: BluetoothPrinterInput(
-                name: bluetoothPrinter.deviceName,
-                address: bluetoothPrinter.address!,
-                isBle: bluetoothPrinter.isBle ?? false,
-                autoConnect: _reconnect));
+          type: bluetoothPrinter.typePrinter,
+          model: BluetoothPrinterInput(
+            name: bluetoothPrinter.deviceName,
+            address: bluetoothPrinter.address!,
+            isBle: bluetoothPrinter.isBle ?? false,
+            autoConnect: _reconnect,
+          ),
+        );
         pendingTask = null;
         if (Platform.isAndroid) pendingTask = bytes;
         break;
@@ -374,8 +386,9 @@ class _PrintPageState extends State<PrintPage> {
         bytes += generator.feed(2);
         bytes += generator.cut();
         connectedTCP = await printerManager.connect(
-            type: bluetoothPrinter.typePrinter,
-            model: TcpPrinterInput(ipAddress: bluetoothPrinter.address!));
+          type: bluetoothPrinter.typePrinter,
+          model: TcpPrinterInput(ipAddress: bluetoothPrinter.address!),
+        );
         if (!connectedTCP) debugPrint(' --- please review your connection ---');
         break;
       default:
@@ -439,7 +452,8 @@ class _PrintPageState extends State<PrintPage> {
             },
           ),
           Visibility(
-            visible: defaultPrinterType == PrinterType.bluetooth &&
+            visible:
+                defaultPrinterType == PrinterType.bluetooth &&
                 Platform.isAndroid,
             child: SwitchListTile.adaptive(
               contentPadding: const EdgeInsets.only(bottom: 20.0, left: 20),
@@ -460,7 +474,8 @@ class _PrintPageState extends State<PrintPage> {
             ),
           ),
           Visibility(
-            visible: defaultPrinterType == PrinterType.bluetooth &&
+            visible:
+                defaultPrinterType == PrinterType.bluetooth &&
                 Platform.isAndroid,
             child: SwitchListTile.adaptive(
               contentPadding: const EdgeInsets.only(bottom: 20.0, left: 20),
@@ -478,50 +493,55 @@ class _PrintPageState extends State<PrintPage> {
             ),
           ),
           Column(
-              children: devices
-                  .map(
-                    (device) => ListTile(
-                      title: Text('${device.deviceName}'),
-                      subtitle: Platform.isAndroid &&
-                              defaultPrinterType == PrinterType.usb
-                          ? null
-                          : Visibility(
-                              visible: !Platform.isWindows,
-                              child: Text("${device.address}")),
-                      onTap: () => selectDevice(device),
-                      leading: selectedPrinter != null &&
-                              ((device.typePrinter == PrinterType.usb &&
-                                          Platform.isWindows
-                                      ? device.deviceName ==
+            children: devices
+                .map(
+                  (device) => ListTile(
+                    title: Text('${device.deviceName}'),
+                    subtitle:
+                        Platform.isAndroid &&
+                            defaultPrinterType == PrinterType.usb
+                        ? null
+                        : Visibility(
+                            visible: !Platform.isWindows,
+                            child: Text("${device.address}"),
+                          ),
+                    onTap: () => selectDevice(device),
+                    leading:
+                        selectedPrinter != null &&
+                            ((device.typePrinter == PrinterType.usb &&
+                                        Platform.isWindows
+                                    ? device.deviceName ==
                                           selectedPrinter!.deviceName
-                                      : device.vendorId != null &&
+                                    : device.vendorId != null &&
                                           selectedPrinter!.vendorId ==
                                               device.vendorId) ||
-                                  (device.address != null &&
-                                      selectedPrinter!.address ==
-                                          device.address))
-                          ? const Icon(
-                              Icons.check,
-                              color: Colors.green,
-                            )
-                          : null,
-                      trailing: OutlinedButton(
-                        onPressed: selectedPrinter == null ||
-                                device.deviceName != selectedPrinter?.deviceName
-                            ? null
-                            : () async {
-                                _printReceiveTest();
-                              },
-                        child: const Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 2, horizontal: 20),
-                          child: Text("Print test ticket",
-                              textAlign: TextAlign.center),
+                                (device.address != null &&
+                                    selectedPrinter!.address == device.address))
+                        ? const Icon(Icons.check, color: Colors.green)
+                        : null,
+                    trailing: OutlinedButton(
+                      onPressed:
+                          selectedPrinter == null ||
+                              device.deviceName != selectedPrinter?.deviceName
+                          ? null
+                          : () async {
+                              _printReceiveTest();
+                            },
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 2,
+                          horizontal: 20,
+                        ),
+                        child: Text(
+                          "Print test ticket",
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
-                  )
-                  .toList()),
+                  ),
+                )
+                .toList(),
+          ),
           Visibility(
             visible:
                 defaultPrinterType == PrinterType.network && Platform.isWindows,
@@ -529,8 +549,9 @@ class _PrintPageState extends State<PrintPage> {
               padding: const EdgeInsets.only(top: 10.0),
               child: TextFormField(
                 controller: _ipController,
-                keyboardType:
-                    const TextInputType.numberWithOptions(signed: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  signed: true,
+                ),
                 decoration: const InputDecoration(
                   label: Text("Ip Address"),
                   prefixIcon: Icon(Icons.wifi, size: 24),
@@ -546,8 +567,9 @@ class _PrintPageState extends State<PrintPage> {
               padding: const EdgeInsets.only(top: 10.0),
               child: TextFormField(
                 controller: _portController,
-                keyboardType:
-                    const TextInputType.numberWithOptions(signed: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  signed: true,
+                ),
                 decoration: const InputDecoration(
                   label: Text("Port"),
                   prefixIcon: Icon(Icons.numbers_outlined, size: 24),
@@ -569,10 +591,9 @@ class _PrintPageState extends State<PrintPage> {
                 title: "Print",
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
-

@@ -7,4 +7,3 @@ import 'stock_notifier.dart';
 final stockProvider = StateNotifierProvider<StockNotifier, StockState>(
   (ref) => StockNotifier(stockRepository),
 );
-

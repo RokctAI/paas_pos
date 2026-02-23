@@ -2,8 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../../../../models/data/order_data.dart';
 
-
-
 part 'ready_orders_state.freezed.dart';
 
 @freezed
@@ -18,4 +16,3 @@ class ReadyOrdersState with _$ReadyOrdersState {
 
   const ReadyOrdersState._();
 }
-

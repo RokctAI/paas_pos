@@ -25,40 +25,42 @@ class CustomDropDownField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
-
-      validator: (s)=> validator?.call((s.toString())),
+      validator: (s) => validator?.call((s.toString())),
       value: value,
       items: list.map((e) {
         return DropdownMenuItem(
-            value: e, child: Text(AppHelpers.getTranslation(e)));
+          value: e,
+          child: Text(AppHelpers.getTranslation(e)),
+        );
       }).toList(),
       onChanged: onChanged,
       dropdownColor: AppStyle.white,
       iconEnabledColor: AppStyle.black,
       borderRadius: BorderRadius.circular(10.r),
       style: GoogleFonts.inter(
-          color: AppStyle.black, fontWeight: FontWeight.w500, fontSize: 14.sp),
+        color: AppStyle.black,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.sp,
+      ),
       icon: const Icon(FlutterRemix.arrow_down_s_line),
       decoration: InputDecoration(
         contentPadding: REdgeInsets.symmetric(vertical: 12, horizontal: 12),
-        prefixIcon: Icon(
-          iconData,
-          size: 26.r,
-          color: AppStyle.black,
-        ),
+        prefixIcon: Icon(iconData, size: 26.r, color: AppStyle.black),
         filled: true,
         fillColor: AppStyle.editProfileCircle,
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.r),
-            borderSide: BorderSide.none),
+          borderRadius: BorderRadius.circular(5.r),
+          borderSide: BorderSide.none,
+        ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.r),
-            borderSide: BorderSide.none),
+          borderRadius: BorderRadius.circular(5.r),
+          borderSide: BorderSide.none,
+        ),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.r),
-            borderSide: BorderSide.none),
+          borderRadius: BorderRadius.circular(5.r),
+          borderSide: BorderSide.none,
+        ),
       ),
     );
   }
 }
-

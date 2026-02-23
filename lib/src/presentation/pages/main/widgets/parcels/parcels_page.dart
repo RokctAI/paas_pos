@@ -93,7 +93,7 @@ class _StatusUpdateDialogState extends ConsumerState<StatusUpdateDialog> {
     "Ready",
     "On A Way",
     "Delivered",
-    "Canceled"
+    "Canceled",
   ];
 
   @override
@@ -117,10 +117,7 @@ class _StatusUpdateDialogState extends ConsumerState<StatusUpdateDialog> {
           }
         },
         items: _statuses.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
+          return DropdownMenuItem<String>(value: value, child: Text(value));
         }).toList(),
       ),
       actions: [

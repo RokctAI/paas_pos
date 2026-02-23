@@ -52,8 +52,10 @@ class ColorExtras extends ConsumerWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(11.r),
                             color: AppStyle.primary,
-                            border:
-                                Border.all(color: AppStyle.white, width: 8.r),
+                            border: Border.all(
+                              color: AppStyle.white,
+                              width: 8.r,
+                            ),
                           ),
                         ),
                       )
@@ -65,4 +67,3 @@ class ColorExtras extends ConsumerWidget {
     );
   }
 }
-

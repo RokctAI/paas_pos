@@ -5,7 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../../core/constants/constants.dart';
 import '../../../../../../theme/app_style.dart';
 
-final skipPINToggleProvider = StateNotifierProvider<SkipPINToggleNotifier, bool>((ref) => SkipPINToggleNotifier());
+final skipPINToggleProvider =
+    StateNotifierProvider<SkipPINToggleNotifier, bool>(
+      (ref) => SkipPINToggleNotifier(),
+    );
 
 class SkipPINToggleNotifier extends StateNotifier<bool> {
   SkipPINToggleNotifier() : super(false) {

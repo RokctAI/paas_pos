@@ -48,15 +48,14 @@ class UsersRepositoryImpl extends UsersRepository {
 
   @override
   Future<ApiResult<ProfileResponse>> getProfileDetails(
-      BuildContext context) async {
+    BuildContext context,
+  ) async {
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(
         '/api/v1/method/paas.api.get_user_profile',
       );
-      return ApiResult.success(
-        data: ProfileResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: ProfileResponse.fromJson(response.data));
     } catch (e) {
       if ((e as DioException).type == DioExceptionType.badResponse &&
           e.response?.statusCode == 401) {
@@ -74,7 +73,9 @@ class UsersRepositoryImpl extends UsersRepository {
     required List<LatLng> points,
   }) async {
     final data = {
-      'coordinates': points.map((e) => {'latitude': e.latitude, 'longitude': e.longitude}).toList(),
+      'coordinates': points
+          .map((e) => {'latitude': e.latitude, 'longitude': e.longitude})
+          .toList(),
     };
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -117,17 +118,14 @@ class UsersRepositoryImpl extends UsersRepository {
       };
 
       final response = await client.get(
-          '/api/v1/method/paas.api.check_delivery_zone',
-          queryParameters: data);
-
-      return ApiResult.success(
-        data: response.data["status"] == "success",
+        '/api/v1/method/paas.api.check_delivery_zone',
+        queryParameters: data,
       );
+
+      return ApiResult.success(data: response.data["status"] == "success");
     } catch (e) {
       debugPrint('==> get delivery zone failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
@@ -136,28 +134,21 @@ class UsersRepositoryImpl extends UsersRepository {
     required String coupon,
     required int shopId,
   }) async {
-    final data = {
-      'code': coupon,
-      'shop_id': shopId,
-    };
+    final data = {'code': coupon, 'shop_id': shopId};
     try {
       final client = dioHttp.client(requireAuth: true);
-      await client.post(
-        '/api/v1/method/paas.api.check_coupon',
-        data: data,
-      );
+      await client.post('/api/v1/method/paas.api.check_coupon', data: data);
       return const ApiResult.success(data: true);
     } catch (e) {
       debugPrint('==> check coupon failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
   @override
-  Future<ApiResult<ProfileResponse>> editProfile(
-      {required EditProfile? user}) async {
+  Future<ApiResult<ProfileResponse>> editProfile({
+    required EditProfile? user,
+  }) async {
     final data = user?.toJson();
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -165,20 +156,17 @@ class UsersRepositoryImpl extends UsersRepository {
         '/api/v1/method/paas.api.update_user_profile',
         data: {'profile_data': data},
       );
-      return ApiResult.success(
-        data: ProfileResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: ProfileResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> update profile details failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
   @override
-  Future<ApiResult<ProfileResponse>> createUser(
-      {required CustomerModel query}) async {
+  Future<ApiResult<ProfileResponse>> createUser({
+    required CustomerModel query,
+  }) async {
     final data = query.toJson();
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -186,28 +174,22 @@ class UsersRepositoryImpl extends UsersRepository {
         '/api/v1/method/paas.api.create_user',
         data: data,
       );
-      return ApiResult.success(
-        data: ProfileResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: ProfileResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> create user failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
   @override
   Future<ApiResult<UsersPaginateResponse>> getUsers({int? page}) async {
-    final data = {
-      'limit_start': (page ?? 1) - 1 * 6,
-      'limit_page_length': 6,
-    };
+    final data = {'limit_start': (page ?? 1) - 1 * 6, 'limit_page_length': 6};
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(
-          '/api/v1/method/paas.api.get_all_users',
-          queryParameters: data);
+        '/api/v1/method/paas.api.get_all_users',
+        queryParameters: data,
+      );
       return ApiResult.success(
         data: UsersPaginateResponse.fromJson(response.data),
       );
@@ -235,12 +217,18 @@ class UsersRepositoryImpl extends UsersRepository {
   }
 
   @override
-  Future<ApiResult<ProfileResponse>> updatePassword({required String password, required String passwordConfirmation}) {
+  Future<ApiResult<ProfileResponse>> updatePassword({
+    required String password,
+    required String passwordConfirmation,
+  }) {
     throw UnimplementedError();
   }
 
   @override
-  Future<ApiResult<ProfileResponse>> updateProfileImage({required String firstName, required String imageUrl}) {
+  Future<ApiResult<ProfileResponse>> updateProfileImage({
+    required String firstName,
+    required String imageUrl,
+  }) {
     throw UnimplementedError();
   }
 

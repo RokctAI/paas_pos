@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import '../../models/response/discount_paginate_response.dart';
 import '../../models/response/single_discount_detail_response.dart';
 
-
 class DiscountsRepositoryImpl extends DiscountsRepository {
   @override
   Future<ApiResult<DiscountPaginateResponse>> getAllDiscounts({
@@ -15,10 +14,7 @@ class DiscountsRepositoryImpl extends DiscountsRepository {
     //bool isActive = true,
     int? page,
   }) async {
-    final data = {
-      'page': page,
-      'limit_page_length': 10,
-    };
+    final data = {'page': page, 'limit_page_length': 10};
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(
@@ -31,7 +27,6 @@ class DiscountsRepositoryImpl extends DiscountsRepository {
     } catch (e) {
       debugPrint('==> get all discounts failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
-
     }
   }
 
@@ -104,10 +99,7 @@ class DiscountsRepositoryImpl extends DiscountsRepository {
       final client = dioHttp.client(requireAuth: true);
       await client.put(
         '/api/v1/method/paas.api.update_seller_discount',
-        data: {
-          'discount_name': id,
-          'discount_data': data,
-        },
+        data: {'discount_name': id, 'discount_data': data},
       );
       return const ApiResult.success(data: null);
     } catch (e) {

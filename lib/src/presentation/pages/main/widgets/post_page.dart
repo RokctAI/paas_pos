@@ -12,28 +12,34 @@ class PostPage extends ConsumerWidget {
   const PostPage({super.key});
 
   @override
-  Widget build(BuildContext context,ref) {
-    final priceDate = ref.watch(mainProvider.select((state) => state.priceDate));
-    return CustomScaffold(body: (c)=> priceDate != null
-        ? const OrderCalculate()
-        :  Padding(
-      padding: REdgeInsets.symmetric(horizontal: 15),
-      child: Column(
-        children: [
-          15.verticalSpace,
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Expanded(child: LeftSide()),
-                16.horizontalSpace,
-                SizedBox(width: MediaQuery.of(context).size.width/3.2, child: const RightSide()),
-              ],
+  Widget build(BuildContext context, ref) {
+    final priceDate = ref.watch(
+      mainProvider.select((state) => state.priceDate),
+    );
+    return CustomScaffold(
+      body: (c) => priceDate != null
+          ? const OrderCalculate()
+          : Padding(
+              padding: REdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                children: [
+                  15.verticalSpace,
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Expanded(child: LeftSide()),
+                        16.horizontalSpace,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 3.2,
+                          child: const RightSide(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-    ));
+    );
   }
 }
-

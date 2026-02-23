@@ -12,7 +12,8 @@ part of 'calculator_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$CalculatorState {
@@ -30,8 +31,9 @@ mixin _$CalculatorState {
 /// @nodoc
 abstract class $CalculatorStateCopyWith<$Res> {
   factory $CalculatorStateCopyWith(
-          CalculatorState value, $Res Function(CalculatorState) then) =
-      _$CalculatorStateCopyWithImpl<$Res, CalculatorState>;
+    CalculatorState value,
+    $Res Function(CalculatorState) then,
+  ) = _$CalculatorStateCopyWithImpl<$Res, CalculatorState>;
   @useResult
   $Res call({String display, String currentOperation, double? previousValue});
 }
@@ -55,29 +57,33 @@ class _$CalculatorStateCopyWithImpl<$Res, $Val extends CalculatorState>
     Object? currentOperation = null,
     Object? previousValue = freezed,
   }) {
-    return _then(_value.copyWith(
-      display: null == display
-          ? _value.display
-          : display // ignore: cast_nullable_to_non_nullable
-              as String,
-      currentOperation: null == currentOperation
-          ? _value.currentOperation
-          : currentOperation // ignore: cast_nullable_to_non_nullable
-              as String,
-      previousValue: freezed == previousValue
-          ? _value.previousValue
-          : previousValue // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            display: null == display
+                ? _value.display
+                : display // ignore: cast_nullable_to_non_nullable
+                      as String,
+            currentOperation: null == currentOperation
+                ? _value.currentOperation
+                : currentOperation // ignore: cast_nullable_to_non_nullable
+                      as String,
+            previousValue: freezed == previousValue
+                ? _value.previousValue
+                : previousValue // ignore: cast_nullable_to_non_nullable
+                      as double?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$CalculatorStateImplCopyWith<$Res>
     implements $CalculatorStateCopyWith<$Res> {
-  factory _$$CalculatorStateImplCopyWith(_$CalculatorStateImpl value,
-          $Res Function(_$CalculatorStateImpl) then) =
-      __$$CalculatorStateImplCopyWithImpl<$Res>;
+  factory _$$CalculatorStateImplCopyWith(
+    _$CalculatorStateImpl value,
+    $Res Function(_$CalculatorStateImpl) then,
+  ) = __$$CalculatorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String display, String currentOperation, double? previousValue});
@@ -88,8 +94,9 @@ class __$$CalculatorStateImplCopyWithImpl<$Res>
     extends _$CalculatorStateCopyWithImpl<$Res, _$CalculatorStateImpl>
     implements _$$CalculatorStateImplCopyWith<$Res> {
   __$$CalculatorStateImplCopyWithImpl(
-      _$CalculatorStateImpl _value, $Res Function(_$CalculatorStateImpl) _then)
-      : super(_value, _then);
+    _$CalculatorStateImpl _value,
+    $Res Function(_$CalculatorStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of CalculatorState
   /// with the given fields replaced by the non-null parameter values.
@@ -100,28 +107,33 @@ class __$$CalculatorStateImplCopyWithImpl<$Res>
     Object? currentOperation = null,
     Object? previousValue = freezed,
   }) {
-    return _then(_$CalculatorStateImpl(
-      display: null == display
-          ? _value.display
-          : display // ignore: cast_nullable_to_non_nullable
-              as String,
-      currentOperation: null == currentOperation
-          ? _value.currentOperation
-          : currentOperation // ignore: cast_nullable_to_non_nullable
-              as String,
-      previousValue: freezed == previousValue
-          ? _value.previousValue
-          : previousValue // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ));
+    return _then(
+      _$CalculatorStateImpl(
+        display: null == display
+            ? _value.display
+            : display // ignore: cast_nullable_to_non_nullable
+                  as String,
+        currentOperation: null == currentOperation
+            ? _value.currentOperation
+            : currentOperation // ignore: cast_nullable_to_non_nullable
+                  as String,
+        previousValue: freezed == previousValue
+            ? _value.previousValue
+            : previousValue // ignore: cast_nullable_to_non_nullable
+                  as double?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$CalculatorStateImpl implements _CalculatorState {
-  const _$CalculatorStateImpl(
-      {this.display = '0', this.currentOperation = '', this.previousValue});
+  const _$CalculatorStateImpl({
+    this.display = '0',
+    this.currentOperation = '',
+    this.previousValue,
+  });
 
   @override
   @JsonKey()
@@ -160,14 +172,17 @@ class _$CalculatorStateImpl implements _CalculatorState {
   @pragma('vm:prefer-inline')
   _$$CalculatorStateImplCopyWith<_$CalculatorStateImpl> get copyWith =>
       __$$CalculatorStateImplCopyWithImpl<_$CalculatorStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _CalculatorState implements CalculatorState {
-  const factory _CalculatorState(
-      {final String display,
-      final String currentOperation,
-      final double? previousValue}) = _$CalculatorStateImpl;
+  const factory _CalculatorState({
+    final String display,
+    final String currentOperation,
+    final double? previousValue,
+  }) = _$CalculatorStateImpl;
 
   @override
   String get display;
@@ -183,4 +198,3 @@ abstract class _CalculatorState implements CalculatorState {
   _$$CalculatorStateImplCopyWith<_$CalculatorStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

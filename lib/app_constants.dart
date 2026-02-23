@@ -11,26 +11,40 @@ abstract class AppConstants {
   static bool playMusicOnOrderStatusChange = true;
   static bool keepPlayingOnNewOrder = true;
 
-  static String demoSellerLogin = const String.fromEnvironment('DEMO_SELLER_LOGIN');
-  static String demoSellerPassword = const String.fromEnvironment('DEMO_SELLER_PASSWORD');
-  static String demoCookerLogin = const String.fromEnvironment('DEMO_COOKER_LOGIN');
-  static String demoCookerPassword = const String.fromEnvironment('DEMO_COOKER_PASSWORD');
-  static String demoWaiterLogin = const String.fromEnvironment('DEMO_WAITER_LOGIN');
-  static String demoWaiterPassword = const String.fromEnvironment('DEMO_WAITER_PASSWORD');
-
+  static String demoSellerLogin = const String.fromEnvironment(
+    'DEMO_SELLER_LOGIN',
+  );
+  static String demoSellerPassword = const String.fromEnvironment(
+    'DEMO_SELLER_PASSWORD',
+  );
+  static String demoCookerLogin = const String.fromEnvironment(
+    'DEMO_COOKER_LOGIN',
+  );
+  static String demoCookerPassword = const String.fromEnvironment(
+    'DEMO_COOKER_PASSWORD',
+  );
+  static String demoWaiterLogin = const String.fromEnvironment(
+    'DEMO_WAITER_LOGIN',
+  );
+  static String demoWaiterPassword = const String.fromEnvironment(
+    'DEMO_WAITER_PASSWORD',
+  );
 
   static Duration refreshTime = const Duration(seconds: 10);
-  static double demoLatitude = double.parse(const String.fromEnvironment('DEMO_LATITUDE'));
-  static double demoLongitude = double.parse(const String.fromEnvironment('DEMO_LONGITUDE'));
+  static double demoLatitude = double.parse(
+    const String.fromEnvironment('DEMO_LATITUDE'),
+  );
+  static double demoLongitude = double.parse(
+    const String.fromEnvironment('DEMO_LONGITUDE'),
+  );
   static double pinLoadingMin = 0.116666667;
   static double pinLoadingMax = 0.611111111;
   static Duration animationDuration = const Duration(milliseconds: 375);
   static Duration weatherRefresher = const Duration(minutes: 360);
 
-
   static double radius = 12;
 
-/// JuvoONE
+  /// JuvoONE
   static String keyShopData = 'keyShopData';
   static bool autoDeliver = false;
   static bool secondScreen = false;
@@ -43,7 +57,9 @@ abstract class AppConstants {
   static Duration idleTimeout = const Duration(minutes: 15);
   static Duration fetchTime = const Duration(seconds: 60);
   static Duration dashboardFetchTime = const Duration(minutes: 45);
-  static String googleApiKey = const String.fromEnvironment('GOOGLE_MAPS_API_KEY');
+  static String googleApiKey = const String.fromEnvironment(
+    'GOOGLE_MAPS_API_KEY',
+  );
   static bool weatherIcon = true;
   static int rainPOP = 60;
   static String chatGpt = const String.fromEnvironment('CHAT_GPT_KEY');
@@ -59,19 +75,27 @@ abstract class AppConstants {
 
   // Yoco credentials (Mutable for Remote Config, sourced from Shared Environment)
   static String yocoPublicKey = const String.fromEnvironment('YOCO_PUBLIC_KEY');
-  static String yocoPrivateKey = const String.fromEnvironment('YOCO_PRIVATE_KEY');
-  static String yocoEnvironment = const String.fromEnvironment('YOCO_ENVIRONMENT');
+  static String yocoPrivateKey = const String.fromEnvironment(
+    'YOCO_PRIVATE_KEY',
+  );
+  static String yocoEnvironment = const String.fromEnvironment(
+    'YOCO_ENVIRONMENT',
+  );
 
   // Yoco test credentials (sourced from Shared Environment)
-  static String yocoTestPublicKey = const String.fromEnvironment('YOCO_TEST_PUBLIC_KEY');
-  static String yocoTestPrivateKey = const String.fromEnvironment('YOCO_TEST_PRIVATE_KEY');
+  static String yocoTestPublicKey = const String.fromEnvironment(
+    'YOCO_TEST_PUBLIC_KEY',
+  );
+  static String yocoTestPrivateKey = const String.fromEnvironment(
+    'YOCO_TEST_PRIVATE_KEY',
+  );
 
   ///OrderUsageDate
   static String dateAt = 'createdAt';
 
   ///QuickSale
   // Comma-separated list of stock IDs for no-user mode
-  static List<int> quickSaleNoUserStockIds = [669,670,671,672,668];
+  static List<int> quickSaleNoUserStockIds = [669, 670, 671, 672, 668];
   // Default quantity for quick sale orders
   static int quickSaleDefaultQuantity = 1;
   // Maximum number of taps for user mode (for coupon)
@@ -81,7 +105,7 @@ abstract class AppConstants {
   // Coupon code to apply when tap count reaches maximum in user mode
   static String quickSaleCouponCode = "FREE25";
 
-/// Maintenance constants
+  /// Maintenance constants
   // Maintenance check intervals (in days)
   static int maintenanceCheckDays = 7;
   static int preFilterReplaceDays = 30;
@@ -119,15 +143,14 @@ abstract class AppConstants {
     'preFilter': 'Pre Filter',
     'roFilter': 'RO Filter',
     'postFilter': 'Post Filter',
-    'roMembrane': 'RO Membrane'
+    'roMembrane': 'RO Membrane',
   };
 
   static Map<String, String> filterTypes = {
     'birm': 'Birm',
     'sediment': 'Sediment',
-    'carbonBlock': 'Carbon Block/CTO'
+    'carbonBlock': 'Carbon Block/CTO',
   };
-
 }
 
 class OptimizedStockIds {

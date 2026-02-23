@@ -1,10 +1,16 @@
 // Create an enum for terminal payment status
-enum TerminalPaymentStatus { initiating, connecting, pairing,
-  processing,  completed,  failed }
+enum TerminalPaymentStatus {
+  initiating,
+  connecting,
+  pairing,
+  processing,
+  completed,
+  failed,
+}
 
 enum SnackBarType { success, info, error }
 
-enum DropDownType { deliveryman, users,section, table }
+enum DropDownType { deliveryman, users, section, table }
 
 enum ExtrasType { color, text, image }
 
@@ -12,24 +18,41 @@ enum ChairPosition { top, bottom, left, right }
 
 enum ProductStatus { published, pending, unpublished }
 
-enum UploadType { extras, brands, categories, shopsLogo,
-  shopsBack,  products, reviews, users,  discounts }
+enum UploadType {
+  extras,
+  brands,
+  categories,
+  shopsLogo,
+  shopsBack,
+  products,
+  reviews,
+  users,
+  discounts,
+}
 
 enum DeliveryType { delivery, pickup }
 
-enum OrderStatus { newOrder, accepted, cooking, ready,
-  onAWay, delivered, canceled }
+enum OrderStatus {
+  newOrder,
+  accepted,
+  cooking,
+  ready,
+  onAWay,
+  delivered,
+  canceled,
+}
 
-enum WeekDays { monday,  tuesday,  wednesday,  thursday,
-  friday,  saturday,  sunday }
+enum WeekDays { monday, tuesday, wednesday, thursday, friday, saturday, sunday }
 
 ///Maintenance
 enum FilterLocation { pre, ro, post }
+
 enum FilterType { birm, sediment, carbonBlock }
 
 ///Tanks
-enum TankType {raw, purified}
-enum TankStatus {full, empty, halfEmpty, quarterEmpty}
+enum TankType { raw, purified }
+
+enum TankStatus { full, empty, halfEmpty, quarterEmpty }
 
 enum MaintenanceStage {
   initialCheck,
@@ -111,7 +134,8 @@ enum MaintenanceStage {
         MaintenanceStage.stabilization,
         MaintenanceStage.returnToFilter,
       ];
-    } else { // softener
+    } else {
+      // softener
       return [
         MaintenanceStage.initialCheck,
         MaintenanceStage.pressureRelease,
@@ -127,7 +151,10 @@ enum MaintenanceStage {
   }
 
   // Helper to get next stage
-  static MaintenanceStage? getNextStage(String type, MaintenanceStage currentStage) {
+  static MaintenanceStage? getNextStage(
+    String type,
+    MaintenanceStage currentStage,
+  ) {
     final stages = getStagesForVesselType(type);
     final currentIndex = stages.indexOf(currentStage);
     if (currentIndex == -1 || currentIndex == stages.length - 1) {
@@ -135,5 +162,4 @@ enum MaintenanceStage {
     }
     return stages[currentIndex + 1];
   }
-
 }

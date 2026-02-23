@@ -63,4 +63,3 @@ class RightSideState with _$RightSideState {
 
   const RightSideState._();
 }
-

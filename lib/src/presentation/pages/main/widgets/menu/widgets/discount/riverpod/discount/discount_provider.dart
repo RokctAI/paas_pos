@@ -6,4 +6,3 @@ import 'discount_state.dart';
 final discountProvider = StateNotifierProvider<DiscountNotifier, DiscountState>(
   (ref) => DiscountNotifier(discountRepository),
 );
-

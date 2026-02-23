@@ -14,4 +14,3 @@ class DeliverymanState with _$DeliverymanState {
 
   const DeliverymanState._();
 }
-

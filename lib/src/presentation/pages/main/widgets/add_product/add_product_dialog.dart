@@ -33,10 +33,12 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
     super.initState();
     _audioPlayer.setReleaseMode(ReleaseMode.release);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(addProductProvider.notifier).setProduct(
-        widget.product,
-        ref.watch(rightSideProvider).selectedBagIndex,
-      );
+      ref
+          .read(addProductProvider.notifier)
+          .setProduct(
+            widget.product,
+            ref.watch(rightSideProvider).selectedBagIndex,
+          );
     });
   }
 
@@ -75,10 +77,7 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
             borderRadius: BorderRadius.circular(10.r),
             color: AppStyle.white,
           ),
-          constraints: BoxConstraints(
-            maxHeight: 700.r,
-            maxWidth: 600.r,
-          ),
+          constraints: BoxConstraints(maxHeight: 700.r, maxWidth: 600.r),
           padding: REdgeInsets.symmetric(horizontal: 40, vertical: 50),
           child: Text(
             '${state.product?.translation?.title} ${AppHelpers.getTranslation(TrKeys.outOfStock).toLowerCase()}',
@@ -87,20 +86,20 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
       );
     }
 
-    final bool hasDiscount = (state.selectedStock?.discount != null &&
+    final bool hasDiscount =
+        (state.selectedStock?.discount != null &&
         (state.selectedStock?.discount ?? 0) > 0);
-   // final double totalPrice = calculateTotalPrice(state);
-    final String price = AppHelpers.numberFormat(hasDiscount
-        ? (state.selectedStock?.totalPrice ?? 0)
-        : state.selectedStock?.price,
+    // final double totalPrice = calculateTotalPrice(state);
+    final String price = AppHelpers.numberFormat(
+      hasDiscount
+          ? (state.selectedStock?.totalPrice ?? 0)
+          : state.selectedStock?.price,
     );
     final lineThroughPrice = AppHelpers.numberFormat(
-        state.selectedStock?.price,
+      state.selectedStock?.price,
     );
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.r),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
@@ -148,14 +147,19 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6.r),
-                          border: Border.all(color: (AppConstants.enableJuvoONE) ? AppStyle.blue[900]! : AppStyle.icon),
+                          border: Border.all(
+                            color: (AppConstants.enableJuvoONE)
+                                ? AppStyle.blue[900]!
+                                : AppStyle.icon,
+                          ),
                         ),
                         child: Row(
                           children: [
                             IconButton(
                               onPressed: () {
                                 notifier.decreaseStockCount(
-                                    rightSideState.selectedBagIndex);
+                                  rightSideState.selectedBagIndex,
+                                );
                                 _playSound('tap.wav');
                                 setState(() {});
                               },
@@ -174,17 +178,25 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                             12.horizontalSpace,
                             IconButton(
                               onPressed: () {
-                                int maxQuantity = state.selectedStock?.quantity ?? 0;
-                                print('Current count: ${state.stockCount}, Max quantity: $maxQuantity'); // Debug print
+                                int maxQuantity =
+                                    state.selectedStock?.quantity ?? 0;
+                                print(
+                                  'Current count: ${state.stockCount}, Max quantity: $maxQuantity',
+                                ); // Debug print
                                 if (state.stockCount < maxQuantity) {
                                   notifier.increaseStockCount(
-                                      rightSideState.selectedBagIndex);
+                                    rightSideState.selectedBagIndex,
+                                  );
                                   _playSound('tap.wav');
                                 } else {
-                                  print('Maximum quantity reached, playing wrong.wav'); // Debug print
+                                  print(
+                                    'Maximum quantity reached, playing wrong.wav',
+                                  ); // Debug print
                                   _playSound('wrong.wav');
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text('Maximum quantity reached')),
+                                    SnackBar(
+                                      content: Text('Maximum quantity reached'),
+                                    ),
                                   );
                                 }
                                 setState(() {});
@@ -213,33 +225,39 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                         ),
                         8.verticalSpace,
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.6 - 370.w,
+                          width:
+                              MediaQuery.of(context).size.width / 1.6 - 370.w,
                           child: Text(
                             '${widget.product?.translation?.description}',
                             style: GoogleFonts.inter(
                               fontWeight: FontWeight.w500,
                               fontSize: 16.sp,
-                              color: (AppConstants.enableJuvoONE) ? AppStyle.black.withOpacity(0.5) : AppStyle.icon,
+                              color: (AppConstants.enableJuvoONE)
+                                  ? AppStyle.black.withOpacity(0.5)
+                                  : AppStyle.icon,
                               letterSpacing: -0.4,
                             ),
                           ),
                         ),
                         8.verticalSpace,
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.6 - 370.w,
+                          width:
+                              MediaQuery.of(context).size.width / 1.6 - 370.w,
                           child: Divider(
                             color: AppStyle.black.withOpacity(0.2),
                           ),
                         ),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.6 - 370.w,
+                          width:
+                              MediaQuery.of(context).size.width / 1.6 - 370.w,
                           child: ListView.builder(
                             physics: const CustomBouncingScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: state.typedExtras.length,
                             padding: EdgeInsets.zero,
                             itemBuilder: (context, index) {
-                              final TypedExtra typedExtra = state.typedExtras[index];
+                              final TypedExtra typedExtra =
+                                  state.typedExtras[index];
                               return ExtraDropdown(
                                 typedExtra: typedExtra,
                                 onChanged: (UiExtra? newValue) {
@@ -259,7 +277,8 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                         ),
                         8.verticalSpace,
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.6 - 370.w,
+                          width:
+                              MediaQuery.of(context).size.width / 1.6 - 370.w,
                           child: WIngredientScreen(
                             list: state.selectedStock?.addons ?? [],
                             onChange: (int value) {
@@ -305,13 +324,19 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
                         } catch (e) {
                           _playSound('wrong.wav');
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Failed to add product: ${e.toString()}')),
+                            SnackBar(
+                              content: Text(
+                                'Failed to add product: ${e.toString()}',
+                              ),
+                            ),
                           );
                         } finally {
                           context.maybePop();
                         }
                       },
-                      bgColor: (AppConstants.enableJuvoONE) ? AppStyle.blue[900] : AppStyle.brandGreen,
+                      bgColor: (AppConstants.enableJuvoONE)
+                          ? AppStyle.blue[900]
+                          : AppStyle.brandGreen,
                     ),
                   ),
                   const Spacer(),
@@ -405,29 +430,27 @@ class ExtraDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: REdgeInsets.only(bottom: 8),
-    child: DropdownButtonFormField<UiExtra>(
-    decoration: InputDecoration(
-    labelText: typedExtra.title,
-    contentPadding: REdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    border: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(8.r),
-    ),
-    ),
-      items: typedExtra.uiExtras.map((UiExtra uiExtra) {
-        return DropdownMenuItem<UiExtra>(
-          value: uiExtra,
-          child: Text(uiExtra.value),
-        );
-      }).toList(),
-      onChanged: onChanged,
-      selectedItemBuilder: (BuildContext context) {
-        return typedExtra.uiExtras.map<Widget>((UiExtra uiExtra) {
-          return Text(uiExtra.value);
-        }).toList();
-      },
-      isDense: true,
-    ),
+      margin: REdgeInsets.only(bottom: 8),
+      child: DropdownButtonFormField<UiExtra>(
+        decoration: InputDecoration(
+          labelText: typedExtra.title,
+          contentPadding: REdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.r)),
+        ),
+        items: typedExtra.uiExtras.map((UiExtra uiExtra) {
+          return DropdownMenuItem<UiExtra>(
+            value: uiExtra,
+            child: Text(uiExtra.value),
+          );
+        }).toList(),
+        onChanged: onChanged,
+        selectedItemBuilder: (BuildContext context) {
+          return typedExtra.uiExtras.map<Widget>((UiExtra uiExtra) {
+            return Text(uiExtra.value);
+          }).toList();
+        },
+        isDense: true,
+      ),
     );
   }
 }

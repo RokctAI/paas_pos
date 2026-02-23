@@ -49,9 +49,7 @@ class _TimePickerModalState extends State<TimePickerModal> {
             SizedBox(
               height: 300.r,
               child: CupertinoTheme(
-                data: const CupertinoThemeData(
-                  brightness: Brightness.light,
-                ),
+                data: const CupertinoThemeData(brightness: Brightness.light),
                 child: CupertinoDatePicker(
                   mode: CupertinoDatePickerMode.time,
                   minimumDate: widget.openTime == null
@@ -85,4 +83,3 @@ class _TimePickerModalState extends State<TimePickerModal> {
     );
   }
 }
-

@@ -16,7 +16,7 @@ class OrderDetailsItem extends StatelessWidget {
   const OrderDetailsItem({
     super.key,
     required this.orderDetail,
-    required this.onEdit
+    required this.onEdit,
   });
 
   @override
@@ -33,9 +33,9 @@ class OrderDetailsItem extends StatelessWidget {
                 Text(
                   "${orderDetail?.stock?.product?.translation?.title ?? ""} x ${orderDetail?.quantity ?? ""} ${orderDetail?.stock?.product?.unit?.translation?.title ?? ""}",
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.sp,
-                      color: AppStyle.black
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.sp,
+                    color: AppStyle.black,
                   ),
                 ),
                 2.verticalSpace,
@@ -68,7 +68,9 @@ class OrderDetailsItem extends StatelessWidget {
               if (orderDetail?.status != TrKeys.canceled &&
                   orderDetail?.status != TrKeys.ended) {
                 // Get next status and update
-                final nextStatus = AppHelpers.getNextOrderStatus(orderDetail?.status ?? "");
+                final nextStatus = AppHelpers.getNextOrderStatus(
+                  orderDetail?.status ?? "",
+                );
                 onEdit.call(orderDetail?.id, nextStatus);
               }
             },
@@ -81,8 +83,8 @@ class OrderDetailsItem extends StatelessWidget {
             child: Container(
               padding: REdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                  color: AppHelpers.getStatusColor(orderDetail?.status),
-                  borderRadius: BorderRadius.circular(16.r)
+                color: AppHelpers.getStatusColor(orderDetail?.status),
+                borderRadius: BorderRadius.circular(16.r),
               ),
               child: Row(
                 children: [
@@ -103,7 +105,7 @@ class OrderDetailsItem extends StatelessWidget {
                         color: AppStyle.black,
                         size: 21.r,
                       ),
-                    )
+                    ),
                 ],
               ),
             ),

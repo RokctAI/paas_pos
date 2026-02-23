@@ -62,15 +62,15 @@ class LanguagesNotifier extends StateNotifier<LanguagesState> {
         },
         failure: (failure) {
           state = state.copyWith(isLoading: false);
-          AppHelpers.showSnackBar(
-            context,
-             failure.toString(),
-          );
+          AppHelpers.showSnackBar(context, failure.toString());
         },
       );
     } else {
       if (!context.mounted) return;
-      AppHelpers.showSnackBar(context, AppHelpers.getTranslation(TrKeys.successfullyEdited));
+      AppHelpers.showSnackBar(
+        context,
+        AppHelpers.getTranslation(TrKeys.successfullyEdited),
+      );
     }
   }
 
@@ -79,9 +79,9 @@ class LanguagesNotifier extends StateNotifier<LanguagesState> {
     await LocalStorage.setLanguageData(state.languages[index]);
     await LocalStorage.setLangLtr(state.languages[index].backward);
     final map = await LocalStorage.getOtherTranslations(
-        key: state.languages[index].id.toString());
+      key: state.languages[index].id.toString(),
+    );
     await LocalStorage.setTranslations(map);
     afterUpdate?.call();
   }
 }
-

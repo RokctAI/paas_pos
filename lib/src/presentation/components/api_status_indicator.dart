@@ -4,8 +4,6 @@ import 'package:http/http.dart' as http;
 
 import '../theme/theme.dart';
 
-
-
 class ApiStatusIndicator extends StatefulWidget {
   const ApiStatusIndicator({Key? key}) : super(key: key);
 
@@ -22,8 +20,10 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
     super.initState();
     _checkApiStatus();
     // Check API status every 60 seconds
-    _timer =
-        Timer.periodic(const Duration(seconds: 60), (_) => _checkApiStatus());
+    _timer = Timer.periodic(
+      const Duration(seconds: 60),
+      (_) => _checkApiStatus(),
+    );
   }
 
   @override
@@ -34,8 +34,9 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
 
   Future<void> _checkApiStatus() async {
     try {
-      final response =
-          await http.get(Uri.parse('https://your-api-endpoint.com/status'));
+      final response = await http.get(
+        Uri.parse('https://your-api-endpoint.com/status'),
+      );
       setState(() {
         _isApiOk = response.statusCode == 200;
       });
@@ -62,4 +63,3 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
     );
   }
 }
-

@@ -48,11 +48,17 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
       final system = await MaintenanceApiService.getROSystem();
       if (system != null && mounted) {
         setState(() {
-          _megaCharCount = system.vessels.where((v) => v.type == 'megaChar').length;
-          _softenerCount = system.vessels.where((v) => v.type == 'softener').length;
+          _megaCharCount = system.vessels
+              .where((v) => v.type == 'megaChar')
+              .length;
+          _softenerCount = system.vessels
+              .where((v) => v.type == 'softener')
+              .length;
           _membraneCount = system.membraneCount;
           _filters = system.filters;
-          _vesselInstallationDate = system.vessels.isNotEmpty ? system.vessels.first.installationDate : null;
+          _vesselInstallationDate = system.vessels.isNotEmpty
+              ? system.vessels.first.installationDate
+              : null;
           _membraneInstallationDate = system.membraneInstallationDate;
           _isLoading = false;
           _inFilterSetupMode = false; // Show both sections for existing system
@@ -60,7 +66,8 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
       } else {
         setState(() {
           _isLoading = false;
-          _inFilterSetupMode = false; // Show both sections for new system initially
+          _inFilterSetupMode =
+              false; // Show both sections for new system initially
         });
       }
     } catch (e) {
@@ -85,8 +92,11 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
     });
   }
 
-
-  Widget _buildNumberPicker(String label, int value, ValueChanged<int> onChanged) {
+  Widget _buildNumberPicker(
+    String label,
+    int value,
+    ValueChanged<int> onChanged,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -147,9 +157,13 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
                   selectedDate != null
                       ? '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}'
                       : 'Select Date',
-                  style: GoogleFonts.inter(fontSize: 16,color: AppStyle.black),
+                  style: GoogleFonts.inter(fontSize: 16, color: AppStyle.black),
                 ),
-                const Icon(Icons.calendar_today, size: 20, color: AppStyle.black),
+                const Icon(
+                  Icons.calendar_today,
+                  size: 20,
+                  color: AppStyle.black,
+                ),
               ],
             ),
           ),
@@ -177,8 +191,6 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
       ],
     );
   }
-
-
 
   Future<void> _handleSubmit() async {
     if (_formKey.currentState!.validate() &&
@@ -223,11 +235,13 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
         // Add Mega Char vessels
         for (var i = 0; i < _megaCharCount; i++) {
           final vesselId = 'megaChar_$i';
-          vessels.add(Vessel(
-            id: vesselId,
-            type: 'megaChar',
-            installationDate: _vesselInstallationDate!,
-          ));
+          vessels.add(
+            Vessel(
+              id: vesselId,
+              type: 'megaChar',
+              installationDate: _vesselInstallationDate!,
+            ),
+          );
           if (kDebugMode) {
             print('Added Mega Char Vessel: $vesselId');
           }
@@ -236,11 +250,13 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
         // Add Softener vessels
         for (var i = 0; i < _softenerCount; i++) {
           final vesselId = 'softener_$i';
-          vessels.add(Vessel(
-            id: vesselId,
-            type: 'softener',
-            installationDate: _vesselInstallationDate!,
-          ));
+          vessels.add(
+            Vessel(
+              id: vesselId,
+              type: 'softener',
+              installationDate: _vesselInstallationDate!,
+            ),
+          );
           if (kDebugMode) {
             print('Added Softener Vessel: $vesselId');
           }
@@ -300,7 +316,9 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
           await MaintenanceApiService.updateMaintenanceDate(
             type: 'vessel',
             referenceId: vessel.id,
-            date: DateTime.now().add(Duration(days: AppConstants.maintenanceCheckDays)),
+            date: DateTime.now().add(
+              Duration(days: AppConstants.maintenanceCheckDays),
+            ),
           );
         }
 
@@ -323,7 +341,9 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
         await MaintenanceApiService.updateMaintenanceDate(
           type: 'membrane',
           referenceId: 'membrane_${savedSystem.id}',
-          date: DateTime.now().add(Duration(days: AppConstants.roMembraneReplaceDays)),
+          date: DateTime.now().add(
+            Duration(days: AppConstants.roMembraneReplaceDays),
+          ),
         );
 
         if (mounted) {
@@ -376,7 +396,6 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
       );
     }
 
-
     return Dialog(
       backgroundColor: AppStyle.white,
       child: SingleChildScrollView(
@@ -428,7 +447,7 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
                         child: _buildNumberPicker(
                           'Mega Char Vessels',
                           _megaCharCount,
-                              (value) => setState(() => _megaCharCount = value),
+                          (value) => setState(() => _megaCharCount = value),
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -436,13 +455,13 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
                         child: _buildNumberPicker(
                           'Softener Vessels',
                           _softenerCount,
-                              (value) => setState(() => _softenerCount = value),
+                          (value) => setState(() => _softenerCount = value),
                         ),
                       ),
                       _buildNumberPicker(
                         'RO Membranes',
                         _membraneCount,
-                            (value) => setState(() => _membraneCount = value),
+                        (value) => setState(() => _membraneCount = value),
                       ),
                     ],
                   ),
@@ -495,7 +514,7 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
                 const SizedBox(height: 16),
 
                 // Show filter management section when dates are set
-                 ...[
+                ...[
                   FilterManagementSection(
                     initialFilters: _filters,
                     onFiltersChanged: _handleFiltersChanged,
@@ -503,7 +522,9 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
                   const SizedBox(height: 16),
 
                   // RO filter warning
-                  if (!_filters.any((filter) => filter.location == FilterLocation.ro))
+                  if (!_filters.any(
+                    (filter) => filter.location == FilterLocation.ro,
+                  ))
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: Text(
@@ -525,29 +546,34 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
                         : AppStyle.brandGreen,
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  onPressed: _isLoading ||
-                      _vesselInstallationDate == null ||
-                      _membraneInstallationDate == null ||
-                      !_filters.any((filter) => filter.location == FilterLocation.ro)
+                  onPressed:
+                      _isLoading ||
+                          _vesselInstallationDate == null ||
+                          _membraneInstallationDate == null ||
+                          !_filters.any(
+                            (filter) => filter.location == FilterLocation.ro,
+                          )
                       ? null
                       : _handleSubmit,
                   child: _isLoading
                       ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation<Color>(AppStyle.white),
-                    ),
-                  )
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              AppStyle.white,
+                            ),
+                          ),
+                        )
                       : Text(
-                    'Save Configuration',
-                    style: GoogleFonts.inter(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: AppStyle.white,
-                    ),
-                  ),
+                          'Save Configuration',
+                          style: GoogleFonts.inter(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: AppStyle.white,
+                          ),
+                        ),
                 ),
               ],
             ),

@@ -12,8 +12,11 @@ class ProductTable extends StatelessWidget {
   final OrderData? orderData;
   final Function(int?, String) onEdit;
 
-  const ProductTable(
-      {super.key, required this.orderData, required this.onEdit});
+  const ProductTable({
+    super.key,
+    required this.orderData,
+    required this.onEdit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class ProductTable extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     letterSpacing: -0.3,
                   ),
-                )
+                ),
               ],
             ),
             Column(
@@ -55,7 +58,7 @@ class ProductTable extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     letterSpacing: -0.3,
                   ),
-                )
+                ),
               ],
             ),
             Column(
@@ -69,7 +72,7 @@ class ProductTable extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     letterSpacing: -0.3,
                   ),
-                )
+                ),
               ],
             ),
             Column(
@@ -83,7 +86,7 @@ class ProductTable extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     letterSpacing: -0.3,
                   ),
-                )
+                ),
               ],
             ),
             Column(
@@ -97,7 +100,7 @@ class ProductTable extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     letterSpacing: -0.3,
                   ),
-                )
+                ),
               ],
             ),
             Column(
@@ -111,7 +114,7 @@ class ProductTable extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     letterSpacing: -0.3,
                   ),
-                )
+                ),
               ],
             ),
           ],
@@ -149,7 +152,7 @@ class ProductTable extends StatelessWidget {
                         color: AppStyle.icon,
                         letterSpacing: -0.3,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -165,7 +168,8 @@ class ProductTable extends StatelessWidget {
                         children: [
                           Text(
                             AppHelpers.getTranslation(
-                                orderData?.details?[i].status ?? ""),
+                              orderData?.details?[i].status ?? "",
+                            ),
                             style: GoogleFonts.inter(
                               fontSize: 14.sp,
                               color: AppStyle.icon,
@@ -180,13 +184,15 @@ class ProductTable extends StatelessWidget {
                                 color: AppStyle.icon,
                               ),
                               onTap: () {
-                                onEdit.call(orderData?.details?[i].id,
-                                    orderData?.details?[i].status ?? "");
+                                onEdit.call(
+                                  orderData?.details?[i].id,
+                                  orderData?.details?[i].status ?? "",
+                                );
                               },
-                            )
+                            ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -203,7 +209,7 @@ class ProductTable extends StatelessWidget {
                         color: AppStyle.icon,
                         letterSpacing: -0.3,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -220,7 +226,7 @@ class ProductTable extends StatelessWidget {
                         color: AppStyle.icon,
                         letterSpacing: -0.3,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -240,7 +246,7 @@ class ProductTable extends StatelessWidget {
                         color: AppStyle.icon,
                         letterSpacing: -0.3,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -274,15 +280,20 @@ class ProductTable extends StatelessWidget {
                     children: [
                       const Divider(),
                       Text(
-                        (orderData?.details?[i].addons?[j].stocks?.product
-                                ?.translation?.title ??
+                        (orderData
+                                ?.details?[i]
+                                .addons?[j]
+                                .stocks
+                                ?.product
+                                ?.translation
+                                ?.title ??
                             ""),
                         style: GoogleFonts.inter(
                           fontSize: 14.sp,
                           color: AppStyle.icon,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -299,7 +310,7 @@ class ProductTable extends StatelessWidget {
                           color: AppStyle.icon,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -316,7 +327,7 @@ class ProductTable extends StatelessWidget {
                           color: AppStyle.icon,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -334,7 +345,7 @@ class ProductTable extends StatelessWidget {
                           color: AppStyle.icon,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -354,7 +365,7 @@ class ProductTable extends StatelessWidget {
                           color: AppStyle.icon,
                           letterSpacing: -0.3,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -364,4 +375,3 @@ class ProductTable extends StatelessWidget {
     );
   }
 }
-

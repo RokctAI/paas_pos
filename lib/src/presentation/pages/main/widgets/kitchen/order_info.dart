@@ -34,159 +34,160 @@ class _OrderInfoState extends ConsumerState<OrderInfo> {
       ),
       child: state.selectOrder != null
           ? SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                6.verticalSpace,
-                Text(
-                  AppHelpers.getTranslation(TrKeys.order),
-                  style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18.sp,
-                    color: AppStyle.black,
-                  ),
-                ),
-                10.verticalSpace,
-                Row(
-                  children: [
-                    Text(
-                      "#${AppHelpers.getTranslation(TrKeys.id)}${state.selectOrder?.id}",
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp,
-                        color: AppStyle.icon,
-                      ),
-                    ),
-                    12.horizontalSpace,
-                    Container(
-                      width: 8.r,
-                      height: 8.r,
-                      decoration: const BoxDecoration(
-                        color: AppStyle.icon,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                    12.horizontalSpace,
-                    Text(
-                      TimeService.dateFormatMDYHm(
-                        state.selectOrder?.createdAt?.toLocal(),
-                      ),
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp,
-                        color: AppStyle.icon,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const Divider(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                10.verticalSpace,
-                Text(
-                  AppHelpers.getTranslation(TrKeys.totalItem),
-                  style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18.sp,
-                    color: AppStyle.black,
-                  ),
-                ),
-                ListView.builder(
-                  padding: EdgeInsets.only(top: 16.r, right: 16.r),
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: state.selectOrder?.details?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    return OrderDetailsItem(
-                      orderDetail: state.selectOrder?.details?[index],
-                      onEdit: (id, status) {
-                        event.updateOrderDetailStatus(
-                          status: status,
-                          id: id,
-                          success: () {},
-                        );
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
-            const Divider(),
-            if (state.selectOrder?.note != null &&
-                state.selectOrder!.note!.isNotEmpty)
-              Column(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      6.verticalSpace,
                       Text(
-                        AppHelpers.getTranslation(TrKeys.note),
+                        AppHelpers.getTranslation(TrKeys.order),
                         style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.sp,
                           color: AppStyle.black,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.4,
                         ),
                       ),
-                      Expanded(
-                        child: Text(
-                          state.selectOrder?.note ?? '',
-                          textAlign: TextAlign.end,
-                          style: GoogleFonts.inter(
-                            color: AppStyle.black,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.4,
+                      10.verticalSpace,
+                      Row(
+                        children: [
+                          Text(
+                            "#${AppHelpers.getTranslation(TrKeys.id)}${state.selectOrder?.id}",
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.sp,
+                              color: AppStyle.icon,
+                            ),
                           ),
-                        ),
+                          12.horizontalSpace,
+                          Container(
+                            width: 8.r,
+                            height: 8.r,
+                            decoration: const BoxDecoration(
+                              color: AppStyle.icon,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          12.horizontalSpace,
+                          Text(
+                            TimeService.dateFormatMDYHm(
+                              state.selectOrder?.createdAt?.toLocal(),
+                            ),
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16.sp,
+                              color: AppStyle.icon,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                   const Divider(),
-                ],
-              ),
-            8.verticalSpace,
-            if (state.selectOrder?.status != TrKeys.canceled &&
-                state.selectOrder?.status != TrKeys.ready)
-              Column(
-                children: [
-                  16.verticalSpace,
-                  LoginButton(
-                    title: AppHelpers.getTranslation(
-                      state.selectOrder?.status == TrKeys.accepted
-                          ? TrKeys.startCooking
-                          : TrKeys.ready,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      10.verticalSpace,
+                      Text(
+                        AppHelpers.getTranslation(TrKeys.totalItem),
+                        style: GoogleFonts.inter(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18.sp,
+                          color: AppStyle.black,
+                        ),
+                      ),
+                      ListView.builder(
+                        padding: EdgeInsets.only(top: 16.r, right: 16.r),
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: state.selectOrder?.details?.length ?? 0,
+                        itemBuilder: (context, index) {
+                          return OrderDetailsItem(
+                            orderDetail: state.selectOrder?.details?[index],
+                            onEdit: (id, status) {
+                              event.updateOrderDetailStatus(
+                                status: status,
+                                id: id,
+                                success: () {},
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  const Divider(),
+                  if (state.selectOrder?.note != null &&
+                      state.selectOrder!.note!.isNotEmpty)
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppHelpers.getTranslation(TrKeys.note),
+                              style: GoogleFonts.inter(
+                                color: AppStyle.black,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.4,
+                              ),
+                            ),
+                            Expanded(
+                              child: Text(
+                                state.selectOrder?.note ?? '',
+                                textAlign: TextAlign.end,
+                                style: GoogleFonts.inter(
+                                  color: AppStyle.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.4,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Divider(),
+                      ],
                     ),
-                    onPressed: () => event.changeStatus(),
-                  ),
-                  16.verticalSpace,
-                  LoginButton(
-                    titleColor: AppStyle.white,
-                    title: AppHelpers.getTranslation(TrKeys.cancel),
-                    bgColor: AppStyle.red,
-                    onPressed: () => _showCancelConfirmation(context, event),
-                  ),
-                  16.verticalSpace,
+                  8.verticalSpace,
+                  if (state.selectOrder?.status != TrKeys.canceled &&
+                      state.selectOrder?.status != TrKeys.ready)
+                    Column(
+                      children: [
+                        16.verticalSpace,
+                        LoginButton(
+                          title: AppHelpers.getTranslation(
+                            state.selectOrder?.status == TrKeys.accepted
+                                ? TrKeys.startCooking
+                                : TrKeys.ready,
+                          ),
+                          onPressed: () => event.changeStatus(),
+                        ),
+                        16.verticalSpace,
+                        LoginButton(
+                          titleColor: AppStyle.white,
+                          title: AppHelpers.getTranslation(TrKeys.cancel),
+                          bgColor: AppStyle.red,
+                          onPressed: () =>
+                              _showCancelConfirmation(context, event),
+                        ),
+                        16.verticalSpace,
+                      ],
+                    ),
+                  _buildStatusMessage(state.selectOrder),
                 ],
               ),
-            _buildStatusMessage(state.selectOrder),
-          ],
-        ),
-      )
+            )
           : Center(
-        child: Text(
-          state.orders.isEmpty
-              ? AppHelpers.getTranslation(TrKeys.thereAreNoOrders)
-              : AppHelpers.getTranslation(TrKeys.noOrderIsSelected),
-        ),
-      ),
+              child: Text(
+                state.orders.isEmpty
+                    ? AppHelpers.getTranslation(TrKeys.thereAreNoOrders)
+                    : AppHelpers.getTranslation(TrKeys.noOrderIsSelected),
+              ),
+            ),
     );
   }
 
@@ -224,9 +225,7 @@ class _OrderInfoState extends ConsumerState<OrderInfo> {
       context: context,
       backgroundColor: AppStyle.white,
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.r),
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r)),
         padding: EdgeInsets.all(16.r),
         width: 300.r,
         child: Column(

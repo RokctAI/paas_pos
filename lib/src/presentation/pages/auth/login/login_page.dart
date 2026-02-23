@@ -55,29 +55,29 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
               ),
               // Overlay to darken the background slightly
-              Container(
-                color: AppStyle.black.withOpacity(0.3),
-              ),
+              Container(color: AppStyle.black.withOpacity(0.3)),
               // Close button for desktop
               if (isDesktop)
-              Positioned(
-                top: 10,
-                right: 10,
-                child: IconButton(
-                  icon: const Icon(Icons.close),
-                  color: AppStyle.black,
-                  onPressed: () async {
-                    await windowManager.close();
-                  },
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: IconButton(
+                    icon: const Icon(Icons.close),
+                    color: AppStyle.black,
+                    onPressed: () async {
+                      await windowManager.close();
+                    },
+                  ),
                 ),
-              ),
               // Centered form
               Center(
                 child: SingleChildScrollView(
                   child: Container(
                     constraints: BoxConstraints(maxWidth: 500.r),
-                    padding:
-                    EdgeInsets.symmetric(horizontal: 50.r, vertical: 42.r),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 50.r,
+                      vertical: 42.r,
+                    ),
                     decoration: BoxDecoration(
                       color: AppStyle.white.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(20.r),
@@ -106,9 +106,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 child: Text(
                                   AppHelpers.getAppName() ?? "Juvo Platforms",
                                   style: GoogleFonts.inter(
-                                      fontSize: 32.sp,
-                                      color: AppStyle.primary,
-                                      fontWeight: FontWeight.bold),
+                                    fontSize: 32.sp,
+                                    color: AppStyle.primary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
@@ -124,11 +125,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           isError: state.isLoginError || state.isEmailNotValid,
                           descriptionText: state.isEmailNotValid
                               ? AppHelpers.getTranslation(
-                              TrKeys.emailIsNotValid)
+                                  TrKeys.emailIsNotValid,
+                                )
                               : (state.isLoginError
-                              ? AppHelpers.getTranslation(
-                              TrKeys.loginCredentialsAreNotValid)
-                              : null),
+                                    ? AppHelpers.getTranslation(
+                                        TrKeys.loginCredentialsAreNotValid,
+                                      )
+                                    : null),
                           onFieldSubmitted: (value) => notifier.login(
                             context: context,
                             goToMain: () {
@@ -139,20 +142,24 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         24.verticalSpace,
                         CustomTextField(
                           textController: password,
-                          hintText:
-                          AppHelpers.getTranslation(TrKeys.enterpassword),
+                          hintText: AppHelpers.getTranslation(
+                            TrKeys.enterpassword,
+                          ),
                           obscure: state.showPassword,
                           onChanged: notifier.setPassword,
                           textCapitalization: TextCapitalization.none,
                           isError:
-                          state.isLoginError || state.isPasswordNotValid,
+                              state.isLoginError || state.isPasswordNotValid,
                           descriptionText: state.isPasswordNotValid
-                              ? AppHelpers.getTranslation(TrKeys
-                              .passwordShouldContainMinimum8Characters)
-                              : (state.isLoginError
                               ? AppHelpers.getTranslation(
-                              TrKeys.loginCredentialsAreNotValid)
-                              : null),
+                                  TrKeys
+                                      .passwordShouldContainMinimum8Characters,
+                                )
+                              : (state.isLoginError
+                                    ? AppHelpers.getTranslation(
+                                        TrKeys.loginCredentialsAreNotValid,
+                                      )
+                                    : null),
                           suffixIcon: IconButton(
                             splashRadius: 25.r,
                             icon: Icon(
@@ -170,7 +177,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             goToMain: () {
                               bool checkPin = LocalStorage.getPinCode().isEmpty;
                               context.replaceRoute(
-                                  PinCodeRoute(isNewPassword: checkPin));
+                                PinCodeRoute(isNewPassword: checkPin),
+                              );
                             },
                           ),
                         ),
@@ -182,9 +190,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             Text(
                               AppHelpers.getTranslation(TrKeys.keepMe),
                               style: GoogleFonts.inter(
-                                  fontSize: 14.sp,
-                                  color: AppStyle.black,
-                                  fontWeight: FontWeight.w500),
+                                fontSize: 14.sp,
+                                color: AppStyle.black,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ],
                         ),
@@ -196,7 +205,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             context: context,
                             goToMain: () {
                               context.replaceRoute(
-                                  PinCodeRoute(isNewPassword: true));
+                                PinCodeRoute(isNewPassword: true),
+                              );
                             },
                           ),
                         ),
@@ -208,8 +218,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               login.text = AppConstants.demoSellerLogin;
                               password.text = AppConstants.demoSellerPassword;
                               notifier.setEmail(AppConstants.demoSellerLogin);
-                              notifier
-                                  .setPassword(AppConstants.demoSellerPassword);
+                              notifier.setPassword(
+                                AppConstants.demoSellerPassword,
+                              );
                             },
                           ),
                           16.verticalSpace,
@@ -219,8 +230,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               login.text = AppConstants.demoCookerLogin;
                               password.text = AppConstants.demoCookerPassword;
                               notifier.setEmail(AppConstants.demoCookerLogin);
-                              notifier
-                                  .setPassword(AppConstants.demoCookerPassword);
+                              notifier.setPassword(
+                                AppConstants.demoCookerPassword,
+                              );
                             },
                           ),
                           16.verticalSpace,
@@ -230,8 +242,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               login.text = AppConstants.demoWaiterLogin;
                               password.text = AppConstants.demoWaiterPassword;
                               notifier.setEmail(AppConstants.demoWaiterLogin);
-                              notifier
-                                  .setPassword(AppConstants.demoWaiterPassword);
+                              notifier.setPassword(
+                                AppConstants.demoWaiterPassword,
+                              );
                             },
                           ),
                         ],

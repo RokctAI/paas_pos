@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/theme.dart';
 
-
 class TextExtrasItem extends StatelessWidget {
   final VoidCallback onTap;
   final bool isActive;
@@ -76,4 +75,3 @@ class TextExtrasItem extends StatelessWidget {
     );
   }
 }
-

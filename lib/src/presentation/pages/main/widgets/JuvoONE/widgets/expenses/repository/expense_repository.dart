@@ -31,7 +31,9 @@ class ExpenseRepository {
   }
 
   // Wrapper method to check connectivity before making network calls
-  Future<Either<String, T>> _safeApiCall<T>(Future<T> Function() apiCall) async {
+  Future<Either<String, T>> _safeApiCall<T>(
+    Future<T> Function() apiCall,
+  ) async {
     // Check internet connectivity
     final isConnected = await AppConnectivity.connectivity();
 
@@ -62,13 +64,15 @@ class ExpenseRepository {
     print('⭐️ startDate: $startDate');
     print('⭐️ endDate: $endDate');
 
-    return _safeApiCall(() => _expenseService.getExpenses(
-      shopId: shopId,
-      startDate: startDate,
-      endDate: endDate,
-      page: page,
-      perPage: perPage,
-    ));
+    return _safeApiCall(
+      () => _expenseService.getExpenses(
+        shopId: shopId,
+        startDate: startDate,
+        endDate: endDate,
+        page: page,
+        perPage: perPage,
+      ),
+    );
   }
 
   Future<Either<String, Expense>> createExpense(Expense expense) async {
@@ -88,11 +92,13 @@ class ExpenseRepository {
     DateTime? startDate,
     DateTime? endDate,
   }) async {
-    return _safeApiCall(() => _expenseService.getStatistics(
-      shopId: shopId,
-      startDate: startDate,
-      endDate: endDate,
-    ));
+    return _safeApiCall(
+      () => _expenseService.getStatistics(
+        shopId: shopId,
+        startDate: startDate,
+        endDate: endDate,
+      ),
+    );
   }
 }
 

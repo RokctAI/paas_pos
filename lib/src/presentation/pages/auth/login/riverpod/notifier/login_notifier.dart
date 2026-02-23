@@ -14,8 +14,10 @@ class LoginNotifier extends StateNotifier<LoginState> {
   final CurrenciesRepository _currenciesRepository;
 
   LoginNotifier(
-      this._authRepository, this._currenciesRepository, this._usersRepository)
-      : super(const LoginState());
+    this._authRepository,
+    this._currenciesRepository,
+    this._usersRepository,
+  ) : super(const LoginState());
 
   void setPassword(String text) {
     state = state.copyWith(
@@ -65,12 +67,16 @@ class LoginNotifier extends StateNotifier<LoginState> {
 
           // Save shop location
           if (userData != null) {
-            print('Saving shop location for user: ${userData.id}'); // Debug print
+            print(
+              'Saving shop location for user: ${userData.id}',
+            ); // Debug print
             await LocalStorage.saveUserShopLocation(userData);
 
             // Debug prints to verify location
             final savedLocation = LocalStorage.getShopLocation();
-            print('Saved shop location: lat=${savedLocation?.latitude}, lon=${savedLocation?.longitude}');
+            print(
+              'Saved shop location: lat=${savedLocation?.latitude}, lon=${savedLocation?.longitude}',
+            );
           }
 
           fetchCurrencies(
@@ -88,12 +94,13 @@ class LoginNotifier extends StateNotifier<LoginState> {
           final res = await _usersRepository.getProfileDetails(context);
 
           res.when(
-              success: (s) {
-                LocalStorage.setUser(s.data);
-                // Also save shop location after getting profile details
-                LocalStorage.saveUserShopLocation(s.data);
-              },
-              failure: (failure) {});
+            success: (s) {
+              LocalStorage.setUser(s.data);
+              // Also save shop location after getting profile details
+              LocalStorage.saveUserShopLocation(s.data);
+            },
+            failure: (failure) {},
+          );
 
           if (Platform.isAndroid || Platform.isIOS) {
             String? fcmToken;
@@ -154,4 +161,3 @@ class LoginNotifier extends StateNotifier<LoginState> {
     }
   }
 }
-

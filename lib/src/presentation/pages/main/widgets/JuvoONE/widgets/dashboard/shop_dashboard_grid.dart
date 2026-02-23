@@ -18,9 +18,13 @@ import 'dashboard_page.dart';
 import 'shop_dashboard_card.dart';
 
 // Provider to store the list of shops with their dashboard summaries
-final shopsDashboardProvider = StateNotifierProvider<ShopsDashboardNotifier, AsyncValue<List<ShopDashboardSummary>>>((ref) {
-  return ShopsDashboardNotifier();
-});
+final shopsDashboardProvider =
+    StateNotifierProvider<
+      ShopsDashboardNotifier,
+      AsyncValue<List<ShopDashboardSummary>>
+    >((ref) {
+      return ShopsDashboardNotifier();
+    });
 
 // Provider to track the currently selected shop
 final selectedShopProvider = StateProvider<int?>((ref) => null);
@@ -84,14 +88,13 @@ class ShopDashboardSummary {
 
   static Map<String, dynamic>? _parseTankStatuses(dynamic tankStatuses) {
     if (tankStatuses == null) return null;
-    return tankStatuses is Map
-        ? Map<String, dynamic>.from(tankStatuses)
-        : null;
+    return tankStatuses is Map ? Map<String, dynamic>.from(tankStatuses) : null;
   }
 }
 
 // Notifier for shop dashboard data
-class ShopsDashboardNotifier extends StateNotifier<AsyncValue<List<ShopDashboardSummary>>> {
+class ShopsDashboardNotifier
+    extends StateNotifier<AsyncValue<List<ShopDashboardSummary>>> {
   ShopsDashboardNotifier() : super(const AsyncValue.loading()) {
     fetchShopsDashboard();
   }
@@ -103,7 +106,9 @@ class ShopsDashboardNotifier extends StateNotifier<AsyncValue<List<ShopDashboard
       final httpService = HttpService();
       final dio = httpService.client(requireAuth: true);
 
-      final response = await dio.get('/api/v1/dashboard/admin/shops/dashboard/summary');
+      final response = await dio.get(
+        '/api/v1/dashboard/admin/shops/dashboard/summary',
+      );
 
       if (response.statusCode == 200) {
         final responseData = response.data;
@@ -113,20 +118,20 @@ class ShopsDashboardNotifier extends StateNotifier<AsyncValue<List<ShopDashboard
 
           // Process shops with error handling
           final List<ShopDashboardSummary> shops = await Future.wait(
-              rawShopData.map((shopData) async {
-                try {
-                  final shop = ShopDashboardSummary.fromJson(shopData);
-                  return await _enrichWithEfficiency(shop);
-                } catch (e) {
-                  if (kDebugMode) {
-                    print('Error processing shop data: $e');
-                  }
-                  return ShopDashboardSummary(
-                    id: ShopDashboardSummary._parseId(shopData['id']),
-                    name: (shopData['name'] ?? 'Error Shop').toString(),
-                  );
+            rawShopData.map((shopData) async {
+              try {
+                final shop = ShopDashboardSummary.fromJson(shopData);
+                return await _enrichWithEfficiency(shop);
+              } catch (e) {
+                if (kDebugMode) {
+                  print('Error processing shop data: $e');
                 }
-              })
+                return ShopDashboardSummary(
+                  id: ShopDashboardSummary._parseId(shopData['id']),
+                  name: (shopData['name'] ?? 'Error Shop').toString(),
+                );
+              }
+            }),
           );
 
           state = AsyncValue.data(shops);
@@ -148,14 +153,13 @@ class ShopsDashboardNotifier extends StateNotifier<AsyncValue<List<ShopDashboard
         StackTrace.current,
       );
     } catch (e, stackTrace) {
-      state = AsyncValue.error(
-        'Unexpected error: ${e.toString()}',
-        stackTrace,
-      );
+      state = AsyncValue.error('Unexpected error: ${e.toString()}', stackTrace);
     }
   }
 
-  Future<ShopDashboardSummary> _enrichWithEfficiency(ShopDashboardSummary shop) async {
+  Future<ShopDashboardSummary> _enrichWithEfficiency(
+    ShopDashboardSummary shop,
+  ) async {
     // If efficiency is already set, return the shop as-is
     if (shop.systemEfficiency != null) return shop;
 
@@ -163,7 +167,9 @@ class ShopsDashboardNotifier extends StateNotifier<AsyncValue<List<ShopDashboard
       final httpService = HttpService();
       final dio = httpService.client(requireAuth: true);
 
-      final response = await dio.get('/api/v1/rest/resources/ro-systems/${shop.id}');
+      final response = await dio.get(
+        '/api/v1/rest/resources/ro-systems/${shop.id}',
+      );
 
       if (response.statusCode == 200 && response.data['data'] != null) {
         final roSystem = response.data['data'];
@@ -198,7 +204,8 @@ class ShopsDashboardNotifier extends StateNotifier<AsyncValue<List<ShopDashboard
       final vessels = roSystem['vessels'] as List? ?? [];
       final filters = roSystem['filters'] as List? ?? [];
       final membraneCount = roSystem['membrane_count'] as int? ?? 0;
-      final membraneInstallationDate = roSystem['membrane_installation_date'] != null
+      final membraneInstallationDate =
+          roSystem['membrane_installation_date'] != null
           ? DateTime.parse(roSystem['membrane_installation_date'])
           : DateTime.now();
 
@@ -268,19 +275,27 @@ class ShopsDashboardNotifier extends StateNotifier<AsyncValue<List<ShopDashboard
 
     double baseEfficiency = 100.0;
     if (replacementLifespan != null) {
-      baseEfficiency = 100.0 * (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
+      baseEfficiency =
+          100.0 *
+          (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
     }
 
     // Maintenance boost if applicable
     if (lastMaintenanceDate != null) {
       final daysSinceMaintenance = now.difference(lastMaintenanceDate).inDays;
-      const maintenanceEffectDays = 30; // Maintenance improves efficiency for 30 days
+      const maintenanceEffectDays =
+          30; // Maintenance improves efficiency for 30 days
       const maintenanceBoost = 20.0; // Maintenance can boost efficiency by 20%
 
       if (daysSinceMaintenance <= maintenanceEffectDays) {
-        final maintenanceMultiplier = 1 + (maintenanceBoost / 100) *
-            (1 - daysSinceMaintenance / maintenanceEffectDays);
-        baseEfficiency = (baseEfficiency * maintenanceMultiplier).clamp(0.0, 100.0);
+        final maintenanceMultiplier =
+            1 +
+            (maintenanceBoost / 100) *
+                (1 - daysSinceMaintenance / maintenanceEffectDays);
+        baseEfficiency = (baseEfficiency * maintenanceMultiplier).clamp(
+          0.0,
+          100.0,
+        );
       }
     }
 
@@ -357,155 +372,169 @@ class _ShopsDashboardGridState extends ConsumerState<ShopsDashboardGrid> {
     if (_isCheckingUserShop) {
       return Scaffold(
         backgroundColor: AppStyle.bg,
-        body: const Center(
-          child: CircularProgressIndicator(),
-        ),
+        body: const Center(child: CircularProgressIndicator()),
       );
     }
 
     return CustomScaffold(
-        body: (c) => Padding(
-          padding: REdgeInsets.symmetric(horizontal: 16),
-          child: shopsAsync.when(
-            data: (shops) {
-              if (shops.isEmpty) {
-                return Center(
-                  child: Text(
-                    'No shops found',
-                    style: TextStyle(
-                      color: AppStyle.black,
-                      fontSize: 16.sp,
-                    ),
-                  ),
-                );
-              }
-
-              return RefreshIndicator(
-                onRefresh: () => ref.read(shopsDashboardProvider.notifier).refresh(),
-                child: Padding(
-                  padding: EdgeInsets.all(16.r),
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: MediaQuery.of(context).size.width > 1200 ? 3 : 2,
-                      crossAxisSpacing: 12.r, // Reduced spacing
-                      mainAxisSpacing: 12.r, // Reduced spacing
-                      childAspectRatio: 2, // Adjusted ratio for better fit and less white space
-                    ),
-                    itemCount: shops.length,
-                    itemBuilder: (context, index) {
-                      final shop = shops[index];
-                      return ShopDashboardCard(
-                        shop: shop,
-                        onTap: () async {
-                          // Show a loading indicator
-                          final overlay = _showLoadingOverlay(context);
-
-                          try {
-                            // Start preloading data in parallel
-                            final shopId = shop.id;
-
-                            // Set the selected shop ID first
-                            ref.read(selectedShopProvider.notifier).state = shopId;
-
-                            // Preload orders data
-                            final ordersFuture = ref.read(waterosOrdersProvider.notifier).fetchOrders(shopId);
-
-                            // Preload tanks data
-                            final tanksFuture = TankApiService.getTanksByShopId(shopId);
-
-                            // Preload RO system data
-                            final roSystemFuture = MaintenanceService.getROSystemByShopId(shopId);
-
-                            // Preload energy consumption data
-                            final energyFuture = EnergyService().fetchEnergyConsumption(shopId);
-
-                            // Wait for all preloading to complete
-                            await Future.wait([
-                              ordersFuture,
-                              tanksFuture.then((tanks) {
-                                // Cache the tanks data in a provider if needed
-                              }).catchError((e) {
-                                if (kDebugMode) {
-                                  print('Error preloading tanks: $e');
-                                }
-                                // Continue despite errors
-                                return null;
-                              }),
-                              roSystemFuture.then((roSystem) {
-                                // Cache the RO system data if needed
-                              }).catchError((e) {
-                                if (kDebugMode) {
-                                  print('Error preloading RO system: $e');
-                                }
-                                // Continue despite errors
-                                return null;
-                              }),
-                              energyFuture.then((energyData) {
-                                // Cache the energy data if needed
-                              }).catchError((e) {
-                                if (kDebugMode) {
-                                  print('Error preloading energy data: $e');
-                                }
-                                // Continue despite errors
-                                return null;
-                              }),
-                            ]);
-
-                            // Remove loading overlay
-                            overlay.remove();
-
-                            // Now show the dashboard
-                            ref.read(showDashboardProvider.notifier).state = true;
-                          } catch (e) {
-                            // Remove loading overlay in case of error
-                            overlay.remove();
-
-                            // Show error message
-                            if (context.mounted) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Error loading dashboard data: ${e.toString()}'),
-                                  duration: const Duration(seconds: 3),
-                                ),
-                              );
-                            }
-
-                            if (kDebugMode) {
-                              print('Error preloading dashboard data: $e');
-                            }
-                          }
-                        },
-                      );
-                    },
-                  ),
+      body: (c) => Padding(
+        padding: REdgeInsets.symmetric(horizontal: 16),
+        child: shopsAsync.when(
+          data: (shops) {
+            if (shops.isEmpty) {
+              return Center(
+                child: Text(
+                  'No shops found',
+                  style: TextStyle(color: AppStyle.black, fontSize: 16.sp),
                 ),
               );
-            },
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (error, stack) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Error: $error',
-                    style: TextStyle(
-                      color: AppStyle.red,
-                      fontSize: 16.sp,
-                    ),
-                    textAlign: TextAlign.center,
+            }
+
+            return RefreshIndicator(
+              onRefresh: () =>
+                  ref.read(shopsDashboardProvider.notifier).refresh(),
+              child: Padding(
+                padding: EdgeInsets.all(16.r),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: MediaQuery.of(context).size.width > 1200
+                        ? 3
+                        : 2,
+                    crossAxisSpacing: 12.r, // Reduced spacing
+                    mainAxisSpacing: 12.r, // Reduced spacing
+                    childAspectRatio:
+                        2, // Adjusted ratio for better fit and less white space
                   ),
-                  SizedBox(height: 16.h),
-                  ElevatedButton(
-                    onPressed: () => ref.read(shopsDashboardProvider.notifier).refresh(),
-                    child: const Text('Retry'),
-                  ),
-                ],
+                  itemCount: shops.length,
+                  itemBuilder: (context, index) {
+                    final shop = shops[index];
+                    return ShopDashboardCard(
+                      shop: shop,
+                      onTap: () async {
+                        // Show a loading indicator
+                        final overlay = _showLoadingOverlay(context);
+
+                        try {
+                          // Start preloading data in parallel
+                          final shopId = shop.id;
+
+                          // Set the selected shop ID first
+                          ref.read(selectedShopProvider.notifier).state =
+                              shopId;
+
+                          // Preload orders data
+                          final ordersFuture = ref
+                              .read(waterosOrdersProvider.notifier)
+                              .fetchOrders(shopId);
+
+                          // Preload tanks data
+                          final tanksFuture = TankApiService.getTanksByShopId(
+                            shopId,
+                          );
+
+                          // Preload RO system data
+                          final roSystemFuture =
+                              MaintenanceService.getROSystemByShopId(shopId);
+
+                          // Preload energy consumption data
+                          final energyFuture = EnergyService()
+                              .fetchEnergyConsumption(shopId);
+
+                          // Wait for all preloading to complete
+                          await Future.wait([
+                            ordersFuture,
+                            tanksFuture
+                                .then((tanks) {
+                                  // Cache the tanks data in a provider if needed
+                                })
+                                .catchError((e) {
+                                  if (kDebugMode) {
+                                    print('Error preloading tanks: $e');
+                                  }
+                                  // Continue despite errors
+                                  return null;
+                                }),
+                            roSystemFuture
+                                .then((roSystem) {
+                                  // Cache the RO system data if needed
+                                })
+                                .catchError((e) {
+                                  if (kDebugMode) {
+                                    print('Error preloading RO system: $e');
+                                  }
+                                  // Continue despite errors
+                                  return null;
+                                }),
+                            energyFuture
+                                .then((energyData) {
+                                  // Cache the energy data if needed
+                                })
+                                .catchError((e) {
+                                  if (kDebugMode) {
+                                    print('Error preloading energy data: $e');
+                                  }
+                                  // Continue despite errors
+                                  return null;
+                                }),
+                          ]);
+
+                          // Remove loading overlay
+                          overlay.remove();
+
+                          // Now show the dashboard
+                          ref.read(showDashboardProvider.notifier).state = true;
+                        } catch (e) {
+                          // Remove loading overlay in case of error
+                          overlay.remove();
+
+                          // Show error message
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Error loading dashboard data: ${e.toString()}',
+                                ),
+                                duration: const Duration(seconds: 3),
+                              ),
+                            );
+                          }
+
+                          if (kDebugMode) {
+                            print('Error preloading dashboard data: $e');
+                          }
+                        }
+                      },
+                    );
+                  },
+                ),
               ),
+            );
+          },
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (error, stack) => Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Error: $error',
+                  style: TextStyle(color: AppStyle.red, fontSize: 16.sp),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 16.h),
+                ElevatedButton(
+                  onPressed: () =>
+                      ref.read(shopsDashboardProvider.notifier).refresh(),
+                  child: const Text('Retry'),
+                ),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
+
 // Add this helper method to show a loading overlay
 OverlayEntry _showLoadingOverlay(BuildContext context) {
   final overlay = OverlayEntry(

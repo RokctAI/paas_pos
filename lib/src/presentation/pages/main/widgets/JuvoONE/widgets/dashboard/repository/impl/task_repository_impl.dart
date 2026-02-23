@@ -12,11 +12,11 @@ class TaskRepositoryImpl implements TaskRepository {
 
   @override
   Future<ApiResult<List<TodoTask>>> fetchTasks(
-      String? shopId, {
-        String? kpiId,
-        String? objectiveId,
-        String? appId,
-      }) async {
+    String? shopId, {
+    String? kpiId,
+    String? objectiveId,
+    String? appId,
+  }) async {
     try {
       // Build query parameters
       final queryParams = <String, dynamic>{};
@@ -107,13 +107,12 @@ class TaskRepositoryImpl implements TaskRepository {
       }
 
       final dio = _httpService.client(requireAuth: true);
-      final response = await dio.post(
-        '$_baseUrl/tasks',
-        data: data,
-      );
+      final response = await dio.post('$_baseUrl/tasks', data: data);
 
       if (kDebugMode) {
-        print('Task creation response: ${response.statusCode} ${response.data}');
+        print(
+          'Task creation response: ${response.statusCode} ${response.data}',
+        );
       }
 
       if (response.statusCode == 201) {
@@ -138,7 +137,8 @@ class TaskRepositoryImpl implements TaskRepository {
       }
 
       // Extract validation errors if present
-      if (e.response?.statusCode == 422 && e.response?.data?['errors'] != null) {
+      if (e.response?.statusCode == 422 &&
+          e.response?.data?['errors'] != null) {
         final errors = e.response!.data['errors'] as Map<String, dynamic>;
         final errorMessages = errors.values
             .expand((e) => e is List ? e : [e.toString()])
@@ -160,13 +160,13 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<ApiResult<TodoTask>> updateTask(String uuid, Map<String, dynamic> data) async {
+  Future<ApiResult<TodoTask>> updateTask(
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
-      final response = await dio.put(
-        '$_baseUrl/tasks/$uuid',
-        data: data,
-      );
+      final response = await dio.put('$_baseUrl/tasks/$uuid', data: data);
 
       if (response.statusCode == 200) {
         final jsonData = response.data;

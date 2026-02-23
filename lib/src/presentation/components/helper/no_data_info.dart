@@ -4,11 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../generated/assets.dart';
 import '../../theme/theme.dart';
 
-
 class NoDataInfo extends StatelessWidget {
   final String title;
 
-  const NoDataInfo({super.key, required this.title}) ;
+  const NoDataInfo({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +25,9 @@ class NoDataInfo extends StatelessWidget {
               letterSpacing: -0.3,
             ),
             textAlign: TextAlign.center,
-          )
+          ),
         ],
       ),
     );
   }
 }
-

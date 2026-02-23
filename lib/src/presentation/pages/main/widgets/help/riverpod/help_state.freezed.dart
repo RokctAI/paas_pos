@@ -12,7 +12,8 @@ part of 'help_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$HelpState {
@@ -48,20 +49,20 @@ class _$HelpStateCopyWithImpl<$Res, $Val extends HelpState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isLoading = null,
-    Object? data = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as HelpModel?,
-    ) as $Val);
+  $Res call({Object? isLoading = null, Object? data = freezed}) {
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            data: freezed == data
+                ? _value.data
+                : data // ignore: cast_nullable_to_non_nullable
+                      as HelpModel?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -69,8 +70,9 @@ class _$HelpStateCopyWithImpl<$Res, $Val extends HelpState>
 abstract class _$$HelpStateImplCopyWith<$Res>
     implements $HelpStateCopyWith<$Res> {
   factory _$$HelpStateImplCopyWith(
-          _$HelpStateImpl value, $Res Function(_$HelpStateImpl) then) =
-      __$$HelpStateImplCopyWithImpl<$Res>;
+    _$HelpStateImpl value,
+    $Res Function(_$HelpStateImpl) then,
+  ) = __$$HelpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isLoading, HelpModel? data});
@@ -81,27 +83,27 @@ class __$$HelpStateImplCopyWithImpl<$Res>
     extends _$HelpStateCopyWithImpl<$Res, _$HelpStateImpl>
     implements _$$HelpStateImplCopyWith<$Res> {
   __$$HelpStateImplCopyWithImpl(
-      _$HelpStateImpl _value, $Res Function(_$HelpStateImpl) _then)
-      : super(_value, _then);
+    _$HelpStateImpl _value,
+    $Res Function(_$HelpStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of HelpState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isLoading = null,
-    Object? data = freezed,
-  }) {
-    return _then(_$HelpStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as HelpModel?,
-    ));
+  $Res call({Object? isLoading = null, Object? data = freezed}) {
+    return _then(
+      _$HelpStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        data: freezed == data
+            ? _value.data
+            : data // ignore: cast_nullable_to_non_nullable
+                  as HelpModel?,
+      ),
+    );
   }
 }
 
@@ -161,4 +163,3 @@ abstract class _HelpState extends HelpState {
   _$$HelpStateImplCopyWith<_$HelpStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

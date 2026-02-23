@@ -20,28 +20,29 @@ class DiscountNotifier extends StateNotifier<DiscountState> {
       state = state.copyWith(discounts: [], isLoading: true, hasMore: true);
     }
     final res = await _discountRepository.getAllDiscounts(page: ++_page);
-    res.when(success: (data) {
-      List<DiscountData> list = List.from(state.discounts);
-      list.addAll(data.data ?? []);
-      state = state.copyWith(
+    res.when(
+      success: (data) {
+        List<DiscountData> list = List.from(state.discounts);
+        list.addAll(data.data ?? []);
+        state = state.copyWith(
           isLoading: false,
           discounts: list,
           hasMore: list.length < (data.meta?.total ?? 0),
-      );
-      if (isRefresh ?? false) {
+        );
+        if (isRefresh ?? false) {
+          return;
+        } else if (data.data?.isEmpty ?? true) {
+          return;
+        }
         return;
-      } else if (data.data?.isEmpty ?? true) {
-
-        return;
-      }
-      return;
-    },
+      },
       failure: (failure) {
         state = state.copyWith(isLoading: false);
         debugPrint('==> error with fetch discount  $failure');
       },
     );
   }
+
   Future<void> deleteDiscount(BuildContext context, int? id) async {
     state = state.copyWith(isLoading: true);
     final response = await _discountRepository.deleteDiscount(id);
@@ -59,4 +60,3 @@ class DiscountNotifier extends StateNotifier<DiscountState> {
     state = state.copyWith(isLoading: false);
   }
 }
-

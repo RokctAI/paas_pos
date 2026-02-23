@@ -38,29 +38,31 @@ class LoginButton extends StatelessWidget {
             height: 56.r,
             padding: EdgeInsets.symmetric(horizontal: 12.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.r),
-                border: Border.all(
-                    color: effectiveBgColor == AppStyle.transparent
-                        ? AppStyle.selectedItemsText
-                        : AppStyle.transparent)),
+              borderRadius: BorderRadius.circular(8.r),
+              border: Border.all(
+                color: effectiveBgColor == AppStyle.transparent
+                    ? AppStyle.selectedItemsText
+                    : AppStyle.transparent,
+              ),
+            ),
             alignment: Alignment.center,
             child: isLoading
                 ? SizedBox(
-              height: 24.r,
-              width: 24.r,
-              child: CircularProgressIndicator(
-                strokeWidth: 2.r,
-                color: AppStyle.white,
-              ),
-            )
+                    height: 24.r,
+                    width: 24.r,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.r,
+                      color: AppStyle.white,
+                    ),
+                  )
                 : Text(
-              title,
-              style: GoogleFonts.inter(
-                fontSize: 16.sp,
-                color: isActive ? titleColor : AppStyle.black,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+                    title,
+                    style: GoogleFonts.inter(
+                      fontSize: 16.sp,
+                      color: isActive ? titleColor : AppStyle.black,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
           ),
         ),
       ),

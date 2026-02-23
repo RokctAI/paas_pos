@@ -10,7 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-
 class UserInformation extends StatelessWidget {
   final UserData? user;
   final OrderData? order;
@@ -18,21 +17,24 @@ class UserInformation extends StatelessWidget {
   final ValueChanged? onChanged;
   final VoidCallback setDeliveryman;
 
-  const UserInformation(
-      {super.key,
-      required this.user,
-      this.order,
-      this.selectUser,
-      this.onChanged,
-      required this.setDeliveryman});
+  const UserInformation({
+    super.key,
+    required this.user,
+    this.order,
+    this.selectUser,
+    this.onChanged,
+    required this.setDeliveryman,
+  });
 
   @override
   Widget build(BuildContext context) {
     num subTotal = 0;
-    subTotal = (order?.totalPrice ?? 0) -
+    subTotal =
+        (order?.totalPrice ?? 0) -
         (order?.tax ?? 0) -
         (order?.deliveryFee ?? 0) +
-        (order?.totalDiscount ?? 0)+ (order?.couponPrice ?? 0);
+        (order?.totalDiscount ?? 0) +
+        (order?.couponPrice ?? 0);
     return Container(
       decoration: BoxDecoration(
         color: AppStyle.white,
@@ -59,26 +61,29 @@ class UserInformation extends StatelessWidget {
                   Text(
                     "${AppHelpers.getTranslation(TrKeys.order)} №${order?.id}",
                     style: GoogleFonts.inter(
-                        fontSize: 22.sp, fontWeight: FontWeight.w600,
-                    color: AppStyle.black),
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.w600,
+                      color: AppStyle.black,
+                    ),
                   ),
                   6.verticalSpace,
                   Row(
                     children: [
-
                       10.horizontalSpace,
                       Text(
-                        DateFormat("MMM d, HH:mm").format(
-                            order?.createdAt?.toLocal() ?? DateTime.now()),
+                        DateFormat(
+                          "MMM d, HH:mm",
+                        ).format(order?.createdAt?.toLocal() ?? DateTime.now()),
                         style: GoogleFonts.inter(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: AppStyle.icon),
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          color: AppStyle.icon,
+                        ),
                       ),
                     ],
                   ),
                 ],
-              )
+              ),
             ],
           ),
           8.verticalSpace,
@@ -91,7 +96,9 @@ class UserInformation extends StatelessWidget {
                 Text(
                   AppHelpers.getTranslation(TrKeys.deliveryAddress),
                   style: GoogleFonts.inter(
-                      fontSize: 16.sp, color: AppStyle.icon),
+                    fontSize: 16.sp,
+                    color: AppStyle.icon,
+                  ),
                 ),
                 12.verticalSpace,
                 Text(
@@ -111,7 +118,9 @@ class UserInformation extends StatelessWidget {
                 Text(
                   AppHelpers.getTranslation(TrKeys.phoneNumber),
                   style: GoogleFonts.inter(
-                      fontSize: 16.sp, color: AppStyle.icon),
+                    fontSize: 16.sp,
+                    color: AppStyle.icon,
+                  ),
                 ),
                 12.verticalSpace,
                 Text(
@@ -130,14 +139,14 @@ class UserInformation extends StatelessWidget {
                 Text(
                   AppHelpers.getTranslation(TrKeys.tableName),
                   style: GoogleFonts.inter(
-                      fontSize: 16.sp, color: AppStyle.icon),
+                    fontSize: 16.sp,
+                    color: AppStyle.icon,
+                  ),
                 ),
                 12.verticalSpace,
                 Text(
                   order?.table?.name ?? "",
-                  style: GoogleFonts.inter(
-                    fontSize: 18.sp,
-                  ),
+                  style: GoogleFonts.inter(fontSize: 18.sp),
                 ),
               ],
             ),
@@ -153,7 +162,7 @@ class UserInformation extends StatelessWidget {
             setDeliveryman: setDeliveryman,
             selectUser: selectUser,
             onChanged: onChanged,
-          )
+          ),
         ],
       ),
     );
@@ -256,10 +265,7 @@ class UserInformation extends StatelessWidget {
               ),
             ),
             Text(
-              "-${AppHelpers.numberFormat(
-                order?.totalDiscount ?? 0,
-                symbol: order?.currency?.symbol,
-              )}",
+              "-${AppHelpers.numberFormat(order?.totalDiscount ?? 0, symbol: order?.currency?.symbol)}",
               style: GoogleFonts.inter(
                 color: AppStyle.red,
                 fontSize: 16.sp,
@@ -268,7 +274,8 @@ class UserInformation extends StatelessWidget {
               ),
             ),
           ],
-        ),  20.verticalSpace,
+        ),
+        20.verticalSpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -282,10 +289,7 @@ class UserInformation extends StatelessWidget {
               ),
             ),
             Text(
-              "-${AppHelpers.numberFormat(
-                order?.couponPrice ?? 0,
-                symbol: order?.currency?.symbol,
-              )}",
+              "-${AppHelpers.numberFormat(order?.couponPrice ?? 0, symbol: order?.currency?.symbol)}",
               style: GoogleFonts.inter(
                 color: AppStyle.red,
                 fontSize: 16.sp,
@@ -326,4 +330,3 @@ class UserInformation extends StatelessWidget {
     );
   }
 }
-

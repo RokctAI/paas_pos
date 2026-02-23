@@ -64,4 +64,3 @@ class IncreaseDecreaseButton extends StatelessWidget {
     );
   }
 }
-

@@ -12,18 +12,24 @@ class ROSystemEfficiency {
     int componentCount = 0;
 
     // Get maintenance records for efficiency calculations
-    final vesselRecords = await MaintenanceApiService.getMaintenanceRecords(type: 'vessel');
-    final membraneRecords = await MaintenanceApiService.getMaintenanceRecords(type: 'membrane');
+    final vesselRecords = await MaintenanceApiService.getMaintenanceRecords(
+      type: 'vessel',
+    );
+    final membraneRecords = await MaintenanceApiService.getMaintenanceRecords(
+      type: 'membrane',
+    );
 
     // Calculate vessel efficiencies
     for (final vessel in system.vessels) {
       final lastMaintenance = vesselRecords
           .where((record) => record.referenceId == vessel.id)
           .fold<DateTime?>(
-          null,
-              (latest, record) => latest == null || record.maintenanceDate.isAfter(latest)
-              ? record.maintenanceDate
-              : latest);
+            null,
+            (latest, record) =>
+                latest == null || record.maintenanceDate.isAfter(latest)
+                ? record.maintenanceDate
+                : latest,
+          );
 
       totalEfficiency += calculateComponentEfficiency(
         installationDate: vessel.installationDate,
@@ -45,8 +51,8 @@ class ROSystemEfficiency {
     if (system.membraneInstallationDate != null) {
       final lastMembraneMaintenance = membraneRecords.isNotEmpty
           ? membraneRecords
-          .map((record) => record.maintenanceDate)
-          .reduce((a, b) => a.isAfter(b) ? a : b)
+                .map((record) => record.maintenanceDate)
+                .reduce((a, b) => a.isAfter(b) ? a : b)
           : null;
 
       totalEfficiency += calculateComponentEfficiency(
@@ -70,7 +76,8 @@ class ROSystemEfficiency {
 
     if (replacementLifespan != null) {
       // For components that need replacement (filters, membranes)
-      return 100.0 * (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
+      return 100.0 *
+          (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
     } else {
       // For components that need maintenance (vessels)
       final daysSinceLastMaintenance = lastMaintenanceDate != null
@@ -79,7 +86,8 @@ class ROSystemEfficiency {
 
       // Efficiency drops after maintenance interval
       return 100.0 *
-          (1 - (daysSinceLastMaintenance / AppConstants.maintenanceCheckDays)).clamp(0.0, 1.0);
+          (1 - (daysSinceLastMaintenance / AppConstants.maintenanceCheckDays))
+              .clamp(0.0, 1.0);
     }
   }
 
@@ -103,18 +111,28 @@ class ROSystemEfficiency {
       int componentCount = 0;
 
       // Get maintenance records for efficiency calculations
-      final vesselRecords = await MaintenanceApiService.getMaintenanceRecordsByShopId(shopId, type: 'vessel');
-      final membraneRecords = await MaintenanceApiService.getMaintenanceRecordsByShopId(shopId, type: 'membrane');
+      final vesselRecords =
+          await MaintenanceApiService.getMaintenanceRecordsByShopId(
+            shopId,
+            type: 'vessel',
+          );
+      final membraneRecords =
+          await MaintenanceApiService.getMaintenanceRecordsByShopId(
+            shopId,
+            type: 'membrane',
+          );
 
       // Calculate vessel efficiencies
       for (final vessel in system.vessels) {
         final lastMaintenance = vesselRecords
             .where((record) => record.referenceId == vessel.id)
             .fold<DateTime?>(
-            null,
-                (latest, record) => latest == null || record.maintenanceDate.isAfter(latest)
-                ? record.maintenanceDate
-                : latest);
+              null,
+              (latest, record) =>
+                  latest == null || record.maintenanceDate.isAfter(latest)
+                  ? record.maintenanceDate
+                  : latest,
+            );
 
         totalEfficiency += calculateComponentEfficiency(
           installationDate: vessel.installationDate,
@@ -136,8 +154,8 @@ class ROSystemEfficiency {
       if (system.membraneInstallationDate != null) {
         final lastMembraneMaintenance = membraneRecords.isNotEmpty
             ? membraneRecords
-            .map((record) => record.maintenanceDate)
-            .reduce((a, b) => a.isAfter(b) ? a : b)
+                  .map((record) => record.maintenanceDate)
+                  .reduce((a, b) => a.isAfter(b) ? a : b)
             : null;
 
         totalEfficiency += calculateComponentEfficiency(

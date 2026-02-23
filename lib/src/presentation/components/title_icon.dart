@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/utils/local_storage.dart';
 import '../theme/theme.dart';
 
-
 class TitleAndIcon extends StatelessWidget {
   final String title;
   final double titleSize;
@@ -54,7 +53,7 @@ class TitleAndIcon extends StatelessWidget {
                             ? Icons.keyboard_arrow_right
                             : Icons.keyboard_arrow_left,
                       )
-                    : const SizedBox.shrink()
+                    : const SizedBox.shrink(),
               ],
             ),
           ),
@@ -63,4 +62,3 @@ class TitleAndIcon extends StatelessWidget {
     );
   }
 }
-

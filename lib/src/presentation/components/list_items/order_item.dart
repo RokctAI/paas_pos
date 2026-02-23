@@ -59,7 +59,8 @@ class OrderItem extends StatelessWidget {
                               Text(
                                 order.user == null
                                     ? AppHelpers.getTranslation(
-                                        TrKeys.deletedUser)
+                                        TrKeys.deletedUser,
+                                      )
                                     : '${order.user?.firstname ?? AppHelpers.getTranslation(TrKeys.noName)} ${order.user?.lastname ?? ''}',
                                 style: AppStyle.interRegular(
                                   size: 14.sp,
@@ -69,7 +70,8 @@ class OrderItem extends StatelessWidget {
                               4.verticalSpace,
                               Text(
                                 AppHelpers.getTranslation(
-                                    order.deliveryType ?? ""),
+                                  order.deliveryType ?? "",
+                                ),
                                 style: AppStyle.interNormal(
                                   size: 12.sp,
                                   color: AppStyle.black,
@@ -92,8 +94,11 @@ class OrderItem extends StatelessWidget {
                       ),
                     ),
                   if (isHistoryOrder)
-                    Text(AppHelpers.getTranslation(
-                        order.transaction?.paymentSystem?.tag ?? ''))
+                    Text(
+                      AppHelpers.getTranslation(
+                        order.transaction?.paymentSystem?.tag ?? '',
+                      ),
+                    ),
                 ],
               ),
               14.verticalSpace,
@@ -120,7 +125,8 @@ class OrderItem extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: '${order.deliveryDate ?? ''} ${order.deliveryTime ?? ''}',
+                          text:
+                              '${order.deliveryDate ?? ''} ${order.deliveryTime ?? ''}',
                           style: AppStyle.interNormal(
                             color: AppStyle.black,
                             size: 14.sp,
@@ -132,12 +138,15 @@ class OrderItem extends StatelessWidget {
                   ),
                   Text(
                     AppHelpers.numberFormat(
-                         order.totalPrice?.isNegative ?? true
-                            ? 0
-                            : order.totalPrice ?? 0,
-                        symbol: order.currency?.symbol),
-                    style:
-                        AppStyle.interNormal(size: 14.sp, color: AppStyle.black),
+                      order.totalPrice?.isNegative ?? true
+                          ? 0
+                          : order.totalPrice ?? 0,
+                      symbol: order.currency?.symbol,
+                    ),
+                    style: AppStyle.interNormal(
+                      size: 14.sp,
+                      color: AppStyle.black,
+                    ),
                   ),
                 ],
               ),
@@ -148,4 +157,3 @@ class OrderItem extends StatelessWidget {
     );
   }
 }
-

@@ -14,7 +14,7 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
   int _notificationPage = 0;
 
   NotificationNotifier(this._notificationRepository)
-      : super(const NotificationState());
+    : super(const NotificationState());
 
   Future<void> fetchAllTransactions({
     bool isRefresh = false,
@@ -28,17 +28,21 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
       return;
     }
     state = state.copyWith(
-        isTransactionsLoading: state.transaction.isEmpty ? true : false);
-    final response =
-        await _notificationRepository.getTransactions(page: ++_page);
+      isTransactionsLoading: state.transaction.isEmpty ? true : false,
+    );
+    final response = await _notificationRepository.getTransactions(
+      page: ++_page,
+    );
     response.when(
       success: (data) {
-        List<TransactionModel> transactions =
-            isRefresh ? [] : List.from(state.transaction);
+        List<TransactionModel> transactions = isRefresh
+            ? []
+            : List.from(state.transaction);
         final List<TransactionModel> newTransactions = data.data ?? [];
         transactions.addAll(newTransactions);
-        state =
-            state.copyWith(hasMoreTransactions: newTransactions.length >= 4);
+        state = state.copyWith(
+          hasMoreTransactions: newTransactions.length >= 4,
+        );
         if (_page == 1 && !isRefresh) {
           state = state.copyWith(
             isTransactionsLoading: false,
@@ -61,8 +65,10 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
   }
 
   changeFirst() {
-    state =
-        state.copyWith(isFirstTimeNotification: true, isFirstTransaction: true);
+    state = state.copyWith(
+      isFirstTimeNotification: true,
+      isFirstTransaction: true,
+    );
   }
 
   Future<void> fetchAllNotifications(BuildContext context) async {
@@ -72,7 +78,9 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
     response.when(
       success: (data) {
         state = state.copyWith(
-            isNotificationLoading: false, notifications: data.data ?? []);
+          isNotificationLoading: false,
+          notifications: data.data ?? [],
+        );
       },
       failure: (failure) {
         AppHelpers.showSnackBar(context, failure.toString());
@@ -116,8 +124,9 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
         );
         response.when(
           success: (data) async {
-            final List<NotificationModel> newList =
-                List.from(state.notifications);
+            final List<NotificationModel> newList = List.from(
+              state.notifications,
+            );
             newList.addAll(data.data ?? []);
             state = state.copyWith(
               notifications: newList,
@@ -147,8 +156,9 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
     }
     state = state.copyWith(
       notifications: notif,
-      countOfNotifications:
-          state.countOfNotifications?.copyWith(notification: 0),
+      countOfNotifications: state.countOfNotifications?.copyWith(
+        notification: 0,
+      ),
     );
     updateTotal();
 
@@ -163,16 +173,20 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
     );
   }
 
-  Future<void> readOne(BuildContext context,
-      {int? id, required int index}) async {
+  Future<void> readOne(
+    BuildContext context, {
+    int? id,
+    required int index,
+  }) async {
     List<NotificationModel> notif = List.from(state.notifications);
-    notif[index] = notif[index].copyWith(
-      readAt: DateTime.now(),
-    );
+    notif[index] = notif[index].copyWith(readAt: DateTime.now());
     final notification = state.countOfNotifications?.copyWith(
-        notification: (state.countOfNotifications?.notification ?? 0) - 1);
+      notification: (state.countOfNotifications?.notification ?? 0) - 1,
+    );
     state = state.copyWith(
-        notifications: notif, countOfNotifications: notification);
+      notifications: notif,
+      countOfNotifications: notification,
+    );
     updateTotal();
     final response = await _notificationRepository.readOne(id: id);
     response.when(
@@ -191,7 +205,8 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
       success: (data) {
         state = state.copyWith(countOfNotifications: data);
         state = state.copyWith(
-            totalCount: (data.notification ?? 0) + (data.transaction ?? 0));
+          totalCount: (data.notification ?? 0) + (data.transaction ?? 0),
+        );
 
         debugPrint('Success count');
       },
@@ -203,8 +218,9 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
 
   updateTotal() {
     state = state.copyWith(
-        totalCount: (state.countOfNotifications?.notification ?? 0) +
-            (state.countOfNotifications?.transaction ?? 0));
+      totalCount:
+          (state.countOfNotifications?.notification ?? 0) +
+          (state.countOfNotifications?.transaction ?? 0),
+    );
   }
 }
-

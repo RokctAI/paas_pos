@@ -20,4 +20,3 @@ class LeftSide extends StatelessWidget {
     );
   }
 }
-

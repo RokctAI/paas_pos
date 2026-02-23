@@ -9,7 +9,8 @@ class BlinkingDot extends StatefulWidget {
   _BlinkingDotState createState() => _BlinkingDotState();
 }
 
-class _BlinkingDotState extends State<BlinkingDot> with SingleTickerProviderStateMixin {
+class _BlinkingDotState extends State<BlinkingDot>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override

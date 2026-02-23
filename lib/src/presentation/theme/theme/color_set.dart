@@ -48,7 +48,9 @@ class CustomColorSet {
     final primary = AppStyle.primary;
     final white = AppStyle.white;
     final icon = AppStyle.icon;
-    final backgroundColor = isLight ? AppStyle.mainBack : AppStyle.iconButtonBack;
+    final backgroundColor = isLight
+        ? AppStyle.mainBack
+        : AppStyle.iconButtonBack;
     final newBoxColor = isLight ? AppStyle.icon : AppStyle.iconButtonBack;
     final success = AppStyle.primary;
     final error = AppStyle.red;

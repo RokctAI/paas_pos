@@ -15,27 +15,24 @@ class LocationData {
     if (lon != null) {
       _longitude = double.tryParse(lon.toString());
     }
+  }
 
+  double? _latitude;
+  double? _longitude;
 
+  LocationData copyWith({double? latitude, double? longitude}) => LocationData(
+    latitude: latitude ?? _latitude,
+    longitude: longitude ?? _longitude,
+  );
+
+  double? get latitude => _latitude;
+
+  double? get longitude => _longitude;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['latitude'] = _latitude ?? AppConstants.demoLatitude;
+    map['longitude'] = _longitude ?? AppConstants.demoLongitude;
+    return map;
+  }
 }
-
-double? _latitude;
-double? _longitude;
-
-LocationData copyWith({double? latitude, double? longitude}) =>
-    LocationData(
-      latitude: latitude ?? _latitude,
-      longitude: longitude ?? _longitude,
-    );
-
-double? get latitude => _latitude;
-
-double? get longitude => _longitude;
-
-Map<String, dynamic> toJson() {
-  final map = <String, dynamic>{};
-  map['latitude'] = _latitude ?? AppConstants.demoLatitude;
-  map['longitude'] = _longitude ?? AppConstants.demoLongitude;
-  return map;
-}}
-

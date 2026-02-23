@@ -20,11 +20,13 @@ class ROSystem {
   factory ROSystem.fromJson(Map<String, dynamic> json) {
     return ROSystem(
       id: json['id'] as int? ?? 0,
-      vessels: (json['vessels'] as List<dynamic>?)?.map((vesselJson) {
+      vessels:
+          (json['vessels'] as List<dynamic>?)?.map((vesselJson) {
             return Vessel.fromJson(vesselJson as Map<String, dynamic>);
           }).toList() ??
           [],
-      filters: (json['filters'] as List<dynamic>?)?.map((filterJson) {
+      filters:
+          (json['filters'] as List<dynamic>?)?.map((filterJson) {
             return Filter.fromJson(filterJson as Map<String, dynamic>);
           }).toList() ??
           [],
@@ -112,8 +114,6 @@ class Vessel {
   }
 }
 
-
-
 // Updated Filter model
 class Filter {
   final String id;
@@ -189,4 +189,3 @@ class Filter {
     }
   }
 }
-

@@ -11,18 +11,18 @@ class WeatherIconMapper {
         case 1003: // Partly cloudy
           return Remix.moon_cloudy_fill;
         default:
-        // Continue to general mapping
+          // Continue to general mapping
           break;
       }
     }
 
     // General condition mapping
     switch (code) {
-    // Clear conditions
+      // Clear conditions
       case 1000:
         return Remix.sun_fill;
 
-    // Cloudy conditions
+      // Cloudy conditions
       case 1003: // Partly cloudy
         return Remix.sun_cloudy_fill;
       case 1006: // Cloudy
@@ -30,7 +30,7 @@ class WeatherIconMapper {
       case 1009: // Overcast
         return Remix.cloud_fill;
 
-    // Rain conditions
+      // Rain conditions
       case 1063: // Patchy rain possible
       case 1150: // Patchy light drizzle
       case 1153: // Light drizzle
@@ -46,13 +46,13 @@ class WeatherIconMapper {
       case 1246: // Torrential rain shower
         return Remix.heavy_showers_fill;
 
-    // Thunder conditions
+      // Thunder conditions
       case 1087: // Thundery outbreaks possible
       case 1273: // Patchy light rain with thunder
       case 1276: // Moderate or heavy rain with thunder
         return Remix.thunderstorms_fill;
 
-    // Snow conditions
+      // Snow conditions
       case 1066: // Patchy snow possible
       case 1114: // Blowing snow
       case 1210: // Patchy light snow
@@ -63,7 +63,7 @@ class WeatherIconMapper {
       case 1225: // Heavy snow
         return Remix.snowy_fill;
 
-    // Sleet and mixed conditions
+      // Sleet and mixed conditions
       case 1069: // Patchy sleet possible
       case 1072: // Patchy freezing drizzle possible
       case 1168: // Freezing drizzle
@@ -74,20 +74,20 @@ class WeatherIconMapper {
       case 1207: // Moderate or heavy sleet
         return Remix.hail_fill;
 
-    // Mist and fog conditions
+      // Mist and fog conditions
       case 1030: // Mist
       case 1135: // Fog
       case 1147: // Freezing fog
         return Remix.mist_fill;
 
-    // Extreme conditions
+      // Extreme conditions
       case 1237: // Ice pellets
         return Remix.hail_fill;
       case 1279: // Patchy light snow with thunder
       case 1282: // Moderate or heavy snow with thunder
         return Remix.snowflake_fill;
 
-    // Default fallback
+      // Default fallback
       default:
         debugPrint('Unknown weather code: $code, using default icon');
         return Remix.sun_cloudy_fill;
@@ -97,20 +97,20 @@ class WeatherIconMapper {
   // Helper method to determine if a condition is severe
   static bool isSevereCondition(int code) {
     return [
-      1087,  // Thundery outbreaks
-      1192,  // Heavy rain at times
-      1195,  // Heavy rain
-      1246,  // Torrential rain shower
-      1276,  // Heavy rain with thunder
-      1282,  // Heavy snow with thunder
+      1087, // Thundery outbreaks
+      1192, // Heavy rain at times
+      1195, // Heavy rain
+      1246, // Torrential rain shower
+      1276, // Heavy rain with thunder
+      1282, // Heavy snow with thunder
     ].contains(code);
   }
 
   // Helper method to determine if a condition indicates precipitation
   static bool isPrecipitation(int code) {
-    return (code >= 1150 && code <= 1201) ||  // Rain and drizzle
-        (code >= 1210 && code <= 1225) ||  // Snow
-        (code >= 1240 && code <= 1246);    // Showers
+    return (code >= 1150 && code <= 1201) || // Rain and drizzle
+        (code >= 1210 && code <= 1225) || // Snow
+        (code >= 1240 && code <= 1246); // Showers
   }
 
   // Helper method to get text description for a condition code

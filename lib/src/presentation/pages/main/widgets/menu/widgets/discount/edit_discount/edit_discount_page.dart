@@ -62,18 +62,21 @@ class _EditDiscountPageState extends ConsumerState<EditDiscountPage> {
                                 children: [
                                   Text(
                                     AppHelpers.getTranslation(
-                                        TrKeys.editDiscount),
+                                      TrKeys.editDiscount,
+                                    ),
                                     style: GoogleFonts.inter(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 22.sp,
-                                        color: AppStyle.black),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 22.sp,
+                                      color: AppStyle.black,
+                                    ),
                                   ),
                                   const Spacer(),
                                   IconButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      icon: const Icon(FlutterRemix.close_fill))
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: const Icon(FlutterRemix.close_fill),
+                                  ),
                                 ],
                               ),
                               24.verticalSpace,
@@ -84,7 +87,8 @@ class _EditDiscountPageState extends ConsumerState<EditDiscountPage> {
                                       //isEdit: true,
                                       height:
                                           MediaQuery.sizeOf(context).height / 6,
-                                      width: MediaQuery.sizeOf(context).height / 6,
+                                      width:
+                                          MediaQuery.sizeOf(context).height / 6,
                                       isAdding: state.discount?.img == null,
                                       imageFilePath: state.imageFile,
                                       imageUrl: state.discount?.img,
@@ -100,16 +104,19 @@ class _EditDiscountPageState extends ConsumerState<EditDiscountPage> {
                                       children: [
                                         Text(
                                           AppHelpers.getTranslation(
-                                              TrKeys.status),
+                                            TrKeys.status,
+                                          ),
                                           style: GoogleFonts.inter(
-                                            fontWeight: FontWeight.w500
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                         CustomToggle(
-                                          controller:
-                                              ValueNotifier(state.active),
-                                          onChange: (c) => event
-                                              .changeActive(!(state.active)),
+                                          controller: ValueNotifier(
+                                            state.active,
+                                          ),
+                                          onChange: (c) => event.changeActive(
+                                            !(state.active),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -121,22 +128,26 @@ class _EditDiscountPageState extends ConsumerState<EditDiscountPage> {
                                 children: [
                                   Expanded(
                                     child: DiscountTypeDropDown(
-                                      onTap: (value) => event.setActiveIndex(value!),
+                                      onTap: (value) =>
+                                          event.setActiveIndex(value!),
                                       typeValue: state.discount?.type,
-                                      label: AppHelpers.getTranslation(TrKeys.type),
+                                      label: AppHelpers.getTranslation(
+                                        TrKeys.type,
+                                      ),
                                     ),
                                   ),
                                   16.horizontalSpace,
                                   Expanded(
                                     child: OutlinedBorderTextField(
                                       label:
-                                      '${AppHelpers.getTranslation(TrKeys.price)}${state.type != "fixed" ? "%" : ""}*',
-                                      initialText: "${state.discount?.price ?? 0}",
+                                          '${AppHelpers.getTranslation(TrKeys.price)}${state.type != "fixed" ? "%" : ""}*',
+                                      initialText:
+                                          "${state.discount?.price ?? 0}",
                                       textInputAction: TextInputAction.next,
                                       onChanged: event.setPrice,
                                       validator: AppValidators.emptyCheck,
                                       inputFormatters: [
-                                        InputFormatter.currency
+                                        InputFormatter.currency,
                                       ],
                                     ),
                                   ),
@@ -172,66 +183,83 @@ class _EditDiscountPageState extends ConsumerState<EditDiscountPage> {
                               GestureDetector(
                                 onTap: () {
                                   AppHelpers.showAlertDialog(
-                                      context: context,
-                                      child: SizedBox(
-                                        height:
-                                            MediaQuery.sizeOf(context).height /
-                                                2,
-                                        width:
-                                            MediaQuery.sizeOf(context).width /
-                                                3,
-                                        child: const MultiSelectionWidget(
-                                            isEdit: true),
-                                      ));
+                                    context: context,
+                                    child: SizedBox(
+                                      height:
+                                          MediaQuery.sizeOf(context).height / 2,
+                                      width:
+                                          MediaQuery.sizeOf(context).width / 3,
+                                      child: const MultiSelectionWidget(
+                                        isEdit: true,
+                                      ),
+                                    ),
+                                  );
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              color: AppStyle.colorGrey,
-                                              width: 0.5.r))),
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: AppStyle.colorGrey,
+                                        width: 0.5.r,
+                                      ),
+                                    ),
+                                  ),
                                   height: 40.r,
                                   width: MediaQuery.sizeOf(context).width,
                                   child: state.stocks.isEmpty
                                       ? Text(
                                           AppHelpers.getTranslation(
-                                              TrKeys.select),
+                                            TrKeys.select,
+                                          ),
                                           style: GoogleFonts.inter(
-                                              fontSize: 14.sp,
-                                              color: AppStyle.colorGrey,
-                                              fontWeight: FontWeight.w500
+                                            fontSize: 14.sp,
+                                            color: AppStyle.colorGrey,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         )
                                       : ListView.separated(
                                           scrollDirection: Axis.horizontal,
                                           itemCount: state.stocks.length,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return Chip(
-                                              backgroundColor: AppStyle.primary,
-                                              deleteIcon: Icon(
-                                                FlutterRemix.close_circle_fill,
-                                                size: 20.r,
-                                                color: AppStyle.white,
-                                              ),
-                                              onDeleted: () =>
-                                                  event.deleteFromAddedProducts(
-                                                      state.stocks[index].id),
-                                              label: Text(
-                                                state.stocks[index].product
-                                                        ?.translation?.title ??
-                                                    "",
-                                                style: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.w500,
-                                                    color: AppStyle.white),
-                                              ),
-                                            );
-                                          },
+                                          itemBuilder:
+                                              (
+                                                BuildContext context,
+                                                int index,
+                                              ) {
+                                                return Chip(
+                                                  backgroundColor:
+                                                      AppStyle.primary,
+                                                  deleteIcon: Icon(
+                                                    FlutterRemix
+                                                        .close_circle_fill,
+                                                    size: 20.r,
+                                                    color: AppStyle.white,
+                                                  ),
+                                                  onDeleted: () => event
+                                                      .deleteFromAddedProducts(
+                                                        state.stocks[index].id,
+                                                      ),
+                                                  label: Text(
+                                                    state
+                                                            .stocks[index]
+                                                            .product
+                                                            ?.translation
+                                                            ?.title ??
+                                                        "",
+                                                    style: GoogleFonts.inter(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: AppStyle.white,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                           separatorBuilder:
-                                              (BuildContext context,
-                                                  int index) {
-                                            return 10.horizontalSpace;
-                                          },
+                                              (
+                                                BuildContext context,
+                                                int index,
+                                              ) {
+                                                return 10.horizontalSpace;
+                                              },
                                         ),
                                 ),
                               ),
@@ -244,17 +272,21 @@ class _EditDiscountPageState extends ConsumerState<EditDiscountPage> {
                                 onTap: () {
                                   if (_formKey.currentState?.validate() ??
                                       false) {
-                                    event.updateDiscount(context, updated: () {
-                                      ref
-                                          .read(discountProvider.notifier)
-                                          .fetchDiscounts(
+                                    event.updateDiscount(
+                                      context,
+                                      updated: () {
+                                        ref
+                                            .read(discountProvider.notifier)
+                                            .fetchDiscounts(
                                               context: context,
-                                              isRefresh: true);
-                                      Navigator.pop(context);
-                                    });
+                                              isRefresh: true,
+                                            );
+                                        Navigator.pop(context);
+                                      },
+                                    );
                                   }
                                 },
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -267,4 +299,3 @@ class _EditDiscountPageState extends ConsumerState<EditDiscountPage> {
     );
   }
 }
-

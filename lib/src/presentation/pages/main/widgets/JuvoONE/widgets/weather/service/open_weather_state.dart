@@ -4,10 +4,8 @@ class OpenWeatherState {
   final Map<String, dynamic> weatherData;
   final DateTime lastUpdated;
 
-  OpenWeatherState({
-    required this.weatherData,
-    DateTime? lastUpdated,
-  }) : lastUpdated = lastUpdated ?? DateTime.now();
+  OpenWeatherState({required this.weatherData, DateTime? lastUpdated})
+    : lastUpdated = lastUpdated ?? DateTime.now();
 
   // Get only the additional days (skip first three days)
   List<Map<String, dynamic>> getAdditionalDaysData() {
@@ -33,13 +31,12 @@ class OpenWeatherState {
         final dailyData = entry.value;
 
         // Try to find midday data first
-        final middayData = dailyData.firstWhere(
-                (item) {
-              final hour = DateTime.fromMillisecondsSinceEpoch(item['dt'] * 1000).hour;
-              return hour >= 10 && hour <= 14;
-            },
-            orElse: () => dailyData[dailyData.length ~/ 2]
-        );
+        final middayData = dailyData.firstWhere((item) {
+          final hour = DateTime.fromMillisecondsSinceEpoch(
+            item['dt'] * 1000,
+          ).hour;
+          return hour >= 10 && hour <= 14;
+        }, orElse: () => dailyData[dailyData.length ~/ 2]);
 
         // Ensure we have weather data
         final weatherData = middayData['weather'][0] ?? {};
@@ -51,7 +48,9 @@ class OpenWeatherState {
         }
 
         return {
-          'date': DateTime.fromMillisecondsSinceEpoch(middayData['dt'] * 1000).toString(),
+          'date': DateTime.fromMillisecondsSinceEpoch(
+            middayData['dt'] * 1000,
+          ).toString(),
           'day': {
             'avgtemp_c': middayData['main']['temp'],
             'maxtemp_c': middayData['main']['temp_max'],
@@ -59,10 +58,10 @@ class OpenWeatherState {
             'condition': {
               'icon': icon,
               'text': weatherData['description'] ?? 'Unknown',
-              'main': weatherData['main'] ?? 'Unknown'
+              'main': weatherData['main'] ?? 'Unknown',
             },
             'daily_chance_of_rain': (middayData['pop'] * 100).round(),
-          }
+          },
         };
       }).toList();
 

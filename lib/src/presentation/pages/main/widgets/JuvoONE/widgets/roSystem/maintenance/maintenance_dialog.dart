@@ -160,14 +160,16 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
     if (activeItem == null) return '';
 
     if (activeItem!.type == 'filter') {
-      final filterLocation =
-          activeItem!.filterLocation?.toString().split('.').last;
+      final filterLocation = activeItem!.filterLocation
+          ?.toString()
+          .split('.')
+          .last;
       if (filterLocation != null) {
         final filterDisplayName = switch (filterLocation) {
           'pre' => AppHelpers.getTranslation(TrKeys.preFilter),
           'ro' => AppHelpers.getTranslation(TrKeys.roFilter),
           'post' => AppHelpers.getTranslation(TrKeys.postFilter),
-          _ => ''
+          _ => '',
         };
         return '$filterDisplayName ${AppHelpers.getTranslation(TrKeys.replacement)}';
       }
@@ -198,10 +200,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
             Expanded(
               child: Text(
                 item.message,
-                style: GoogleFonts.inter(
-                  fontSize: 16,
-                  color: AppStyle.black,
-                ),
+                style: GoogleFonts.inter(fontSize: 16, color: AppStyle.black),
               ),
             ),
           ],
@@ -212,10 +211,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: AppStyle.brandGreen,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             ),
             onPressed: () => _handleMaintenanceAction(item),
             child: Text(
@@ -241,9 +237,7 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
           padding: const EdgeInsets.all(24),
           child: const Column(
             mainAxisSize: MainAxisSize.min,
-            children: [
-              CircularProgressIndicator(),
-            ],
+            children: [CircularProgressIndicator()],
           ),
         ),
       );
@@ -271,8 +265,10 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
                   backgroundColor: AppConstants.enableJuvoONE
                       ? AppStyle.blueBonus
                       : AppStyle.brandGreen,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 12,
+                  ),
                 ),
                 onPressed: _handleMaintenanceComplete,
                 child: Text(
@@ -340,4 +336,3 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
     );
   }
 }
-

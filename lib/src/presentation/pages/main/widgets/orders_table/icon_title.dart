@@ -27,11 +27,7 @@ class IconTitle extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 4),
       child: Row(
         children: [
-          Icon(
-              icon,
-              size: 21,
-              color: AppStyle.black.withOpacity(0.4)
-          ),
+          Icon(icon, size: 21, color: AppStyle.black.withOpacity(0.4)),
           6.horizontalSpace,
           Expanded(
             child: RichText(
@@ -42,8 +38,7 @@ class IconTitle extends StatelessWidget {
                   color: AppStyle.black.withOpacity(0.8),
                 ),
                 children: [
-                  if (title != null)
-                    TextSpan(text: "$title: "),
+                  if (title != null) TextSpan(text: "$title: "),
                   TextSpan(
                     text: value,
                     style: GoogleFonts.inter(
@@ -60,7 +55,7 @@ class IconTitle extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

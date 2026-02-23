@@ -12,8 +12,8 @@ import 'service/weather_state.dart';
 class RainFeedbackSystem {
   final String _storageKey = 'rain_feedback';
   static const int POP_THRESHOLD = 80;
-  static const int FEEDBACK_START_HOUR = 6;   // 6 AM
-  static const int FEEDBACK_END_HOUR = 22;    // 10 PM
+  static const int FEEDBACK_START_HOUR = 6; // 6 AM
+  static const int FEEDBACK_END_HOUR = 22; // 10 PM
 
   Future<void> _clearInvalidFeedback() async {
     final prefs = await SharedPreferences.getInstance();
@@ -22,9 +22,11 @@ class RainFeedbackSystem {
     // Filter out any entries outside valid hours
     final validFeedback = jsonList
         .map((jsonStr) => RainFeedback.fromJson(jsonDecode(jsonStr)))
-        .where((feedback) =>
-    feedback.date.hour >= FEEDBACK_START_HOUR &&
-        feedback.date.hour <= FEEDBACK_END_HOUR)
+        .where(
+          (feedback) =>
+              feedback.date.hour >= FEEDBACK_START_HOUR &&
+              feedback.date.hour <= FEEDBACK_END_HOUR,
+        )
         .map((feedback) => jsonEncode(feedback.toJson()))
         .toList();
 
@@ -36,7 +38,7 @@ class RainFeedbackSystem {
     required int pop,
     required double precipMM,
     required int dailyWillItRain,
-    required bool userConfirmedRain
+    required bool userConfirmedRain,
   }) async {
     // Clear invalid feedback before saving
     await _clearInvalidFeedback();
@@ -49,36 +51,41 @@ class RainFeedbackSystem {
     final feedbackList = await getFeedbackHistory();
 
     // Remove any existing feedback for today
-    feedbackList.removeWhere((feedback) =>
-    feedback.dateString == "${now.year}-${now.month}-${now.day}"
+    feedbackList.removeWhere(
+      (feedback) =>
+          feedback.dateString == "${now.year}-${now.month}-${now.day}",
     );
 
-    feedbackList.add(RainFeedback(
-      date: now,
-      predictedPOP: pop,
-      precipitationMM: precipMM,
-      dailyWillItRain: dailyWillItRain,
-      userConfirmedRain: userConfirmedRain,
-    ));
+    feedbackList.add(
+      RainFeedback(
+        date: now,
+        predictedPOP: pop,
+        precipitationMM: precipMM,
+        dailyWillItRain: dailyWillItRain,
+        userConfirmedRain: userConfirmedRain,
+      ),
+    );
 
     // Keep only last 30 days AND within valid hours
     final thirtyDaysAgo = now.subtract(const Duration(days: 30));
     final recentValidFeedback = feedbackList
-        .where((feedback) =>
-    feedback.date.isAfter(thirtyDaysAgo) &&
-        feedback.date.hour >= FEEDBACK_START_HOUR &&
-        feedback.date.hour <= FEEDBACK_END_HOUR)
+        .where(
+          (feedback) =>
+              feedback.date.isAfter(thirtyDaysAgo) &&
+              feedback.date.hour >= FEEDBACK_START_HOUR &&
+              feedback.date.hour <= FEEDBACK_END_HOUR,
+        )
         .toList();
 
     await prefs.setStringList(
-        _storageKey,
-        recentValidFeedback.map((f) => jsonEncode(f.toJson())).toList()
+      _storageKey,
+      recentValidFeedback.map((f) => jsonEncode(f.toJson())).toList(),
     );
   }
 
   Future<void> updateFeedback({
     required DateTime date,
-    required bool newUserConfirmedRain
+    required bool newUserConfirmedRain,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final jsonList = prefs.getStringList(_storageKey) ?? [];
@@ -136,8 +143,9 @@ class RainFeedbackSystem {
 
     final feedbackList = await getFeedbackHistory();
 
-    return feedbackList.any((feedback) =>
-    feedback.dateString == "${now.year}-${now.month}-${now.day}"
+    return feedbackList.any(
+      (feedback) =>
+          feedback.dateString == "${now.year}-${now.month}-${now.day}",
     );
   }
 }

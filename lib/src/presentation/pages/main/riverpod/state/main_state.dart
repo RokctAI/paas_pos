@@ -36,4 +36,3 @@ class MainState with _$MainState {
 
   const MainState._();
 }
-

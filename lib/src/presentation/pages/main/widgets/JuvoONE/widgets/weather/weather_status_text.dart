@@ -6,10 +6,7 @@ import 'service/weather_state.dart';
 class WeatherStatusText extends StatelessWidget {
   final WeatherState weatherState;
 
-  const WeatherStatusText({
-    super.key,
-    required this.weatherState,
-  });
+  const WeatherStatusText({super.key, required this.weatherState});
 
   String _cleanText(String text) {
     return text.replaceAll(' nearby', '');
@@ -22,12 +19,15 @@ class WeatherStatusText extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.data == null) return const SizedBox.shrink();
 
-        final cyclePosition = snapshot.data! % (weatherState.alerts.isEmpty ? 2 : 3);
+        final cyclePosition =
+            snapshot.data! % (weatherState.alerts.isEmpty ? 2 : 3);
         String displayText;
         Color textColor;
 
         if (weatherState.alerts.isNotEmpty && cyclePosition == 2) {
-          displayText = _cleanText(weatherState.alerts.first['event'] ?? 'Weather Alert');
+          displayText = _cleanText(
+            weatherState.alerts.first['event'] ?? 'Weather Alert',
+          );
           textColor = AppStyle.red;
         } else if (cyclePosition == 1) {
           displayText = _cleanText(weatherState.condition['text']);
@@ -41,11 +41,7 @@ class WeatherStatusText extends StatelessWidget {
           padding: EdgeInsets.only(top: 0.5.sp),
           child: Text(
             displayText,
-            style: TextStyle(
-              fontSize: 10.sp,
-              color: textColor,
-              height: 1,
-            ),
+            style: TextStyle(fontSize: 10.sp, color: textColor, height: 1),
           ),
         );
       },

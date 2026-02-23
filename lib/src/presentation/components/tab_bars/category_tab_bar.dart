@@ -18,7 +18,7 @@ class CategoryTabBar extends StatelessWidget {
     required this.tabs,
     required this.onTap,
     this.index = 0,
-  }) ;
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +36,7 @@ class CategoryTabBar extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsetsDirectional.only(start: 16.r, end: 8.r),
-            child: SvgPicture.asset(
-              Assets.svgMenu,
-              width: 22.r,
-              height: 22.r,
-            ),
+            child: SvgPicture.asset(Assets.svgMenu, width: 22.r, height: 22.r),
           ),
           TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
@@ -59,7 +55,7 @@ class CategoryTabBar extends StatelessWidget {
                   title: e,
                   isActive: index == tabs.indexOf(e),
                 ),
-              )
+              ),
             ],
           ),
         ],
@@ -67,4 +63,3 @@ class CategoryTabBar extends StatelessWidget {
     );
   }
 }
-

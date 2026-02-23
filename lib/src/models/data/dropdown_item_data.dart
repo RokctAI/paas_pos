@@ -4,4 +4,3 @@ class DropDownItemData {
 
   DropDownItemData({required this.index, required this.title});
 }
-

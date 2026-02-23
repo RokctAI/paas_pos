@@ -11,11 +11,7 @@ class CustomRefresher extends StatelessWidget {
   final VoidCallback onTap;
   final bool? isLoading;
 
-  const CustomRefresher({
-    super.key,
-    required this.onTap,
-    this.isLoading,
-  });
+  const CustomRefresher({super.key, required this.onTap, this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +23,18 @@ class CustomRefresher extends StatelessWidget {
           height: 44.r,
           width: 44.r,
           decoration: BoxDecoration(
-              color: AppStyle.white,
-              borderRadius: BorderRadiusDirectional.circular(10.r)),
+            color: AppStyle.white,
+            borderRadius: BorderRadiusDirectional.circular(10.r),
+          ),
           child: Center(
             child: isLoading ?? false
                 ? Lottie.asset(
-              Assets.lottieRefresh,
-              width: 36.r,
-              height: 36.r,
-              fit: BoxFit.fill,
-            )
-                : const Icon(FlutterRemix.refresh_line,
-            color: AppStyle.black),
+                    Assets.lottieRefresh,
+                    width: 36.r,
+                    height: 36.r,
+                    fit: BoxFit.fill,
+                  )
+                : const Icon(FlutterRemix.refresh_line, color: AppStyle.black),
           ),
         ),
       ),

@@ -35,9 +35,7 @@ class StrategicObjective {
   factory StrategicObjective.fromJson(Map<String, dynamic> json) {
     List<Kpi> kpis = [];
     if (json['kpis'] != null) {
-      kpis = List<Kpi>.from(
-        json['kpis'].map((kpi) => Kpi.fromJson(kpi)),
-      );
+      kpis = List<Kpi>.from(json['kpis'].map((kpi) => Kpi.fromJson(kpi)));
     }
 
     return StrategicObjective(
@@ -50,9 +48,15 @@ class StrategicObjective {
       is90DayPriority: json['is_90_day_priority'] ?? false,
       timeHorizon: json['time_horizon'] ?? 'Short-term',
       status: json['status'] ?? 'Not Started',
-      startDate: json['start_date'] != null ? DateTime.parse(json['start_date']) : null,
-      targetDate: json['target_date'] != null ? DateTime.parse(json['target_date']) : null,
-      completionDate: json['completion_date'] != null ? DateTime.parse(json['completion_date']) : null,
+      startDate: json['start_date'] != null
+          ? DateTime.parse(json['start_date'])
+          : null,
+      targetDate: json['target_date'] != null
+          ? DateTime.parse(json['target_date'])
+          : null,
+      completionDate: json['completion_date'] != null
+          ? DateTime.parse(json['completion_date'])
+          : null,
       kpis: kpis,
     );
   }
@@ -75,5 +79,3 @@ class StrategicObjective {
     };
   }
 }
-
-

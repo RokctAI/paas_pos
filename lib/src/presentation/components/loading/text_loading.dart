@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/theme.dart';
 
-
 class TextLoading extends StatelessWidget {
   final int height;
   final int width;
@@ -28,4 +27,3 @@ class TextLoading extends StatelessWidget {
     );
   }
 }
-

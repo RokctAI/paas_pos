@@ -65,7 +65,8 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
     final notifier = ref.read(rightSideProvider.notifier);
     final state = ref.watch(rightSideProvider);
     return AbsorbPointer(
-      absorbing: state.isUserDetailsLoading ||
+      absorbing:
+          state.isUserDetailsLoading ||
           state.isPaymentsLoading ||
           state.isBagsLoading ||
           state.isUsersLoading ||
@@ -100,9 +101,10 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                                   Text(
                                     AppHelpers.getTranslation(TrKeys.products),
                                     style: GoogleFonts.inter(
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppStyle.black),
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppStyle.black,
+                                    ),
                                   ),
                                   InkWell(
                                     onTap: () {
@@ -126,40 +128,47 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                             Column(
                               children: [
                                 Padding(
-                                  padding:
-                                      REdgeInsets.symmetric(horizontal: 20),
+                                  padding: REdgeInsets.symmetric(
+                                    horizontal: 20,
+                                  ),
                                   child: Row(
                                     children: [
                                       Text(
                                         AppHelpers.getTranslation(TrKeys.add),
                                         style: GoogleFonts.inter(
-                                            color: AppStyle.black,
-                                            fontSize: 14.sp),
+                                          color: AppStyle.black,
+                                          fontSize: 14.sp,
+                                        ),
                                       ),
                                       const Spacer(),
                                       InkWell(
                                         onTap: () {
                                           AppHelpers.showAlertDialog(
-                                              context: context,
-                                              child: const PromoCodeDialog());
+                                            context: context,
+                                            child: const PromoCodeDialog(),
+                                          );
                                         },
                                         child: AnimationButtonEffect(
                                           child: Container(
                                             padding: EdgeInsets.symmetric(
-                                                vertical: 10.r,
-                                                horizontal: 18.r),
+                                              vertical: 10.r,
+                                              horizontal: 18.r,
+                                            ),
                                             decoration: BoxDecoration(
-                                                color: AppStyle.red
-                                                    .withOpacity(0.4),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.r)),
+                                              color: AppStyle.red.withOpacity(
+                                                0.4,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
+                                            ),
                                             child: Text(
                                               AppHelpers.getTranslation(
-                                                  TrKeys.promoCode),
+                                                TrKeys.promoCode,
+                                              ),
                                               style: GoogleFonts.inter(
-                                                  fontSize: 14.sp,
-                                                  color: AppStyle.black),
+                                                fontSize: 14.sp,
+                                                color: AppStyle.black,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -168,28 +177,31 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                                       InkWell(
                                         onTap: () {
                                           AppHelpers.showAlertDialog(
-                                              context: context,
-                                              child: const NoteDialog());
+                                            context: context,
+                                            child: const NoteDialog(),
+                                          );
                                         },
                                         child: AnimationButtonEffect(
                                           child: Container(
                                             padding: EdgeInsets.symmetric(
-                                                vertical: 10.r,
-                                                horizontal: 18.r),
+                                              vertical: 10.r,
+                                              horizontal: 18.r,
+                                            ),
                                             decoration: BoxDecoration(
-                                                color: AppConstants
-                                                        .enableJuvoONE
-                                                    ? AppStyle.blueBonus
-                                                    : AppStyle.addButtonColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.r)),
+                                              color: AppConstants.enableJuvoONE
+                                                  ? AppStyle.blueBonus
+                                                  : AppStyle.addButtonColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.r),
+                                            ),
                                             child: Text(
                                               AppHelpers.getTranslation(
-                                                  TrKeys.note),
+                                                TrKeys.note,
+                                              ),
                                               style: GoogleFonts.inter(
-                                                  fontSize: 14.sp,
-                                                  color: AppStyle.black),
+                                                fontSize: 14.sp,
+                                                color: AppStyle.black,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -241,7 +253,8 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
             ),
           ),
           BlurLoadingWidget(
-            isLoading: state.isUserDetailsLoading ||
+            isLoading:
+                state.isUserDetailsLoading ||
                 state.isPaymentsLoading ||
                 state.isBagsLoading ||
                 state.isUsersLoading ||
@@ -284,9 +297,12 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
               },
               cart: items[index],
               delete: () {
-                ref.read(rightSideProvider.notifier).deleteProductCount(
+                ref
+                    .read(rightSideProvider.notifier)
+                    .deleteProductCount(
                       bagProductData: state
-                          .bags[state.selectedBagIndex].bagProducts?[index],
+                          .bags[state.selectedBagIndex]
+                          .bagProducts?[index],
                       productIndex: index,
                     );
                 widget.onRemoveItem();
@@ -319,11 +335,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                 color: AppStyle.blue,
               ),
             ),
-            Icon(
-              Icons.keyboard_arrow_down,
-              color: AppStyle.blue,
-              size: 20.r,
-            ),
+            Icon(Icons.keyboard_arrow_down, color: AppStyle.blue, size: 20.r),
           ],
         ),
       ),
@@ -350,11 +362,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                 color: AppStyle.blue,
               ),
             ),
-            Icon(
-              Icons.keyboard_arrow_up,
-              color: AppStyle.blue,
-              size: 20.r,
-            ),
+            Icon(Icons.keyboard_arrow_up, color: AppStyle.blue, size: 20.r),
           ],
         ),
       ),
@@ -366,7 +374,8 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
     final showAllFees = itemCount <= 2;
 
     // Always calculate the total price including all fees
-    final totalPrice = (state.paginateResponse?.price ?? 0) +
+    final totalPrice =
+        (state.paginateResponse?.price ?? 0) +
         (state.paginateResponse?.totalTax ?? 0) +
         (state.paginateResponse?.serviceFee ?? 0) +
         (state.paginateResponse?.deliveryFee ?? 0) -
@@ -399,7 +408,8 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                         ),
                         Text(
                           NumberFormat.currency(
-                            symbol: widget.bag.selectedCurrency?.symbol ??
+                            symbol:
+                                widget.bag.selectedCurrency?.symbol ??
                                 LocalStorage.getSelectedCurrency().symbol,
                           ).format(state.paginateResponse?.price ?? 0),
                           style: GoogleFonts.inter(
@@ -431,7 +441,8 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                         ),
                         Text(
                           NumberFormat.currency(
-                            symbol: widget.bag.selectedCurrency?.symbol ??
+                            symbol:
+                                widget.bag.selectedCurrency?.symbol ??
                                 LocalStorage.getSelectedCurrency().symbol,
                           ).format(state.paginateResponse?.totalTax ?? 0),
                           style: GoogleFonts.inter(
@@ -463,8 +474,9 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                         ),
                         Text(
                           AppHelpers.numberFormat(
-                              state.paginateResponse?.serviceFee,
-                              symbol: widget.bag.selectedCurrency?.symbol),
+                            state.paginateResponse?.serviceFee,
+                            symbol: widget.bag.selectedCurrency?.symbol,
+                          ),
                           style: GoogleFonts.inter(
                             color: AppStyle.black,
                             fontSize: 14.sp,
@@ -496,8 +508,9 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                         ),
                         Text(
                           AppHelpers.numberFormat(
-                              state.paginateResponse?.deliveryFee,
-                              symbol: widget.bag.selectedCurrency?.symbol),
+                            state.paginateResponse?.deliveryFee,
+                            symbol: widget.bag.selectedCurrency?.symbol,
+                          ),
                           style: GoogleFonts.inter(
                             color: AppStyle.black,
                             fontSize: 14.sp,
@@ -527,10 +540,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                           ),
                         ),
                         Text(
-                          "-${NumberFormat.currency(
-                            symbol: widget.bag.selectedCurrency?.symbol ??
-                                LocalStorage.getSelectedCurrency().symbol,
-                          ).format(state.paginateResponse?.totalDiscount ?? 0)}",
+                          "-${NumberFormat.currency(symbol: widget.bag.selectedCurrency?.symbol ?? LocalStorage.getSelectedCurrency().symbol).format(state.paginateResponse?.totalDiscount ?? 0)}",
                           style: GoogleFonts.inter(
                             color: AppStyle.red,
                             fontSize: 14.sp,
@@ -559,10 +569,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                           ),
                         ),
                         Text(
-                          "-${NumberFormat.currency(
-                            symbol: widget.bag.selectedCurrency?.symbol ??
-                                LocalStorage.getSelectedCurrency().symbol,
-                          ).format(state.paginateResponse?.couponPrice ?? 0)}",
+                          "-${NumberFormat.currency(symbol: widget.bag.selectedCurrency?.symbol ?? LocalStorage.getSelectedCurrency().symbol).format(state.paginateResponse?.couponPrice ?? 0)}",
                           style: GoogleFonts.inter(
                             color: AppStyle.red,
                             fontSize: 14.sp,
@@ -599,7 +606,8 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                   ),
                   Text(
                     NumberFormat.currency(
-                      symbol: widget.bag.selectedCurrency?.symbol ??
+                      symbol:
+                          widget.bag.selectedCurrency?.symbol ??
                           LocalStorage.getSelectedCurrency().symbol,
                     ).format(totalPrice),
                     style: GoogleFonts.inter(
@@ -618,9 +626,11 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                 titleColor: AppStyle.black,
                 onPressed: () {
                   AppHelpers.showAlertDialog(
-                      context: context, child: OrderInformation());
+                    context: context,
+                    child: OrderInformation(),
+                  );
                 },
-              )
+              ),
             ],
           ),
         ),
@@ -719,7 +729,10 @@ class CartOrderItem extends StatelessWidget {
                                   RichText(
                                     text: TextSpan(
                                       text: cart
-                                          ?.stock?.product?.translation?.title,
+                                          ?.stock
+                                          ?.product
+                                          ?.translation
+                                          ?.title,
                                       style: GoogleFonts.inter(
                                         fontSize: 14.sp,
                                         color: AppStyle.black,
@@ -734,18 +747,14 @@ class CartOrderItem extends StatelessWidget {
                                               fontSize: 14.sp,
                                               color: AppStyle.hint,
                                             ),
-                                          )
+                                          ),
                                       ],
                                     ),
                                   ),
                                   8.verticalSpace,
                                   for (Addons e in (cart?.addons ?? []))
                                     Text(
-                                      "${e.product?.translation?.title ?? ""} ( ${NumberFormat.currency(
-                                        symbol: symbol ??
-                                            LocalStorage.getSelectedCurrency()
-                                                .symbol,
-                                      ).format((e.price ?? 0) / (e.quantity ?? 1))} x ${(e.quantity ?? 1)} )",
+                                      "${e.product?.translation?.title ?? ""} ( ${NumberFormat.currency(symbol: symbol ?? LocalStorage.getSelectedCurrency().symbol).format((e.price ?? 0) / (e.quantity ?? 1))} x ${(e.quantity ?? 1)} )",
                                       style: GoogleFonts.inter(
                                         fontSize: 12.sp,
                                         color: AppStyle.unselectedTab,
@@ -884,13 +893,14 @@ class CartOrderItem extends StatelessWidget {
                                             child: Row(
                                               children: [
                                                 SvgPicture.asset(
-                                                    "assets/svg/discount.svg"),
+                                                  "assets/svg/discount.svg",
+                                                ),
                                                 4.horizontalSpace,
                                                 Text(
                                                   NumberFormat.currency(
-                                                    symbol: symbol ??
-                                                        LocalStorage
-                                                                .getSelectedCurrency()
+                                                    symbol:
+                                                        symbol ??
+                                                        LocalStorage.getSelectedCurrency()
                                                             .symbol,
                                                   ).format(sumPrice),
                                                   style: GoogleFonts.inter(
@@ -898,11 +908,11 @@ class CartOrderItem extends StatelessWidget {
                                                     fontSize: 14.sp,
                                                     color: AppStyle.white,
                                                   ),
-                                                )
+                                                ),
                                               ],
                                             ),
                                           )
-                                        : const SizedBox.shrink()
+                                        : const SizedBox.shrink(),
                                   ],
                                 )
                               : const SizedBox.shrink(),
@@ -918,9 +928,7 @@ class CartOrderItem extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: AppStyle.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.r),
-                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(10.r)),
                     border: Border.all(color: AppStyle.border),
                   ),
                   child: Column(
@@ -937,7 +945,10 @@ class CartOrderItem extends StatelessWidget {
                                 RichText(
                                   text: TextSpan(
                                     text: cart
-                                        ?.stock?.product?.translation?.title,
+                                        ?.stock
+                                        ?.product
+                                        ?.translation
+                                        ?.title,
                                     style: GoogleFonts.inter(
                                       fontSize: 16,
                                       color: AppStyle.black,
@@ -952,18 +963,14 @@ class CartOrderItem extends StatelessWidget {
                                             fontSize: 14,
                                             color: AppStyle.hint,
                                           ),
-                                        )
+                                        ),
                                     ],
                                   ),
                                 ),
                                 8.verticalSpace,
                                 for (Addons e in (cart?.addons ?? []))
                                   Text(
-                                    "${e.product?.translation?.title ?? ""} ( ${NumberFormat.currency(
-                                      symbol: symbol ??
-                                          LocalStorage.getSelectedCurrency()
-                                              .symbol,
-                                    ).format((e.price ?? 0) / (e.quantity ?? 1))} x ${(e.quantity ?? 1)} )",
+                                    "${e.product?.translation?.title ?? ""} ( ${NumberFormat.currency(symbol: symbol ?? LocalStorage.getSelectedCurrency().symbol).format((e.price ?? 0) / (e.quantity ?? 1))} x ${(e.quantity ?? 1)} )",
                                     style: GoogleFonts.inter(
                                       fontSize: 13.sp,
                                       color: AppStyle.black,
@@ -973,11 +980,7 @@ class CartOrderItem extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(
-                                      "${NumberFormat.currency(
-                                        symbol: symbol ??
-                                            LocalStorage.getSelectedCurrency()
-                                                .symbol,
-                                      ).format((cart?.totalPrice ?? 1) / (cart?.quantity ?? 1))} X ${cart?.quantity ?? 1}",
+                                      "${NumberFormat.currency(symbol: symbol ?? LocalStorage.getSelectedCurrency().symbol).format((cart?.totalPrice ?? 1) / (cart?.quantity ?? 1))} X ${cart?.quantity ?? 1}",
                                       style: GoogleFonts.inter(
                                         fontSize: 14,
                                         color: AppStyle.black,
@@ -989,67 +992,72 @@ class CartOrderItem extends StatelessWidget {
                                             children: [
                                               Text(
                                                 NumberFormat.currency(
-                                                  symbol: symbol ??
-                                                      LocalStorage
-                                                              .getSelectedCurrency()
+                                                  symbol:
+                                                      symbol ??
+                                                      LocalStorage.getSelectedCurrency()
                                                           .symbol,
                                                 ).format(
-                                                    (cart?.discount ?? 0) != 0
-                                                        ? disSumPrice
-                                                        : sumPrice),
+                                                  (cart?.discount ?? 0) != 0
+                                                      ? disSumPrice
+                                                      : sumPrice,
+                                                ),
                                                 style: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize:
-                                                        (cart?.discount ?? 0) !=
-                                                                0
-                                                            ? 12
-                                                            : 16,
-                                                    color: AppStyle.black,
-                                                    decoration:
-                                                        (cart?.discount ?? 0) !=
-                                                                0
-                                                            ? TextDecoration
-                                                                .lineThrough
-                                                            : TextDecoration
-                                                                .none),
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize:
+                                                      (cart?.discount ?? 0) != 0
+                                                      ? 12
+                                                      : 16,
+                                                  color: AppStyle.black,
+                                                  decoration:
+                                                      (cart?.discount ?? 0) != 0
+                                                      ? TextDecoration
+                                                            .lineThrough
+                                                      : TextDecoration.none,
+                                                ),
                                               ),
                                               (cart?.discount ?? 0) != 0
                                                   ? Container(
                                                       margin: EdgeInsets.only(
-                                                          top: 8.r),
+                                                        top: 8.r,
+                                                      ),
                                                       decoration: BoxDecoration(
-                                                          color: AppStyle.red,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      30.r)),
-                                                      padding:
-                                                          EdgeInsets.all(4.r),
+                                                        color: AppStyle.red,
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                              30.r,
+                                                            ),
+                                                      ),
+                                                      padding: EdgeInsets.all(
+                                                        4.r,
+                                                      ),
                                                       child: Row(
                                                         children: [
                                                           SvgPicture.asset(
-                                                              "assets/svg/discount.svg"),
+                                                            "assets/svg/discount.svg",
+                                                          ),
                                                           4.horizontalSpace,
                                                           Text(
-                                                            NumberFormat
-                                                                .currency(
-                                                              symbol: symbol ??
-                                                                  LocalStorage
-                                                                          .getSelectedCurrency()
+                                                            NumberFormat.currency(
+                                                              symbol:
+                                                                  symbol ??
+                                                                  LocalStorage.getSelectedCurrency()
                                                                       .symbol,
                                                             ).format(sumPrice),
-                                                            style: GoogleFonts.inter(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 14.sp,
-                                                                color: AppStyle
-                                                                    .white),
-                                                          )
+                                                            style:
+                                                                GoogleFonts.inter(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontSize:
+                                                                      14.sp,
+                                                                  color: AppStyle
+                                                                      .white,
+                                                                ),
+                                                          ),
                                                         ],
                                                       ),
                                                     )
-                                                  : const SizedBox.shrink()
+                                                  : const SizedBox.shrink(),
                                             ],
                                           )
                                         : const SizedBox.shrink(),
@@ -1062,10 +1070,11 @@ class CartOrderItem extends StatelessWidget {
                           Stack(
                             children: [
                               CommonImage(
-                                  imageUrl: cart?.stock?.product?.img ?? "",
-                                  width: 100,
-                                  height: 100,
-                                  radius: 10.r),
+                                imageUrl: cart?.stock?.product?.img ?? "",
+                                width: 100,
+                                height: 100,
+                                radius: 10.r,
+                              ),
                               (cart?.stock?.bonus != null)
                                   ? Positioned(
                                       bottom: 4.r,
@@ -1074,8 +1083,9 @@ class CartOrderItem extends StatelessWidget {
                                         width: 22.w,
                                         height: 22.h,
                                         decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: AppStyle.blue),
+                                          shape: BoxShape.circle,
+                                          color: AppStyle.blue,
+                                        ),
                                         child: Icon(
                                           FlutterRemix.gift_2_fill,
                                           size: 16.r,
@@ -1097,4 +1107,3 @@ class CartOrderItem extends StatelessWidget {
     );
   }
 }
-

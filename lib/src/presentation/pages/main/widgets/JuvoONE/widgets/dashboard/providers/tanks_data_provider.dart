@@ -10,5 +10,6 @@ final tanksDataProvider = StateProvider<Map<int, List<Tank>>>((ref) => {});
 final roSystemDataProvider = StateProvider<Map<int, ROSystem?>>((ref) => {});
 
 // Provider to cache energy consumption data
-final energyDataProvider = StateProvider<Map<int, EnergyConsumptionData?>>((ref) => {});
-
+final energyDataProvider = StateProvider<Map<int, EnergyConsumptionData?>>(
+  (ref) => {},
+);

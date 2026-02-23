@@ -12,7 +12,8 @@ part of 'shop_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$ShopState {
@@ -56,33 +57,34 @@ abstract class $ShopStateCopyWith<$Res> {
   factory $ShopStateCopyWith(ShopState value, $Res Function(ShopState) then) =
       _$ShopStateCopyWithImpl<$Res, ShopState>;
   @useResult
-  $Res call(
-      {bool isBagsLoading,
-      bool isEditShopData,
-      bool isSave,
-      bool isUpdate,
-      bool isButtonLoading,
-      bool isActive,
-      bool isLogoImageLoading,
-      bool isBackImageLoading,
-      List<UserData> users,
-      List<AddressData> userAddresses,
-      int selectedCloseDay,
-      double shopTax,
-      String usersQuery,
-      String tableQuery,
-      String sectionQuery,
-      String orderType,
-      String calculate,
-      String comment,
-      String logoImagePath,
-      String logoImageUrl,
-      String backImagePath,
-      String backImageUrl,
-      CategoriesPaginateResponse? categories,
-      CategoriesPaginateResponse? tag,
-      EditShopData? editShopData,
-      AddressData? selectedAddress});
+  $Res call({
+    bool isBagsLoading,
+    bool isEditShopData,
+    bool isSave,
+    bool isUpdate,
+    bool isButtonLoading,
+    bool isActive,
+    bool isLogoImageLoading,
+    bool isBackImageLoading,
+    List<UserData> users,
+    List<AddressData> userAddresses,
+    int selectedCloseDay,
+    double shopTax,
+    String usersQuery,
+    String tableQuery,
+    String sectionQuery,
+    String orderType,
+    String calculate,
+    String comment,
+    String logoImagePath,
+    String logoImageUrl,
+    String backImagePath,
+    String backImageUrl,
+    CategoriesPaginateResponse? categories,
+    CategoriesPaginateResponse? tag,
+    EditShopData? editShopData,
+    AddressData? selectedAddress,
+  });
 }
 
 /// @nodoc
@@ -127,112 +129,115 @@ class _$ShopStateCopyWithImpl<$Res, $Val extends ShopState>
     Object? editShopData = freezed,
     Object? selectedAddress = freezed,
   }) {
-    return _then(_value.copyWith(
-      isBagsLoading: null == isBagsLoading
-          ? _value.isBagsLoading
-          : isBagsLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isEditShopData: null == isEditShopData
-          ? _value.isEditShopData
-          : isEditShopData // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSave: null == isSave
-          ? _value.isSave
-          : isSave // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isUpdate: null == isUpdate
-          ? _value.isUpdate
-          : isUpdate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isButtonLoading: null == isButtonLoading
-          ? _value.isButtonLoading
-          : isButtonLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActive: null == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLogoImageLoading: null == isLogoImageLoading
-          ? _value.isLogoImageLoading
-          : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isBackImageLoading: null == isBackImageLoading
-          ? _value.isBackImageLoading
-          : isBackImageLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      users: null == users
-          ? _value.users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      userAddresses: null == userAddresses
-          ? _value.userAddresses
-          : userAddresses // ignore: cast_nullable_to_non_nullable
-              as List<AddressData>,
-      selectedCloseDay: null == selectedCloseDay
-          ? _value.selectedCloseDay
-          : selectedCloseDay // ignore: cast_nullable_to_non_nullable
-              as int,
-      shopTax: null == shopTax
-          ? _value.shopTax
-          : shopTax // ignore: cast_nullable_to_non_nullable
-              as double,
-      usersQuery: null == usersQuery
-          ? _value.usersQuery
-          : usersQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      tableQuery: null == tableQuery
-          ? _value.tableQuery
-          : tableQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      sectionQuery: null == sectionQuery
-          ? _value.sectionQuery
-          : sectionQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      orderType: null == orderType
-          ? _value.orderType
-          : orderType // ignore: cast_nullable_to_non_nullable
-              as String,
-      calculate: null == calculate
-          ? _value.calculate
-          : calculate // ignore: cast_nullable_to_non_nullable
-              as String,
-      comment: null == comment
-          ? _value.comment
-          : comment // ignore: cast_nullable_to_non_nullable
-              as String,
-      logoImagePath: null == logoImagePath
-          ? _value.logoImagePath
-          : logoImagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      logoImageUrl: null == logoImageUrl
-          ? _value.logoImageUrl
-          : logoImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      backImagePath: null == backImagePath
-          ? _value.backImagePath
-          : backImagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      backImageUrl: null == backImageUrl
-          ? _value.backImageUrl
-          : backImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      categories: freezed == categories
-          ? _value.categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as CategoriesPaginateResponse?,
-      tag: freezed == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as CategoriesPaginateResponse?,
-      editShopData: freezed == editShopData
-          ? _value.editShopData
-          : editShopData // ignore: cast_nullable_to_non_nullable
-              as EditShopData?,
-      selectedAddress: freezed == selectedAddress
-          ? _value.selectedAddress
-          : selectedAddress // ignore: cast_nullable_to_non_nullable
-              as AddressData?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isBagsLoading: null == isBagsLoading
+                ? _value.isBagsLoading
+                : isBagsLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isEditShopData: null == isEditShopData
+                ? _value.isEditShopData
+                : isEditShopData // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isSave: null == isSave
+                ? _value.isSave
+                : isSave // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isUpdate: null == isUpdate
+                ? _value.isUpdate
+                : isUpdate // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isButtonLoading: null == isButtonLoading
+                ? _value.isButtonLoading
+                : isButtonLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isActive: null == isActive
+                ? _value.isActive
+                : isActive // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isLogoImageLoading: null == isLogoImageLoading
+                ? _value.isLogoImageLoading
+                : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isBackImageLoading: null == isBackImageLoading
+                ? _value.isBackImageLoading
+                : isBackImageLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            users: null == users
+                ? _value.users
+                : users // ignore: cast_nullable_to_non_nullable
+                      as List<UserData>,
+            userAddresses: null == userAddresses
+                ? _value.userAddresses
+                : userAddresses // ignore: cast_nullable_to_non_nullable
+                      as List<AddressData>,
+            selectedCloseDay: null == selectedCloseDay
+                ? _value.selectedCloseDay
+                : selectedCloseDay // ignore: cast_nullable_to_non_nullable
+                      as int,
+            shopTax: null == shopTax
+                ? _value.shopTax
+                : shopTax // ignore: cast_nullable_to_non_nullable
+                      as double,
+            usersQuery: null == usersQuery
+                ? _value.usersQuery
+                : usersQuery // ignore: cast_nullable_to_non_nullable
+                      as String,
+            tableQuery: null == tableQuery
+                ? _value.tableQuery
+                : tableQuery // ignore: cast_nullable_to_non_nullable
+                      as String,
+            sectionQuery: null == sectionQuery
+                ? _value.sectionQuery
+                : sectionQuery // ignore: cast_nullable_to_non_nullable
+                      as String,
+            orderType: null == orderType
+                ? _value.orderType
+                : orderType // ignore: cast_nullable_to_non_nullable
+                      as String,
+            calculate: null == calculate
+                ? _value.calculate
+                : calculate // ignore: cast_nullable_to_non_nullable
+                      as String,
+            comment: null == comment
+                ? _value.comment
+                : comment // ignore: cast_nullable_to_non_nullable
+                      as String,
+            logoImagePath: null == logoImagePath
+                ? _value.logoImagePath
+                : logoImagePath // ignore: cast_nullable_to_non_nullable
+                      as String,
+            logoImageUrl: null == logoImageUrl
+                ? _value.logoImageUrl
+                : logoImageUrl // ignore: cast_nullable_to_non_nullable
+                      as String,
+            backImagePath: null == backImagePath
+                ? _value.backImagePath
+                : backImagePath // ignore: cast_nullable_to_non_nullable
+                      as String,
+            backImageUrl: null == backImageUrl
+                ? _value.backImageUrl
+                : backImageUrl // ignore: cast_nullable_to_non_nullable
+                      as String,
+            categories: freezed == categories
+                ? _value.categories
+                : categories // ignore: cast_nullable_to_non_nullable
+                      as CategoriesPaginateResponse?,
+            tag: freezed == tag
+                ? _value.tag
+                : tag // ignore: cast_nullable_to_non_nullable
+                      as CategoriesPaginateResponse?,
+            editShopData: freezed == editShopData
+                ? _value.editShopData
+                : editShopData // ignore: cast_nullable_to_non_nullable
+                      as EditShopData?,
+            selectedAddress: freezed == selectedAddress
+                ? _value.selectedAddress
+                : selectedAddress // ignore: cast_nullable_to_non_nullable
+                      as AddressData?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -240,37 +245,39 @@ class _$ShopStateCopyWithImpl<$Res, $Val extends ShopState>
 abstract class _$$ShopStateImplCopyWith<$Res>
     implements $ShopStateCopyWith<$Res> {
   factory _$$ShopStateImplCopyWith(
-          _$ShopStateImpl value, $Res Function(_$ShopStateImpl) then) =
-      __$$ShopStateImplCopyWithImpl<$Res>;
+    _$ShopStateImpl value,
+    $Res Function(_$ShopStateImpl) then,
+  ) = __$$ShopStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isBagsLoading,
-      bool isEditShopData,
-      bool isSave,
-      bool isUpdate,
-      bool isButtonLoading,
-      bool isActive,
-      bool isLogoImageLoading,
-      bool isBackImageLoading,
-      List<UserData> users,
-      List<AddressData> userAddresses,
-      int selectedCloseDay,
-      double shopTax,
-      String usersQuery,
-      String tableQuery,
-      String sectionQuery,
-      String orderType,
-      String calculate,
-      String comment,
-      String logoImagePath,
-      String logoImageUrl,
-      String backImagePath,
-      String backImageUrl,
-      CategoriesPaginateResponse? categories,
-      CategoriesPaginateResponse? tag,
-      EditShopData? editShopData,
-      AddressData? selectedAddress});
+  $Res call({
+    bool isBagsLoading,
+    bool isEditShopData,
+    bool isSave,
+    bool isUpdate,
+    bool isButtonLoading,
+    bool isActive,
+    bool isLogoImageLoading,
+    bool isBackImageLoading,
+    List<UserData> users,
+    List<AddressData> userAddresses,
+    int selectedCloseDay,
+    double shopTax,
+    String usersQuery,
+    String tableQuery,
+    String sectionQuery,
+    String orderType,
+    String calculate,
+    String comment,
+    String logoImagePath,
+    String logoImageUrl,
+    String backImagePath,
+    String backImageUrl,
+    CategoriesPaginateResponse? categories,
+    CategoriesPaginateResponse? tag,
+    EditShopData? editShopData,
+    AddressData? selectedAddress,
+  });
 }
 
 /// @nodoc
@@ -278,8 +285,9 @@ class __$$ShopStateImplCopyWithImpl<$Res>
     extends _$ShopStateCopyWithImpl<$Res, _$ShopStateImpl>
     implements _$$ShopStateImplCopyWith<$Res> {
   __$$ShopStateImplCopyWithImpl(
-      _$ShopStateImpl _value, $Res Function(_$ShopStateImpl) _then)
-      : super(_value, _then);
+    _$ShopStateImpl _value,
+    $Res Function(_$ShopStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ShopState
   /// with the given fields replaced by the non-null parameter values.
@@ -313,148 +321,150 @@ class __$$ShopStateImplCopyWithImpl<$Res>
     Object? editShopData = freezed,
     Object? selectedAddress = freezed,
   }) {
-    return _then(_$ShopStateImpl(
-      isBagsLoading: null == isBagsLoading
-          ? _value.isBagsLoading
-          : isBagsLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isEditShopData: null == isEditShopData
-          ? _value.isEditShopData
-          : isEditShopData // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSave: null == isSave
-          ? _value.isSave
-          : isSave // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isUpdate: null == isUpdate
-          ? _value.isUpdate
-          : isUpdate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isButtonLoading: null == isButtonLoading
-          ? _value.isButtonLoading
-          : isButtonLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActive: null == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLogoImageLoading: null == isLogoImageLoading
-          ? _value.isLogoImageLoading
-          : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isBackImageLoading: null == isBackImageLoading
-          ? _value.isBackImageLoading
-          : isBackImageLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      users: null == users
-          ? _value._users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      userAddresses: null == userAddresses
-          ? _value._userAddresses
-          : userAddresses // ignore: cast_nullable_to_non_nullable
-              as List<AddressData>,
-      selectedCloseDay: null == selectedCloseDay
-          ? _value.selectedCloseDay
-          : selectedCloseDay // ignore: cast_nullable_to_non_nullable
-              as int,
-      shopTax: null == shopTax
-          ? _value.shopTax
-          : shopTax // ignore: cast_nullable_to_non_nullable
-              as double,
-      usersQuery: null == usersQuery
-          ? _value.usersQuery
-          : usersQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      tableQuery: null == tableQuery
-          ? _value.tableQuery
-          : tableQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      sectionQuery: null == sectionQuery
-          ? _value.sectionQuery
-          : sectionQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      orderType: null == orderType
-          ? _value.orderType
-          : orderType // ignore: cast_nullable_to_non_nullable
-              as String,
-      calculate: null == calculate
-          ? _value.calculate
-          : calculate // ignore: cast_nullable_to_non_nullable
-              as String,
-      comment: null == comment
-          ? _value.comment
-          : comment // ignore: cast_nullable_to_non_nullable
-              as String,
-      logoImagePath: null == logoImagePath
-          ? _value.logoImagePath
-          : logoImagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      logoImageUrl: null == logoImageUrl
-          ? _value.logoImageUrl
-          : logoImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      backImagePath: null == backImagePath
-          ? _value.backImagePath
-          : backImagePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      backImageUrl: null == backImageUrl
-          ? _value.backImageUrl
-          : backImageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      categories: freezed == categories
-          ? _value.categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as CategoriesPaginateResponse?,
-      tag: freezed == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as CategoriesPaginateResponse?,
-      editShopData: freezed == editShopData
-          ? _value.editShopData
-          : editShopData // ignore: cast_nullable_to_non_nullable
-              as EditShopData?,
-      selectedAddress: freezed == selectedAddress
-          ? _value.selectedAddress
-          : selectedAddress // ignore: cast_nullable_to_non_nullable
-              as AddressData?,
-    ));
+    return _then(
+      _$ShopStateImpl(
+        isBagsLoading: null == isBagsLoading
+            ? _value.isBagsLoading
+            : isBagsLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isEditShopData: null == isEditShopData
+            ? _value.isEditShopData
+            : isEditShopData // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isSave: null == isSave
+            ? _value.isSave
+            : isSave // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isUpdate: null == isUpdate
+            ? _value.isUpdate
+            : isUpdate // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isButtonLoading: null == isButtonLoading
+            ? _value.isButtonLoading
+            : isButtonLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isActive: null == isActive
+            ? _value.isActive
+            : isActive // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isLogoImageLoading: null == isLogoImageLoading
+            ? _value.isLogoImageLoading
+            : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isBackImageLoading: null == isBackImageLoading
+            ? _value.isBackImageLoading
+            : isBackImageLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        users: null == users
+            ? _value._users
+            : users // ignore: cast_nullable_to_non_nullable
+                  as List<UserData>,
+        userAddresses: null == userAddresses
+            ? _value._userAddresses
+            : userAddresses // ignore: cast_nullable_to_non_nullable
+                  as List<AddressData>,
+        selectedCloseDay: null == selectedCloseDay
+            ? _value.selectedCloseDay
+            : selectedCloseDay // ignore: cast_nullable_to_non_nullable
+                  as int,
+        shopTax: null == shopTax
+            ? _value.shopTax
+            : shopTax // ignore: cast_nullable_to_non_nullable
+                  as double,
+        usersQuery: null == usersQuery
+            ? _value.usersQuery
+            : usersQuery // ignore: cast_nullable_to_non_nullable
+                  as String,
+        tableQuery: null == tableQuery
+            ? _value.tableQuery
+            : tableQuery // ignore: cast_nullable_to_non_nullable
+                  as String,
+        sectionQuery: null == sectionQuery
+            ? _value.sectionQuery
+            : sectionQuery // ignore: cast_nullable_to_non_nullable
+                  as String,
+        orderType: null == orderType
+            ? _value.orderType
+            : orderType // ignore: cast_nullable_to_non_nullable
+                  as String,
+        calculate: null == calculate
+            ? _value.calculate
+            : calculate // ignore: cast_nullable_to_non_nullable
+                  as String,
+        comment: null == comment
+            ? _value.comment
+            : comment // ignore: cast_nullable_to_non_nullable
+                  as String,
+        logoImagePath: null == logoImagePath
+            ? _value.logoImagePath
+            : logoImagePath // ignore: cast_nullable_to_non_nullable
+                  as String,
+        logoImageUrl: null == logoImageUrl
+            ? _value.logoImageUrl
+            : logoImageUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        backImagePath: null == backImagePath
+            ? _value.backImagePath
+            : backImagePath // ignore: cast_nullable_to_non_nullable
+                  as String,
+        backImageUrl: null == backImageUrl
+            ? _value.backImageUrl
+            : backImageUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        categories: freezed == categories
+            ? _value.categories
+            : categories // ignore: cast_nullable_to_non_nullable
+                  as CategoriesPaginateResponse?,
+        tag: freezed == tag
+            ? _value.tag
+            : tag // ignore: cast_nullable_to_non_nullable
+                  as CategoriesPaginateResponse?,
+        editShopData: freezed == editShopData
+            ? _value.editShopData
+            : editShopData // ignore: cast_nullable_to_non_nullable
+                  as EditShopData?,
+        selectedAddress: freezed == selectedAddress
+            ? _value.selectedAddress
+            : selectedAddress // ignore: cast_nullable_to_non_nullable
+                  as AddressData?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ShopStateImpl extends _ShopState {
-  const _$ShopStateImpl(
-      {this.isBagsLoading = false,
-      this.isEditShopData = true,
-      this.isSave = false,
-      this.isUpdate = true,
-      this.isButtonLoading = false,
-      this.isActive = false,
-      this.isLogoImageLoading = false,
-      this.isBackImageLoading = false,
-      final List<UserData> users = const [],
-      final List<AddressData> userAddresses = const [],
-      this.selectedCloseDay = -1,
-      this.shopTax = 0,
-      this.usersQuery = '',
-      this.tableQuery = '',
-      this.sectionQuery = '',
-      this.orderType = '',
-      this.calculate = '',
-      this.comment = '',
-      this.logoImagePath = '',
-      this.logoImageUrl = '',
-      this.backImagePath = '',
-      this.backImageUrl = '',
-      this.categories = null,
-      this.tag = null,
-      this.editShopData,
-      this.selectedAddress})
-      : _users = users,
-        _userAddresses = userAddresses,
-        super._();
+  const _$ShopStateImpl({
+    this.isBagsLoading = false,
+    this.isEditShopData = true,
+    this.isSave = false,
+    this.isUpdate = true,
+    this.isButtonLoading = false,
+    this.isActive = false,
+    this.isLogoImageLoading = false,
+    this.isBackImageLoading = false,
+    final List<UserData> users = const [],
+    final List<AddressData> userAddresses = const [],
+    this.selectedCloseDay = -1,
+    this.shopTax = 0,
+    this.usersQuery = '',
+    this.tableQuery = '',
+    this.sectionQuery = '',
+    this.orderType = '',
+    this.calculate = '',
+    this.comment = '',
+    this.logoImagePath = '',
+    this.logoImageUrl = '',
+    this.backImagePath = '',
+    this.backImageUrl = '',
+    this.categories = null,
+    this.tag = null,
+    this.editShopData,
+    this.selectedAddress,
+  }) : _users = users,
+       _userAddresses = userAddresses,
+       super._();
 
   @override
   @JsonKey()
@@ -571,8 +581,10 @@ class _$ShopStateImpl extends _ShopState {
             (identical(other.isBackImageLoading, isBackImageLoading) ||
                 other.isBackImageLoading == isBackImageLoading) &&
             const DeepCollectionEquality().equals(other._users, _users) &&
-            const DeepCollectionEquality()
-                .equals(other._userAddresses, _userAddresses) &&
+            const DeepCollectionEquality().equals(
+              other._userAddresses,
+              _userAddresses,
+            ) &&
             (identical(other.selectedCloseDay, selectedCloseDay) ||
                 other.selectedCloseDay == selectedCloseDay) &&
             (identical(other.shopTax, shopTax) || other.shopTax == shopTax) &&
@@ -606,34 +618,34 @@ class _$ShopStateImpl extends _ShopState {
 
   @override
   int get hashCode => Object.hashAll([
-        runtimeType,
-        isBagsLoading,
-        isEditShopData,
-        isSave,
-        isUpdate,
-        isButtonLoading,
-        isActive,
-        isLogoImageLoading,
-        isBackImageLoading,
-        const DeepCollectionEquality().hash(_users),
-        const DeepCollectionEquality().hash(_userAddresses),
-        selectedCloseDay,
-        shopTax,
-        usersQuery,
-        tableQuery,
-        sectionQuery,
-        orderType,
-        calculate,
-        comment,
-        logoImagePath,
-        logoImageUrl,
-        backImagePath,
-        backImageUrl,
-        categories,
-        tag,
-        editShopData,
-        selectedAddress
-      ]);
+    runtimeType,
+    isBagsLoading,
+    isEditShopData,
+    isSave,
+    isUpdate,
+    isButtonLoading,
+    isActive,
+    isLogoImageLoading,
+    isBackImageLoading,
+    const DeepCollectionEquality().hash(_users),
+    const DeepCollectionEquality().hash(_userAddresses),
+    selectedCloseDay,
+    shopTax,
+    usersQuery,
+    tableQuery,
+    sectionQuery,
+    orderType,
+    calculate,
+    comment,
+    logoImagePath,
+    logoImageUrl,
+    backImagePath,
+    backImageUrl,
+    categories,
+    tag,
+    editShopData,
+    selectedAddress,
+  ]);
 
   /// Create a copy of ShopState
   /// with the given fields replaced by the non-null parameter values.
@@ -645,33 +657,34 @@ class _$ShopStateImpl extends _ShopState {
 }
 
 abstract class _ShopState extends ShopState {
-  const factory _ShopState(
-      {final bool isBagsLoading,
-      final bool isEditShopData,
-      final bool isSave,
-      final bool isUpdate,
-      final bool isButtonLoading,
-      final bool isActive,
-      final bool isLogoImageLoading,
-      final bool isBackImageLoading,
-      final List<UserData> users,
-      final List<AddressData> userAddresses,
-      final int selectedCloseDay,
-      final double shopTax,
-      final String usersQuery,
-      final String tableQuery,
-      final String sectionQuery,
-      final String orderType,
-      final String calculate,
-      final String comment,
-      final String logoImagePath,
-      final String logoImageUrl,
-      final String backImagePath,
-      final String backImageUrl,
-      final CategoriesPaginateResponse? categories,
-      final CategoriesPaginateResponse? tag,
-      final EditShopData? editShopData,
-      final AddressData? selectedAddress}) = _$ShopStateImpl;
+  const factory _ShopState({
+    final bool isBagsLoading,
+    final bool isEditShopData,
+    final bool isSave,
+    final bool isUpdate,
+    final bool isButtonLoading,
+    final bool isActive,
+    final bool isLogoImageLoading,
+    final bool isBackImageLoading,
+    final List<UserData> users,
+    final List<AddressData> userAddresses,
+    final int selectedCloseDay,
+    final double shopTax,
+    final String usersQuery,
+    final String tableQuery,
+    final String sectionQuery,
+    final String orderType,
+    final String calculate,
+    final String comment,
+    final String logoImagePath,
+    final String logoImageUrl,
+    final String backImagePath,
+    final String backImageUrl,
+    final CategoriesPaginateResponse? categories,
+    final CategoriesPaginateResponse? tag,
+    final EditShopData? editShopData,
+    final AddressData? selectedAddress,
+  }) = _$ShopStateImpl;
   const _ShopState._() : super._();
 
   @override
@@ -734,4 +747,3 @@ abstract class _ShopState extends ShopState {
   _$$ShopStateImplCopyWith<_$ShopStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

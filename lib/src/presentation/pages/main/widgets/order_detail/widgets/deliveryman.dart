@@ -14,20 +14,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class DeliverymanScreen extends StatelessWidget {
   final OrderData? orderData;
   final UserData? selectUser;
   final ValueChanged? onChanged;
   final VoidCallback setDeliveryman;
 
-  const DeliverymanScreen(
-      {super.key,
-      required this.orderData,
-      this.selectUser,
-      this.onChanged,
-      required this.setDeliveryman})
-     ;
+  const DeliverymanScreen({
+    super.key,
+    required this.orderData,
+    this.selectUser,
+    this.onChanged,
+    required this.setDeliveryman,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +39,10 @@ class DeliverymanScreen extends StatelessWidget {
             Text(
               AppHelpers.getTranslation(TrKeys.deliveryman),
               style: GoogleFonts.inter(
-                  fontSize: 24.sp, fontWeight: FontWeight.w700,
-                  color: AppStyle.black),
+                fontSize: 24.sp,
+                fontWeight: FontWeight.w700,
+                color: AppStyle.black,
+              ),
             ),
             (orderData?.status == TrKeys.ready) &&
                     (orderData?.deliveryType == TrKeys.delivery) &&
@@ -51,54 +52,60 @@ class DeliverymanScreen extends StatelessWidget {
                         "${AppHelpers.getTranslation(TrKeys.add)} ${AppHelpers.getTranslation(TrKeys.deliveryman)}",
                     onTap: () {
                       showDialog(
-                          context: context,
-                          builder: (contextt) {
-                            return AlertDialog(
-                              content: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12.r),
-                                  border: Border.all(
-                                    color: AppStyle.unselectedBottomBarBack,
-                                    width: 1.r,
-                                  ),
-                                ),
-                                alignment: Alignment.center,
-                                height: 64.r,
-                                padding: EdgeInsets.only(left: 8.r),
-                                child: CustomDropdown(
-                                  key: UniqueKey(),
-                                  hintText: AppHelpers.getTranslation(
-                                      TrKeys.selectDeliveryman),
-                                  searchHintText:
-                                      AppHelpers.getTranslation(TrKeys.search),
-                                  dropDownType: DropDownType.deliveryman,
-                                  onChanged: onChanged,
-                                  initialValue: selectUser?.firstname ?? '',
+                        context: context,
+                        builder: (contextt) {
+                          return AlertDialog(
+                            content: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.r),
+                                border: Border.all(
+                                  color: AppStyle.unselectedBottomBarBack,
+                                  width: 1.r,
                                 ),
                               ),
-                              actions: [
-                                Padding(
-                                  padding: EdgeInsets.only(right: 16.r),
-                                  child: SizedBox(
-                                    width: 150.w,
-                                    child: ConfirmButton(
-                                        title: AppHelpers.getTranslation(
-                                            TrKeys.save),
-                                        onTap: () {
-                                          selectUser == null
-                                              ? null
-                                              : setDeliveryman();
-                                          context.maybePop();
-                                        }),
+                              alignment: Alignment.center,
+                              height: 64.r,
+                              padding: EdgeInsets.only(left: 8.r),
+                              child: CustomDropdown(
+                                key: UniqueKey(),
+                                hintText: AppHelpers.getTranslation(
+                                  TrKeys.selectDeliveryman,
+                                ),
+                                searchHintText: AppHelpers.getTranslation(
+                                  TrKeys.search,
+                                ),
+                                dropDownType: DropDownType.deliveryman,
+                                onChanged: onChanged,
+                                initialValue: selectUser?.firstname ?? '',
+                              ),
+                            ),
+                            actions: [
+                              Padding(
+                                padding: EdgeInsets.only(right: 16.r),
+                                child: SizedBox(
+                                  width: 150.w,
+                                  child: ConfirmButton(
+                                    title: AppHelpers.getTranslation(
+                                      TrKeys.save,
+                                    ),
+                                    onTap: () {
+                                      selectUser == null
+                                          ? null
+                                          : setDeliveryman();
+                                      context.maybePop();
+                                    },
                                   ),
                                 ),
-                              ],
-                            backgroundColor: AppStyle.white);
-                          });
+                              ),
+                            ],
+                            backgroundColor: AppStyle.white,
+                          );
+                        },
+                      );
                     },
                     height: 72.r,
                   )
-                : const SizedBox.shrink()
+                : const SizedBox.shrink(),
           ],
         ),
         16.verticalSpace,
@@ -111,96 +118,104 @@ class DeliverymanScreen extends StatelessWidget {
                 ),
               )
             : orderData?.deliveryman != null
-                ? Row(
-                    children: [
-                      CommonImage(
-                        imageUrl: orderData?.deliveryman?.img,
-                        width: 60.r,
-                        height: 60.r,
-                        radius: 30.r,
-                      ),
-                      16.horizontalSpace,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${orderData?.deliveryman?.firstname ?? ""} ${orderData?.deliveryman?.lastname ?? ""}",
-                              style: GoogleFonts.inter(
-                                  fontSize: 20.sp, fontWeight: FontWeight.w700,
-                                  color: AppStyle.black),
-                            ),
-                            4.verticalSpace,
-                            Text(
-                              AppHelpers.getTranslation(
-                                  orderData?.deliveryman?.role ?? ""),
-                              style: GoogleFonts.inter(
-                                  fontSize: 16.sp, fontWeight: FontWeight.w500,
-                                  color: AppStyle.black),
-                            ),
-                          ],
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          final Uri launchUri = Uri(
-                            scheme: 'tel',
-                            path: orderData?.deliveryman?.phone ?? "",
-                          );
-                          await launchUrl(launchUri);
-                        },
-                        child: AnimationButtonEffect(
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                color: AppStyle.black, shape: BoxShape.circle),
-                            padding: EdgeInsets.all(10.r),
-                            child: const Icon(
-                              FlutterRemix.phone_fill,
-                              color: AppStyle.white,
-                            ),
+            ? Row(
+                children: [
+                  CommonImage(
+                    imageUrl: orderData?.deliveryman?.img,
+                    width: 60.r,
+                    height: 60.r,
+                    radius: 30.r,
+                  ),
+                  16.horizontalSpace,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${orderData?.deliveryman?.firstname ?? ""} ${orderData?.deliveryman?.lastname ?? ""}",
+                          style: GoogleFonts.inter(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w700,
+                            color: AppStyle.black,
                           ),
                         ),
-                      ),
-                      8.horizontalSpace,
-                      InkWell(
-                        onTap: () async {
-                          final Uri launchUri = Uri(
-                            scheme: 'sms',
-                            path: orderData?.deliveryman?.phone ?? "",
-                          );
-                          await launchUrl(launchUri);
-                        },
-                        child: AnimationButtonEffect(
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                color: AppStyle.black, shape: BoxShape.circle),
-                            padding: EdgeInsets.all(10.r),
-                            child: const Icon(
-                              FlutterRemix.chat_1_fill,
-                              color: AppStyle.white,
-                            ),
+                        4.verticalSpace,
+                        Text(
+                          AppHelpers.getTranslation(
+                            orderData?.deliveryman?.role ?? "",
+                          ),
+                          style: GoogleFonts.inter(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            color: AppStyle.black,
                           ),
                         ),
-                      )
-                    ],
-                  )
-                : orderData?.status != "ready"
-                    ? Text(
-                        AppHelpers.getTranslation(TrKeys.statusReady),
-                        style: GoogleFonts.inter(
-                          fontSize: 16.sp,
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      final Uri launchUri = Uri(
+                        scheme: 'tel',
+                        path: orderData?.deliveryman?.phone ?? "",
+                      );
+                      await launchUrl(launchUri);
+                    },
+                    child: AnimationButtonEffect(
+                      child: Container(
+                        decoration: const BoxDecoration(
                           color: AppStyle.black,
+                          shape: BoxShape.circle,
                         ),
-                      )
-                    : Text(
-                        AppHelpers.getTranslation(TrKeys.notAssigned),
-                        style: GoogleFonts.inter(
-                          fontSize: 16.sp,
+                        padding: EdgeInsets.all(10.r),
+                        child: const Icon(
+                          FlutterRemix.phone_fill,
+                          color: AppStyle.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  8.horizontalSpace,
+                  InkWell(
+                    onTap: () async {
+                      final Uri launchUri = Uri(
+                        scheme: 'sms',
+                        path: orderData?.deliveryman?.phone ?? "",
+                      );
+                      await launchUrl(launchUri);
+                    },
+                    child: AnimationButtonEffect(
+                      child: Container(
+                        decoration: const BoxDecoration(
                           color: AppStyle.black,
+                          shape: BoxShape.circle,
                         ),
-                      )
+                        padding: EdgeInsets.all(10.r),
+                        child: const Icon(
+                          FlutterRemix.chat_1_fill,
+                          color: AppStyle.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            : orderData?.status != "ready"
+            ? Text(
+                AppHelpers.getTranslation(TrKeys.statusReady),
+                style: GoogleFonts.inter(
+                  fontSize: 16.sp,
+                  color: AppStyle.black,
+                ),
+              )
+            : Text(
+                AppHelpers.getTranslation(TrKeys.notAssigned),
+                style: GoogleFonts.inter(
+                  fontSize: 16.sp,
+                  color: AppStyle.black,
+                ),
+              ),
       ],
     );
   }
 }
-

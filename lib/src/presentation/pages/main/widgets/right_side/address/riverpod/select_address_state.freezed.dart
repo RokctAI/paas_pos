@@ -12,7 +12,8 @@ part of 'select_address_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$SelectAddressState {
@@ -37,19 +38,21 @@ mixin _$SelectAddressState {
 /// @nodoc
 abstract class $SelectAddressStateCopyWith<$Res> {
   factory $SelectAddressStateCopyWith(
-          SelectAddressState value, $Res Function(SelectAddressState) then) =
-      _$SelectAddressStateCopyWithImpl<$Res, SelectAddressState>;
+    SelectAddressState value,
+    $Res Function(SelectAddressState) then,
+  ) = _$SelectAddressStateCopyWithImpl<$Res, SelectAddressState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isActive,
-      bool isSearching,
-      bool isSearchLoading,
-      bool isChoosing,
-      List<Place> searchedPlaces,
-      TextEditingController? textController,
-      GoogleMapController? mapController,
-      LocationData? location});
+  $Res call({
+    bool isLoading,
+    bool isActive,
+    bool isSearching,
+    bool isSearchLoading,
+    bool isChoosing,
+    List<Place> searchedPlaces,
+    TextEditingController? textController,
+    GoogleMapController? mapController,
+    LocationData? location,
+  });
 }
 
 /// @nodoc
@@ -77,74 +80,80 @@ class _$SelectAddressStateCopyWithImpl<$Res, $Val extends SelectAddressState>
     Object? mapController = freezed,
     Object? location = freezed,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActive: null == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSearching: null == isSearching
-          ? _value.isSearching
-          : isSearching // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSearchLoading: null == isSearchLoading
-          ? _value.isSearchLoading
-          : isSearchLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isChoosing: null == isChoosing
-          ? _value.isChoosing
-          : isChoosing // ignore: cast_nullable_to_non_nullable
-              as bool,
-      searchedPlaces: null == searchedPlaces
-          ? _value.searchedPlaces
-          : searchedPlaces // ignore: cast_nullable_to_non_nullable
-              as List<Place>,
-      textController: freezed == textController
-          ? _value.textController
-          : textController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-      mapController: freezed == mapController
-          ? _value.mapController
-          : mapController // ignore: cast_nullable_to_non_nullable
-              as GoogleMapController?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as LocationData?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isActive: null == isActive
+                ? _value.isActive
+                : isActive // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isSearching: null == isSearching
+                ? _value.isSearching
+                : isSearching // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isSearchLoading: null == isSearchLoading
+                ? _value.isSearchLoading
+                : isSearchLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isChoosing: null == isChoosing
+                ? _value.isChoosing
+                : isChoosing // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            searchedPlaces: null == searchedPlaces
+                ? _value.searchedPlaces
+                : searchedPlaces // ignore: cast_nullable_to_non_nullable
+                      as List<Place>,
+            textController: freezed == textController
+                ? _value.textController
+                : textController // ignore: cast_nullable_to_non_nullable
+                      as TextEditingController?,
+            mapController: freezed == mapController
+                ? _value.mapController
+                : mapController // ignore: cast_nullable_to_non_nullable
+                      as GoogleMapController?,
+            location: freezed == location
+                ? _value.location
+                : location // ignore: cast_nullable_to_non_nullable
+                      as LocationData?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$SelectAddressStateImplCopyWith<$Res>
     implements $SelectAddressStateCopyWith<$Res> {
-  factory _$$SelectAddressStateImplCopyWith(_$SelectAddressStateImpl value,
-          $Res Function(_$SelectAddressStateImpl) then) =
-      __$$SelectAddressStateImplCopyWithImpl<$Res>;
+  factory _$$SelectAddressStateImplCopyWith(
+    _$SelectAddressStateImpl value,
+    $Res Function(_$SelectAddressStateImpl) then,
+  ) = __$$SelectAddressStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isActive,
-      bool isSearching,
-      bool isSearchLoading,
-      bool isChoosing,
-      List<Place> searchedPlaces,
-      TextEditingController? textController,
-      GoogleMapController? mapController,
-      LocationData? location});
+  $Res call({
+    bool isLoading,
+    bool isActive,
+    bool isSearching,
+    bool isSearchLoading,
+    bool isChoosing,
+    List<Place> searchedPlaces,
+    TextEditingController? textController,
+    GoogleMapController? mapController,
+    LocationData? location,
+  });
 }
 
 /// @nodoc
 class __$$SelectAddressStateImplCopyWithImpl<$Res>
     extends _$SelectAddressStateCopyWithImpl<$Res, _$SelectAddressStateImpl>
     implements _$$SelectAddressStateImplCopyWith<$Res> {
-  __$$SelectAddressStateImplCopyWithImpl(_$SelectAddressStateImpl _value,
-      $Res Function(_$SelectAddressStateImpl) _then)
-      : super(_value, _then);
+  __$$SelectAddressStateImplCopyWithImpl(
+    _$SelectAddressStateImpl _value,
+    $Res Function(_$SelectAddressStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of SelectAddressState
   /// with the given fields replaced by the non-null parameter values.
@@ -161,62 +170,64 @@ class __$$SelectAddressStateImplCopyWithImpl<$Res>
     Object? mapController = freezed,
     Object? location = freezed,
   }) {
-    return _then(_$SelectAddressStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isActive: null == isActive
-          ? _value.isActive
-          : isActive // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSearching: null == isSearching
-          ? _value.isSearching
-          : isSearching // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSearchLoading: null == isSearchLoading
-          ? _value.isSearchLoading
-          : isSearchLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isChoosing: null == isChoosing
-          ? _value.isChoosing
-          : isChoosing // ignore: cast_nullable_to_non_nullable
-              as bool,
-      searchedPlaces: null == searchedPlaces
-          ? _value._searchedPlaces
-          : searchedPlaces // ignore: cast_nullable_to_non_nullable
-              as List<Place>,
-      textController: freezed == textController
-          ? _value.textController
-          : textController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-      mapController: freezed == mapController
-          ? _value.mapController
-          : mapController // ignore: cast_nullable_to_non_nullable
-              as GoogleMapController?,
-      location: freezed == location
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as LocationData?,
-    ));
+    return _then(
+      _$SelectAddressStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isActive: null == isActive
+            ? _value.isActive
+            : isActive // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isSearching: null == isSearching
+            ? _value.isSearching
+            : isSearching // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isSearchLoading: null == isSearchLoading
+            ? _value.isSearchLoading
+            : isSearchLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isChoosing: null == isChoosing
+            ? _value.isChoosing
+            : isChoosing // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        searchedPlaces: null == searchedPlaces
+            ? _value._searchedPlaces
+            : searchedPlaces // ignore: cast_nullable_to_non_nullable
+                  as List<Place>,
+        textController: freezed == textController
+            ? _value.textController
+            : textController // ignore: cast_nullable_to_non_nullable
+                  as TextEditingController?,
+        mapController: freezed == mapController
+            ? _value.mapController
+            : mapController // ignore: cast_nullable_to_non_nullable
+                  as GoogleMapController?,
+        location: freezed == location
+            ? _value.location
+            : location // ignore: cast_nullable_to_non_nullable
+                  as LocationData?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$SelectAddressStateImpl extends _SelectAddressState {
-  const _$SelectAddressStateImpl(
-      {this.isLoading = false,
-      this.isActive = false,
-      this.isSearching = false,
-      this.isSearchLoading = false,
-      this.isChoosing = false,
-      final List<Place> searchedPlaces = const [],
-      this.textController,
-      this.mapController,
-      this.location})
-      : _searchedPlaces = searchedPlaces,
-        super._();
+  const _$SelectAddressStateImpl({
+    this.isLoading = false,
+    this.isActive = false,
+    this.isSearching = false,
+    this.isSearchLoading = false,
+    this.isChoosing = false,
+    final List<Place> searchedPlaces = const [],
+    this.textController,
+    this.mapController,
+    this.location,
+  }) : _searchedPlaces = searchedPlaces,
+       super._();
 
   @override
   @JsonKey()
@@ -269,8 +280,10 @@ class _$SelectAddressStateImpl extends _SelectAddressState {
                 other.isSearchLoading == isSearchLoading) &&
             (identical(other.isChoosing, isChoosing) ||
                 other.isChoosing == isChoosing) &&
-            const DeepCollectionEquality()
-                .equals(other._searchedPlaces, _searchedPlaces) &&
+            const DeepCollectionEquality().equals(
+              other._searchedPlaces,
+              _searchedPlaces,
+            ) &&
             (identical(other.textController, textController) ||
                 other.textController == textController) &&
             (identical(other.mapController, mapController) ||
@@ -281,16 +294,17 @@ class _$SelectAddressStateImpl extends _SelectAddressState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      isActive,
-      isSearching,
-      isSearchLoading,
-      isChoosing,
-      const DeepCollectionEquality().hash(_searchedPlaces),
-      textController,
-      mapController,
-      location);
+    runtimeType,
+    isLoading,
+    isActive,
+    isSearching,
+    isSearchLoading,
+    isChoosing,
+    const DeepCollectionEquality().hash(_searchedPlaces),
+    textController,
+    mapController,
+    location,
+  );
 
   /// Create a copy of SelectAddressState
   /// with the given fields replaced by the non-null parameter values.
@@ -299,20 +313,23 @@ class _$SelectAddressStateImpl extends _SelectAddressState {
   @pragma('vm:prefer-inline')
   _$$SelectAddressStateImplCopyWith<_$SelectAddressStateImpl> get copyWith =>
       __$$SelectAddressStateImplCopyWithImpl<_$SelectAddressStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _SelectAddressState extends SelectAddressState {
-  const factory _SelectAddressState(
-      {final bool isLoading,
-      final bool isActive,
-      final bool isSearching,
-      final bool isSearchLoading,
-      final bool isChoosing,
-      final List<Place> searchedPlaces,
-      final TextEditingController? textController,
-      final GoogleMapController? mapController,
-      final LocationData? location}) = _$SelectAddressStateImpl;
+  const factory _SelectAddressState({
+    final bool isLoading,
+    final bool isActive,
+    final bool isSearching,
+    final bool isSearchLoading,
+    final bool isChoosing,
+    final List<Place> searchedPlaces,
+    final TextEditingController? textController,
+    final GoogleMapController? mapController,
+    final LocationData? location,
+  }) = _$SelectAddressStateImpl;
   const _SelectAddressState._() : super._();
 
   @override
@@ -341,4 +358,3 @@ abstract class _SelectAddressState extends SelectAddressState {
   _$$SelectAddressStateImplCopyWith<_$SelectAddressStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

@@ -81,7 +81,8 @@ class _SelectAddressDesktopPageState
   Future<void> _loadMap() async {
     final lat = widget.location?.latitude ?? AppConstants.demoLatitude;
     final lng = widget.location?.longitude ?? AppConstants.demoLongitude;
-    final html = '''
+    final html =
+        '''
       <!DOCTYPE html>
       <html>
         <head>
@@ -241,8 +242,9 @@ class _SelectAddressDesktopPageState
         final notifier = ref.read(selectAddressProvider.notifier);
 
         if (mounted) {
-          notifier
-              .fetchLocationName(LatLng(data['latitude'], data['longitude']));
+          notifier.fetchLocationName(
+            LatLng(data['latitude'], data['longitude']),
+          );
 
           notifier.checkDriverZone(
             context: context,
@@ -313,10 +315,7 @@ class _SelectAddressDesktopPageState
                   Center(
                     child: Text(
                       _errorMessage,
-                      style: const TextStyle(
-                        color: AppStyle.red,
-                        fontSize: 16,
-                      ),
+                      style: const TextStyle(color: AppStyle.red, fontSize: 16),
                     ),
                   ),
 
@@ -364,7 +363,8 @@ class _SelectAddressDesktopPageState
                             cursorColor: AppStyle.black,
                             decoration: InputDecoration.collapsed(
                               hintText: AppHelpers.getTranslation(
-                                  TrKeys.searchLocation),
+                                TrKeys.searchLocation,
+                              ),
                               hintStyle: GoogleFonts.inter(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
@@ -409,7 +409,9 @@ class _SelectAddressDesktopPageState
                         ],
                       ),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
+                        horizontal: 20,
+                        vertical: 10,
+                      ),
                       child: ListView.builder(
                         shrinkWrap: true,
                         itemCount: state.searchedPlaces.length,
@@ -450,7 +452,9 @@ class _SelectAddressDesktopPageState
                                     ),
                                   const SizedBox(height: 8),
                                   const Divider(
-                                      height: 1, color: AppStyle.border),
+                                    height: 1,
+                                    color: AppStyle.border,
+                                  ),
                                 ],
                               ),
                             ),
@@ -522,19 +526,24 @@ class _SelectAddressDesktopPageState
                                 isActive: state.isActive,
                                 isLoading: state.isLoading,
                                 title: AppHelpers.getTranslation(
-                                    TrKeys.confirmLocation),
+                                  TrKeys.confirmLocation,
+                                ),
                                 onPressed: () {
                                   if (state.isActive) {
                                     context.maybePop();
-                                    widget.onSelect(AddressData(
-                                      address: state.textController?.text ?? "",
-                                      location: state.location,
-                                    ));
+                                    widget.onSelect(
+                                      AddressData(
+                                        address:
+                                            state.textController?.text ?? "",
+                                        location: state.location,
+                                      ),
+                                    );
                                   } else {
                                     AppHelpers.showSnackBar(
                                       context,
                                       AppHelpers.getTranslation(
-                                          TrKeys.noDriverZone),
+                                        TrKeys.noDriverZone,
+                                      ),
                                     );
                                   }
                                 },
@@ -561,4 +570,3 @@ class _SelectAddressDesktopPageState
     super.dispose();
   }
 }
-

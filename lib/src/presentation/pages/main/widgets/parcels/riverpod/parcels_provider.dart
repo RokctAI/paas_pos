@@ -3,7 +3,6 @@ import 'package:admin_desktop/src/presentation/pages/main/widgets/parcels/riverp
 import 'package:admin_desktop/src/presentation/pages/main/widgets/parcels/riverpod/parcels_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final parcelsProvider =
-    StateNotifierProvider<ParcelsNotifier, ParcelsState>(
+final parcelsProvider = StateNotifierProvider<ParcelsNotifier, ParcelsState>(
   (ref) => ParcelsNotifier(parcelRepository),
 );

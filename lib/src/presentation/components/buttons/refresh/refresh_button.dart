@@ -21,7 +21,9 @@ import '../../components.dart';
 import '../../../../core/utils/local_storage.dart';
 import '../../../../core/constants/constants.dart';
 
-final refreshStateProvider = StateNotifierProvider<RefreshStateNotifier, bool>((ref) {
+final refreshStateProvider = StateNotifierProvider<RefreshStateNotifier, bool>((
+  ref,
+) {
   return RefreshStateNotifier();
 });
 
@@ -34,7 +36,7 @@ class RefreshStateNotifier extends StateNotifier<bool> {
 }
 
 final refreshCallbackProvider = StateProvider<Future<void> Function()?>(
-      (ref) => null,
+  (ref) => null,
 );
 
 class RefreshButton extends ConsumerStatefulWidget {
@@ -89,14 +91,24 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
 
   Future<void> _refreshAllOrders() async {
     ref.read(newOrdersProvider.notifier).fetchNewOrders(isRefresh: true);
-    ref.read(acceptedOrdersProvider.notifier).fetchAcceptedOrders(isRefresh: true);
+    ref
+        .read(acceptedOrdersProvider.notifier)
+        .fetchAcceptedOrders(isRefresh: true);
     if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-      ref.read(onAWayOrdersProvider.notifier).fetchOnAWayOrders(isRefresh: true);
+      ref
+          .read(onAWayOrdersProvider.notifier)
+          .fetchOnAWayOrders(isRefresh: true);
     }
     ref.read(readyOrdersProvider.notifier).fetchReadyOrders(isRefresh: true);
-    ref.read(deliveredOrdersProvider.notifier).fetchDeliveredOrders(isRefresh: true);
-    ref.read(canceledOrdersProvider.notifier).fetchCanceledOrders(isRefresh: true);
-    ref.read(cookingOrdersProvider.notifier).fetchCookingOrders(isRefresh: true);
+    ref
+        .read(deliveredOrdersProvider.notifier)
+        .fetchDeliveredOrders(isRefresh: true);
+    ref
+        .read(canceledOrdersProvider.notifier)
+        .fetchCanceledOrders(isRefresh: true);
+    ref
+        .read(cookingOrdersProvider.notifier)
+        .fetchCookingOrders(isRefresh: true);
   }
 
   Future<void> _refreshTablesPage() async {
@@ -113,19 +125,25 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
   }
 
   Future<void> _refreshProductsPage() async {
-    ref.read(mainProvider.notifier).fetchProducts(
-      isRefresh: true,
-      checkYourNetwork: () {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection)),
-              backgroundColor: Colors.red,
-            ),
-          );
-        }
-      },
-    );
+    ref
+        .read(mainProvider.notifier)
+        .fetchProducts(
+          isRefresh: true,
+          checkYourNetwork: () {
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    AppHelpers.getTranslation(
+                      TrKeys.checkYourNetworkConnection,
+                    ),
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+          },
+        );
   }
 
   bool _shouldShowRefreshButton() {
@@ -134,16 +152,16 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
 
     switch (userRole) {
       case TrKeys.seller:
-      // Show for seller in these pages
+        // Show for seller in these pages
         return [0, 1, 3, 5, 6, 7].contains(currentIndex);
       case TrKeys.cooker:
-      // Show for cooker in the kitchen page
+        // Show for cooker in the kitchen page
         return currentIndex == 0;
       case TrKeys.waiter:
-      // Show for waiter in these pages
+        // Show for waiter in these pages
         return [0, 1, 2].contains(currentIndex);
       case 'admin':
-      // Show for admin in these pages
+        // Show for admin in these pages
         return [0, 1, 2].contains(currentIndex);
       default:
         return false;
@@ -181,7 +199,7 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
             await _refreshAllOrders();
             break;
           case 1: // Customers page for admin
-          // Refresh customers logic could be added here
+            // Refresh customers logic could be added here
             break;
           case 2: // Dashboard for admin
             if (refreshCallback != null) {
@@ -189,7 +207,9 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
             }
             // Additionally, refresh shops dashboard if available
             try {
-              final shopsDashboardNotifier = ref.read(shopsDashboardProvider.notifier);
+              final shopsDashboardNotifier = ref.read(
+                shopsDashboardProvider.notifier,
+              );
               await shopsDashboardNotifier.refresh();
             } catch (e) {
               if (kDebugMode) {
@@ -249,10 +269,7 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(e.toString()),
-            backgroundColor: Colors.red,
-          ),
+          SnackBar(content: Text(e.toString()), backgroundColor: Colors.red),
         );
       }
     } finally {
@@ -306,7 +323,8 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
   }
 }
 
-mixin RefreshablePageMixin<T extends ConsumerStatefulWidget> on ConsumerState<T> {
+mixin RefreshablePageMixin<T extends ConsumerStatefulWidget>
+    on ConsumerState<T> {
   Future<void> onRefresh();
 
   @override

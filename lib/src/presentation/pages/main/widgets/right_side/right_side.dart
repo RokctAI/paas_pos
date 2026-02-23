@@ -167,9 +167,9 @@ class _RightSideState extends ConsumerState<RightSide> {
                                           _playSound('wrong.wav');
                                         },
                                         size: 30,
-                                      )
+                                      ),
                                     ],
-                                  )
+                                  ),
                               ],
                             ),
                           ),
@@ -192,10 +192,12 @@ class _RightSideState extends ConsumerState<RightSide> {
                   width: 52.r,
                   height: 52.r,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: AppStyle.brandGreen),
-                  child: const Center(child: Icon(FlutterRemix.add_line,
-                      color: AppStyle.black)),
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: AppStyle.brandGreen,
+                  ),
+                  child: const Center(
+                    child: Icon(FlutterRemix.add_line, color: AppStyle.black),
+                  ),
                 ),
               ),
             ),
@@ -206,13 +208,17 @@ class _RightSideState extends ConsumerState<RightSide> {
           child: PageView(
             controller: _pageController,
             physics: const NeverScrollableScrollPhysics(),
-            children: state.bags.map((bag) => PageViewItem(
-              bag: bag,
-              onAddItem: () => _playSound('tap.wav'),
-              onRemoveItem: () => _playSound('wrong.wav'),
-            )).toList(),
+            children: state.bags
+                .map(
+                  (bag) => PageViewItem(
+                    bag: bag,
+                    onAddItem: () => _playSound('tap.wav'),
+                    onRemoveItem: () => _playSound('wrong.wav'),
+                  ),
+                )
+                .toList(),
           ),
-        )
+        ),
       ],
     );
   }

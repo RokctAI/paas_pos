@@ -32,7 +32,8 @@ class _AddDiscountPageState extends ConsumerState<AddDiscountPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(
-        (_) => ref.read(addDiscountProvider.notifier).clear());
+      (_) => ref.read(addDiscountProvider.notifier).clear(),
+    );
   }
 
   @override
@@ -48,16 +49,18 @@ class _AddDiscountPageState extends ConsumerState<AddDiscountPage> {
                 Text(
                   AppHelpers.getTranslation(TrKeys.addDiscount),
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22.sp,
-                      color: AppStyle.black),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22.sp,
+                    color: AppStyle.black,
+                  ),
                 ),
                 const Spacer(),
                 IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(FlutterRemix.close_fill))
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(FlutterRemix.close_fill),
+                ),
               ],
             ),
             Expanded(
@@ -124,9 +127,7 @@ class _AddDiscountPageState extends ConsumerState<AddDiscountPage> {
                                   textInputAction: TextInputAction.next,
                                   onChanged: notifier.setPrice,
                                   validator: AppValidators.emptyCheck,
-                                  inputFormatters: [
-                                    InputFormatter.currency
-                                  ],
+                                  inputFormatters: [InputFormatter.currency],
                                 ),
                               ),
                             ],
@@ -134,7 +135,8 @@ class _AddDiscountPageState extends ConsumerState<AddDiscountPage> {
                           24.verticalSpace,
                           OutlinedBorderTextField(
                             textController: state.dateController,
-                            label:       '${AppHelpers.getTranslation(TrKeys.startDate)} - ${AppHelpers.getTranslation(TrKeys.endDate)}',
+                            label:
+                                '${AppHelpers.getTranslation(TrKeys.startDate)} - ${AppHelpers.getTranslation(TrKeys.endDate)}',
                             inputType: TextInputType.number,
                             onTap: () {
                               AppHelpers.showAlertDialog(
@@ -143,7 +145,8 @@ class _AddDiscountPageState extends ConsumerState<AddDiscountPage> {
                                   height: MediaQuery.sizeOf(context).height / 3,
                                   width: MediaQuery.sizeOf(context).width / 3,
                                   child: CustomDatePicker(
-                                    onChange: notifier.setDate, range: const [],
+                                    onChange: notifier.setDate,
+                                    range: const [],
                                   ),
                                 ),
                               );
@@ -156,58 +159,68 @@ class _AddDiscountPageState extends ConsumerState<AddDiscountPage> {
                           GestureDetector(
                             onTap: () {
                               AppHelpers.showAlertDialog(
-                                  context: context,
-                                  child: SizedBox(
-                                      height:
-                                          MediaQuery.sizeOf(context).height / 2,
-                                      width:
-                                          MediaQuery.sizeOf(context).width / 3,
-                                      child: const MultiSelectionWidget()));
+                                context: context,
+                                child: SizedBox(
+                                  height: MediaQuery.sizeOf(context).height / 2,
+                                  width: MediaQuery.sizeOf(context).width / 3,
+                                  child: const MultiSelectionWidget(),
+                                ),
+                              );
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                  border: Border(
-                                      bottom: BorderSide(
-                                          color: AppStyle.colorGrey,
-                                          width: 0.5.r))),
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: AppStyle.colorGrey,
+                                    width: 0.5.r,
+                                  ),
+                                ),
+                              ),
                               height: 40.r,
                               width: MediaQuery.sizeOf(context).width,
                               child: state.stocks.isEmpty
                                   ? Text(
                                       AppHelpers.getTranslation(TrKeys.select),
                                       style: GoogleFonts.inter(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14, color: AppStyle.colorGrey),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: AppStyle.colorGrey,
+                                      ),
                                     )
                                   : ListView.separated(
                                       scrollDirection: Axis.horizontal,
                                       itemCount: state.stocks.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Chip(
-                                          backgroundColor: AppStyle.primary,
-                                          deleteIcon: Icon(
-                                            FlutterRemix.close_circle_fill,
-                                            size: 20.r,
-                                            color: AppStyle.white,
-                                          ),
-                                          onDeleted: () =>
-                                              notifier.deleteFromAddedProducts(
-                                                  state.stocks[index].id),
-                                          label: Text(
-                                            state.stocks[index].product
-                                                    ?.translation?.title ??
-                                                "",
-                                            style: GoogleFonts.inter(
-                                                fontWeight: FontWeight.w500,
-                                                color: AppStyle.white),
-                                          ),
-                                        );
-                                      },
+                                            return Chip(
+                                              backgroundColor: AppStyle.primary,
+                                              deleteIcon: Icon(
+                                                FlutterRemix.close_circle_fill,
+                                                size: 20.r,
+                                                color: AppStyle.white,
+                                              ),
+                                              onDeleted: () => notifier
+                                                  .deleteFromAddedProducts(
+                                                    state.stocks[index].id,
+                                                  ),
+                                              label: Text(
+                                                state
+                                                        .stocks[index]
+                                                        .product
+                                                        ?.translation
+                                                        ?.title ??
+                                                    "",
+                                                style: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: AppStyle.white,
+                                                ),
+                                              ),
+                                            );
+                                          },
                                       separatorBuilder:
                                           (BuildContext context, int index) {
-                                        return 10.horizontalSpace;
-                                      },
+                                            return 10.horizontalSpace;
+                                          },
                                     ),
                             ),
                           ),
@@ -219,14 +232,20 @@ class _AddDiscountPageState extends ConsumerState<AddDiscountPage> {
                             isLoading: state.isLoading,
                             onTap: () {
                               if (_formKey.currentState?.validate() ?? false) {
-                                notifier.createDiscount(context, created: () {
-                                  //widget.onSave();
-                                  ref
-                                      .read(discountProvider.notifier)
-                                      .fetchDiscounts(
-                                          context: context, isRefresh: true);
-                                  context.maybePop();
-                                }, onError: () {});
+                                notifier.createDiscount(
+                                  context,
+                                  created: () {
+                                    //widget.onSave();
+                                    ref
+                                        .read(discountProvider.notifier)
+                                        .fetchDiscounts(
+                                          context: context,
+                                          isRefresh: true,
+                                        );
+                                    context.maybePop();
+                                  },
+                                  onError: () {},
+                                );
                               }
                             },
                           ),
@@ -244,4 +263,3 @@ class _AddDiscountPageState extends ConsumerState<AddDiscountPage> {
     );
   }
 }
-

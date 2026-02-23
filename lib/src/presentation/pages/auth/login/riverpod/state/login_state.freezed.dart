@@ -12,7 +12,8 @@ part of 'login_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$LoginState {
@@ -35,18 +36,20 @@ mixin _$LoginState {
 /// @nodoc
 abstract class $LoginStateCopyWith<$Res> {
   factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res, LoginState>;
+    LoginState value,
+    $Res Function(LoginState) then,
+  ) = _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool showPassword,
-      bool isCurrenciesLoading,
-      bool isLoginError,
-      bool isEmailNotValid,
-      bool isPasswordNotValid,
-      String email,
-      String password});
+  $Res call({
+    bool isLoading,
+    bool showPassword,
+    bool isCurrenciesLoading,
+    bool isLoginError,
+    bool isEmailNotValid,
+    bool isPasswordNotValid,
+    String email,
+    String password,
+  });
 }
 
 /// @nodoc
@@ -73,40 +76,43 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? email = null,
     Object? password = null,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showPassword: null == showPassword
-          ? _value.showPassword
-          : showPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isCurrenciesLoading: null == isCurrenciesLoading
-          ? _value.isCurrenciesLoading
-          : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoginError: null == isLoginError
-          ? _value.isLoginError
-          : isLoginError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isEmailNotValid: null == isEmailNotValid
-          ? _value.isEmailNotValid
-          : isEmailNotValid // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPasswordNotValid: null == isPasswordNotValid
-          ? _value.isPasswordNotValid
-          : isPasswordNotValid // ignore: cast_nullable_to_non_nullable
-              as bool,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            showPassword: null == showPassword
+                ? _value.showPassword
+                : showPassword // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isCurrenciesLoading: null == isCurrenciesLoading
+                ? _value.isCurrenciesLoading
+                : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isLoginError: null == isLoginError
+                ? _value.isLoginError
+                : isLoginError // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isEmailNotValid: null == isEmailNotValid
+                ? _value.isEmailNotValid
+                : isEmailNotValid // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isPasswordNotValid: null == isPasswordNotValid
+                ? _value.isPasswordNotValid
+                : isPasswordNotValid // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            email: null == email
+                ? _value.email
+                : email // ignore: cast_nullable_to_non_nullable
+                      as String,
+            password: null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -114,19 +120,21 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
 abstract class _$$LoginStateImplCopyWith<$Res>
     implements $LoginStateCopyWith<$Res> {
   factory _$$LoginStateImplCopyWith(
-          _$LoginStateImpl value, $Res Function(_$LoginStateImpl) then) =
-      __$$LoginStateImplCopyWithImpl<$Res>;
+    _$LoginStateImpl value,
+    $Res Function(_$LoginStateImpl) then,
+  ) = __$$LoginStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool showPassword,
-      bool isCurrenciesLoading,
-      bool isLoginError,
-      bool isEmailNotValid,
-      bool isPasswordNotValid,
-      String email,
-      String password});
+  $Res call({
+    bool isLoading,
+    bool showPassword,
+    bool isCurrenciesLoading,
+    bool isLoginError,
+    bool isEmailNotValid,
+    bool isPasswordNotValid,
+    String email,
+    String password,
+  });
 }
 
 /// @nodoc
@@ -134,8 +142,9 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     extends _$LoginStateCopyWithImpl<$Res, _$LoginStateImpl>
     implements _$$LoginStateImplCopyWith<$Res> {
   __$$LoginStateImplCopyWithImpl(
-      _$LoginStateImpl _value, $Res Function(_$LoginStateImpl) _then)
-      : super(_value, _then);
+    _$LoginStateImpl _value,
+    $Res Function(_$LoginStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -151,56 +160,58 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
   }) {
-    return _then(_$LoginStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      showPassword: null == showPassword
-          ? _value.showPassword
-          : showPassword // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isCurrenciesLoading: null == isCurrenciesLoading
-          ? _value.isCurrenciesLoading
-          : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoginError: null == isLoginError
-          ? _value.isLoginError
-          : isLoginError // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isEmailNotValid: null == isEmailNotValid
-          ? _value.isEmailNotValid
-          : isEmailNotValid // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPasswordNotValid: null == isPasswordNotValid
-          ? _value.isPasswordNotValid
-          : isPasswordNotValid // ignore: cast_nullable_to_non_nullable
-              as bool,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$LoginStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        showPassword: null == showPassword
+            ? _value.showPassword
+            : showPassword // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isCurrenciesLoading: null == isCurrenciesLoading
+            ? _value.isCurrenciesLoading
+            : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isLoginError: null == isLoginError
+            ? _value.isLoginError
+            : isLoginError // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isEmailNotValid: null == isEmailNotValid
+            ? _value.isEmailNotValid
+            : isEmailNotValid // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isPasswordNotValid: null == isPasswordNotValid
+            ? _value.isPasswordNotValid
+            : isPasswordNotValid // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        email: null == email
+            ? _value.email
+            : email // ignore: cast_nullable_to_non_nullable
+                  as String,
+        password: null == password
+            ? _value.password
+            : password // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$LoginStateImpl extends _LoginState {
-  const _$LoginStateImpl(
-      {this.isLoading = false,
-      this.showPassword = false,
-      this.isCurrenciesLoading = false,
-      this.isLoginError = false,
-      this.isEmailNotValid = false,
-      this.isPasswordNotValid = false,
-      this.email = '',
-      this.password = ''})
-      : super._();
+  const _$LoginStateImpl({
+    this.isLoading = false,
+    this.showPassword = false,
+    this.isCurrenciesLoading = false,
+    this.isLoginError = false,
+    this.isEmailNotValid = false,
+    this.isPasswordNotValid = false,
+    this.email = '',
+    this.password = '',
+  }) : super._();
 
   @override
   @JsonKey()
@@ -256,15 +267,16 @@ class _$LoginStateImpl extends _LoginState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      showPassword,
-      isCurrenciesLoading,
-      isLoginError,
-      isEmailNotValid,
-      isPasswordNotValid,
-      email,
-      password);
+    runtimeType,
+    isLoading,
+    showPassword,
+    isCurrenciesLoading,
+    isLoginError,
+    isEmailNotValid,
+    isPasswordNotValid,
+    email,
+    password,
+  );
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -276,15 +288,16 @@ class _$LoginStateImpl extends _LoginState {
 }
 
 abstract class _LoginState extends LoginState {
-  const factory _LoginState(
-      {final bool isLoading,
-      final bool showPassword,
-      final bool isCurrenciesLoading,
-      final bool isLoginError,
-      final bool isEmailNotValid,
-      final bool isPasswordNotValid,
-      final String email,
-      final String password}) = _$LoginStateImpl;
+  const factory _LoginState({
+    final bool isLoading,
+    final bool showPassword,
+    final bool isCurrenciesLoading,
+    final bool isLoginError,
+    final bool isEmailNotValid,
+    final bool isPasswordNotValid,
+    final String email,
+    final String password,
+  }) = _$LoginStateImpl;
   const _LoginState._() : super._();
 
   @override
@@ -311,4 +324,3 @@ abstract class _LoginState extends LoginState {
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

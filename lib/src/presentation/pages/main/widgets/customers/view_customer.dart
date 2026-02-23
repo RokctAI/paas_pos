@@ -22,10 +22,7 @@ class ViewCustomer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(
-        top: 24.r,
-        bottom: 16.r,
-      ),
+      padding: EdgeInsets.only(top: 24.r, bottom: 16.r),
       child: Column(
         children: [
           InkWell(
@@ -54,8 +51,9 @@ class ViewCustomer extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 30.r),
               decoration: BoxDecoration(
-                  color: AppStyle.white,
-                  borderRadius: BorderRadius.circular(10.r)),
+                color: AppStyle.white,
+                borderRadius: BorderRadius.circular(10.r),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -75,22 +73,24 @@ class ViewCustomer extends StatelessWidget {
                           Text(
                             "${user?.firstname ?? ""} ${user?.lastname ?? ""}",
                             style: GoogleFonts.inter(
-                                fontSize: 24.sp, fontWeight: FontWeight.w600,
-                              color: AppStyle.black),
-
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.w600,
+                              color: AppStyle.black,
+                            ),
                           ),
-                          8.verticalSpace,  // Add some spacing
+                          8.verticalSpace, // Add some spacing
                           _OrderDots(user: user),
                           8.verticalSpace,
                           Text(
                             "#${AppHelpers.getTranslation(TrKeys.id)}${user?.id ?? ""}",
                             style: GoogleFonts.inter(
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w500,
-                                color: AppStyle.icon),
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppStyle.icon,
+                            ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                   46.verticalSpace,
@@ -98,10 +98,13 @@ class ViewCustomer extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                            color: AppStyle.black,
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: AppStyle.primary, width: 5.r)),
+                          color: AppStyle.black,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppStyle.primary,
+                            width: 5.r,
+                          ),
+                        ),
                         width: 18.r,
                         height: 18.r,
                       ),
@@ -113,13 +116,15 @@ class ViewCustomer extends StatelessWidget {
                       32.horizontalSpace,
                       Container(
                         decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: AppStyle.icon)),
+                          shape: BoxShape.circle,
+                          border: Border.all(color: AppStyle.icon),
+                        ),
                         width: 18.r,
                         height: 18.r,
                       ),
                       10.horizontalSpace,
-                      Text(AppHelpers.getTranslation(TrKeys.female),
+                      Text(
+                        AppHelpers.getTranslation(TrKeys.female),
                         style: TextStyle(color: AppStyle.black),
                       ),
                     ],
@@ -194,12 +199,13 @@ class ViewCustomer extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
+
 class _OrderDots extends ConsumerWidget {
   final UserData? user;
 
@@ -208,10 +214,9 @@ class _OrderDots extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FutureBuilder<ApiResult<OrdersPaginateResponse>>(
-      future: ref.read(ordersRepositoryProvider).getUserDeliveredOrders(
-        userId: user?.id ?? 0,
-        page: 1,
-      ),
+      future: ref
+          .read(ordersRepositoryProvider)
+          .getUserDeliveredOrders(userId: user?.id ?? 0, page: 1),
       builder: (context, snapshot) {
         debugPrint('FutureBuilder state: ${snapshot.connectionState}');
 
@@ -220,7 +225,9 @@ class _OrderDots extends ConsumerWidget {
         if (snapshot.hasData) {
           snapshot.data?.when(
             success: (response) {
-              debugPrint('Response success, orders count: ${response.data?.orders?.length}');
+              debugPrint(
+                'Response success, orders count: ${response.data?.orders?.length}',
+              );
 
               final deliveredOrders = response.data?.orders ?? [];
               debugPrint('Delivered orders length: ${deliveredOrders.length}');
@@ -228,20 +235,25 @@ class _OrderDots extends ConsumerWidget {
               if (deliveredOrders.isNotEmpty) {
                 try {
                   final latestOrder = deliveredOrders
-                      .where((order) =>
-                  order.note != null &&
-                      !order.note!.contains('no_user_order') &&
-                      order.note!.contains('|'))
+                      .where(
+                        (order) =>
+                            order.note != null &&
+                            !order.note!.contains('no_user_order') &&
+                            order.note!.contains('|'),
+                      )
                       .toList()
                       .firstWhereOrNull((order) {
-                    final numberPart = order.note!.split('|').last.trim();
-                    return int.tryParse(numberPart) != null;
-                  });
+                        final numberPart = order.note!.split('|').last.trim();
+                        return int.tryParse(numberPart) != null;
+                      });
 
                   debugPrint('Latest order note: ${latestOrder?.note}');
 
                   if (latestOrder?.note != null) {
-                    final numberPart = latestOrder!.note!.split('|').last.trim();
+                    final numberPart = latestOrder!.note!
+                        .split('|')
+                        .last
+                        .trim();
                     final orderNumber = int.tryParse(numberPart) ?? 0;
                     activeCount = orderNumber.clamp(0, 4);
                     debugPrint('Active count: $activeCount');
@@ -267,7 +279,9 @@ class _OrderDots extends ConsumerWidget {
                   height: 12.r,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: i < activeCount ? AppStyle.green : AppStyle.unselectedBottomBarBack,
+                    color: i < activeCount
+                        ? AppStyle.green
+                        : AppStyle.unselectedBottomBarBack,
                     border: Border.all(
                       color: AppStyle.black.withOpacity(0.1),
                       width: 1.r,

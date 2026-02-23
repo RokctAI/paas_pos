@@ -8,7 +8,8 @@ class FlashingAlertIcon extends StatefulWidget {
   _FlashingAlertIconState createState() => _FlashingAlertIconState();
 }
 
-class _FlashingAlertIconState extends State<FlashingAlertIcon> with SingleTickerProviderStateMixin {
+class _FlashingAlertIconState extends State<FlashingAlertIcon>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -32,11 +33,7 @@ class _FlashingAlertIconState extends State<FlashingAlertIcon> with SingleTicker
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: _animation,
-      child: const Icon(
-        Remix.alert_fill,
-        color: Colors.red,
-        size: 24,
-      ),
+      child: const Icon(Remix.alert_fill, color: Colors.red, size: 24),
     );
   }
 }

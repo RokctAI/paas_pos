@@ -61,8 +61,9 @@ class ShopData {
     _tax = json['tax'];
     _deliveryRange = json['delivery_range'];
     _percentage = json['percentage'];
-    _location =
-    json['location'] != null ? Location.fromJson(json['location']) : null;
+    _location = json['location'] != null
+        ? Location.fromJson(json['location'])
+        : null;
     _phone = json['phone'];
     _openTime = json['open_time'];
     _closeTime = json['close_time'];
@@ -139,31 +140,30 @@ class ShopData {
     Translation? translation,
     Seller? seller,
     List<ShopDelivery>? deliveries,
-  }) =>
-      ShopData(
-        id: id ?? _id,
-        uuid: uuid ?? _uuid,
-        userId: userId ?? _userId,
-        tax: tax ?? _tax,
-        deliveryRange: deliveryRange ?? _deliveryRange,
-        percentage: percentage ?? _percentage,
-        location: location ?? _location,
-        phone: phone ?? _phone,
-        openTime: openTime ?? _openTime,
-        closeTime: closeTime ?? _closeTime,
-        backgroundImg: backgroundImg ?? _backgroundImg,
-        logoImg: logoImg ?? _logoImg,
-        minAmount: minAmount ?? _minAmount,
-        status: status ?? _status,
-        statusNote: statusNote ?? _statusNote,
-        ratingAvg: ratingAvg ?? _ratingAvg,
-        createdAt: createdAt ?? _createdAt,
-        updatedAt: updatedAt ?? _updatedAt,
-        deletedAt: deletedAt ?? _deletedAt,
-        translation: translation ?? _translation,
-        seller: seller ?? _seller,
-        deliveries: deliveries ?? _deliveries,
-      );
+  }) => ShopData(
+    id: id ?? _id,
+    uuid: uuid ?? _uuid,
+    userId: userId ?? _userId,
+    tax: tax ?? _tax,
+    deliveryRange: deliveryRange ?? _deliveryRange,
+    percentage: percentage ?? _percentage,
+    location: location ?? _location,
+    phone: phone ?? _phone,
+    openTime: openTime ?? _openTime,
+    closeTime: closeTime ?? _closeTime,
+    backgroundImg: backgroundImg ?? _backgroundImg,
+    logoImg: logoImg ?? _logoImg,
+    minAmount: minAmount ?? _minAmount,
+    status: status ?? _status,
+    statusNote: statusNote ?? _statusNote,
+    ratingAvg: ratingAvg ?? _ratingAvg,
+    createdAt: createdAt ?? _createdAt,
+    updatedAt: updatedAt ?? _updatedAt,
+    deletedAt: deletedAt ?? _deletedAt,
+    translation: translation ?? _translation,
+    seller: seller ?? _seller,
+    deliveries: deliveries ?? _deliveries,
+  );
 
   int? get id => _id;
 
@@ -255,12 +255,7 @@ class ShopData {
 }
 
 class Seller {
-  Seller({
-    int? id,
-    String? firstname,
-    String? lastname,
-    String? role,
-  }) {
+  Seller({int? id, String? firstname, String? lastname, String? role}) {
     _id = id;
     _firstname = firstname;
     _lastname = lastname;
@@ -284,13 +279,12 @@ class Seller {
     String? firstname,
     String? lastname,
     String? role,
-  }) =>
-      Seller(
-        id: id ?? _id,
-        firstname: firstname ?? _firstname,
-        lastname: lastname ?? _lastname,
-        role: role ?? _role,
-      );
+  }) => Seller(
+    id: id ?? _id,
+    firstname: firstname ?? _firstname,
+    lastname: lastname ?? _lastname,
+    role: role ?? _role,
+  );
 
   int? get id => _id;
 
@@ -309,4 +303,3 @@ class Seller {
     return map;
   }
 }
-

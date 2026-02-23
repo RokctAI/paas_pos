@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 class ProductsScreen extends StatelessWidget {
   final OrderData? orderData;
   final num subTotal;
@@ -36,18 +34,16 @@ class ProductsScreen extends StatelessWidget {
         children: [
           Text(
             AppHelpers.getTranslation(TrKeys.compositionOrder),
-            style:
-                GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 18.sp,
-                    color: AppStyle.black),
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w600,
+              fontSize: 18.sp,
+              color: AppStyle.black,
+            ),
           ),
           18.verticalSpace,
-          ProductTable(
-            orderData: orderData,
-            onEdit: onEdit,
-          ),
+          ProductTable(orderData: orderData, onEdit: onEdit),
         ],
       ),
     );
   }
 }
-

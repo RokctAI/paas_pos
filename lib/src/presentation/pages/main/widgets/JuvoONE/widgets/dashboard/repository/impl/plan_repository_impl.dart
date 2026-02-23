@@ -20,7 +20,7 @@ class PlanRepositoryImpl implements PlanRepository {
 
       if (shopId == null) {
         return ApiResult.failure(
-            error: 'No shop ID available. Please select a shop.'
+          error: 'No shop ID available. Please select a shop.',
         );
       }
 
@@ -29,9 +29,7 @@ class PlanRepositoryImpl implements PlanRepository {
       // Ensure the token is being added
       final token = LocalStorage.getToken();
       if (token.isEmpty) {
-        return ApiResult.failure(
-            error: 'Authentication token is missing'
-        );
+        return ApiResult.failure(error: 'Authentication token is missing');
       }
 
       // Add authorization header manually if needed
@@ -46,12 +44,12 @@ class PlanRepositoryImpl implements PlanRepository {
           return ApiResult.success(data: vision);
         } else {
           return ApiResult.failure(
-              error: jsonData['message'] ?? 'Failed to load plan data'
+            error: jsonData['message'] ?? 'Failed to load plan data',
           );
         }
       } else {
         return ApiResult.failure(
-            error: 'Failed to load plan data. Status: ${response.statusCode}'
+          error: 'Failed to load plan data. Status: ${response.statusCode}',
         );
       }
     } on DioException catch (e) {
@@ -67,9 +65,7 @@ class PlanRepositoryImpl implements PlanRepository {
           ? (e.response?.data['message'] ?? 'Unknown error')
           : 'Unknown error';
 
-      return ApiResult.failure(
-          error: errorMessage
-      );
+      return ApiResult.failure(error: errorMessage);
     } catch (e) {
       if (kDebugMode) {
         print('Unexpected error fetching plan: $e');
@@ -77,8 +73,6 @@ class PlanRepositoryImpl implements PlanRepository {
       return ApiResult.failure(error: e.toString());
     }
   }
-
-
 
   @override
   Future<ApiResult<Vision>> createVision(Map<String, dynamic> data) async {
@@ -91,19 +85,22 @@ class PlanRepositoryImpl implements PlanRepository {
 
       // Ensure dates are converted to ISO 8601 format
       if (data['effective_date'] is DateTime) {
-        data['effective_date'] = (data['effective_date'] as DateTime).toIso8601String().split('T')[0];
+        data['effective_date'] = (data['effective_date'] as DateTime)
+            .toIso8601String()
+            .split('T')[0];
       }
       if (data['end_date'] is DateTime) {
-        data['end_date'] = (data['end_date'] as DateTime)?.toIso8601String().split('T')[0];
+        data['end_date'] = (data['end_date'] as DateTime)
+            ?.toIso8601String()
+            .split('T')[0];
       }
 
-      final response = await dio.post(
-        '$_baseUrl/visions',
-        data: data,
-      );
+      final response = await dio.post('$_baseUrl/visions', data: data);
 
       if (kDebugMode) {
-        print('Vision creation response: ${response.statusCode} ${response.data}');
+        print(
+          'Vision creation response: ${response.statusCode} ${response.data}',
+        );
       }
 
       if (response.statusCode == 201) {
@@ -128,7 +125,8 @@ class PlanRepositoryImpl implements PlanRepository {
       }
 
       // Extract validation errors if present
-      if (e.response?.statusCode == 422 && e.response?.data?['errors'] != null) {
+      if (e.response?.statusCode == 422 &&
+          e.response?.data?['errors'] != null) {
         final errors = e.response!.data['errors'] as Map<String, dynamic>;
         final errorMessages = errors.values
             .expand((e) => e is List ? e : [e.toString()])
@@ -150,7 +148,10 @@ class PlanRepositoryImpl implements PlanRepository {
   }
 
   @override
-  Future<ApiResult<Vision>> updateVision(String uuid, Map<String, dynamic> data) async {
+  Future<ApiResult<Vision>> updateVision(
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.put('$_baseUrl/visions/$uuid', data: data);
@@ -199,7 +200,10 @@ class PlanRepositoryImpl implements PlanRepository {
   }
 
   @override
-  Future<ApiResult<dynamic>> updatePillar(String uuid, Map<String, dynamic> data) async {
+  Future<ApiResult<dynamic>> updatePillar(
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.put('$_baseUrl/pillars/$uuid', data: data);
@@ -223,7 +227,9 @@ class PlanRepositoryImpl implements PlanRepository {
   }
 
   @override
-  Future<ApiResult<dynamic>> createStrategicObjective(Map<String, dynamic> data) async {
+  Future<ApiResult<dynamic>> createStrategicObjective(
+    Map<String, dynamic> data,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.post('$_baseUrl/objectives', data: data);
@@ -247,7 +253,10 @@ class PlanRepositoryImpl implements PlanRepository {
   }
 
   @override
-  Future<ApiResult<dynamic>> updateStrategicObjective(String uuid, Map<String, dynamic> data) async {
+  Future<ApiResult<dynamic>> updateStrategicObjective(
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.put('$_baseUrl/objectives/$uuid', data: data);
@@ -295,7 +304,10 @@ class PlanRepositoryImpl implements PlanRepository {
   }
 
   @override
-  Future<ApiResult<dynamic>> updateKpi(String uuid, Map<String, dynamic> data) async {
+  Future<ApiResult<dynamic>> updateKpi(
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.put('$_baseUrl/kpis/$uuid', data: data);

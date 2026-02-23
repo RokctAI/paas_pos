@@ -86,7 +86,11 @@ class _StartEndDateButtonState extends ConsumerState<StartEndDateButton> {
     }
   }
 
-  void _showFilterDialog(BuildContext context, int currentIndex, WidgetRef ref) {
+  void _showFilterDialog(
+    BuildContext context,
+    int currentIndex,
+    WidgetRef ref,
+  ) {
     AppHelpers.showAlertDialog(
       context: context,
       child: SizedBox(
@@ -135,7 +139,7 @@ class _StartEndDateButtonState extends ConsumerState<StartEndDateButton> {
                       fontSize: 14.sp,
                       color: AppStyle.black,
                     ),
-                  )
+                  ),
                 ],
               ],
             ),

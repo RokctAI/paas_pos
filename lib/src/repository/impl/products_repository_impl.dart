@@ -40,11 +40,12 @@ class ProductsRepositoryImpl extends ProductsRepository {
 
   @override
   Future<ApiResult<ProductCalculateResponse>> getAllCalculations(
-      List<BagProductData> bagProducts, String type,
-      {String? coupon}) async {
+    List<BagProductData> bagProducts,
+    String type, {
+    String? coupon,
+  }) async {
     final products = bagProducts
-        .map((p) =>
-            {'product_id': p.stockId, 'quantity': p.quantity})
+        .map((p) => {'product_id': p.stockId, 'quantity': p.quantity})
         .toList();
     try {
       final client = dioHttp.client(requireAuth: true);
@@ -62,7 +63,9 @@ class ProductsRepositoryImpl extends ProductsRepository {
   }
 
   @override
-  Future<ApiResult<SingleProductResponse>> getProductDetails(String uuid) async {
+  Future<ApiResult<SingleProductResponse>> getProductDetails(
+    String uuid,
+  ) async {
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(

@@ -37,16 +37,16 @@ abstract class OrdersRepository {
         if (currencyId != null) 'currency_id': currencyId,
         if (LocalStorage.getLanguage() != null)
           'lang': LocalStorage.getLanguage()?.locale,
-        'user_id': userId,  // This works as confirmed in API response
+        'user_id': userId, // This works as confirmed in API response
         'status': 'delivered',
         'perPage': 10,
-        'sort': 'desc',    // To get latest orders first
+        'sort': 'desc', // To get latest orders first
         if (page != null) 'page': page,
       };
 
       final client = inject<HttpService>().client(requireAuth: true);
       final response = await client.get(
-        '/api/v1/dashboard/${LocalStorage.getUser()?.role}/orders/paginate',  // Confirmed working endpoint
+        '/api/v1/dashboard/${LocalStorage.getUser()?.role}/orders/paginate', // Confirmed working endpoint
         queryParameters: data,
       );
 
@@ -55,9 +55,7 @@ abstract class OrdersRepository {
       );
     } catch (e) {
       debugPrint('==> get user delivered orders failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 
@@ -78,11 +76,14 @@ abstract class OrdersRepository {
 
   Future<ApiResult<SingleOrderResponse>> getOrderDetails({int? orderId});
 
-  Future<ApiResult<SingleKitchenOrderResponse>> getOrderDetailsKitchen(
-      {int? orderId});
+  Future<ApiResult<SingleKitchenOrderResponse>> getOrderDetailsKitchen({
+    int? orderId,
+  });
 
-  Future<ApiResult<dynamic>> setDeliverMan(
-      {required int orderId, required int deliverymanId});
+  Future<ApiResult<dynamic>> setDeliverMan({
+    required int orderId,
+    required int deliverymanId,
+  });
 
   Future<ApiResult<dynamic>> deleteOrder({required int orderId});
 
@@ -92,4 +93,3 @@ abstract class OrdersRepository {
     String? search,
   });
 }
-

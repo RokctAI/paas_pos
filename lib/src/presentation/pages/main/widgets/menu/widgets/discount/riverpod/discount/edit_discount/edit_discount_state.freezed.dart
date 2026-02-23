@@ -12,7 +12,8 @@ part of 'edit_discount_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$EditDiscountState {
@@ -38,20 +39,22 @@ mixin _$EditDiscountState {
 /// @nodoc
 abstract class $EditDiscountStateCopyWith<$Res> {
   factory $EditDiscountStateCopyWith(
-          EditDiscountState value, $Res Function(EditDiscountState) then) =
-      _$EditDiscountStateCopyWithImpl<$Res, EditDiscountState>;
+    EditDiscountState value,
+    $Res Function(EditDiscountState) then,
+  ) = _$EditDiscountStateCopyWithImpl<$Res, EditDiscountState>;
   @useResult
-  $Res call(
-      {String type,
-      bool active,
-      int price,
-      String? imageFile,
-      List<Stocks> stocks,
-      bool isLoading,
-      DateTime? startDate,
-      DateTime? endDate,
-      TextEditingController? dateController,
-      DiscountData? discount});
+  $Res call({
+    String type,
+    bool active,
+    int price,
+    String? imageFile,
+    List<Stocks> stocks,
+    bool isLoading,
+    DateTime? startDate,
+    DateTime? endDate,
+    TextEditingController? dateController,
+    DiscountData? discount,
+  });
 }
 
 /// @nodoc
@@ -80,79 +83,85 @@ class _$EditDiscountStateCopyWithImpl<$Res, $Val extends EditDiscountState>
     Object? dateController = freezed,
     Object? discount = freezed,
   }) {
-    return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      imageFile: freezed == imageFile
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as String?,
-      stocks: null == stocks
-          ? _value.stocks
-          : stocks // ignore: cast_nullable_to_non_nullable
-              as List<Stocks>,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      startDate: freezed == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      dateController: freezed == dateController
-          ? _value.dateController
-          : dateController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-      discount: freezed == discount
-          ? _value.discount
-          : discount // ignore: cast_nullable_to_non_nullable
-              as DiscountData?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            type: null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                      as String,
+            active: null == active
+                ? _value.active
+                : active // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            price: null == price
+                ? _value.price
+                : price // ignore: cast_nullable_to_non_nullable
+                      as int,
+            imageFile: freezed == imageFile
+                ? _value.imageFile
+                : imageFile // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            stocks: null == stocks
+                ? _value.stocks
+                : stocks // ignore: cast_nullable_to_non_nullable
+                      as List<Stocks>,
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            startDate: freezed == startDate
+                ? _value.startDate
+                : startDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            endDate: freezed == endDate
+                ? _value.endDate
+                : endDate // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            dateController: freezed == dateController
+                ? _value.dateController
+                : dateController // ignore: cast_nullable_to_non_nullable
+                      as TextEditingController?,
+            discount: freezed == discount
+                ? _value.discount
+                : discount // ignore: cast_nullable_to_non_nullable
+                      as DiscountData?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$EditDiscountStateImplCopyWith<$Res>
     implements $EditDiscountStateCopyWith<$Res> {
-  factory _$$EditDiscountStateImplCopyWith(_$EditDiscountStateImpl value,
-          $Res Function(_$EditDiscountStateImpl) then) =
-      __$$EditDiscountStateImplCopyWithImpl<$Res>;
+  factory _$$EditDiscountStateImplCopyWith(
+    _$EditDiscountStateImpl value,
+    $Res Function(_$EditDiscountStateImpl) then,
+  ) = __$$EditDiscountStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String type,
-      bool active,
-      int price,
-      String? imageFile,
-      List<Stocks> stocks,
-      bool isLoading,
-      DateTime? startDate,
-      DateTime? endDate,
-      TextEditingController? dateController,
-      DiscountData? discount});
+  $Res call({
+    String type,
+    bool active,
+    int price,
+    String? imageFile,
+    List<Stocks> stocks,
+    bool isLoading,
+    DateTime? startDate,
+    DateTime? endDate,
+    TextEditingController? dateController,
+    DiscountData? discount,
+  });
 }
 
 /// @nodoc
 class __$$EditDiscountStateImplCopyWithImpl<$Res>
     extends _$EditDiscountStateCopyWithImpl<$Res, _$EditDiscountStateImpl>
     implements _$$EditDiscountStateImplCopyWith<$Res> {
-  __$$EditDiscountStateImplCopyWithImpl(_$EditDiscountStateImpl _value,
-      $Res Function(_$EditDiscountStateImpl) _then)
-      : super(_value, _then);
+  __$$EditDiscountStateImplCopyWithImpl(
+    _$EditDiscountStateImpl _value,
+    $Res Function(_$EditDiscountStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of EditDiscountState
   /// with the given fields replaced by the non-null parameter values.
@@ -170,67 +179,69 @@ class __$$EditDiscountStateImplCopyWithImpl<$Res>
     Object? dateController = freezed,
     Object? discount = freezed,
   }) {
-    return _then(_$EditDiscountStateImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      active: null == active
-          ? _value.active
-          : active // ignore: cast_nullable_to_non_nullable
-              as bool,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      imageFile: freezed == imageFile
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as String?,
-      stocks: null == stocks
-          ? _value._stocks
-          : stocks // ignore: cast_nullable_to_non_nullable
-              as List<Stocks>,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      startDate: freezed == startDate
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      endDate: freezed == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      dateController: freezed == dateController
-          ? _value.dateController
-          : dateController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-      discount: freezed == discount
-          ? _value.discount
-          : discount // ignore: cast_nullable_to_non_nullable
-              as DiscountData?,
-    ));
+    return _then(
+      _$EditDiscountStateImpl(
+        type: null == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as String,
+        active: null == active
+            ? _value.active
+            : active // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        price: null == price
+            ? _value.price
+            : price // ignore: cast_nullable_to_non_nullable
+                  as int,
+        imageFile: freezed == imageFile
+            ? _value.imageFile
+            : imageFile // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        stocks: null == stocks
+            ? _value._stocks
+            : stocks // ignore: cast_nullable_to_non_nullable
+                  as List<Stocks>,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        startDate: freezed == startDate
+            ? _value.startDate
+            : startDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        endDate: freezed == endDate
+            ? _value.endDate
+            : endDate // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        dateController: freezed == dateController
+            ? _value.dateController
+            : dateController // ignore: cast_nullable_to_non_nullable
+                  as TextEditingController?,
+        discount: freezed == discount
+            ? _value.discount
+            : discount // ignore: cast_nullable_to_non_nullable
+                  as DiscountData?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$EditDiscountStateImpl extends _EditDiscountState {
-  const _$EditDiscountStateImpl(
-      {this.type = "fix",
-      this.active = true,
-      this.price = 0,
-      this.imageFile,
-      final List<Stocks> stocks = const [],
-      this.isLoading = false,
-      this.startDate,
-      this.endDate,
-      this.dateController,
-      this.discount})
-      : _stocks = stocks,
-        super._();
+  const _$EditDiscountStateImpl({
+    this.type = "fix",
+    this.active = true,
+    this.price = 0,
+    this.imageFile,
+    final List<Stocks> stocks = const [],
+    this.isLoading = false,
+    this.startDate,
+    this.endDate,
+    this.dateController,
+    this.discount,
+  }) : _stocks = stocks,
+       super._();
 
   @override
   @JsonKey()
@@ -293,17 +304,18 @@ class _$EditDiscountStateImpl extends _EditDiscountState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      type,
-      active,
-      price,
-      imageFile,
-      const DeepCollectionEquality().hash(_stocks),
-      isLoading,
-      startDate,
-      endDate,
-      dateController,
-      discount);
+    runtimeType,
+    type,
+    active,
+    price,
+    imageFile,
+    const DeepCollectionEquality().hash(_stocks),
+    isLoading,
+    startDate,
+    endDate,
+    dateController,
+    discount,
+  );
 
   /// Create a copy of EditDiscountState
   /// with the given fields replaced by the non-null parameter values.
@@ -312,21 +324,24 @@ class _$EditDiscountStateImpl extends _EditDiscountState {
   @pragma('vm:prefer-inline')
   _$$EditDiscountStateImplCopyWith<_$EditDiscountStateImpl> get copyWith =>
       __$$EditDiscountStateImplCopyWithImpl<_$EditDiscountStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _EditDiscountState extends EditDiscountState {
-  const factory _EditDiscountState(
-      {final String type,
-      final bool active,
-      final int price,
-      final String? imageFile,
-      final List<Stocks> stocks,
-      final bool isLoading,
-      final DateTime? startDate,
-      final DateTime? endDate,
-      final TextEditingController? dateController,
-      final DiscountData? discount}) = _$EditDiscountStateImpl;
+  const factory _EditDiscountState({
+    final String type,
+    final bool active,
+    final int price,
+    final String? imageFile,
+    final List<Stocks> stocks,
+    final bool isLoading,
+    final DateTime? startDate,
+    final DateTime? endDate,
+    final TextEditingController? dateController,
+    final DiscountData? discount,
+  }) = _$EditDiscountStateImpl;
   const _EditDiscountState._() : super._();
 
   @override
@@ -357,4 +372,3 @@ abstract class _EditDiscountState extends EditDiscountState {
   _$$EditDiscountStateImplCopyWith<_$EditDiscountStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

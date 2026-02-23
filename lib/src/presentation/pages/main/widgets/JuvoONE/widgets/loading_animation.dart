@@ -9,7 +9,8 @@ class LoadingAnimation extends StatefulWidget {
   State<LoadingAnimation> createState() => _LoadingAnimationState();
 }
 
-class _LoadingAnimationState extends State<LoadingAnimation> with SingleTickerProviderStateMixin {
+class _LoadingAnimationState extends State<LoadingAnimation>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -37,10 +38,7 @@ class _LoadingAnimationState extends State<LoadingAnimation> with SingleTickerPr
         child: AnimatedBuilder(
           animation: _animation,
           builder: (context, child) {
-            return Opacity(
-              opacity: _animation.value,
-              child: child,
-            );
+            return Opacity(opacity: _animation.value, child: child);
           },
           child: RichText(
             text: TextSpan(

@@ -26,8 +26,9 @@ class SizeItem extends StatelessWidget {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-              color: AppStyle.white,
-              borderRadius: BorderRadius.all(Radius.circular(10.r))),
+            color: AppStyle.white,
+            borderRadius: BorderRadius.all(Radius.circular(10.r)),
+          ),
           child: Column(
             children: [
               Row(
@@ -38,11 +39,13 @@ class SizeItem extends StatelessWidget {
                     width: 20.w,
                     height: 20.h,
                     decoration: BoxDecoration(
-                        color: isActive ? AppStyle.primary : AppStyle.transparent,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                            color: isActive ? AppStyle.black : AppStyle.icon,
-                            width: isActive ? 4.r : 2.r)),
+                      color: isActive ? AppStyle.primary : AppStyle.transparent,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: isActive ? AppStyle.black : AppStyle.icon,
+                        width: isActive ? 4.r : 2.r,
+                      ),
+                    ),
                   ),
                   16.horizontalSpace,
                   Text(
@@ -61,4 +64,3 @@ class SizeItem extends StatelessWidget {
     );
   }
 }
-

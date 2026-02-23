@@ -19,7 +19,9 @@ class _PickupPointSelectionViewState
     // Assuming the shop's location is available from a provider.
     // For now, using a default location.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(createParcelProvider.notifier).fetchDeliveryPoints(
+      ref
+          .read(createParcelProvider.notifier)
+          .fetchDeliveryPoints(
             context,
             latitude: 41.0082, // Default latitude
             longitude: 28.9784, // Default longitude
@@ -42,10 +44,7 @@ class _PickupPointSelectionViewState
             markers: state.deliveryPoints.map((point) {
               return Marker(
                 markerId: MarkerId(point.id ?? UniqueKey().toString()),
-                position: LatLng(
-                  point.latitude ?? 0,
-                  point.longitude ?? 0,
-                ),
+                position: LatLng(point.latitude ?? 0, point.longitude ?? 0),
                 infoWindow: InfoWindow(title: point.name),
                 onTap: () => notifier.selectPickupPoint(point),
               );

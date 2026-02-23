@@ -5,9 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../../../core/constants/constants.dart';
 import '../../../../../../theme/app_style.dart';
 
-
 // autoDeliverProvider for the autoDeliver toggle
-final autoDeliverProvider = StateNotifierProvider<autoDeliverNotifier, bool>((ref) => autoDeliverNotifier());
+final autoDeliverProvider = StateNotifierProvider<autoDeliverNotifier, bool>(
+  (ref) => autoDeliverNotifier(),
+);
 
 class autoDeliverNotifier extends StateNotifier<bool> {
   autoDeliverNotifier() : super(AppConstants.autoDeliver) {

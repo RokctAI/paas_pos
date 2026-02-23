@@ -38,11 +38,7 @@ class IconTextButton extends StatelessWidget {
           padding: REdgeInsets.symmetric(horizontal: 20),
           child: Row(
             children: [
-              Icon(
-                iconData,
-                size: 24.r,
-                color: icon,
-              ),
+              Icon(iconData, size: 24.r, color: icon),
               12.horizontalSpace,
               Text(
                 title,
@@ -60,4 +56,3 @@ class IconTextButton extends StatelessWidget {
     );
   }
 }
-

@@ -24,7 +24,7 @@ class ClientInfoItem extends StatelessWidget {
             style: GoogleFonts.inter(
               fontSize: 14.sp,
               color: AppStyle.selectedItemsText,
-              fontWeight: FontWeight.w600
+              fontWeight: FontWeight.w600,
             ),
           ),
           2.verticalSpace,
@@ -40,4 +40,3 @@ class ClientInfoItem extends StatelessWidget {
     );
   }
 }
-

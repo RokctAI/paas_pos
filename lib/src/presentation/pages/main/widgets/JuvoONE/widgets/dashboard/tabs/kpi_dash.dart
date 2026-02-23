@@ -174,15 +174,19 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Select ${pillars.first.name} Pillar to Edit',
-              style: TextStyle(color: AppStyle.black)),
+          title: Text(
+            'Select ${pillars.first.name} Pillar to Edit',
+            style: TextStyle(color: AppStyle.black),
+          ),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: pillars.map((pillar) {
                 return ListTile(
-                  title: Text(pillar.description ?? pillar.name,
-                      style: TextStyle(color: AppStyle.black)),
+                  title: Text(
+                    pillar.description ?? pillar.name,
+                    style: TextStyle(color: AppStyle.black),
+                  ),
                   onTap: () {
                     Navigator.of(context).pop();
                     _editPillar(pillar);
@@ -324,7 +328,7 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
               maxLines: 6,
               overflow: TextOverflow.ellipsis,
               text: _formatVisionTextRich(vision.statement),
-            )
+            ),
           ],
         ),
       ),
@@ -338,15 +342,13 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
           child: Container(
             padding: const EdgeInsets.all(16),
             width: constraints.maxWidth,
-            child: IntrinsicHeight( // 🛠 wrap this correctly as `child`
+            child: IntrinsicHeight(
+              // 🛠 wrap this correctly as `child`
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // KPIs Column (Left)
-                  Expanded(
-                    flex: 5,
-                    child: _buildKPIsColumn(vision.pillars),
-                  ),
+                  Expanded(flex: 5, child: _buildKPIsColumn(vision.pillars)),
 
                   // Strategic Objectives Column (Middle-Left)
                   Expanded(
@@ -429,10 +431,11 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
                             color: AppStyle.black,
                             fontStyle: FontStyle.italic,
                           ),
-                        )
+                        ),
                       ]
                     : pillarKpis.map((kpi) {
-                        bool isOverdue = kpi.status != 'Completed' &&
+                        bool isOverdue =
+                            kpi.status != 'Completed' &&
                             kpi.dueDate.isBefore(DateTime.now());
 
                         return GestureDetector(
@@ -569,10 +572,7 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
     if (allObjectives.isEmpty) {
       return Text(
         'No objectives defined',
-        style: TextStyle(
-          color: AppStyle.black,
-          fontStyle: FontStyle.italic,
-        ),
+        style: TextStyle(color: AppStyle.black, fontStyle: FontStyle.italic),
       );
     }
 
@@ -599,10 +599,7 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
                 Expanded(
                   child: Text(
                     objective.title,
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: AppStyle.black,
-                    ),
+                    style: const TextStyle(fontSize: 12, color: AppStyle.black),
                   ),
                 ),
               ],
@@ -678,11 +675,7 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
-                      iconData,
-                      color: AppStyle.black,
-                      size: 20,
-                    ),
+                    Icon(iconData, color: AppStyle.black, size: 20),
                     const SizedBox(height: 4),
                     Text(
                       pillarName.toUpperCase(),
@@ -730,9 +723,7 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
             },
             icon: const Icon(Icons.visibility),
             label: const Text('Show Vision'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppStyle.primary,
-            ),
+            style: ElevatedButton.styleFrom(backgroundColor: AppStyle.primary),
           ),
       ],
     );
@@ -819,23 +810,26 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
       List<String> lineWords = lines[j].split(' ');
       for (int k = 0; k < lineWords.length; k++) {
         String word = lineWords[k];
-        bool isLastWord = (j == lines.length - 1) && (k == lineWords.length - 1);
+        bool isLastWord =
+            (j == lines.length - 1) && (k == lineWords.length - 1);
 
         if (isLastWord) {
-          spans.add(WidgetSpan(
-            alignment: PlaceholderAlignment.middle,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              decoration: BoxDecoration(
-                color: AppStyle.primary,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Text(
-                word,
-                style: style.copyWith(color: Colors.white),
+          spans.add(
+            WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: AppStyle.primary,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Text(word, style: style.copyWith(color: Colors.white)),
               ),
             ),
-          ));
+          );
         } else {
           spans.add(TextSpan(text: '$word ', style: style));
           if (k < lineWords.length - 1) {
@@ -850,8 +844,6 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
 
     return TextSpan(children: spans);
   }
-
-
 
   // Helper methods
   Color _getPillarColor(String? colorString) {
@@ -898,16 +890,22 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Add to Plan',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, color: AppStyle.black)),
+          title: const Text(
+            'Add to Plan',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppStyle.black,
+            ),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
                 leading: const Icon(Icons.visibility, color: AppStyle.black),
-                title: const Text('Vision',
-                    style: TextStyle(color: AppStyle.black)),
+                title: const Text(
+                  'Vision',
+                  style: TextStyle(color: AppStyle.black),
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   _showAddVisionDialog(context);
@@ -915,8 +913,10 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
               ),
               ListTile(
                 leading: const Icon(Icons.view_column, color: AppStyle.black),
-                title: const Text('Pillar',
-                    style: TextStyle(color: AppStyle.black)),
+                title: const Text(
+                  'Pillar',
+                  style: TextStyle(color: AppStyle.black),
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   _showAddPillarDialog(context);
@@ -924,8 +924,10 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
               ),
               ListTile(
                 leading: const Icon(Icons.assignment, color: AppStyle.black),
-                title: const Text('Strategic Objective',
-                    style: TextStyle(color: AppStyle.black)),
+                title: const Text(
+                  'Strategic Objective',
+                  style: TextStyle(color: AppStyle.black),
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   // Show pillar selection dialog first
@@ -934,8 +936,10 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
               ),
               ListTile(
                 leading: const Icon(Icons.assessment, color: AppStyle.black),
-                title:
-                    const Text('KPI', style: TextStyle(color: AppStyle.black)),
+                title: const Text(
+                  'KPI',
+                  style: TextStyle(color: AppStyle.black),
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   // Show objective selection dialog first
@@ -998,14 +1002,18 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Select Pillar',
-              style: TextStyle(color: AppStyle.black)),
+          title: const Text(
+            'Select Pillar',
+            style: TextStyle(color: AppStyle.black),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: _planProvider.vision!.pillars.map((pillar) {
               return ListTile(
-                title: Text(pillar.name,
-                    style: const TextStyle(color: AppStyle.black)),
+                title: Text(
+                  pillar.name,
+                  style: const TextStyle(color: AppStyle.black),
+                ),
                 onTap: () {
                   Navigator.of(context).pop();
                   _showAddObjectiveDialog(context, pillar);
@@ -1055,7 +1063,8 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
     if (availableObjectives.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-            content: Text('Please create strategic objectives first')),
+          content: Text('Please create strategic objectives first'),
+        ),
       );
       return;
     }
@@ -1064,17 +1073,22 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Select Strategic Objective',
-              style: TextStyle(color: AppStyle.black)),
+          title: const Text(
+            'Select Strategic Objective',
+            style: TextStyle(color: AppStyle.black),
+          ),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: availableObjectives.map((objective) {
-                final pillar = _planProvider.vision!.pillars
-                    .firstWhere((p) => p.id == objective.pillarId);
+                final pillar = _planProvider.vision!.pillars.firstWhere(
+                  (p) => p.id == objective.pillarId,
+                );
                 return ListTile(
-                  title: Text(objective.title,
-                      style: const TextStyle(color: AppStyle.black)),
+                  title: Text(
+                    objective.title,
+                    style: const TextStyle(color: AppStyle.black),
+                  ),
                   subtitle: Text(pillar.name),
                   onTap: () {
                     Navigator.of(context).pop();
@@ -1109,10 +1123,7 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AddVisionDialog(
-          initialVision: vision,
-          isEditing: true,
-        );
+        return AddVisionDialog(initialVision: vision, isEditing: true);
       },
     ).then((_) {
       // After dialog is closed, make sure vision overlay is shown
@@ -1136,8 +1147,9 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
   }
 
   void _editObjective(StrategicObjective objective) {
-    Pillar pillar = _planProvider.vision!.pillars
-        .firstWhere((p) => p.id == objective.pillarId);
+    Pillar pillar = _planProvider.vision!.pillars.firstWhere(
+      (p) => p.id == objective.pillarId,
+    );
 
     showDialog(
       context: context,
@@ -1167,7 +1179,8 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
     if (objective == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-            content: Text('Could not find the associated objective')),
+          content: Text('Could not find the associated objective'),
+        ),
       );
       return;
     }
@@ -1184,4 +1197,3 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
     );
   }
 }
-

@@ -4,10 +4,7 @@ import '../theme/app_style.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Future<void> preloadFont() async {
-  await GoogleFonts.pendingFonts([
-    GoogleFonts.nunito(),
-    GoogleFonts.roboto(),
-  ]);
+  await GoogleFonts.pendingFonts([GoogleFonts.nunito(), GoogleFonts.roboto()]);
 }
 
 class LoadingAnimation extends StatefulWidget {
@@ -31,10 +28,7 @@ class _LoadingAnimationState extends State<LoadingAnimation>
       vsync: this,
     )..repeat(reverse: true);
 
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    );
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
 
     preloadFont().then((_) {
       if (mounted) {
@@ -53,43 +47,45 @@ class _LoadingAnimationState extends State<LoadingAnimation>
 
   double getResponsiveFontSize(BuildContext context, {bool isMainText = true}) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double scaleFactor = isMainText ? 0.2 : 0.05;  // 15% for main text, 5% for secondary
+    double scaleFactor = isMainText
+        ? 0.2
+        : 0.05; // 15% for main text, 5% for secondary
     double fontSize = screenWidth * scaleFactor;
     return isMainText
-        ? fontSize.clamp(40, 80)  // Larger range for main text
-        : fontSize.clamp(12, 24);  // Smaller range for secondary text
+        ? fontSize.clamp(40, 80) // Larger range for main text
+        : fontSize.clamp(12, 24); // Smaller range for secondary text
   }
 
   TextStyle getMainTextStyle(BuildContext context, Color color) {
     final fontSize = getResponsiveFontSize(context, isMainText: true);
     return _fontLoaded
         ? GoogleFonts.nunito(
-      fontSize: fontSize,
-      fontWeight: FontWeight.bold,
-      color: color,
-    )
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+            color: color,
+          )
         : TextStyle(
-      fontFamily: 'Sans-serif',
-      fontSize: fontSize,
-      fontWeight: FontWeight.bold,
-      color: color,
-    );
+            fontFamily: 'Sans-serif',
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+            color: color,
+          );
   }
 
   TextStyle getSecondaryTextStyle(BuildContext context) {
     final fontSize = getResponsiveFontSize(context, isMainText: false);
     return _fontLoaded
         ? GoogleFonts.roboto(
-      fontSize: fontSize,
-      fontWeight: FontWeight.normal,
-      color: AppStyle.black,
-    )
+            fontSize: fontSize,
+            fontWeight: FontWeight.normal,
+            color: AppStyle.black,
+          )
         : TextStyle(
-      fontFamily: 'Sans-serif',
-      fontSize: fontSize,
-      fontWeight: FontWeight.normal,
-      color: AppStyle.black,
-    );
+            fontFamily: 'Sans-serif',
+            fontSize: fontSize,
+            fontWeight: FontWeight.normal,
+            color: AppStyle.black,
+          );
   }
 
   @override
@@ -119,10 +115,10 @@ class _LoadingAnimationState extends State<LoadingAnimation>
                     ],
                   ),
                   const SizedBox(height: 2),
-               //   Text(
-                 //   'by Juvo Platforms',
-               //     style: getSecondaryTextStyle(context),
-               //   ),
+                  //   Text(
+                  //   'by Juvo Platforms',
+                  //     style: getSecondaryTextStyle(context),
+                  //   ),
                 ],
               ),
             ),

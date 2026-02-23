@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/theme.dart';
 
-
 class SizeItem extends StatelessWidget {
   final VoidCallback onTap;
   final bool isActive;
@@ -14,7 +13,7 @@ class SizeItem extends StatelessWidget {
     required this.onTap,
     required this.isActive,
     required this.title,
-  }) ;
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +56,7 @@ class SizeItem extends StatelessWidget {
                 ],
               ),
               16.verticalSpace,
-              Divider(color: AppStyle.greyColor.withOpacity(0.2))
+              Divider(color: AppStyle.greyColor.withOpacity(0.2)),
             ],
           ),
         ),
@@ -65,4 +64,3 @@ class SizeItem extends StatelessWidget {
     );
   }
 }
-

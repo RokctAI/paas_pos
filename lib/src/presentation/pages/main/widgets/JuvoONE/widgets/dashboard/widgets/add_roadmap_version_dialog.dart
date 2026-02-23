@@ -17,7 +17,8 @@ class AddRoadmapVersionDialog extends StatefulWidget {
   });
 
   @override
-  _AddRoadmapVersionDialogState createState() => _AddRoadmapVersionDialogState();
+  _AddRoadmapVersionDialogState createState() =>
+      _AddRoadmapVersionDialogState();
 }
 
 class _AddRoadmapVersionDialogState extends State<AddRoadmapVersionDialog> {
@@ -67,7 +68,9 @@ class _AddRoadmapVersionDialogState extends State<AddRoadmapVersionDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.isEditing ? 'Edit Roadmap Version' : 'Add Roadmap Version'),
+      title: Text(
+        widget.isEditing ? 'Edit Roadmap Version' : 'Add Roadmap Version',
+      ),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -111,9 +114,7 @@ class _AddRoadmapVersionDialogState extends State<AddRoadmapVersionDialog> {
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: _status,
-                decoration: AppStyle.inputDecoration(
-                  labelText: 'Status',
-                ),
+                decoration: AppStyle.inputDecoration(labelText: 'Status'),
                 items: _statuses.map((status) {
                   return DropdownMenuItem<String>(
                     value: status,
@@ -137,7 +138,10 @@ class _AddRoadmapVersionDialogState extends State<AddRoadmapVersionDialog> {
               InkWell(
                 onTap: _selectReleaseDate,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: AppStyle.grey),
                     borderRadius: BorderRadius.circular(4),
@@ -213,15 +217,13 @@ class _AddRoadmapVersionDialogState extends State<AddRoadmapVersionDialog> {
         ),
         ElevatedButton(
           onPressed: _isLoading ? null : _submitForm,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppStyle.primary,
-          ),
+          style: ElevatedButton.styleFrom(backgroundColor: AppStyle.primary),
           child: _isLoading
               ? const SizedBox(
-            width: 20,
-            height: 20,
-            child: CircularProgressIndicator(strokeWidth: 2),
-          )
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
               : Text(widget.isEditing ? 'Update' : 'Create'),
         ),
       ],
@@ -234,10 +236,7 @@ class _AddRoadmapVersionDialogState extends State<AddRoadmapVersionDialog> {
         padding: EdgeInsets.all(8.0),
         child: Text(
           'No features added yet',
-          style: TextStyle(
-            fontStyle: FontStyle.italic,
-            color: AppStyle.grey,
-          ),
+          style: TextStyle(fontStyle: FontStyle.italic, color: AppStyle.grey),
         ),
       );
     }
@@ -301,7 +300,9 @@ class _AddRoadmapVersionDialogState extends State<AddRoadmapVersionDialog> {
       final data = {
         'app_id': widget.appId,
         'version_number': _versionController.text,
-        'description': _descriptionController.text.isNotEmpty ? _descriptionController.text : null,
+        'description': _descriptionController.text.isNotEmpty
+            ? _descriptionController.text
+            : null,
         'status': _status,
         'features': _features,
         'release_date': _releaseDate?.toIso8601String().split('T')[0],
@@ -309,7 +310,10 @@ class _AddRoadmapVersionDialogState extends State<AddRoadmapVersionDialog> {
 
       bool success;
       if (widget.isEditing && widget.initialVersion != null) {
-        success = await _roadmapProvider.updateRoadmapVersion(widget.initialVersion!.uuid, data);
+        success = await _roadmapProvider.updateRoadmapVersion(
+          widget.initialVersion!.uuid,
+          data,
+        );
       } else {
         success = await _roadmapProvider.createRoadmapVersion(data);
       }
@@ -322,10 +326,15 @@ class _AddRoadmapVersionDialogState extends State<AddRoadmapVersionDialog> {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(widget.isEditing ? 'Version updated successfully' : 'Version created successfully'),
+            content: Text(
+              widget.isEditing
+                  ? 'Version updated successfully'
+                  : 'Version created successfully',
+            ),
             backgroundColor: AppStyle.green,
           ),
         );
       }
     }
-  }}
+  }
+}

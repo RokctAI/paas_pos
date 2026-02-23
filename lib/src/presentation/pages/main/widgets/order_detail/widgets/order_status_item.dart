@@ -26,21 +26,21 @@ class OrderStatusItem extends StatelessWidget {
       duration: const Duration(milliseconds: 500),
       padding: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
-          color: isActive ? bgColor : AppStyle.white, shape: BoxShape.circle),
+        color: isActive ? bgColor : AppStyle.white,
+        shape: BoxShape.circle,
+      ),
       child: Stack(
         children: [
-          Positioned(top: 12.r, left: 12.r, bottom: 10.r, right: 10.r, child: icon),
-          isProgress
-              ? Icon(
-            Remix.timer_line,
-            color: AppStyle.primary,
-            size: 26.r,
-
-          )
-              : SizedBox(
-            width: 52.r,
-            height: 52.r,
+          Positioned(
+            top: 12.r,
+            left: 12.r,
+            bottom: 10.r,
+            right: 10.r,
+            child: icon,
           ),
+          isProgress
+              ? Icon(Remix.timer_line, color: AppStyle.primary, size: 26.r)
+              : SizedBox(width: 52.r, height: 52.r),
         ],
       ),
     );

@@ -23,11 +23,11 @@ class MainNotifier extends StateNotifier<MainState> {
   int _page = 0;
 
   MainNotifier(
-      this._productsRepository,
-      this._categoriesRepository,
-      this._brandsRepository,
-      this._usersRepository,
-      ) : super(const MainState());
+    this._productsRepository,
+    this._categoriesRepository,
+    this._brandsRepository,
+    this._usersRepository,
+  ) : super(const MainState());
 
   changeIndex(int index) {
     state = state.copyWith(selectIndex: index);
@@ -59,7 +59,9 @@ class MainNotifier extends StateNotifier<MainState> {
         // Update the stock of this product
         if (product.stocks != null && product.stocks!.isNotEmpty) {
           final updatedStocks = [...product.stocks!];
-          final stockIndex = updatedStocks.indexWhere((s) => s.id == updatedStock.id);
+          final stockIndex = updatedStocks.indexWhere(
+            (s) => s.id == updatedStock.id,
+          );
           if (stockIndex != -1) {
             updatedStocks[stockIndex] = updatedStock;
           }
@@ -110,10 +112,7 @@ class MainNotifier extends StateNotifier<MainState> {
             }
           },
           failure: (failure) {
-            state = state.copyWith(
-              isProductsLoading: false,
-              products: [],
-            );
+            state = state.copyWith(isProductsLoading: false, products: []);
             debugPrint('==> get products failure: $failure');
           },
         );
@@ -155,10 +154,7 @@ class MainNotifier extends StateNotifier<MainState> {
             hasMore: false,
           );
         } else {
-          state = state.copyWith(
-            isProductsLoading: false,
-            products: [],
-          );
+          state = state.copyWith(isProductsLoading: false, products: []);
         }
       }
       checkYourNetwork?.call();
@@ -176,25 +172,22 @@ class MainNotifier extends StateNotifier<MainState> {
       _searchProductsTimer?.cancel();
     }
 
-    _searchProductsTimer = Timer(
-      const Duration(milliseconds: 500),
-          () {
-        state = state.copyWith(
-          hasMore: true,
-          products: [],
-          isProductsLoading: true,
-        );
-        _page = 0;
-        fetchProducts(
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
-              context,
-              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-            );
-          },
-        );
-      },
-    );
+    _searchProductsTimer = Timer(const Duration(milliseconds: 500), () {
+      state = state.copyWith(
+        hasMore: true,
+        products: [],
+        isProductsLoading: true,
+      );
+      _page = 0;
+      fetchProducts(
+        checkYourNetwork: () {
+          AppHelpers.showSnackBar(
+            context,
+            AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+          );
+        },
+      );
+    });
   }
 
   void clearSearch(BuildContext context) {
@@ -259,21 +252,18 @@ class MainNotifier extends StateNotifier<MainState> {
     if (_searchCategoriesTimer?.isActive ?? false) {
       _searchCategoriesTimer?.cancel();
     }
-    _searchCategoriesTimer = Timer(
-      const Duration(milliseconds: 500),
-          () {
-        state = state.copyWith(categories: [], dropDownCategories: []);
-        fetchCategories(
-          context: context,
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
-              context,
-              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-            );
-          },
-        );
-      },
-    );
+    _searchCategoriesTimer = Timer(const Duration(milliseconds: 500), () {
+      state = state.copyWith(categories: [], dropDownCategories: []);
+      fetchCategories(
+        context: context,
+        checkYourNetwork: () {
+          AppHelpers.showSnackBar(
+            context,
+            AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+          );
+        },
+      );
+    });
   }
 
   void setSelectedCategory(BuildContext context, int index) {
@@ -325,7 +315,9 @@ class MainNotifier extends StateNotifier<MainState> {
 
   Future<void> _saveLocalProducts(List<ProductData> products) async {
     final prefs = await SharedPreferences.getInstance();
-    final String productsJson = json.encode(products.map((product) => product.toJson()).toList());
+    final String productsJson = json.encode(
+      products.map((product) => product.toJson()).toList(),
+    );
     await prefs.setString('local_products', productsJson);
   }
 

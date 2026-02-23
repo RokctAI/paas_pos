@@ -33,11 +33,7 @@ class SocialButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                iconData,
-                color: AppStyle.textGrey,
-                size: 16.r,
-              ),
+              Icon(iconData, color: AppStyle.textGrey, size: 16.r),
               8.horizontalSpace,
               isLoading
                   ? SizedBox(
@@ -62,4 +58,3 @@ class SocialButton extends StatelessWidget {
     );
   }
 }
-

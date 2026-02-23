@@ -14,12 +14,11 @@ extension StringCapitalization on String {
   }
 }
 
-
 class WeatherSummary extends StatelessWidget {
   final Map<String, dynamic> forecast;
   final WeatherState weatherState;
 
-   WeatherSummary({
+  WeatherSummary({
     super.key,
     required this.forecast,
     required this.weatherState,
@@ -27,7 +26,11 @@ class WeatherSummary extends StatelessWidget {
 
   // Variety of temperature descriptors
   final List<String> _temperatureDescriptors = [
-    'feeling', 'sitting at', 'reaching', 'climbing to', 'hovering around'
+    'feeling',
+    'sitting at',
+    'reaching',
+    'climbing to',
+    'hovering around',
   ];
 
   // Variety of wind descriptors
@@ -35,7 +38,7 @@ class WeatherSummary extends StatelessWidget {
     'strong winds blowing',
     'gusty conditions with winds',
     'breezy atmosphere with wind speeds',
-    'turbulent winds marking'
+    'turbulent winds marking',
   ];
 
   // Variety of rain descriptors
@@ -43,7 +46,7 @@ class WeatherSummary extends StatelessWidget {
     'precipitation expected',
     'rainfall anticipated',
     'moisture on the horizon',
-    'water from the sky likely'
+    'water from the sky likely',
   ];
 
   // Variety of humidity descriptors
@@ -51,7 +54,7 @@ class WeatherSummary extends StatelessWidget {
     'moisture levels at',
     'humidity hanging around',
     'atmospheric moisture reading',
-    'water vapor concentration'
+    'water vapor concentration',
   ];
 
   // Randomization helper
@@ -62,9 +65,18 @@ class WeatherSummary extends StatelessWidget {
 
   // More varied temperature intensity descriptions
   String _describeTemperatureIntensity(double temp) {
-    if (temp >= 40) return ['scorching', 'extreme', 'brutal', 'searing'][Random().nextInt(4)];
-    if (temp >= 35) return ['very hot', 'intensely warm', 'sweltering', 'blazing'][Random().nextInt(4)];
-    if (temp >= 30) return ['quite warm', 'notably hot', 'substantially warm', 'rather heated'][Random().nextInt(4)];
+    if (temp >= 40)
+      return ['scorching', 'extreme', 'brutal', 'searing'][Random().nextInt(4)];
+    if (temp >= 35)
+      return ['very hot', 'intensely warm', 'sweltering', 'blazing'][Random()
+          .nextInt(4)];
+    if (temp >= 30)
+      return [
+        'quite warm',
+        'notably hot',
+        'substantially warm',
+        'rather heated',
+      ][Random().nextInt(4)];
     return 'mild';
   }
 
@@ -90,7 +102,8 @@ class WeatherSummary extends StatelessWidget {
     final hours = forecast['hour'] as List?;
     final location = weatherState.cityName;
     final date = DateTime.parse(forecast['date']);
-    final isToday = DateFormat('yyyy-MM-dd').format(date) ==
+    final isToday =
+        DateFormat('yyyy-MM-dd').format(date) ==
         DateFormat('yyyy-MM-dd').format(DateTime.now());
     final alerts = forecast['alerts']?['alert'] as List? ?? [];
     final isCurrentWeather = hours == null || hours.isEmpty;
@@ -100,7 +113,9 @@ class WeatherSummary extends StatelessWidget {
     // Process alerts first with more conversational tone
     if (alerts.isNotEmpty) {
       for (var alert in alerts) {
-        summaryLines.add('⚠️ Heads up: ${alert['headline']} - ${alert['desc']}');
+        summaryLines.add(
+          '⚠️ Heads up: ${alert['headline']} - ${alert['desc']}',
+        );
       }
     }
 
@@ -109,16 +124,19 @@ class WeatherSummary extends StatelessWidget {
       String currentLine = [
         'Right now in $location',
         'Currently, $location is experiencing',
-        'Weather reports for $location show'
+        'Weather reports for $location show',
       ][Random().nextInt(3)];
 
       currentLine += ' ${_cleanText(day['condition']['text'])}';
 
       // More varied temperature description
       final tempDescriptor = _randomElement(_temperatureDescriptors);
-      final temperatureIntensity = _describeTemperatureIntensity(day['avgtemp_c']);
+      final temperatureIntensity = _describeTemperatureIntensity(
+        day['avgtemp_c'],
+      );
 
-      currentLine += ' with a $temperatureIntensity temperature ${tempDescriptor} ${day['avgtemp_c'].toStringAsFixed(1)}°c';
+      currentLine +=
+          ' with a $temperatureIntensity temperature ${tempDescriptor} ${day['avgtemp_c'].toStringAsFixed(1)}°c';
       summaryLines.add(currentLine);
 
       // More nuanced conditions line
@@ -126,47 +144,63 @@ class WeatherSummary extends StatelessWidget {
 
       // Wind conditions with variety
       if (day['maxwind_kph'] >= 40) {
-        conditions.add('${_randomElement(_windDescriptors)} up to ${day['maxwind_kph'].round()} km/h');
+        conditions.add(
+          '${_randomElement(_windDescriptors)} up to ${day['maxwind_kph'].round()} km/h',
+        );
       }
 
       // Precipitation with varied language
-      if (day['daily_will_it_rain'] == 1 && day['daily_chance_of_rain'] > AppConstants.rainPOP && day['totalprecip_mm'] > 0) {
-        conditions.add('${_randomElement(_rainDescriptors)} of ${day['totalprecip_mm'].toStringAsFixed(1)} mm');
+      if (day['daily_will_it_rain'] == 1 &&
+          day['daily_chance_of_rain'] > AppConstants.rainPOP &&
+          day['totalprecip_mm'] > 0) {
+        conditions.add(
+          '${_randomElement(_rainDescriptors)} of ${day['totalprecip_mm'].toStringAsFixed(1)} mm',
+        );
       }
 
       // Humidity with variety
-      conditions.add('${_randomElement(_humidityDescriptors)} ${day['avghumidity'].round()}%');
+      conditions.add(
+        '${_randomElement(_humidityDescriptors)} ${day['avghumidity'].round()}%',
+      );
 
       // UV warning with conversational tone
       if (day['uv'] >= 8) {
-        conditions.add([
-          'high UV index - protect yourself',
-          'sunscreen recommended',
-          'intense sun exposure expected',
-          'UV levels demanding caution'
-        ][Random().nextInt(4)]);
+        conditions.add(
+          [
+            'high UV index - protect yourself',
+            'sunscreen recommended',
+            'intense sun exposure expected',
+            'UV levels demanding caution',
+          ][Random().nextInt(4)],
+        );
       }
 
       String conditionsLine = conditions.join(', ') + '.';
-      conditionsLine = conditionsLine[0].toUpperCase() + conditionsLine.substring(1);
+      conditionsLine =
+          conditionsLine[0].toUpperCase() + conditionsLine.substring(1);
       summaryLines.add(conditionsLine);
     } else {
       // Forecast weather analysis with time periods
       Map<String, List<Map<String, dynamic>>> timePeriods = {
         'early morning': [], // 00:00 - 05:59
-        'morning': [],      // 06:00 - 11:59
-        'afternoon': [],    // 12:00 - 16:59
-        'evening': [],      // 17:00 - 20:59
-        'night': [],        // 21:00 - 23:59
+        'morning': [], // 06:00 - 11:59
+        'afternoon': [], // 12:00 - 16:59
+        'evening': [], // 17:00 - 20:59
+        'night': [], // 21:00 - 23:59
       };
 
       for (var hour in hours) {
         final hourNum = DateTime.parse(hour['time']).hour;
-        if (hourNum >= 0 && hourNum < 6) timePeriods['early morning']!.add(hour);
-        else if (hourNum >= 6 && hourNum < 12) timePeriods['morning']!.add(hour);
-        else if (hourNum >= 12 && hourNum < 17) timePeriods['afternoon']!.add(hour);
-        else if (hourNum >= 17 && hourNum < 21) timePeriods['evening']!.add(hour);
-        else timePeriods['night']!.add(hour);
+        if (hourNum >= 0 && hourNum < 6)
+          timePeriods['early morning']!.add(hour);
+        else if (hourNum >= 6 && hourNum < 12)
+          timePeriods['morning']!.add(hour);
+        else if (hourNum >= 12 && hourNum < 17)
+          timePeriods['afternoon']!.add(hour);
+        else if (hourNum >= 17 && hourNum < 21)
+          timePeriods['evening']!.add(hour);
+        else
+          timePeriods['night']!.add(hour);
       }
 
       // Analyze conditions for each period
@@ -176,24 +210,37 @@ class WeatherSummary extends StatelessWidget {
         if (hours.isEmpty) continue;
 
         periodConditions[period.key] = {
-          'rain': hours.any((h) => h['will_it_rain'] == 1 && h['chance_of_rain'] >= 70),
-          'heavy_rain': hours.any((h) => h['will_it_rain'] == 1 && h['chance_of_rain'] >= 90),
-          'thunder': hours.any((h) => h['condition']['text'].toLowerCase().contains('thunder')),
+          'rain': hours.any(
+            (h) => h['will_it_rain'] == 1 && h['chance_of_rain'] >= 70,
+          ),
+          'heavy_rain': hours.any(
+            (h) => h['will_it_rain'] == 1 && h['chance_of_rain'] >= 90,
+          ),
+          'thunder': hours.any(
+            (h) => h['condition']['text'].toLowerCase().contains('thunder'),
+          ),
           'snow': hours.any((h) => h['will_it_snow'] == 1),
           'high_uv': hours.any((h) => h['uv'] >= 8),
           'strong_wind': hours.any((h) => h['wind_kph'] >= 40),
-          'fog': hours.any((h) => h['condition']['text'].toLowerCase().contains('fog') ||
-              h['condition']['text'].toLowerCase().contains('mist')),
-          'drizzle': hours.any((h) => h['condition']['text'].toLowerCase().contains('drizzle')),
+          'fog': hours.any(
+            (h) =>
+                h['condition']['text'].toLowerCase().contains('fog') ||
+                h['condition']['text'].toLowerCase().contains('mist'),
+          ),
+          'drizzle': hours.any(
+            (h) => h['condition']['text'].toLowerCase().contains('drizzle'),
+          ),
           'high_temp': hours.any((h) => h['temp_c'] >= 35),
         };
       }
 
       // Weather description variations
       List<String> introVariations = [
-        isToday ? 'Weather today in $location' : 'Weather this ${DateFormat('EEEE').format(date).toLowerCase()} in $location',
+        isToday
+            ? 'Weather today in $location'
+            : 'Weather this ${DateFormat('EEEE').format(date).toLowerCase()} in $location',
         'Looking ahead to ${isToday ? "today's" : "this"} forecast for $location',
-        '${isToday ? "Today's" : DateFormat('EEEE').format(date).capitalizeFirst()} weather outlook for $location'
+        '${isToday ? "Today's" : DateFormat('EEEE').format(date).capitalizeFirst()} weather outlook for $location',
       ];
       String mainLine = _randomElement(introVariations);
 
@@ -207,7 +254,9 @@ class WeatherSummary extends StatelessWidget {
           .map((e) => e.key)
           .toList();
       if (thunderPeriods.isNotEmpty) {
-        weatherPeriods.add('thunderstorms during ${_formatPeriodList(thunderPeriods)}');
+        weatherPeriods.add(
+          'thunderstorms during ${_formatPeriodList(thunderPeriods)}',
+        );
       }
 
       // Heavy rain periods
@@ -216,13 +265,21 @@ class WeatherSummary extends StatelessWidget {
           .map((e) => e.key)
           .toList();
       if (heavyRainPeriods.isNotEmpty) {
-        weatherPeriods.add('heavy rain during ${_formatPeriodList(heavyRainPeriods)}');
+        weatherPeriods.add(
+          'heavy rain during ${_formatPeriodList(heavyRainPeriods)}',
+        );
       }
 
       // Regular rain periods
-      if (day['daily_will_it_rain'] == 1 && day['daily_chance_of_rain'] > AppConstants.rainPOP) {
+      if (day['daily_will_it_rain'] == 1 &&
+          day['daily_chance_of_rain'] > AppConstants.rainPOP) {
         var rainPeriods = periodConditions.entries
-            .where((e) => e.value['rain'] && !e.value['heavy_rain'] && !e.value['thunder'])
+            .where(
+              (e) =>
+                  e.value['rain'] &&
+                  !e.value['heavy_rain'] &&
+                  !e.value['thunder'],
+            )
             .map((e) => e.key)
             .toList();
         if (rainPeriods.isNotEmpty) {
@@ -232,11 +289,16 @@ class WeatherSummary extends StatelessWidget {
 
       // Drizzle periods
       var drizzlePeriods = periodConditions.entries
-          .where((e) => e.value['drizzle'] && !e.value['rain'] && !e.value['thunder'])
+          .where(
+            (e) =>
+                e.value['drizzle'] && !e.value['rain'] && !e.value['thunder'],
+          )
           .map((e) => e.key)
           .toList();
       if (drizzlePeriods.isNotEmpty) {
-        weatherPeriods.add('light drizzle during ${_formatPeriodList(drizzlePeriods)}');
+        weatherPeriods.add(
+          'light drizzle during ${_formatPeriodList(drizzlePeriods)}',
+        );
       }
 
       // Snow periods
@@ -254,7 +316,9 @@ class WeatherSummary extends StatelessWidget {
           .map((e) => e.key)
           .toList();
       if (fogPeriods.isNotEmpty) {
-        weatherPeriods.add('foggy conditions during ${_formatPeriodList(fogPeriods)}');
+        weatherPeriods.add(
+          'foggy conditions during ${_formatPeriodList(fogPeriods)}',
+        );
       }
 
       // High temperature periods
@@ -265,7 +329,9 @@ class WeatherSummary extends StatelessWidget {
       if (highTempPeriods.length > timePeriods.length / 2) {
         conditionPhrases.add('it will be very hot for most of the day');
       } else if (highTempPeriods.isNotEmpty) {
-        conditionPhrases.add('expect very hot conditions during ${_formatPeriodList(highTempPeriods)}');
+        conditionPhrases.add(
+          'expect very hot conditions during ${_formatPeriodList(highTempPeriods)}',
+        );
       }
 
       // Strong wind periods
@@ -276,7 +342,9 @@ class WeatherSummary extends StatelessWidget {
       if (windyPeriods.length > timePeriods.length / 2) {
         conditionPhrases.add('strong winds will persist throughout the day');
       } else if (windyPeriods.isNotEmpty) {
-        conditionPhrases.add('expect strong winds during ${_formatPeriodList(windyPeriods)}');
+        conditionPhrases.add(
+          'expect strong winds during ${_formatPeriodList(windyPeriods)}',
+        );
       }
 
       // Build the weather description
@@ -294,28 +362,39 @@ class WeatherSummary extends StatelessWidget {
 
       // Temperature description with variation
       if (day['maxtemp_c'] >= 35) {
-        mainLine += '. Extremely hot with temperatures soaring to ${day['maxtemp_c'].toStringAsFixed(1)}°c';
+        mainLine +=
+            '. Extremely hot with temperatures soaring to ${day['maxtemp_c'].toStringAsFixed(1)}°c';
       } else {
-        mainLine += '. Daytime temperatures will peak at ${day['maxtemp_c'].toStringAsFixed(1)}°c';
+        mainLine +=
+            '. Daytime temperatures will peak at ${day['maxtemp_c'].toStringAsFixed(1)}°c';
       }
-      mainLine += ' and dipping to ${day['mintemp_c'].toStringAsFixed(1)}°c as night falls';
+      mainLine +=
+          ' and dipping to ${day['mintemp_c'].toStringAsFixed(1)}°c as night falls';
       summaryLines.add(mainLine);
 
       // Detailed conditions line
       List<String> conditions = [];
 
       // Precipitation
-      if (day['daily_will_it_rain'] == 1 && day['daily_chance_of_rain'] > AppConstants.rainPOP && day['totalprecip_mm'] > 0) {
-        conditions.add('expecting around ${day['totalprecip_mm'].toStringAsFixed(1)} mm of precipitation');
+      if (day['daily_will_it_rain'] == 1 &&
+          day['daily_chance_of_rain'] > AppConstants.rainPOP &&
+          day['totalprecip_mm'] > 0) {
+        conditions.add(
+          'expecting around ${day['totalprecip_mm'].toStringAsFixed(1)} mm of precipitation',
+        );
       }
 
       // Humidity
-      conditions.add('humidity levels hovering around ${day['avghumidity'].round()}%');
+      conditions.add(
+        'humidity levels hovering around ${day['avghumidity'].round()}%',
+      );
 
       // UV warning
       if (day['uv'] >= 8) {
         var uvWarning = 'UV index running high';
-        if (weatherPeriods.any((p) => p.contains('rain') || p.contains('thunder'))) {
+        if (weatherPeriods.any(
+          (p) => p.contains('rain') || p.contains('thunder'),
+        )) {
           uvWarning += ' between the showers';
         }
         uvWarning += ' - take precautions';
@@ -324,27 +403,34 @@ class WeatherSummary extends StatelessWidget {
 
       // Wind conditions
       if (day['maxwind_kph'] >= 40 && windyPeriods.isEmpty) {
-        conditions.add('winds potentially reaching up to ${day['maxwind_kph'].round()} km/h');
+        conditions.add(
+          'winds potentially reaching up to ${day['maxwind_kph'].round()} km/h',
+        );
       }
 
       String conditionsLine = conditions.join(', ') + '.';
-      conditionsLine = conditionsLine[0].toUpperCase() + conditionsLine.substring(1);
+      conditionsLine =
+          conditionsLine[0].toUpperCase() + conditionsLine.substring(1);
       summaryLines.add(conditionsLine);
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: summaryLines.map((line) => Padding(
-        padding: EdgeInsets.only(bottom: 8.h),
-        child: Text(
-          line,
-          style: GoogleFonts.inter(
-            fontSize: 14.sp,
-            color: line.startsWith('⚠️') ? AppStyle.red : AppStyle.black,
-            height: 1.5,
-          ),
-        ),
-      )).toList(),
+      children: summaryLines
+          .map(
+            (line) => Padding(
+              padding: EdgeInsets.only(bottom: 8.h),
+              child: Text(
+                line,
+                style: GoogleFonts.inter(
+                  fontSize: 14.sp,
+                  color: line.startsWith('⚠️') ? AppStyle.red : AppStyle.black,
+                  height: 1.5,
+                ),
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 

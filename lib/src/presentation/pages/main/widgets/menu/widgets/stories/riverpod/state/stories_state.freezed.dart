@@ -12,7 +12,8 @@ part of 'stories_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$StoriesState {
@@ -29,8 +30,9 @@ mixin _$StoriesState {
 /// @nodoc
 abstract class $StoriesStateCopyWith<$Res> {
   factory $StoriesStateCopyWith(
-          StoriesState value, $Res Function(StoriesState) then) =
-      _$StoriesStateCopyWithImpl<$Res, StoriesState>;
+    StoriesState value,
+    $Res Function(StoriesState) then,
+  ) = _$StoriesStateCopyWithImpl<$Res, StoriesState>;
   @useResult
   $Res call({bool isLoading, List<StoriesData> stories});
 }
@@ -49,20 +51,20 @@ class _$StoriesStateCopyWithImpl<$Res, $Val extends StoriesState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isLoading = null,
-    Object? stories = null,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      stories: null == stories
-          ? _value.stories
-          : stories // ignore: cast_nullable_to_non_nullable
-              as List<StoriesData>,
-    ) as $Val);
+  $Res call({Object? isLoading = null, Object? stories = null}) {
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            stories: null == stories
+                ? _value.stories
+                : stories // ignore: cast_nullable_to_non_nullable
+                      as List<StoriesData>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -70,8 +72,9 @@ class _$StoriesStateCopyWithImpl<$Res, $Val extends StoriesState>
 abstract class _$$StoriesStateImplCopyWith<$Res>
     implements $StoriesStateCopyWith<$Res> {
   factory _$$StoriesStateImplCopyWith(
-          _$StoriesStateImpl value, $Res Function(_$StoriesStateImpl) then) =
-      __$$StoriesStateImplCopyWithImpl<$Res>;
+    _$StoriesStateImpl value,
+    $Res Function(_$StoriesStateImpl) then,
+  ) = __$$StoriesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isLoading, List<StoriesData> stories});
@@ -82,37 +85,38 @@ class __$$StoriesStateImplCopyWithImpl<$Res>
     extends _$StoriesStateCopyWithImpl<$Res, _$StoriesStateImpl>
     implements _$$StoriesStateImplCopyWith<$Res> {
   __$$StoriesStateImplCopyWithImpl(
-      _$StoriesStateImpl _value, $Res Function(_$StoriesStateImpl) _then)
-      : super(_value, _then);
+    _$StoriesStateImpl _value,
+    $Res Function(_$StoriesStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of StoriesState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isLoading = null,
-    Object? stories = null,
-  }) {
-    return _then(_$StoriesStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      stories: null == stories
-          ? _value._stories
-          : stories // ignore: cast_nullable_to_non_nullable
-              as List<StoriesData>,
-    ));
+  $Res call({Object? isLoading = null, Object? stories = null}) {
+    return _then(
+      _$StoriesStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        stories: null == stories
+            ? _value._stories
+            : stories // ignore: cast_nullable_to_non_nullable
+                  as List<StoriesData>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$StoriesStateImpl extends _StoriesState {
-  const _$StoriesStateImpl(
-      {this.isLoading = false, final List<StoriesData> stories = const []})
-      : _stories = stories,
-        super._();
+  const _$StoriesStateImpl({
+    this.isLoading = false,
+    final List<StoriesData> stories = const [],
+  }) : _stories = stories,
+       super._();
 
   @override
   @JsonKey()
@@ -143,7 +147,10 @@ class _$StoriesStateImpl extends _StoriesState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, isLoading, const DeepCollectionEquality().hash(_stories));
+    runtimeType,
+    isLoading,
+    const DeepCollectionEquality().hash(_stories),
+  );
 
   /// Create a copy of StoriesState
   /// with the given fields replaced by the non-null parameter values.
@@ -155,9 +162,10 @@ class _$StoriesStateImpl extends _StoriesState {
 }
 
 abstract class _StoriesState extends StoriesState {
-  const factory _StoriesState(
-      {final bool isLoading,
-      final List<StoriesData> stories}) = _$StoriesStateImpl;
+  const factory _StoriesState({
+    final bool isLoading,
+    final List<StoriesData> stories,
+  }) = _$StoriesStateImpl;
   const _StoriesState._() : super._();
 
   @override
@@ -172,4 +180,3 @@ abstract class _StoriesState extends StoriesState {
   _$$StoriesStateImplCopyWith<_$StoriesStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

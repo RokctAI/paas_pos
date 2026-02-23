@@ -12,7 +12,8 @@ part of 'languages_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$LanguagesState {
@@ -31,14 +32,16 @@ mixin _$LanguagesState {
 /// @nodoc
 abstract class $LanguagesStateCopyWith<$Res> {
   factory $LanguagesStateCopyWith(
-          LanguagesState value, $Res Function(LanguagesState) then) =
-      _$LanguagesStateCopyWithImpl<$Res, LanguagesState>;
+    LanguagesState value,
+    $Res Function(LanguagesState) then,
+  ) = _$LanguagesStateCopyWithImpl<$Res, LanguagesState>;
   @useResult
-  $Res call(
-      {List<LanguageData> languages,
-      int index,
-      bool isLoading,
-      bool isSelectLanguage});
+  $Res call({
+    List<LanguageData> languages,
+    int index,
+    bool isLoading,
+    bool isSelectLanguage,
+  });
 }
 
 /// @nodoc
@@ -61,40 +64,45 @@ class _$LanguagesStateCopyWithImpl<$Res, $Val extends LanguagesState>
     Object? isLoading = null,
     Object? isSelectLanguage = null,
   }) {
-    return _then(_value.copyWith(
-      languages: null == languages
-          ? _value.languages
-          : languages // ignore: cast_nullable_to_non_nullable
-              as List<LanguageData>,
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSelectLanguage: null == isSelectLanguage
-          ? _value.isSelectLanguage
-          : isSelectLanguage // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            languages: null == languages
+                ? _value.languages
+                : languages // ignore: cast_nullable_to_non_nullable
+                      as List<LanguageData>,
+            index: null == index
+                ? _value.index
+                : index // ignore: cast_nullable_to_non_nullable
+                      as int,
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isSelectLanguage: null == isSelectLanguage
+                ? _value.isSelectLanguage
+                : isSelectLanguage // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$LanguagesStateImplCopyWith<$Res>
     implements $LanguagesStateCopyWith<$Res> {
-  factory _$$LanguagesStateImplCopyWith(_$LanguagesStateImpl value,
-          $Res Function(_$LanguagesStateImpl) then) =
-      __$$LanguagesStateImplCopyWithImpl<$Res>;
+  factory _$$LanguagesStateImplCopyWith(
+    _$LanguagesStateImpl value,
+    $Res Function(_$LanguagesStateImpl) then,
+  ) = __$$LanguagesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<LanguageData> languages,
-      int index,
-      bool isLoading,
-      bool isSelectLanguage});
+  $Res call({
+    List<LanguageData> languages,
+    int index,
+    bool isLoading,
+    bool isSelectLanguage,
+  });
 }
 
 /// @nodoc
@@ -102,8 +110,9 @@ class __$$LanguagesStateImplCopyWithImpl<$Res>
     extends _$LanguagesStateCopyWithImpl<$Res, _$LanguagesStateImpl>
     implements _$$LanguagesStateImplCopyWith<$Res> {
   __$$LanguagesStateImplCopyWithImpl(
-      _$LanguagesStateImpl _value, $Res Function(_$LanguagesStateImpl) _then)
-      : super(_value, _then);
+    _$LanguagesStateImpl _value,
+    $Res Function(_$LanguagesStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LanguagesState
   /// with the given fields replaced by the non-null parameter values.
@@ -115,37 +124,39 @@ class __$$LanguagesStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isSelectLanguage = null,
   }) {
-    return _then(_$LanguagesStateImpl(
-      languages: null == languages
-          ? _value._languages
-          : languages // ignore: cast_nullable_to_non_nullable
-              as List<LanguageData>,
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSelectLanguage: null == isSelectLanguage
-          ? _value.isSelectLanguage
-          : isSelectLanguage // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$LanguagesStateImpl(
+        languages: null == languages
+            ? _value._languages
+            : languages // ignore: cast_nullable_to_non_nullable
+                  as List<LanguageData>,
+        index: null == index
+            ? _value.index
+            : index // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isSelectLanguage: null == isSelectLanguage
+            ? _value.isSelectLanguage
+            : isSelectLanguage // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$LanguagesStateImpl extends _LanguagesState {
-  const _$LanguagesStateImpl(
-      {final List<LanguageData> languages = const [],
-      this.index = 0,
-      this.isLoading = false,
-      this.isSelectLanguage = false})
-      : _languages = languages,
-        super._();
+  const _$LanguagesStateImpl({
+    final List<LanguageData> languages = const [],
+    this.index = 0,
+    this.isLoading = false,
+    this.isSelectLanguage = false,
+  }) : _languages = languages,
+       super._();
 
   final List<LanguageData> _languages;
   @override
@@ -176,8 +187,10 @@ class _$LanguagesStateImpl extends _LanguagesState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LanguagesStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other._languages, _languages) &&
+            const DeepCollectionEquality().equals(
+              other._languages,
+              _languages,
+            ) &&
             (identical(other.index, index) || other.index == index) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
@@ -187,11 +200,12 @@ class _$LanguagesStateImpl extends _LanguagesState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_languages),
-      index,
-      isLoading,
-      isSelectLanguage);
+    runtimeType,
+    const DeepCollectionEquality().hash(_languages),
+    index,
+    isLoading,
+    isSelectLanguage,
+  );
 
   /// Create a copy of LanguagesState
   /// with the given fields replaced by the non-null parameter values.
@@ -200,15 +214,18 @@ class _$LanguagesStateImpl extends _LanguagesState {
   @pragma('vm:prefer-inline')
   _$$LanguagesStateImplCopyWith<_$LanguagesStateImpl> get copyWith =>
       __$$LanguagesStateImplCopyWithImpl<_$LanguagesStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _LanguagesState extends LanguagesState {
-  const factory _LanguagesState(
-      {final List<LanguageData> languages,
-      final int index,
-      final bool isLoading,
-      final bool isSelectLanguage}) = _$LanguagesStateImpl;
+  const factory _LanguagesState({
+    final List<LanguageData> languages,
+    final int index,
+    final bool isLoading,
+    final bool isSelectLanguage,
+  }) = _$LanguagesStateImpl;
   const _LanguagesState._() : super._();
 
   @override
@@ -227,4 +244,3 @@ abstract class _LanguagesState extends LanguagesState {
   _$$LanguagesStateImplCopyWith<_$LanguagesStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

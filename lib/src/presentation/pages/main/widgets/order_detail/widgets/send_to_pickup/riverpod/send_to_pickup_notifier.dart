@@ -10,9 +10,10 @@ class SendToPickupNotifier extends StateNotifier<SendToPickupState> {
   final ParcelRepository _parcelRepository;
 
   SendToPickupNotifier(this._deliveryPointsRepository, this._parcelRepository)
-      : super(const SendToPickupState());
+    : super(const SendToPickupState());
 
-  Future<void> fetchDeliveryPoints(BuildContext context, {
+  Future<void> fetchDeliveryPoints(
+    BuildContext context, {
     required double latitude,
     required double longitude,
   }) async {
@@ -23,7 +24,10 @@ class SendToPickupNotifier extends StateNotifier<SendToPickupState> {
     );
     response.when(
       success: (data) {
-        state = state.copyWith(isLoading: false, deliveryPoints: data.data ?? []);
+        state = state.copyWith(
+          isLoading: false,
+          deliveryPoints: data.data ?? [],
+        );
       },
       failure: (failure) {
         state = state.copyWith(isLoading: false);
@@ -36,7 +40,8 @@ class SendToPickupNotifier extends StateNotifier<SendToPickupState> {
     state = state.copyWith(selectedPoint: point);
   }
 
-  Future<void> createParcelOrder(BuildContext context, {
+  Future<void> createParcelOrder(
+    BuildContext context, {
     required OrderData order,
     required VoidCallback onSuccess,
   }) async {
@@ -47,14 +52,16 @@ class SendToPickupNotifier extends StateNotifier<SendToPickupState> {
 
     state = state.copyWith(isLoading: true);
 
-    final items = order.details?.map((detail) {
-      return {
-        "item_code": detail.stock?.product?.id,
-        "item_name": detail.stock?.product?.translation?.title,
-        "quantity": detail.quantity,
-        "sales_order_item": detail.id
-      };
-    }).toList() ?? [];
+    final items =
+        order.details?.map((detail) {
+          return {
+            "item_code": detail.stock?.product?.id,
+            "item_name": detail.stock?.product?.translation?.title,
+            "quantity": detail.quantity,
+            "sales_order_item": detail.id,
+          };
+        }).toList() ??
+        [];
 
     final body = {
       "sales_order_id": order.id,

@@ -10,14 +10,15 @@ import '../repository.dart';
 class OrdersRepositoryImpl extends OrdersRepository {
   @override
   Future<ApiResult<CreateOrderResponse>> createOrder(
-      OrderBodyData orderBody) async {
+    OrderBodyData orderBody,
+  ) async {
     try {
       final client = dioHttp.client(requireAuth: true);
       final data = orderBody.toJson();
       debugPrint('==> order create data: ${jsonEncode(data)}');
       final response = await client.post(
         '/api/v1/method/paas.api.create_order',
-        data: data
+        data: data,
       );
 
       return ApiResult.success(
@@ -124,14 +125,9 @@ class OrdersRepositoryImpl extends OrdersRepository {
       final client = dioHttp.client(requireAuth: true);
       await client.post(
         '/api/v1/method/paas.api.update_order_status',
-        data: {
-          'order_id': orderId,
-          'status': statusText,
-        },
+        data: {'order_id': orderId, 'status': statusText},
       );
-      return const ApiResult.success(
-        data: null,
-      );
+      return const ApiResult.success(data: null);
     } catch (e) {
       debugPrint('==> update order status failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -143,8 +139,9 @@ class OrdersRepositoryImpl extends OrdersRepository {
     try {
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(
-          '/api/v1/method/paas.api.get_order_details',
-          queryParameters: {'order_id': orderId});
+        '/api/v1/method/paas.api.get_order_details',
+        queryParameters: {'order_id': orderId},
+      );
       return ApiResult.success(
         data: SingleOrderResponse.fromJson(response.data),
       );
@@ -155,19 +152,17 @@ class OrdersRepositoryImpl extends OrdersRepository {
   }
 
   @override
-  Future<ApiResult<dynamic>> setDeliverMan(
-      {required int orderId, required int deliverymanId}) async {
+  Future<ApiResult<dynamic>> setDeliverMan({
+    required int orderId,
+    required int deliverymanId,
+  }) async {
     try {
       final client = dioHttp.client(requireAuth: true);
-      final data = {
-        'deliveryman': deliverymanId,
-      };
+      final data = {'deliveryman': deliverymanId};
       final response = await client.post(
-          '/api/v1/method/paas.api.update_order',
-          data: {
-            'order_id': orderId,
-            'order_data': data,
-          });
+        '/api/v1/method/paas.api.update_order',
+        data: {'order_id': orderId, 'order_data': data},
+      );
       return ApiResult.success(
         data: SingleOrderResponse.fromJson(response.data),
       );
@@ -185,9 +180,7 @@ class OrdersRepositoryImpl extends OrdersRepository {
         '/api/v1/method/paas.api.delete_order',
         data: {'order_id': orderId},
       );
-      return const ApiResult.success(
-        data: null,
-      );
+      return const ApiResult.success(data: null);
     } catch (e) {
       debugPrint('==> delete order failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -201,22 +194,36 @@ class OrdersRepositoryImpl extends OrdersRepository {
   // - getOrderDetailsKitchen
 
   @override
-  Future<ApiResult<OrderKitchenResponse>> getKitchenOrders({String? status, int? page, DateTime? from, DateTime? to, String? search}) {
+  Future<ApiResult<OrderKitchenResponse>> getKitchenOrders({
+    String? status,
+    int? page,
+    DateTime? from,
+    DateTime? to,
+    String? search,
+  }) {
     throw UnimplementedError();
   }
 
   @override
-  Future<ApiResult> updateOrderDetailStatus({required String status, int? orderId}) {
+  Future<ApiResult> updateOrderDetailStatus({
+    required String status,
+    int? orderId,
+  }) {
     throw UnimplementedError();
   }
 
   @override
-  Future<ApiResult> updateOrderStatusKitchen({required OrderStatus status, int? orderId}) {
+  Future<ApiResult> updateOrderStatusKitchen({
+    required OrderStatus status,
+    int? orderId,
+  }) {
     throw UnimplementedError();
   }
 
   @override
-  Future<ApiResult<SingleKitchenOrderResponse>> getOrderDetailsKitchen({int? orderId}) {
+  Future<ApiResult<SingleKitchenOrderResponse>> getOrderDetailsKitchen({
+    int? orderId,
+  }) {
     throw UnimplementedError();
   }
 }

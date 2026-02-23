@@ -32,24 +32,25 @@ class DetailAppBar extends StatelessWidget {
             desc: TimeService.dateFormatYMDHm(orderData?.deliveryDate),
           ),
           AppbarItem(
-              title: AppHelpers.getTranslation(TrKeys.totalPrice),
-              icon: FlutterRemix.bank_card_line,
-              desc: AppHelpers.numberFormat(
-                orderData?.totalPrice ?? 0,
-                symbol: LocalStorage.getSelectedCurrency().symbol,
-              )),
+            title: AppHelpers.getTranslation(TrKeys.totalPrice),
+            icon: FlutterRemix.bank_card_line,
+            desc: AppHelpers.numberFormat(
+              orderData?.totalPrice ?? 0,
+              symbol: LocalStorage.getSelectedCurrency().symbol,
+            ),
+          ),
           AppbarItem(
             title: AppHelpers.getTranslation(TrKeys.messages),
             icon: FlutterRemix.message_2_line,
             desc: TimeService.dateFormatYMDHm(orderData?.deliveryDate),
           ),
           AppbarItem(
-              title: AppHelpers.getTranslation(TrKeys.products),
-              icon: FlutterRemix.shopping_cart_line,
-              desc: "${orderData?.details?.length ?? 0}"),
+            title: AppHelpers.getTranslation(TrKeys.products),
+            icon: FlutterRemix.shopping_cart_line,
+            desc: "${orderData?.details?.length ?? 0}",
+          ),
         ],
       ),
     );
   }
 }
-

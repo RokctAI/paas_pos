@@ -15,4 +15,3 @@ class LanguagesState with _$LanguagesState {
 
   const LanguagesState._();
 }
-

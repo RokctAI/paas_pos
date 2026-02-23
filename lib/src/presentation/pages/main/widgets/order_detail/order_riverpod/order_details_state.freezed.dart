@@ -12,7 +12,8 @@ part of 'order_details_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$OrderDetailsState {
@@ -38,20 +39,22 @@ mixin _$OrderDetailsState {
 /// @nodoc
 abstract class $OrderDetailsStateCopyWith<$Res> {
   factory $OrderDetailsStateCopyWith(
-          OrderDetailsState value, $Res Function(OrderDetailsState) then) =
-      _$OrderDetailsStateCopyWithImpl<$Res, OrderDetailsState>;
+    OrderDetailsState value,
+    $Res Function(OrderDetailsState) then,
+  ) = _$OrderDetailsStateCopyWithImpl<$Res, OrderDetailsState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      String status,
-      String detailStatus,
-      String usersQuery,
-      bool isUsersLoading,
-      List<UserData> users,
-      UserData? selectedUser,
-      bool isUpdating,
-      List<DropDownItemData> dropdownUsers,
-      OrderData? order});
+  $Res call({
+    bool isLoading,
+    String status,
+    String detailStatus,
+    String usersQuery,
+    bool isUsersLoading,
+    List<UserData> users,
+    UserData? selectedUser,
+    bool isUpdating,
+    List<DropDownItemData> dropdownUsers,
+    OrderData? order,
+  });
 }
 
 /// @nodoc
@@ -80,79 +83,85 @@ class _$OrderDetailsStateCopyWithImpl<$Res, $Val extends OrderDetailsState>
     Object? dropdownUsers = null,
     Object? order = freezed,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      detailStatus: null == detailStatus
-          ? _value.detailStatus
-          : detailStatus // ignore: cast_nullable_to_non_nullable
-              as String,
-      usersQuery: null == usersQuery
-          ? _value.usersQuery
-          : usersQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      isUsersLoading: null == isUsersLoading
-          ? _value.isUsersLoading
-          : isUsersLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      users: null == users
-          ? _value.users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      selectedUser: freezed == selectedUser
-          ? _value.selectedUser
-          : selectedUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      isUpdating: null == isUpdating
-          ? _value.isUpdating
-          : isUpdating // ignore: cast_nullable_to_non_nullable
-              as bool,
-      dropdownUsers: null == dropdownUsers
-          ? _value.dropdownUsers
-          : dropdownUsers // ignore: cast_nullable_to_non_nullable
-              as List<DropDownItemData>,
-      order: freezed == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as OrderData?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            status: null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                      as String,
+            detailStatus: null == detailStatus
+                ? _value.detailStatus
+                : detailStatus // ignore: cast_nullable_to_non_nullable
+                      as String,
+            usersQuery: null == usersQuery
+                ? _value.usersQuery
+                : usersQuery // ignore: cast_nullable_to_non_nullable
+                      as String,
+            isUsersLoading: null == isUsersLoading
+                ? _value.isUsersLoading
+                : isUsersLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            users: null == users
+                ? _value.users
+                : users // ignore: cast_nullable_to_non_nullable
+                      as List<UserData>,
+            selectedUser: freezed == selectedUser
+                ? _value.selectedUser
+                : selectedUser // ignore: cast_nullable_to_non_nullable
+                      as UserData?,
+            isUpdating: null == isUpdating
+                ? _value.isUpdating
+                : isUpdating // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            dropdownUsers: null == dropdownUsers
+                ? _value.dropdownUsers
+                : dropdownUsers // ignore: cast_nullable_to_non_nullable
+                      as List<DropDownItemData>,
+            order: freezed == order
+                ? _value.order
+                : order // ignore: cast_nullable_to_non_nullable
+                      as OrderData?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$OrderDetailsStateImplCopyWith<$Res>
     implements $OrderDetailsStateCopyWith<$Res> {
-  factory _$$OrderDetailsStateImplCopyWith(_$OrderDetailsStateImpl value,
-          $Res Function(_$OrderDetailsStateImpl) then) =
-      __$$OrderDetailsStateImplCopyWithImpl<$Res>;
+  factory _$$OrderDetailsStateImplCopyWith(
+    _$OrderDetailsStateImpl value,
+    $Res Function(_$OrderDetailsStateImpl) then,
+  ) = __$$OrderDetailsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      String status,
-      String detailStatus,
-      String usersQuery,
-      bool isUsersLoading,
-      List<UserData> users,
-      UserData? selectedUser,
-      bool isUpdating,
-      List<DropDownItemData> dropdownUsers,
-      OrderData? order});
+  $Res call({
+    bool isLoading,
+    String status,
+    String detailStatus,
+    String usersQuery,
+    bool isUsersLoading,
+    List<UserData> users,
+    UserData? selectedUser,
+    bool isUpdating,
+    List<DropDownItemData> dropdownUsers,
+    OrderData? order,
+  });
 }
 
 /// @nodoc
 class __$$OrderDetailsStateImplCopyWithImpl<$Res>
     extends _$OrderDetailsStateCopyWithImpl<$Res, _$OrderDetailsStateImpl>
     implements _$$OrderDetailsStateImplCopyWith<$Res> {
-  __$$OrderDetailsStateImplCopyWithImpl(_$OrderDetailsStateImpl _value,
-      $Res Function(_$OrderDetailsStateImpl) _then)
-      : super(_value, _then);
+  __$$OrderDetailsStateImplCopyWithImpl(
+    _$OrderDetailsStateImpl _value,
+    $Res Function(_$OrderDetailsStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of OrderDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -170,68 +179,70 @@ class __$$OrderDetailsStateImplCopyWithImpl<$Res>
     Object? dropdownUsers = null,
     Object? order = freezed,
   }) {
-    return _then(_$OrderDetailsStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      detailStatus: null == detailStatus
-          ? _value.detailStatus
-          : detailStatus // ignore: cast_nullable_to_non_nullable
-              as String,
-      usersQuery: null == usersQuery
-          ? _value.usersQuery
-          : usersQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      isUsersLoading: null == isUsersLoading
-          ? _value.isUsersLoading
-          : isUsersLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      users: null == users
-          ? _value._users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      selectedUser: freezed == selectedUser
-          ? _value.selectedUser
-          : selectedUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      isUpdating: null == isUpdating
-          ? _value.isUpdating
-          : isUpdating // ignore: cast_nullable_to_non_nullable
-              as bool,
-      dropdownUsers: null == dropdownUsers
-          ? _value._dropdownUsers
-          : dropdownUsers // ignore: cast_nullable_to_non_nullable
-              as List<DropDownItemData>,
-      order: freezed == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as OrderData?,
-    ));
+    return _then(
+      _$OrderDetailsStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        status: null == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as String,
+        detailStatus: null == detailStatus
+            ? _value.detailStatus
+            : detailStatus // ignore: cast_nullable_to_non_nullable
+                  as String,
+        usersQuery: null == usersQuery
+            ? _value.usersQuery
+            : usersQuery // ignore: cast_nullable_to_non_nullable
+                  as String,
+        isUsersLoading: null == isUsersLoading
+            ? _value.isUsersLoading
+            : isUsersLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        users: null == users
+            ? _value._users
+            : users // ignore: cast_nullable_to_non_nullable
+                  as List<UserData>,
+        selectedUser: freezed == selectedUser
+            ? _value.selectedUser
+            : selectedUser // ignore: cast_nullable_to_non_nullable
+                  as UserData?,
+        isUpdating: null == isUpdating
+            ? _value.isUpdating
+            : isUpdating // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        dropdownUsers: null == dropdownUsers
+            ? _value._dropdownUsers
+            : dropdownUsers // ignore: cast_nullable_to_non_nullable
+                  as List<DropDownItemData>,
+        order: freezed == order
+            ? _value.order
+            : order // ignore: cast_nullable_to_non_nullable
+                  as OrderData?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$OrderDetailsStateImpl extends _OrderDetailsState {
-  const _$OrderDetailsStateImpl(
-      {this.isLoading = false,
-      this.status = "",
-      this.detailStatus = "",
-      this.usersQuery = '',
-      this.isUsersLoading = false,
-      final List<UserData> users = const [],
-      this.selectedUser,
-      this.isUpdating = false,
-      final List<DropDownItemData> dropdownUsers = const [],
-      this.order})
-      : _users = users,
-        _dropdownUsers = dropdownUsers,
-        super._();
+  const _$OrderDetailsStateImpl({
+    this.isLoading = false,
+    this.status = "",
+    this.detailStatus = "",
+    this.usersQuery = '',
+    this.isUsersLoading = false,
+    final List<UserData> users = const [],
+    this.selectedUser,
+    this.isUpdating = false,
+    final List<DropDownItemData> dropdownUsers = const [],
+    this.order,
+  }) : _users = users,
+       _dropdownUsers = dropdownUsers,
+       super._();
 
   @override
   @JsonKey()
@@ -298,24 +309,27 @@ class _$OrderDetailsStateImpl extends _OrderDetailsState {
                 other.selectedUser == selectedUser) &&
             (identical(other.isUpdating, isUpdating) ||
                 other.isUpdating == isUpdating) &&
-            const DeepCollectionEquality()
-                .equals(other._dropdownUsers, _dropdownUsers) &&
+            const DeepCollectionEquality().equals(
+              other._dropdownUsers,
+              _dropdownUsers,
+            ) &&
             (identical(other.order, order) || other.order == order));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      status,
-      detailStatus,
-      usersQuery,
-      isUsersLoading,
-      const DeepCollectionEquality().hash(_users),
-      selectedUser,
-      isUpdating,
-      const DeepCollectionEquality().hash(_dropdownUsers),
-      order);
+    runtimeType,
+    isLoading,
+    status,
+    detailStatus,
+    usersQuery,
+    isUsersLoading,
+    const DeepCollectionEquality().hash(_users),
+    selectedUser,
+    isUpdating,
+    const DeepCollectionEquality().hash(_dropdownUsers),
+    order,
+  );
 
   /// Create a copy of OrderDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -324,21 +338,24 @@ class _$OrderDetailsStateImpl extends _OrderDetailsState {
   @pragma('vm:prefer-inline')
   _$$OrderDetailsStateImplCopyWith<_$OrderDetailsStateImpl> get copyWith =>
       __$$OrderDetailsStateImplCopyWithImpl<_$OrderDetailsStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _OrderDetailsState extends OrderDetailsState {
-  const factory _OrderDetailsState(
-      {final bool isLoading,
-      final String status,
-      final String detailStatus,
-      final String usersQuery,
-      final bool isUsersLoading,
-      final List<UserData> users,
-      final UserData? selectedUser,
-      final bool isUpdating,
-      final List<DropDownItemData> dropdownUsers,
-      final OrderData? order}) = _$OrderDetailsStateImpl;
+  const factory _OrderDetailsState({
+    final bool isLoading,
+    final String status,
+    final String detailStatus,
+    final String usersQuery,
+    final bool isUsersLoading,
+    final List<UserData> users,
+    final UserData? selectedUser,
+    final bool isUpdating,
+    final List<DropDownItemData> dropdownUsers,
+    final OrderData? order,
+  }) = _$OrderDetailsStateImpl;
   const _OrderDetailsState._() : super._();
 
   @override
@@ -369,4 +386,3 @@ abstract class _OrderDetailsState extends OrderDetailsState {
   _$$OrderDetailsStateImplCopyWith<_$OrderDetailsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

@@ -38,4 +38,3 @@ class ShopState with _$ShopState {
 
   const ShopState._();
 }
-

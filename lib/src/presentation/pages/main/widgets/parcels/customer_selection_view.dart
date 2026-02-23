@@ -37,7 +37,9 @@ class CustomerSelectionView extends ConsumerWidget {
               final user = state.searchedCustomers[index];
               return ListTile(
                 title: Text("${user.firstname ?? ''} ${user.lastname ?? ''}"),
-                subtitle: Text(user.email ?? user.phone?.toString() ?? 'No contact info'),
+                subtitle: Text(
+                  user.email ?? user.phone?.toString() ?? 'No contact info',
+                ),
                 onTap: () => notifier.selectCustomer(user),
                 selected: state.selectedCustomer?.id == user.id,
               );

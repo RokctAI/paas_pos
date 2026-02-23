@@ -14,7 +14,8 @@ class CashDrawerButton extends StatelessWidget {
     return FutureBuilder<List<CashDrawerConfig>>(
       future: CashDrawerManager.getConfigurations(),
       builder: (context, snapshot) {
-        bool isEnabled = snapshot.connectionState == ConnectionState.done &&
+        bool isEnabled =
+            snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData &&
             snapshot.data!.isNotEmpty;
 
@@ -27,7 +28,9 @@ class CashDrawerButton extends StatelessWidget {
             try {
               await CashDrawerManager.openCashDrawer(snapshot.data!.first);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Cash drawer opened successfully')),
+                const SnackBar(
+                  content: Text('Cash drawer opened successfully'),
+                ),
               );
             } catch (e) {
               ScaffoldMessenger.of(context).showSnackBar(

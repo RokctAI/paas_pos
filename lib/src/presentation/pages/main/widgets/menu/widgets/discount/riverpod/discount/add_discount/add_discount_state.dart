@@ -19,4 +19,3 @@ class AddDiscountState with _$AddDiscountState {
 
   const AddDiscountState._();
 }
-

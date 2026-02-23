@@ -52,12 +52,15 @@ Future<int> getOtherTranslation(int arg) async {
   res.when(
     success: (l) {
       l.data?.forEach((e) async {
-        final translations =
-        await settingsRepository.getMobileTranslations(lang: e.locale);
+        final translations = await settingsRepository.getMobileTranslations(
+          lang: e.locale,
+        );
         translations.when(
           success: (d) {
             LocalStorage.setOtherTranslations(
-                translations: d.data, key: e.id.toString());
+              translations: d.data,
+              key: e.id.toString(),
+            );
           },
           failure: (f) => null,
         );
@@ -127,7 +130,8 @@ void main() async {
     if (Platform.isAndroid || Platform.isIOS) {
       await Firebase.initializeApp();
       FirebaseMessaging.onBackgroundMessage(
-          _firebaseMessagingBackgroundHandler);
+        _firebaseMessagingBackgroundHandler,
+      );
       if (kDebugMode) {
         print('Firebase initialized for mobile');
       }
@@ -178,16 +182,16 @@ void main() async {
 
       // Set up a listener for notification changes
       final container = ProviderContainer();
-      container.listen<NotificationState>(
-        notificationProvider,
-            (previous, next) {
-          final count = next.countOfNotifications?.notification ?? 0;
-          updateNotificationCount(count);
-          if (kDebugMode) {
-            print('Notification state changed. New count: $count');
-          }
-        },
-      );
+      container.listen<NotificationState>(notificationProvider, (
+        previous,
+        next,
+      ) {
+        final count = next.countOfNotifications?.notification ?? 0;
+        updateNotificationCount(count);
+        if (kDebugMode) {
+          print('Notification state changed. New count: $count');
+        }
+      });
 
       // Test SharedPreferences
       await prefs.setInt('testKey', 42);
@@ -202,8 +206,10 @@ void main() async {
       print('LocalStorage initialized');
     }
 
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     if (kDebugMode) {
       print('Screen orientation set');
     }
@@ -227,16 +233,16 @@ void main() async {
       ProviderScope(
         overrides: [
           waterOSToggleProvider.overrideWith(
-                (ref) => WaterOSToggleNotifier()..toggle(waterOSEnabled),
+            (ref) => WaterOSToggleNotifier()..toggle(waterOSEnabled),
           ),
           secondScreenToggleProvider.overrideWith(
-                (ref) => SecondScreenToggleNotifier()..toggle(secondScreenEnabled),
+            (ref) => SecondScreenToggleNotifier()..toggle(secondScreenEnabled),
           ),
           skipPINToggleProvider.overrideWith(
-                (ref) => SkipPINToggleNotifier()..toggle(skipPinEnabled),
+            (ref) => SkipPINToggleNotifier()..toggle(skipPinEnabled),
           ),
           autoDeliverProvider.overrideWith(
-                (ref) => autoDeliverNotifier()..toggle(autoDeliverEnabled),
+            (ref) => autoDeliverNotifier()..toggle(autoDeliverEnabled),
           ),
         ],
         child: ScreenUtilInit(

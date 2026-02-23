@@ -51,7 +51,8 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
 
   void _initializeState() {
     _focusNode = FocusNode();
-    _isDesktop = !kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS);
+    _isDesktop =
+        !kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS);
     _initializeAudioPlayers();
     _setupInitialFocus();
   }
@@ -68,12 +69,14 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(rightSideProvider.notifier).clearCalculate();
       FocusScope.of(context).requestFocus(_focusNode);
-      ref.read(secondScreenProvider.notifier).updateState(
-        SecondScreenState(
-          isOrderCalculateActive: true,
-          showBlankScreen: false,
-        ),
-      );
+      ref
+          .read(secondScreenProvider.notifier)
+          .updateState(
+            SecondScreenState(
+              isOrderCalculateActive: true,
+              showBlankScreen: false,
+            ),
+          );
       _updateSecondScreen(ref.read(rightSideProvider));
     });
   }
@@ -93,13 +96,17 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   void _resetSecondScreen() {
-    ref.read(secondScreenProvider.notifier).updateState(
-      SecondScreenState(
-        isOrderCalculateActive: false,
-        showBlankScreen: true,
-      ),
-    );
-    ref.read(secondScreenServiceProvider).broadcastUpdate(ref.read(secondScreenProvider));
+    ref
+        .read(secondScreenProvider.notifier)
+        .updateState(
+          SecondScreenState(
+            isOrderCalculateActive: false,
+            showBlankScreen: true,
+          ),
+        );
+    ref
+        .read(secondScreenServiceProvider)
+        .broadcastUpdate(ref.read(secondScreenProvider));
   }
 
   Future<void> _playTapSound() async {
@@ -131,7 +138,10 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
         event.logicalKey == LogicalKeyboardKey.delete;
   }
 
-  void _handleCharacterInput(String? character, RightSideNotifier rightSideNotifier) {
+  void _handleCharacterInput(
+    String? character,
+    RightSideNotifier rightSideNotifier,
+  ) {
     if (character != null) {
       if (character == '.') {
         // Only add decimal if there isn't one already
@@ -163,7 +173,11 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
       totalPrice: totalPrice,
       amountReceived: amountReceived,
       change: change,
-      currency: state.currencies.firstWhere((element) => element.isDefault ?? false).symbol ?? '',
+      currency:
+          state.currencies
+              .firstWhere((element) => element.isDefault ?? false)
+              .symbol ??
+          '',
       isOrderCalculateActive: true,
       showBlankScreen: false,
     );
@@ -173,7 +187,11 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   double calculateTotalPrice(RightSideState state) {
-    return state.paginateResponse?.stocks?.fold(0, (sum, stock) => sum! + (stock.totalPrice ?? 0)) ?? 0;
+    return state.paginateResponse?.stocks?.fold(
+          0,
+          (sum, stock) => sum! + (stock.totalPrice ?? 0),
+        ) ??
+        0;
   }
 
   @override
@@ -187,7 +205,9 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
       _updateSecondScreen(next);
     });
 
-    final secondScreenUrl = ref.watch(secondScreenServiceProvider).secondScreenUrl;
+    final secondScreenUrl = ref
+        .watch(secondScreenServiceProvider)
+        .secondScreenUrl;
 
     return Scaffold(
       backgroundColor: AppStyle.mainBack,
@@ -196,7 +216,12 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
           if (AppConstants.secondScreen && secondScreenUrl.isNotEmpty)
             _buildSecondScreenUrlDisplay(secondScreenUrl),
           Expanded(
-            child: _buildMainContent(notifier, rightNotifier, state, stateRight),
+            child: _buildMainContent(
+              notifier,
+              rightNotifier,
+              state,
+              stateRight,
+            ),
           ),
         ],
       ),
@@ -213,21 +238,18 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
             'Second Screen URL: ',
             style: GoogleFonts.inter(fontWeight: FontWeight.bold),
           ),
-          SelectableText(
-            url,
-            style: GoogleFonts.inter(color: AppStyle.blue),
-          ),
+          SelectableText(url, style: GoogleFonts.inter(color: AppStyle.blue)),
         ],
       ),
     );
   }
 
   Widget _buildMainContent(
-      MainNotifier notifier,
-      RightSideNotifier rightNotifier,
-      MainState state,
-      RightSideState stateRight,
-      ) {
+    MainNotifier notifier,
+    RightSideNotifier rightNotifier,
+    MainState state,
+    RightSideState stateRight,
+  ) {
     return RawKeyboardListener(
       focusNode: _focusNode,
       onKey: (event) => _handleKeyPress(event, rightNotifier),
@@ -238,7 +260,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
           children: [
             _informationWidget(notifier, rightNotifier, state, stateRight),
             16.horizontalSpace,
-            calculator(stateRight, rightNotifier)
+            calculator(stateRight, rightNotifier),
           ],
         ),
       ),
@@ -246,13 +268,15 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   Widget _informationWidget(
-      MainNotifier notifier,
-      RightSideNotifier rightSideNotifier,
-      MainState state,
-      RightSideState stateRight,
-      ) {
+    MainNotifier notifier,
+    RightSideNotifier rightSideNotifier,
+    MainState state,
+    RightSideState stateRight,
+  ) {
     final items = stateRight.paginateResponse?.stocks ?? [];
-    final displayCount = _showAllItems ? items.length : items.length.clamp(0, 3);
+    final displayCount = _showAllItems
+        ? items.length
+        : items.length.clamp(0, 3);
 
     return Expanded(
       child: SingleChildScrollView(
@@ -260,14 +284,23 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
           children: [
             _buildHeader(notifier, rightSideNotifier),
             16.verticalSpace,
-            _buildOrderDetails(stateRight, items, displayCount, rightSideNotifier, notifier),
+            _buildOrderDetails(
+              stateRight,
+              items,
+              displayCount,
+              rightSideNotifier,
+              notifier,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildHeader(MainNotifier notifier, RightSideNotifier rightSideNotifier) {
+  Widget _buildHeader(
+    MainNotifier notifier,
+    RightSideNotifier rightSideNotifier,
+  ) {
     return Row(
       children: [
         InkWell(
@@ -299,10 +332,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                 borderRadius: BorderRadius.circular(10.r),
               ),
               padding: EdgeInsets.all(8.r),
-              child: Icon(
-                FlutterRemix.restart_line,
-                color: AppStyle.black,
-              ),
+              child: Icon(FlutterRemix.restart_line, color: AppStyle.black),
             ),
           ),
         ),
@@ -311,12 +341,12 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   Widget _buildOrderDetails(
-      RightSideState stateRight,
-      List<ProductData> items,
-      int displayCount,
-      RightSideNotifier rightSideNotifier,
-      MainNotifier notifier,
-      ) {
+    RightSideState stateRight,
+    List<ProductData> items,
+    int displayCount,
+    RightSideNotifier rightSideNotifier,
+    MainNotifier notifier,
+  ) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 20.r, horizontal: 16.r),
       decoration: BoxDecoration(
@@ -330,8 +360,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
           _buildItemsList(items, displayCount, stateRight),
           if (items.length > 3 && !_showAllItems)
             _buildViewMoreButton(items.length - 3),
-          if (_showAllItems && items.length > 3)
-            _buildViewLessButton(),
+          if (_showAllItems && items.length > 3) _buildViewLessButton(),
           const Divider(),
           PriceInfo(
             bag: stateRight.bags[stateRight.selectedBagIndex],
@@ -361,18 +390,12 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
           children: [
             Text(
               "${stateRight.bags[stateRight.selectedBagIndex].selectedUser?.firstname ?? ""} "
-                  "${stateRight.bags[stateRight.selectedBagIndex].selectedUser?.lastname ?? ""}",
-              style: GoogleFonts.inter(
-                fontSize: 16.sp,
-                color: AppStyle.icon,
-              ),
+              "${stateRight.bags[stateRight.selectedBagIndex].selectedUser?.lastname ?? ""}",
+              style: GoogleFonts.inter(fontSize: 16.sp, color: AppStyle.icon),
             ),
             Text(
               stateRight.orderType,
-              style: GoogleFonts.inter(
-                fontSize: 16.sp,
-                color: AppStyle.icon,
-              ),
+              style: GoogleFonts.inter(fontSize: 16.sp, color: AppStyle.icon),
             ),
           ],
         ),
@@ -391,7 +414,11 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     );
   }
 
-  Widget _buildItemsList(List<ProductData> items, int displayCount, RightSideState stateRight) {
+  Widget _buildItemsList(
+    List<ProductData> items,
+    int displayCount,
+    RightSideState stateRight,
+  ) {
     return ListView.builder(
       padding: EdgeInsets.only(top: 16.r),
       physics: const NeverScrollableScrollPhysics(),
@@ -405,47 +432,49 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
 
   Widget _buildItemRow(ProductData item, RightSideState stateRight) {
     return Padding(
-        padding: EdgeInsets.only(bottom: 16.r),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-        Expanded(
-        child: Column(
+      padding: EdgeInsets.only(bottom: 16.r),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-        Text(
-        item.stock?.product?.translation?.title ?? "",
-          style: GoogleFonts.inter(
-            fontWeight: FontWeight.w600,
-            fontSize: 16.sp,
-            color: AppStyle.black,
-          ),
-        ),
-        ...(item.addons ?? []).map((addon) => Text(
-        "${addon.product?.translation?.title ?? ""} (${intl.NumberFormat.currency(
-        symbol: LocalStorage.getSelectedCurrency().symbol,
-    ).format((addon.price ?? 0) / (addon.quantity ?? 1))} x ${(addon.quantity ?? 1)})",
-          style: GoogleFonts.inter(
-            fontSize: 15.sp,
-            color: AppStyle.unselectedTab,
-          ),
-        )).toList(),
-          ],
-        ),
-        ),
-            Text(
-              intl.NumberFormat.currency(
-                symbol: LocalStorage.getSelectedCurrency().symbol,
-              ).format(item.totalPrice ?? 0),
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.w500,
-                fontSize: 14.sp,
-                color: AppStyle.black,
-              ),
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.stock?.product?.translation?.title ?? "",
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.sp,
+                    color: AppStyle.black,
+                  ),
+                ),
+                ...(item.addons ?? [])
+                    .map(
+                      (addon) => Text(
+                        "${addon.product?.translation?.title ?? ""} (${intl.NumberFormat.currency(symbol: LocalStorage.getSelectedCurrency().symbol).format((addon.price ?? 0) / (addon.quantity ?? 1))} x ${(addon.quantity ?? 1)})",
+                        style: GoogleFonts.inter(
+                          fontSize: 15.sp,
+                          color: AppStyle.unselectedTab,
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ],
             ),
-          ],
-        ),
+          ),
+          Text(
+            intl.NumberFormat.currency(
+              symbol: LocalStorage.getSelectedCurrency().symbol,
+            ).format(item.totalPrice ?? 0),
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w500,
+              fontSize: 14.sp,
+              color: AppStyle.black,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -465,11 +494,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                 color: AppStyle.blue,
               ),
             ),
-            Icon(
-              Icons.keyboard_arrow_down,
-              color: AppStyle.blue,
-              size: 20.r,
-            ),
+            Icon(Icons.keyboard_arrow_down, color: AppStyle.blue, size: 20.r),
           ],
         ),
       ),
@@ -492,18 +517,17 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                 color: AppStyle.blue,
               ),
             ),
-            Icon(
-              Icons.keyboard_arrow_up,
-              color: AppStyle.blue,
-              size: 20.r,
-            ),
+            Icon(Icons.keyboard_arrow_up, color: AppStyle.blue, size: 20.r),
           ],
         ),
       ),
     );
   }
 
-  Widget calculator(RightSideState stateRight, RightSideNotifier rightSideNotifier) {
+  Widget calculator(
+    RightSideState stateRight,
+    RightSideNotifier rightSideNotifier,
+  ) {
     double enteredAmount = double.tryParse(stateRight.calculate) ?? 0;
     bool isAmountValid = enteredAmount > 0;
 
@@ -521,7 +545,12 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
             const Spacer(),
             _buildNumPad(stateRight, rightSideNotifier),
             16.verticalSpace,
-            _buildBottomButtons(stateRight, rightSideNotifier, isAmountValid, enteredAmount),
+            _buildBottomButtons(
+              stateRight,
+              rightSideNotifier,
+              isAmountValid,
+              enteredAmount,
+            ),
           ],
         ),
       ),
@@ -545,9 +574,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
             ),
             6.verticalSpace,
             Text(
-              AppHelpers.numberFormat(
-                calculateTotalPrice(stateRight),
-              ),
+              AppHelpers.numberFormat(calculateTotalPrice(stateRight)),
               style: GoogleFonts.inter(
                 fontSize: 26.sp,
                 fontWeight: FontWeight.w600,
@@ -557,8 +584,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
           ],
         ),
         const Spacer(),
-        if (stateRight.selectedUser != null)
-          _buildUserInfo(stateRight),
+        if (stateRight.selectedUser != null) _buildUserInfo(stateRight),
       ],
     );
   }
@@ -599,7 +625,9 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   Widget _buildDisplayAmount(RightSideState stateRight) {
-    final displayValue = stateRight.calculate == "0" ? "0" : stateRight.calculate;
+    final displayValue = stateRight.calculate == "0"
+        ? "0"
+        : stateRight.calculate;
 
     return Container(
       width: double.infinity,
@@ -623,7 +651,10 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     );
   }
 
-  Widget _buildNumPad(RightSideState stateRight, RightSideNotifier rightSideNotifier) {
+  Widget _buildNumPad(
+    RightSideState stateRight,
+    RightSideNotifier rightSideNotifier,
+  ) {
     return GridView.builder(
       physics: const NeverScrollableScrollPhysics(),
       itemCount: 12,
@@ -676,18 +707,19 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
               ),
               child: Center(
                 child: index == 11
-                    ? Icon(
-                  FlutterRemix.delete_back_2_line,
-                  color: AppStyle.red,
-                )
+                    ? Icon(FlutterRemix.delete_back_2_line, color: AppStyle.red)
                     : Text(
-                  index == 9 ? "00" : index == 10 ? "0" : (index + 1).toString(),
-                  style: GoogleFonts.inter(
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppStyle.black.withOpacity(0.3),
-                  ),
-                ),
+                        index == 9
+                            ? "00"
+                            : index == 10
+                            ? "0"
+                            : (index + 1).toString(),
+                        style: GoogleFonts.inter(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppStyle.black.withOpacity(0.3),
+                        ),
+                      ),
               ),
             ),
           ),
@@ -697,11 +729,11 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   Widget _buildBottomButtons(
-      RightSideState stateRight,
-      RightSideNotifier rightSideNotifier,
-      bool isAmountValid,
-      double enteredAmount,
-      ) {
+    RightSideState stateRight,
+    RightSideNotifier rightSideNotifier,
+    bool isAmountValid,
+    double enteredAmount,
+  ) {
     return Row(
       children: [
         _buildDecimalButton(stateRight, rightSideNotifier),
@@ -711,7 +743,10 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     );
   }
 
-  Widget _buildDecimalButton(RightSideState stateRight, RightSideNotifier rightSideNotifier) {
+  Widget _buildDecimalButton(
+    RightSideState stateRight,
+    RightSideNotifier rightSideNotifier,
+  ) {
     return Expanded(
       flex: 1,
       child: InkWell(
@@ -745,16 +780,20 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     );
   }
 
-  Widget _buildOkButton(RightSideState stateRight, bool isAmountValid, double enteredAmount) {
+  Widget _buildOkButton(
+    RightSideState stateRight,
+    bool isAmountValid,
+    double enteredAmount,
+  ) {
     return Expanded(
       flex: 2,
       child: AnimationButtonEffect(
         child: InkWell(
           onTap: isAmountValid
               ? () async {
-            await _playTapSound();
-           // _handlePaymentConfirmation(stateRight, enteredAmount);
-          }
+                  await _playTapSound();
+                  // _handlePaymentConfirmation(stateRight, enteredAmount);
+                }
               : null,
           child: Container(
             height: 78.r,
@@ -778,7 +817,10 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     );
   }
 
-  void _handlePaymentConfirmation(RightSideState stateRight, double enteredAmount) {
+  void _handlePaymentConfirmation(
+    RightSideState stateRight,
+    double enteredAmount,
+  ) {
     final secondScreenState = ref.read(secondScreenProvider);
     final updatedState = secondScreenState.copyWith(
       paymentConfirmed: true,
@@ -793,14 +835,12 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     ref.read(secondScreenServiceProvider).broadcastUpdate(updatedState);
 
     Future.delayed(const Duration(seconds: 5), () {
-      ref.read(secondScreenProvider.notifier).updateState(
-        SecondScreenState(
-          showBlankScreen: true,
-        ),
-      );
-      ref.read(secondScreenServiceProvider).broadcastUpdate(
-        ref.read(secondScreenProvider),
-      );
+      ref
+          .read(secondScreenProvider.notifier)
+          .updateState(SecondScreenState(showBlankScreen: true));
+      ref
+          .read(secondScreenServiceProvider)
+          .broadcastUpdate(ref.read(secondScreenProvider));
     });
   }
 }

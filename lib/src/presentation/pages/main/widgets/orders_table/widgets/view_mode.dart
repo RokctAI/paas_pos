@@ -31,7 +31,9 @@ class ViewMode extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r),
           onTap: onTap,
           child: Container(
-            width: showText ? 100.w : 50.w,  // Adjust width based on text visibility
+            width: showText
+                ? 100.w
+                : 50.w, // Adjust width based on text visibility
             padding: EdgeInsets.symmetric(vertical: 10.r),
             decoration: BoxDecoration(
               color: isActive ? AppStyle.primary : AppStyle.transparent,

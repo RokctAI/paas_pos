@@ -32,4 +32,3 @@ abstract class DiscountsRepository {
 
   Future<ApiResult> getDiscountDetails({required int id});
 }
-

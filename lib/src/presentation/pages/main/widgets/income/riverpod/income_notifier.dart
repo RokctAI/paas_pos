@@ -1,4 +1,3 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../../core/constants/constants.dart';
@@ -13,14 +12,14 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
   final ExpenseRepository _expenseRepository;
 
   IncomeNotifier(this._settingsRepository, this._expenseRepository)
-      : super(const IncomeState());
+    : super(const IncomeState());
 
   changeIndex(String type) {
     state = state.copyWith(
-        selectType: type,
-        // Reset start and end dates when changing index
-        start: null,
-        end: null
+      selectType: type,
+      // Reset start and end dates when changing index
+      start: null,
+      end: null,
     );
     fetchIncomeCarts();
     fetchIncomeCharts();
@@ -31,14 +30,16 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
   fetchIncomeCarts({DateTime? start, DateTime? end}) async {
     state = state.copyWith(start: start, end: end);
     final response = await _settingsRepository.getIncomeCart(
-        type: state.selectType,
-        from: start ??
-            (state.selectType == TrKeys.day
-                ? DateTime.now()
-                : state.selectType == TrKeys.month
-                ? DateTime.now().subtract(const Duration(days: 30))
-                : DateTime.now().subtract(const Duration(days: 7))),
-        to: end ?? DateTime.now());
+      type: state.selectType,
+      from:
+          start ??
+          (state.selectType == TrKeys.day
+              ? DateTime.now()
+              : state.selectType == TrKeys.month
+              ? DateTime.now().subtract(const Duration(days: 30))
+              : DateTime.now().subtract(const Duration(days: 7))),
+      to: end ?? DateTime.now(),
+    );
     response.when(
       success: (data) async {
         state = state.copyWith(incomeCart: data);
@@ -49,14 +50,16 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
 
   fetchIncomeStatistic({DateTime? start, DateTime? end}) async {
     final response = await _settingsRepository.getIncomeStatistic(
-        type: state.selectType,
-        from: start ??
-            (state.selectType == TrKeys.day
-                ? DateTime.now()
-                : state.selectType == TrKeys.month
-                ? DateTime.now().subtract(const Duration(days: 30))
-                : DateTime.now().subtract(const Duration(days: 7))),
-        to: end ?? DateTime.now());
+      type: state.selectType,
+      from:
+          start ??
+          (state.selectType == TrKeys.day
+              ? DateTime.now()
+              : state.selectType == TrKeys.month
+              ? DateTime.now().subtract(const Duration(days: 30))
+              : DateTime.now().subtract(const Duration(days: 7))),
+      to: end ?? DateTime.now(),
+    );
     response.when(
       success: (data) async {
         state = state.copyWith(incomeStatistic: data);
@@ -67,14 +70,16 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
 
   fetchIncomeCharts({DateTime? start, DateTime? end}) async {
     final response = await _settingsRepository.getIncomeChart(
-        type: start == null ? state.selectType : TrKeys.month,
-        from: start ??
-            (state.selectType == TrKeys.day
-                ? DateTime.now()
-                : state.selectType == TrKeys.month
-                ? DateTime.now().subtract(const Duration(days: 30))
-                : DateTime.now().subtract(const Duration(days: 7))),
-        to: end ?? DateTime.now());
+      type: start == null ? state.selectType : TrKeys.month,
+      from:
+          start ??
+          (state.selectType == TrKeys.day
+              ? DateTime.now()
+              : state.selectType == TrKeys.month
+              ? DateTime.now().subtract(const Duration(days: 30))
+              : DateTime.now().subtract(const Duration(days: 7))),
+      to: end ?? DateTime.now(),
+    );
     response.when(
       success: (data) async {
         List<num> prices = [];
@@ -96,7 +101,7 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
                 : state.selectType == TrKeys.week
                 ? 7
                 : data.length,
-                (index) => state.selectType == TrKeys.day
+            (index) => state.selectType == TrKeys.day
                 ? DateTime.now().subtract(Duration(hours: index))
                 : state.selectType == TrKeys.month
                 ? DateTime.now().subtract(Duration(days: index))
@@ -107,7 +112,10 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
         }
 
         state = state.copyWith(
-            incomeCharts: data, prices: prices.reversed.toList(), time: times);
+          incomeCharts: data,
+          prices: prices.reversed.toList(),
+          time: times,
+        );
       },
       failure: (failure) {},
     );
@@ -147,12 +155,12 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
       final expenseTypesResponse = await _expenseRepository.getExpenseTypes();
       List<ExpenseType>? expenseTypes;
       expenseTypesResponse.fold(
-              (error) {
-            print('Expense Types Error: $error');
-          },
-              (types) {
-            expenseTypes = types;
-          }
+        (error) {
+          print('Expense Types Error: $error');
+        },
+        (types) {
+          expenseTypes = types;
+        },
       );
 
       // Fetch expenses with date range
@@ -165,60 +173,66 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
       double totalExpenses = 0.0;
 
       expensesResponse.fold(
-              (error) {
-            print('Expenses Error: $error');
-          },
-              (fetchedExpenses) {
-            expenses = fetchedExpenses;
+        (error) {
+          print('Expenses Error: $error');
+        },
+        (fetchedExpenses) {
+          expenses = fetchedExpenses;
 
-            // Detailed debug logging
-            print('🔍 Start Date: $startDate');
-            print('🔍 End Date: $endDate');
-            print('🔍 Total Fetched Expenses: ${fetchedExpenses?.length ?? 0}');
-            fetchedExpenses?.forEach((expense) {
-              print('🔍 Expense Details:');
-              print('   - ID: ${expense.id}');
-              print('   - Created At: ${expense.createdAt}');
-              print('   - Price: ${expense.price}');
-              print('   - Quantity: ${expense.qty}');
-            });
+          // Detailed debug logging
+          print('🔍 Start Date: $startDate');
+          print('🔍 End Date: $endDate');
+          print('🔍 Total Fetched Expenses: ${fetchedExpenses?.length ?? 0}');
+          fetchedExpenses?.forEach((expense) {
+            print('🔍 Expense Details:');
+            print('   - ID: ${expense.id}');
+            print('   - Created At: ${expense.createdAt}');
+            print('   - Price: ${expense.price}');
+            print('   - Quantity: ${expense.qty}');
+          });
 
-            // Explicitly filter expenses with detailed logging
-            final filteredExpenses = fetchedExpenses?.where((expense) {
-              if (expense.createdAt == null) {
-                print('🔍 Skipping expense: createdAt is null');
-                return false;
-              }
+          // Explicitly filter expenses with detailed logging
+          final filteredExpenses = fetchedExpenses?.where((expense) {
+            if (expense.createdAt == null) {
+              print('🔍 Skipping expense: createdAt is null');
+              return false;
+            }
 
-              // Strip time components from createdAt
-              final expenseDate = DateTime(
-                  expense.createdAt!.year,
-                  expense.createdAt!.month,
-                  expense.createdAt!.day
-              );
+            // Strip time components from createdAt
+            final expenseDate = DateTime(
+              expense.createdAt!.year,
+              expense.createdAt!.month,
+              expense.createdAt!.day,
+            );
 
-              // Detailed comparison logging
-              print('🔍 Comparing Dates:');
-              print('   - Expense Date: $expenseDate');
-              print('   - Start Date: $startDate');
-              print('   - End Date: $endDate');
+            // Detailed comparison logging
+            print('🔍 Comparing Dates:');
+            print('   - Expense Date: $expenseDate');
+            print('   - Start Date: $startDate');
+            print('   - End Date: $endDate');
 
-              final isWithinRange =
-                  (expenseDate.isAtSameMomentAs(startDate) || expenseDate.isAfter(startDate)) &&
-                      (expenseDate.isAtSameMomentAs(endDate) || expenseDate.isBefore(endDate));
+            final isWithinRange =
+                (expenseDate.isAtSameMomentAs(startDate) ||
+                    expenseDate.isAfter(startDate)) &&
+                (expenseDate.isAtSameMomentAs(endDate) ||
+                    expenseDate.isBefore(endDate));
 
-              print('🔍 Is Within Range: $isWithinRange');
+            print('🔍 Is Within Range: $isWithinRange');
 
-              return isWithinRange;
-            }).toList();
+            return isWithinRange;
+          }).toList();
 
-            // Calculate total expenses only for the filtered expenses
-            totalExpenses = filteredExpenses?.fold(0.0, (sum, expense) =>
-            sum! + (expense.price * expense.qty)) ?? 0.0;
+          // Calculate total expenses only for the filtered expenses
+          totalExpenses =
+              filteredExpenses?.fold(
+                0.0,
+                (sum, expense) => sum! + (expense.price * expense.qty),
+              ) ??
+              0.0;
 
-            print('🔍 Filtered Expenses: ${filteredExpenses?.length ?? 0}');
-            print('🔍 Total Expenses: $totalExpenses');
-          }
+          print('🔍 Filtered Expenses: ${filteredExpenses?.length ?? 0}');
+          print('🔍 Total Expenses: $totalExpenses');
+        },
       );
 
       // Fetch income cart with same date range
@@ -232,24 +246,24 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
       ExpenseDetailsIncome expenseDetailsIncome = const ExpenseDetailsIncome();
 
       incomeCartResponse.when(
-          success: (incomeCart) {
-            final revenue = (incomeCart.revenue ?? 0).toDouble();
-            final profit = revenue - totalExpenses;
-            final expensePercent = revenue > 0
-                ? (totalExpenses / revenue * 100).roundToDouble()
-                : 0.0;
+        success: (incomeCart) {
+          final revenue = (incomeCart.revenue ?? 0).toDouble();
+          final profit = revenue - totalExpenses;
+          final expensePercent = revenue > 0
+              ? (totalExpenses / revenue * 100).roundToDouble()
+              : 0.0;
 
-            expenseDetailsIncome = ExpenseDetailsIncome(
-              revenue: revenue,
-              expense: totalExpenses,
-              profit: profit,
-              expensePercent: expensePercent,
-              expenseType: revenue > 0 ? (profit >= 0 ? 'plus' : 'minus') : null,
-            );
-          },
-          failure: (error) {
-            print('Income Cart Error: $error');
-          }
+          expenseDetailsIncome = ExpenseDetailsIncome(
+            revenue: revenue,
+            expense: totalExpenses,
+            profit: profit,
+            expensePercent: expensePercent,
+            expenseType: revenue > 0 ? (profit >= 0 ? 'plus' : 'minus') : null,
+          );
+        },
+        failure: (error) {
+          print('Income Cart Error: $error');
+        },
       );
 
       state = state.copyWith(
@@ -260,7 +274,6 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
         end: endDate,
         isLoading: false,
       );
-
     } catch (e) {
       print('Error fetching expense data: $e');
       state = state.copyWith(

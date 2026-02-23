@@ -12,15 +12,15 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
   RoadmapRepositoryImpl(this._httpService);
 
   @override
-  Future<ApiResult<List<RoadmapVersion>>> fetchRoadmapVersions(String? appId) async {
+  Future<ApiResult<List<RoadmapVersion>>> fetchRoadmapVersions(
+    String? appId,
+  ) async {
     if (appId == null) {
       return const ApiResult.failure(error: 'App ID is required');
     }
 
     try {
-      final queryParams = <String, dynamic>{
-        'app_id': appId,
-      };
+      final queryParams = <String, dynamic>{'app_id': appId};
 
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.get(
@@ -37,7 +37,9 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
               .toList();
 
           // Sort versions by version number (descending - newest first)
-          versions.sort((a, b) => _compareVersions(b.versionNumber, a.versionNumber));
+          versions.sort(
+            (a, b) => _compareVersions(b.versionNumber, a.versionNumber),
+          );
 
           return ApiResult.success(data: versions);
         } else {
@@ -47,7 +49,8 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
         }
       } else {
         return ApiResult.failure(
-          error: 'Failed to load roadmap versions. Status: ${response.statusCode}',
+          error:
+              'Failed to load roadmap versions. Status: ${response.statusCode}',
         );
       }
     } on DioException catch (e) {
@@ -86,7 +89,8 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
         }
       } else {
         return ApiResult.failure(
-          error: 'Failed to load roadmap version. Status: ${response.statusCode}',
+          error:
+              'Failed to load roadmap version. Status: ${response.statusCode}',
         );
       }
     } on DioException catch (e) {
@@ -101,20 +105,21 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
   }
 
   @override
-  Future<ApiResult<RoadmapVersion>> createRoadmapVersion(Map<String, dynamic> data) async {
+  Future<ApiResult<RoadmapVersion>> createRoadmapVersion(
+    Map<String, dynamic> data,
+  ) async {
     try {
       if (kDebugMode) {
         print('Creating roadmap version with data: $data');
       }
 
       final dio = _httpService.client(requireAuth: true);
-      final response = await dio.post(
-        '$_baseUrl/roadmap-versions',
-        data: data,
-      );
+      final response = await dio.post('$_baseUrl/roadmap-versions', data: data);
 
       if (kDebugMode) {
-        print('Version creation response: ${response.statusCode} ${response.data}');
+        print(
+          'Version creation response: ${response.statusCode} ${response.data}',
+        );
       }
 
       if (response.statusCode == 201) {
@@ -139,7 +144,8 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
       }
 
       // Extract validation errors if present
-      if (e.response?.statusCode == 422 && e.response?.data?['errors'] != null) {
+      if (e.response?.statusCode == 422 &&
+          e.response?.data?['errors'] != null) {
         final errors = e.response!.data['errors'] as Map<String, dynamic>;
         final errorMessages = errors.values
             .expand((e) => e is List ? e : [e.toString()])
@@ -162,7 +168,9 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
 
   @override
   Future<ApiResult<RoadmapVersion>> updateRoadmapVersion(
-      String uuid, Map<String, dynamic> data) async {
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.put(
@@ -222,13 +230,12 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
 
   @override
   Future<ApiResult<List<RoadmapVersion>>> fetchVersionsByStatus(
-      String appId, String status) async {
+    String appId,
+    String status,
+  ) async {
     try {
       // Build query parameters
-      final queryParams = <String, dynamic>{
-        'app_id': appId,
-        'status': status,
-      };
+      final queryParams = <String, dynamic>{'app_id': appId, 'status': status};
 
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.get(
@@ -245,7 +252,9 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
               .toList();
 
           // Sort versions by version number (descending - newest first)
-          versions.sort((a, b) => _compareVersions(b.versionNumber, a.versionNumber));
+          versions.sort(
+            (a, b) => _compareVersions(b.versionNumber, a.versionNumber),
+          );
 
           return ApiResult.success(data: versions);
         } else {
@@ -255,7 +264,8 @@ class RoadmapRepositoryImpl implements RoadmapRepository {
         }
       } else {
         return ApiResult.failure(
-          error: 'Failed to load versions by status. Status: ${response.statusCode}',
+          error:
+              'Failed to load versions by status. Status: ${response.statusCode}',
         );
       }
     } on DioException catch (e) {

@@ -7,9 +7,7 @@ import 'package:admin_desktop/src/models/models.dart';
 abstract class ShopsRepository {
   Future<ApiResult<ShopsPaginateResponse>> searchShops(String? query);
 
-  Future<ApiResult<ShopsPaginateResponse>> getShopsByIds(
-    List<int> shopIds,
-  );
+  Future<ApiResult<ShopsPaginateResponse>> getShopsByIds(List<int> shopIds);
   Future<ApiResult<EditShopData>> getShopData();
 
   Future<ApiResult<CategoriesPaginateResponse>> getShopCategory();
@@ -23,7 +21,7 @@ abstract class ShopsRepository {
     List<ValueItem>? category,
     List<ValueItem>? tag,
     List<ValueItem>? type,
-    String? displayName
+    String? displayName,
   });
 
   Future<ApiResult<void>> updateShopWorkingDays({
@@ -35,4 +33,3 @@ abstract class ShopsRepository {
 
   Future<ApiResult<ShopData>> getShopDataById(int shopId);
 }
-

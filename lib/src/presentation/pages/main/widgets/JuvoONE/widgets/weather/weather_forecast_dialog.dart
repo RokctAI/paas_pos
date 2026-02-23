@@ -18,10 +18,7 @@ import 'service/weather_summary.dart';
 class WeatherForecastDialog extends ConsumerWidget {
   final WeatherState weatherState;
 
-  const WeatherForecastDialog({
-    super.key,
-    required this.weatherState,
-  });
+  const WeatherForecastDialog({super.key, required this.weatherState});
 
   static const minUV = 6;
   static const minHumidity = 40;
@@ -48,11 +45,7 @@ class WeatherForecastDialog extends ConsumerWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Remix.cloud_off_line,
-              color: AppStyle.black,
-              size: 48.sp,
-            ),
+            Icon(Remix.cloud_off_line, color: AppStyle.black, size: 48.sp),
             SizedBox(height: 16.h),
             Text(
               'No forecast data available',
@@ -75,10 +68,7 @@ class WeatherForecastDialog extends ConsumerWidget {
         child: Center(
           child: Text(
             'No hourly data available',
-            style: GoogleFonts.inter(
-              fontSize: 14.sp,
-              color: AppStyle.icon,
-            ),
+            style: GoogleFonts.inter(fontSize: 14.sp, color: AppStyle.icon),
           ),
         ),
       );
@@ -86,32 +76,38 @@ class WeatherForecastDialog extends ConsumerWidget {
 
     // Separate hours for the specific date
     final dateHours = hourlyData
-        .where((hour) =>
-    DateTime.parse(hour['time']).day == selectedDate.day &&
-        DateTime.parse(hour['time']).month == selectedDate.month &&
-        DateTime.parse(hour['time']).year == selectedDate.year)
+        .where(
+          (hour) =>
+              DateTime.parse(hour['time']).day == selectedDate.day &&
+              DateTime.parse(hour['time']).month == selectedDate.month &&
+              DateTime.parse(hour['time']).year == selectedDate.year,
+        )
         .toList();
 
     // Determine the starting index based on whether it's today or a future date
     int initialStartIndex = 0;
-    final isToday = selectedDate.year == DateTime.now().year &&
+    final isToday =
+        selectedDate.year == DateTime.now().year &&
         selectedDate.month == DateTime.now().month &&
         selectedDate.day == DateTime.now().day;
 
     if (isToday) {
       final currentHour = DateTime.now().hour;
       initialStartIndex = dateHours.indexWhere(
-              (hour) => DateTime.parse(hour['time']).hour >= currentHour);
+        (hour) => DateTime.parse(hour['time']).hour >= currentHour,
+      );
       initialStartIndex = initialStartIndex == -1 ? 0 : initialStartIndex;
     } else {
-      initialStartIndex = dateHours
-          .indexWhere((hour) => DateTime.parse(hour['time']).hour >= 6);
+      initialStartIndex = dateHours.indexWhere(
+        (hour) => DateTime.parse(hour['time']).hour >= 6,
+      );
       initialStartIndex = initialStartIndex == -1 ? 0 : initialStartIndex;
     }
 
     final hourStartIndexNotifier = ValueNotifier<int>(initialStartIndex);
-    final selectedHourNotifier =
-    ValueNotifier<Map<String, dynamic>>(dateHours[initialStartIndex]);
+    final selectedHourNotifier = ValueNotifier<Map<String, dynamic>>(
+      dateHours[initialStartIndex],
+    );
 
     return ValueListenableBuilder<int>(
       valueListenable: hourStartIndexNotifier,
@@ -120,8 +116,10 @@ class WeatherForecastDialog extends ConsumerWidget {
 
         final remainingHours = dateHours.length - startIndex;
         final hoursToTake = remainingHours < 24 ? remainingHours : 24;
-        final relevantHours =
-        dateHours.skip(startIndex).take(hoursToTake).toList();
+        final relevantHours = dateHours
+            .skip(startIndex)
+            .take(hoursToTake)
+            .toList();
 
         return Column(
           children: [
@@ -175,10 +173,12 @@ class WeatherForecastDialog extends ConsumerWidget {
                         final nextStartIndex = startIndex + 6;
                         if (nextStartIndex + 5 < dateHours.length) {
                           hourStartIndexNotifier.value = nextStartIndex;
-                          selectedHourNotifier.value = dateHours[nextStartIndex];
+                          selectedHourNotifier.value =
+                              dateHours[nextStartIndex];
                         }
                       },
-                      isEnabled: startIndex + 6 < dateHours.length &&
+                      isEnabled:
+                          startIndex + 6 < dateHours.length &&
                           startIndex + 11 < dateHours.length,
                     ),
                   ),
@@ -196,7 +196,8 @@ class WeatherForecastDialog extends ConsumerWidget {
                         return ValueListenableBuilder<Map<String, dynamic>?>(
                           valueListenable: selectedHourNotifier,
                           builder: (context, selectedHour, _) {
-                            final isSelected = selectedHour != null &&
+                            final isSelected =
+                                selectedHour != null &&
                                 selectedHour['time'] == hour['time'];
 
                             return GestureDetector(
@@ -225,10 +226,14 @@ class WeatherForecastDialog extends ConsumerWidget {
                                         color: isSelected
                                             ? AppStyle.black.withOpacity(0.1)
                                             : AppStyle.black.withOpacity(0.05),
-                                        borderRadius: BorderRadius.circular(8.r),
+                                        borderRadius: BorderRadius.circular(
+                                          8.r,
+                                        ),
                                         border: isSelected
                                             ? Border.all(
-                                            color: AppStyle.black, width: 2)
+                                                color: AppStyle.black,
+                                                width: 2,
+                                              )
                                             : null,
                                       ),
                                       child: WeatherIcon(
@@ -251,21 +256,24 @@ class WeatherForecastDialog extends ConsumerWidget {
                                               AppConstants.rainPOP) ...[
                                             SizedBox(height: 4.h),
                                             TemperatureBadge(
-                                              temperature: hour['chance_of_rain'],
+                                              temperature:
+                                                  hour['chance_of_rain'],
                                               suffix: '%',
                                               fontSize: 10,
                                               backgroundColor: AppStyle.red,
                                             ),
                                           ],
                                           if (hour['uv'] >= minUV &&
-                                              hour['humidity'] >= minHumidity) ...[
+                                              hour['humidity'] >=
+                                                  minHumidity) ...[
                                             SizedBox(height: 4.h),
                                             TemperatureBadge(
                                               temperature: hour['uv'].round(),
                                               suffix: 'UV',
                                               fontSize: 10,
-                                              backgroundColor:
-                                              _getUvBadgeColor(hour['uv']),
+                                              backgroundColor: _getUvBadgeColor(
+                                                hour['uv'],
+                                              ),
                                             ),
                                           ],
                                         ],
@@ -294,14 +302,15 @@ class WeatherForecastDialog extends ConsumerWidget {
     final now = DateTime.now();
 
     if (hourTime.day == now.day && hourTime.hour == now.hour) {
-      final todayForecast =
-      weatherState.forecast.isNotEmpty ? weatherState.forecast[0] : null;
+      final todayForecast = weatherState.forecast.isNotEmpty
+          ? weatherState.forecast[0]
+          : null;
       if (todayForecast != null) {
         final hourlyData = todayForecast['hour'] as List<dynamic>;
         try {
           final currentHourData = hourlyData.firstWhere(
-                (forecastHour) =>
-            DateTime.parse(forecastHour['time']).hour == now.hour,
+            (forecastHour) =>
+                DateTime.parse(forecastHour['time']).hour == now.hour,
           );
           hour = currentHourData;
         } catch (e) {
@@ -361,8 +370,9 @@ class WeatherForecastDialog extends ConsumerWidget {
                     hour['humidity'] >= minHumidity)
                   Positioned(
                     right: -4,
-                    top: hour['will_it_rain'] == 1 &&
-                        hour['chance_of_rain'] > AppConstants.rainPOP
+                    top:
+                        hour['will_it_rain'] == 1 &&
+                            hour['chance_of_rain'] > AppConstants.rainPOP
                         ? 44
                         : 20,
                     child: TemperatureBadge(
@@ -399,14 +409,16 @@ class WeatherForecastDialog extends ConsumerWidget {
             ),
             if (alerts.isNotEmpty) ...[
               SizedBox(height: 8.h),
-              ...alerts.map((alert) => Text(
-                '⚠️ ${alert['headline']}',
-                style: GoogleFonts.inter(
-                  fontSize: 12.sp,
-                  color: AppStyle.red,
-                  height: 1.5,
+              ...alerts.map(
+                (alert) => Text(
+                  '⚠️ ${alert['headline']}',
+                  style: GoogleFonts.inter(
+                    fontSize: 12.sp,
+                    color: AppStyle.red,
+                    height: 1.5,
+                  ),
                 ),
-              )),
+              ),
             ],
           ],
         ),
@@ -429,24 +441,40 @@ class WeatherForecastDialog extends ConsumerWidget {
                 runSpacing: 8.h,
                 children: [
                   _buildSmallDetailItem(
-                      Remix.windy_line, '${hour['wind_kph']} km/h'),
+                    Remix.windy_line,
+                    '${hour['wind_kph']} km/h',
+                  ),
                   _buildSmallDetailItem(
-                      Remix.compass_3_line, '${hour['wind_degree']}°'),
+                    Remix.compass_3_line,
+                    '${hour['wind_degree']}°',
+                  ),
                   _buildSmallDetailItem(
-                      Remix.compass_discover_line, hour['wind_dir']),
+                    Remix.compass_discover_line,
+                    hour['wind_dir'],
+                  ),
                   _buildSmallDetailItem(
-                      Remix.temp_hot_line, '${hour['pressure_mb']} mb'),
+                    Remix.temp_hot_line,
+                    '${hour['pressure_mb']} mb',
+                  ),
                   _buildSmallDetailItem(
-                      Remix.water_flash_line, '${hour['humidity']}%'),
+                    Remix.water_flash_line,
+                    '${hour['humidity']}%',
+                  ),
                   if (hour['precip_mm'] != null && hour['precip_mm'] > 0)
                     _buildSmallDetailItem(
-                        Remix.heavy_showers_line, '${hour['precip_mm']} mm'),
+                      Remix.heavy_showers_line,
+                      '${hour['precip_mm']} mm',
+                    ),
                   _buildSmallDetailItem(Remix.cloud_line, '${hour['cloud']}%'),
-                  _buildSmallDetailItem(Remix.temp_cold_line,
-                      'Feels like ${hour['feelslike_c']}°C'),
+                  _buildSmallDetailItem(
+                    Remix.temp_cold_line,
+                    'Feels like ${hour['feelslike_c']}°C',
+                  ),
                   if (hour['uv'] != null && hour['uv'] > 0)
-                    _buildSmallDetailItem(Remix.sun_line,
-                        'UV Index: ${hour['uv'] % 1 == 0 ? hour['uv'].round() : hour['uv'].toStringAsFixed(1)}'),
+                    _buildSmallDetailItem(
+                      Remix.sun_line,
+                      'UV Index: ${hour['uv'] % 1 == 0 ? hour['uv'].round() : hour['uv'].toStringAsFixed(1)}',
+                    ),
                 ],
               ),
             ],
@@ -468,7 +496,7 @@ class WeatherForecastDialog extends ConsumerWidget {
     // Add temperature description
     if (hour['temp_c'] >= 35) {
       mainLine +=
-      ' with very hot temperature of ${hour['temp_c'].toStringAsFixed(1)}°C';
+          ' with very hot temperature of ${hour['temp_c'].toStringAsFixed(1)}°C';
     } else {
       mainLine += ' with temperature of ${hour['temp_c'].toStringAsFixed(1)}°C';
     }
@@ -480,15 +508,17 @@ class WeatherForecastDialog extends ConsumerWidget {
     // Wind conditions
     if (hour['wind_kph'] >= 40) {
       conditions.add(
-          'strong winds with gusts up to ${hour['wind_kph'].round()} km/h');
+        'strong winds with gusts up to ${hour['wind_kph'].round()} km/h',
+      );
     }
 
     // Precipitation
     if (hour['will_it_rain'] == 1 &&
         hour['chance_of_rain'] > AppConstants.rainPOP &&
         hour['precip_mm'] > 0) {
-      conditions
-          .add('precipitation of ${hour['precip_mm'].toStringAsFixed(1)} mm');
+      conditions.add(
+        'precipitation of ${hour['precip_mm'].toStringAsFixed(1)} mm',
+      );
     }
 
     // Humidity
@@ -501,8 +531,9 @@ class WeatherForecastDialog extends ConsumerWidget {
 
     // Feels like temperature if significantly different
     if ((hour['feelslike_c'] - hour['temp_c']).abs() >= 3) {
-      conditions
-          .add('it will feel like ${hour['feelslike_c'].toStringAsFixed(1)}°C');
+      conditions.add(
+        'it will feel like ${hour['feelslike_c'].toStringAsFixed(1)}°C',
+      );
     }
 
     String conditionsLine = conditions.join(', ') + '.';
@@ -517,18 +548,11 @@ class WeatherForecastDialog extends ConsumerWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          icon,
-          size: 16.sp,
-          color: AppStyle.black,
-        ),
+        Icon(icon, size: 16.sp, color: AppStyle.black),
         SizedBox(width: 4.w),
         Text(
           value,
-          style: TextStyle(
-            fontSize: 12.sp,
-            color: AppStyle.black,
-          ),
+          style: TextStyle(fontSize: 12.sp, color: AppStyle.black),
         ),
       ],
     );
@@ -560,7 +584,8 @@ class WeatherForecastDialog extends ConsumerWidget {
     final astro = forecast['astro'];
     final date = DateTime.parse(forecast['date']);
     final condition = day['condition'];
-    final isToday = DateFormat('yyyy-MM-dd').format(date) ==
+    final isToday =
+        DateFormat('yyyy-MM-dd').format(date) ==
         DateFormat('yyyy-MM-dd').format(DateTime.now());
 
     final showHourly = ValueNotifier<bool>(false);
@@ -595,11 +620,7 @@ class WeatherForecastDialog extends ConsumerWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                WeatherSummary(
-                  forecast: forecast,
-                  weatherState: weatherState,
-
-                ),
+                WeatherSummary(forecast: forecast, weatherState: weatherState),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 16.h),
                   child: Divider(
@@ -656,8 +677,9 @@ class WeatherForecastDialog extends ConsumerWidget {
                               day['avghumidity'] >= minHumidity)
                             Positioned(
                               right: -4,
-                              top: day['daily_chance_of_rain'] >
-                                  AppConstants.rainPOP
+                              top:
+                                  day['daily_chance_of_rain'] >
+                                      AppConstants.rainPOP
                                   ? 44
                                   : 20,
                               child: TemperatureBadge(
@@ -701,8 +723,9 @@ class WeatherForecastDialog extends ConsumerWidget {
     }
 
     // Get current hour data from today's forecast instead of current weather
-    final todayForecast =
-    weatherState.forecast.isNotEmpty ? weatherState.forecast[0] : null;
+    final todayForecast = weatherState.forecast.isNotEmpty
+        ? weatherState.forecast[0]
+        : null;
     if (todayForecast == null) {
       return _buildEmptyState();
     }
@@ -710,29 +733,32 @@ class WeatherForecastDialog extends ConsumerWidget {
     final now = DateTime.now();
     final hourlyData = todayForecast['hour'] as List<dynamic>;
     final currentHourData = hourlyData.firstWhere(
-          (hour) => DateTime.parse(hour['time']).hour == now.hour,
+      (hour) => DateTime.parse(hour['time']).hour == now.hour,
       orElse: () =>
-      currentWeather, // Fallback to current weather if hour not found
+          currentWeather, // Fallback to current weather if hour not found
     );
 
     final condition = currentHourData['condition'] ?? {};
     List<Widget> allDetails = [];
 
-    void addDetailIfValid(dynamic value, IconData icon, String suffix,
-        {String? prefix}) {
+    void addDetailIfValid(
+      dynamic value,
+      IconData icon,
+      String suffix, {
+      String? prefix,
+    }) {
       if (value != null &&
           value.toString().isNotEmpty &&
           value.toString() != 'null' &&
           (value is! num || (value is num && value > 0))) {
         final displayValue = value is num
             ? (value % 1 == 0
-            ? value.round().toString()
-            : value.toStringAsFixed(1))
+                  ? value.round().toString()
+                  : value.toStringAsFixed(1))
             : value.toString();
-        allDetails.add(_buildSmallDetailItem(
-          icon,
-          '${prefix ?? ''}$displayValue$suffix',
-        ));
+        allDetails.add(
+          _buildSmallDetailItem(icon, '${prefix ?? ''}$displayValue$suffix'),
+        );
       }
     }
 
@@ -742,28 +768,42 @@ class WeatherForecastDialog extends ConsumerWidget {
 
     if (currentHourData['wind_dir'] != null) {
       addDetailIfValid(
-          '${currentHourData['wind_degree']}° ${currentHourData['wind_dir']}',
-          Remix.compass_3_line,
-          '');
+        '${currentHourData['wind_degree']}° ${currentHourData['wind_dir']}',
+        Remix.compass_3_line,
+        '',
+      );
     }
 
     addDetailIfValid(
-        currentHourData['pressure_mb'], Remix.temp_hot_line, ' mb');
+      currentHourData['pressure_mb'],
+      Remix.temp_hot_line,
+      ' mb',
+    );
     addDetailIfValid(currentHourData['humidity'], Remix.water_flash_line, '%');
     addDetailIfValid(
-        currentHourData['precip_mm'], Remix.heavy_showers_line, ' mm');
+      currentHourData['precip_mm'],
+      Remix.heavy_showers_line,
+      ' mm',
+    );
     addDetailIfValid(currentHourData['cloud'], Remix.cloud_line, '%');
 
     if (currentHourData['feelslike_c'] != null &&
         (currentHourData['feelslike_c'] - currentHourData['temp_c']).abs() >=
             2) {
       addDetailIfValid(
-          currentHourData['feelslike_c'], Remix.temp_cold_line, '°C',
-          prefix: 'Feels like ');
+        currentHourData['feelslike_c'],
+        Remix.temp_cold_line,
+        '°C',
+        prefix: 'Feels like ',
+      );
     }
 
-    addDetailIfValid(currentHourData['uv'], Remix.sun_line, '',
-        prefix: 'UV Index: ');
+    addDetailIfValid(
+      currentHourData['uv'],
+      Remix.sun_line,
+      '',
+      prefix: 'UV Index: ',
+    );
 
     // Create forecast data structure for WeatherSummary
     final forecastData = {
@@ -787,16 +827,10 @@ class WeatherForecastDialog extends ConsumerWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            WeatherSummary(
-              forecast: forecastData,
-              weatherState: weatherState,
-            ),
+            WeatherSummary(forecast: forecastData, weatherState: weatherState),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.h),
-              child: Divider(
-                color: AppStyle.black.withOpacity(0.1),
-                height: 1,
-              ),
+              child: Divider(color: AppStyle.black.withOpacity(0.1), height: 1),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -841,16 +875,18 @@ class WeatherForecastDialog extends ConsumerWidget {
                         (currentHourData['humidity'] ?? 0) >= minHumidity)
                       Positioned(
                         right: -4,
-                        top: (currentHourData['chance_of_rain'] ?? 0) >
-                            AppConstants.rainPOP
+                        top:
+                            (currentHourData['chance_of_rain'] ?? 0) >
+                                AppConstants.rainPOP
                             ? 44
                             : 20,
                         child: TemperatureBadge(
                           temperature: currentHourData['uv']?.round() ?? 0,
                           suffix: 'UV',
                           fontSize: 12,
-                          backgroundColor:
-                          _getUvBadgeColor(currentHourData['uv'] ?? 0),
+                          backgroundColor: _getUvBadgeColor(
+                            currentHourData['uv'] ?? 0,
+                          ),
                         ),
                       ),
                   ],
@@ -883,35 +919,50 @@ class WeatherForecastDialog extends ConsumerWidget {
     final astro = forecast['astro'];
     final List<Widget> allDetails = [];
 
-    void addDetailIfValid(dynamic value, IconData icon, String suffix,
-        {String? prefix}) {
+    void addDetailIfValid(
+      dynamic value,
+      IconData icon,
+      String suffix, {
+      String? prefix,
+    }) {
       if (value != null &&
           value.toString().isNotEmpty &&
           value.toString() != 'null' &&
           (value is! num || (value is num && value > 0))) {
         final displayValue = value is num
             ? (value % 1 == 0
-            ? value.round().toString()
-            : value.toStringAsFixed(1))
+                  ? value.round().toString()
+                  : value.toStringAsFixed(1))
             : value.toString();
-        allDetails.add(_buildSmallDetailItem(
-          icon,
-          '${prefix ?? ''}$displayValue$suffix',
-        ));
+        allDetails.add(
+          _buildSmallDetailItem(icon, '${prefix ?? ''}$displayValue$suffix'),
+        );
       }
     }
 
     addDetailIfValid(
-        day['daily_chance_of_rain'], Remix.water_percent_line, '%');
+      day['daily_chance_of_rain'],
+      Remix.water_percent_line,
+      '%',
+    );
     addDetailIfValid(day['totalprecip_mm'], Remix.heavy_showers_line, ' mm');
     addDetailIfValid(day['avghumidity'], Remix.water_flash_line, '%');
     addDetailIfValid(day['maxwind_kph'], Remix.windy_line, ' km/h');
     addDetailIfValid(
-        forecast['hour']?[0]?['wind_degree'], Remix.compass_3_line, '°');
+      forecast['hour']?[0]?['wind_degree'],
+      Remix.compass_3_line,
+      '°',
+    );
     addDetailIfValid(
-        forecast['hour']?[0]?['wind_dir'], Remix.compass_discover_line, '');
+      forecast['hour']?[0]?['wind_dir'],
+      Remix.compass_discover_line,
+      '',
+    );
     addDetailIfValid(
-        forecast['hour']?[0]?['pressure_mb'], Remix.temp_hot_line, ' mb');
+      forecast['hour']?[0]?['pressure_mb'],
+      Remix.temp_hot_line,
+      ' mb',
+    );
     addDetailIfValid(day['totalsnow_cm'], Remix.snowy_line, ' cm');
     addDetailIfValid(astro['sunrise'], Remix.sun_line, '');
     addDetailIfValid(astro['sunset'], Remix.moon_line, '');
@@ -920,11 +971,13 @@ class WeatherForecastDialog extends ConsumerWidget {
   }
 
   List<List<Widget>> _distributeDetailsInRows(
-      List<Widget> items, BoxConstraints constraints) {
+    List<Widget> items,
+    BoxConstraints constraints,
+  ) {
     const double itemSpacing = 16.0;
     final itemWidth = 80.0;
-    final maxItemsPerRow =
-    (constraints.maxWidth / (itemWidth + itemSpacing)).floor();
+    final maxItemsPerRow = (constraints.maxWidth / (itemWidth + itemSpacing))
+        .floor();
 
     final rows = <List<Widget>>[];
     var currentRow = <Widget>[];
@@ -953,7 +1006,10 @@ class WeatherForecastDialog extends ConsumerWidget {
   }
 
   Widget _buildHeaderInfo(
-      bool isToday, DateTime date, Map<String, dynamic> condition) {
+    bool isToday,
+    DateTime date,
+    Map<String, dynamic> condition,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -995,7 +1051,7 @@ class WeatherForecastDialog extends ConsumerWidget {
     final now = DateTime.now();
     final hourlyData = todayForecast['hour'] as List<dynamic>;
     final currentHourData = hourlyData.firstWhere(
-          (hour) => DateTime.parse(hour['time']).hour == now.hour,
+      (hour) => DateTime.parse(hour['time']).hour == now.hour,
       orElse: () => weatherAsync.value!.weatherData['current'],
     );
 
@@ -1046,9 +1102,10 @@ class WeatherForecastDialog extends ConsumerWidget {
                   currentHourData['humidity'] >= minHumidity)
                 Positioned(
                   right: -4,
-                  top: currentHourData['will_it_rain'] == 1 &&
-                      currentHourData['chance_of_rain'] >
-                          AppConstants.rainPOP
+                  top:
+                      currentHourData['will_it_rain'] == 1 &&
+                          currentHourData['chance_of_rain'] >
+                              AppConstants.rainPOP
                       ? 44
                       : 20,
                   child: TemperatureBadge(
@@ -1089,7 +1146,8 @@ class WeatherForecastDialog extends ConsumerWidget {
     final date = DateTime.parse(forecast['date']);
     final day = forecast['day'];
     final condition = day['condition'];
-    final isToday = DateFormat('yyyy-MM-dd').format(date) ==
+    final isToday =
+        DateFormat('yyyy-MM-dd').format(date) ==
         DateFormat('yyyy-MM-dd').format(DateTime.now());
 
     return Padding(
@@ -1135,8 +1193,9 @@ class WeatherForecastDialog extends ConsumerWidget {
               if (day['uv'] >= minUV && day['avghumidity'] >= minHumidity)
                 Positioned(
                   right: -4,
-                  top: day['daily_will_it_rain'] == 1 &&
-                      day['daily_chance_of_rain'] > 0
+                  top:
+                      day['daily_will_it_rain'] == 1 &&
+                          day['daily_chance_of_rain'] > 0
                       ? 44
                       : 20,
                   child: TemperatureBadge(
@@ -1173,8 +1232,11 @@ class WeatherForecastDialog extends ConsumerWidget {
     );
   }
 
-  Widget _buildForecastOverview(AsyncValue<WeatherState> weatherAsync,
-      List<dynamic> forecastDays, ValueNotifier<int?> selectedIndex) {
+  Widget _buildForecastOverview(
+    AsyncValue<WeatherState> weatherAsync,
+    List<dynamic> forecastDays,
+    ValueNotifier<int?> selectedIndex,
+  ) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
@@ -1183,7 +1245,8 @@ class WeatherForecastDialog extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: ((60.sp + 32.w) *
+              width:
+                  ((60.sp + 32.w) *
                   (forecastDays.length + 1)), // Proper width calculation
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -1192,22 +1255,19 @@ class WeatherForecastDialog extends ConsumerWidget {
                     onTap: () => selectedIndex.value = -1,
                     child: _buildCurrentWeatherCard(weatherAsync),
                   ),
-                  ...List.generate(
-                    forecastDays.length,
-                        (index) {
-                      final forecast = forecastDays[index];
-                      final isLastCard = index == forecastDays.length - 1;
-                      return GestureDetector(
-                        onTap: () => selectedIndex.value = index,
-                        child: Padding(
-                          padding: isLastCard
-                              ? EdgeInsets.only(right: 16.w)
-                              : EdgeInsets.zero,
-                          child: _buildForecastCard(forecast),
-                        ),
-                      );
-                    },
-                  ),
+                  ...List.generate(forecastDays.length, (index) {
+                    final forecast = forecastDays[index];
+                    final isLastCard = index == forecastDays.length - 1;
+                    return GestureDetector(
+                      onTap: () => selectedIndex.value = index,
+                      child: Padding(
+                        padding: isLastCard
+                            ? EdgeInsets.only(right: 16.w)
+                            : EdgeInsets.zero,
+                        child: _buildForecastCard(forecast),
+                      ),
+                    );
+                  }),
                 ],
               ),
             ),
@@ -1217,9 +1277,14 @@ class WeatherForecastDialog extends ConsumerWidget {
     );
   }
 
-  Widget _buildDialogHeader(BuildContext context, WidgetRef ref,
-      WeatherState weatherState, AsyncValue<WeatherState> weatherAsync,
-      {bool isDetailView = false, required VoidCallback onBack}) {
+  Widget _buildDialogHeader(
+    BuildContext context,
+    WidgetRef ref,
+    WeatherState weatherState,
+    AsyncValue<WeatherState> weatherAsync, {
+    bool isDetailView = false,
+    required VoidCallback onBack,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -1284,11 +1349,7 @@ class WeatherForecastDialog extends ConsumerWidget {
           onTap: onTap,
           child: Container(
             padding: EdgeInsets.all(8.sp),
-            child: Icon(
-              icon,
-              color: AppStyle.black,
-              size: 20.sp,
-            ),
+            child: Icon(icon, color: AppStyle.black, size: 20.sp),
           ),
         ),
       ),
@@ -1305,10 +1366,7 @@ class WeatherForecastDialog extends ConsumerWidget {
           SnackBar(
             content: Text(
               'Failed to fetch weather data',
-              style: TextStyle(
-                color: AppStyle.white,
-                fontSize: 12.sp,
-              ),
+              style: TextStyle(color: AppStyle.white, fontSize: 12.sp),
             ),
             backgroundColor: AppStyle.black,
             duration: const Duration(seconds: 2),
@@ -1327,9 +1385,7 @@ class WeatherForecastDialog extends ConsumerWidget {
     final currentState = weatherAsync.value ?? weatherState;
 
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.r),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       backgroundColor: AppStyle.white,
       child: StatefulBuilder(
         builder: (context, setState) {
@@ -1371,10 +1427,16 @@ class WeatherForecastDialog extends ConsumerWidget {
                           SizedBox(height: 16.h),
                           if (selected != null)
                             selected == -1
-                                ? _buildCurrentWeatherDetailView(currentState.weatherData['current'])
+                                ? _buildCurrentWeatherDetailView(
+                                    currentState.weatherData['current'],
+                                  )
                                 : _buildDetailedView(forecastDays[selected])
                           else
-                            _buildForecastOverview(weatherAsync, forecastDays, selectedIndex),
+                            _buildForecastOverview(
+                              weatherAsync,
+                              forecastDays,
+                              selectedIndex,
+                            ),
                         ],
                       );
                     },

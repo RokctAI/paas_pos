@@ -11,10 +11,7 @@ import '../../sale_history/riverpod/sale_history_provider.dart';
 class CloseShiftDialog extends ConsumerStatefulWidget {
   final VoidCallback onLogout;
 
-  const CloseShiftDialog({
-    Key? key,
-    required this.onLogout,
-  }) : super(key: key);
+  const CloseShiftDialog({Key? key, required this.onLogout}) : super(key: key);
 
   @override
   ConsumerState<CloseShiftDialog> createState() => _CloseShiftDialogState();
@@ -142,7 +139,7 @@ class _CloseShiftDialogState extends ConsumerState<CloseShiftDialog> {
                 const Center(child: CircularProgressIndicator())
               else
                 const SizedBox.shrink(),
-    /* Container(
+              /* Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: AppStyle.bg,
@@ -195,7 +192,9 @@ class _CloseShiftDialogState extends ConsumerState<CloseShiftDialog> {
               ] else if (!_isLoading) ...[
                 TextFormField(
                   controller: _cashupController,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
                   decoration: InputDecoration(
                     labelText: 'Enter Cash in Drawer',
                     errorText: _errorMessage,
@@ -206,7 +205,9 @@ class _CloseShiftDialogState extends ConsumerState<CloseShiftDialog> {
                     border: const OutlineInputBorder(),
                   ),
                   inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                    FilteringTextInputFormatter.allow(
+                      RegExp(r'^\d+\.?\d{0,2}'),
+                    ),
                   ],
                 ),
               ],
@@ -221,9 +222,7 @@ class _CloseShiftDialogState extends ConsumerState<CloseShiftDialog> {
                     },
                     child: Text(
                       'Skip',
-                      style: GoogleFonts.inter(
-                        color: AppStyle.red,
-                      ),
+                      style: GoogleFonts.inter(color: AppStyle.red),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -235,9 +234,7 @@ class _CloseShiftDialogState extends ConsumerState<CloseShiftDialog> {
                       onPressed: _handleCashup,
                       child: Text(
                         'Submit',
-                        style: GoogleFonts.inter(
-                          color: AppStyle.white,
-                        ),
+                        style: GoogleFonts.inter(color: AppStyle.white),
                       ),
                     ),
                 ],

@@ -10,9 +10,12 @@ class NotificationIcon extends ConsumerStatefulWidget {
   const NotificationIcon({super.key});
 
   @override
-  ConsumerState<NotificationIcon> createState() => _NotificationIconState();  }
+  ConsumerState<NotificationIcon> createState() => _NotificationIconState();
+}
 
-class _NotificationIconState extends ConsumerState<NotificationIcon> with SingleTickerProviderStateMixin {  // Change to ConsumerState
+class _NotificationIconState extends ConsumerState<NotificationIcon>
+    with SingleTickerProviderStateMixin {
+  // Change to ConsumerState
   late AnimationController _animationController;
   late Animation<double> _animation;
 
@@ -40,8 +43,16 @@ class _NotificationIconState extends ConsumerState<NotificationIcon> with Single
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (ref.watch(notificationProvider).countOfNotifications?.notification != null &&
-            ref.watch(notificationProvider).countOfNotifications!.notification! > 0)
+        if (ref
+                    .watch(notificationProvider)
+                    .countOfNotifications
+                    ?.notification !=
+                null &&
+            ref
+                    .watch(notificationProvider)
+                    .countOfNotifications!
+                    .notification! >
+                0)
           Positioned(
             top: 7,
             right: 6,
@@ -74,10 +85,7 @@ class _NotificationIconState extends ConsumerState<NotificationIcon> with Single
               ),
             );
           },
-          icon: const Icon(
-            Remix.notification_2_line,
-            color: AppStyle.black,
-          ),
+          icon: const Icon(Remix.notification_2_line, color: AppStyle.black),
         ),
       ],
     );

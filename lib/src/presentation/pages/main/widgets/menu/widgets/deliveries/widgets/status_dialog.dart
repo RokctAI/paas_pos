@@ -34,32 +34,37 @@ class StatusDialog extends ConsumerWidget {
                     onTap: () => notifier.setStatusIndex(i),
                   ),
                   6.horizontalSpace,
-                  Text(AppHelpers.getTranslation(
-                      AppHelpers.getMasterStatuses(status)[i])),
+                  Text(
+                    AppHelpers.getTranslation(
+                      AppHelpers.getMasterStatuses(status)[i],
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
         16.verticalSpace,
         CustomButton(
-            // height: 44,
-            title: TrKeys.save,
-            isLoading: state.isUpdate,
-            onTap: () {
-              if (state.statusIndex == -1) {
-                return;
-              }
-              notifier.updateStatus(
-                  id: id,
-                  status:
-                      AppHelpers.getMasterStatuses(status)[state.statusIndex],
-                  onSuccess: (index) {
-                    ref.read(deliverymanProvider.notifier).fetchDeliverymen(isRefresh: true,);
-                    Navigator.pop(context);
-                  });
-            }),
+          // height: 44,
+          title: TrKeys.save,
+          isLoading: state.isUpdate,
+          onTap: () {
+            if (state.statusIndex == -1) {
+              return;
+            }
+            notifier.updateStatus(
+              id: id,
+              status: AppHelpers.getMasterStatuses(status)[state.statusIndex],
+              onSuccess: (index) {
+                ref
+                    .read(deliverymanProvider.notifier)
+                    .fetchDeliverymen(isRefresh: true);
+                Navigator.pop(context);
+              },
+            );
+          },
+        ),
       ],
     );
   }
 }
-

@@ -18,18 +18,18 @@ class TableFormField extends StatelessWidget {
   final TextInputType? inputType;
   final TextEditingController? textEditingController;
 
-  const TableFormField(
-      {super.key,
-      required this.prefixSvg,
-      this.validator,
-      this.onChanged,
-      this.inputType,
-      this.hintText,
-      this.textEditingController,
-      this.readOnly = false,
-      this.prefixIcon,
-        this.onTap})
-     ;
+  const TableFormField({
+    super.key,
+    required this.prefixSvg,
+    this.validator,
+    this.onChanged,
+    this.inputType,
+    this.hintText,
+    this.textEditingController,
+    this.readOnly = false,
+    this.prefixIcon,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +41,14 @@ class TableFormField extends StatelessWidget {
       readOnly: readOnly,
       keyboardType: inputType,
       inputFormatters: [
-       if( inputType== TextInputType.number ) FilteringTextInputFormatter.digitsOnly
+        if (inputType == TextInputType.number)
+          FilteringTextInputFormatter.digitsOnly,
       ],
       style: GoogleFonts.inter(
-          color: AppStyle.black, fontWeight: FontWeight.w500, fontSize: 14.sp),
+        color: AppStyle.black,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.sp,
+      ),
       decoration: InputDecoration(
         hintText: AppHelpers.getTranslation(hintText ?? ""),
         hintStyle: GoogleFonts.inter(
@@ -56,28 +60,24 @@ class TableFormField extends StatelessWidget {
         prefixIcon: Padding(
           padding: REdgeInsets.symmetric(vertical: 16),
           child: prefixIcon == null
-              ? SvgPicture.asset(
-                  prefixSvg,
-                  width: 26.r,
-                  color: AppStyle.black,
-                )
-              : Icon(prefixIcon,
-            size: 26.r,
-            color: AppStyle.black,),
+              ? SvgPicture.asset(prefixSvg, width: 26.r, color: AppStyle.black)
+              : Icon(prefixIcon, size: 26.r, color: AppStyle.black),
         ),
         filled: true,
         fillColor: AppStyle.editProfileCircle,
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.r),
-            borderSide: BorderSide.none),
+          borderRadius: BorderRadius.circular(5.r),
+          borderSide: BorderSide.none,
+        ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.r),
-            borderSide: BorderSide.none),
+          borderRadius: BorderRadius.circular(5.r),
+          borderSide: BorderSide.none,
+        ),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.r),
-            borderSide: BorderSide.none),
+          borderRadius: BorderRadius.circular(5.r),
+          borderSide: BorderSide.none,
+        ),
       ),
     );
   }
 }
-

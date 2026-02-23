@@ -23,18 +23,26 @@ class CustomBouncingScrollPhysics extends ScrollPhysics {
 
     if (!position.outOfRange) return offset;
 
-    final double overscrollPastStart =
-    math.max(position.minScrollExtent - position.pixels, 0.0);
-    final double overscrollPastEnd =
-    math.max(position.pixels - position.maxScrollExtent, 0.0);
-    final double overscrollPast =
-    math.max(overscrollPastStart, overscrollPastEnd);
-    final bool easing = (overscrollPastStart > 0.0 && offset < 0.0) ||
+    final double overscrollPastStart = math.max(
+      position.minScrollExtent - position.pixels,
+      0.0,
+    );
+    final double overscrollPastEnd = math.max(
+      position.pixels - position.maxScrollExtent,
+      0.0,
+    );
+    final double overscrollPast = math.max(
+      overscrollPastStart,
+      overscrollPastEnd,
+    );
+    final bool easing =
+        (overscrollPastStart > 0.0 && offset < 0.0) ||
         (overscrollPastEnd > 0.0 && offset > 0.0);
 
     final double friction = easing
         ? frictionFactor(
-        (overscrollPast - offset.abs()) / position.viewportDimension)
+            (overscrollPast - offset.abs()) / position.viewportDimension,
+          )
         : frictionFactor(overscrollPast / position.viewportDimension);
     final double direction = offset.sign;
 
@@ -42,7 +50,10 @@ class CustomBouncingScrollPhysics extends ScrollPhysics {
   }
 
   static double _applyFriction(
-      double extentOutside, double absDelta, double gamma) {
+    double extentOutside,
+    double absDelta,
+    double gamma,
+  ) {
     assert(absDelta > 0);
     double total = 0.0;
     if (extentOutside > 0) {
@@ -59,7 +70,9 @@ class CustomBouncingScrollPhysics extends ScrollPhysics {
 
   @override
   Simulation? createBallisticSimulation(
-      ScrollMetrics position, double velocity) {
+    ScrollMetrics position,
+    double velocity,
+  ) {
     final Tolerance tolerance = this.tolerance;
     if (velocity.abs() >= tolerance.velocity || position.outOfRange) {
       return CustomBouncingScrollSimulation(
@@ -80,11 +93,12 @@ class CustomBouncingScrollPhysics extends ScrollPhysics {
   @override
   double carriedMomentum(double existingVelocity) {
     return existingVelocity.sign *
-        math.min(0.000816 * math.pow(existingVelocity.abs(), 1.967).toDouble(),
-            40000.0);
+        math.min(
+          0.000816 * math.pow(existingVelocity.abs(), 1.967).toDouble(),
+          40000.0,
+        );
   }
 
   @override
   double get dragStartDistanceMotionThreshold => 3.5;
 }
-

@@ -7,9 +7,10 @@ import '../../../../../../../../core/utils/utils.dart';
 import 'maintenance_dialog.dart';
 import '../repository/ro_system_api.dart';
 
-final maintenanceProvider = StateNotifierProvider<MaintenanceNotifier, MaintenanceState>((ref) {
-  return MaintenanceNotifier();
-});
+final maintenanceProvider =
+    StateNotifierProvider<MaintenanceNotifier, MaintenanceState>((ref) {
+      return MaintenanceNotifier();
+    });
 
 class MaintenanceState {
   final bool hasMaintenanceItems;
@@ -76,10 +77,7 @@ class MaintenanceNotifier extends StateNotifier<MaintenanceState> {
         }
       } catch (e) {
         if (mounted) {
-          state = state.copyWith(
-            isLoading: false,
-            error: e.toString(),
-          );
+          state = state.copyWith(isLoading: false, error: e.toString());
         }
       }
     }
@@ -119,15 +117,15 @@ class _MaintenanceAlertState extends ConsumerState<MaintenanceAlert> {
       return const SizedBox(
         width: 24,
         height: 24,
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-        ),
+        child: CircularProgressIndicator(strokeWidth: 2),
       );
     }
 
-    final alertColor = state.needsSetup ? Colors.amber :
-    state.hasMaintenanceItems ? Colors.amber :
-    Colors.grey;
+    final alertColor = state.needsSetup
+        ? Colors.amber
+        : state.hasMaintenanceItems
+        ? Colors.amber
+        : Colors.grey;
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -142,22 +140,25 @@ class _MaintenanceAlertState extends ConsumerState<MaintenanceAlert> {
             ),
           )
         else
-          !state.needsSetup ?
-          IconButton(
-            onPressed: () {
-              AppHelpers.showAlertDialog(
-                context: context,
-                child: const MaintenanceDialog(), // Show maintenance dialog otherwise
-              );
-            },
-            icon: Icon( FlutterRemix.alert_fill,
-              color: alertColor,
-              size: 24,
-            ),
-            tooltip: state.hasMaintenanceItems
-                ? AppHelpers.getTranslation(TrKeys.maintenanceRequired)
-                : AppHelpers.getTranslation(TrKeys.noMaintenanceAlerts),
-          ) : const SizedBox.shrink(),
+          !state.needsSetup
+              ? IconButton(
+                  onPressed: () {
+                    AppHelpers.showAlertDialog(
+                      context: context,
+                      child:
+                          const MaintenanceDialog(), // Show maintenance dialog otherwise
+                    );
+                  },
+                  icon: Icon(
+                    FlutterRemix.alert_fill,
+                    color: alertColor,
+                    size: 24,
+                  ),
+                  tooltip: state.hasMaintenanceItems
+                      ? AppHelpers.getTranslation(TrKeys.maintenanceRequired)
+                      : AppHelpers.getTranslation(TrKeys.noMaintenanceAlerts),
+                )
+              : const SizedBox.shrink(),
         const VerticalDivider(),
       ],
     );

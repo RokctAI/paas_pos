@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/theme.dart';
 
-
 class UnderlinedTextField extends StatelessWidget {
   final String label;
   final String? hint;
@@ -42,12 +41,12 @@ class UnderlinedTextField extends StatelessWidget {
     this.textInputAction,
     this.hint,
     this.onTap,
-    this.validator, this.inputFormatters,
-  }) ;
+    this.validator,
+    this.inputFormatters,
+  });
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,10 +58,7 @@ class UnderlinedTextField extends StatelessWidget {
           obscureText: !(obscure ?? true),
           obscuringCharacter: '*',
           controller: textController,
-          style: AppStyle.interNormal(
-            size: 15.sp,
-            color: AppStyle.black,
-          ),
+          style: AppStyle.interNormal(size: 15.sp, color: AppStyle.black),
           cursorWidth: 1,
           inputFormatters: inputFormatters,
           cursorColor: AppStyle.black,
@@ -121,14 +117,13 @@ class UnderlinedTextField extends StatelessWidget {
                   color: isError
                       ? AppStyle.red
                       : isSuccess
-                          ? AppStyle.textGrey
-                          : AppStyle.black,
+                      ? AppStyle.textGrey
+                      : AppStyle.black,
                 ),
               ),
             ],
-          )
+          ),
       ],
     );
   }
 }
-

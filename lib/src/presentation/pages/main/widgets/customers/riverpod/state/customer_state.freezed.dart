@@ -12,7 +12,8 @@ part of 'customer_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$CustomerState {
@@ -37,20 +38,22 @@ mixin _$CustomerState {
 /// @nodoc
 abstract class $CustomerStateCopyWith<$Res> {
   factory $CustomerStateCopyWith(
-          CustomerState value, $Res Function(CustomerState) then) =
-      _$CustomerStateCopyWithImpl<$Res, CustomerState>;
+    CustomerState value,
+    $Res Function(CustomerState) then,
+  ) = _$CustomerStateCopyWithImpl<$Res, CustomerState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isMoreLoading,
-      bool createUserLoading,
-      bool hasMore,
-      String query,
-      List<UserData> users,
-      UserData? selectUser,
-      int totalCount,
-      UserData? user,
-      String? imageFile});
+  $Res call({
+    bool isLoading,
+    bool isMoreLoading,
+    bool createUserLoading,
+    bool hasMore,
+    String query,
+    List<UserData> users,
+    UserData? selectUser,
+    int totalCount,
+    UserData? user,
+    String? imageFile,
+  });
 }
 
 /// @nodoc
@@ -79,48 +82,51 @@ class _$CustomerStateCopyWithImpl<$Res, $Val extends CustomerState>
     Object? user = freezed,
     Object? imageFile = freezed,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMoreLoading: null == isMoreLoading
-          ? _value.isMoreLoading
-          : isMoreLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      createUserLoading: null == createUserLoading
-          ? _value.createUserLoading
-          : createUserLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      users: null == users
-          ? _value.users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      selectUser: freezed == selectUser
-          ? _value.selectUser
-          : selectUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      imageFile: freezed == imageFile
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isMoreLoading: null == isMoreLoading
+                ? _value.isMoreLoading
+                : isMoreLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            createUserLoading: null == createUserLoading
+                ? _value.createUserLoading
+                : createUserLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            hasMore: null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            query: null == query
+                ? _value.query
+                : query // ignore: cast_nullable_to_non_nullable
+                      as String,
+            users: null == users
+                ? _value.users
+                : users // ignore: cast_nullable_to_non_nullable
+                      as List<UserData>,
+            selectUser: freezed == selectUser
+                ? _value.selectUser
+                : selectUser // ignore: cast_nullable_to_non_nullable
+                      as UserData?,
+            totalCount: null == totalCount
+                ? _value.totalCount
+                : totalCount // ignore: cast_nullable_to_non_nullable
+                      as int,
+            user: freezed == user
+                ? _value.user
+                : user // ignore: cast_nullable_to_non_nullable
+                      as UserData?,
+            imageFile: freezed == imageFile
+                ? _value.imageFile
+                : imageFile // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -128,21 +134,23 @@ class _$CustomerStateCopyWithImpl<$Res, $Val extends CustomerState>
 abstract class _$$CustomerStateImplCopyWith<$Res>
     implements $CustomerStateCopyWith<$Res> {
   factory _$$CustomerStateImplCopyWith(
-          _$CustomerStateImpl value, $Res Function(_$CustomerStateImpl) then) =
-      __$$CustomerStateImplCopyWithImpl<$Res>;
+    _$CustomerStateImpl value,
+    $Res Function(_$CustomerStateImpl) then,
+  ) = __$$CustomerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isMoreLoading,
-      bool createUserLoading,
-      bool hasMore,
-      String query,
-      List<UserData> users,
-      UserData? selectUser,
-      int totalCount,
-      UserData? user,
-      String? imageFile});
+  $Res call({
+    bool isLoading,
+    bool isMoreLoading,
+    bool createUserLoading,
+    bool hasMore,
+    String query,
+    List<UserData> users,
+    UserData? selectUser,
+    int totalCount,
+    UserData? user,
+    String? imageFile,
+  });
 }
 
 /// @nodoc
@@ -150,8 +158,9 @@ class __$$CustomerStateImplCopyWithImpl<$Res>
     extends _$CustomerStateCopyWithImpl<$Res, _$CustomerStateImpl>
     implements _$$CustomerStateImplCopyWith<$Res> {
   __$$CustomerStateImplCopyWithImpl(
-      _$CustomerStateImpl _value, $Res Function(_$CustomerStateImpl) _then)
-      : super(_value, _then);
+    _$CustomerStateImpl _value,
+    $Res Function(_$CustomerStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of CustomerState
   /// with the given fields replaced by the non-null parameter values.
@@ -169,67 +178,69 @@ class __$$CustomerStateImplCopyWithImpl<$Res>
     Object? user = freezed,
     Object? imageFile = freezed,
   }) {
-    return _then(_$CustomerStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMoreLoading: null == isMoreLoading
-          ? _value.isMoreLoading
-          : isMoreLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      createUserLoading: null == createUserLoading
-          ? _value.createUserLoading
-          : createUserLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      users: null == users
-          ? _value._users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      selectUser: freezed == selectUser
-          ? _value.selectUser
-          : selectUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      imageFile: freezed == imageFile
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$CustomerStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isMoreLoading: null == isMoreLoading
+            ? _value.isMoreLoading
+            : isMoreLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        createUserLoading: null == createUserLoading
+            ? _value.createUserLoading
+            : createUserLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        query: null == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String,
+        users: null == users
+            ? _value._users
+            : users // ignore: cast_nullable_to_non_nullable
+                  as List<UserData>,
+        selectUser: freezed == selectUser
+            ? _value.selectUser
+            : selectUser // ignore: cast_nullable_to_non_nullable
+                  as UserData?,
+        totalCount: null == totalCount
+            ? _value.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        user: freezed == user
+            ? _value.user
+            : user // ignore: cast_nullable_to_non_nullable
+                  as UserData?,
+        imageFile: freezed == imageFile
+            ? _value.imageFile
+            : imageFile // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$CustomerStateImpl extends _CustomerState {
-  const _$CustomerStateImpl(
-      {this.isLoading = false,
-      this.isMoreLoading = false,
-      this.createUserLoading = false,
-      this.hasMore = true,
-      this.query = '',
-      final List<UserData> users = const [],
-      this.selectUser = null,
-      this.totalCount = 0,
-      this.user = null,
-      this.imageFile = null})
-      : _users = users,
-        super._();
+  const _$CustomerStateImpl({
+    this.isLoading = false,
+    this.isMoreLoading = false,
+    this.createUserLoading = false,
+    this.hasMore = true,
+    this.query = '',
+    final List<UserData> users = const [],
+    this.selectUser = null,
+    this.totalCount = 0,
+    this.user = null,
+    this.imageFile = null,
+  }) : _users = users,
+       super._();
 
   @override
   @JsonKey()
@@ -298,17 +309,18 @@ class _$CustomerStateImpl extends _CustomerState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      isMoreLoading,
-      createUserLoading,
-      hasMore,
-      query,
-      const DeepCollectionEquality().hash(_users),
-      selectUser,
-      totalCount,
-      user,
-      imageFile);
+    runtimeType,
+    isLoading,
+    isMoreLoading,
+    createUserLoading,
+    hasMore,
+    query,
+    const DeepCollectionEquality().hash(_users),
+    selectUser,
+    totalCount,
+    user,
+    imageFile,
+  );
 
   /// Create a copy of CustomerState
   /// with the given fields replaced by the non-null parameter values.
@@ -320,17 +332,18 @@ class _$CustomerStateImpl extends _CustomerState {
 }
 
 abstract class _CustomerState extends CustomerState {
-  const factory _CustomerState(
-      {final bool isLoading,
-      final bool isMoreLoading,
-      final bool createUserLoading,
-      final bool hasMore,
-      final String query,
-      final List<UserData> users,
-      final UserData? selectUser,
-      final int totalCount,
-      final UserData? user,
-      final String? imageFile}) = _$CustomerStateImpl;
+  const factory _CustomerState({
+    final bool isLoading,
+    final bool isMoreLoading,
+    final bool createUserLoading,
+    final bool hasMore,
+    final String query,
+    final List<UserData> users,
+    final UserData? selectUser,
+    final int totalCount,
+    final UserData? user,
+    final String? imageFile,
+  }) = _$CustomerStateImpl;
   const _CustomerState._() : super._();
 
   @override
@@ -361,4 +374,3 @@ abstract class _CustomerState extends CustomerState {
   _$$CustomerStateImplCopyWith<_$CustomerStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

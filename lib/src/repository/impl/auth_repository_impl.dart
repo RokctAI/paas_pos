@@ -16,14 +16,9 @@ class AuthRepositoryImpl extends AuthRepository {
       final client = dioHttp.client(requireAuth: false);
       final response = await client.post(
         '/api/v1/method/login',
-        data: {
-          'usr': email,
-          'pwd': password,
-        },
+        data: {'usr': email, 'pwd': password},
       );
-      return ApiResult.success(
-        data: LoginResponse.fromJson(response.data),
-      );
+      return ApiResult.success(data: LoginResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> login failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -45,9 +40,7 @@ class AuthRepositoryImpl extends AuthRepository {
       return const ApiResult.success(data: null);
     } catch (e) {
       debugPrint('==> update firebase token failure: $e');
-      return ApiResult.failure(
-        error: AppHelpers.errorHandler(e),
-      );
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
     }
   }
 }

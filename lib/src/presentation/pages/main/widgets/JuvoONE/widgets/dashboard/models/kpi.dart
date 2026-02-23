@@ -38,7 +38,9 @@ class Kpi {
       unit: json['unit'],
       dueDate: DateTime.parse(json['due_date']),
       status: json['status'] ?? 'Not Started',
-      completionDate: json['completion_date'] != null ? DateTime.parse(json['completion_date']) : null,
+      completionDate: json['completion_date'] != null
+          ? DateTime.parse(json['completion_date'])
+          : null,
     );
   }
 
@@ -58,5 +60,3 @@ class Kpi {
     };
   }
 }
-
-

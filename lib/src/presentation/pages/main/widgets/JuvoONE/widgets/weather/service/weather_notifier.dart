@@ -22,7 +22,9 @@ class WeatherNotifier extends StateNotifier<AsyncValue<WeatherState>> {
   }
 
   void _setupConnectivityListener() {
-    _connectivitySubscription = _weatherService.connectivityStream.listen((isConnected) {
+    _connectivitySubscription = _weatherService.connectivityStream.listen((
+      isConnected,
+    ) {
       if (isConnected && state.hasValue && state.value!.hasError) {
         refreshWeather();
       }
@@ -31,14 +33,13 @@ class WeatherNotifier extends StateNotifier<AsyncValue<WeatherState>> {
 
   void _setupRefreshTimer() {
     _refreshTimer?.cancel();
-    print('Setting up weather refresh timer for ${AppConstants.weatherRefresher.inMinutes} minutes');
-    _refreshTimer = Timer.periodic(
-      AppConstants.weatherRefresher,
-          (_) {
-        print('Weather refresh timer triggered');
-        _loadWeather();
-      },
+    print(
+      'Setting up weather refresh timer for ${AppConstants.weatherRefresher.inMinutes} minutes',
     );
+    _refreshTimer = Timer.periodic(AppConstants.weatherRefresher, (_) {
+      print('Weather refresh timer triggered');
+      _loadWeather();
+    });
   }
 
   void resetTemperatureTimer() {
@@ -60,20 +61,26 @@ class WeatherNotifier extends StateNotifier<AsyncValue<WeatherState>> {
     try {
       final location = LocalStorage.getShopLocation();
       final double latitude = location?.latitude ?? AppConstants.demoLatitude;
-      final double longitude = location?.longitude ?? AppConstants.demoLongitude;
+      final double longitude =
+          location?.longitude ?? AppConstants.demoLongitude;
 
       print('Refreshing weather for lat: $latitude, lon: $longitude');
 
-      final weatherData = await _weatherService.getCurrentWeather(latitude, longitude);
+      final weatherData = await _weatherService.getCurrentWeather(
+        latitude,
+        longitude,
+      );
       _lastUpdate = DateTime.now();
 
-      state = AsyncValue.data(WeatherState(
-        weatherData: weatherData,
-        showTemperature: true,
-        cityName: weatherData['location']['name'],
-        hasError: false,
-        lastUpdated: _lastUpdate,
-      ));
+      state = AsyncValue.data(
+        WeatherState(
+          weatherData: weatherData,
+          showTemperature: true,
+          cityName: weatherData['location']['name'],
+          hasError: false,
+          lastUpdated: _lastUpdate,
+        ),
+      );
 
       _startTemperatureTimer();
     } catch (e, stack) {
@@ -92,29 +99,37 @@ class WeatherNotifier extends StateNotifier<AsyncValue<WeatherState>> {
     try {
       final location = LocalStorage.getShopLocation();
       final double latitude = location?.latitude ?? AppConstants.demoLatitude;
-      final double longitude = location?.longitude ?? AppConstants.demoLongitude;
+      final double longitude =
+          location?.longitude ?? AppConstants.demoLongitude;
 
-      final weatherData = await _weatherService.getCurrentWeather(latitude, longitude);
+      final weatherData = await _weatherService.getCurrentWeather(
+        latitude,
+        longitude,
+      );
       _lastUpdate = DateTime.now();
 
-      state = AsyncValue.data(WeatherState(
-        weatherData: weatherData,
-        showTemperature: true,
-        cityName: weatherData['location']['name'],
-        hasError: false,
-        lastUpdated: _lastUpdate,
-      ));
+      state = AsyncValue.data(
+        WeatherState(
+          weatherData: weatherData,
+          showTemperature: true,
+          cityName: weatherData['location']['name'],
+          hasError: false,
+          lastUpdated: _lastUpdate,
+        ),
+      );
 
       _startTemperatureTimer();
     } catch (e) {
       if (!state.hasValue) {
         state = AsyncValue.error(e, StackTrace.current);
       } else {
-        state = AsyncValue.data(state.value!.copyWith(
-          version: DateTime.now().millisecondsSinceEpoch,
-          hasError: true,
-          lastUpdated: DateTime.now(),
-        ));
+        state = AsyncValue.data(
+          state.value!.copyWith(
+            version: DateTime.now().millisecondsSinceEpoch,
+            hasError: true,
+            lastUpdated: DateTime.now(),
+          ),
+        );
       }
     }
   }

@@ -43,7 +43,9 @@ class FoodProductItem extends StatelessWidget {
                   color: isSelected ? AppStyle.primary : AppStyle.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: isSelected ? AppStyle.primary : AppStyle.selectedItemsText,
+                    color: isSelected
+                        ? AppStyle.primary
+                        : AppStyle.selectedItemsText,
                     width: isSelected ? 2 : 2,
                   ),
                 ),
@@ -65,9 +67,9 @@ class FoodProductItem extends StatelessWidget {
                       Text(
                         "${stockData.product?.translation?.title}",
                         style: GoogleFonts.inter(
-                            fontSize:14.sp,
+                          fontSize: 14.sp,
                           color: AppStyle.black,
-                          fontWeight: FontWeight.w400
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       6.horizontalSpace,
@@ -81,7 +83,7 @@ class FoodProductItem extends StatelessWidget {
                                 style: GoogleFonts.inter(
                                   fontSize: 14.sp,
                                   color: AppStyle.black,
-                                  fontWeight: FontWeight.w400
+                                  fontWeight: FontWeight.w400,
                                 ),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
@@ -90,9 +92,9 @@ class FoodProductItem extends StatelessWidget {
                               Text(
                                 e.value ?? "",
                                 style: GoogleFonts.inter(
-                                    fontSize: 14.sp,
-                                    color: AppStyle.black,
-                                    fontWeight: FontWeight.w400
+                                  fontSize: 14.sp,
+                                  color: AppStyle.black,
+                                  fontWeight: FontWeight.w400,
                                 ),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
@@ -103,7 +105,7 @@ class FoodProductItem extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -111,4 +113,3 @@ class FoodProductItem extends StatelessWidget {
     );
   }
 }
-

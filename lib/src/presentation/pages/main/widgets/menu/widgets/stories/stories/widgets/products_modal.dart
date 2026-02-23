@@ -59,7 +59,8 @@ class _ProductsModalState extends ConsumerState<ProductsModal> {
                                 .setProduct(state.products[index]);
                             Navigator.pop(context);
                           },
-                          isSelected: ref
+                          isSelected:
+                              ref
                                   .watch(editStoriesProvider)
                                   .selectProduct
                                   ?.id ==
@@ -81,4 +82,3 @@ class _ProductsModalState extends ConsumerState<ProductsModal> {
     );
   }
 }
-

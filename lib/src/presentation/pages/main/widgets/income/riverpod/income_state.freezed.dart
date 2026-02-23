@@ -12,7 +12,8 @@ part of 'income_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$IncomeState {
@@ -43,22 +44,24 @@ mixin _$IncomeState {
 /// @nodoc
 abstract class $IncomeStateCopyWith<$Res> {
   factory $IncomeStateCopyWith(
-          IncomeState value, $Res Function(IncomeState) then) =
-      _$IncomeStateCopyWithImpl<$Res, IncomeState>;
+    IncomeState value,
+    $Res Function(IncomeState) then,
+  ) = _$IncomeStateCopyWithImpl<$Res, IncomeState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      String selectType,
-      IncomeCartResponse? incomeCart,
-      IncomeStatisticResponse? incomeStatistic,
-      List<IncomeChartResponse>? incomeCharts,
-      List<num> prices,
-      List<DateTime> time,
-      DateTime? start,
-      DateTime? end,
-      List<Expense>? expenses,
-      List<ExpenseType>? expenseTypes,
-      ExpenseDetailsIncome? expenseRevenue});
+  $Res call({
+    bool isLoading,
+    String selectType,
+    IncomeCartResponse? incomeCart,
+    IncomeStatisticResponse? incomeStatistic,
+    List<IncomeChartResponse>? incomeCharts,
+    List<num> prices,
+    List<DateTime> time,
+    DateTime? start,
+    DateTime? end,
+    List<Expense>? expenses,
+    List<ExpenseType>? expenseTypes,
+    ExpenseDetailsIncome? expenseRevenue,
+  });
 }
 
 /// @nodoc
@@ -89,56 +92,59 @@ class _$IncomeStateCopyWithImpl<$Res, $Val extends IncomeState>
     Object? expenseTypes = freezed,
     Object? expenseRevenue = freezed,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectType: null == selectType
-          ? _value.selectType
-          : selectType // ignore: cast_nullable_to_non_nullable
-              as String,
-      incomeCart: freezed == incomeCart
-          ? _value.incomeCart
-          : incomeCart // ignore: cast_nullable_to_non_nullable
-              as IncomeCartResponse?,
-      incomeStatistic: freezed == incomeStatistic
-          ? _value.incomeStatistic
-          : incomeStatistic // ignore: cast_nullable_to_non_nullable
-              as IncomeStatisticResponse?,
-      incomeCharts: freezed == incomeCharts
-          ? _value.incomeCharts
-          : incomeCharts // ignore: cast_nullable_to_non_nullable
-              as List<IncomeChartResponse>?,
-      prices: null == prices
-          ? _value.prices
-          : prices // ignore: cast_nullable_to_non_nullable
-              as List<num>,
-      time: null == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>,
-      start: freezed == start
-          ? _value.start
-          : start // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      end: freezed == end
-          ? _value.end
-          : end // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      expenses: freezed == expenses
-          ? _value.expenses
-          : expenses // ignore: cast_nullable_to_non_nullable
-              as List<Expense>?,
-      expenseTypes: freezed == expenseTypes
-          ? _value.expenseTypes
-          : expenseTypes // ignore: cast_nullable_to_non_nullable
-              as List<ExpenseType>?,
-      expenseRevenue: freezed == expenseRevenue
-          ? _value.expenseRevenue
-          : expenseRevenue // ignore: cast_nullable_to_non_nullable
-              as ExpenseDetailsIncome?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            selectType: null == selectType
+                ? _value.selectType
+                : selectType // ignore: cast_nullable_to_non_nullable
+                      as String,
+            incomeCart: freezed == incomeCart
+                ? _value.incomeCart
+                : incomeCart // ignore: cast_nullable_to_non_nullable
+                      as IncomeCartResponse?,
+            incomeStatistic: freezed == incomeStatistic
+                ? _value.incomeStatistic
+                : incomeStatistic // ignore: cast_nullable_to_non_nullable
+                      as IncomeStatisticResponse?,
+            incomeCharts: freezed == incomeCharts
+                ? _value.incomeCharts
+                : incomeCharts // ignore: cast_nullable_to_non_nullable
+                      as List<IncomeChartResponse>?,
+            prices: null == prices
+                ? _value.prices
+                : prices // ignore: cast_nullable_to_non_nullable
+                      as List<num>,
+            time: null == time
+                ? _value.time
+                : time // ignore: cast_nullable_to_non_nullable
+                      as List<DateTime>,
+            start: freezed == start
+                ? _value.start
+                : start // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            end: freezed == end
+                ? _value.end
+                : end // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            expenses: freezed == expenses
+                ? _value.expenses
+                : expenses // ignore: cast_nullable_to_non_nullable
+                      as List<Expense>?,
+            expenseTypes: freezed == expenseTypes
+                ? _value.expenseTypes
+                : expenseTypes // ignore: cast_nullable_to_non_nullable
+                      as List<ExpenseType>?,
+            expenseRevenue: freezed == expenseRevenue
+                ? _value.expenseRevenue
+                : expenseRevenue // ignore: cast_nullable_to_non_nullable
+                      as ExpenseDetailsIncome?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -146,23 +152,25 @@ class _$IncomeStateCopyWithImpl<$Res, $Val extends IncomeState>
 abstract class _$$IncomeStateImplCopyWith<$Res>
     implements $IncomeStateCopyWith<$Res> {
   factory _$$IncomeStateImplCopyWith(
-          _$IncomeStateImpl value, $Res Function(_$IncomeStateImpl) then) =
-      __$$IncomeStateImplCopyWithImpl<$Res>;
+    _$IncomeStateImpl value,
+    $Res Function(_$IncomeStateImpl) then,
+  ) = __$$IncomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      String selectType,
-      IncomeCartResponse? incomeCart,
-      IncomeStatisticResponse? incomeStatistic,
-      List<IncomeChartResponse>? incomeCharts,
-      List<num> prices,
-      List<DateTime> time,
-      DateTime? start,
-      DateTime? end,
-      List<Expense>? expenses,
-      List<ExpenseType>? expenseTypes,
-      ExpenseDetailsIncome? expenseRevenue});
+  $Res call({
+    bool isLoading,
+    String selectType,
+    IncomeCartResponse? incomeCart,
+    IncomeStatisticResponse? incomeStatistic,
+    List<IncomeChartResponse>? incomeCharts,
+    List<num> prices,
+    List<DateTime> time,
+    DateTime? start,
+    DateTime? end,
+    List<Expense>? expenses,
+    List<ExpenseType>? expenseTypes,
+    ExpenseDetailsIncome? expenseRevenue,
+  });
 }
 
 /// @nodoc
@@ -170,8 +178,9 @@ class __$$IncomeStateImplCopyWithImpl<$Res>
     extends _$IncomeStateCopyWithImpl<$Res, _$IncomeStateImpl>
     implements _$$IncomeStateImplCopyWith<$Res> {
   __$$IncomeStateImplCopyWithImpl(
-      _$IncomeStateImpl _value, $Res Function(_$IncomeStateImpl) _then)
-      : super(_value, _then);
+    _$IncomeStateImpl _value,
+    $Res Function(_$IncomeStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of IncomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -191,81 +200,83 @@ class __$$IncomeStateImplCopyWithImpl<$Res>
     Object? expenseTypes = freezed,
     Object? expenseRevenue = freezed,
   }) {
-    return _then(_$IncomeStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectType: null == selectType
-          ? _value.selectType
-          : selectType // ignore: cast_nullable_to_non_nullable
-              as String,
-      incomeCart: freezed == incomeCart
-          ? _value.incomeCart
-          : incomeCart // ignore: cast_nullable_to_non_nullable
-              as IncomeCartResponse?,
-      incomeStatistic: freezed == incomeStatistic
-          ? _value.incomeStatistic
-          : incomeStatistic // ignore: cast_nullable_to_non_nullable
-              as IncomeStatisticResponse?,
-      incomeCharts: freezed == incomeCharts
-          ? _value._incomeCharts
-          : incomeCharts // ignore: cast_nullable_to_non_nullable
-              as List<IncomeChartResponse>?,
-      prices: null == prices
-          ? _value._prices
-          : prices // ignore: cast_nullable_to_non_nullable
-              as List<num>,
-      time: null == time
-          ? _value._time
-          : time // ignore: cast_nullable_to_non_nullable
-              as List<DateTime>,
-      start: freezed == start
-          ? _value.start
-          : start // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      end: freezed == end
-          ? _value.end
-          : end // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      expenses: freezed == expenses
-          ? _value._expenses
-          : expenses // ignore: cast_nullable_to_non_nullable
-              as List<Expense>?,
-      expenseTypes: freezed == expenseTypes
-          ? _value._expenseTypes
-          : expenseTypes // ignore: cast_nullable_to_non_nullable
-              as List<ExpenseType>?,
-      expenseRevenue: freezed == expenseRevenue
-          ? _value.expenseRevenue
-          : expenseRevenue // ignore: cast_nullable_to_non_nullable
-              as ExpenseDetailsIncome?,
-    ));
+    return _then(
+      _$IncomeStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        selectType: null == selectType
+            ? _value.selectType
+            : selectType // ignore: cast_nullable_to_non_nullable
+                  as String,
+        incomeCart: freezed == incomeCart
+            ? _value.incomeCart
+            : incomeCart // ignore: cast_nullable_to_non_nullable
+                  as IncomeCartResponse?,
+        incomeStatistic: freezed == incomeStatistic
+            ? _value.incomeStatistic
+            : incomeStatistic // ignore: cast_nullable_to_non_nullable
+                  as IncomeStatisticResponse?,
+        incomeCharts: freezed == incomeCharts
+            ? _value._incomeCharts
+            : incomeCharts // ignore: cast_nullable_to_non_nullable
+                  as List<IncomeChartResponse>?,
+        prices: null == prices
+            ? _value._prices
+            : prices // ignore: cast_nullable_to_non_nullable
+                  as List<num>,
+        time: null == time
+            ? _value._time
+            : time // ignore: cast_nullable_to_non_nullable
+                  as List<DateTime>,
+        start: freezed == start
+            ? _value.start
+            : start // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        end: freezed == end
+            ? _value.end
+            : end // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        expenses: freezed == expenses
+            ? _value._expenses
+            : expenses // ignore: cast_nullable_to_non_nullable
+                  as List<Expense>?,
+        expenseTypes: freezed == expenseTypes
+            ? _value._expenseTypes
+            : expenseTypes // ignore: cast_nullable_to_non_nullable
+                  as List<ExpenseType>?,
+        expenseRevenue: freezed == expenseRevenue
+            ? _value.expenseRevenue
+            : expenseRevenue // ignore: cast_nullable_to_non_nullable
+                  as ExpenseDetailsIncome?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$IncomeStateImpl extends _IncomeState {
-  const _$IncomeStateImpl(
-      {this.isLoading = true,
-      this.selectType = TrKeys.month,
-      this.incomeCart = null,
-      this.incomeStatistic = null,
-      final List<IncomeChartResponse>? incomeCharts = const [],
-      final List<num> prices = const [],
-      final List<DateTime> time = const [],
-      this.start = null,
-      this.end = null,
-      final List<Expense>? expenses = const [],
-      final List<ExpenseType>? expenseTypes = const [],
-      this.expenseRevenue = const ExpenseDetailsIncome()})
-      : _incomeCharts = incomeCharts,
-        _prices = prices,
-        _time = time,
-        _expenses = expenses,
-        _expenseTypes = expenseTypes,
-        super._();
+  const _$IncomeStateImpl({
+    this.isLoading = true,
+    this.selectType = TrKeys.month,
+    this.incomeCart = null,
+    this.incomeStatistic = null,
+    final List<IncomeChartResponse>? incomeCharts = const [],
+    final List<num> prices = const [],
+    final List<DateTime> time = const [],
+    this.start = null,
+    this.end = null,
+    final List<Expense>? expenses = const [],
+    final List<ExpenseType>? expenseTypes = const [],
+    this.expenseRevenue = const ExpenseDetailsIncome(),
+  }) : _incomeCharts = incomeCharts,
+       _prices = prices,
+       _time = time,
+       _expenses = expenses,
+       _expenseTypes = expenseTypes,
+       super._();
 
   @override
   @JsonKey()
@@ -314,9 +325,9 @@ class _$IncomeStateImpl extends _IncomeState {
   @override
   @JsonKey()
   final DateTime? end;
-// Added expense-related fields with defaults
+  // Added expense-related fields with defaults
   final List<Expense>? _expenses;
-// Added expense-related fields with defaults
+  // Added expense-related fields with defaults
   @override
   @JsonKey()
   List<Expense>? get expenses {
@@ -360,34 +371,39 @@ class _$IncomeStateImpl extends _IncomeState {
                 other.incomeCart == incomeCart) &&
             (identical(other.incomeStatistic, incomeStatistic) ||
                 other.incomeStatistic == incomeStatistic) &&
-            const DeepCollectionEquality()
-                .equals(other._incomeCharts, _incomeCharts) &&
+            const DeepCollectionEquality().equals(
+              other._incomeCharts,
+              _incomeCharts,
+            ) &&
             const DeepCollectionEquality().equals(other._prices, _prices) &&
             const DeepCollectionEquality().equals(other._time, _time) &&
             (identical(other.start, start) || other.start == start) &&
             (identical(other.end, end) || other.end == end) &&
             const DeepCollectionEquality().equals(other._expenses, _expenses) &&
-            const DeepCollectionEquality()
-                .equals(other._expenseTypes, _expenseTypes) &&
+            const DeepCollectionEquality().equals(
+              other._expenseTypes,
+              _expenseTypes,
+            ) &&
             (identical(other.expenseRevenue, expenseRevenue) ||
                 other.expenseRevenue == expenseRevenue));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      selectType,
-      incomeCart,
-      incomeStatistic,
-      const DeepCollectionEquality().hash(_incomeCharts),
-      const DeepCollectionEquality().hash(_prices),
-      const DeepCollectionEquality().hash(_time),
-      start,
-      end,
-      const DeepCollectionEquality().hash(_expenses),
-      const DeepCollectionEquality().hash(_expenseTypes),
-      expenseRevenue);
+    runtimeType,
+    isLoading,
+    selectType,
+    incomeCart,
+    incomeStatistic,
+    const DeepCollectionEquality().hash(_incomeCharts),
+    const DeepCollectionEquality().hash(_prices),
+    const DeepCollectionEquality().hash(_time),
+    start,
+    end,
+    const DeepCollectionEquality().hash(_expenses),
+    const DeepCollectionEquality().hash(_expenseTypes),
+    expenseRevenue,
+  );
 
   /// Create a copy of IncomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -399,19 +415,20 @@ class _$IncomeStateImpl extends _IncomeState {
 }
 
 abstract class _IncomeState extends IncomeState {
-  const factory _IncomeState(
-      {final bool isLoading,
-      final String selectType,
-      final IncomeCartResponse? incomeCart,
-      final IncomeStatisticResponse? incomeStatistic,
-      final List<IncomeChartResponse>? incomeCharts,
-      final List<num> prices,
-      final List<DateTime> time,
-      final DateTime? start,
-      final DateTime? end,
-      final List<Expense>? expenses,
-      final List<ExpenseType>? expenseTypes,
-      final ExpenseDetailsIncome? expenseRevenue}) = _$IncomeStateImpl;
+  const factory _IncomeState({
+    final bool isLoading,
+    final String selectType,
+    final IncomeCartResponse? incomeCart,
+    final IncomeStatisticResponse? incomeStatistic,
+    final List<IncomeChartResponse>? incomeCharts,
+    final List<num> prices,
+    final List<DateTime> time,
+    final DateTime? start,
+    final DateTime? end,
+    final List<Expense>? expenses,
+    final List<ExpenseType>? expenseTypes,
+    final ExpenseDetailsIncome? expenseRevenue,
+  }) = _$IncomeStateImpl;
   const _IncomeState._() : super._();
 
   @override
@@ -446,4 +463,3 @@ abstract class _IncomeState extends IncomeState {
   _$$IncomeStateImplCopyWith<_$IncomeStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

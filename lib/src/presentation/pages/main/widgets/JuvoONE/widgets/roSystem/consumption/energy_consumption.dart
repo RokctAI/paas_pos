@@ -17,11 +17,7 @@ class EnergyConsumption extends StatelessWidget {
   Widget _buildEnergyItem(BuildContext context, String label, double value) {
     return Row(
       children: [
-        const Icon(
-          Remix.flashlight_line,
-          size: 24,
-          color: AppStyle.starColor,
-        ),
+        const Icon(Remix.flashlight_line, size: 24, color: AppStyle.starColor),
         const SizedBox(width: 8),
         Text(
           '$label: ${value.toStringAsFixed(2)} kWh',
@@ -36,20 +32,21 @@ class EnergyConsumption extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-      Text(
-      'Energy Consumption',
-      style: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-        color: AppStyle.grey[800],
-      ),
-    ),
-    const SizedBox(height: 8),
-    _buildEnergyItem(context, 'Daily Average', dailyAverage),
-    const SizedBox(height: 8),
-    _buildEnergyItem(context, 'This Month', thisMonth),
-    const SizedBox(height: 8),
-    _buildEnergyItem(context, 'Last Month', lastMonth),
-    ]);
-    }
+        Text(
+          'Energy Consumption',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: AppStyle.grey[800],
+          ),
+        ),
+        const SizedBox(height: 8),
+        _buildEnergyItem(context, 'Daily Average', dailyAverage),
+        const SizedBox(height: 8),
+        _buildEnergyItem(context, 'This Month', thisMonth),
+        const SizedBox(height: 8),
+        _buildEnergyItem(context, 'Last Month', lastMonth),
+      ],
+    );
+  }
 }

@@ -11,11 +11,7 @@ import '../../../../../../../components/components.dart';
 class DeliverymanItem extends StatelessWidget {
   final UserData user;
   final ValueChanged<String> onTap;
-  const DeliverymanItem({
-    super.key,
-    required this.user,
-    required this.onTap,
-  });
+  const DeliverymanItem({super.key, required this.user, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +25,7 @@ class DeliverymanItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-           12.horizontalSpace,
+          12.horizontalSpace,
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,8 +49,8 @@ class DeliverymanItem extends StatelessWidget {
                           AutoSizeText(
                             '${user.firstname} ${user.lastname ?? ''}',
                             style: GoogleFonts.inter(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w700
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w700,
                             ),
                             maxLines: 1,
                           ),
@@ -62,9 +58,9 @@ class DeliverymanItem extends StatelessWidget {
                           Text(
                             user.phone ?? '',
                             style: GoogleFonts.inter(
-                                fontSize: 16.sp, 
-                                color: AppStyle.selectedItemsText,
-                                fontWeight: FontWeight.w600
+                              fontSize: 16.sp,
+                              color: AppStyle.selectedItemsText,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           const Divider(height: 4),
@@ -100,8 +96,9 @@ class DeliverymanItem extends StatelessWidget {
                           Text(
                             user.email ?? '',
                             style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16.sp),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.sp,
+                            ),
                           ),
                         ],
                       ),
@@ -122,8 +119,9 @@ class DeliverymanItem extends StatelessWidget {
                         Text(
                           AppHelpers.getTranslation(user.gender ?? ""),
                           style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16.sp),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16.sp,
+                          ),
                         ),
                       ],
                     ),
@@ -138,4 +136,3 @@ class DeliverymanItem extends StatelessWidget {
     );
   }
 }
-

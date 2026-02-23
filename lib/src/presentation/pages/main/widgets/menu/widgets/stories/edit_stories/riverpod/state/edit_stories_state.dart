@@ -17,4 +17,3 @@ class EditStoriesState with _$EditStoriesState {
 
   const EditStoriesState._();
 }
-

@@ -28,10 +28,12 @@ extension Time on DateTime {
 
   TimeOfDay get toTime => TimeOfDay(hour: hour, minute: minute);
 
-  DateTime addTime(TimeOfDay time) => DateTime(year, month, day, time.hour, time.minute);
+  DateTime addTime(TimeOfDay time) =>
+      DateTime(year, month, day, time.hour, time.minute);
 }
+
 extension ExtendedIterable<E> on Iterable<E> {
-   mapIndexed<T>(T Function(E e, int i) f) {
+  mapIndexed<T>(T Function(E e, int i) f) {
     var i = 0;
     return map((e) => f(e, i++)).toList();
   }
@@ -94,4 +96,3 @@ extension BoolParsing on String {
     return this == "true" || this == "1";
   }
 }
-

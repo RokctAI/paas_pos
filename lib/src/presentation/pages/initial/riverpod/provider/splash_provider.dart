@@ -7,4 +7,3 @@ import '../state/splash_state.dart';
 final splashProvider = StateNotifierProvider<SplashNotifier, SplashState>(
   (ref) => SplashNotifier(settingsRepository),
 );
-

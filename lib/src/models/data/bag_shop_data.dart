@@ -7,4 +7,3 @@ class BagShopData {
 
   BagShopData({required this.shopData, required this.bagProducts});
 }
-

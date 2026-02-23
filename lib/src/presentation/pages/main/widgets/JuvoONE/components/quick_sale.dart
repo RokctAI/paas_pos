@@ -20,7 +20,7 @@ import '../riverpod/provider/quickOrdersRepositoryProvider.dart';
 
 class QuickSale extends ConsumerStatefulWidget {
   static final GlobalKey<_QuickSaleState> globalKey =
-  GlobalKey<_QuickSaleState>();
+      GlobalKey<_QuickSaleState>();
 
   const QuickSale({super.key = null}) : super();
 
@@ -103,12 +103,17 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
     final deliveredOrders = ref.read(deliveredOrdersProvider).orders;
 
     final latestOrder = deliveredOrders
-        .where((order) =>
-    order.userId == userId &&
-        order.note != null &&
-        !order.note!.contains('no_user_order'))
-        .sorted((a, b) => (b.toJson()[AppConstants.dateAt] as String)
-        .compareTo(a.toJson()[AppConstants.dateAt] as String))
+        .where(
+          (order) =>
+              order.userId == userId &&
+              order.note != null &&
+              !order.note!.contains('no_user_order'),
+        )
+        .sorted(
+          (a, b) => (b.toJson()[AppConstants.dateAt] as String).compareTo(
+            a.toJson()[AppConstants.dateAt] as String,
+          ),
+        )
         .firstOrNull;
 
     if (latestOrder != null && latestOrder.note != null) {
@@ -143,7 +148,7 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
         final users = ref.read(rightSideProvider).users;
         try {
           final userIndex = users.indexWhere(
-                (user) => user.id.toString() == query,
+            (user) => user.id.toString() == query,
           );
 
           if (userIndex != -1) {
@@ -198,41 +203,44 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
       _isProcessing = true;
     });
 
-    final ordersResult = await ref.read(ordersRepositoryProvider).getUserDeliveredOrders(
-      userId: user.id!,
-      page: 1,
-    );
+    final ordersResult = await ref
+        .read(ordersRepositoryProvider)
+        .getUserDeliveredOrders(userId: user.id!, page: 1);
 
     ordersResult.when(
-        success: (response) {
-          // Get delivered orders from the response
-          final deliveredOrders = response.data?.orders ?? [];
+      success: (response) {
+        // Get delivered orders from the response
+        final deliveredOrders = response.data?.orders ?? [];
 
-          // Find the latest order with the note
-          final latestOrder = deliveredOrders
-              .where((order) =>
-          order.note != null &&
-              !order.note!.contains('no_user_order'))
-              .toList()
-              .firstWhereOrNull((order) {
-            if (order.note == null || !order.note!.contains('|')) return false;
-            final numberPart = order.note!.split('|').last.trim();
-            return int.tryParse(numberPart) != null;
-          });
+        // Find the latest order with the note
+        final latestOrder = deliveredOrders
+            .where(
+              (order) =>
+                  order.note != null && !order.note!.contains('no_user_order'),
+            )
+            .toList()
+            .firstWhereOrNull((order) {
+              if (order.note == null || !order.note!.contains('|'))
+                return false;
+              final numberPart = order.note!.split('|').last.trim();
+              return int.tryParse(numberPart) != null;
+            });
 
-          // Calculate next number
-          int nextNumber = 1;
-          if (latestOrder?.note != null) {
-            final numberPart = latestOrder!.note!.split('|').last.trim();
-            final orderNumber = int.tryParse(numberPart) ?? 0;
-            nextNumber = orderNumber >= AppConstants.quickSaleCouponTapCount ? 1 : orderNumber + 1;
-          }
+        // Calculate next number
+        int nextNumber = 1;
+        if (latestOrder?.note != null) {
+          final numberPart = latestOrder!.note!.split('|').last.trim();
+          final orderNumber = int.tryParse(numberPart) ?? 0;
+          nextNumber = orderNumber >= AppConstants.quickSaleCouponTapCount
+              ? 1
+              : orderNumber + 1;
+        }
 
-          setState(() {
-            _tapCount = nextNumber;
-            _isProcessing = false;
-          });
-        },
+        setState(() {
+          _tapCount = nextNumber;
+          _isProcessing = false;
+        });
+      },
       failure: (error) {
         setState(() {
           _isProcessing = false;
@@ -285,10 +293,7 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
         decoration: BoxDecoration(
           color: _getCounterColor(_tapCount),
           borderRadius: BorderRadius.circular(10.r),
-          border: Border.all(
-            color: AppStyle.black,
-            width: 1,
-          ),
+          border: Border.all(color: AppStyle.black, width: 1),
         ),
         child: Center(
           child: Text(
@@ -340,12 +345,12 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
       currentState = ref.read(rightSideProvider);
 
       final cashPayment = currentState.payments.firstWhere(
-            (payment) => payment.tag?.toLowerCase() == 'cash',
+        (payment) => payment.tag?.toLowerCase() == 'cash',
         orElse: () => currentState.payments.first,
       );
 
       final defaultCurrency = currentState.currencies.firstWhere(
-            (element) => element.isDefault ?? false,
+        (element) => element.isDefault ?? false,
         orElse: () => currentState.currencies.first,
       );
 
@@ -372,18 +377,20 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
         }
       }
 
-      final note = _isNoUserMode ? "no_user_order_$_tapCount" : _tapCount.toString();
+      final note = _isNoUserMode
+          ? "no_user_order_$_tapCount"
+          : _tapCount.toString();
 
       // Create a temporary BagData without storing it
       final tempBag = BagData(
-          selectedPayment: cashPayment,
-          selectedCurrency: defaultCurrency,
-          bagProducts: [
-            BagProductData(
-              stockId: currentStockId,
-              quantity: AppConstants.quickSaleDefaultQuantity,
-            )
-          ]
+        selectedPayment: cashPayment,
+        selectedCurrency: defaultCurrency,
+        bagProducts: [
+          BagProductData(
+            stockId: currentStockId,
+            quantity: AppConstants.quickSaleDefaultQuantity,
+          ),
+        ],
       );
 
       // Set the order note before creating the order
@@ -399,7 +406,8 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
         location: LocationData(latitude: 0, longitude: 0),
         address: AddressModel(address: ""),
         deliveryDate: DateFormat('yyyy-MM-dd').format(now),
-        deliveryTime: "${currentTime.hour.toString().padLeft(2, '0')}:${currentTime.minute.toString().padLeft(2, '0')}",
+        deliveryTime:
+            "${currentTime.hour.toString().padLeft(2, '0')}:${currentTime.minute.toString().padLeft(2, '0')}",
         currencyId: defaultCurrency.id ?? 0,
         rate: defaultCurrency.rate ?? 1,
         coupon: couponCode,
@@ -468,7 +476,6 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
           _checkUserOrderHistory(next.selectedUser!);
           setState(() {
             _isNoUserMode = false;
-
           });
         } else {
           setState(() {
@@ -487,98 +494,111 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Stack(children: [
-            _showDropdown
-                ? IconButton(
-              onPressed: _isProcessing ? null : _toggleDropdown,
-              icon: Icon(Remix.close_line,
-                  color: AppStyle.black, size: 24),
-            )
-                : MaterialButton(
-              onPressed: _isProcessing ? null : _toggleDropdown,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.w),
-                child: StatefulBuilder(
-                  builder: (context, setState) {
-                    return Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        StreamBuilder<String>(
-                          stream: Stream.periodic(
-                              const Duration(milliseconds: 150),
-                                  (count) {
-                                if (_showingThankYou) {
-                                  return AppHelpers.getTranslation(
-                                      TrKeys.thankYouForOrder);
-                                }
-                                const text = "QUICKSALE";
-                                if (count < 33) return text;
-                                int backspaceCount = count - 33;
-                                if (backspaceCount >= text.length)
-                                  return "";
-                                return text.substring(
-                                    0, text.length - backspaceCount - 1);
-                              }).take(42),
-                          initialData: _showingThankYou
-                              ? AppHelpers.getTranslation(
-                              TrKeys.thankYouForOrder)
-                              : "QUICKSALE",
-                          builder: (context, snapshot) {
-                            return snapshot.data!.isEmpty
-                                ? Icon(Remix.shopping_bag_4_fill,
-                                size: 24, color: AppStyle.black)
-                                : RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text:
-                                    snapshot.data!.length >= 5
-                                        ? snapshot.data!
-                                        .substring(0, 5)
-                                        : snapshot.data!,
-                                    style: GoogleFonts.inter(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 16.sp,
-                                      color: AppStyle.black,
-                                    ),
-                                  ),
-                                  if (snapshot.data!.length > 5)
-                                    TextSpan(
-                                      text: snapshot.data!
-                                          .substring(5),
-                                      style: GoogleFonts.inter(
-                                        fontWeight:
-                                        FontWeight.w500,
-                                        fontSize: 16.sp,
-                                        color: AppStyle.black,
-                                      ),
-                                    ),
-                                ],
-                              ),
+          Stack(
+            children: [
+              _showDropdown
+                  ? IconButton(
+                      onPressed: _isProcessing ? null : _toggleDropdown,
+                      icon: Icon(
+                        Remix.close_line,
+                        color: AppStyle.black,
+                        size: 24,
+                      ),
+                    )
+                  : MaterialButton(
+                      onPressed: _isProcessing ? null : _toggleDropdown,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.w),
+                        child: StatefulBuilder(
+                          builder: (context, setState) {
+                            return Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                StreamBuilder<String>(
+                                  stream: Stream.periodic(
+                                    const Duration(milliseconds: 150),
+                                    (count) {
+                                      if (_showingThankYou) {
+                                        return AppHelpers.getTranslation(
+                                          TrKeys.thankYouForOrder,
+                                        );
+                                      }
+                                      const text = "QUICKSALE";
+                                      if (count < 33) return text;
+                                      int backspaceCount = count - 33;
+                                      if (backspaceCount >= text.length)
+                                        return "";
+                                      return text.substring(
+                                        0,
+                                        text.length - backspaceCount - 1,
+                                      );
+                                    },
+                                  ).take(42),
+                                  initialData: _showingThankYou
+                                      ? AppHelpers.getTranslation(
+                                          TrKeys.thankYouForOrder,
+                                        )
+                                      : "QUICKSALE",
+                                  builder: (context, snapshot) {
+                                    return snapshot.data!.isEmpty
+                                        ? Icon(
+                                            Remix.shopping_bag_4_fill,
+                                            size: 24,
+                                            color: AppStyle.black,
+                                          )
+                                        : RichText(
+                                            text: TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text:
+                                                      snapshot.data!.length >= 5
+                                                      ? snapshot.data!
+                                                            .substring(0, 5)
+                                                      : snapshot.data!,
+                                                  style: GoogleFonts.inter(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 16.sp,
+                                                    color: AppStyle.black,
+                                                  ),
+                                                ),
+                                                if (snapshot.data!.length > 5)
+                                                  TextSpan(
+                                                    text: snapshot.data!
+                                                        .substring(5),
+                                                    style: GoogleFonts.inter(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 16.sp,
+                                                      color: AppStyle.black,
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
+                                          );
+                                  },
+                                ),
+                              ],
                             );
                           },
                         ),
-                      ],
-                    );
-                  },
-                ),
-              ),
-            ),
-            if (_isProcessing)
-              const Positioned.fill(
-                child: Center(
-                  child: SizedBox(
-                    width: 16,
-                    height: 16,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      valueColor:
-                      AlwaysStoppedAnimation<Color>(AppStyle.blueBonus),
+                      ),
+                    ),
+              if (_isProcessing)
+                const Positioned.fill(
+                  child: Center(
+                    child: SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          AppStyle.blueBonus,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-          ],
+            ],
           ),
           if (_showDropdown)
             Row(
@@ -598,8 +618,9 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
                     padding: EdgeInsets.only(left: 16.r),
                     child: CustomDropdown(
                       hintText: AppHelpers.getTranslation(TrKeys.selectUser),
-                      searchHintText:
-                      AppHelpers.getTranslation(TrKeys.searchUser),
+                      searchHintText: AppHelpers.getTranslation(
+                        TrKeys.searchUser,
+                      ),
                       dropDownType: DropDownType.users,
                       onChanged: (value) => _handleUserQuery(value, context),
                       initialValue: selectedUser?.firstname ?? '',

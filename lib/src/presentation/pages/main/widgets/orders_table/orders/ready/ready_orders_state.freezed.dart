@@ -12,7 +12,8 @@ part of 'ready_orders_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$ReadyOrdersState {
@@ -32,15 +33,17 @@ mixin _$ReadyOrdersState {
 /// @nodoc
 abstract class $ReadyOrdersStateCopyWith<$Res> {
   factory $ReadyOrdersStateCopyWith(
-          ReadyOrdersState value, $Res Function(ReadyOrdersState) then) =
-      _$ReadyOrdersStateCopyWithImpl<$Res, ReadyOrdersState>;
+    ReadyOrdersState value,
+    $Res Function(ReadyOrdersState) then,
+  ) = _$ReadyOrdersStateCopyWithImpl<$Res, ReadyOrdersState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool hasMore,
-      List<OrderData> orders,
-      int totalCount,
-      String query});
+  $Res call({
+    bool isLoading,
+    bool hasMore,
+    List<OrderData> orders,
+    int totalCount,
+    String query,
+  });
 }
 
 /// @nodoc
@@ -64,54 +67,60 @@ class _$ReadyOrdersStateCopyWithImpl<$Res, $Val extends ReadyOrdersState>
     Object? totalCount = null,
     Object? query = null,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      orders: null == orders
-          ? _value.orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<OrderData>,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            hasMore: null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            orders: null == orders
+                ? _value.orders
+                : orders // ignore: cast_nullable_to_non_nullable
+                      as List<OrderData>,
+            totalCount: null == totalCount
+                ? _value.totalCount
+                : totalCount // ignore: cast_nullable_to_non_nullable
+                      as int,
+            query: null == query
+                ? _value.query
+                : query // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$ReadyOrdersStateImplCopyWith<$Res>
     implements $ReadyOrdersStateCopyWith<$Res> {
-  factory _$$ReadyOrdersStateImplCopyWith(_$ReadyOrdersStateImpl value,
-          $Res Function(_$ReadyOrdersStateImpl) then) =
-      __$$ReadyOrdersStateImplCopyWithImpl<$Res>;
+  factory _$$ReadyOrdersStateImplCopyWith(
+    _$ReadyOrdersStateImpl value,
+    $Res Function(_$ReadyOrdersStateImpl) then,
+  ) = __$$ReadyOrdersStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool hasMore,
-      List<OrderData> orders,
-      int totalCount,
-      String query});
+  $Res call({
+    bool isLoading,
+    bool hasMore,
+    List<OrderData> orders,
+    int totalCount,
+    String query,
+  });
 }
 
 /// @nodoc
 class __$$ReadyOrdersStateImplCopyWithImpl<$Res>
     extends _$ReadyOrdersStateCopyWithImpl<$Res, _$ReadyOrdersStateImpl>
     implements _$$ReadyOrdersStateImplCopyWith<$Res> {
-  __$$ReadyOrdersStateImplCopyWithImpl(_$ReadyOrdersStateImpl _value,
-      $Res Function(_$ReadyOrdersStateImpl) _then)
-      : super(_value, _then);
+  __$$ReadyOrdersStateImplCopyWithImpl(
+    _$ReadyOrdersStateImpl _value,
+    $Res Function(_$ReadyOrdersStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ReadyOrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -124,42 +133,44 @@ class __$$ReadyOrdersStateImplCopyWithImpl<$Res>
     Object? totalCount = null,
     Object? query = null,
   }) {
-    return _then(_$ReadyOrdersStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      orders: null == orders
-          ? _value._orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<OrderData>,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$ReadyOrdersStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        orders: null == orders
+            ? _value._orders
+            : orders // ignore: cast_nullable_to_non_nullable
+                  as List<OrderData>,
+        totalCount: null == totalCount
+            ? _value.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        query: null == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ReadyOrdersStateImpl extends _ReadyOrdersState {
-  const _$ReadyOrdersStateImpl(
-      {this.isLoading = false,
-      this.hasMore = true,
-      final List<OrderData> orders = const [],
-      this.totalCount = 0,
-      this.query = ''})
-      : _orders = orders,
-        super._();
+  const _$ReadyOrdersStateImpl({
+    this.isLoading = false,
+    this.hasMore = true,
+    final List<OrderData> orders = const [],
+    this.totalCount = 0,
+    this.query = '',
+  }) : _orders = orders,
+       super._();
 
   @override
   @JsonKey()
@@ -203,8 +214,14 @@ class _$ReadyOrdersStateImpl extends _ReadyOrdersState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, hasMore,
-      const DeepCollectionEquality().hash(_orders), totalCount, query);
+  int get hashCode => Object.hash(
+    runtimeType,
+    isLoading,
+    hasMore,
+    const DeepCollectionEquality().hash(_orders),
+    totalCount,
+    query,
+  );
 
   /// Create a copy of ReadyOrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -213,16 +230,19 @@ class _$ReadyOrdersStateImpl extends _ReadyOrdersState {
   @pragma('vm:prefer-inline')
   _$$ReadyOrdersStateImplCopyWith<_$ReadyOrdersStateImpl> get copyWith =>
       __$$ReadyOrdersStateImplCopyWithImpl<_$ReadyOrdersStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _ReadyOrdersState extends ReadyOrdersState {
-  const factory _ReadyOrdersState(
-      {final bool isLoading,
-      final bool hasMore,
-      final List<OrderData> orders,
-      final int totalCount,
-      final String query}) = _$ReadyOrdersStateImpl;
+  const factory _ReadyOrdersState({
+    final bool isLoading,
+    final bool hasMore,
+    final List<OrderData> orders,
+    final int totalCount,
+    final String query,
+  }) = _$ReadyOrdersStateImpl;
   const _ReadyOrdersState._() : super._();
 
   @override
@@ -243,4 +263,3 @@ abstract class _ReadyOrdersState extends ReadyOrdersState {
   _$$ReadyOrdersStateImplCopyWith<_$ReadyOrdersStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

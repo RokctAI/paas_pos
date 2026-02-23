@@ -9,7 +9,6 @@ import '../maintenance/maintenance_progress.dart';
 import '../models/data/maintenance_record.dart';
 import '../models/data/ro_system_model.dart';
 
-
 class MaintenanceApiService {
   static const String _baseUrl = '${AppConstants.baseUrl}api/v1/rest/resources';
 
@@ -83,30 +82,44 @@ class MaintenanceApiService {
       final headers = await _getHeaders();
       final shopId = await _getShopId();
 
-      final validatedFilters = system.filters.map((filter) => Filter(
-        id: filter.id,
-        type: filter.type,
-        location: filter.location,
-        installationDate: _validateInstallationDate(filter.installationDate),
-      )).toList();
+      final validatedFilters = system.filters
+          .map(
+            (filter) => Filter(
+              id: filter.id,
+              type: filter.type,
+              location: filter.location,
+              installationDate: _validateInstallationDate(
+                filter.installationDate,
+              ),
+            ),
+          )
+          .toList();
 
-      final validatedVessels = system.vessels.map((vessel) => Vessel(
-        id: vessel.id,
-        type: vessel.type,
-        installationDate: _validateInstallationDate(vessel.installationDate),
-        lastMaintenanceDate: vessel.lastMaintenanceDate != null
-            ? _validateInstallationDate(vessel.lastMaintenanceDate!)
-            : null,
-        currentStage: vessel.currentStage,
-        maintenanceStartTime: vessel.maintenanceStartTime,
-      )).toList();
+      final validatedVessels = system.vessels
+          .map(
+            (vessel) => Vessel(
+              id: vessel.id,
+              type: vessel.type,
+              installationDate: _validateInstallationDate(
+                vessel.installationDate,
+              ),
+              lastMaintenanceDate: vessel.lastMaintenanceDate != null
+                  ? _validateInstallationDate(vessel.lastMaintenanceDate!)
+                  : null,
+              currentStage: vessel.currentStage,
+              maintenanceStartTime: vessel.maintenanceStartTime,
+            ),
+          )
+          .toList();
 
       final payload = {
         'shop_id': shopId,
         'filters': validatedFilters.map((f) => f.toJson()).toList(),
         'vessels': validatedVessels.map((v) => v.toJson()).toList(),
         'membrane_count': system.membraneCount,
-        'membrane_installation_date': _validateInstallationDate(system.membraneInstallationDate).toIso8601String(),
+        'membrane_installation_date': _validateInstallationDate(
+          system.membraneInstallationDate,
+        ).toIso8601String(),
       };
 
       if (kDebugMode) {
@@ -147,10 +160,14 @@ class MaintenanceApiService {
           print('Error: ${errorResponse['message'] ?? 'Unknown error'}');
         }
         if (kDebugMode) {
-          print('Validation Errors: ${errorResponse['errors'] ?? 'No specific errors'}');
+          print(
+            'Validation Errors: ${errorResponse['errors'] ?? 'No specific errors'}',
+          );
         }
 
-        throw Exception('Failed to save RO system: ${response.statusCode}\nError: ${errorResponse['message'] ?? errorResponse}');
+        throw Exception(
+          'Failed to save RO system: ${response.statusCode}\nError: ${errorResponse['message'] ?? errorResponse}',
+        );
       }
     } catch (e, stackTrace) {
       if (kDebugMode) {
@@ -183,8 +200,12 @@ class MaintenanceApiService {
     );
   }
 
-  static Future<MaintenanceProgress?> getMaintenanceProgress(String vesselId) async {
-    final savedProgress = await LocalStorage.getItem('maintenance_progress_$vesselId');
+  static Future<MaintenanceProgress?> getMaintenanceProgress(
+    String vesselId,
+  ) async {
+    final savedProgress = await LocalStorage.getItem(
+      'maintenance_progress_$vesselId',
+    );
     if (savedProgress != null) {
       try {
         final Map<String, dynamic> json = jsonDecode(savedProgress);
@@ -202,7 +223,8 @@ class MaintenanceApiService {
     await LocalStorage.removeItem('maintenance_progress_$vesselId');
   }
 
-  static Future<void> updateMembrane(int systemId, {
+  static Future<void> updateMembrane(
+    int systemId, {
     required int membraneCount,
     required DateTime installationDate,
   }) async {
@@ -224,7 +246,9 @@ class MaintenanceApiService {
       );
 
       if (response.statusCode != 200) {
-        throw Exception('Failed to update membrane settings: ${response.statusCode}');
+        throw Exception(
+          'Failed to update membrane settings: ${response.statusCode}',
+        );
       }
     } catch (e) {
       if (kDebugMode) {
@@ -294,7 +318,9 @@ class MaintenanceApiService {
         if (kDebugMode) {
           print('Error Details: $errorBody');
         }
-        throw Exception('Failed to update maintenance date: ${response.statusCode}\n${errorBody['message'] ?? ''}');
+        throw Exception(
+          'Failed to update maintenance date: ${response.statusCode}\n${errorBody['message'] ?? ''}',
+        );
       }
     } catch (e, stackTrace) {
       if (kDebugMode) {
@@ -307,9 +333,11 @@ class MaintenanceApiService {
     }
   }
 
-
   // Update these methods to use http instead of dio
-  static Future<void> updateVesselStage(String vesselId, MaintenanceStage stage) async {
+  static Future<void> updateVesselStage(
+    String vesselId,
+    MaintenanceStage stage,
+  ) async {
     if (!await _checkConnectivity()) {
       throw Exception('No internet connection');
     }
@@ -324,12 +352,14 @@ class MaintenanceApiService {
         body: json.encode({
           'shop_id': shopId,
           'stage': stage.name,
-          'start_time': DateTime.now().toIso8601String()
+          'start_time': DateTime.now().toIso8601String(),
         }),
       );
 
       if (response.statusCode != 200) {
-        throw Exception('Failed to update vessel stage: ${response.statusCode}');
+        throw Exception(
+          'Failed to update vessel stage: ${response.statusCode}',
+        );
       }
     } catch (e) {
       if (kDebugMode) {
@@ -339,7 +369,9 @@ class MaintenanceApiService {
     }
   }
 
-  static Future<List<MaintenanceRecord>> getVesselHistory(String vesselId) async {
+  static Future<List<MaintenanceRecord>> getVesselHistory(
+    String vesselId,
+  ) async {
     if (!await _checkConnectivity()) {
       throw Exception('No internet connection');
     }
@@ -362,13 +394,20 @@ class MaintenanceApiService {
 
         final List<dynamic> records = data['data'] as List<dynamic>;
         return records
-            .where((record) =>
-        record['type'] == 'vessel' &&
-            record['reference_id'] == vesselId)
-            .map((record) => MaintenanceRecord.fromJson(record as Map<String, dynamic>))
+            .where(
+              (record) =>
+                  record['type'] == 'vessel' &&
+                  record['reference_id'] == vesselId,
+            )
+            .map(
+              (record) =>
+                  MaintenanceRecord.fromJson(record as Map<String, dynamic>),
+            )
             .toList();
       } else {
-        throw Exception('Failed to load vessel history: ${response.statusCode}');
+        throw Exception(
+          'Failed to load vessel history: ${response.statusCode}',
+        );
       }
     } catch (e) {
       if (kDebugMode) {
@@ -377,7 +416,6 @@ class MaintenanceApiService {
       rethrow;
     }
   }
-
 
   static Future<List<MaintenanceRecord>> getMaintenanceRecords({
     required String type,
@@ -407,9 +445,16 @@ class MaintenanceApiService {
         }
 
         final List<dynamic> records = data['data'] as List<dynamic>;
-        return records.map((record) => MaintenanceRecord.fromJson(record as Map<String, dynamic>)).toList();
+        return records
+            .map(
+              (record) =>
+                  MaintenanceRecord.fromJson(record as Map<String, dynamic>),
+            )
+            .toList();
       } else {
-        throw Exception('Failed to load maintenance records: ${response.statusCode}');
+        throw Exception(
+          'Failed to load maintenance records: ${response.statusCode}',
+        );
       }
     } catch (e) {
       if (kDebugMode) {
@@ -418,6 +463,7 @@ class MaintenanceApiService {
       rethrow;
     }
   }
+
   static DateTime _validateInstallationDate(DateTime date) {
     final now = DateTime.now();
     // If date is in the past, set it to 30 days from now
@@ -446,9 +492,9 @@ class MaintenanceApiService {
 
       // Process vessel maintenance
       for (final vessel in system.vessels) {
-        final vesselRecords = records.where(
-              (r) => r.type == 'vessel' && r.referenceId == vessel.id,
-        ).toList();
+        final vesselRecords = records
+            .where((r) => r.type == 'vessel' && r.referenceId == vessel.id)
+            .toList();
 
         if (vesselRecords.isNotEmpty) {
           // Get the earliest future maintenance date
@@ -458,13 +504,17 @@ class MaintenanceApiService {
               .toList();
 
           if (futureDates.isNotEmpty) {
-            final nextMaintenance = futureDates.reduce((a, b) => a.isBefore(b) ? a : b);
+            final nextMaintenance = futureDates.reduce(
+              (a, b) => a.isBefore(b) ? a : b,
+            );
             if (nextMaintenance.isBefore(now.add(const Duration(days: 7)))) {
-              items.add(MaintenanceItem(
-                type: vessel.type,
-                id: vessel.id,
-                maintenanceType: 'maintenance',
-              ));
+              items.add(
+                MaintenanceItem(
+                  type: vessel.type,
+                  id: vessel.id,
+                  maintenanceType: 'maintenance',
+                ),
+              );
             }
           }
         }
@@ -472,9 +522,9 @@ class MaintenanceApiService {
 
       // Process filter maintenance
       for (final filter in system.filters) {
-        final filterRecords = records.where(
-              (r) => r.type == 'filter' && r.referenceId == filter.id,
-        ).toList();
+        final filterRecords = records
+            .where((r) => r.type == 'filter' && r.referenceId == filter.id)
+            .toList();
 
         if (filterRecords.isNotEmpty) {
           // Get the earliest future replacement date
@@ -484,22 +534,28 @@ class MaintenanceApiService {
               .toList();
 
           if (futureDates.isNotEmpty) {
-            final nextReplacement = futureDates.reduce((a, b) => a.isBefore(b) ? a : b);
+            final nextReplacement = futureDates.reduce(
+              (a, b) => a.isBefore(b) ? a : b,
+            );
             if (nextReplacement.isBefore(now.add(const Duration(days: 7)))) {
-              items.add(MaintenanceItem(
-                type: 'filter',
-                id: filter.id,
-                maintenanceType: 'replacement',
-                filterLocation: filter.location,
-                filterType: filter.type,
-              ));
+              items.add(
+                MaintenanceItem(
+                  type: 'filter',
+                  id: filter.id,
+                  maintenanceType: 'replacement',
+                  filterLocation: filter.location,
+                  filterType: filter.type,
+                ),
+              );
             }
           }
         }
       }
 
       // Process membrane maintenance similarly
-      final membraneRecords = records.where((r) => r.type == 'membrane').toList();
+      final membraneRecords = records
+          .where((r) => r.type == 'membrane')
+          .toList();
       if (membraneRecords.isNotEmpty) {
         final futureDates = membraneRecords
             .map((r) => r.maintenanceDate)
@@ -507,14 +563,20 @@ class MaintenanceApiService {
             .toList();
 
         if (futureDates.isNotEmpty) {
-          final nextMembraneMaintenance = futureDates.reduce((a, b) => a.isBefore(b) ? a : b);
-          if (nextMembraneMaintenance.isBefore(now.add(const Duration(days: 7)))) {
-            items.add(MaintenanceItem(
-              type: 'membrane',
-              id: 'membrane_${system.id}',
-              maintenanceType: 'replacement',
-              membraneCount: system.membraneCount,
-            ));
+          final nextMembraneMaintenance = futureDates.reduce(
+            (a, b) => a.isBefore(b) ? a : b,
+          );
+          if (nextMembraneMaintenance.isBefore(
+            now.add(const Duration(days: 7)),
+          )) {
+            items.add(
+              MaintenanceItem(
+                type: 'membrane',
+                id: 'membrane_${system.id}',
+                maintenanceType: 'replacement',
+                membraneCount: system.membraneCount,
+              ),
+            );
           }
         }
       }
@@ -568,7 +630,10 @@ class MaintenanceApiService {
     }
   }
 
-  static Future<List<MaintenanceRecord>> getMaintenanceRecordsByShopId(int shopId, {String? type}) async {
+  static Future<List<MaintenanceRecord>> getMaintenanceRecordsByShopId(
+    int shopId, {
+    String? type,
+  }) async {
     if (!await _checkConnectivity()) {
       throw Exception('No internet connection');
     }
@@ -582,12 +647,11 @@ class MaintenanceApiService {
         queryParams['type'] = type;
       }
 
-      final uri = Uri.parse('$_baseUrl/maintenance-records').replace(queryParameters: queryParams);
+      final uri = Uri.parse(
+        '$_baseUrl/maintenance-records',
+      ).replace(queryParameters: queryParams);
 
-      final response = await http.get(
-        uri,
-        headers: headers,
-      );
+      final response = await http.get(uri, headers: headers);
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
@@ -596,9 +660,16 @@ class MaintenanceApiService {
         }
 
         final List<dynamic> records = data['data'] as List<dynamic>;
-        return records.map((record) => MaintenanceRecord.fromJson(record as Map<String, dynamic>)).toList();
+        return records
+            .map(
+              (record) =>
+                  MaintenanceRecord.fromJson(record as Map<String, dynamic>),
+            )
+            .toList();
       } else {
-        throw Exception('Failed to load maintenance records: ${response.statusCode}');
+        throw Exception(
+          'Failed to load maintenance records: ${response.statusCode}',
+        );
       }
     } catch (e) {
       if (kDebugMode) {

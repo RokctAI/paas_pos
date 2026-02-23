@@ -15,4 +15,3 @@ class DeliveryZoneState with _$DeliveryZoneState {
 
   const DeliveryZoneState._();
 }
-

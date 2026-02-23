@@ -38,4 +38,3 @@ class ShopsPaginateResponse {
     return map;
   }
 }
-

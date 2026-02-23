@@ -12,7 +12,8 @@ part of 'sale_history_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$SaleHistoryState {
@@ -35,18 +36,20 @@ mixin _$SaleHistoryState {
 /// @nodoc
 abstract class $SaleHistoryStateCopyWith<$Res> {
   factory $SaleHistoryStateCopyWith(
-          SaleHistoryState value, $Res Function(SaleHistoryState) then) =
-      _$SaleHistoryStateCopyWithImpl<$Res, SaleHistoryState>;
+    SaleHistoryState value,
+    $Res Function(SaleHistoryState) then,
+  ) = _$SaleHistoryStateCopyWithImpl<$Res, SaleHistoryState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isMoreLoading,
-      int selectIndex,
-      bool hasMore,
-      SaleCartResponse? saleCart,
-      List<SaleHistoryModel> listHistory,
-      List<SaleHistoryModel> listDriver,
-      List<SaleHistoryModel> listToday});
+  $Res call({
+    bool isLoading,
+    bool isMoreLoading,
+    int selectIndex,
+    bool hasMore,
+    SaleCartResponse? saleCart,
+    List<SaleHistoryModel> listHistory,
+    List<SaleHistoryModel> listDriver,
+    List<SaleHistoryModel> listToday,
+  });
 }
 
 /// @nodoc
@@ -73,69 +76,75 @@ class _$SaleHistoryStateCopyWithImpl<$Res, $Val extends SaleHistoryState>
     Object? listDriver = null,
     Object? listToday = null,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMoreLoading: null == isMoreLoading
-          ? _value.isMoreLoading
-          : isMoreLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectIndex: null == selectIndex
-          ? _value.selectIndex
-          : selectIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      saleCart: freezed == saleCart
-          ? _value.saleCart
-          : saleCart // ignore: cast_nullable_to_non_nullable
-              as SaleCartResponse?,
-      listHistory: null == listHistory
-          ? _value.listHistory
-          : listHistory // ignore: cast_nullable_to_non_nullable
-              as List<SaleHistoryModel>,
-      listDriver: null == listDriver
-          ? _value.listDriver
-          : listDriver // ignore: cast_nullable_to_non_nullable
-              as List<SaleHistoryModel>,
-      listToday: null == listToday
-          ? _value.listToday
-          : listToday // ignore: cast_nullable_to_non_nullable
-              as List<SaleHistoryModel>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isMoreLoading: null == isMoreLoading
+                ? _value.isMoreLoading
+                : isMoreLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            selectIndex: null == selectIndex
+                ? _value.selectIndex
+                : selectIndex // ignore: cast_nullable_to_non_nullable
+                      as int,
+            hasMore: null == hasMore
+                ? _value.hasMore
+                : hasMore // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            saleCart: freezed == saleCart
+                ? _value.saleCart
+                : saleCart // ignore: cast_nullable_to_non_nullable
+                      as SaleCartResponse?,
+            listHistory: null == listHistory
+                ? _value.listHistory
+                : listHistory // ignore: cast_nullable_to_non_nullable
+                      as List<SaleHistoryModel>,
+            listDriver: null == listDriver
+                ? _value.listDriver
+                : listDriver // ignore: cast_nullable_to_non_nullable
+                      as List<SaleHistoryModel>,
+            listToday: null == listToday
+                ? _value.listToday
+                : listToday // ignore: cast_nullable_to_non_nullable
+                      as List<SaleHistoryModel>,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$SaleHistoryStateImplCopyWith<$Res>
     implements $SaleHistoryStateCopyWith<$Res> {
-  factory _$$SaleHistoryStateImplCopyWith(_$SaleHistoryStateImpl value,
-          $Res Function(_$SaleHistoryStateImpl) then) =
-      __$$SaleHistoryStateImplCopyWithImpl<$Res>;
+  factory _$$SaleHistoryStateImplCopyWith(
+    _$SaleHistoryStateImpl value,
+    $Res Function(_$SaleHistoryStateImpl) then,
+  ) = __$$SaleHistoryStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isMoreLoading,
-      int selectIndex,
-      bool hasMore,
-      SaleCartResponse? saleCart,
-      List<SaleHistoryModel> listHistory,
-      List<SaleHistoryModel> listDriver,
-      List<SaleHistoryModel> listToday});
+  $Res call({
+    bool isLoading,
+    bool isMoreLoading,
+    int selectIndex,
+    bool hasMore,
+    SaleCartResponse? saleCart,
+    List<SaleHistoryModel> listHistory,
+    List<SaleHistoryModel> listDriver,
+    List<SaleHistoryModel> listToday,
+  });
 }
 
 /// @nodoc
 class __$$SaleHistoryStateImplCopyWithImpl<$Res>
     extends _$SaleHistoryStateCopyWithImpl<$Res, _$SaleHistoryStateImpl>
     implements _$$SaleHistoryStateImplCopyWith<$Res> {
-  __$$SaleHistoryStateImplCopyWithImpl(_$SaleHistoryStateImpl _value,
-      $Res Function(_$SaleHistoryStateImpl) _then)
-      : super(_value, _then);
+  __$$SaleHistoryStateImplCopyWithImpl(
+    _$SaleHistoryStateImpl _value,
+    $Res Function(_$SaleHistoryStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of SaleHistoryState
   /// with the given fields replaced by the non-null parameter values.
@@ -151,59 +160,61 @@ class __$$SaleHistoryStateImplCopyWithImpl<$Res>
     Object? listDriver = null,
     Object? listToday = null,
   }) {
-    return _then(_$SaleHistoryStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMoreLoading: null == isMoreLoading
-          ? _value.isMoreLoading
-          : isMoreLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectIndex: null == selectIndex
-          ? _value.selectIndex
-          : selectIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      saleCart: freezed == saleCart
-          ? _value.saleCart
-          : saleCart // ignore: cast_nullable_to_non_nullable
-              as SaleCartResponse?,
-      listHistory: null == listHistory
-          ? _value._listHistory
-          : listHistory // ignore: cast_nullable_to_non_nullable
-              as List<SaleHistoryModel>,
-      listDriver: null == listDriver
-          ? _value._listDriver
-          : listDriver // ignore: cast_nullable_to_non_nullable
-              as List<SaleHistoryModel>,
-      listToday: null == listToday
-          ? _value._listToday
-          : listToday // ignore: cast_nullable_to_non_nullable
-              as List<SaleHistoryModel>,
-    ));
+    return _then(
+      _$SaleHistoryStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isMoreLoading: null == isMoreLoading
+            ? _value.isMoreLoading
+            : isMoreLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        selectIndex: null == selectIndex
+            ? _value.selectIndex
+            : selectIndex // ignore: cast_nullable_to_non_nullable
+                  as int,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        saleCart: freezed == saleCart
+            ? _value.saleCart
+            : saleCart // ignore: cast_nullable_to_non_nullable
+                  as SaleCartResponse?,
+        listHistory: null == listHistory
+            ? _value._listHistory
+            : listHistory // ignore: cast_nullable_to_non_nullable
+                  as List<SaleHistoryModel>,
+        listDriver: null == listDriver
+            ? _value._listDriver
+            : listDriver // ignore: cast_nullable_to_non_nullable
+                  as List<SaleHistoryModel>,
+        listToday: null == listToday
+            ? _value._listToday
+            : listToday // ignore: cast_nullable_to_non_nullable
+                  as List<SaleHistoryModel>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$SaleHistoryStateImpl extends _SaleHistoryState {
-  const _$SaleHistoryStateImpl(
-      {this.isLoading = true,
-      this.isMoreLoading = false,
-      this.selectIndex = 2,
-      this.hasMore = true,
-      this.saleCart = null,
-      final List<SaleHistoryModel> listHistory = const [],
-      final List<SaleHistoryModel> listDriver = const [],
-      final List<SaleHistoryModel> listToday = const []})
-      : _listHistory = listHistory,
-        _listDriver = listDriver,
-        _listToday = listToday,
-        super._();
+  const _$SaleHistoryStateImpl({
+    this.isLoading = true,
+    this.isMoreLoading = false,
+    this.selectIndex = 2,
+    this.hasMore = true,
+    this.saleCart = null,
+    final List<SaleHistoryModel> listHistory = const [],
+    final List<SaleHistoryModel> listDriver = const [],
+    final List<SaleHistoryModel> listToday = const [],
+  }) : _listHistory = listHistory,
+       _listDriver = listDriver,
+       _listToday = listToday,
+       super._();
 
   @override
   @JsonKey()
@@ -266,25 +277,32 @@ class _$SaleHistoryStateImpl extends _SaleHistoryState {
             (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
             (identical(other.saleCart, saleCart) ||
                 other.saleCart == saleCart) &&
-            const DeepCollectionEquality()
-                .equals(other._listHistory, _listHistory) &&
-            const DeepCollectionEquality()
-                .equals(other._listDriver, _listDriver) &&
-            const DeepCollectionEquality()
-                .equals(other._listToday, _listToday));
+            const DeepCollectionEquality().equals(
+              other._listHistory,
+              _listHistory,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._listDriver,
+              _listDriver,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._listToday,
+              _listToday,
+            ));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      isMoreLoading,
-      selectIndex,
-      hasMore,
-      saleCart,
-      const DeepCollectionEquality().hash(_listHistory),
-      const DeepCollectionEquality().hash(_listDriver),
-      const DeepCollectionEquality().hash(_listToday));
+    runtimeType,
+    isLoading,
+    isMoreLoading,
+    selectIndex,
+    hasMore,
+    saleCart,
+    const DeepCollectionEquality().hash(_listHistory),
+    const DeepCollectionEquality().hash(_listDriver),
+    const DeepCollectionEquality().hash(_listToday),
+  );
 
   /// Create a copy of SaleHistoryState
   /// with the given fields replaced by the non-null parameter values.
@@ -293,19 +311,22 @@ class _$SaleHistoryStateImpl extends _SaleHistoryState {
   @pragma('vm:prefer-inline')
   _$$SaleHistoryStateImplCopyWith<_$SaleHistoryStateImpl> get copyWith =>
       __$$SaleHistoryStateImplCopyWithImpl<_$SaleHistoryStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _SaleHistoryState extends SaleHistoryState {
-  const factory _SaleHistoryState(
-      {final bool isLoading,
-      final bool isMoreLoading,
-      final int selectIndex,
-      final bool hasMore,
-      final SaleCartResponse? saleCart,
-      final List<SaleHistoryModel> listHistory,
-      final List<SaleHistoryModel> listDriver,
-      final List<SaleHistoryModel> listToday}) = _$SaleHistoryStateImpl;
+  const factory _SaleHistoryState({
+    final bool isLoading,
+    final bool isMoreLoading,
+    final int selectIndex,
+    final bool hasMore,
+    final SaleCartResponse? saleCart,
+    final List<SaleHistoryModel> listHistory,
+    final List<SaleHistoryModel> listDriver,
+    final List<SaleHistoryModel> listToday,
+  }) = _$SaleHistoryStateImpl;
   const _SaleHistoryState._() : super._();
 
   @override
@@ -332,4 +353,3 @@ abstract class _SaleHistoryState extends SaleHistoryState {
   _$$SaleHistoryStateImplCopyWith<_$SaleHistoryStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

@@ -12,7 +12,8 @@ part of 'notification_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$NotificationState {
@@ -45,26 +46,28 @@ mixin _$NotificationState {
 /// @nodoc
 abstract class $NotificationStateCopyWith<$Res> {
   factory $NotificationStateCopyWith(
-          NotificationState value, $Res Function(NotificationState) then) =
-      _$NotificationStateCopyWithImpl<$Res, NotificationState>;
+    NotificationState value,
+    $Res Function(NotificationState) then,
+  ) = _$NotificationStateCopyWithImpl<$Res, NotificationState>;
   @useResult
-  $Res call(
-      {List<TransactionModel> transaction,
-      int totalCount,
-      bool isTransactionsLoading,
-      bool hasMoreTransactions,
-      List<NotificationModel> notifications,
-      CountNotificationModel? countOfNotifications,
-      int totalCountNotification,
-      bool isNotificationLoading,
-      bool isMoreNotificationLoading,
-      bool hasMoreNotification,
-      bool isReadAllLoading,
-      bool isShowUserLoading,
-      bool isAllNotificationsLoading,
-      bool isFirstTimeNotification,
-      bool isFirstTransaction,
-      int total});
+  $Res call({
+    List<TransactionModel> transaction,
+    int totalCount,
+    bool isTransactionsLoading,
+    bool hasMoreTransactions,
+    List<NotificationModel> notifications,
+    CountNotificationModel? countOfNotifications,
+    int totalCountNotification,
+    bool isNotificationLoading,
+    bool isMoreNotificationLoading,
+    bool hasMoreNotification,
+    bool isReadAllLoading,
+    bool isShowUserLoading,
+    bool isAllNotificationsLoading,
+    bool isFirstTimeNotification,
+    bool isFirstTransaction,
+    int total,
+  });
 }
 
 /// @nodoc
@@ -99,109 +102,115 @@ class _$NotificationStateCopyWithImpl<$Res, $Val extends NotificationState>
     Object? isFirstTransaction = null,
     Object? total = null,
   }) {
-    return _then(_value.copyWith(
-      transaction: null == transaction
-          ? _value.transaction
-          : transaction // ignore: cast_nullable_to_non_nullable
-              as List<TransactionModel>,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      isTransactionsLoading: null == isTransactionsLoading
-          ? _value.isTransactionsLoading
-          : isTransactionsLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMoreTransactions: null == hasMoreTransactions
-          ? _value.hasMoreTransactions
-          : hasMoreTransactions // ignore: cast_nullable_to_non_nullable
-              as bool,
-      notifications: null == notifications
-          ? _value.notifications
-          : notifications // ignore: cast_nullable_to_non_nullable
-              as List<NotificationModel>,
-      countOfNotifications: freezed == countOfNotifications
-          ? _value.countOfNotifications
-          : countOfNotifications // ignore: cast_nullable_to_non_nullable
-              as CountNotificationModel?,
-      totalCountNotification: null == totalCountNotification
-          ? _value.totalCountNotification
-          : totalCountNotification // ignore: cast_nullable_to_non_nullable
-              as int,
-      isNotificationLoading: null == isNotificationLoading
-          ? _value.isNotificationLoading
-          : isNotificationLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMoreNotificationLoading: null == isMoreNotificationLoading
-          ? _value.isMoreNotificationLoading
-          : isMoreNotificationLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMoreNotification: null == hasMoreNotification
-          ? _value.hasMoreNotification
-          : hasMoreNotification // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReadAllLoading: null == isReadAllLoading
-          ? _value.isReadAllLoading
-          : isReadAllLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShowUserLoading: null == isShowUserLoading
-          ? _value.isShowUserLoading
-          : isShowUserLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAllNotificationsLoading: null == isAllNotificationsLoading
-          ? _value.isAllNotificationsLoading
-          : isAllNotificationsLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFirstTimeNotification: null == isFirstTimeNotification
-          ? _value.isFirstTimeNotification
-          : isFirstTimeNotification // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFirstTransaction: null == isFirstTransaction
-          ? _value.isFirstTransaction
-          : isFirstTransaction // ignore: cast_nullable_to_non_nullable
-              as bool,
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            transaction: null == transaction
+                ? _value.transaction
+                : transaction // ignore: cast_nullable_to_non_nullable
+                      as List<TransactionModel>,
+            totalCount: null == totalCount
+                ? _value.totalCount
+                : totalCount // ignore: cast_nullable_to_non_nullable
+                      as int,
+            isTransactionsLoading: null == isTransactionsLoading
+                ? _value.isTransactionsLoading
+                : isTransactionsLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            hasMoreTransactions: null == hasMoreTransactions
+                ? _value.hasMoreTransactions
+                : hasMoreTransactions // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            notifications: null == notifications
+                ? _value.notifications
+                : notifications // ignore: cast_nullable_to_non_nullable
+                      as List<NotificationModel>,
+            countOfNotifications: freezed == countOfNotifications
+                ? _value.countOfNotifications
+                : countOfNotifications // ignore: cast_nullable_to_non_nullable
+                      as CountNotificationModel?,
+            totalCountNotification: null == totalCountNotification
+                ? _value.totalCountNotification
+                : totalCountNotification // ignore: cast_nullable_to_non_nullable
+                      as int,
+            isNotificationLoading: null == isNotificationLoading
+                ? _value.isNotificationLoading
+                : isNotificationLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isMoreNotificationLoading: null == isMoreNotificationLoading
+                ? _value.isMoreNotificationLoading
+                : isMoreNotificationLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            hasMoreNotification: null == hasMoreNotification
+                ? _value.hasMoreNotification
+                : hasMoreNotification // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isReadAllLoading: null == isReadAllLoading
+                ? _value.isReadAllLoading
+                : isReadAllLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isShowUserLoading: null == isShowUserLoading
+                ? _value.isShowUserLoading
+                : isShowUserLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isAllNotificationsLoading: null == isAllNotificationsLoading
+                ? _value.isAllNotificationsLoading
+                : isAllNotificationsLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isFirstTimeNotification: null == isFirstTimeNotification
+                ? _value.isFirstTimeNotification
+                : isFirstTimeNotification // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isFirstTransaction: null == isFirstTransaction
+                ? _value.isFirstTransaction
+                : isFirstTransaction // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            total: null == total
+                ? _value.total
+                : total // ignore: cast_nullable_to_non_nullable
+                      as int,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$NotificationStateImplCopyWith<$Res>
     implements $NotificationStateCopyWith<$Res> {
-  factory _$$NotificationStateImplCopyWith(_$NotificationStateImpl value,
-          $Res Function(_$NotificationStateImpl) then) =
-      __$$NotificationStateImplCopyWithImpl<$Res>;
+  factory _$$NotificationStateImplCopyWith(
+    _$NotificationStateImpl value,
+    $Res Function(_$NotificationStateImpl) then,
+  ) = __$$NotificationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<TransactionModel> transaction,
-      int totalCount,
-      bool isTransactionsLoading,
-      bool hasMoreTransactions,
-      List<NotificationModel> notifications,
-      CountNotificationModel? countOfNotifications,
-      int totalCountNotification,
-      bool isNotificationLoading,
-      bool isMoreNotificationLoading,
-      bool hasMoreNotification,
-      bool isReadAllLoading,
-      bool isShowUserLoading,
-      bool isAllNotificationsLoading,
-      bool isFirstTimeNotification,
-      bool isFirstTransaction,
-      int total});
+  $Res call({
+    List<TransactionModel> transaction,
+    int totalCount,
+    bool isTransactionsLoading,
+    bool hasMoreTransactions,
+    List<NotificationModel> notifications,
+    CountNotificationModel? countOfNotifications,
+    int totalCountNotification,
+    bool isNotificationLoading,
+    bool isMoreNotificationLoading,
+    bool hasMoreNotification,
+    bool isReadAllLoading,
+    bool isShowUserLoading,
+    bool isAllNotificationsLoading,
+    bool isFirstTimeNotification,
+    bool isFirstTransaction,
+    int total,
+  });
 }
 
 /// @nodoc
 class __$$NotificationStateImplCopyWithImpl<$Res>
     extends _$NotificationStateCopyWithImpl<$Res, _$NotificationStateImpl>
     implements _$$NotificationStateImplCopyWith<$Res> {
-  __$$NotificationStateImplCopyWithImpl(_$NotificationStateImpl _value,
-      $Res Function(_$NotificationStateImpl) _then)
-      : super(_value, _then);
+  __$$NotificationStateImplCopyWithImpl(
+    _$NotificationStateImpl _value,
+    $Res Function(_$NotificationStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
@@ -225,98 +234,100 @@ class __$$NotificationStateImplCopyWithImpl<$Res>
     Object? isFirstTransaction = null,
     Object? total = null,
   }) {
-    return _then(_$NotificationStateImpl(
-      transaction: null == transaction
-          ? _value._transaction
-          : transaction // ignore: cast_nullable_to_non_nullable
-              as List<TransactionModel>,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      isTransactionsLoading: null == isTransactionsLoading
-          ? _value.isTransactionsLoading
-          : isTransactionsLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMoreTransactions: null == hasMoreTransactions
-          ? _value.hasMoreTransactions
-          : hasMoreTransactions // ignore: cast_nullable_to_non_nullable
-              as bool,
-      notifications: null == notifications
-          ? _value._notifications
-          : notifications // ignore: cast_nullable_to_non_nullable
-              as List<NotificationModel>,
-      countOfNotifications: freezed == countOfNotifications
-          ? _value.countOfNotifications
-          : countOfNotifications // ignore: cast_nullable_to_non_nullable
-              as CountNotificationModel?,
-      totalCountNotification: null == totalCountNotification
-          ? _value.totalCountNotification
-          : totalCountNotification // ignore: cast_nullable_to_non_nullable
-              as int,
-      isNotificationLoading: null == isNotificationLoading
-          ? _value.isNotificationLoading
-          : isNotificationLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMoreNotificationLoading: null == isMoreNotificationLoading
-          ? _value.isMoreNotificationLoading
-          : isMoreNotificationLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMoreNotification: null == hasMoreNotification
-          ? _value.hasMoreNotification
-          : hasMoreNotification // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReadAllLoading: null == isReadAllLoading
-          ? _value.isReadAllLoading
-          : isReadAllLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShowUserLoading: null == isShowUserLoading
-          ? _value.isShowUserLoading
-          : isShowUserLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isAllNotificationsLoading: null == isAllNotificationsLoading
-          ? _value.isAllNotificationsLoading
-          : isAllNotificationsLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFirstTimeNotification: null == isFirstTimeNotification
-          ? _value.isFirstTimeNotification
-          : isFirstTimeNotification // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFirstTransaction: null == isFirstTransaction
-          ? _value.isFirstTransaction
-          : isFirstTransaction // ignore: cast_nullable_to_non_nullable
-              as bool,
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _$NotificationStateImpl(
+        transaction: null == transaction
+            ? _value._transaction
+            : transaction // ignore: cast_nullable_to_non_nullable
+                  as List<TransactionModel>,
+        totalCount: null == totalCount
+            ? _value.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isTransactionsLoading: null == isTransactionsLoading
+            ? _value.isTransactionsLoading
+            : isTransactionsLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        hasMoreTransactions: null == hasMoreTransactions
+            ? _value.hasMoreTransactions
+            : hasMoreTransactions // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        notifications: null == notifications
+            ? _value._notifications
+            : notifications // ignore: cast_nullable_to_non_nullable
+                  as List<NotificationModel>,
+        countOfNotifications: freezed == countOfNotifications
+            ? _value.countOfNotifications
+            : countOfNotifications // ignore: cast_nullable_to_non_nullable
+                  as CountNotificationModel?,
+        totalCountNotification: null == totalCountNotification
+            ? _value.totalCountNotification
+            : totalCountNotification // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isNotificationLoading: null == isNotificationLoading
+            ? _value.isNotificationLoading
+            : isNotificationLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isMoreNotificationLoading: null == isMoreNotificationLoading
+            ? _value.isMoreNotificationLoading
+            : isMoreNotificationLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        hasMoreNotification: null == hasMoreNotification
+            ? _value.hasMoreNotification
+            : hasMoreNotification // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isReadAllLoading: null == isReadAllLoading
+            ? _value.isReadAllLoading
+            : isReadAllLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isShowUserLoading: null == isShowUserLoading
+            ? _value.isShowUserLoading
+            : isShowUserLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isAllNotificationsLoading: null == isAllNotificationsLoading
+            ? _value.isAllNotificationsLoading
+            : isAllNotificationsLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isFirstTimeNotification: null == isFirstTimeNotification
+            ? _value.isFirstTimeNotification
+            : isFirstTimeNotification // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isFirstTransaction: null == isFirstTransaction
+            ? _value.isFirstTransaction
+            : isFirstTransaction // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        total: null == total
+            ? _value.total
+            : total // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$NotificationStateImpl extends _NotificationState {
-  const _$NotificationStateImpl(
-      {final List<TransactionModel> transaction = const [],
-      this.totalCount = 0,
-      this.isTransactionsLoading = false,
-      this.hasMoreTransactions = true,
-      final List<NotificationModel> notifications = const [],
-      this.countOfNotifications = null,
-      this.totalCountNotification = 0,
-      this.isNotificationLoading = false,
-      this.isMoreNotificationLoading = false,
-      this.hasMoreNotification = true,
-      this.isReadAllLoading = false,
-      this.isShowUserLoading = false,
-      this.isAllNotificationsLoading = false,
-      this.isFirstTimeNotification = false,
-      this.isFirstTransaction = false,
-      this.total = 0})
-      : _transaction = transaction,
-        _notifications = notifications,
-        super._();
+  const _$NotificationStateImpl({
+    final List<TransactionModel> transaction = const [],
+    this.totalCount = 0,
+    this.isTransactionsLoading = false,
+    this.hasMoreTransactions = true,
+    final List<NotificationModel> notifications = const [],
+    this.countOfNotifications = null,
+    this.totalCountNotification = 0,
+    this.isNotificationLoading = false,
+    this.isMoreNotificationLoading = false,
+    this.hasMoreNotification = true,
+    this.isReadAllLoading = false,
+    this.isShowUserLoading = false,
+    this.isAllNotificationsLoading = false,
+    this.isFirstTimeNotification = false,
+    this.isFirstTransaction = false,
+    this.total = 0,
+  }) : _transaction = transaction,
+       _notifications = notifications,
+       super._();
 
   final List<TransactionModel> _transaction;
   @override
@@ -389,24 +400,30 @@ class _$NotificationStateImpl extends _NotificationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NotificationStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other._transaction, _transaction) &&
+            const DeepCollectionEquality().equals(
+              other._transaction,
+              _transaction,
+            ) &&
             (identical(other.totalCount, totalCount) ||
                 other.totalCount == totalCount) &&
             (identical(other.isTransactionsLoading, isTransactionsLoading) ||
                 other.isTransactionsLoading == isTransactionsLoading) &&
             (identical(other.hasMoreTransactions, hasMoreTransactions) ||
                 other.hasMoreTransactions == hasMoreTransactions) &&
-            const DeepCollectionEquality()
-                .equals(other._notifications, _notifications) &&
+            const DeepCollectionEquality().equals(
+              other._notifications,
+              _notifications,
+            ) &&
             (identical(other.countOfNotifications, countOfNotifications) ||
                 other.countOfNotifications == countOfNotifications) &&
             (identical(other.totalCountNotification, totalCountNotification) ||
                 other.totalCountNotification == totalCountNotification) &&
             (identical(other.isNotificationLoading, isNotificationLoading) ||
                 other.isNotificationLoading == isNotificationLoading) &&
-            (identical(other.isMoreNotificationLoading,
-                    isMoreNotificationLoading) ||
+            (identical(
+                  other.isMoreNotificationLoading,
+                  isMoreNotificationLoading,
+                ) ||
                 other.isMoreNotificationLoading == isMoreNotificationLoading) &&
             (identical(other.hasMoreNotification, hasMoreNotification) ||
                 other.hasMoreNotification == hasMoreNotification) &&
@@ -414,11 +431,15 @@ class _$NotificationStateImpl extends _NotificationState {
                 other.isReadAllLoading == isReadAllLoading) &&
             (identical(other.isShowUserLoading, isShowUserLoading) ||
                 other.isShowUserLoading == isShowUserLoading) &&
-            (identical(other.isAllNotificationsLoading,
-                    isAllNotificationsLoading) ||
+            (identical(
+                  other.isAllNotificationsLoading,
+                  isAllNotificationsLoading,
+                ) ||
                 other.isAllNotificationsLoading == isAllNotificationsLoading) &&
             (identical(
-                    other.isFirstTimeNotification, isFirstTimeNotification) ||
+                  other.isFirstTimeNotification,
+                  isFirstTimeNotification,
+                ) ||
                 other.isFirstTimeNotification == isFirstTimeNotification) &&
             (identical(other.isFirstTransaction, isFirstTransaction) ||
                 other.isFirstTransaction == isFirstTransaction) &&
@@ -427,23 +448,24 @@ class _$NotificationStateImpl extends _NotificationState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_transaction),
-      totalCount,
-      isTransactionsLoading,
-      hasMoreTransactions,
-      const DeepCollectionEquality().hash(_notifications),
-      countOfNotifications,
-      totalCountNotification,
-      isNotificationLoading,
-      isMoreNotificationLoading,
-      hasMoreNotification,
-      isReadAllLoading,
-      isShowUserLoading,
-      isAllNotificationsLoading,
-      isFirstTimeNotification,
-      isFirstTransaction,
-      total);
+    runtimeType,
+    const DeepCollectionEquality().hash(_transaction),
+    totalCount,
+    isTransactionsLoading,
+    hasMoreTransactions,
+    const DeepCollectionEquality().hash(_notifications),
+    countOfNotifications,
+    totalCountNotification,
+    isNotificationLoading,
+    isMoreNotificationLoading,
+    hasMoreNotification,
+    isReadAllLoading,
+    isShowUserLoading,
+    isAllNotificationsLoading,
+    isFirstTimeNotification,
+    isFirstTransaction,
+    total,
+  );
 
   /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.
@@ -452,27 +474,30 @@ class _$NotificationStateImpl extends _NotificationState {
   @pragma('vm:prefer-inline')
   _$$NotificationStateImplCopyWith<_$NotificationStateImpl> get copyWith =>
       __$$NotificationStateImplCopyWithImpl<_$NotificationStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _NotificationState extends NotificationState {
-  const factory _NotificationState(
-      {final List<TransactionModel> transaction,
-      final int totalCount,
-      final bool isTransactionsLoading,
-      final bool hasMoreTransactions,
-      final List<NotificationModel> notifications,
-      final CountNotificationModel? countOfNotifications,
-      final int totalCountNotification,
-      final bool isNotificationLoading,
-      final bool isMoreNotificationLoading,
-      final bool hasMoreNotification,
-      final bool isReadAllLoading,
-      final bool isShowUserLoading,
-      final bool isAllNotificationsLoading,
-      final bool isFirstTimeNotification,
-      final bool isFirstTransaction,
-      final int total}) = _$NotificationStateImpl;
+  const factory _NotificationState({
+    final List<TransactionModel> transaction,
+    final int totalCount,
+    final bool isTransactionsLoading,
+    final bool hasMoreTransactions,
+    final List<NotificationModel> notifications,
+    final CountNotificationModel? countOfNotifications,
+    final int totalCountNotification,
+    final bool isNotificationLoading,
+    final bool isMoreNotificationLoading,
+    final bool hasMoreNotification,
+    final bool isReadAllLoading,
+    final bool isShowUserLoading,
+    final bool isAllNotificationsLoading,
+    final bool isFirstTimeNotification,
+    final bool isFirstTransaction,
+    final int total,
+  }) = _$NotificationStateImpl;
   const _NotificationState._() : super._();
 
   @override
@@ -515,4 +540,3 @@ abstract class _NotificationState extends NotificationState {
   _$$NotificationStateImplCopyWith<_$NotificationStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

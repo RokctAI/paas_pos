@@ -14,7 +14,6 @@ class UsersPaginateResponse {
       });
     }
     _meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
-
   }
 
   List<UserData>? _users;
@@ -25,7 +24,6 @@ class UsersPaginateResponse {
 
   List<UserData>? get users => _users;
   Meta? get meta => _meta;
-
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -38,4 +36,3 @@ class UsersPaginateResponse {
     return map;
   }
 }
-

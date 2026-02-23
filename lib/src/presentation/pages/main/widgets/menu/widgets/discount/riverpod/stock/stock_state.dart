@@ -11,4 +11,3 @@ class StockState with _$StockState {
 
   const StockState._();
 }
-

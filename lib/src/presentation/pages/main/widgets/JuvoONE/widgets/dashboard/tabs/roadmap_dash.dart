@@ -14,11 +14,7 @@ class AppRoadmapScreen extends StatefulWidget {
   final String? appId;
   final String? appName;
 
-  const AppRoadmapScreen({
-    super.key,
-    this.appId,
-    this.appName,
-  });
+  const AppRoadmapScreen({super.key, this.appId, this.appName});
 
   @override
   _AppRoadmapScreenState createState() => _AppRoadmapScreenState();
@@ -28,7 +24,6 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
   String? _selectedVersionId;
   late RoadmapProvider _roadmapProvider;
   late TaskProvider _taskProvider;
-
 
   @override
   void initState() {
@@ -122,13 +117,13 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
                 Expanded(
                   child: _selectedVersionId != null
                       ? _buildVersionContent(
-                    _selectedVersionId!,
-                    roadmapProvider,
-                    taskProvider,
-                  )
+                          _selectedVersionId!,
+                          roadmapProvider,
+                          taskProvider,
+                        )
                       : const Center(
-                    child: Text('Select a version to view details'),
-                  ),
+                          child: Text('Select a version to view details'),
+                        ),
                 ),
               ],
             );
@@ -210,24 +205,29 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
     RoadmapProvider roadmapProvider,
     TaskProvider taskProvider,
   ) {
-    final version =
-        roadmapProvider.versions.firstWhere((v) => v.id == versionId);
+    final version = roadmapProvider.versions.firstWhere(
+      (v) => v.id == versionId,
+    );
 
     // Filter tasks for this version
     final versionTasks = taskProvider.tasks
-        .where((task) =>
-            task.roadmapVersion == version.versionNumber &&
-            task.appId == widget.appId)
+        .where(
+          (task) =>
+              task.roadmapVersion == version.versionNumber &&
+              task.appId == widget.appId,
+        )
         .toList();
 
     // Group tasks by status
     final Map<String, List<TodoTask>> tasksByStatus = {
       'Todo': versionTasks.where((task) => task.status == 'Todo').toList(),
-      'In Progress':
-          versionTasks.where((task) => task.status == 'In Progress').toList(),
+      'In Progress': versionTasks
+          .where((task) => task.status == 'In Progress')
+          .toList(),
       'Done': versionTasks.where((task) => task.status == 'Done').toList(),
-      'Blocked':
-          versionTasks.where((task) => task.status == 'Blocked').toList(),
+      'Blocked': versionTasks
+          .where((task) => task.status == 'Blocked')
+          .toList(),
     };
 
     return Column(
@@ -255,9 +255,7 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
                   if (version.releaseDate != null)
                     Text(
                       'Target Release: ${version.releaseDate!.day}/${version.releaseDate!.month}/${version.releaseDate!.year}',
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                      ),
+                      style: TextStyle(color: Colors.grey.shade600),
                     ),
                 ],
               ),
@@ -278,9 +276,7 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
             ),
           ),
         const SizedBox(height: 8),
-        Expanded(
-          child: _buildKanbanBoard(tasksByStatus),
-        ),
+        Expanded(child: _buildKanbanBoard(tasksByStatus)),
       ],
     );
   }
@@ -290,7 +286,10 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
       children: [
         _buildKanbanColumn('Todo', tasksByStatus['Todo']!, Colors.grey),
         _buildKanbanColumn(
-            'In Progress', tasksByStatus['In Progress']!, Colors.blue),
+          'In Progress',
+          tasksByStatus['In Progress']!,
+          Colors.blue,
+        ),
         _buildKanbanColumn('Done', tasksByStatus['Done']!, Colors.green),
         _buildKanbanColumn('Blocked', tasksByStatus['Blocked']!, Colors.red),
       ],
@@ -319,15 +318,14 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
                 const SizedBox(width: 8),
                 Text(
                   title,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: color,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: color),
                 ),
                 const SizedBox(width: 8),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: color.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(12),
@@ -416,9 +414,7 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
                   Expanded(
                     child: Text(
                       task.title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -428,10 +424,7 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
                   padding: const EdgeInsets.only(top: 8, left: 20),
                   child: Text(
                     task.description!,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey.shade600,
-                    ),
+                    style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -483,9 +476,7 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AddRoadmapVersionDialog(
-          appId: widget.appId!,
-        );
+        return AddRoadmapVersionDialog(appId: widget.appId!);
       },
     );
   }
@@ -514,9 +505,10 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
       return;
     }
 
-    final version = Provider.of<RoadmapProvider>(context, listen: false)
-        .versions
-        .firstWhere((v) => v.id == _selectedVersionId);
+    final version = Provider.of<RoadmapProvider>(
+      context,
+      listen: false,
+    ).versions.firstWhere((v) => v.id == _selectedVersionId);
 
     showDialog(
       context: context,
@@ -534,12 +526,8 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AddTaskDialog(
-          initialTask: task,
-          isEditing: true,
-        );
+        return AddTaskDialog(initialTask: task, isEditing: true);
       },
     );
   }
 }
-

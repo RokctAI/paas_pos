@@ -113,10 +113,7 @@ class _AddPillarDialogState extends State<AddPillarDialog> {
                 maxLines: 3,
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Icon',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
+              const Text('Icon', style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
               Wrap(
                 spacing: 12,
@@ -246,9 +243,7 @@ class _AddPillarDialogState extends State<AddPillarDialog> {
         ),
         ElevatedButton(
           onPressed: _isLoading ? null : _submitForm,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppStyle.primary,
-          ),
+          style: ElevatedButton.styleFrom(backgroundColor: AppStyle.primary),
           child: _isLoading
               ? const SizedBox(
                   width: 20,
@@ -274,15 +269,18 @@ class _AddPillarDialogState extends State<AddPillarDialog> {
             ? _descriptionController.text
             : null,
         'icon': _iconController.text.isNotEmpty ? _iconController.text : null,
-        'color':
-            _colorController.text.isNotEmpty ? _colorController.text : null,
+        'color': _colorController.text.isNotEmpty
+            ? _colorController.text
+            : null,
         'display_order': _displayOrder,
       };
 
       bool success;
       if (widget.isEditing && widget.initialPillar != null) {
-        success =
-            await _planProvider.updatePillar(widget.initialPillar!.uuid, data);
+        success = await _planProvider.updatePillar(
+          widget.initialPillar!.uuid,
+          data,
+        );
       } else {
         success = await _planProvider.createPillar(data);
       }
@@ -295,9 +293,11 @@ class _AddPillarDialogState extends State<AddPillarDialog> {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(widget.isEditing
-                ? 'Pillar updated successfully'
-                : 'Pillar created successfully'),
+            content: Text(
+              widget.isEditing
+                  ? 'Pillar updated successfully'
+                  : 'Pillar created successfully',
+            ),
             backgroundColor: AppStyle.green,
           ),
         );
@@ -305,4 +305,3 @@ class _AddPillarDialogState extends State<AddPillarDialog> {
     }
   }
 }
-

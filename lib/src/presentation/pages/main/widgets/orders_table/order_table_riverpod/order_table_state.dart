@@ -19,4 +19,3 @@ class OrderTableState with _$OrderTableState {
 
   const OrderTableState._();
 }
-

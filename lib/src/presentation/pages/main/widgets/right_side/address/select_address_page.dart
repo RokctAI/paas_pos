@@ -26,12 +26,12 @@ class SelectAddressPage extends StatefulWidget {
   final LocationData? location;
   final bool isShopEdit;
 
-  const SelectAddressPage(
-      {super.key,
-      required this.onSelect,
-      this.location,
-      this.isShopEdit = false})
-     ;
+  const SelectAddressPage({
+    super.key,
+    required this.onSelect,
+    this.location,
+    this.isShopEdit = false,
+  });
 
   @override
   State<SelectAddressPage> createState() => _SelectAddressPageState();
@@ -90,7 +90,8 @@ class _SelectAddressPageState extends State<SelectAddressPage>
                     _animationController.repeat(
                       min: AppConstants.pinLoadingMin,
                       max: AppConstants.pinLoadingMax,
-                      period: _animationController.duration! *
+                      period:
+                          _animationController.duration! *
                           (AppConstants.pinLoadingMax -
                               AppConstants.pinLoadingMin),
                     );
@@ -116,9 +117,7 @@ class _SelectAddressPageState extends State<SelectAddressPage>
                 IgnorePointer(
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 78.0,
-                      ),
+                      padding: const EdgeInsets.only(bottom: 78.0),
                       child: lottie.Lottie.asset(
                         Assets.lottiePin,
                         onLoaded: (composition) {
@@ -175,7 +174,8 @@ class _SelectAddressPageState extends State<SelectAddressPage>
                               cursorColor: AppStyle.black,
                               decoration: InputDecoration.collapsed(
                                 hintText: AppHelpers.getTranslation(
-                                    TrKeys.searchLocation),
+                                  TrKeys.searchLocation,
+                                ),
                                 hintStyle: GoogleFonts.inter(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14.sp,
@@ -204,41 +204,46 @@ class _SelectAddressPageState extends State<SelectAddressPage>
                           borderRadius: BorderRadius.circular(15.r),
                           color: AppStyle.white,
                         ),
-                        margin:
-                            REdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                        padding:
-                            REdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        margin: REdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 6,
+                        ),
+                        padding: REdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
                         child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: state.searchedPlaces.length,
-                            padding: EdgeInsets.only(bottom: 22.h),
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  event.goToLocation(
-                                      place: state.searchedPlaces[index]);
-                                },
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    22.verticalSpace,
-                                    Text(
-                                      state.searchedPlaces[index]
-                                              .address?["country"] ??
-                                          "",
-                                    ),
-                                    Text(
-                                      state.searchedPlaces[index].displayName,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    const Divider(
-                                      color: AppStyle.border,
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
+                          shrinkWrap: true,
+                          itemCount: state.searchedPlaces.length,
+                          padding: EdgeInsets.only(bottom: 22.h),
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                event.goToLocation(
+                                  place: state.searchedPlaces[index],
+                                );
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  22.verticalSpace,
+                                  Text(
+                                    state
+                                            .searchedPlaces[index]
+                                            .address?["country"] ??
+                                        "",
+                                  ),
+                                  Text(
+                                    state.searchedPlaces[index].displayName,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const Divider(color: AppStyle.border),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
                   ],
                 ),
@@ -270,11 +275,13 @@ class _SelectAddressPageState extends State<SelectAddressPage>
                             width: 56.r,
                             height: 56.r,
                             decoration: BoxDecoration(
-                                color: AppStyle.white,
-                                borderRadius: BorderRadius.circular(10.r),
-                                border: Border.all(color: AppStyle.black)),
+                              color: AppStyle.white,
+                              borderRadius: BorderRadius.circular(10.r),
+                              border: Border.all(color: AppStyle.black),
+                            ),
                             child: const Center(
-                                child: Icon(FlutterRemix.navigation_fill)),
+                              child: Icon(FlutterRemix.navigation_fill),
+                            ),
                           ),
                         ),
                       ),
@@ -284,33 +291,35 @@ class _SelectAddressPageState extends State<SelectAddressPage>
                         child: Consumer(
                           builder: (context, ref, child) {
                             return LoginButton(
-                                isActive: state.isActive,
-                                isLoading: state.isLoading,
-                                title: AppHelpers.getTranslation(
-                                    TrKeys.confirmLocation),
-                                onPressed: () {
-                                  if (state.isActive) {
-                                    context.maybePop();
-                                    widget.onSelect(
-                                      AddressData(
-                                        location: LocationData(
-                                          longitude:
-                                              _cameraPosition?.target.longitude,
-                                          latitude:
-                                              _cameraPosition?.target.latitude,
-                                        ),
-                                        address:
-                                            state.textController?.text ?? "",
+                              isActive: state.isActive,
+                              isLoading: state.isLoading,
+                              title: AppHelpers.getTranslation(
+                                TrKeys.confirmLocation,
+                              ),
+                              onPressed: () {
+                                if (state.isActive) {
+                                  context.maybePop();
+                                  widget.onSelect(
+                                    AddressData(
+                                      location: LocationData(
+                                        longitude:
+                                            _cameraPosition?.target.longitude,
+                                        latitude:
+                                            _cameraPosition?.target.latitude,
                                       ),
-                                    );
-                                  } else {
-                                    AppHelpers.showSnackBar(
-                                      context,
-                                      AppHelpers.getTranslation(
-                                          TrKeys.noDriverZone),
-                                    );
-                                  }
-                                });
+                                      address: state.textController?.text ?? "",
+                                    ),
+                                  );
+                                } else {
+                                  AppHelpers.showSnackBar(
+                                    context,
+                                    AppHelpers.getTranslation(
+                                      TrKeys.noDriverZone,
+                                    ),
+                                  );
+                                }
+                              },
+                            );
                           },
                         ),
                       ),
@@ -325,4 +334,3 @@ class _SelectAddressPageState extends State<SelectAddressPage>
     );
   }
 }
-

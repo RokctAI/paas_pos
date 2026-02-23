@@ -79,7 +79,6 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
       if (widget.onStatusChanged != null) {
         widget.onStatusChanged!();
       }
-
     } catch (e) {
       if (kDebugMode) {
         print('Error in _handleStatusUpdate: $e');
@@ -101,7 +100,9 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
   }
 
   void _initializeSelection() {
-    if (!_hasInitialized && widget.tankNumbers.length == 1 && widget.selectedTank == -1) {
+    if (!_hasInitialized &&
+        widget.tankNumbers.length == 1 &&
+        widget.selectedTank == -1) {
       widget.onTankSelected(0);
       _hasInitialized = true;
     }
@@ -128,10 +129,7 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
     )..repeat(reverse: true);
 
     _bounceAnimation = Tween<double>(begin: -0.005, end: 0.005).animate(
-      CurvedAnimation(
-        parent: _bounceController,
-        curve: Curves.easeInOut,
-      ),
+      CurvedAnimation(parent: _bounceController, curve: Curves.easeInOut),
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => _initializeSelection());
@@ -168,7 +166,9 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final percentage = ((widget.level / widget.capacity) * 100).round();
-    final baseWaterColor = widget.type == 'raw' ? AppStyle.green : AppStyle.blue[500]!;
+    final baseWaterColor = widget.type == 'raw'
+        ? AppStyle.green
+        : AppStyle.blue[500]!;
     final backgroundColor = AppStyle.grey[700];
 
     final height = (widget.width * 3) / 4;
@@ -213,18 +213,26 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
                   children: [
                     // Water animation
                     AnimatedBuilder(
-                      animation: Listenable.merge([_tiltAnimation, _bounceAnimation]),
+                      animation: Listenable.merge([
+                        _tiltAnimation,
+                        _bounceAnimation,
+                      ]),
                       builder: (context, child) {
                         return Positioned(
                           bottom: 0,
                           left: 0,
                           right: 0,
-                          height: height * (widget.level / widget.capacity + _bounceAnimation.value),
+                          height:
+                              height *
+                              (widget.level / widget.capacity +
+                                  _bounceAnimation.value),
                           child: CustomPaint(
                             painter: WaterSurfacePainter(
                               tiltFactor: _tiltAnimation.value,
                               baseColor: baseWaterColor,
-                              level: widget.level / widget.capacity + _bounceAnimation.value,
+                              level:
+                                  widget.level / widget.capacity +
+                                  _bounceAnimation.value,
                               percentage: percentage,
                             ),
                             size: Size.infinite,
@@ -238,11 +246,7 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
 
                     // Tank selector
                     if (widget.tankNumbers.isNotEmpty)
-                      Positioned(
-                        top: 8,
-                        left: 8,
-                        child: _buildTankSelector(),
-                      ),
+                      Positioned(top: 8, left: 8, child: _buildTankSelector()),
 
                     // Status button
                     if (widget.tankId != null)
@@ -284,20 +288,13 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
           child: Text(
             '${widget.level.round()}/${widget.capacity.round()}L',
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.white,
-            ),
+            style: const TextStyle(fontSize: 14, color: Colors.white),
           ),
         ),
 
         // Alert icon
         if (percentage == 0)
-          const Positioned(
-            top: 8,
-            right: 8,
-            child: FlashingAlertIcon(),
-          ),
+          const Positioned(top: 8, right: 8, child: FlashingAlertIcon()),
       ],
     );
   }
@@ -312,7 +309,9 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
               width: 24,
               height: 24,
               decoration: BoxDecoration(
-                color: widget.selectedTank == -1 ? AppStyle.blue : AppStyle.grey[600],
+                color: widget.selectedTank == -1
+                    ? AppStyle.blue
+                    : AppStyle.grey[600],
                 shape: BoxShape.circle,
               ),
               child: const Center(
@@ -336,7 +335,9 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                  color: widget.selectedTank == entry.key ? AppStyle.blue : AppStyle.grey[600],
+                  color: widget.selectedTank == entry.key
+                      ? AppStyle.blue
+                      : AppStyle.grey[600],
                   shape: BoxShape.circle,
                 ),
                 child: Center(
@@ -361,12 +362,11 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
     return GestureDetector(
       onTap: _isUpdating ? null : _handleStatusUpdate,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8,
-          vertical: 4,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: _isUpdating ? Colors.grey.withOpacity(0.8) : _getStatusColor(percentage),
+          color: _isUpdating
+              ? Colors.grey.withOpacity(0.8)
+              : _getStatusColor(percentage),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(

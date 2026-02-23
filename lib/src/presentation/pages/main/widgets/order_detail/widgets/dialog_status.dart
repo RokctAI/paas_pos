@@ -19,55 +19,54 @@ class DialogStatus extends StatelessWidget {
     return Container(
       width: 250.w,
       decoration: BoxDecoration(
-          color: AppStyle.white,
-          borderRadius:
-          BorderRadius.circular(16.r)),
+        color: AppStyle.white,
+        borderRadius: BorderRadius.circular(16.r),
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             "${AppHelpers.getTranslation(TrKeys.areYouSureChange)} ${AppHelpers.getOrderStatusText(orderStatus)}",
             textAlign: TextAlign.center,
-            style: GoogleFonts.inter(
-                fontSize: 18.sp
-            ),
+            style: GoogleFonts.inter(fontSize: 18.sp),
           ),
           24.verticalSpace,
           Row(
             children: [
               Expanded(
                 child: LoginButton(
-                    title:
-                    AppHelpers.getTranslation(
-                        TrKeys.cancel),
-                    onPressed: () {
-                      context.maybePop();
-                    }),
+                  title: AppHelpers.getTranslation(TrKeys.cancel),
+                  onPressed: () {
+                    context.maybePop();
+                  },
+                ),
               ),
               24.horizontalSpace,
               Expanded(
                 child: Consumer(
-                  builder: (BuildContext context, WidgetRef ref, Widget? child) {
-                    return LoginButton(
-                      isLoading:  ref.watch(orderDetailsProvider).isUpdating,
-                        title:
-                        AppHelpers.getTranslation(
-                            TrKeys.apply),
-                        onPressed: () {
-                          ref.read(orderDetailsProvider.notifier).updateOrderStatus(
-                              status: orderStatus,success: (){
-                            context.maybePop();
-                          });
-
-                        });
-                  },
+                  builder:
+                      (BuildContext context, WidgetRef ref, Widget? child) {
+                        return LoginButton(
+                          isLoading: ref.watch(orderDetailsProvider).isUpdating,
+                          title: AppHelpers.getTranslation(TrKeys.apply),
+                          onPressed: () {
+                            ref
+                                .read(orderDetailsProvider.notifier)
+                                .updateOrderStatus(
+                                  status: orderStatus,
+                                  success: () {
+                                    context.maybePop();
+                                  },
+                                );
+                          },
+                        );
+                      },
                 ),
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
   }
 }
-

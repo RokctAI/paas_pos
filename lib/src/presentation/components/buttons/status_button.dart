@@ -24,8 +24,9 @@ class StatusButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
-            color: AppHelpers.getStatusColor(status).withOpacity(0.16),
-            borderRadius: BorderRadius.circular(100)),
+          color: AppHelpers.getStatusColor(status).withOpacity(0.16),
+          borderRadius: BorderRadius.circular(100),
+        ),
         child: Text(
           AppHelpers.getTranslation(status),
           style: GoogleFonts.inter(
@@ -38,4 +39,3 @@ class StatusButton extends StatelessWidget {
     );
   }
 }
-

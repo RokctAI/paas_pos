@@ -1,4 +1,3 @@
-
 class MaintenanceProgress {
   final String vesselId;
   final String currentStage;

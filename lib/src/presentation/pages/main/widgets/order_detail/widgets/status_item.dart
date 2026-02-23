@@ -12,14 +12,14 @@ class StatusItemPage extends StatelessWidget {
   final bool isActive;
   final bool isOldStatus;
 
-  const StatusItemPage(
-      {super.key,
-      required this.title,
-      this.isDivider = true,
-      this.isActive = false,
-      this.isOldStatus = false,
-      required this.index})
-     ;
+  const StatusItemPage({
+    super.key,
+    required this.title,
+    this.isDivider = true,
+    this.isActive = false,
+    this.isOldStatus = false,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +30,21 @@ class StatusItemPage extends StatelessWidget {
             color: isActive ? AppStyle.primary : AppStyle.white,
             shape: BoxShape.circle,
             border: Border.all(
-                color: isActive || isOldStatus
-                    ? AppStyle.primary
-                    : AppStyle.border),
+              color: isActive || isOldStatus
+                  ? AppStyle.primary
+                  : AppStyle.border,
+            ),
           ),
           padding: EdgeInsets.all(8.r),
           child: isOldStatus
-              ? Icon(
-                  FlutterRemix.check_line,
-                  color: AppStyle.primary,
-                )
+              ? Icon(FlutterRemix.check_line, color: AppStyle.primary)
               : Padding(
                   padding: EdgeInsets.all(8.r),
                   child: Text(
                     index,
                     style: TextStyle(
-                        color: isActive ? AppStyle.white : AppStyle.black),
+                      color: isActive ? AppStyle.white : AppStyle.black,
+                    ),
                   ),
                 ),
         ),
@@ -53,8 +52,9 @@ class StatusItemPage extends StatelessWidget {
         Text(
           title,
           style: GoogleFonts.inter(
-              fontSize: 20.sp,
-              fontWeight: isActive ? FontWeight.w600 : FontWeight.normal),
+            fontSize: 20.sp,
+            fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
+          ),
         ),
         8.horizontalSpace,
         isDivider
@@ -69,4 +69,3 @@ class StatusItemPage extends StatelessWidget {
     );
   }
 }
-

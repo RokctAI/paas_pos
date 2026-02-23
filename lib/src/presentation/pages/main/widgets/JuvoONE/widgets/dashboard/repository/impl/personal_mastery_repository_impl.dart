@@ -11,7 +11,9 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
   PersonalMasteryRepositoryImpl(this._httpService);
 
   @override
-  Future<ApiResult<List<PersonalMasteryGoal>>> fetchPersonalMasteryGoals(int? userId) async {
+  Future<ApiResult<List<PersonalMasteryGoal>>> fetchPersonalMasteryGoals(
+    int? userId,
+  ) async {
     try {
       // Build query parameters
       final queryParams = <String, dynamic>{};
@@ -33,12 +35,14 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
           return ApiResult.success(data: goals);
         } else {
           return ApiResult.failure(
-            error: jsonData['message'] ?? 'Failed to load personal mastery goals',
+            error:
+                jsonData['message'] ?? 'Failed to load personal mastery goals',
           );
         }
       } else {
         return ApiResult.failure(
-          error: 'Failed to load personal mastery goals. Status: ${response.statusCode}',
+          error:
+              'Failed to load personal mastery goals. Status: ${response.statusCode}',
         );
       }
     } on DioException catch (e) {
@@ -60,7 +64,9 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
   }
 
   @override
-  Future<ApiResult<PersonalMasteryGoal>> getPersonalMasteryGoal(String uuid) async {
+  Future<ApiResult<PersonalMasteryGoal>> getPersonalMasteryGoal(
+    String uuid,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.get('$_baseUrl/personal-mastery-goals/$uuid');
@@ -72,12 +78,14 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
           return ApiResult.success(data: goal);
         } else {
           return ApiResult.failure(
-            error: jsonData['message'] ?? 'Failed to load personal mastery goal',
+            error:
+                jsonData['message'] ?? 'Failed to load personal mastery goal',
           );
         }
       } else {
         return ApiResult.failure(
-          error: 'Failed to load personal mastery goal. Status: ${response.statusCode}',
+          error:
+              'Failed to load personal mastery goal. Status: ${response.statusCode}',
         );
       }
     } on DioException catch (e) {
@@ -93,7 +101,8 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
 
   @override
   Future<ApiResult<PersonalMasteryGoal>> createPersonalMasteryGoal(
-      Map<String, dynamic> data) async {
+    Map<String, dynamic> data,
+  ) async {
     try {
       if (kDebugMode) {
         print('Creating personal mastery goal with data: $data');
@@ -106,7 +115,9 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
       );
 
       if (kDebugMode) {
-        print('Goal creation response: ${response.statusCode} ${response.data}');
+        print(
+          'Goal creation response: ${response.statusCode} ${response.data}',
+        );
       }
 
       if (response.statusCode == 201) {
@@ -116,12 +127,15 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
           return ApiResult.success(data: goal);
         } else {
           return ApiResult.failure(
-            error: jsonData['message'] ?? 'Failed to create personal mastery goal',
+            error:
+                jsonData['message'] ?? 'Failed to create personal mastery goal',
           );
         }
       } else {
         return ApiResult.failure(
-          error: response.data['message'] ?? 'Failed to create personal mastery goal',
+          error:
+              response.data['message'] ??
+              'Failed to create personal mastery goal',
         );
       }
     } on DioException catch (e) {
@@ -131,7 +145,8 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
       }
 
       // Extract validation errors if present
-      if (e.response?.statusCode == 422 && e.response?.data?['errors'] != null) {
+      if (e.response?.statusCode == 422 &&
+          e.response?.data?['errors'] != null) {
         final errors = e.response!.data['errors'] as Map<String, dynamic>;
         final errorMessages = errors.values
             .expand((e) => e is List ? e : [e.toString()])
@@ -154,7 +169,9 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
 
   @override
   Future<ApiResult<PersonalMasteryGoal>> updatePersonalMasteryGoal(
-      String uuid, Map<String, dynamic> data) async {
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
       final response = await dio.put(
@@ -169,12 +186,15 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
           return ApiResult.success(data: goal);
         } else {
           return ApiResult.failure(
-            error: jsonData['message'] ?? 'Failed to update personal mastery goal',
+            error:
+                jsonData['message'] ?? 'Failed to update personal mastery goal',
           );
         }
       } else {
         return ApiResult.failure(
-          error: response.data['message'] ?? 'Failed to update personal mastery goal',
+          error:
+              response.data['message'] ??
+              'Failed to update personal mastery goal',
         );
       }
     } on DioException catch (e) {
@@ -192,13 +212,17 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
   Future<ApiResult<bool>> deletePersonalMasteryGoal(String uuid) async {
     try {
       final dio = _httpService.client(requireAuth: true);
-      final response = await dio.delete('$_baseUrl/personal-mastery-goals/$uuid');
+      final response = await dio.delete(
+        '$_baseUrl/personal-mastery-goals/$uuid',
+      );
 
       if (response.statusCode == 200) {
         return const ApiResult.success(data: true);
       } else {
         return ApiResult.failure(
-          error: response.data['message'] ?? 'Failed to delete personal mastery goal',
+          error:
+              response.data['message'] ??
+              'Failed to delete personal mastery goal',
         );
       }
     } on DioException catch (e) {
@@ -214,12 +238,12 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
 
   @override
   Future<ApiResult<List<PersonalMasteryGoal>>> fetchGoalsByArea(
-      int? userId, String area) async {
+    int? userId,
+    String area,
+  ) async {
     try {
       // Build query parameters
-      final queryParams = <String, dynamic>{
-        'area': area,
-      };
+      final queryParams = <String, dynamic>{'area': area};
       if (userId != null) queryParams['user_id'] = userId.toString();
 
       final dio = _httpService.client(requireAuth: true);
@@ -259,12 +283,12 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
 
   @override
   Future<ApiResult<List<PersonalMasteryGoal>>> fetchGoalsByStatus(
-      int? userId, String status) async {
+    int? userId,
+    String status,
+  ) async {
     try {
       // Build query parameters
-      final queryParams = <String, dynamic>{
-        'status': status,
-      };
+      final queryParams = <String, dynamic>{'status': status};
       if (userId != null) queryParams['user_id'] = userId.toString();
 
       final dio = _httpService.client(requireAuth: true);
@@ -288,7 +312,8 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
         }
       } else {
         return ApiResult.failure(
-          error: 'Failed to load goals by status. Status: ${response.statusCode}',
+          error:
+              'Failed to load goals by status. Status: ${response.statusCode}',
         );
       }
     } on DioException catch (e) {

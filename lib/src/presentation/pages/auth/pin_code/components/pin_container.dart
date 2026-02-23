@@ -30,11 +30,10 @@ class PinContainer extends StatelessWidget {
                   color: AppStyle.primary.withOpacity(0.3),
                   blurRadius: 8,
                   spreadRadius: 2,
-                )
+                ),
               ]
             : null,
       ),
     );
   }
 }
-

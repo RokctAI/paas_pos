@@ -120,7 +120,10 @@ class PersonalMasteryProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> updatePersonalMasteryGoal(String uuid, Map<String, dynamic> data) async {
+  Future<bool> updatePersonalMasteryGoal(
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     _isLoading = true;
     _error = null;
     notifyListeners();

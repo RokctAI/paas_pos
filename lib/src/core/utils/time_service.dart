@@ -5,7 +5,8 @@ abstract class TimeService {
 
   static DateTime dateFormatYMD(DateTime? time) {
     return DateTime.tryParse(
-            DateFormat("yyyy-MM-dd").format(time ?? DateTime.now())) ??
+          DateFormat("yyyy-MM-dd").format(time ?? DateTime.now()),
+        ) ??
         DateTime.now();
   }
 
@@ -67,4 +68,3 @@ abstract class TimeService {
     return DateFormat("HH:mm").format(time ?? DateTime.now());
   }
 }
-

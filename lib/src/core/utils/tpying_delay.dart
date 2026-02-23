@@ -15,4 +15,3 @@ class Delayed {
     _timer = Timer(Duration(milliseconds: milliseconds), action);
   }
 }
-

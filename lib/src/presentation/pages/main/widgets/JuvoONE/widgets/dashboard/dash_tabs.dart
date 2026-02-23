@@ -25,19 +25,14 @@ const List<String> dashboardTabTitles = [
   '90Days',
   'RoadMap',
 
-
   //'Income Page'
 ];
 final List<Widget> dashboardTabWidgets = [
   const DashboardEntry(),
   const PlanOnPageScreen(),
   const TodoTasksScreen(),
- // const GoalsScreen(),
+  // const GoalsScreen(),
   const PersonalMasteryScreen(),
   const NinetyDayDashboardScreen(),
   const AppRoadmapScreen(),
 ];
-
-
-
-

@@ -73,20 +73,20 @@ class CategoryTabs extends StatelessWidget {
         itemBuilder: (context, index) {
           return index == 0
               ? Padding(
-            padding: EdgeInsets.only(right: 6.r),
-            child: Icon(Remix.equalizer_2_fill, color: AppStyle.black),
-          )
+                  padding: EdgeInsets.only(right: 6.r),
+                  child: Icon(Remix.equalizer_2_fill, color: AppStyle.black),
+                )
               : index == 1
               ? CategoryTabItem(
-            isActive: selectedCategory?.id == null,
-            onTap: () => onCategorySelected(-1),
-            title: AppHelpers.getTranslation(TrKeys.all),
-          )
+                  isActive: selectedCategory?.id == null,
+                  onTap: () => onCategorySelected(-1),
+                  title: AppHelpers.getTranslation(TrKeys.all),
+                )
               : CategoryTabItem(
-            isActive: categories[index - 2].id == selectedCategory?.id,
-            onTap: () => onCategorySelected(index - 2),
-            title: categories[index - 2].translation?.title,
-          );
+                  isActive: categories[index - 2].id == selectedCategory?.id,
+                  onTap: () => onCategorySelected(index - 2),
+                  title: categories[index - 2].translation?.title,
+                );
         },
       ),
     );
@@ -164,10 +164,7 @@ class InventoryList extends ConsumerWidget {
       return Center(
         child: Text(
           'No products found',
-          style: GoogleFonts.inter(
-            fontSize: 16.sp,
-            color: AppStyle.black,
-          ),
+          style: GoogleFonts.inter(fontSize: 16.sp, color: AppStyle.black),
         ),
       );
     }
@@ -187,18 +184,9 @@ class InventoryList extends ConsumerWidget {
           color: AppStyle.white,
           child: Row(
             children: [
-              Expanded(
-                flex: 2,
-                child: Text('Product', style: _headerStyle()),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text('Stock', style: _headerStyle()),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text('Price', style: _headerStyle()),
-              ),
+              Expanded(flex: 2, child: Text('Product', style: _headerStyle())),
+              Expanded(flex: 1, child: Text('Stock', style: _headerStyle())),
+              Expanded(flex: 1, child: Text('Price', style: _headerStyle())),
               SizedBox(width: 50.w),
             ],
           ),
@@ -225,15 +213,14 @@ class InventoryList extends ConsumerWidget {
                 checkYourNetwork: () {
                   AppHelpers.showSnackBar(
                     context,
-                    AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+                    AppHelpers.getTranslation(
+                      TrKeys.checkYourNetworkConnection,
+                    ),
                   );
                 },
               );
             },
-            child: Text(
-              'Load More',
-              style: GoogleFonts.inter(fontSize: 16.sp),
-            ),
+            child: Text('Load More', style: GoogleFonts.inter(fontSize: 16.sp)),
           ),
       ],
     );
@@ -295,7 +282,9 @@ class _InventoryListItem extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.symmetric(horizontal: 16.r, vertical: 12.r),
-          color: isEvenRow ? AppStyle.primary.withOpacity(0.05) : AppStyle.shimmerBase.withOpacity(0.2),
+          color: isEvenRow
+              ? AppStyle.primary.withOpacity(0.05)
+              : AppStyle.shimmerBase.withOpacity(0.2),
           child: Row(
             children: [
               Expanded(
@@ -370,14 +359,18 @@ class _InventoryListItem extends StatelessWidget {
               Container(
                 width: 50.w,
                 decoration: BoxDecoration(
-                  color: isOutOfStock ? AppStyle.red : (isLowStock ? AppStyle.orange : AppStyle.transparent),
+                  color: isOutOfStock
+                      ? AppStyle.red
+                      : (isLowStock ? AppStyle.orange : AppStyle.transparent),
                   borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: IconButton(
                   icon: Icon(
                     Remix.more_2_fill,
                     size: 24.r,
-                    color: isOutOfStock ? AppStyle.white : (isLowStock ? AppStyle.black : AppStyle.textGrey),
+                    color: isOutOfStock
+                        ? AppStyle.white
+                        : (isLowStock ? AppStyle.black : AppStyle.textGrey),
                   ),
                   onPressed: () => _showStockEditDialog(context),
                 ),
@@ -390,5 +383,3 @@ class _InventoryListItem extends StatelessWidget {
     );
   }
 }
-
-

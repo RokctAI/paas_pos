@@ -18,7 +18,9 @@ class ResourcesNotifier extends StateNotifier<AsyncValue<ResourceData?>> {
 
   Future<void> fetchResources() async {
     state = const AsyncValue.loading();
-    await Future.delayed(const Duration(seconds: 1)); // Simulating network delay
+    await Future.delayed(
+      const Duration(seconds: 1),
+    ); // Simulating network delay
     try {
       final data = ResourceData.fromJson(dummyData.first);
       state = AsyncValue.data(data);
@@ -28,6 +30,7 @@ class ResourcesNotifier extends StateNotifier<AsyncValue<ResourceData?>> {
   }
 }
 
-final resourcesProvider = StateNotifierProvider<ResourcesNotifier, AsyncValue<ResourceData?>>((ref) {
-  return ResourcesNotifier();
-});
+final resourcesProvider =
+    StateNotifierProvider<ResourcesNotifier, AsyncValue<ResourceData?>>((ref) {
+      return ResourcesNotifier();
+    });

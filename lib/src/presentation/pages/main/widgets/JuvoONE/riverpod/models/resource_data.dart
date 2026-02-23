@@ -50,8 +50,9 @@ class ResourceData {
       data['maintenance'] = maintenance!.toJson();
     }
     if (energyPurchases != null) {
-      data['energyPurchases'] =
-          energyPurchases!.map((v) => v.toJson()).toList();
+      data['energyPurchases'] = energyPurchases!
+          .map((v) => v.toJson())
+          .toList();
     }
     return data;
   }
@@ -108,12 +109,7 @@ class TankData {
 }
 
 class WaterQualityData {
-  WaterQualityData({
-    this.ph,
-    this.tds,
-    this.temperature,
-    this.hardness,
-  });
+  WaterQualityData({this.ph, this.tds, this.temperature, this.hardness});
 
   WaterQualityData.fromJson(Map<String, dynamic> json) {
     ph = json['ph'];
@@ -138,10 +134,7 @@ class WaterQualityData {
 }
 
 class PumpStatusData {
-  PumpStatusData({
-    this.isOn,
-    this.flowRate,
-  });
+  PumpStatusData({this.isOn, this.flowRate});
 
   PumpStatusData.fromJson(Map<String, dynamic> json) {
     isOn = json['isOn'];
@@ -197,17 +190,16 @@ class ROSystemData {
       data['membranes'] = membranes!.map((v) => v.toJson()).toList();
     }
     if (megaCharVessels != null) {
-      data['megaCharVessels'] =
-          megaCharVessels!.map((v) => v.toJson()).toList();
+      data['megaCharVessels'] = megaCharVessels!
+          .map((v) => v.toJson())
+          .toList();
     }
     return data;
   }
 }
 
 class ComponentData {
-  ComponentData({
-    this.lastReplaced,
-  });
+  ComponentData({this.lastReplaced});
 
   ComponentData.fromJson(Map<String, dynamic> json) {
     lastReplaced = json['lastReplaced'];
@@ -299,11 +291,7 @@ class MaintenancePeriods {
 }
 
 class EnergyPurchaseData {
-  EnergyPurchaseData({
-    this.date,
-    this.kwh,
-    this.cost,
-  });
+  EnergyPurchaseData({this.date, this.kwh, this.cost});
 
   EnergyPurchaseData.fromJson(Map<String, dynamic> json) {
     date = json['date'];

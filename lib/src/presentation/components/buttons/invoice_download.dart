@@ -22,18 +22,22 @@ class InvoiceDownload extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           showDialog(
-              context: context,
-              builder: (context) {
-                return LayoutBuilder(builder: (context, constraints) {
+            context: context,
+            builder: (context) {
+              return LayoutBuilder(
+                builder: (context, constraints) {
                   return SimpleDialog(
                     title: SizedBox(
                       height: constraints.maxHeight * 0.7,
                       width: 300.r,
                       child: GenerateCheckPage(orderData: orderData),
                     ),
-                 backgroundColor: AppStyle.white, );
-                });
-              });
+                    backgroundColor: AppStyle.white,
+                  );
+                },
+              );
+            },
+          );
         },
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 10.r, horizontal: 18.r),
@@ -66,4 +70,3 @@ class InvoiceDownload extends StatelessWidget {
     );
   }
 }
-

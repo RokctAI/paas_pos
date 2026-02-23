@@ -13,7 +13,7 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
   int historyPage = 0;
 
   SaleHistoryNotifier(this._settingsRepository)
-      : super(const SaleHistoryState());
+    : super(const SaleHistoryState());
 
   changeIndex(int index) {
     state = state.copyWith(selectIndex: index, hasMore: false);
@@ -29,46 +29,54 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
       failure: (failure) {},
     );
   }
+
   double getNonCashTotal() {
     if (state.saleCart == null) return 0;
 
     return state.saleCart!.getNonCashTotal(
-        state.selectIndex == 0 ? state.listDriver
-            : state.selectIndex == 1 ? state.listToday
-            : state.listHistory
+      state.selectIndex == 0
+          ? state.listDriver
+          : state.selectIndex == 1
+          ? state.listToday
+          : state.listHistory,
     );
   }
 
   fetchSale() async {
-    final response =
-        await _settingsRepository.getSaleHistory(state.selectIndex, 1);
+    final response = await _settingsRepository.getSaleHistory(
+      state.selectIndex,
+      1,
+    );
     state = state.copyWith(
       isLoading: state.selectIndex == 0
           ? state.listDriver.isEmpty
           : state.selectIndex == 1
-              ? state.listToday.isEmpty
-              : state.listHistory.isEmpty,
+          ? state.listToday.isEmpty
+          : state.listHistory.isEmpty,
     );
     response.when(
       success: (data) async {
         switch (state.selectIndex) {
           case 0:
             state = state.copyWith(
-                isLoading: false,
-                listDriver: data.list ?? [],
-                hasMore: (data.list?.length ?? 0) == 10);
+              isLoading: false,
+              listDriver: data.list ?? [],
+              hasMore: (data.list?.length ?? 0) == 10,
+            );
             break;
           case 1:
             state = state.copyWith(
-                isLoading: false,
-                listToday: data.list ?? [],
-                hasMore: (data.list?.length ?? 0) == 10);
+              isLoading: false,
+              listToday: data.list ?? [],
+              hasMore: (data.list?.length ?? 0) == 10,
+            );
             break;
           case 2:
             state = state.copyWith(
-                isLoading: false,
-                listHistory: data.list ?? [],
-                hasMore: (data.list?.length ?? 0) == 10);
+              isLoading: false,
+              listHistory: data.list ?? [],
+              hasMore: (data.list?.length ?? 0) == 10,
+            );
             break;
         }
       },
@@ -78,11 +86,7 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
     );
   }
 
-  
-
-  Future<void> fetchSalePage({
-    VoidCallback? checkYourNetwork,
-  }) async {
+  Future<void> fetchSalePage({VoidCallback? checkYourNetwork}) async {
     if (!state.hasMore) {
       return;
     }
@@ -90,15 +94,20 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
     if (connected) {
       if (driverPage == 1 && salePage == 1 && historyPage == 1) {
         state = state.copyWith(
-            isLoading: true, listDriver: [], listHistory: [], listToday: []);
+          isLoading: true,
+          listDriver: [],
+          listHistory: [],
+          listToday: [],
+        );
 
         final response = await _settingsRepository.getSaleHistory(
-            state.selectIndex,
-            state.selectIndex == 0
-                ? ++driverPage
-                : state.selectIndex == 1
-                    ? ++salePage
-                    : ++historyPage);
+          state.selectIndex,
+          state.selectIndex == 0
+              ? ++driverPage
+              : state.selectIndex == 1
+              ? ++salePage
+              : ++historyPage,
+        );
 
         response.when(
           success: (data) {
@@ -113,19 +122,25 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
                 List<SaleHistoryModel> list = List.from(state.listDriver);
                 list.addAll(data.list ?? []);
                 state = state.copyWith(
-                    listDriver: list, hasMore: (data.list?.length ?? 0) == 10);
+                  listDriver: list,
+                  hasMore: (data.list?.length ?? 0) == 10,
+                );
                 break;
               case 1:
                 List<SaleHistoryModel> list = List.from(state.listToday);
                 list.addAll(data.list ?? []);
                 state = state.copyWith(
-                    listToday: list, hasMore: (data.list?.length ?? 0) == 10);
+                  listToday: list,
+                  hasMore: (data.list?.length ?? 0) == 10,
+                );
                 break;
               case 2:
                 List<SaleHistoryModel> list = List.from(state.listHistory);
                 list.addAll(data.list ?? []);
                 state = state.copyWith(
-                    listHistory: list, hasMore: (data.list?.length ?? 0) == 10);
+                  listHistory: list,
+                  hasMore: (data.list?.length ?? 0) == 10,
+                );
                 break;
             }
           },
@@ -137,12 +152,13 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
       } else {
         state = state.copyWith(isMoreLoading: true);
         final response = await _settingsRepository.getSaleHistory(
-            state.selectIndex,
-            state.selectIndex == 0
-                ? ++driverPage
-                : state.selectIndex == 1
-                    ? ++salePage
-                    : ++historyPage);
+          state.selectIndex,
+          state.selectIndex == 0
+              ? ++driverPage
+              : state.selectIndex == 1
+              ? ++salePage
+              : ++historyPage,
+        );
         response.when(
           success: (data) async {
             switch (state.selectIndex) {
@@ -150,25 +166,28 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
                 List<SaleHistoryModel> list = List.from(state.listDriver);
                 list.addAll(data.list ?? []);
                 state = state.copyWith(
-                    isMoreLoading: false,
-                    listDriver: list,
-                    hasMore: (data.list?.length ?? 0) == 10);
+                  isMoreLoading: false,
+                  listDriver: list,
+                  hasMore: (data.list?.length ?? 0) == 10,
+                );
                 break;
               case 1:
                 List<SaleHistoryModel> list = List.from(state.listToday);
                 list.addAll(data.list ?? []);
                 state = state.copyWith(
-                    isMoreLoading: false,
-                    listToday: list,
-                    hasMore: (data.list?.length ?? 0) == 10);
+                  isMoreLoading: false,
+                  listToday: list,
+                  hasMore: (data.list?.length ?? 0) == 10,
+                );
                 break;
               case 2:
                 List<SaleHistoryModel> list = List.from(state.listHistory);
                 list.addAll(data.list ?? []);
                 state = state.copyWith(
-                    isMoreLoading: false,
-                    listHistory: list,
-                    hasMore: (data.list?.length ?? 0) == 10);
+                  isMoreLoading: false,
+                  listHistory: list,
+                  hasMore: (data.list?.length ?? 0) == 10,
+                );
                 break;
             }
           },
@@ -182,6 +201,7 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
       checkYourNetwork?.call();
     }
   }
+
   // Add method to calculate today's total sales
   double getTodayTotalSales() {
     double total = 0;
@@ -194,4 +214,3 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
     return total;
   }
 }
-

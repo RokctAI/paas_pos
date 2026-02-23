@@ -24,7 +24,9 @@ class BoardTableInfo extends ConsumerWidget {
     return Container(
       padding: REdgeInsets.all(16),
       decoration: BoxDecoration(
-          color: AppStyle.white, borderRadius: BorderRadius.circular(10)),
+        color: AppStyle.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,45 +37,54 @@ class BoardTableInfo extends ConsumerWidget {
               children: [
                 Expanded(
                   child: ListView.builder(
-                      itemCount: state.isSectionLoading
-                          ? 6
-                          : state.shopSectionList.length,
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: REdgeInsets.only(right: 12),
-                          child: state.isSectionLoading
-                              ? Container(
-                                  height: 48.r,
-                                  width: 66.r,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.r),
-                                      color: AppStyle.shimmerBase),
-                                )
-                              : SectionButton(
-                                  height: 48.r,
-                                  paddingSize: 21,
-                                  bgColor: AppStyle.border,
-                                  isTab: true,
-                                  isActive: state.selectSection == index,
-                                  title: state.shopSectionList[index]
-                                          ?.translation?.title ??
-                                      "",
-                                  onTap: () => notifier.changeSection(index)),
-                        );
-                      }),
+                    itemCount: state.isSectionLoading
+                        ? 6
+                        : state.shopSectionList.length,
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: REdgeInsets.only(right: 12),
+                        child: state.isSectionLoading
+                            ? Container(
+                                height: 48.r,
+                                width: 66.r,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.r),
+                                  color: AppStyle.shimmerBase,
+                                ),
+                              )
+                            : SectionButton(
+                                height: 48.r,
+                                paddingSize: 21,
+                                bgColor: AppStyle.border,
+                                isTab: true,
+                                isActive: state.selectSection == index,
+                                title:
+                                    state
+                                        .shopSectionList[index]
+                                        ?.translation
+                                        ?.title ??
+                                    "",
+                                onTap: () => notifier.changeSection(index),
+                              ),
+                      );
+                    },
+                  ),
                 ),
                 ConfirmButton(
-                    icon: Icon(
-                      FlutterRemix.add_line,
-                      size: 24.r,
-                      color: AppStyle.white,
-                    ),
-                    paddingSize: 16,
-                    title: "",
-                    onTap: () => AppHelpers.showAlertDialog(
-                        context: context, child: const AddNewSection())),
+                  icon: Icon(
+                    FlutterRemix.add_line,
+                    size: 24.r,
+                    color: AppStyle.white,
+                  ),
+                  paddingSize: 16,
+                  title: "",
+                  onTap: () => AppHelpers.showAlertDialog(
+                    context: context,
+                    child: const AddNewSection(),
+                  ),
+                ),
               ],
             ),
           ),
@@ -110,8 +121,11 @@ class TableInfoStatus extends StatelessWidget {
   final String status;
   final List<AllStatisticStatusData> dataList;
 
-  const TableInfoStatus(
-      {super.key, required this.status, required this.dataList});
+  const TableInfoStatus({
+    super.key,
+    required this.status,
+    required this.dataList,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -130,50 +144,60 @@ class TableInfoStatus extends StatelessWidget {
           ),
           8.verticalSpace,
           ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: (dataList.length),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: REdgeInsets.symmetric(vertical: 10),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding:
-                            REdgeInsets.symmetric(horizontal: 10, vertical: 12),
-                        decoration: BoxDecoration(
-                            color: status == TrKeys.occupied
-                                ? AppStyle.red
-                                : AppStyle.starColor,
-                            borderRadius: BorderRadius.circular(5.r)),
-                        child: Text(dataList[index].tableName ?? '',
-                            style: GoogleFonts.inter(
-                              fontSize: 12.sp,
-                              color: AppStyle.white,
-                              fontWeight: FontWeight.w600,
-                            )),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: (dataList.length),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: REdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: REdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 12,
                       ),
-                      8.horizontalSpace,
-                      Expanded(
-                        child: Text(dataList[index].username ?? '',
-                            style: GoogleFonts.inter(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
-                            )),
+                      decoration: BoxDecoration(
+                        color: status == TrKeys.occupied
+                            ? AppStyle.red
+                            : AppStyle.starColor,
+                        borderRadius: BorderRadius.circular(5.r),
                       ),
-                      Text(
-                          DateFormat("HH:mm a, dd MMMM,yyyy").format(
-                              dataList[index].tableStartDate?.toLocal() ??
-                                  DateTime.now()),
-                          style: GoogleFonts.inter(
-                            fontSize: 12.sp,
-                            color: AppStyle.hint,
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ],
-                  ),
-                );
-              }),
+                      child: Text(
+                        dataList[index].tableName ?? '',
+                        style: GoogleFonts.inter(
+                          fontSize: 12.sp,
+                          color: AppStyle.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    8.horizontalSpace,
+                    Expanded(
+                      child: Text(
+                        dataList[index].username ?? '',
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      DateFormat("HH:mm a, dd MMMM,yyyy").format(
+                        dataList[index].tableStartDate?.toLocal() ??
+                            DateTime.now(),
+                      ),
+                      style: GoogleFonts.inter(
+                        fontSize: 12.sp,
+                        color: AppStyle.hint,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ],
       );
     } else {
@@ -181,4 +205,3 @@ class TableInfoStatus extends StatelessWidget {
     }
   }
 }
-

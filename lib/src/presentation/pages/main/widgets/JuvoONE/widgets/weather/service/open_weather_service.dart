@@ -19,7 +19,10 @@ class OpenWeatherService {
 
   OpenWeatherService({http.Client? client}) : _client = client ?? http.Client();
 
-  Future<Map<String, dynamic>> getExtendedForecast(double lat, double lon) async {
+  Future<Map<String, dynamic>> getExtendedForecast(
+    double lat,
+    double lon,
+  ) async {
     try {
       // Check cache first
       final cachedData = await _getCachedData();
@@ -40,15 +43,12 @@ class OpenWeatherService {
       print('Fetching extended forecast for coordinates: $lat, $lon');
 
       // Fetch fresh data with retry logic
-      final data = await _fetchWithRetry(
-          '$baseUrl/forecast',
-          {
-            'appid': apiKey,
-            'lat': lat.toString(),
-            'lon': lon.toString(),
-            'units': 'metric', // Ensure temperatures in Celsius
-          }
-      );
+      final data = await _fetchWithRetry('$baseUrl/forecast', {
+        'appid': apiKey,
+        'lat': lat.toString(),
+        'lon': lon.toString(),
+        'units': 'metric', // Ensure temperatures in Celsius
+      });
 
       // Extensive validation of response
       if (data == null) {
@@ -83,18 +83,17 @@ class OpenWeatherService {
   }
 
   Future<Map<String, dynamic>> _fetchWithRetry(
-      String url,
-      Map<String, String> queryParams, {
-        int attempt = 1,
-      }) async {
+    String url,
+    Map<String, String> queryParams, {
+    int attempt = 1,
+  }) async {
     try {
       final uri = Uri.parse(url).replace(queryParameters: queryParams);
       print('Fetching URL: $uri');
 
-      final response = await _client.get(
-        uri,
-        headers: {'Accept': 'application/json'},
-      ).timeout(const Duration(seconds: 10));
+      final response = await _client
+          .get(uri, headers: {'Accept': 'application/json'})
+          .timeout(const Duration(seconds: 10));
 
       print('Response status code: ${response.statusCode}');
 
@@ -175,10 +174,13 @@ class OpenWeatherServiceException implements Exception {
 // Providers
 final openWeatherServiceProvider = Provider((ref) => OpenWeatherService());
 
-final openWeatherProvider = StateNotifierProvider<OpenWeatherNotifier, AsyncValue<OpenWeatherState>>((ref) {
-  final weatherService = ref.watch(openWeatherServiceProvider);
-  return OpenWeatherNotifier(weatherService);
-});
+final openWeatherProvider =
+    StateNotifierProvider<OpenWeatherNotifier, AsyncValue<OpenWeatherState>>((
+      ref,
+    ) {
+      final weatherService = ref.watch(openWeatherServiceProvider);
+      return OpenWeatherNotifier(weatherService);
+    });
 
 class OpenWeatherNotifier extends StateNotifier<AsyncValue<OpenWeatherState>> {
   final OpenWeatherService _weatherService;
@@ -191,18 +193,18 @@ class OpenWeatherNotifier extends StateNotifier<AsyncValue<OpenWeatherState>> {
       final weatherData = await _weatherService.getExtendedForecast(lat, lon);
 
       // Validate data before creating state
-      if (weatherData['list'] == null || (weatherData['list'] as List).isEmpty) {
+      if (weatherData['list'] == null ||
+          (weatherData['list'] as List).isEmpty) {
         state = AsyncValue.error(
-            Exception('No forecast data available'),
-            StackTrace.current
+          Exception('No forecast data available'),
+          StackTrace.current,
         );
         return;
       }
 
-      state = AsyncValue.data(OpenWeatherState(
-        weatherData: weatherData,
-        lastUpdated: DateTime.now(),
-      ));
+      state = AsyncValue.data(
+        OpenWeatherState(weatherData: weatherData, lastUpdated: DateTime.now()),
+      );
     } catch (e, stack) {
       state = AsyncValue.error(e, stack);
       print('Error loading extended forecast: $e');

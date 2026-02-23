@@ -9,4 +9,3 @@ abstract class AuthRepository {
 
   Future<ApiResult<void>> updateFirebaseToken(String? token);
 }
-

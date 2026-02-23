@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../../core/constants/constants.dart';
 import '../../../../../theme/theme.dart';
 
-
 class PieChartPage extends StatefulWidget {
   final IncomeStatisticResponse statistic;
 
@@ -28,15 +27,19 @@ class _PieChartState extends State<PieChartPage> {
       height: 290.r,
       padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.r), color: AppStyle.white),
+        borderRadius: BorderRadius.circular(10.r),
+        color: AppStyle.white,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             AppHelpers.getTranslation(TrKeys.statistics),
-            style:
-                GoogleFonts.inter(fontSize: 22.sp, fontWeight: FontWeight.w600,
-                    color: AppStyle.black),
+            style: GoogleFonts.inter(
+              fontSize: 22.sp,
+              fontWeight: FontWeight.w600,
+              color: AppStyle.black,
+            ),
           ),
           16.verticalSpace,
           Expanded(
@@ -44,15 +47,18 @@ class _PieChartState extends State<PieChartPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                  child: widget.statistic.group?.active?.percent == 0 &&
+                  child:
+                      widget.statistic.group?.active?.percent == 0 &&
                           widget.statistic.group?.completed?.percent == 0 &&
                           widget.statistic.group?.ended?.percent == 0
                       ? Center(
                           child: Text(
                             AppHelpers.getTranslation(TrKeys.needOrder),
                             style: GoogleFonts.inter(
-                                fontSize: 22.sp, fontWeight: FontWeight.w600,
-                                color: AppStyle.black),
+                              fontSize: 22.sp,
+                              fontWeight: FontWeight.w600,
+                              color: AppStyle.black,
+                            ),
                           ),
                         )
                       : PieChart(
@@ -60,21 +66,21 @@ class _PieChartState extends State<PieChartPage> {
                             pieTouchData: PieTouchData(
                               touchCallback:
                                   (FlTouchEvent event, pieTouchResponse) {
-                                setState(() {
-                                  if (!event.isInterestedForInteractions ||
-                                      pieTouchResponse == null ||
-                                      pieTouchResponse.touchedSection == null) {
-                                    touchedIndex = -1;
-                                    return;
-                                  }
-                                  touchedIndex = pieTouchResponse
-                                      .touchedSection!.touchedSectionIndex;
-                                });
-                              },
+                                    setState(() {
+                                      if (!event.isInterestedForInteractions ||
+                                          pieTouchResponse == null ||
+                                          pieTouchResponse.touchedSection ==
+                                              null) {
+                                        touchedIndex = -1;
+                                        return;
+                                      }
+                                      touchedIndex = pieTouchResponse
+                                          .touchedSection!
+                                          .touchedSectionIndex;
+                                    });
+                                  },
                             ),
-                            borderData: FlBorderData(
-                              show: false,
-                            ),
+                            borderData: FlBorderData(show: false),
                             sectionsSpace: 2,
                             centerSpaceRadius: 64,
                             sections: showingSections(widget.statistic),
@@ -90,15 +96,20 @@ class _PieChartState extends State<PieChartPage> {
                         Container(
                           padding: EdgeInsets.all(4.r),
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: AppStyle.primary, width: 3.r)),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: AppStyle.primary,
+                              width: 3.r,
+                            ),
+                          ),
                         ),
                         8.horizontalSpace,
                         Text(
                           AppHelpers.getTranslation(TrKeys.active),
-                          style: GoogleFonts.inter(fontSize: 14.sp,
-                              color: AppStyle.black),
+                          style: GoogleFonts.inter(
+                            fontSize: 14.sp,
+                            color: AppStyle.black,
+                          ),
                         ),
                       ],
                     ),
@@ -108,15 +119,20 @@ class _PieChartState extends State<PieChartPage> {
                         Container(
                           padding: EdgeInsets.all(4.r),
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: AppStyle.starColor, width: 3.r)),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: AppStyle.starColor,
+                              width: 3.r,
+                            ),
+                          ),
                         ),
                         8.horizontalSpace,
                         Text(
                           AppHelpers.getTranslation(TrKeys.completed),
-                          style: GoogleFonts.inter(fontSize: 14.sp,
-                              color: AppStyle.black),
+                          style: GoogleFonts.inter(
+                            fontSize: 14.sp,
+                            color: AppStyle.black,
+                          ),
                         ),
                       ],
                     ),
@@ -126,15 +142,17 @@ class _PieChartState extends State<PieChartPage> {
                         Container(
                           padding: EdgeInsets.all(4.r),
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border:
-                                  Border.all(color: AppStyle.red, width: 3.r)),
+                            shape: BoxShape.circle,
+                            border: Border.all(color: AppStyle.red, width: 3.r),
+                          ),
                         ),
                         8.horizontalSpace,
                         Text(
                           AppHelpers.getTranslation(TrKeys.ended),
-                          style: GoogleFonts.inter(fontSize: 14.sp,
-                              color: AppStyle.black),
+                          style: GoogleFonts.inter(
+                            fontSize: 14.sp,
+                            color: AppStyle.black,
+                          ),
                         ),
                       ],
                     ),
@@ -142,7 +160,7 @@ class _PieChartState extends State<PieChartPage> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -196,4 +214,3 @@ class _PieChartState extends State<PieChartPage> {
     });
   }
 }
-

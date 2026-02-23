@@ -13,4 +13,3 @@ class StoriesState with _$StoriesState {
 
   const StoriesState._();
 }
-

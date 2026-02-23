@@ -33,11 +33,11 @@ class TaskProvider with ChangeNotifier {
   }
 
   Future<void> fetchTasks(
-      String? shopId, {
-        String? kpiId,
-        String? objectiveId,
-        String? appId,
-      }) async {
+    String? shopId, {
+    String? kpiId,
+    String? objectiveId,
+    String? appId,
+  }) async {
     _isLoading = true;
     _error = null;
     notifyListeners();

@@ -28,7 +28,8 @@ class FlipNumber extends StatefulWidget {
   State<FlipNumber> createState() => _FlipNumberState();
 }
 
-class _FlipNumberState extends State<FlipNumber> with SingleTickerProviderStateMixin {
+class _FlipNumberState extends State<FlipNumber>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _flipAnimation;
   late Animation<double> _scaleAnimation;
@@ -50,21 +51,22 @@ class _FlipNumberState extends State<FlipNumber> with SingleTickerProviderStateM
       ),
     );
 
-    _scaleAnimation = TweenSequence<double>([
-      TweenSequenceItem(
-        tween: Tween<double>(begin: 1.0, end: 1.15),
-        weight: 50.0,
-      ),
-      TweenSequenceItem(
-        tween: Tween<double>(begin: 1.15, end: 1.0),
-        weight: 50.0,
-      ),
-    ]).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 1.0, curve: Curves.easeInOut),
-      ),
-    );
+    _scaleAnimation =
+        TweenSequence<double>([
+          TweenSequenceItem(
+            tween: Tween<double>(begin: 1.0, end: 1.15),
+            weight: 50.0,
+          ),
+          TweenSequenceItem(
+            tween: Tween<double>(begin: 1.15, end: 1.0),
+            weight: 50.0,
+          ),
+        ]).animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(0.0, 1.0, curve: Curves.easeInOut),
+          ),
+        );
   }
 
   @override
@@ -110,29 +112,29 @@ class _FlipNumberState extends State<FlipNumber> with SingleTickerProviderStateM
                 ..rotateX(_flipAnimation.value * math.pi),
               child: _flipAnimation.value < 0.5
                   ? Center(
-                child: Text(
-                  oldValue,
-                  style: GoogleFonts.inter(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                    color: widget.textColor,
-                  ),
-                ),
-              )
+                      child: Text(
+                        oldValue,
+                        style: GoogleFonts.inter(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          color: widget.textColor,
+                        ),
+                      ),
+                    )
                   : Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.identity()..rotateX(math.pi),
-                child: Center(
-                  child: Text(
-                    widget.value,
-                    style: GoogleFonts.inter(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      color: widget.textColor,
+                      alignment: Alignment.center,
+                      transform: Matrix4.identity()..rotateX(math.pi),
+                      child: Center(
+                        child: Text(
+                          widget.value,
+                          style: GoogleFonts.inter(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            color: widget.textColor,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
             ),
           ),
         );
@@ -161,7 +163,8 @@ class _OrdersInfoState extends State<OrdersInfo> {
   @override
   void initState() {
     super.initState();
-    if (widget.orderData.status == 'cooking' && widget.orderData.updatedAt != null) {
+    if (widget.orderData.status == 'cooking' &&
+        widget.orderData.updatedAt != null) {
       startTimer();
     } else if (widget.orderData.status == 'ready') {
       calculateFinalTime();
@@ -175,8 +178,11 @@ class _OrdersInfoState extends State<OrdersInfo> {
   }
 
   void calculateFinalTime() {
-    if (widget.orderData.createdAt != null && widget.orderData.updatedAt != null) {
-      final difference = widget.orderData.updatedAt!.difference(widget.orderData.createdAt!);
+    if (widget.orderData.createdAt != null &&
+        widget.orderData.updatedAt != null) {
+      final difference = widget.orderData.updatedAt!.difference(
+        widget.orderData.createdAt!,
+      );
       setState(() {
         _elapsedMinutes = difference.inMinutes;
         _hours = difference.inHours;
@@ -220,7 +226,9 @@ class _OrdersInfoState extends State<OrdersInfo> {
     }
 
     final isReady = widget.orderData.status == 'ready';
-    final backgroundColor = isReady ? AppStyle.black.withOpacity(0.5) : AppStyle.black;
+    final backgroundColor = isReady
+        ? AppStyle.black.withOpacity(0.5)
+        : AppStyle.black;
     final textColor = isReady
         ? AppStyle.white.withOpacity(0.5)
         : (_elapsedMinutes >= 30 ? AppStyle.rate : AppStyle.white);
@@ -283,13 +291,13 @@ class _OrdersInfoState extends State<OrdersInfo> {
         borderRadius: BorderRadiusDirectional.circular(10),
         boxShadow: [
           BoxShadow(
-              offset: const Offset(0, 5),
-              blurRadius: 8.r,
-              color: widget.active ? AppStyle.shadowSecond : AppStyle.transparent
-          )
+            offset: const Offset(0, 5),
+            blurRadius: 8.r,
+            color: widget.active ? AppStyle.shadowSecond : AppStyle.transparent,
+          ),
         ],
         border: Border.all(
-            color: widget.active ? AppStyle.primary : AppStyle.transparent
+          color: widget.active ? AppStyle.primary : AppStyle.transparent,
         ),
       ),
       child: Padding(
@@ -308,38 +316,37 @@ class _OrdersInfoState extends State<OrdersInfo> {
                   ),
                 ),
                 const Spacer(),
-                if (widget.orderData.status == 'cooking' || widget.orderData.status == 'ready')
+                if (widget.orderData.status == 'cooking' ||
+                    widget.orderData.status == 'ready')
                   _buildTimer(),
               ],
             ),
             4.verticalSpace,
-            Divider(
-              color: AppStyle.icon.withOpacity(0.6),
-            ),
+            Divider(color: AppStyle.icon.withOpacity(0.6)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   AppHelpers.getTranslation(TrKeys.orderTime),
                   style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppStyle.black
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: AppStyle.black,
                   ),
                 ),
                 Text(
-                  TimeService.dateFormatMDHm(widget.orderData.createdAt?.toLocal()),
+                  TimeService.dateFormatMDHm(
+                    widget.orderData.createdAt?.toLocal(),
+                  ),
                   style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppStyle.icon
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    color: AppStyle.icon,
                   ),
                 ),
               ],
             ),
-            Divider(
-              color: AppStyle.icon.withOpacity(0.6),
-            ),
+            Divider(color: AppStyle.icon.withOpacity(0.6)),
             4.verticalSpace,
             const Spacer(),
             Row(
@@ -348,48 +355,51 @@ class _OrdersInfoState extends State<OrdersInfo> {
                   height: 30.r,
                   width: 30.r,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: AppStyle.black)
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppStyle.black),
                   ),
                   child: Center(
-                      child: widget.orderData.deliveryType == TrKeys.dine
-                          ? SvgPicture.asset(Assets.svgDine, color: AppStyle.black)
-                          : Icon(
-                        widget.orderData.deliveryType == TrKeys.pickup
-                            ? FlutterRemix.walk_line
-                            : FlutterRemix.e_bike_2_fill,
-                        size: 18,
-                        color: AppStyle.black,
-                      )
+                    child: widget.orderData.deliveryType == TrKeys.dine
+                        ? SvgPicture.asset(
+                            Assets.svgDine,
+                            color: AppStyle.black,
+                          )
+                        : Icon(
+                            widget.orderData.deliveryType == TrKeys.pickup
+                                ? FlutterRemix.walk_line
+                                : FlutterRemix.e_bike_2_fill,
+                            size: 18,
+                            color: AppStyle.black,
+                          ),
                   ),
                 ),
                 8.horizontalSpace,
                 widget.orderData.deliveryType == TrKeys.pickup
                     ? Text(
-                  AppHelpers.getTranslation(TrKeys.takeAway),
-                  style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppStyle.black
-                  ),
-                )
+                        AppHelpers.getTranslation(TrKeys.takeAway),
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppStyle.black,
+                        ),
+                      )
                     : widget.orderData.deliveryType == TrKeys.dine
                     ? Text(
-                  AppHelpers.getTranslation(TrKeys.dine),
-                  style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppStyle.black
-                  ),
-                )
+                        AppHelpers.getTranslation(TrKeys.dine),
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppStyle.black,
+                        ),
+                      )
                     : Text(
-                  AppHelpers.getTranslation(TrKeys.delivery),
-                  style: GoogleFonts.inter(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                      color: AppStyle.black
-                  ),
-                )
+                        AppHelpers.getTranslation(TrKeys.delivery),
+                        style: GoogleFonts.inter(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppStyle.black,
+                        ),
+                      ),
               ],
             ),
             const Spacer(flex: 2),
@@ -402,12 +412,12 @@ class _OrdersInfoState extends State<OrdersInfo> {
               child: Text(
                 AppHelpers.getTranslation(widget.orderData.status ?? ''),
                 style: GoogleFonts.inter(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppStyle.white
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppStyle.white,
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -8,7 +8,6 @@ import '../../../../../components/custom_clock/custom_clock.dart';
 import '../../../../../theme/app_style.dart';
 import '../widgets/juvoone_typing_animation.dart';
 
-
 class DynamicHeaderComponent extends ConsumerStatefulWidget {
   final int selectIndex;
   final String userRole;
@@ -20,10 +19,12 @@ class DynamicHeaderComponent extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<DynamicHeaderComponent> createState() => _DynamicHeaderComponentState();
+  ConsumerState<DynamicHeaderComponent> createState() =>
+      _DynamicHeaderComponentState();
 }
 
-class _DynamicHeaderComponentState extends ConsumerState<DynamicHeaderComponent> {
+class _DynamicHeaderComponentState
+    extends ConsumerState<DynamicHeaderComponent> {
   bool _showJuvoONEAnimation = true;
   String _displayText = '';
   int _currentDigit = 5;
@@ -121,7 +122,8 @@ class _DynamicHeaderComponentState extends ConsumerState<DynamicHeaderComponent>
           _currentDigit = 5;
           break;
       }
-      if (widget.selectIndex != 0 || (widget.selectIndex == 0 && widget.userRole == TrKeys.cooker)) {
+      if (widget.selectIndex != 0 ||
+          (widget.selectIndex == 0 && widget.userRole == TrKeys.cooker)) {
         _startTextTransition();
       } else {
         _cancelRevertTimer();
@@ -166,14 +168,14 @@ class _DynamicHeaderComponentState extends ConsumerState<DynamicHeaderComponent>
       width: 130.w,
       child: AppConstants.enableJuvoONE
           ? (_showJuvoONEAnimation
-          ? JuvoONETypingAnimation(
-        onAnimationComplete: () {
-          setState(() {
-            _showJuvoONEAnimation = false;
-          });
-        },
-      )
-          : _buildDynamicContent())
+                ? JuvoONETypingAnimation(
+                    onAnimationComplete: () {
+                      setState(() {
+                        _showJuvoONEAnimation = false;
+                      });
+                    },
+                  )
+                : _buildDynamicContent())
           : _buildDynamicContent(),
     );
   }
@@ -181,7 +183,9 @@ class _DynamicHeaderComponentState extends ConsumerState<DynamicHeaderComponent>
   Widget _buildDynamicContent() {
     // For admin role, we always show the text instead of the clock for the relevant indexes
     if (widget.userRole == 'admin') {
-      if (widget.selectIndex >= 0 && widget.selectIndex <= 2 && _currentDigit <= 0) {
+      if (widget.selectIndex >= 0 &&
+          widget.selectIndex <= 2 &&
+          _currentDigit <= 0) {
         return Center(
           child: Text(
             _displayText,
@@ -202,7 +206,7 @@ class _DynamicHeaderComponentState extends ConsumerState<DynamicHeaderComponent>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            width: 110.w,  // Adjust this value based on your needs
+            width: 110.w, // Adjust this value based on your needs
             child: const CustomClock(),
           ),
           SizedBox(width: 8.w),

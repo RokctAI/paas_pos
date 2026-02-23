@@ -49,9 +49,10 @@ class TableRepositoryIml extends TableRepository {
         data: {
           'booking_id': bookingId,
           'end_date': TimeService.dateFormatYMDHm(endDate ?? DateTime.now()),
-          'start_date':
-              TimeService.dateFormatYMDHm(startDate ?? DateTime.now()),
-          "table_id": tableId
+          'start_date': TimeService.dateFormatYMDHm(
+            startDate ?? DateTime.now(),
+          ),
+          "table_id": tableId,
         },
       );
       return const ApiResult.success(data: null);
@@ -69,7 +70,8 @@ class TableRepositoryIml extends TableRepository {
         '/api/v1/method/paas.api.get_seller_shop_working_days',
       );
       return ApiResult.success(
-          data: WorkingDayResponse.fromJson(response.data));
+        data: WorkingDayResponse.fromJson(response.data),
+      );
     } catch (e) {
       debugPrint('==> get getWorkingDay failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -106,15 +108,17 @@ class TableRepositoryIml extends TableRepository {
   }
 
   @override
-  Future<ApiResult> changeOrderStatus(
-      {required String status, required int id}) async {
+  Future<ApiResult> changeOrderStatus({
+    required String status,
+    required int id,
+  }) async {
     try {
       final client = dioHttp.client(requireAuth: true);
       await client.post(
         '/api/v1/method/paas.api.update_booking',
         data: {
           'booking_name': id,
-          'booking_data': {'status': status}
+          'booking_data': {'status': status},
         },
       );
       return const ApiResult.success(data: null);
@@ -136,12 +140,18 @@ class TableRepositoryIml extends TableRepository {
   // - getStatistic
 
   @override
-  Future<ApiResult<ShopSection>> createNewSection({required String name, required num area}) {
+  Future<ApiResult<ShopSection>> createNewSection({
+    required String name,
+    required num area,
+  }) {
     throw UnimplementedError();
   }
 
   @override
-  Future<ApiResult<ShopSectionResponse>> getSection({int? page, String? query}) {
+  Future<ApiResult<ShopSectionResponse>> getSection({
+    int? page,
+    String? query,
+  }) {
     throw UnimplementedError();
   }
 
@@ -151,12 +161,25 @@ class TableRepositoryIml extends TableRepository {
   }
 
   @override
-  Future<ApiResult<TableResponse>> getTables({int? page, int? shopSectionId, String? type, String? query, DateTime? from, DateTime? to}) {
+  Future<ApiResult<TableResponse>> getTables({
+    int? page,
+    int? shopSectionId,
+    String? type,
+    String? query,
+    DateTime? from,
+    DateTime? to,
+  }) {
     throw UnimplementedError();
   }
 
   @override
-  Future<ApiResult<TableBookingResponse>> getTableOrders({int? page, int? id, String? type, DateTime? from, DateTime? to}) {
+  Future<ApiResult<TableBookingResponse>> getTableOrders({
+    int? page,
+    int? id,
+    String? type,
+    DateTime? from,
+    DateTime? to,
+  }) {
     throw UnimplementedError();
   }
 
@@ -171,12 +194,18 @@ class TableRepositoryIml extends TableRepository {
   }
 
   @override
-  Future<ApiResult<List<DisableDates>>> disableDates({required DateTime dateTime, required int? id}) {
+  Future<ApiResult<List<DisableDates>>> disableDates({
+    required DateTime dateTime,
+    required int? id,
+  }) {
     throw UnimplementedError();
   }
 
   @override
-  Future<ApiResult<TableStatisticResponse>> getStatistic({DateTime? from, DateTime? to}) {
+  Future<ApiResult<TableStatisticResponse>> getStatistic({
+    DateTime? from,
+    DateTime? to,
+  }) {
     throw UnimplementedError();
   }
 }

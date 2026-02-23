@@ -48,7 +48,9 @@ class _KitchenPageState extends ConsumerState<KitchenPage> {
 
   void _initializeAcceptedOrderCount() {
     final orders = ref.read(kitchenProvider).orders;
-    _previousAcceptedOrderCount = orders.where((order) => order.status == 'accepted').length;
+    _previousAcceptedOrderCount = orders
+        .where((order) => order.status == 'accepted')
+        .length;
   }
 
   void _refreshOrders() {
@@ -64,7 +66,9 @@ class _KitchenPageState extends ConsumerState<KitchenPage> {
 
   void _checkAndPlaySound() {
     final currentOrders = ref.read(kitchenProvider).orders;
-    final currentAcceptedOrderCount = currentOrders.where((order) => order.status == 'accepted').length;
+    final currentAcceptedOrderCount = currentOrders
+        .where((order) => order.status == 'accepted')
+        .length;
 
     if (currentAcceptedOrderCount > _previousAcceptedOrderCount) {
       _audioPlayer.play(AssetSource('sounds/tap.wav'));
@@ -103,7 +107,7 @@ class _KitchenPageState extends ConsumerState<KitchenPage> {
             const Icon(Remix.equalizer_2_fill, color: AppStyle.black),
             8.horizontalSpace,
             ...list.map(
-                  (e) => GestureDetector(
+              (e) => GestureDetector(
                 onTap: () {
                   if (e != state.selectType) {
                     event.changeType(e);
@@ -118,13 +122,17 @@ class _KitchenPageState extends ConsumerState<KitchenPage> {
                     ),
                     margin: EdgeInsets.only(right: 8.r),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
-                        color: state.selectType == e
-                            ? AppStyle.primary
-                            : AppStyle.white),
+                      borderRadius: BorderRadius.circular(10.r),
+                      color: state.selectType == e
+                          ? AppStyle.primary
+                          : AppStyle.white,
+                    ),
                     child: Text(
                       AppHelpers.getTranslation(e),
-                      style: GoogleFonts.inter(fontSize: 14.sp, color: AppStyle.black),
+                      style: GoogleFonts.inter(
+                        fontSize: 14.sp,
+                        color: AppStyle.black,
+                      ),
                     ),
                   ),
                 ),
@@ -135,54 +143,58 @@ class _KitchenPageState extends ConsumerState<KitchenPage> {
         16.verticalSpace,
         state.orders.isNotEmpty
             ? AnimationLimiter(
-          child: GridView.builder(
-            padding: EdgeInsets.zero,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisSpacing: 12,
-              crossAxisCount: 3,
-              mainAxisExtent: 224.r,
-            ),
-            itemCount: state.orders.length,
-            itemBuilder: (BuildContext context, int index) {
-              return AnimationConfiguration.staggeredGrid(
-                columnCount: state.orders.length,
-                position: index,
-                duration: const Duration(milliseconds: 375),
-                child: ScaleAnimation(
-                  scale: 0.5,
-                  child: FadeInAnimation(
-                    child: GestureDetector(
-                      onTap: () {
-                        if (index != state.selectIndex) {
-                          event.selectIndex(index);
-                        }
-                      },
-                      child: AnimationButtonEffect(
-                        child: OrdersInfo(
-                          active: state.selectIndex == index,
-                          orderData: state.orders[index],
+                child: GridView.builder(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 12,
+                    crossAxisCount: 3,
+                    mainAxisExtent: 224.r,
+                  ),
+                  itemCount: state.orders.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return AnimationConfiguration.staggeredGrid(
+                      columnCount: state.orders.length,
+                      position: index,
+                      duration: const Duration(milliseconds: 375),
+                      child: ScaleAnimation(
+                        scale: 0.5,
+                        child: FadeInAnimation(
+                          child: GestureDetector(
+                            onTap: () {
+                              if (index != state.selectIndex) {
+                                event.selectIndex(index);
+                              }
+                            },
+                            child: AnimationButtonEffect(
+                              child: OrdersInfo(
+                                active: state.selectIndex == index,
+                                orderData: state.orders[index],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-        )
+              )
             : state.isLoading
             ? const SizedBox.shrink()
             : Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.r),
-              child: Text(
-                AppHelpers.getTranslation(TrKeys.thereAreNoOrders),
-                style: GoogleFonts.inter(
-                    fontSize: 20.sp, fontWeight: FontWeight.w600, color: AppStyle.black),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.r),
+                  child: Text(
+                    AppHelpers.getTranslation(TrKeys.thereAreNoOrders),
+                    style: GoogleFonts.inter(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
+                      color: AppStyle.black,
+                    ),
+                  ),
+                ),
               ),
-            )),
         if (state.isLoading)
           AnimationLimiter(
             child: GridView.builder(
@@ -245,7 +257,7 @@ class _KitchenPageState extends ConsumerState<KitchenPage> {
                 ),
               ),
             ),
-          )
+          ),
       ],
     ),
   );

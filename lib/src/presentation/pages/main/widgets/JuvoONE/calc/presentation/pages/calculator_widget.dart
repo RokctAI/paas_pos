@@ -19,7 +19,10 @@ class CalculatorWidget extends ConsumerWidget {
               padding: const EdgeInsets.all(16),
               child: Text(
                 state.display,
-                style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -39,9 +42,18 @@ class CalculatorWidget extends ConsumerWidget {
               _buildButton('2', ref),
               _buildButton('3', ref),
               _buildButton('-', ref, isOperation: true),
-              _buildButton('C', ref, onPressed: () => ref.read(calculatorProvider.notifier).clear()),
+              _buildButton(
+                'C',
+                ref,
+                onPressed: () => ref.read(calculatorProvider.notifier).clear(),
+              ),
               _buildButton('0', ref),
-              _buildButton('=', ref, onPressed: () => ref.read(calculatorProvider.notifier).calculateResult()),
+              _buildButton(
+                '=',
+                ref,
+                onPressed: () =>
+                    ref.read(calculatorProvider.notifier).calculateResult(),
+              ),
               _buildButton('+', ref, isOperation: true),
             ],
           ),
@@ -50,19 +62,26 @@ class CalculatorWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildButton(String label, WidgetRef ref, {bool isOperation = false, VoidCallback? onPressed}) {
+  Widget _buildButton(
+    String label,
+    WidgetRef ref, {
+    bool isOperation = false,
+    VoidCallback? onPressed,
+  }) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: isOperation ? Colors.orange : Colors.grey[300],
         foregroundColor: isOperation ? Colors.white : Colors.black,
       ),
-      onPressed: onPressed ?? () {
-        if (isOperation) {
-          ref.read(calculatorProvider.notifier).setOperation(label);
-        } else {
-          ref.read(calculatorProvider.notifier).addDigit(label);
-        }
-      },
+      onPressed:
+          onPressed ??
+          () {
+            if (isOperation) {
+              ref.read(calculatorProvider.notifier).setOperation(label);
+            } else {
+              ref.read(calculatorProvider.notifier).addDigit(label);
+            }
+          },
       child: Text(label, style: const TextStyle(fontSize: 24)),
     );
   }

@@ -66,7 +66,10 @@ class _CustomClockState extends State<CustomClock> {
                 padding: const EdgeInsets.all(2.0),
                 child: Text(
                   " : ",
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold, color: AppStyle.black),
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: AppStyle.black,
+                  ),
                 ),
               ),
             if (widget.digitCount == null || widget.digitCount! > 0) _minute,
@@ -84,7 +87,10 @@ class _CustomClockState extends State<CustomClock> {
       text: _clockModel.is24HourTimeFormat
           ? hTOhh_24hTrue(_clockModel.hour)
           : hTOhh_24hFalse(_clockModel.hour)[0],
-      textStyle: Theme.of(context).textTheme.displaySmall!.copyWith(fontWeight: FontWeight.bold, color: AppStyle.black),
+      textStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
+        fontWeight: FontWeight.bold,
+        color: AppStyle.black,
+      ),
     ),
   );
 
@@ -93,7 +99,10 @@ class _CustomClockState extends State<CustomClock> {
     alignment: AlignmentDirectional.center,
     child: SpinnerText(
       text: mTOmm(_clockModel.minute),
-      textStyle: Theme.of(context).textTheme.displaySmall!.copyWith( fontWeight: FontWeight.bold, color: AppStyle.black),
+      textStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
+        fontWeight: FontWeight.bold,
+        color: AppStyle.black,
+      ),
     ),
   );
 
@@ -102,7 +111,10 @@ class _CustomClockState extends State<CustomClock> {
     padding: const EdgeInsets.all(2),
     alignment: AlignmentDirectional.center,
     child: SpinnerText(
-        text: sTOss(_clockModel.second),
-        textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 10, color: AppStyle.black)),
+      text: sTOss(_clockModel.second),
+      textStyle: Theme.of(
+        context,
+      ).textTheme.bodySmall!.copyWith(fontSize: 10, color: AppStyle.black),
+    ),
   );
 }

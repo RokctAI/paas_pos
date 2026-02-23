@@ -48,11 +48,14 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
   }
 
   bool get _isDesktop {
-    return !kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS);
+    return !kIsWeb &&
+        (Platform.isWindows || Platform.isLinux || Platform.isMacOS);
   }
 
   void _showFloatDialog() {
-    final TextEditingController controller = TextEditingController(text: _floatAmount.toString());
+    final TextEditingController controller = TextEditingController(
+      text: _floatAmount.toString(),
+    );
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -70,7 +73,9 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
           children: [
             TextFormField(
               controller: controller,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               style: TextStyle(color: AppStyle.black),
               decoration: InputDecoration(
                 prefix: Text(
@@ -154,7 +159,7 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
             viewMore: () {
               event.fetchSalePage();
             },
-          )
+          ),
         ],
       ),
     );
@@ -167,8 +172,9 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppStyle.white),
+              borderRadius: BorderRadius.circular(10.r),
+              color: AppStyle.white,
+            ),
             child: InkWell(
               onTap: () async {
                 // First check if there's an unclosed shift
@@ -228,14 +234,14 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
                           blurRadius: 32.r,
                           spreadRadius: 12.r,
                           color: AppStyle.primary.withOpacity(0.5),
-                        )
+                        ),
                       ],
                     ),
                     child: const Icon(
                       Remix.wallet_3_fill,
                       color: AppStyle.black,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -246,8 +252,9 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppStyle.white),
+              borderRadius: BorderRadius.circular(10.r),
+              color: AppStyle.white,
+            ),
             child: Row(
               children: [
                 Column(
@@ -284,14 +291,14 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
                         blurRadius: 32.r,
                         spreadRadius: 12.r,
                         color: AppStyle.starColor.withOpacity(0.5),
-                      )
+                      ),
                     ],
                   ),
                   child: const Icon(
                     Remix.money_dollar_circle_fill,
                     color: AppStyle.black,
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -301,8 +308,9 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30.r),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppStyle.white),
+              borderRadius: BorderRadius.circular(10.r),
+              color: AppStyle.white,
+            ),
             child: Row(
               children: [
                 Column(
@@ -319,7 +327,11 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
                     Text(
                       NumberFormat.currency(
                         symbol: LocalStorage.getSelectedCurrency().symbol,
-                      ).format(ref.read(saleHistoryProvider.notifier).getNonCashTotal()),
+                      ).format(
+                        ref
+                            .read(saleHistoryProvider.notifier)
+                            .getNonCashTotal(),
+                      ),
                       style: GoogleFonts.inter(
                         fontWeight: FontWeight.w600,
                         fontSize: 24.sp,
@@ -339,18 +351,18 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
                         blurRadius: 32.r,
                         spreadRadius: 12.r,
                         color: AppStyle.blue.withOpacity(0.5),
-                      )
+                      ),
                     ],
                   ),
                   child: const Icon(
                     Remix.bank_card_fill,
                     color: AppStyle.black,
                   ),
-                )
+                ),
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -359,10 +371,7 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
     List statusList = [TrKeys.cashDrawer, TrKeys.todaySale, TrKeys.saleHistory];
     return Row(
       children: [
-        const Icon(
-          Remix.equalizer_2_fill,
-          color: AppStyle.black,
-        ),
+        const Icon(Remix.equalizer_2_fill, color: AppStyle.black),
         for (int i = 0; i < statusList.length; i++)
           Padding(
             padding: REdgeInsets.only(left: 8),
@@ -376,7 +385,7 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
               isShadow: true,
               onTap: () => notifier.changeIndex(i),
             ),
-          )
+          ),
       ],
     );
   }

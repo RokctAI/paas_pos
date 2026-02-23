@@ -1,14 +1,10 @@
-
 import 'expenses_type.dart';
 
 class ExpenseStatistics {
   final double totalExpenses;
   final List<ExpenseTypeStats> byType;
 
-  ExpenseStatistics({
-    required this.totalExpenses,
-    required this.byType,
-  });
+  ExpenseStatistics({required this.totalExpenses, required this.byType});
 
   factory ExpenseStatistics.fromJson(Map<String, dynamic> json) {
     return ExpenseStatistics(

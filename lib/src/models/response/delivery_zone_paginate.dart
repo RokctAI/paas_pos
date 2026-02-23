@@ -4,7 +4,7 @@ class DeliveryZonePaginate {
   }
 
   DeliveryZonePaginate.fromJson(dynamic json) {
-      _data = DeliveryZoneData.fromJson(json['data']);
+    _data = DeliveryZoneData.fromJson(json['data']);
   }
 
   DeliveryZoneData? _data;
@@ -13,14 +13,10 @@ class DeliveryZonePaginate {
       DeliveryZonePaginate(data: data ?? _data);
 
   DeliveryZoneData? get data => _data;
-
 }
 
 class DeliveryZoneData {
-  DeliveryZoneData({
-    int? id,
-    List<List<double>>? address,
-  }) {
+  DeliveryZoneData({int? id, List<List<double>>? address}) {
     _id = id;
     _address = address;
   }
@@ -45,14 +41,8 @@ class DeliveryZoneData {
   int? _id;
   List<List<double>>? _address;
 
-  DeliveryZoneData copyWith({
-    int? id,
-    List<List<double>>? address,
-  }) =>
-      DeliveryZoneData(
-        id: id ?? _id,
-        address: address ?? _address,
-      );
+  DeliveryZoneData copyWith({int? id, List<List<double>>? address}) =>
+      DeliveryZoneData(id: id ?? _id, address: address ?? _address);
 
   int? get id => _id;
 
@@ -65,4 +55,3 @@ class DeliveryZoneData {
     return map;
   }
 }
-

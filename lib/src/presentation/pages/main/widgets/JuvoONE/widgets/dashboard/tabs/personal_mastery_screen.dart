@@ -94,7 +94,9 @@ class _PersonalMasteryScreenState extends State<PersonalMasteryScreen> {
                       _buildFilterChip(
                         label: 'Area: $_selectedArea',
                         onTap: _showAreaFilterDialog,
-                        onDeleted: () => setState(() { _selectedArea = 'All Areas'; }),
+                        onDeleted: () => setState(() {
+                          _selectedArea = 'All Areas';
+                        }),
                         isDeletable: _selectedArea != 'All Areas',
                       ),
                       const SizedBox(width: 8),
@@ -129,8 +131,10 @@ class _PersonalMasteryScreenState extends State<PersonalMasteryScreen> {
 
   List<PersonalMasteryGoal> _filterGoals(List<PersonalMasteryGoal> goals) {
     return goals.where((goal) {
-      final areaMatch = _selectedArea == 'All Areas' || goal.area == _selectedArea;
-      final statusMatch = _selectedStatus == 'All Statuses' || goal.status == _selectedStatus;
+      final areaMatch =
+          _selectedArea == 'All Areas' || goal.area == _selectedArea;
+      final statusMatch =
+          _selectedStatus == 'All Statuses' || goal.status == _selectedStatus;
       return areaMatch && statusMatch;
     }).toList();
   }
@@ -160,7 +164,7 @@ class _PersonalMasteryScreenState extends State<PersonalMasteryScreen> {
               child: const Text('Close'),
             ),
           ],
-            backgroundColor: AppStyle.white
+          backgroundColor: AppStyle.white,
         );
       },
     );
@@ -187,7 +191,7 @@ class _PersonalMasteryScreenState extends State<PersonalMasteryScreen> {
               child: const Text('Close'),
             ),
           ],
-            backgroundColor: AppStyle.white
+          backgroundColor: AppStyle.white,
         );
       },
     );
@@ -260,7 +264,10 @@ class _PersonalMasteryScreenState extends State<PersonalMasteryScreen> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: _getStatusColor(goal.status).withOpacity(0.2),
                       borderRadius: BorderRadius.circular(4),
@@ -276,19 +283,12 @@ class _PersonalMasteryScreenState extends State<PersonalMasteryScreen> {
                 ],
               ),
               const SizedBox(height: 8),
-              Text(
-                goal.area,
-                style: TextStyle(
-                  color: AppStyle.grey[600],
-                ),
-              ),
+              Text(goal.area, style: TextStyle(color: AppStyle.grey[600])),
               if (goal.description != null && goal.description!.isNotEmpty) ...[
                 const SizedBox(height: 8),
                 Text(
                   goal.description!,
-                  style: TextStyle(
-                    color: AppStyle.grey[700],
-                  ),
+                  style: TextStyle(color: AppStyle.grey[700]),
                 ),
               ],
               if (goal.targetDate != null) ...[
@@ -303,9 +303,7 @@ class _PersonalMasteryScreenState extends State<PersonalMasteryScreen> {
                     const SizedBox(width: 4),
                     Text(
                       'Target: ${goal.targetDate!.day}/${goal.targetDate!.month}/${goal.targetDate!.year}',
-                      style: TextStyle(
-                        color: AppStyle.grey[600],
-                      ),
+                      style: TextStyle(color: AppStyle.grey[600]),
                     ),
                   ],
                 ),
@@ -343,10 +341,7 @@ class _PersonalMasteryScreenState extends State<PersonalMasteryScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AddPersonalGoalDialog(
-          initialGoal: goal,
-          isEditing: true,
-        );
+        return AddPersonalGoalDialog(initialGoal: goal, isEditing: true);
       },
     );
   }

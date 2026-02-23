@@ -25,10 +25,7 @@ class WeatherIcon extends StatelessWidget {
       final conditionCode = condition['code'] as int?;
       if (conditionCode == null) return Remix.cloud_fill;
 
-      return WeatherIconMapper.getRemixIcon(
-        conditionCode,
-        isNight: isNight,
-      );
+      return WeatherIconMapper.getRemixIcon(conditionCode, isNight: isNight);
     } catch (e) {
       debugPrint('Error getting local weather icon: $e');
       return Remix.cloud_fill;
@@ -51,11 +48,7 @@ class WeatherIcon extends StatelessWidget {
   }
 
   Widget _buildLocalIcon() {
-    return Icon(
-      _getLocalIcon(),
-      size: size,
-      color: color ?? AppStyle.black,
-    );
+    return Icon(_getLocalIcon(), size: size, color: color ?? AppStyle.black);
   }
 
   Widget _buildLoadingIndicator(double? progress) {

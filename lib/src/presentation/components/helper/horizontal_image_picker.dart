@@ -33,16 +33,15 @@ class HorizontalImagePicker extends StatelessWidget {
     return Container(
       height: 150.h,
       width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16.r)),
       child: (isAdding && imageFilePath == null)
           ? InkWell(
               onTap: () async {
                 XFile? file;
                 try {
-                  file = await ImagePicker()
-                      .pickImage(source: ImageSource.gallery);
+                  file = await ImagePicker().pickImage(
+                    source: ImageSource.gallery,
+                  );
                 } catch (ex) {
                   debugPrint('===> trying to select image $ex');
                 }
@@ -64,8 +63,9 @@ class HorizontalImagePicker extends StatelessWidget {
                       onTap: () async {
                         XFile? file;
                         try {
-                          file = await ImagePicker()
-                              .pickImage(source: ImageSource.gallery);
+                          file = await ImagePicker().pickImage(
+                            source: ImageSource.gallery,
+                          );
                         } catch (ex) {
                           debugPrint('===> trying to select image $ex');
                         }
@@ -95,7 +95,7 @@ class HorizontalImagePicker extends StatelessWidget {
                         color: AppStyle.black,
                         letterSpacing: -0.3,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -131,8 +131,9 @@ class HorizontalImagePicker extends StatelessWidget {
                           onTap: () async {
                             XFile? file;
                             try {
-                              file = await ImagePicker()
-                                  .pickImage(source: ImageSource.gallery);
+                              file = await ImagePicker().pickImage(
+                                source: ImageSource.gallery,
+                              );
                             } catch (ex) {
                               debugPrint('===> trying to select image $ex');
                             }
@@ -151,7 +152,8 @@ class HorizontalImagePicker extends StatelessWidget {
                               ),
                               child: Icon(
                                 FlutterRemix.image_add_fill,
-                                color: (!isAdding &&
+                                color:
+                                    (!isAdding &&
                                         imageUrl == null &&
                                         imageFilePath == null)
                                     ? AppStyle.black
@@ -193,4 +195,3 @@ class HorizontalImagePicker extends StatelessWidget {
     );
   }
 }
-

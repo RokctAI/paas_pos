@@ -12,7 +12,8 @@ part of 'stock_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$StockState {
@@ -29,8 +30,9 @@ mixin _$StockState {
 /// @nodoc
 abstract class $StockStateCopyWith<$Res> {
   factory $StockStateCopyWith(
-          StockState value, $Res Function(StockState) then) =
-      _$StockStateCopyWithImpl<$Res, StockState>;
+    StockState value,
+    $Res Function(StockState) then,
+  ) = _$StockStateCopyWithImpl<$Res, StockState>;
   @useResult
   $Res call({bool isLoading, List<Stocks> stocks});
 }
@@ -49,20 +51,20 @@ class _$StockStateCopyWithImpl<$Res, $Val extends StockState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isLoading = null,
-    Object? stocks = null,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      stocks: null == stocks
-          ? _value.stocks
-          : stocks // ignore: cast_nullable_to_non_nullable
-              as List<Stocks>,
-    ) as $Val);
+  $Res call({Object? isLoading = null, Object? stocks = null}) {
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            stocks: null == stocks
+                ? _value.stocks
+                : stocks // ignore: cast_nullable_to_non_nullable
+                      as List<Stocks>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -70,8 +72,9 @@ class _$StockStateCopyWithImpl<$Res, $Val extends StockState>
 abstract class _$$StockStateImplCopyWith<$Res>
     implements $StockStateCopyWith<$Res> {
   factory _$$StockStateImplCopyWith(
-          _$StockStateImpl value, $Res Function(_$StockStateImpl) then) =
-      __$$StockStateImplCopyWithImpl<$Res>;
+    _$StockStateImpl value,
+    $Res Function(_$StockStateImpl) then,
+  ) = __$$StockStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isLoading, List<Stocks> stocks});
@@ -82,37 +85,38 @@ class __$$StockStateImplCopyWithImpl<$Res>
     extends _$StockStateCopyWithImpl<$Res, _$StockStateImpl>
     implements _$$StockStateImplCopyWith<$Res> {
   __$$StockStateImplCopyWithImpl(
-      _$StockStateImpl _value, $Res Function(_$StockStateImpl) _then)
-      : super(_value, _then);
+    _$StockStateImpl _value,
+    $Res Function(_$StockStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of StockState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isLoading = null,
-    Object? stocks = null,
-  }) {
-    return _then(_$StockStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      stocks: null == stocks
-          ? _value._stocks
-          : stocks // ignore: cast_nullable_to_non_nullable
-              as List<Stocks>,
-    ));
+  $Res call({Object? isLoading = null, Object? stocks = null}) {
+    return _then(
+      _$StockStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        stocks: null == stocks
+            ? _value._stocks
+            : stocks // ignore: cast_nullable_to_non_nullable
+                  as List<Stocks>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$StockStateImpl extends _StockState {
-  const _$StockStateImpl(
-      {this.isLoading = false, final List<Stocks> stocks = const []})
-      : _stocks = stocks,
-        super._();
+  const _$StockStateImpl({
+    this.isLoading = false,
+    final List<Stocks> stocks = const [],
+  }) : _stocks = stocks,
+       super._();
 
   @override
   @JsonKey()
@@ -143,7 +147,10 @@ class _$StockStateImpl extends _StockState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, isLoading, const DeepCollectionEquality().hash(_stocks));
+    runtimeType,
+    isLoading,
+    const DeepCollectionEquality().hash(_stocks),
+  );
 
   /// Create a copy of StockState
   /// with the given fields replaced by the non-null parameter values.
@@ -171,4 +178,3 @@ abstract class _StockState extends StockState {
   _$$StockStateImplCopyWith<_$StockStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

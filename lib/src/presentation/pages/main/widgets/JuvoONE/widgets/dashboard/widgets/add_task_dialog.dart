@@ -95,9 +95,13 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.isEditing ? 'Edit Task' : 'Add Task',
-          style: const TextStyle(
-              fontWeight: FontWeight.bold, color: AppStyle.black)),
+      title: Text(
+        widget.isEditing ? 'Edit Task' : 'Add Task',
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppStyle.black,
+        ),
+      ),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -204,8 +208,10 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               InkWell(
                 onTap: _selectDueDate,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: AppStyle.grey),
                     borderRadius: BorderRadius.circular(4),
@@ -246,9 +252,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                   Expanded(
                     child: DropdownButtonFormField<String>(
                       value: _status,
-                      decoration: AppStyle.inputDecoration(
-                        labelText: 'Status',
-                      ),
+                      decoration: AppStyle.inputDecoration(labelText: 'Status'),
                       items: _statuses.map((status) {
                         return DropdownMenuItem<String>(
                           value: status,
@@ -315,9 +319,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
         ),
         ElevatedButton(
           onPressed: _isLoading ? null : _submitForm,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppStyle.primary,
-          ),
+          style: ElevatedButton.styleFrom(backgroundColor: AppStyle.primary),
           child: _isLoading
               ? const SizedBox(
                   width: 20,
@@ -365,11 +367,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               ),
             ),
             if (isLinked)
-              Icon(
-                Icons.check_circle,
-                color: AppStyle.primary,
-                size: 16,
-              ),
+              Icon(Icons.check_circle, color: AppStyle.primary, size: 16),
           ],
         ),
       ),
@@ -384,9 +382,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
       decoration: BoxDecoration(
         color: AppStyle.primary.withOpacity(0.1),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: AppStyle.primary,
-        ),
+        border: Border.all(color: AppStyle.primary),
       ),
       child: Row(
         children: [
@@ -394,8 +390,8 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             type == 'KPI'
                 ? Icons.speed
                 : type == 'Objective'
-                    ? Icons.assignment
-                    : Icons.phone_android,
+                ? Icons.assignment
+                : Icons.phone_android,
             color: AppStyle.primary,
             size: 16,
           ),
@@ -411,11 +407,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             ),
           ),
           IconButton(
-            icon: Icon(
-              Icons.close,
-              size: 16,
-              color: AppStyle.primary,
-            ),
+            icon: Icon(Icons.close, size: 16, color: AppStyle.primary),
             onPressed: () {
               setState(() {
                 if (type == 'KPI') {
@@ -469,9 +461,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
   Future<void> _selectStrategicObjective() async {
     if (_planProvider.vision == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No vision data available')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('No vision data available')));
       return;
     }
 
@@ -501,8 +493,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               itemCount: allObjectives.length,
               itemBuilder: (context, index) {
                 final objective = allObjectives[index];
-                final pillar = _planProvider.vision!.pillars
-                    .firstWhere((p) => p.id == objective.pillarId);
+                final pillar = _planProvider.vision!.pillars.firstWhere(
+                  (p) => p.id == objective.pillarId,
+                );
                 return ListTile(
                   title: Text(objective.title),
                   subtitle: Text(pillar.name),
@@ -529,8 +522,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
         // If this objective has KPIs, clear any previously selected KPI
         // as it might not belong to this objective
         if (_kpiId != null) {
-          bool kpiBelongsToObjective =
-              selectedObjective.kpis.any((kpi) => kpi.id == _kpiId);
+          bool kpiBelongsToObjective = selectedObjective.kpis.any(
+            (kpi) => kpi.id == _kpiId,
+          );
           if (!kpiBelongsToObjective) {
             _kpiId = null;
           }
@@ -541,9 +535,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
   Future<void> _selectKpi() async {
     if (_planProvider.vision == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No vision data available')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('No vision data available')));
       return;
     }
 
@@ -570,9 +564,9 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
     }
 
     if (availableKpis.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No KPIs available')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('No KPIs available')));
       return;
     }
 
@@ -592,7 +586,8 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                 return ListTile(
                   title: Text(kpi.metric),
                   subtitle: Text(
-                      'Due: ${kpi.dueDate.day}/${kpi.dueDate.month}/${kpi.dueDate.year}'),
+                    'Due: ${kpi.dueDate.day}/${kpi.dueDate.month}/${kpi.dueDate.year}',
+                  ),
                   onTap: () {
                     Navigator.of(context).pop(kpi);
                   },
@@ -639,16 +634,18 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                   title: const Text('Water Refill Station'),
                   subtitle: const Text('South River'),
                   onTap: () {
-                    Navigator.of(context)
-                        .pop({'id': '1', 'name': 'Water Refill Station'});
+                    Navigator.of(
+                      context,
+                    ).pop({'id': '1', 'name': 'Water Refill Station'});
                   },
                 ),
                 ListTile(
                   title: const Text('Delivery Platform'),
                   subtitle: const Text('Juvo'),
                   onTap: () {
-                    Navigator.of(context)
-                        .pop({'id': '2', 'name': 'Delivery Platform'});
+                    Navigator.of(
+                      context,
+                    ).pop({'id': '2', 'name': 'Delivery Platform'});
                   },
                 ),
               ],
@@ -708,8 +705,10 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
 
       bool success;
       if (widget.isEditing && widget.initialTask != null) {
-        success =
-            await _taskProvider.updateTask(widget.initialTask!.uuid, data);
+        success = await _taskProvider.updateTask(
+          widget.initialTask!.uuid,
+          data,
+        );
       } else {
         success = await _taskProvider.createTask(data);
       }
@@ -722,9 +721,11 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(widget.isEditing
-                ? 'Task updated successfully'
-                : 'Task created successfully'),
+            content: Text(
+              widget.isEditing
+                  ? 'Task updated successfully'
+                  : 'Task created successfully',
+            ),
             backgroundColor: AppStyle.green,
           ),
         );
@@ -732,4 +733,3 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
     }
   }
 }
-

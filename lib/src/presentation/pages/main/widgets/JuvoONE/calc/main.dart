@@ -31,8 +31,9 @@ class CalculatorPageState extends State<CalculatorPage> {
           currentCalculation.firstNum != null &&
           currentCalculation.secondNum != null) {
         currentCalculation.result = currentCalculation.operator!.calculate(
-            double.parse(currentCalculation.firstNum!),
-            double.parse(currentCalculation.secondNum!));
+          double.parse(currentCalculation.firstNum!),
+          double.parse(currentCalculation.secondNum!),
+        );
         currentCalculation.complete = true;
         addToHistory(CalculationResult.from(currentCalculation));
         currentCalculation = CalculationResult();
@@ -53,7 +54,8 @@ class CalculatorPageState extends State<CalculatorPage> {
 
   void onOperatorButtonPressed(CalculatorOperator operator) {
     if (currentCalculation.firstNum != null) {
-      if (currentCalculation.operator != null && currentCalculation.secondNum != null) {
+      if (currentCalculation.operator != null &&
+          currentCalculation.secondNum != null) {
         onResultButtonPressed('=');
       }
       currentCalculation.operator = operator;
@@ -63,9 +65,13 @@ class CalculatorPageState extends State<CalculatorPage> {
 
   void onNumberButtonPressed(Number number) {
     if (currentCalculation.operator == null) {
-      currentCalculation.firstNum = number.apply(currentCalculation.firstNum ?? '0');
+      currentCalculation.firstNum = number.apply(
+        currentCalculation.firstNum ?? '0',
+      );
     } else {
-      currentCalculation.secondNum = number.apply(currentCalculation.secondNum ?? '0');
+      currentCalculation.secondNum = number.apply(
+        currentCalculation.secondNum ?? '0',
+      );
     }
     pickCurrentDisplay();
   }
@@ -153,10 +159,15 @@ class CalculatorPageState extends State<CalculatorPage> {
                           itemBuilder: (context, index) {
                             final result = history[history.length - 1 - index];
                             return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 2.0),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 2.0,
+                              ),
                               child: Text(
                                 '${result.firstNum} ${result.operator?.symbol} ${result.secondNum} = ${result.result}',
-                                style: TextStyle(color: Colors.grey[500], fontSize: 14),
+                                style: TextStyle(
+                                  color: Colors.grey[500],
+                                  fontSize: 14,
+                                ),
                                 textAlign: TextAlign.right,
                               ),
                             );
@@ -170,7 +181,10 @@ class CalculatorPageState extends State<CalculatorPage> {
                         padding: const EdgeInsets.all(16.0),
                         child: Text(
                           currentDisplay,
-                          style: const TextStyle(fontSize: 48, color: Colors.white),
+                          style: const TextStyle(
+                            fontSize: 48,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -258,9 +272,7 @@ class CalculatorPageState extends State<CalculatorPage> {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: buttonColor,
-            shape: text == '0'
-                ? const StadiumBorder()
-                : const CircleBorder(),
+            shape: text == '0' ? const StadiumBorder() : const CircleBorder(),
             padding: const EdgeInsets.all(24),
           ),
           child: buttonContent,

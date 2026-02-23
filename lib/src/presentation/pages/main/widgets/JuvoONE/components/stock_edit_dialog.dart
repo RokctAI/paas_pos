@@ -16,11 +16,7 @@ class StockEditDialog extends ConsumerStatefulWidget {
   final ProductData product;
   final Stocks? stock;
 
-  const StockEditDialog({
-    super.key,
-    required this.product,
-    this.stock,
-  });
+  const StockEditDialog({super.key, required this.product, this.stock});
 
   @override
   ConsumerState<StockEditDialog> createState() => _StockEditDialogState();
@@ -37,13 +33,11 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
     return '${stock.extras?.map((e) => "${e.group?.id}-${e.value}").join("-")}-${stock.product?.translation?.title}';
   }
 
-
   @override
   void initState() {
     super.initState();
     initializeStockControllers();
   }
-
 
   void initializeStockControllers() {
     stockControllers = [];
@@ -51,24 +45,34 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
 
     if (widget.stock != null) {
       // When editing a single stock
-      var key = '${widget.stock!.extras?.map((e) => e.value).join("-")}-${widget.stock!.product?.translation?.title}';
+      var key =
+          '${widget.stock!.extras?.map((e) => e.value).join("-")}-${widget.stock!.product?.translation?.title}';
       stockMap[key] = _createStockCopy(widget.stock!);
     } else {
       // When creating new or editing multiple, group stocks by their extras combination
       for (var stock in (widget.product.stocks ?? [])) {
-        var key = '${stock.extras?.map((e) => e.value).join("-")}-${stock.product?.translation?.title}';
+        var key =
+            '${stock.extras?.map((e) => e.value).join("-")}-${stock.product?.translation?.title}';
         stockMap[key] = _createStockCopy(stock);
       }
     }
 
     // Create controllers for each stock
     localStocks = stockMap.values.toList();
-    stockControllers = localStocks.map((stock) => StockEditController(
-      quantityController: TextEditingController(text: stock.quantity?.toString() ?? '0'),
-      priceController: TextEditingController(text: stock.price?.toString() ?? '0'),
-      extrasControllers: _createExtrasControllers(stock.extras ?? []),
-      addonControllers: _createAddonControllers(stock.addons ?? []),
-    )).toList();
+    stockControllers = localStocks
+        .map(
+          (stock) => StockEditController(
+            quantityController: TextEditingController(
+              text: stock.quantity?.toString() ?? '0',
+            ),
+            priceController: TextEditingController(
+              text: stock.price?.toString() ?? '0',
+            ),
+            extrasControllers: _createExtrasControllers(stock.extras ?? []),
+            addonControllers: _createAddonControllers(stock.addons ?? []),
+          ),
+        )
+        .toList();
 
     // Initialize selected extras
     _initializeSelectedExtras();
@@ -79,36 +83,48 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
     stockStateMap[key] = {
       'quantity': controller.quantityController.text,
       'price': controller.priceController.text,
-      'addons': controller.addonControllers.map((ac) => {
-        'id': ac.addon.id,
-        'quantity': ac.quantityController.text,
-        'price': ac.priceController.text,
-        'active': ac.isEnabled,
-      }).toList(),
+      'addons': controller.addonControllers
+          .map(
+            (ac) => {
+              'id': ac.addon.id,
+              'quantity': ac.quantityController.text,
+              'price': ac.priceController.text,
+              'active': ac.isEnabled,
+            },
+          )
+          .toList(),
     };
   }
 
   List<ExtrasEditController> _createExtrasControllers(List<Extras> extras) {
     // Ensure we create controllers for all extras
-    return extras.map((extra) => ExtrasEditController(
-      title: extra.group?.translation?.title ?? '',
-      value: extra.value ?? '',
-      groupId: extra.group?.id,
-    )).toList();
+    return extras
+        .map(
+          (extra) => ExtrasEditController(
+            title: extra.group?.translation?.title ?? '',
+            value: extra.value ?? '',
+            groupId: extra.group?.id,
+          ),
+        )
+        .toList();
   }
 
   List<AddonEditController> _createAddonControllers(List<Addons> addons) {
     // Create controllers for all addons, including inactive ones
-    return addons.map((addon) => AddonEditController(
-      quantityController: TextEditingController(
-          text: addon.quantity?.toString() ?? '1'
-      ),
-      priceController: TextEditingController(
-          text: addon.price?.toString() ?? '0'
-      ),
-      isEnabled: addon.active ?? false,
-      addon: addon,
-    )).toList();
+    return addons
+        .map(
+          (addon) => AddonEditController(
+            quantityController: TextEditingController(
+              text: addon.quantity?.toString() ?? '1',
+            ),
+            priceController: TextEditingController(
+              text: addon.price?.toString() ?? '0',
+            ),
+            isEnabled: addon.active ?? false,
+            addon: addon,
+          ),
+        )
+        .toList();
   }
 
   Stocks _createStockCopy(Stocks original) {
@@ -123,27 +139,37 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
       img: original.img,
       sku: original.sku,
       translation: original.translation,
-      extras: original.extras?.map((e) => Extras(
-        id: e.id,
-        extraGroupId: e.extraGroupId,
-        value: e.value,
-        group: e.group != null ? Group(
-          id: e.group!.id,
-          type: e.group!.type,
-          active: e.group!.active,
-          translation: e.group!.translation,
-        ) : null,
-      )).toList(),
-      addons: original.addons?.map((a) => Addons(
-        id: a.id,
-        stockId: a.stockId,
-        addonId: a.addonId,
-        product: a.product,
-        price: a.price,
-        quantity: a.quantity,
-        active: a.active,
-        stocks: a.stocks,
-      )).toList(),
+      extras: original.extras
+          ?.map(
+            (e) => Extras(
+              id: e.id,
+              extraGroupId: e.extraGroupId,
+              value: e.value,
+              group: e.group != null
+                  ? Group(
+                      id: e.group!.id,
+                      type: e.group!.type,
+                      active: e.group!.active,
+                      translation: e.group!.translation,
+                    )
+                  : null,
+            ),
+          )
+          .toList(),
+      addons: original.addons
+          ?.map(
+            (a) => Addons(
+              id: a.id,
+              stockId: a.stockId,
+              addonId: a.addonId,
+              product: a.product,
+              price: a.price,
+              quantity: a.quantity,
+              active: a.active,
+              stocks: a.stocks,
+            ),
+          )
+          .toList(),
       product: original.product,
     );
   }
@@ -172,7 +198,9 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
         selectedExtras[groupId] = [];
       }
 
-      var existingIndex = selectedExtras[groupId]!.indexWhere((e) => e.value == extra.value);
+      var existingIndex = selectedExtras[groupId]!.indexWhere(
+        (e) => e.value == extra.value,
+      );
       if (existingIndex != -1) {
         selectedExtras[groupId]!.removeAt(existingIndex);
         if (selectedExtras[groupId]!.isEmpty) {
@@ -190,34 +218,43 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
 
     // Create a map of existing stocks by their extras combination
     for (var stock in localStocks) {
-      String key = '${stock.extras?.map((e) => e.value).join("-")}-${stock.product?.translation?.title}';
+      String key =
+          '${stock.extras?.map((e) => e.value).join("-")}-${stock.product?.translation?.title}';
       existingStockMap[key] = stock;
     }
 
     if (selectedExtras.isEmpty) {
       setState(() {
         // Preserve existing stocks if they have no extras
-        localStocks = existingStockMap.values.where((s) => s.extras?.isEmpty ?? true).toList();
+        localStocks = existingStockMap.values
+            .where((s) => s.extras?.isEmpty ?? true)
+            .toList();
         if (localStocks.isEmpty) {
           // If no stocks without extras exist, create default ones
           localStocks = [
             Stocks(
               price: 0,
               quantity: 0,
-              addons: widget.product.addons?.map((a) => Addons(
-                id: a.id,
-                stockId: a.stockId,
-                addonId: a.addonId,
-                product: a.product,
-                price: a.price,
-                quantity: 1,
-                active: false,
-                stocks: a.stocks,
-              )).toList(),
-            )
+              addons: widget.product.addons
+                  ?.map(
+                    (a) => Addons(
+                      id: a.id,
+                      stockId: a.stockId,
+                      addonId: a.addonId,
+                      product: a.product,
+                      price: a.price,
+                      quantity: 1,
+                      active: false,
+                      stocks: a.stocks,
+                    ),
+                  )
+                  .toList(),
+            ),
           ];
         }
-        stockControllers = localStocks.map((stock) => _createDefaultControllerFromStock(stock)).toList();
+        stockControllers = localStocks
+            .map((stock) => _createDefaultControllerFromStock(stock))
+            .toList();
       });
       return;
     }
@@ -230,7 +267,8 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
     setState(() {
       // Create or update stocks for each combination
       localStocks = combinations.map((extras) {
-        String key = '${extras.map((e) => e.value).join("-")}-${widget.product.translation?.title}';
+        String key =
+            '${extras.map((e) => e.value).join("-")}-${widget.product.translation?.title}';
         var existingStock = existingStockMap[key];
 
         if (existingStock != null) {
@@ -242,34 +280,50 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
             price: 0,
             quantity: 0,
             extras: extras,
-            addons: widget.product.addons?.map((a) => Addons(
-              id: a.id,
-              stockId: a.stockId,
-              addonId: a.addonId,
-              product: a.product,
-              price: a.price,
-              quantity: 1,
-              active: false,
-              stocks: a.stocks,
-            )).toList(),
+            addons: widget.product.addons
+                ?.map(
+                  (a) => Addons(
+                    id: a.id,
+                    stockId: a.stockId,
+                    addonId: a.addonId,
+                    product: a.product,
+                    price: a.price,
+                    quantity: 1,
+                    active: false,
+                    stocks: a.stocks,
+                  ),
+                )
+                .toList(),
           );
         }
       }).toList();
 
       // Update controllers
-      stockControllers = localStocks.map((stock) => StockEditController(
-        quantityController: TextEditingController(text: stock.quantity?.toString() ?? '0'),
-        priceController: TextEditingController(text: stock.price?.toString() ?? '0'),
-        extrasControllers: _createExtrasControllers(stock.extras ?? []),
-        addonControllers: _createAddonControllers(stock.addons ?? []),
-      )).toList();
+      stockControllers = localStocks
+          .map(
+            (stock) => StockEditController(
+              quantityController: TextEditingController(
+                text: stock.quantity?.toString() ?? '0',
+              ),
+              priceController: TextEditingController(
+                text: stock.price?.toString() ?? '0',
+              ),
+              extrasControllers: _createExtrasControllers(stock.extras ?? []),
+              addonControllers: _createAddonControllers(stock.addons ?? []),
+            ),
+          )
+          .toList();
     });
   }
 
   StockEditController _createDefaultControllerFromStock(Stocks stock) {
     return StockEditController(
-      quantityController: TextEditingController(text: stock.quantity?.toString() ?? '0'),
-      priceController: TextEditingController(text: stock.price?.toString() ?? '0'),
+      quantityController: TextEditingController(
+        text: stock.quantity?.toString() ?? '0',
+      ),
+      priceController: TextEditingController(
+        text: stock.price?.toString() ?? '0',
+      ),
       extrasControllers: [],
       addonControllers: _createAddonControllers(stock.addons ?? []),
     );
@@ -277,9 +331,11 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
 
   bool _areExtrasEqual(List<Extras> extras1, List<Extras> extras2) {
     if (extras1.length != extras2.length) return false;
-    return extras1.every((e1) => extras2.any((e2) =>
-    e1.group?.id == e2.group?.id && e1.value == e2.value
-    ));
+    return extras1.every(
+      (e1) => extras2.any(
+        (e2) => e1.group?.id == e2.group?.id && e1.value == e2.value,
+      ),
+    );
   }
 
   StockEditController _createDefaultController() {
@@ -307,35 +363,40 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
           final addonController = controller.addonControllers[j];
           final originalAddon = originalStock.addons![j];
 
-          updatedAddons.add(Addons(
-            id: originalAddon.id,
-            stockId: originalAddon.stockId,
-            addonId: originalAddon.addonId,
-            product: originalAddon.product,
-            price: double.tryParse(addonController.priceController.text) ?? 0,
-            quantity: int.tryParse(addonController.quantityController.text) ?? 0,
-            active: addonController.isEnabled,
-            stocks: originalAddon.stocks,
-          ));
+          updatedAddons.add(
+            Addons(
+              id: originalAddon.id,
+              stockId: originalAddon.stockId,
+              addonId: originalAddon.addonId,
+              product: originalAddon.product,
+              price: double.tryParse(addonController.priceController.text) ?? 0,
+              quantity:
+                  int.tryParse(addonController.quantityController.text) ?? 0,
+              active: addonController.isEnabled,
+              stocks: originalAddon.stocks,
+            ),
+          );
         }
       }
 
       // Create new stock with updated values
-      updatedStocks.add(Stocks(
-        id: originalStock.id,
-        countableId: originalStock.countableId,
-        price: double.tryParse(controller.priceController.text) ?? 0,
-        quantity: int.tryParse(controller.quantityController.text) ?? 0,
-        discount: originalStock.discount,
-        tax: originalStock.tax,
-        totalPrice: originalStock.totalPrice,
-        img: originalStock.img,
-        sku: originalStock.sku,
-        translation: originalStock.translation,
-        extras: originalStock.extras,
-        addons: updatedAddons,
-        product: originalStock.product,
-      ));
+      updatedStocks.add(
+        Stocks(
+          id: originalStock.id,
+          countableId: originalStock.countableId,
+          price: double.tryParse(controller.priceController.text) ?? 0,
+          quantity: int.tryParse(controller.quantityController.text) ?? 0,
+          discount: originalStock.discount,
+          tax: originalStock.tax,
+          totalPrice: originalStock.totalPrice,
+          img: originalStock.img,
+          sku: originalStock.sku,
+          translation: originalStock.translation,
+          extras: originalStock.extras,
+          addons: updatedAddons,
+          product: originalStock.product,
+        ),
+      );
     }
 
     // Validate stocks before saving
@@ -351,11 +412,13 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
 
     setState(() => isLoading = true);
 
-    final response = await ref.read(productsRepositoryProvider).updateStocks(
-      stocks: updatedStocks,
-      deletedStocks: [],
-      uuid: widget.product.uuid!,
-    );
+    final response = await ref
+        .read(productsRepositoryProvider)
+        .updateStocks(
+          stocks: updatedStocks,
+          deletedStocks: [],
+          uuid: widget.product.uuid!,
+        );
 
     setState(() => isLoading = false);
 
@@ -363,10 +426,9 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
       success: (data) {
         // Update all stocks in state
         for (var stock in updatedStocks) {
-          ref.read(mainProvider.notifier).updateProductStock(
-            widget.product.uuid!,
-            stock,
-          );
+          ref
+              .read(mainProvider.notifier)
+              .updateProductStock(widget.product.uuid!, stock);
         }
 
         AppHelpers.showSnackBar(
@@ -376,10 +438,7 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
         Navigator.pop(context);
       },
       failure: (error) {
-        AppHelpers.showSnackBar(
-          context,
-          error.toString(),
-        );
+        AppHelpers.showSnackBar(context, error.toString());
       },
     );
   }
@@ -387,75 +446,75 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
   @override
   Widget build(BuildContext context) {
     return Container(
-          width: 600.w,
-          padding: EdgeInsets.all(16.r),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+      width: 600.w,
+      padding: EdgeInsets.all(16.r),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Edit Stock',
+            style: GoogleFonts.inter(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          20.verticalSpace,
+
+          // Show extras selection if product has any extras
+          if (widget.product.stocks?.any((s) => s.extras?.isNotEmpty == true) ??
+              false)
+            ExtrasSelectionWidget(
+              stocks:
+                  widget.product.stocks ??
+                  [], // Use all product stocks to show all possible extras
+              selectedExtras: selectedExtras,
+              onExtraSelected: _handleExtraSelected,
+            ),
+
+          // Stocks list with expanded height
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.6,
+            ),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: stockControllers.length,
+              itemBuilder: (context, index) => StockEditItem(
+                controller: stockControllers[index],
+                stock: localStocks[index],
+                onStockChanged: () => setState(() {}),
+              ),
+            ),
+          ),
+
+          20.verticalSpace,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
-                'Edit Stock',
-                style: GoogleFonts.inter(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w600,
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  'Cancel',
+                  style: GoogleFonts.inter(fontSize: 16.sp),
                 ),
               ),
-              20.verticalSpace,
-
-              // Show extras selection if product has any extras
-              if (widget.product.stocks?.any((s) => s.extras?.isNotEmpty == true) ?? false)
-                ExtrasSelectionWidget(
-                  stocks: widget.product.stocks ?? [],  // Use all product stocks to show all possible extras
-                  selectedExtras: selectedExtras,
-                  onExtraSelected: _handleExtraSelected,
-                ),
-
-              // Stocks list with expanded height
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height * 0.6,
-                ),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: stockControllers.length,
-                  itemBuilder: (context, index) => StockEditItem(
-                    controller: stockControllers[index],
-                    stock: localStocks[index],
-                    onStockChanged: () => setState(() {}),
-                  ),
-                ),
-              ),
-
-              20.verticalSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      'Cancel',
-                      style: GoogleFonts.inter(fontSize: 16.sp),
-                    ),
-                  ),
-                  8.horizontalSpace,
-                  ElevatedButton(
-                    onPressed: isLoading ? null : _handleSave,
-                    child: isLoading
-                        ? SizedBox(
-                      width: 20.r,
-                      height: 20.r,
-                      child: const CircularProgressIndicator(strokeWidth: 2),
-                    )
-                        : Text(
-                      'Save',
-                      style: GoogleFonts.inter(fontSize: 16.sp),
-                    ),
-                  ),
-                ],
+              8.horizontalSpace,
+              ElevatedButton(
+                onPressed: isLoading ? null : _handleSave,
+                child: isLoading
+                    ? SizedBox(
+                        width: 20.r,
+                        height: 20.r,
+                        child: const CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : Text('Save', style: GoogleFonts.inter(fontSize: 16.sp)),
               ),
             ],
           ),
-        );
+        ],
+      ),
+    );
   }
 }
 
@@ -542,9 +601,15 @@ class StockEditItem extends StatelessWidget {
             Wrap(
               spacing: 8.r,
               runSpacing: 8.r,
-              children: stock.extras!.map((extra) => Chip(
-                label: Text('${extra.group?.translation?.title}: ${extra.value}'),
-              )).toList(),
+              children: stock.extras!
+                  .map(
+                    (extra) => Chip(
+                      label: Text(
+                        '${extra.group?.translation?.title}: ${extra.value}',
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
 
           16.verticalSpace,
@@ -751,14 +816,17 @@ class ExtrasSelectionWidget extends StatelessWidget {
                   spacing: 8.r,
                   runSpacing: 8.r,
                   children: extras.map((extra) {
-                    final isSelected = selectedExtras[groupId.toString()]?.any(
+                    final isSelected =
+                        selectedExtras[groupId.toString()]?.any(
                           (e) => e.id == extra.id && e.value == extra.value,
-                    ) ?? false;
+                        ) ??
+                        false;
 
                     return FilterChip(
                       label: Text(extra.value ?? ''),
                       selected: isSelected,
-                      onSelected: (_) => onExtraSelected(groupId.toString(), extra),
+                      onSelected: (_) =>
+                          onExtraSelected(groupId.toString(), extra),
                       backgroundColor: AppStyle.white,
                       selectedColor: AppStyle.primary,
                       labelStyle: GoogleFonts.inter(
@@ -768,7 +836,9 @@ class ExtrasSelectionWidget extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.r),
                         side: BorderSide(
-                          color: isSelected ? AppStyle.primary : AppStyle.shimmerBase,
+                          color: isSelected
+                              ? AppStyle.primary
+                              : AppStyle.shimmerBase,
                         ),
                       ),
                     );

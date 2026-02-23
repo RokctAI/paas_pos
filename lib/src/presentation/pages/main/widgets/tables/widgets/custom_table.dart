@@ -103,31 +103,34 @@ class ResponsiveTable extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-              height: top != 0 ? chairHeight.r : 0,
-              width: double.infinity,
-              child: Padding(
-                padding: REdgeInsets.only(
-                  left: left != 0
-                      ? chairHeight + chairSpace * 2.5
-                      : top == 1
-                          ? chairSpace * 2.5
-                          : 0,
-                  right: right != 0
-                      ? chairHeight + chairSpace * 2.5
-                      : top == 1
-                          ? chairSpace * 2.5
-                          : 0,
+            height: top != 0 ? chairHeight.r : 0,
+            width: double.infinity,
+            child: Padding(
+              padding: REdgeInsets.only(
+                left: left != 0
+                    ? chairHeight + chairSpace * 2.5
+                    : top == 1
+                    ? chairSpace * 2.5
+                    : 0,
+                right: right != 0
+                    ? chairHeight + chairSpace * 2.5
+                    : top == 1
+                    ? chairSpace * 2.5
+                    : 0,
+              ),
+              child: Row(
+                children: List.generate(
+                  top,
+                  (index) => Expanded(
+                    child: VerticalChair(
+                      chairPosition: ChairPosition.top,
+                      chairSpace: index == 0 ? 0 : chairSpace,
+                    ),
+                  ),
                 ),
-                child: Row(
-                  children: List.generate(
-                      top,
-                      (index) => Expanded(
-                            child: VerticalChair(
-                                chairPosition: ChairPosition.top,
-                                chairSpace: index == 0 ? 0 : chairSpace),
-                          )),
-                ),
-              )),
+              ),
+            ),
+          ),
           Expanded(
             child: Row(
               children: [
@@ -137,15 +140,17 @@ class ResponsiveTable extends StatelessWidget {
                       : 0,
                   width: left != 0 ? chairHeight.r : 0,
                   child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: left,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemBuilder: (context, index) {
-                        return CustomChair(
-                            chairPosition: ChairPosition.left,
-                            chairSpace: index == 0 ? 0 : chairSpace);
-                      }),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: left,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      return CustomChair(
+                        chairPosition: ChairPosition.left,
+                        chairSpace: index == 0 ? 0 : chairSpace,
+                      );
+                    },
+                  ),
                 ),
                 Expanded(
                   child: Padding(
@@ -154,31 +159,38 @@ class ResponsiveTable extends StatelessWidget {
                       height: double.infinity,
                       width: double.infinity,
                       padding: REdgeInsets.symmetric(
-                          horizontal: withCount == 1 ? 12 : 0, vertical: heightCount == 1 ? 12 : 0),
+                        horizontal: withCount == 1 ? 12 : 0,
+                        vertical: heightCount == 1 ? 12 : 0,
+                      ),
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8.r)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
                       child: Center(
                         child: Container(
                           padding: REdgeInsets.symmetric(
-                              horizontal: withCount == 1 ? 6 : 12, vertical:  12),
+                            horizontal: withCount == 1 ? 6 : 12,
+                            vertical: 12,
+                          ),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.r),
-                              color: type == TrKeys.occupied
-                                  ? AppStyle.red
-                                  : type == TrKeys.booked
-                                      ? AppStyle.starColor
-                                      : AppStyle.addButtonColor),
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: type == TrKeys.occupied
+                                ? AppStyle.red
+                                : type == TrKeys.booked
+                                ? AppStyle.starColor
+                                : AppStyle.addButtonColor,
+                          ),
                           child: Text(
                             title,
                             maxLines: 2,
                             style: GoogleFonts.inter(
-                              color: type == TrKeys.occupied ||
+                              color:
+                                  type == TrKeys.occupied ||
                                       type == TrKeys.booked
                                   ? AppStyle.white
                                   : AppStyle.reviewText,
                               fontWeight: FontWeight.w500,
-                              fontSize: withCount == 1 ? 14.sp: 15.sp,
+                              fontSize: withCount == 1 ? 14.sp : 15.sp,
                               decoration: TextDecoration.none,
                             ),
                           ),
@@ -190,52 +202,56 @@ class ResponsiveTable extends StatelessWidget {
                 SizedBox(
                   height: right != 0
                       ? (chairWidth.r * right +
-                          (heightCount - 1) * chairSpace.r)
+                            (heightCount - 1) * chairSpace.r)
                       : 0,
                   width: right != 0 ? chairHeight.r : 0,
                   child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: right,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemBuilder: (context, index) {
-                        return CustomChair(
-                            chairPosition: ChairPosition.right,
-                            chairSpace: index == 0 ? 0 : chairSpace);
-                      }),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: right,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) {
+                      return CustomChair(
+                        chairPosition: ChairPosition.right,
+                        chairSpace: index == 0 ? 0 : chairSpace,
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
           ),
           SizedBox(
-              height: bottom != 0 ? chairHeight.r : 0,
-              width: double.infinity,
-              child: Padding(
-                padding: REdgeInsets.only(
-                  left: left != 0
-                      ? chairHeight + chairSpace * 2.5
-                      : bottom == 1
-                          ? chairSpace * 2.5
-                          : 0,
-                  right: right != 0
-                      ? chairHeight + chairSpace * 2.5
-                      : bottom == 1
-                          ? chairSpace * 2.5
-                          : 0,
+            height: bottom != 0 ? chairHeight.r : 0,
+            width: double.infinity,
+            child: Padding(
+              padding: REdgeInsets.only(
+                left: left != 0
+                    ? chairHeight + chairSpace * 2.5
+                    : bottom == 1
+                    ? chairSpace * 2.5
+                    : 0,
+                right: right != 0
+                    ? chairHeight + chairSpace * 2.5
+                    : bottom == 1
+                    ? chairSpace * 2.5
+                    : 0,
+              ),
+              child: Row(
+                children: List.generate(
+                  bottom,
+                  (index) => Expanded(
+                    child: VerticalChair(
+                      chairPosition: ChairPosition.bottom,
+                      chairSpace: index == 0 ? 0 : chairSpace,
+                    ),
+                  ),
                 ),
-                child: Row(
-                  children: List.generate(
-                      bottom,
-                      (index) => Expanded(
-                            child: VerticalChair(
-                                chairPosition: ChairPosition.bottom,
-                                chairSpace: index == 0 ? 0 : chairSpace),
-                          )),
-                ),
-              )),
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 }
-

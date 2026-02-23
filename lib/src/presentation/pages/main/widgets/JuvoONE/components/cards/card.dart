@@ -41,17 +41,11 @@ class CustomCard extends StatelessWidget {
 class CustomCardHeader extends StatelessWidget {
   final Widget child;
 
-  const CustomCardHeader({
-    super.key,
-    required this.child,
-  });
+  const CustomCardHeader({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: child,
-    );
+    return Padding(padding: const EdgeInsets.only(bottom: 16), child: child);
   }
 }
 
@@ -59,17 +53,10 @@ class CustomCardContent extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
 
-  const CustomCardContent({
-    super.key,
-    required this.child,
-    this.padding,
-  });
+  const CustomCardContent({super.key, required this.child, this.padding});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: padding ?? EdgeInsets.zero,
-      child: child,
-    );
+    return Padding(padding: padding ?? EdgeInsets.zero, child: child);
   }
 }

@@ -31,49 +31,51 @@ class MainAppbar extends ConsumerWidget {
                     padding: EdgeInsets.all(8.r),
                     decoration: BoxDecoration(
                       color: AppStyle.white,
-                      borderRadius: BorderRadius.circular(10.r)
+                      borderRadius: BorderRadius.circular(10.r),
                     ),
                     height: 56.h,
                     child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.categories.length + 2,
-                        itemBuilder: (context, index) {
-                          return index == 0
-                              ? Padding(
-                                  padding: EdgeInsets.only(right: 6.r),
-                                  child:
-                                      Icon(Remix.equalizer_2_fill,
-                                          color: AppStyle.black),
-                                )
-                              : index == 1
-                                  ? CategoryTabBarItem(
-                                      isActive:
-                                          state.selectedCategory?.id == null,
-                                      onTap: () {
-                                        notifier.setSelectedCategory(
-                                            context, -1);
-                                      },
-                                      title:
-                                          AppHelpers.getTranslation(TrKeys.all),
-                                    )
-                                  : CategoryTabBarItem(
-                                      isActive:
-                                          state.categories[index - 2].id ==
-                                              state.selectedCategory?.id,
-                                      onTap: () {
-                                        notifier.setSelectedCategory(
-                                            context, index - 2);
-                                      },
-                                      title: state.categories[index - 2]
-                                          .translation?.title,
-                                    );
-                        }),
-                  )
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.categories.length + 2,
+                      itemBuilder: (context, index) {
+                        return index == 0
+                            ? Padding(
+                                padding: EdgeInsets.only(right: 6.r),
+                                child: Icon(
+                                  Remix.equalizer_2_fill,
+                                  color: AppStyle.black,
+                                ),
+                              )
+                            : index == 1
+                            ? CategoryTabBarItem(
+                                isActive: state.selectedCategory?.id == null,
+                                onTap: () {
+                                  notifier.setSelectedCategory(context, -1);
+                                },
+                                title: AppHelpers.getTranslation(TrKeys.all),
+                              )
+                            : CategoryTabBarItem(
+                                isActive:
+                                    state.categories[index - 2].id ==
+                                    state.selectedCategory?.id,
+                                onTap: () {
+                                  notifier.setSelectedCategory(
+                                    context,
+                                    index - 2,
+                                  );
+                                },
+                                title: state
+                                    .categories[index - 2]
+                                    .translation
+                                    ?.title,
+                              );
+                      },
+                    ),
+                  ),
                 ],
-              )
+              ),
       ],
     );
   }
 }
-

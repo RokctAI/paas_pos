@@ -23,12 +23,11 @@ class LanguagesModal extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: REdgeInsets.symmetric(horizontal: 15,vertical: 10),
+          padding: REdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Row(
             children: [
               Text(
-                AppHelpers.getTranslation(
-                    TrKeys.language),
+                AppHelpers.getTranslation(TrKeys.language),
                 style: GoogleFonts.inter(
                   fontWeight: FontWeight.w600,
                   fontSize: 22,
@@ -37,13 +36,15 @@ class LanguagesModal extends ConsumerWidget {
               ),
               const Spacer(),
               IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  splashRadius: 25,
-                  icon: const Icon(
-                      FlutterRemix.close_fill,
-                  color: AppStyle.black,))
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                splashRadius: 25,
+                icon: const Icon(
+                  FlutterRemix.close_fill,
+                  color: AppStyle.black,
+                ),
+              ),
             ],
           ),
         ),
@@ -58,12 +59,13 @@ class LanguagesModal extends ConsumerWidget {
                   itemCount: state.languages.length,
                   itemBuilder: (context, index) {
                     return SelectItem(
-                      isLast: state.languages.length-1==index,
+                      isLast: state.languages.length - 1 == index,
                       onTap: () {
                         notifier.change(index, afterUpdate: afterUpdate);
                         Navigator.pop(context);
                       },
-                      isActive: LocalStorage.getLanguage()?.locale ==
+                      isActive:
+                          LocalStorage.getLanguage()?.locale ==
                           state.languages[index].locale,
                       title: state.languages[index].title ?? '',
                     );
@@ -75,4 +77,3 @@ class LanguagesModal extends ConsumerWidget {
     );
   }
 }
-

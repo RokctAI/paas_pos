@@ -50,4 +50,3 @@ class TablesState with _$TablesState {
 
   const TablesState._();
 }
-

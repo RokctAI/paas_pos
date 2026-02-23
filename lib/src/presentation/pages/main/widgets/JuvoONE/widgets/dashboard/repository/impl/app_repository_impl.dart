@@ -1,4 +1,3 @@
-
 // repository/app_repository_impl.dart
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -100,10 +99,7 @@ class AppRepositoryImpl implements AppRepository {
       }
 
       final dio = _httpService.client(requireAuth: true);
-      final response = await dio.post(
-        '$_baseUrl/apps',
-        data: data,
-      );
+      final response = await dio.post('$_baseUrl/apps', data: data);
 
       if (response.statusCode == 201) {
         final jsonData = response.data;
@@ -127,7 +123,8 @@ class AppRepositoryImpl implements AppRepository {
       }
 
       // Extract validation errors if present
-      if (e.response?.statusCode == 422 && e.response?.data?['errors'] != null) {
+      if (e.response?.statusCode == 422 &&
+          e.response?.data?['errors'] != null) {
         final errors = e.response!.data['errors'] as Map<String, dynamic>;
         final errorMessages = errors.values
             .expand((e) => e is List ? e : [e.toString()])
@@ -149,13 +146,13 @@ class AppRepositoryImpl implements AppRepository {
   }
 
   @override
-  Future<ApiResult<App>> updateApp(String uuid, Map<String, dynamic> data) async {
+  Future<ApiResult<App>> updateApp(
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     try {
       final dio = _httpService.client(requireAuth: true);
-      final response = await dio.put(
-        '$_baseUrl/apps/$uuid',
-        data: data,
-      );
+      final response = await dio.put('$_baseUrl/apps/$uuid', data: data);
 
       if (response.statusCode == 200) {
         final jsonData = response.data;

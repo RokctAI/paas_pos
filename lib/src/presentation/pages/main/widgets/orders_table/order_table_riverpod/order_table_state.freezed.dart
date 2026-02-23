@@ -12,7 +12,8 @@ part of 'order_table_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$OrderTableState {
@@ -36,18 +37,20 @@ mixin _$OrderTableState {
 /// @nodoc
 abstract class $OrderTableStateCopyWith<$Res> {
   factory $OrderTableStateCopyWith(
-          OrderTableState value, $Res Function(OrderTableState) then) =
-      _$OrderTableStateCopyWithImpl<$Res, OrderTableState>;
+    OrderTableState value,
+    $Res Function(OrderTableState) then,
+  ) = _$OrderTableStateCopyWithImpl<$Res, OrderTableState>;
   @useResult
-  $Res call(
-      {bool isListView,
-      int selectTabIndex,
-      bool showFilter,
-      List<dynamic> selectOrders,
-      bool isAllSelect,
-      Set<Marker> setOfMarker,
-      DateTime? start,
-      DateTime? end});
+  $Res call({
+    bool isListView,
+    int selectTabIndex,
+    bool showFilter,
+    List<dynamic> selectOrders,
+    bool isAllSelect,
+    Set<Marker> setOfMarker,
+    DateTime? start,
+    DateTime? end,
+  });
 }
 
 /// @nodoc
@@ -74,60 +77,65 @@ class _$OrderTableStateCopyWithImpl<$Res, $Val extends OrderTableState>
     Object? start = freezed,
     Object? end = freezed,
   }) {
-    return _then(_value.copyWith(
-      isListView: null == isListView
-          ? _value.isListView
-          : isListView // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectTabIndex: null == selectTabIndex
-          ? _value.selectTabIndex
-          : selectTabIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      showFilter: null == showFilter
-          ? _value.showFilter
-          : showFilter // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectOrders: null == selectOrders
-          ? _value.selectOrders
-          : selectOrders // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      isAllSelect: null == isAllSelect
-          ? _value.isAllSelect
-          : isAllSelect // ignore: cast_nullable_to_non_nullable
-              as bool,
-      setOfMarker: null == setOfMarker
-          ? _value.setOfMarker
-          : setOfMarker // ignore: cast_nullable_to_non_nullable
-              as Set<Marker>,
-      start: freezed == start
-          ? _value.start
-          : start // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      end: freezed == end
-          ? _value.end
-          : end // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isListView: null == isListView
+                ? _value.isListView
+                : isListView // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            selectTabIndex: null == selectTabIndex
+                ? _value.selectTabIndex
+                : selectTabIndex // ignore: cast_nullable_to_non_nullable
+                      as int,
+            showFilter: null == showFilter
+                ? _value.showFilter
+                : showFilter // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            selectOrders: null == selectOrders
+                ? _value.selectOrders
+                : selectOrders // ignore: cast_nullable_to_non_nullable
+                      as List<dynamic>,
+            isAllSelect: null == isAllSelect
+                ? _value.isAllSelect
+                : isAllSelect // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            setOfMarker: null == setOfMarker
+                ? _value.setOfMarker
+                : setOfMarker // ignore: cast_nullable_to_non_nullable
+                      as Set<Marker>,
+            start: freezed == start
+                ? _value.start
+                : start // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+            end: freezed == end
+                ? _value.end
+                : end // ignore: cast_nullable_to_non_nullable
+                      as DateTime?,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$OrderTableStateImplCopyWith<$Res>
     implements $OrderTableStateCopyWith<$Res> {
-  factory _$$OrderTableStateImplCopyWith(_$OrderTableStateImpl value,
-          $Res Function(_$OrderTableStateImpl) then) =
-      __$$OrderTableStateImplCopyWithImpl<$Res>;
+  factory _$$OrderTableStateImplCopyWith(
+    _$OrderTableStateImpl value,
+    $Res Function(_$OrderTableStateImpl) then,
+  ) = __$$OrderTableStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isListView,
-      int selectTabIndex,
-      bool showFilter,
-      List<dynamic> selectOrders,
-      bool isAllSelect,
-      Set<Marker> setOfMarker,
-      DateTime? start,
-      DateTime? end});
+  $Res call({
+    bool isListView,
+    int selectTabIndex,
+    bool showFilter,
+    List<dynamic> selectOrders,
+    bool isAllSelect,
+    Set<Marker> setOfMarker,
+    DateTime? start,
+    DateTime? end,
+  });
 }
 
 /// @nodoc
@@ -135,8 +143,9 @@ class __$$OrderTableStateImplCopyWithImpl<$Res>
     extends _$OrderTableStateCopyWithImpl<$Res, _$OrderTableStateImpl>
     implements _$$OrderTableStateImplCopyWith<$Res> {
   __$$OrderTableStateImplCopyWithImpl(
-      _$OrderTableStateImpl _value, $Res Function(_$OrderTableStateImpl) _then)
-      : super(_value, _then);
+    _$OrderTableStateImpl _value,
+    $Res Function(_$OrderTableStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of OrderTableState
   /// with the given fields replaced by the non-null parameter values.
@@ -152,58 +161,60 @@ class __$$OrderTableStateImplCopyWithImpl<$Res>
     Object? start = freezed,
     Object? end = freezed,
   }) {
-    return _then(_$OrderTableStateImpl(
-      isListView: null == isListView
-          ? _value.isListView
-          : isListView // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectTabIndex: null == selectTabIndex
-          ? _value.selectTabIndex
-          : selectTabIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      showFilter: null == showFilter
-          ? _value.showFilter
-          : showFilter // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectOrders: null == selectOrders
-          ? _value._selectOrders
-          : selectOrders // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
-      isAllSelect: null == isAllSelect
-          ? _value.isAllSelect
-          : isAllSelect // ignore: cast_nullable_to_non_nullable
-              as bool,
-      setOfMarker: null == setOfMarker
-          ? _value._setOfMarker
-          : setOfMarker // ignore: cast_nullable_to_non_nullable
-              as Set<Marker>,
-      start: freezed == start
-          ? _value.start
-          : start // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      end: freezed == end
-          ? _value.end
-          : end // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
+    return _then(
+      _$OrderTableStateImpl(
+        isListView: null == isListView
+            ? _value.isListView
+            : isListView // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        selectTabIndex: null == selectTabIndex
+            ? _value.selectTabIndex
+            : selectTabIndex // ignore: cast_nullable_to_non_nullable
+                  as int,
+        showFilter: null == showFilter
+            ? _value.showFilter
+            : showFilter // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        selectOrders: null == selectOrders
+            ? _value._selectOrders
+            : selectOrders // ignore: cast_nullable_to_non_nullable
+                  as List<dynamic>,
+        isAllSelect: null == isAllSelect
+            ? _value.isAllSelect
+            : isAllSelect // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        setOfMarker: null == setOfMarker
+            ? _value._setOfMarker
+            : setOfMarker // ignore: cast_nullable_to_non_nullable
+                  as Set<Marker>,
+        start: freezed == start
+            ? _value.start
+            : start // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+        end: freezed == end
+            ? _value.end
+            : end // ignore: cast_nullable_to_non_nullable
+                  as DateTime?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$OrderTableStateImpl extends _OrderTableState {
-  const _$OrderTableStateImpl(
-      {this.isListView = false,
-      this.selectTabIndex = 0,
-      this.showFilter = false,
-      final List<dynamic> selectOrders = const [],
-      this.isAllSelect = false,
-      final Set<Marker> setOfMarker = const {},
-      this.start = null,
-      this.end = null})
-      : _selectOrders = selectOrders,
-        _setOfMarker = setOfMarker,
-        super._();
+  const _$OrderTableStateImpl({
+    this.isListView = false,
+    this.selectTabIndex = 0,
+    this.showFilter = false,
+    final List<dynamic> selectOrders = const [],
+    this.isAllSelect = false,
+    final Set<Marker> setOfMarker = const {},
+    this.start = null,
+    this.end = null,
+  }) : _selectOrders = selectOrders,
+       _setOfMarker = setOfMarker,
+       super._();
 
   @override
   @JsonKey()
@@ -235,7 +246,7 @@ class _$OrderTableStateImpl extends _OrderTableState {
     return EqualUnmodifiableSetView(_setOfMarker);
   }
 
-// @Default('') String usersQuery,
+  // @Default('') String usersQuery,
   @override
   @JsonKey()
   final DateTime? start;
@@ -259,27 +270,32 @@ class _$OrderTableStateImpl extends _OrderTableState {
                 other.selectTabIndex == selectTabIndex) &&
             (identical(other.showFilter, showFilter) ||
                 other.showFilter == showFilter) &&
-            const DeepCollectionEquality()
-                .equals(other._selectOrders, _selectOrders) &&
+            const DeepCollectionEquality().equals(
+              other._selectOrders,
+              _selectOrders,
+            ) &&
             (identical(other.isAllSelect, isAllSelect) ||
                 other.isAllSelect == isAllSelect) &&
-            const DeepCollectionEquality()
-                .equals(other._setOfMarker, _setOfMarker) &&
+            const DeepCollectionEquality().equals(
+              other._setOfMarker,
+              _setOfMarker,
+            ) &&
             (identical(other.start, start) || other.start == start) &&
             (identical(other.end, end) || other.end == end));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isListView,
-      selectTabIndex,
-      showFilter,
-      const DeepCollectionEquality().hash(_selectOrders),
-      isAllSelect,
-      const DeepCollectionEquality().hash(_setOfMarker),
-      start,
-      end);
+    runtimeType,
+    isListView,
+    selectTabIndex,
+    showFilter,
+    const DeepCollectionEquality().hash(_selectOrders),
+    isAllSelect,
+    const DeepCollectionEquality().hash(_setOfMarker),
+    start,
+    end,
+  );
 
   /// Create a copy of OrderTableState
   /// with the given fields replaced by the non-null parameter values.
@@ -288,19 +304,22 @@ class _$OrderTableStateImpl extends _OrderTableState {
   @pragma('vm:prefer-inline')
   _$$OrderTableStateImplCopyWith<_$OrderTableStateImpl> get copyWith =>
       __$$OrderTableStateImplCopyWithImpl<_$OrderTableStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _OrderTableState extends OrderTableState {
-  const factory _OrderTableState(
-      {final bool isListView,
-      final int selectTabIndex,
-      final bool showFilter,
-      final List<dynamic> selectOrders,
-      final bool isAllSelect,
-      final Set<Marker> setOfMarker,
-      final DateTime? start,
-      final DateTime? end}) = _$OrderTableStateImpl;
+  const factory _OrderTableState({
+    final bool isListView,
+    final int selectTabIndex,
+    final bool showFilter,
+    final List<dynamic> selectOrders,
+    final bool isAllSelect,
+    final Set<Marker> setOfMarker,
+    final DateTime? start,
+    final DateTime? end,
+  }) = _$OrderTableStateImpl;
   const _OrderTableState._() : super._();
 
   @override
@@ -327,4 +346,3 @@ abstract class _OrderTableState extends OrderTableState {
   _$$OrderTableStateImplCopyWith<_$OrderTableStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

@@ -49,7 +49,9 @@ class Expense {
       typeId: json['type_id'],
       supplier: json['supplier'],
       invoiceNumber: json['invoice_number'],
-      createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : null,
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
+          : null,
     );
   }
 
@@ -71,20 +73,14 @@ class Expense {
     };
   }
 }
+
 class ExpenseType {
   final int id;
   final String name;
 
-  ExpenseType({
-    required this.id,
-    required this.name,
-  });
+  ExpenseType({required this.id, required this.name});
 
   factory ExpenseType.fromJson(Map<String, dynamic> json) {
-    return ExpenseType(
-      id: json['id'],
-      name: json['name'],
-    );
+    return ExpenseType(id: json['id'], name: json['name']);
   }
 }
-

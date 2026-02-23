@@ -2,9 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../../core/constants/constants.dart';
 
-final dateRangeProvider = StateNotifierProvider<DateRangeNotifier, DateRangeState>((ref) {
-  return DateRangeNotifier();
-});
+final dateRangeProvider =
+    StateNotifierProvider<DateRangeNotifier, DateRangeState>((ref) {
+      return DateRangeNotifier();
+    });
 
 class DateRangeState {
   final DateTime? start;
@@ -33,11 +34,7 @@ class DateRangeState {
 class DateRangeNotifier extends StateNotifier<DateRangeState> {
   DateRangeNotifier() : super(const DateRangeState());
 
-  void updateDateRange({
-    DateTime? start,
-    DateTime? end,
-    String? type,
-  }) {
+  void updateDateRange({DateTime? start, DateTime? end, String? type}) {
     DateTime calculatedStart;
     DateTime calculatedEnd = end ?? DateTime.now();
 
@@ -51,7 +48,7 @@ class DateRangeNotifier extends StateNotifier<DateRangeState> {
           break;
 
         case TrKeys.week:
-        // Find the most recent Monday
+          // Find the most recent Monday
           int daysToSubtract = (calculatedEnd.weekday - DateTime.monday) % 7;
           calculatedStart = DateTime(
             calculatedEnd.year,
@@ -61,7 +58,7 @@ class DateRangeNotifier extends StateNotifier<DateRangeState> {
           break;
 
         case TrKeys.month:
-        // Get the first day of the current month
+          // Get the first day of the current month
           DateTime firstDayOfMonth = DateTime(
             calculatedEnd.year,
             calculatedEnd.month,
@@ -72,7 +69,8 @@ class DateRangeNotifier extends StateNotifier<DateRangeState> {
           int daysPassed = calculatedEnd.difference(firstDayOfMonth).inDays;
 
           // If we've passed 3 weeks (21 days) and we're still in the same month
-          if (daysPassed >= 21 && calculatedEnd.month == firstDayOfMonth.month) {
+          if (daysPassed >= 21 &&
+              calculatedEnd.month == firstDayOfMonth.month) {
             calculatedStart = firstDayOfMonth;
           } else {
             // Less than 3 weeks passed or we're looking at a past month

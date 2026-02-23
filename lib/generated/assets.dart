@@ -46,7 +46,8 @@ class Assets {
   static const String svgPickup = 'assets/svg/pickup.svg';
   static const String svgRevenue = 'assets/svg/revenue.svg';
   static const String svgSearchSvg = 'assets/svg/searchSvg.svg';
-  static const String svgSectionSvgrepoCom = 'assets/svg/section-svgrepo-com.svg';
+  static const String svgSectionSvgrepoCom =
+      'assets/svg/section-svgrepo-com.svg';
   static const String svgSelectKitchen = 'assets/svg/selectKitchen.svg';
   static const String svgSelectTable = 'assets/svg/selectTable.svg';
   static const String svgService = 'assets/svg/service.svg';
@@ -57,6 +58,4 @@ class Assets {
   static const String svgUnHome = 'assets/svg/unHome.svg';
   static const String svgVegetarian = 'assets/svg/vegetarian.svg';
   static const String svgWater = 'assets/svg/water.svg';
-
 }
-

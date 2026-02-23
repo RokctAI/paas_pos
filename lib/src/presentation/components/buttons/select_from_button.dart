@@ -9,11 +9,7 @@ class SelectFromButton extends StatelessWidget {
   final IconData? iconData;
   final String title;
 
-  const SelectFromButton({
-    super.key,
-    this.iconData,
-    required this.title,
-  });
+  const SelectFromButton({super.key, this.iconData, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +17,7 @@ class SelectFromButton extends StatelessWidget {
       height: 56.r,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(
-          color: AppStyle.unselectedBottomBarBack,
-          width: 1.r,
-        ),
+        border: Border.all(color: AppStyle.unselectedBottomBarBack, width: 1.r),
       ),
       alignment: Alignment.center,
       padding: REdgeInsets.symmetric(horizontal: 12),
@@ -34,11 +27,9 @@ class SelectFromButton extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                iconData != null ? Icon(
-                  iconData,
-                  size: 20.r,
-                  color: AppStyle.black,
-                ) : const SizedBox.shrink(),
+                iconData != null
+                    ? Icon(iconData, size: 20.r, color: AppStyle.black)
+                    : const SizedBox.shrink(),
                 8.horizontalSpace,
                 Expanded(
                   child: Text(
@@ -65,4 +56,3 @@ class SelectFromButton extends StatelessWidget {
     );
   }
 }
-

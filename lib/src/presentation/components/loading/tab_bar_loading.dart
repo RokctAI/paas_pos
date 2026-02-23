@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../generated/assets.dart';
 import '../../theme/theme.dart';
 
-
 class TabBarLoading extends StatelessWidget {
   final int itemCount;
 
@@ -51,4 +50,3 @@ class TabBarLoading extends StatelessWidget {
     );
   }
 }
-

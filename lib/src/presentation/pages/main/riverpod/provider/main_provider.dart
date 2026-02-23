@@ -12,4 +12,3 @@ final mainProvider = StateNotifierProvider<MainNotifier, MainState>(
     usersRepository,
   ),
 );
-

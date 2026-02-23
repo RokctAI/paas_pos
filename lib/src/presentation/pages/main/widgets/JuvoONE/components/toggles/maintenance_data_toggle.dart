@@ -31,7 +31,10 @@ class MaintenanceDataToggle extends ConsumerWidget {
     );
   }
 
-  Future<void> _showResetConfirmation(BuildContext context, WidgetRef ref) async {
+  Future<void> _showResetConfirmation(
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
     final confirm = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -51,21 +54,15 @@ class MaintenanceDataToggle extends ConsumerWidget {
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(
               'Cancel',
-              style: GoogleFonts.inter(
-                color: AppStyle.black,
-              ),
+              style: GoogleFonts.inter(color: AppStyle.black),
             ),
           ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppStyle.red,
-            ),
+            style: ElevatedButton.styleFrom(backgroundColor: AppStyle.red),
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(
               'Reset Data',
-              style: GoogleFonts.inter(
-                color: AppStyle.white,
-              ),
+              style: GoogleFonts.inter(color: AppStyle.white),
             ),
           ),
         ],
@@ -86,7 +83,9 @@ class MaintenanceDataToggle extends ConsumerWidget {
         );
 
         // Notify the UI that data has been reset
-        ref.read(maintenanceResetProvider.notifier).state = !ref.read(maintenanceResetProvider);
+        ref.read(maintenanceResetProvider.notifier).state = !ref.read(
+          maintenanceResetProvider,
+        );
 
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(

@@ -44,7 +44,9 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
   @override
   void initState() {
     super.initState();
-    _numberController = TextEditingController(text: widget.initialTank?.number ?? '');
+    _numberController = TextEditingController(
+      text: widget.initialTank?.number ?? '',
+    );
     _capacityController = TextEditingController(
       text: widget.initialTank?.capacity.toString() ?? '',
     );
@@ -57,8 +59,10 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
     // Initialize pump status with defaults
     _isPumpOn = widget.initialTank?.pumpStatus['isOn'] ?? false;
     _flowRateController = TextEditingController(
-      text: (widget.initialTank?.pumpStatus['flowRate'] ??
-          (isPurified ? 6.0 : 8.3)).toString(),
+      text:
+          (widget.initialTank?.pumpStatus['flowRate'] ??
+                  (isPurified ? 6.0 : 8.3))
+              .toString(),
     );
 
     // Initialize water quality with defaults
@@ -66,16 +70,20 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
       text: (widget.initialTank?.waterQuality['ph'] ?? 7.0).toString(),
     );
     _tdsController = TextEditingController(
-      text: (widget.initialTank?.waterQuality['tds'] ??
-          (isPurified ? 16 : 150)).toString(),
+      text: (widget.initialTank?.waterQuality['tds'] ?? (isPurified ? 16 : 150))
+          .toString(),
     );
     _temperatureController = TextEditingController(
-      text: (widget.initialTank?.waterQuality['temperature'] ??
-          (isPurified ? 20.0 : 25.0)).toString(),
+      text:
+          (widget.initialTank?.waterQuality['temperature'] ??
+                  (isPurified ? 20.0 : 25.0))
+              .toString(),
     );
     _hardnessController = TextEditingController(
-      text: (widget.initialTank?.waterQuality['hardness'] ??
-          (isPurified ? 0 : 90)).toString(),
+      text:
+          (widget.initialTank?.waterQuality['hardness'] ??
+                  (isPurified ? 0 : 90))
+              .toString(),
     );
   }
 
@@ -167,13 +175,13 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                       style: GoogleFonts.inter(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
-                        color:  AppStyle.black,
+                        color: AppStyle.black,
                       ),
                     ),
                     IconButton(
                       onPressed: () => Navigator.pop(context),
                       icon: const Icon(Icons.close),
-                      color:  AppStyle.black,
+                      color: AppStyle.black,
                     ),
                   ],
                 ),
@@ -193,18 +201,12 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                 // Tank number
                 TextFormField(
                   controller: _numberController,
-                  style: const TextStyle(
-                    color: AppStyle.black,
-                  ),
+                  style: const TextStyle(color: AppStyle.black),
                   decoration: const InputDecoration(
                     labelText: 'Tank Number',
                     hintText: 'Enter tank number',
-                    labelStyle: TextStyle(
-                      color: AppStyle.black,
-                    ),
-                    hintStyle: TextStyle(
-                      color: AppStyle.hint,
-                    ),
+                    labelStyle: TextStyle(color: AppStyle.black),
+                    hintStyle: TextStyle(color: AppStyle.hint),
                   ),
 
                   validator: (value) {
@@ -221,12 +223,8 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                   value: _selectedType,
                   decoration: const InputDecoration(
                     labelText: 'Tank Type',
-                    labelStyle: TextStyle(
-                      color: AppStyle.black,
-                    ),
-                    hintStyle: TextStyle(
-                      color: AppStyle.hint,
-                    ),
+                    labelStyle: TextStyle(color: AppStyle.black),
+                    hintStyle: TextStyle(color: AppStyle.hint),
                   ),
                   items: TankType.values.map((type) {
                     return DropdownMenuItem(
@@ -243,7 +241,9 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                         // Update controllers with new default values
                         _flowRateController.text = isPurified ? '6.0' : '8.3';
                         _tdsController.text = isPurified ? '16' : '150';
-                        _temperatureController.text = isPurified ? '20.0' : '25.0';
+                        _temperatureController.text = isPurified
+                            ? '20.0'
+                            : '25.0';
                         _hardnessController.text = isPurified ? '0' : '90';
                       });
                     }
@@ -255,17 +255,14 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                 TextFormField(
                   controller: _capacityController,
                   style: const TextStyle(
-                    color: AppStyle.black, // This will make the input text white
+                    color:
+                        AppStyle.black, // This will make the input text white
                   ),
                   decoration: const InputDecoration(
                     labelText: 'Capacity (L)',
                     hintText: 'Enter tank capacity in liters',
-                    labelStyle: TextStyle(
-                      color: AppStyle.black,
-                    ),
-                    hintStyle: TextStyle(
-                      color: AppStyle.hint,
-                    ),
+                    labelStyle: TextStyle(color: AppStyle.black),
+                    hintStyle: TextStyle(color: AppStyle.hint),
                   ),
                   keyboardType: TextInputType.number,
                   validator: (value) {
@@ -283,17 +280,13 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                 // Tank status
                 DropdownButtonFormField<TankStatus>(
                   value: _selectedStatus,
-                 // style: const TextStyle(
-                 //   color: AppStyle.black,
-                 // ),
+                  // style: const TextStyle(
+                  //   color: AppStyle.black,
+                  // ),
                   decoration: const InputDecoration(
                     labelText: 'Tank Status',
-                    labelStyle: TextStyle(
-                      color: AppStyle.black,
-                    ),
-                    hintStyle: TextStyle(
-                      color: AppStyle.hint,
-                    ),
+                    labelStyle: TextStyle(color: AppStyle.black),
+                    hintStyle: TextStyle(color: AppStyle.hint),
                   ),
                   items: TankStatus.values.map((status) {
                     return DropdownMenuItem(
@@ -304,8 +297,10 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                             .split('.')
                             .last
                             .replaceAll(RegExp(r'(?=[A-Z])'), ' '),
-                        style: const TextStyle(fontSize: 14, color:  AppStyle.black),
-
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: AppStyle.black,
+                        ),
                       ),
                     );
                   }).toList(),
@@ -323,7 +318,7 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                   style: GoogleFonts.inter(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color:  AppStyle.black,
+                    color: AppStyle.black,
                   ),
                 ),
                 SwitchListTile(
@@ -338,18 +333,12 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                 ),
                 TextFormField(
                   controller: _flowRateController,
-                  style: const TextStyle(
-                    color: AppStyle.black,
-                  ),
+                  style: const TextStyle(color: AppStyle.black),
                   decoration: const InputDecoration(
                     labelText: 'Flow Rate',
                     hintText: 'Enter flow rate',
-                    labelStyle: TextStyle(
-                      color: AppStyle.black,
-                    ),
-                    hintStyle: TextStyle(
-                      color: AppStyle.hint,
-                    ),
+                    labelStyle: TextStyle(color: AppStyle.black),
+                    hintStyle: TextStyle(color: AppStyle.hint),
                   ),
                   keyboardType: TextInputType.number,
                   validator: (value) {
@@ -370,23 +359,17 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                   style: GoogleFonts.inter(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color:  AppStyle.black,
+                    color: AppStyle.black,
                   ),
                 ),
                 TextFormField(
                   controller: _phController,
-                  style: const TextStyle(
-                    color: AppStyle.black,
-                  ),
+                  style: const TextStyle(color: AppStyle.black),
                   decoration: const InputDecoration(
                     labelText: 'pH',
                     hintText: 'Enter pH level',
-                    labelStyle: TextStyle(
-                      color: AppStyle.black,
-                    ),
-                    hintStyle: TextStyle(
-                      color: AppStyle.hint,
-                    ),
+                    labelStyle: TextStyle(color: AppStyle.black),
+                    hintStyle: TextStyle(color: AppStyle.hint),
                   ),
                   keyboardType: TextInputType.number,
                   validator: (value) {
@@ -402,18 +385,12 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _tdsController,
-                  style: const TextStyle(
-                    color: AppStyle.black,
-                  ),
+                  style: const TextStyle(color: AppStyle.black),
                   decoration: const InputDecoration(
                     labelText: 'TDS',
                     hintText: 'Enter Total Dissolved Solids',
-                    labelStyle: TextStyle(
-                      color: AppStyle.black,
-                    ),
-                    hintStyle: TextStyle(
-                      color: AppStyle.hint,
-                    ),
+                    labelStyle: TextStyle(color: AppStyle.black),
+                    hintStyle: TextStyle(color: AppStyle.hint),
                   ),
                   keyboardType: TextInputType.number,
                   validator: (value) {
@@ -429,18 +406,12 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _temperatureController,
-                  style: const TextStyle(
-                    color: AppStyle.black,
-                  ),
+                  style: const TextStyle(color: AppStyle.black),
                   decoration: const InputDecoration(
                     labelText: 'Temperature (°C)',
                     hintText: 'Enter water temperature',
-                    labelStyle: TextStyle(
-                      color: AppStyle.black,
-                    ),
-                    hintStyle: TextStyle(
-                      color: AppStyle.hint,
-                    ),
+                    labelStyle: TextStyle(color: AppStyle.black),
+                    hintStyle: TextStyle(color: AppStyle.hint),
                   ),
                   keyboardType: TextInputType.number,
                   validator: (value) {
@@ -456,18 +427,12 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _hardnessController,
-                  style: const TextStyle(
-                    color: AppStyle.black,
-                  ),
+                  style: const TextStyle(color: AppStyle.black),
                   decoration: const InputDecoration(
                     labelText: 'Hardness',
                     hintText: 'Enter water hardness',
-                    labelStyle: TextStyle(
-                      color: AppStyle.black,
-                    ),
-                    hintStyle: TextStyle(
-                      color: AppStyle.hint,
-                    ),
+                    labelStyle: TextStyle(color: AppStyle.black),
+                    hintStyle: TextStyle(color: AppStyle.hint),
                   ),
                   keyboardType: TextInputType.number,
                   validator: (value) {
@@ -499,8 +464,9 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                             width: 20,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(AppStyle.white),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                AppStyle.white,
+                              ),
                             ),
                           )
                         : Text(
@@ -523,4 +489,3 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
     );
   }
 }
-

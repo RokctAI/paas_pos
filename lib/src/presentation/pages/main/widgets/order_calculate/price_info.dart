@@ -79,7 +79,8 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
     return KeyboardListener(
       focusNode: _focusNode,
       onKeyEvent: (KeyEvent event) {
-        if (event is KeyDownEvent && event.logicalKey == LogicalKeyboardKey.enter) {
+        if (event is KeyDownEvent &&
+            event.logicalKey == LogicalKeyboardKey.enter) {
           _handleConfirmOrder(canConfirmOrder);
         }
       },
@@ -119,13 +120,30 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
   Widget _buildFeeRows() {
     return Column(
       children: [
-        _buildFeeRow(TrKeys.subtotal, widget.state.paginateResponse?.price ?? 0),
+        _buildFeeRow(
+          TrKeys.subtotal,
+          widget.state.paginateResponse?.price ?? 0,
+        ),
         _buildFeeRow(TrKeys.tax, widget.state.paginateResponse?.totalTax ?? 0),
-        _buildFeeRow(TrKeys.serviceFee, widget.state.paginateResponse?.serviceFee ?? 0),
-        _buildFeeRow(TrKeys.deliveryFee, widget.state.paginateResponse?.deliveryFee ?? 0),
-        _buildFeeRow(TrKeys.discount, -(widget.state.paginateResponse?.totalDiscount ?? 0), isDiscount: true),
+        _buildFeeRow(
+          TrKeys.serviceFee,
+          widget.state.paginateResponse?.serviceFee ?? 0,
+        ),
+        _buildFeeRow(
+          TrKeys.deliveryFee,
+          widget.state.paginateResponse?.deliveryFee ?? 0,
+        ),
+        _buildFeeRow(
+          TrKeys.discount,
+          -(widget.state.paginateResponse?.totalDiscount ?? 0),
+          isDiscount: true,
+        ),
         if ((widget.state.paginateResponse?.couponPrice ?? 0) != 0)
-          _buildFeeRow(TrKeys.promoCode, -(widget.state.paginateResponse?.couponPrice ?? 0), isDiscount: true),
+          _buildFeeRow(
+            TrKeys.promoCode,
+            -(widget.state.paginateResponse?.couponPrice ?? 0),
+            isDiscount: true,
+          ),
       ],
     );
   }
@@ -147,7 +165,8 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
           ),
           Text(
             intl.NumberFormat.currency(
-              symbol: widget.bag.selectedCurrency?.symbol ??
+              symbol:
+                  widget.bag.selectedCurrency?.symbol ??
                   LocalStorage.getSelectedCurrency().symbol,
             ).format(amount),
             style: GoogleFonts.inter(
@@ -177,7 +196,8 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
         ),
         Text(
           intl.NumberFormat.currency(
-            symbol: widget.bag.selectedCurrency?.symbol ??
+            symbol:
+                widget.bag.selectedCurrency?.symbol ??
                 LocalStorage.getSelectedCurrency().symbol,
           ).format(amount),
           style: GoogleFonts.inter(
@@ -203,27 +223,32 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
           userId: widget.state.selectedUser?.id ?? 0,
           deliveryFee: (widget.state.paginateResponse?.deliveryFee ?? 0),
           deliveryType: widget.state.orderType,
-          location: widget.state.selectedAddress?.location ??
+          location:
+              widget.state.selectedAddress?.location ??
               LocationData(latitude: 0, longitude: 0),
           address: AddressModel(address: widget.state.selectedAddress?.address),
-          deliveryDate: intl.DateFormat("yyyy-MM-dd")
-              .format(widget.state.orderDate ?? DateTime.now()),
+          deliveryDate: intl.DateFormat(
+            "yyyy-MM-dd",
+          ).format(widget.state.orderDate ?? DateTime.now()),
           deliveryTime: widget.state.orderTime != null
               ? (widget.state.orderTime!.hour.toString().length == 2
-              ? "${widget.state.orderTime!.hour}:${widget.state.orderTime!.minute.toString().padLeft(2, '0')}"
-              : "0${widget.state.orderTime!.hour}:${widget.state.orderTime!.minute.toString().padLeft(2, '0')}")
+                    ? "${widget.state.orderTime!.hour}:${widget.state.orderTime!.minute.toString().padLeft(2, '0')}"
+                    : "0${widget.state.orderTime!.hour}:${widget.state.orderTime!.minute.toString().padLeft(2, '0')}")
               : (TimeOfDay.now().hour.toString().length == 2
-              ? "${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"
-              : "0${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"),
-          currencyId: widget.state.currencies
-              .firstWhere((element) => element.isDefault ?? false)
-              .id ??
+                    ? "${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"
+                    : "0${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"),
+          currencyId:
+              widget.state.currencies
+                  .firstWhere((element) => element.isDefault ?? false)
+                  .id ??
               0,
           rate: widget.state.selectedCurrency?.rate ?? 0,
         ),
         onSuccess: () {
           ref.read(newOrdersProvider.notifier).fetchNewOrders(isRefresh: true);
-          ref.read(acceptedOrdersProvider.notifier).fetchAcceptedOrders(isRefresh: true);
+          ref
+              .read(acceptedOrdersProvider.notifier)
+              .fetchAcceptedOrders(isRefresh: true);
           widget.mainNotifier.setPriceDate(null);
 
           // Show thank you in QuickSale button
@@ -269,12 +294,12 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
                         Text(
                           AppHelpers.getTranslation(TrKeys.thankYouForOrder),
                           style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 22.r,
-                              color: AppStyle.black
+                            fontWeight: FontWeight.w600,
+                            fontSize: 22.r,
+                            color: AppStyle.black,
                           ),
                           textAlign: TextAlign.center,
-                        )
+                        ),
                       ],
                     ),
                   ),

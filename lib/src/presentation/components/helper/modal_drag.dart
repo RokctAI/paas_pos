@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/theme.dart';
 
-
 class ModalDrag extends StatelessWidget {
   const ModalDrag({super.key});
 
@@ -28,4 +27,3 @@ class ModalDrag extends StatelessWidget {
     );
   }
 }
-

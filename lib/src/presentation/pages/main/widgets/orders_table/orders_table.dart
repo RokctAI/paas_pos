@@ -54,21 +54,32 @@ class _OrdersTablesState extends ConsumerState<OrdersTablesPage> {
 
   void _refreshAllOrders() {
     ref.read(newOrdersProvider.notifier).fetchNewOrders(isRefresh: true);
-    ref.read(acceptedOrdersProvider.notifier).fetchAcceptedOrders(isRefresh: true);
+    ref
+        .read(acceptedOrdersProvider.notifier)
+        .fetchAcceptedOrders(isRefresh: true);
     if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-      ref.read(onAWayOrdersProvider.notifier).fetchOnAWayOrders(isRefresh: true);
+      ref
+          .read(onAWayOrdersProvider.notifier)
+          .fetchOnAWayOrders(isRefresh: true);
     }
     ref.read(readyOrdersProvider.notifier).fetchReadyOrders(isRefresh: true);
-    ref.read(deliveredOrdersProvider.notifier).fetchDeliveredOrders(isRefresh: true);
-    ref.read(canceledOrdersProvider.notifier).fetchCanceledOrders(isRefresh: true);
-    ref.read(cookingOrdersProvider.notifier).fetchCookingOrders(isRefresh: true);
+    ref
+        .read(deliveredOrdersProvider.notifier)
+        .fetchDeliveredOrders(isRefresh: true);
+    ref
+        .read(canceledOrdersProvider.notifier)
+        .fetchCanceledOrders(isRefresh: true);
+    ref
+        .read(cookingOrdersProvider.notifier)
+        .fetchCookingOrders(isRefresh: true);
   }
 
   void _checkAndPlaySound() {
     final acceptedOrders = ref.read(acceptedOrdersProvider).orders;
     final newOrders = ref.read(newOrdersProvider).orders;
 
-    if (acceptedOrders.length > _previousAcceptedCount || newOrders.length > _previousNewCount) {
+    if (acceptedOrders.length > _previousAcceptedCount ||
+        newOrders.length > _previousNewCount) {
       _audioPlayer.play(AssetSource('audio/notification.wav'));
     }
 
@@ -94,46 +105,43 @@ class _OrdersTablesState extends ConsumerState<OrdersTablesPage> {
     });
 
     return CustomScaffold(
-        body: (c) => stateMain.selectedOrder != null
-            ? OrderDetailPage(order: stateMain.selectedOrder ?? OrderData())
-            : SafeArea(
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(
-                    vertical: 10.r,
-                    horizontal: 16.r
-                ),
-                decoration: const BoxDecoration(color: AppStyle.white),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-
-                ),
+      body: (c) => stateMain.selectedOrder != null
+          ? OrderDetailPage(order: stateMain.selectedOrder ?? OrderData())
+          : SafeArea(
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 10.r,
+                      horizontal: 16.r,
+                    ),
+                    decoration: const BoxDecoration(color: AppStyle.white),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start),
+                  ),
+                  Expanded(
+                    child: !state.isListView
+                        ? BoardViewMode(
+                            listAccepts: listAccepts,
+                            listNew: listNew,
+                            listOnAWay: listOnAWay,
+                            listReady: listReady,
+                            listCanceled: listCancel,
+                            listDelivered: listDelivered,
+                            listCooking: listCooking,
+                          )
+                        : ListViewMode(
+                            listAccepts: listAccepts,
+                            listNew: listNew,
+                            listOnAWay: listOnAWay,
+                            listReady: listReady,
+                            listCanceled: listCancel,
+                            listDelivered: listDelivered,
+                            listCooking: listCooking,
+                          ),
+                  ),
+                ],
               ),
-              Expanded(
-                child: !state.isListView
-                    ? BoardViewMode(
-                  listAccepts: listAccepts,
-                  listNew: listNew,
-                  listOnAWay: listOnAWay,
-                  listReady: listReady,
-                  listCanceled: listCancel,
-                  listDelivered: listDelivered,
-                  listCooking: listCooking,
-                )
-                    : ListViewMode(
-                  listAccepts: listAccepts,
-                  listNew: listNew,
-                  listOnAWay: listOnAWay,
-                  listReady: listReady,
-                  listCanceled: listCancel,
-                  listDelivered: listDelivered,
-                  listCooking: listCooking,
-                ),
-              ),
-            ],
-          ),
-        )
+            ),
     );
   }
 

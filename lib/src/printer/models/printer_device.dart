@@ -7,6 +7,10 @@ class PrinterDevice {
   String? productId;
   String? address;
 
-  PrinterDevice({required this.name, this.address, this.vendorId, this.productId});
+  PrinterDevice({
+    required this.name,
+    this.address,
+    this.vendorId,
+    this.productId,
+  });
 }
-

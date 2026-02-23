@@ -4,12 +4,7 @@ class ParcelOptionData {
   String? description;
   double? price;
 
-  ParcelOptionData({
-    this.name,
-    this.title,
-    this.description,
-    this.price,
-  });
+  ParcelOptionData({this.name, this.title, this.description, this.price});
 
   factory ParcelOptionData.fromJson(Map<String, dynamic> json) {
     return ParcelOptionData(

@@ -21,14 +21,13 @@ class DeliveriesPage extends ConsumerStatefulWidget {
 }
 
 class _DeliveriesPageState extends ConsumerState<DeliveriesPage> {
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) => ref.read(deliverymanProvider.notifier).fetchDeliverymen(
-            isRefresh: true,
-          ),
+      (_) => ref
+          .read(deliverymanProvider.notifier)
+          .fetchDeliverymen(isRefresh: true),
     );
   }
 
@@ -45,16 +44,18 @@ class _DeliveriesPageState extends ConsumerState<DeliveriesPage> {
               Text(
                 AppHelpers.getTranslation(TrKeys.deliveries),
                 style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 22,
-                    color: AppStyle.black),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 22,
+                  color: AppStyle.black,
+                ),
               ),
               const Spacer(),
               IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(FlutterRemix.close_fill))
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(FlutterRemix.close_fill),
+              ),
             ],
           ),
           Expanded(
@@ -63,37 +64,39 @@ class _DeliveriesPageState extends ConsumerState<DeliveriesPage> {
               child: state.isLoading
                   ? const Loading()
                   : SingleChildScrollView(
-                    child: Column(
+                      child: Column(
                         mainAxisSize: MainAxisSize.min,
-                      children: [
+                        children: [
                           CupertinoSearchTextField(
                             prefixIcon: const Icon(FlutterRemix.search_2_line),
                             onChanged: (value) =>
                                 notifier.setQuery(query: value),
                           ),
                           ListView.builder(
-                          padding: REdgeInsets.symmetric(vertical: 12),
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: state.users.length,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) => DeliverymanItem(
-                            user: state.users[index],
-                            onTap: (status) {
-                              AppHelpers.showAlertDialog(
-                                context: context,
-                                child:  StatusDialog(
-                                  id:  state.users[index].invite?.shopId,
-                                  status: status,
-                                ),
-                              );
-                            },
+                            padding: REdgeInsets.symmetric(vertical: 12),
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: state.users.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) => DeliverymanItem(
+                              user: state.users[index],
+                              onTap: (status) {
+                                AppHelpers.showAlertDialog(
+                                  context: context,
+                                  child: StatusDialog(
+                                    id: state.users[index].invite?.shopId,
+                                    status: status,
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                        HasMoreButton(hasMore: state.hasMore, onViewMore: notifier.fetchDeliverymen)
-
-                      ],
+                          HasMoreButton(
+                            hasMore: state.hasMore,
+                            onViewMore: notifier.fetchDeliverymen,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
             ),
           ),
         ],
@@ -101,13 +104,14 @@ class _DeliveriesPageState extends ConsumerState<DeliveriesPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           AppHelpers.showAlertDialog(
-              context: context,
-              backgroundColor: AppStyle.bg,
-              child: SizedBox(
-                height: MediaQuery.sizeOf(context).height/1.5,
-                width: MediaQuery.sizeOf(context).width/2,
-                child: const AddDeliverymanPage(),
-              ));
+            context: context,
+            backgroundColor: AppStyle.bg,
+            child: SizedBox(
+              height: MediaQuery.sizeOf(context).height / 1.5,
+              width: MediaQuery.sizeOf(context).width / 2,
+              child: const AddDeliverymanPage(),
+            ),
+          );
           //notifier.addTextField();
         },
         backgroundColor: AppStyle.primary,
@@ -116,4 +120,3 @@ class _DeliveriesPageState extends ConsumerState<DeliveriesPage> {
     );
   }
 }
-

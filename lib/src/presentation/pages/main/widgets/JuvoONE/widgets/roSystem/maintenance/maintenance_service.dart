@@ -50,9 +50,15 @@ class MaintenanceService {
   }
 
   static bool _hasRequiredFilters(ROSystem system) {
-    final hasPreFilter = system.filters.any((f) => f.location == FilterLocation.pre);
-    final hasRoFilter = system.filters.any((f) => f.location == FilterLocation.ro);
-    final hasPostFilter = system.filters.any((f) => f.location == FilterLocation.post);
+    final hasPreFilter = system.filters.any(
+      (f) => f.location == FilterLocation.pre,
+    );
+    final hasRoFilter = system.filters.any(
+      (f) => f.location == FilterLocation.ro,
+    );
+    final hasPostFilter = system.filters.any(
+      (f) => f.location == FilterLocation.post,
+    );
     return hasPreFilter && hasRoFilter && hasPostFilter;
   }
 
@@ -88,26 +94,35 @@ class MaintenanceService {
       final now = DateTime.now();
 
       // Get maintenance records from API
-      final vesselRecords = await MaintenanceApiService.getMaintenanceRecords(type: 'vessel');
-      final membraneRecords = await MaintenanceApiService.getMaintenanceRecords(type: 'membrane');
+      final vesselRecords = await MaintenanceApiService.getMaintenanceRecords(
+        type: 'vessel',
+      );
+      final membraneRecords = await MaintenanceApiService.getMaintenanceRecords(
+        type: 'membrane',
+      );
 
       // Vessel maintenance check
       for (final vessel in system.vessels) {
         final lastMaintenance = vesselRecords
             .where((record) => record.referenceId == vessel.id)
             .fold<DateTime?>(
-            null,
-                (latest, record) => latest == null || record.maintenanceDate.isAfter(latest)
-                ? record.maintenanceDate
-                : latest);
+              null,
+              (latest, record) =>
+                  latest == null || record.maintenanceDate.isAfter(latest)
+                  ? record.maintenanceDate
+                  : latest,
+            );
 
         if (lastMaintenance == null ||
-            now.difference(lastMaintenance).inDays >= AppConstants.maintenanceCheckDays) {
-          items.add(MaintenanceItem(
+            now.difference(lastMaintenance).inDays >=
+                AppConstants.maintenanceCheckDays) {
+          items.add(
+            MaintenanceItem(
               type: vessel.type,
               id: vessel.id,
-              maintenanceType: 'maintenance'
-          ));
+              maintenanceType: 'maintenance',
+            ),
+          );
         }
       }
 
@@ -116,30 +131,35 @@ class MaintenanceService {
         final daysToReplace = _getFilterReplacementDays(filter.location);
 
         if (now.difference(filter.installationDate).inDays >= daysToReplace) {
-          items.add(MaintenanceItem(
+          items.add(
+            MaintenanceItem(
               type: 'filter',
               id: filter.id,
               maintenanceType: 'replacement',
               filterLocation: filter.location,
-              filterType: filter.type
-          ));
+              filterType: filter.type,
+            ),
+          );
         }
       }
 
       // Membrane check
       final lastMembraneMaintenance = membraneRecords.isNotEmpty
           ? membraneRecords
-          .map((record) => record.maintenanceDate)
-          .reduce((a, b) => a.isAfter(b) ? a : b)
+                .map((record) => record.maintenanceDate)
+                .reduce((a, b) => a.isAfter(b) ? a : b)
           : null;
 
       if (lastMembraneMaintenance == null ||
-          now.difference(system.membraneInstallationDate).inDays >= AppConstants.roMembraneReplaceDays) {
-        items.add(MaintenanceItem(
+          now.difference(system.membraneInstallationDate).inDays >=
+              AppConstants.roMembraneReplaceDays) {
+        items.add(
+          MaintenanceItem(
             type: 'membrane',
             maintenanceType: 'replacement',
-            membraneCount: system.membraneCount
-        ));
+            membraneCount: system.membraneCount,
+          ),
+        );
       }
 
       return items;
@@ -163,8 +183,12 @@ class MaintenanceService {
     );
   }
 
-  static Future<MaintenanceProgress?> getMaintenanceProgress(String vesselId) async {
-    final savedProgress = await LocalStorage.getItem('maintenance_progress_$vesselId');
+  static Future<MaintenanceProgress?> getMaintenanceProgress(
+    String vesselId,
+  ) async {
+    final savedProgress = await LocalStorage.getItem(
+      'maintenance_progress_$vesselId',
+    );
     if (savedProgress != null) {
       try {
         final Map<String, dynamic> json = jsonDecode(savedProgress);
@@ -181,7 +205,6 @@ class MaintenanceService {
   static Future<void> clearMaintenanceProgress(String vesselId) async {
     await LocalStorage.removeItem('maintenance_progress_$vesselId');
   }
-
 
   static int _getFilterReplacementDays(FilterLocation location) {
     switch (location) {
@@ -203,6 +226,4 @@ class MaintenanceService {
     final minutes = durations[stage.toString().split('.').last] ?? 0;
     return Duration(minutes: minutes);
   }
-
 }
-

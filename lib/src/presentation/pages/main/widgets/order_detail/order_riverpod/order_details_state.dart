@@ -2,8 +2,6 @@ import 'package:admin_desktop/src/models/data/order_data.dart';
 import 'package:admin_desktop/src/models/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
-
 part 'order_details_state.freezed.dart';
 
 @freezed
@@ -23,4 +21,3 @@ class OrderDetailsState with _$OrderDetailsState {
 
   const OrderDetailsState._();
 }
-

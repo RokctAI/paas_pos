@@ -8,11 +8,7 @@ class ShopDashboardCard extends StatelessWidget {
   final ShopDashboardSummary shop;
   final VoidCallback onTap;
 
-  const ShopDashboardCard({
-    super.key,
-    required this.shop,
-    required this.onTap,
-  });
+  const ShopDashboardCard({super.key, required this.shop, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +20,10 @@ class ShopDashboardCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.r, vertical: 12.r), // Reduced padding
+          padding: EdgeInsets.symmetric(
+            horizontal: 12.r,
+            vertical: 12.r,
+          ), // Reduced padding
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -33,20 +32,20 @@ class ShopDashboardCard extends StatelessWidget {
                 children: [
                   shop.name.isNotEmpty
                       ? Text(
-                      shop.name,
-                      style: TextStyle(
-                        fontSize: 15.sp, // Slightly smaller
-                        fontWeight: FontWeight.bold,
-                        color: AppStyle.white,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    )
+                          shop.name,
+                          style: TextStyle(
+                            fontSize: 15.sp, // Slightly smaller
+                            fontWeight: FontWeight.bold,
+                            color: AppStyle.white,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        )
                       : Icon(
-                    Icons.store,
-                    size: 28.r,
-                    color: AppStyle.grey[600],
-                  ),
+                          Icons.store,
+                          size: 28.r,
+                          color: AppStyle.grey[600],
+                        ),
                   SizedBox(width: 8.w), // Smaller spacing
                   Expanded(
                     child: Text(
@@ -202,7 +201,7 @@ class ShopDashboardCard extends StatelessWidget {
           totalLevel += capacity;
           break;
         case 'empty':
-        // Level is 0
+          // Level is 0
           break;
         case 'halfEmpty':
           totalLevel += capacity * 0.5;
@@ -240,7 +239,8 @@ class ShopDashboardCard extends StatelessWidget {
   }
 
   double _getPurifiedTankLevel() {
-    if (shop.tankStatuses == null || !shop.tankStatuses!.containsKey('purified')) {
+    if (shop.tankStatuses == null ||
+        !shop.tankStatuses!.containsKey('purified')) {
       return 0.0;
     }
 
@@ -265,7 +265,8 @@ class ShopDashboardCard extends StatelessWidget {
   }
 
   double _getPurifiedTankCapacity() {
-    if (shop.tankStatuses == null || !shop.tankStatuses!.containsKey('purified')) {
+    if (shop.tankStatuses == null ||
+        !shop.tankStatuses!.containsKey('purified')) {
       return 100.0; // Default capacity
     }
 

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/theme.dart';
 
-
 class ShopTabBarItem extends StatelessWidget {
   final String title;
   final bool isActive;
@@ -34,12 +33,8 @@ class ShopTabBarItem extends StatelessWidget {
       margin: EdgeInsets.only(right: 9.w),
       child: Text(
         title,
-        style: AppStyle.interNormal(
-          size: 14.sp,
-          color: AppStyle.black,
-        ),
+        style: AppStyle.interNormal(size: 14.sp, color: AppStyle.black),
       ),
     );
   }
 }
-

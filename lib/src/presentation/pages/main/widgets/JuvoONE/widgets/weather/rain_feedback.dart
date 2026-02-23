@@ -10,11 +10,11 @@ import 'service/weather_state.dart';
 
 class RainFeedback {
   final DateTime date;
-  final int predictedPOP;  // Daily chance of rain
-  final double precipitationMM;  // Precipitation in millimeters
-  final int dailyWillItRain;  // 1 if rain predicted, 0 if not
+  final int predictedPOP; // Daily chance of rain
+  final double precipitationMM; // Precipitation in millimeters
+  final int dailyWillItRain; // 1 if rain predicted, 0 if not
   bool userConfirmedRain;
-  bool wasEdited;  // Track if feedback was edited
+  bool wasEdited; // Track if feedback was edited
 
   RainFeedback({
     required this.date,
@@ -30,9 +30,7 @@ class RainFeedback {
     // 1. POP >= 80
     // 2. dailyWillItRain is 1 (predicting rain)
     // 3. User confirms rain
-    return predictedPOP >= 80 &&
-        dailyWillItRain == 1 &&
-        userConfirmedRain;
+    return predictedPOP >= 80 && dailyWillItRain == 1 && userConfirmedRain;
   }
 
   Map<String, dynamic> toJson() => {
@@ -59,8 +57,8 @@ class RainFeedback {
 class RainFeedbackSystem {
   final String _storageKey = 'rain_feedback';
   static const int POP_THRESHOLD = 80;
-  static const int FEEDBACK_START_HOUR = 6;   // 6 AM
-  static const int FEEDBACK_END_HOUR = 22;    // 10 PM
+  static const int FEEDBACK_START_HOUR = 6; // 6 AM
+  static const int FEEDBACK_END_HOUR = 22; // 10 PM
 
   Future<void> _clearInvalidFeedback() async {
     final prefs = await SharedPreferences.getInstance();
@@ -69,9 +67,11 @@ class RainFeedbackSystem {
     // Filter out any entries outside valid hours
     final validFeedback = jsonList
         .map((jsonStr) => RainFeedback.fromJson(jsonDecode(jsonStr)))
-        .where((feedback) =>
-    feedback.date.hour >= FEEDBACK_START_HOUR &&
-        feedback.date.hour <= FEEDBACK_END_HOUR)
+        .where(
+          (feedback) =>
+              feedback.date.hour >= FEEDBACK_START_HOUR &&
+              feedback.date.hour <= FEEDBACK_END_HOUR,
+        )
         .map((feedback) => jsonEncode(feedback.toJson()))
         .toList();
 
@@ -83,7 +83,7 @@ class RainFeedbackSystem {
     required int pop,
     required double precipMM,
     required int dailyWillItRain,
-    required bool userConfirmedRain
+    required bool userConfirmedRain,
   }) async {
     // Clear invalid feedback before saving
     await _clearInvalidFeedback();
@@ -96,36 +96,41 @@ class RainFeedbackSystem {
     final feedbackList = await getFeedbackHistory();
 
     // Remove any existing feedback for today
-    feedbackList.removeWhere((feedback) =>
-    feedback.dateString == "${now.year}-${now.month}-${now.day}"
+    feedbackList.removeWhere(
+      (feedback) =>
+          feedback.dateString == "${now.year}-${now.month}-${now.day}",
     );
 
-    feedbackList.add(RainFeedback(
-      date: now,
-      predictedPOP: pop,
-      precipitationMM: precipMM,
-      dailyWillItRain: dailyWillItRain,
-      userConfirmedRain: userConfirmedRain,
-    ));
+    feedbackList.add(
+      RainFeedback(
+        date: now,
+        predictedPOP: pop,
+        precipitationMM: precipMM,
+        dailyWillItRain: dailyWillItRain,
+        userConfirmedRain: userConfirmedRain,
+      ),
+    );
 
     // Keep only last 30 days AND within valid hours
     final thirtyDaysAgo = now.subtract(const Duration(days: 30));
     final recentValidFeedback = feedbackList
-        .where((feedback) =>
-    feedback.date.isAfter(thirtyDaysAgo) &&
-        feedback.date.hour >= FEEDBACK_START_HOUR &&
-        feedback.date.hour <= FEEDBACK_END_HOUR)
+        .where(
+          (feedback) =>
+              feedback.date.isAfter(thirtyDaysAgo) &&
+              feedback.date.hour >= FEEDBACK_START_HOUR &&
+              feedback.date.hour <= FEEDBACK_END_HOUR,
+        )
         .toList();
 
     await prefs.setStringList(
-        _storageKey,
-        recentValidFeedback.map((f) => jsonEncode(f.toJson())).toList()
+      _storageKey,
+      recentValidFeedback.map((f) => jsonEncode(f.toJson())).toList(),
     );
   }
 
   Future<void> updateFeedback({
     required DateTime date,
-    required bool newUserConfirmedRain
+    required bool newUserConfirmedRain,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final jsonList = prefs.getStringList(_storageKey) ?? [];
@@ -183,8 +188,9 @@ class RainFeedbackSystem {
 
     final feedbackList = await getFeedbackHistory();
 
-    return feedbackList.any((feedback) =>
-    feedback.dateString == "${now.year}-${now.month}-${now.day}"
+    return feedbackList.any(
+      (feedback) =>
+          feedback.dateString == "${now.year}-${now.month}-${now.day}",
     );
   }
 }
@@ -211,25 +217,29 @@ class _RainFeedbackWidgetState extends State<RainFeedbackWidget> {
 
   int _getChanceOfRain() {
     final now = DateTime.now();
-    return widget.weatherState.forecast[0]['hour'][now.hour]['chance_of_rain'] as int;
+    return widget.weatherState.forecast[0]['hour'][now.hour]['chance_of_rain']
+        as int;
   }
 
   int _getDailyWillItRain() {
     final now = DateTime.now();
-    return widget.weatherState.forecast[0]['hour'][now.hour]['will_it_rain'] as int;
+    return widget.weatherState.forecast[0]['hour'][now.hour]['will_it_rain']
+        as int;
   }
 
   double _getPrecipitation() {
     final now = DateTime.now();
-    return (widget.weatherState.forecast[0]['hour'][now.hour]['precip_mm'] as num).toDouble();
+    return (widget.weatherState.forecast[0]['hour'][now.hour]['precip_mm']
+            as num)
+        .toDouble();
   }
 
   Future<void> _handleFeedback(bool wasRaining) async {
     await _feedbackSystem.saveFeedback(
-        pop: _getChanceOfRain(),
-        precipMM: _getPrecipitation(),
-        dailyWillItRain: _getDailyWillItRain(),
-        userConfirmedRain: wasRaining
+      pop: _getChanceOfRain(),
+      precipMM: _getPrecipitation(),
+      dailyWillItRain: _getDailyWillItRain(),
+      userConfirmedRain: wasRaining,
     );
 
     final accuracy = await _feedbackSystem.getAccuracyRate();
@@ -237,7 +247,7 @@ class _RainFeedbackWidgetState extends State<RainFeedbackWidget> {
     setState(() {
       _showingAccuracy = true;
       _accuracy = accuracy;
-      _showEditIcon = !wasRaining;  // Show edit icon if user says no
+      _showEditIcon = !wasRaining; // Show edit icon if user says no
     });
 
     Future.delayed(const Duration(seconds: 3), () {
@@ -273,8 +283,8 @@ class _RainFeedbackWidgetState extends State<RainFeedbackWidget> {
     if (confirmed == true) {
       // Update the existing feedback
       await _feedbackSystem.updateFeedback(
-          date: DateTime.now(),
-          newUserConfirmedRain: true
+        date: DateTime.now(),
+        newUserConfirmedRain: true,
       );
 
       setState(() {

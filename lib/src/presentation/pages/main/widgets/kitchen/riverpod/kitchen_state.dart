@@ -1,8 +1,6 @@
-
 import 'package:admin_desktop/src/core/constants/constants.dart';
 import 'package:admin_desktop/src/models/data/order_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 
 part 'kitchen_state.freezed.dart';
 
@@ -22,4 +20,3 @@ class KitchenState with _$KitchenState {
 
   const KitchenState._();
 }
-

@@ -12,7 +12,8 @@ part of 'profile_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$ProfileState {
@@ -36,19 +37,21 @@ mixin _$ProfileState {
 /// @nodoc
 abstract class $ProfileStateCopyWith<$Res> {
   factory $ProfileStateCopyWith(
-          ProfileState value, $Res Function(ProfileState) then) =
-      _$ProfileStateCopyWithImpl<$Res, ProfileState>;
+    ProfileState value,
+    $Res Function(ProfileState) then,
+  ) = _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isReferralLoading,
-      bool isSaveLoading,
-      bool isLoadingHistory,
-      int typeIndex,
-      String bgImage,
-      String logoImage,
-      AddressData? addressModel,
-      UserData? userData});
+  $Res call({
+    bool isLoading,
+    bool isReferralLoading,
+    bool isSaveLoading,
+    bool isLoadingHistory,
+    int typeIndex,
+    String bgImage,
+    String logoImage,
+    AddressData? addressModel,
+    UserData? userData,
+  });
 }
 
 /// @nodoc
@@ -76,44 +79,47 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? addressModel = freezed,
     Object? userData = freezed,
   }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReferralLoading: null == isReferralLoading
-          ? _value.isReferralLoading
-          : isReferralLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSaveLoading: null == isSaveLoading
-          ? _value.isSaveLoading
-          : isSaveLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoadingHistory: null == isLoadingHistory
-          ? _value.isLoadingHistory
-          : isLoadingHistory // ignore: cast_nullable_to_non_nullable
-              as bool,
-      typeIndex: null == typeIndex
-          ? _value.typeIndex
-          : typeIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      bgImage: null == bgImage
-          ? _value.bgImage
-          : bgImage // ignore: cast_nullable_to_non_nullable
-              as String,
-      logoImage: null == logoImage
-          ? _value.logoImage
-          : logoImage // ignore: cast_nullable_to_non_nullable
-              as String,
-      addressModel: freezed == addressModel
-          ? _value.addressModel
-          : addressModel // ignore: cast_nullable_to_non_nullable
-              as AddressData?,
-      userData: freezed == userData
-          ? _value.userData
-          : userData // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isLoading: null == isLoading
+                ? _value.isLoading
+                : isLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isReferralLoading: null == isReferralLoading
+                ? _value.isReferralLoading
+                : isReferralLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isSaveLoading: null == isSaveLoading
+                ? _value.isSaveLoading
+                : isSaveLoading // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isLoadingHistory: null == isLoadingHistory
+                ? _value.isLoadingHistory
+                : isLoadingHistory // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            typeIndex: null == typeIndex
+                ? _value.typeIndex
+                : typeIndex // ignore: cast_nullable_to_non_nullable
+                      as int,
+            bgImage: null == bgImage
+                ? _value.bgImage
+                : bgImage // ignore: cast_nullable_to_non_nullable
+                      as String,
+            logoImage: null == logoImage
+                ? _value.logoImage
+                : logoImage // ignore: cast_nullable_to_non_nullable
+                      as String,
+            addressModel: freezed == addressModel
+                ? _value.addressModel
+                : addressModel // ignore: cast_nullable_to_non_nullable
+                      as AddressData?,
+            userData: freezed == userData
+                ? _value.userData
+                : userData // ignore: cast_nullable_to_non_nullable
+                      as UserData?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -121,20 +127,22 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
 abstract class _$$ProfileStateImplCopyWith<$Res>
     implements $ProfileStateCopyWith<$Res> {
   factory _$$ProfileStateImplCopyWith(
-          _$ProfileStateImpl value, $Res Function(_$ProfileStateImpl) then) =
-      __$$ProfileStateImplCopyWithImpl<$Res>;
+    _$ProfileStateImpl value,
+    $Res Function(_$ProfileStateImpl) then,
+  ) = __$$ProfileStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isLoading,
-      bool isReferralLoading,
-      bool isSaveLoading,
-      bool isLoadingHistory,
-      int typeIndex,
-      String bgImage,
-      String logoImage,
-      AddressData? addressModel,
-      UserData? userData});
+  $Res call({
+    bool isLoading,
+    bool isReferralLoading,
+    bool isSaveLoading,
+    bool isLoadingHistory,
+    int typeIndex,
+    String bgImage,
+    String logoImage,
+    AddressData? addressModel,
+    UserData? userData,
+  });
 }
 
 /// @nodoc
@@ -142,8 +150,9 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
     extends _$ProfileStateCopyWithImpl<$Res, _$ProfileStateImpl>
     implements _$$ProfileStateImplCopyWith<$Res> {
   __$$ProfileStateImplCopyWithImpl(
-      _$ProfileStateImpl _value, $Res Function(_$ProfileStateImpl) _then)
-      : super(_value, _then);
+    _$ProfileStateImpl _value,
+    $Res Function(_$ProfileStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -160,61 +169,63 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
     Object? addressModel = freezed,
     Object? userData = freezed,
   }) {
-    return _then(_$ProfileStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReferralLoading: null == isReferralLoading
-          ? _value.isReferralLoading
-          : isReferralLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isSaveLoading: null == isSaveLoading
-          ? _value.isSaveLoading
-          : isSaveLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isLoadingHistory: null == isLoadingHistory
-          ? _value.isLoadingHistory
-          : isLoadingHistory // ignore: cast_nullable_to_non_nullable
-              as bool,
-      typeIndex: null == typeIndex
-          ? _value.typeIndex
-          : typeIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      bgImage: null == bgImage
-          ? _value.bgImage
-          : bgImage // ignore: cast_nullable_to_non_nullable
-              as String,
-      logoImage: null == logoImage
-          ? _value.logoImage
-          : logoImage // ignore: cast_nullable_to_non_nullable
-              as String,
-      addressModel: freezed == addressModel
-          ? _value.addressModel
-          : addressModel // ignore: cast_nullable_to_non_nullable
-              as AddressData?,
-      userData: freezed == userData
-          ? _value.userData
-          : userData // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-    ));
+    return _then(
+      _$ProfileStateImpl(
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isReferralLoading: null == isReferralLoading
+            ? _value.isReferralLoading
+            : isReferralLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isSaveLoading: null == isSaveLoading
+            ? _value.isSaveLoading
+            : isSaveLoading // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isLoadingHistory: null == isLoadingHistory
+            ? _value.isLoadingHistory
+            : isLoadingHistory // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        typeIndex: null == typeIndex
+            ? _value.typeIndex
+            : typeIndex // ignore: cast_nullable_to_non_nullable
+                  as int,
+        bgImage: null == bgImage
+            ? _value.bgImage
+            : bgImage // ignore: cast_nullable_to_non_nullable
+                  as String,
+        logoImage: null == logoImage
+            ? _value.logoImage
+            : logoImage // ignore: cast_nullable_to_non_nullable
+                  as String,
+        addressModel: freezed == addressModel
+            ? _value.addressModel
+            : addressModel // ignore: cast_nullable_to_non_nullable
+                  as AddressData?,
+        userData: freezed == userData
+            ? _value.userData
+            : userData // ignore: cast_nullable_to_non_nullable
+                  as UserData?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$ProfileStateImpl extends _ProfileState {
-  const _$ProfileStateImpl(
-      {this.isLoading = true,
-      this.isReferralLoading = true,
-      this.isSaveLoading = false,
-      this.isLoadingHistory = true,
-      this.typeIndex = 0,
-      this.bgImage = "",
-      this.logoImage = "",
-      this.addressModel = null,
-      this.userData = null})
-      : super._();
+  const _$ProfileStateImpl({
+    this.isLoading = true,
+    this.isReferralLoading = true,
+    this.isSaveLoading = false,
+    this.isLoadingHistory = true,
+    this.typeIndex = 0,
+    this.bgImage = "",
+    this.logoImage = "",
+    this.addressModel = null,
+    this.userData = null,
+  }) : super._();
 
   @override
   @JsonKey()
@@ -275,16 +286,17 @@ class _$ProfileStateImpl extends _ProfileState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      isReferralLoading,
-      isSaveLoading,
-      isLoadingHistory,
-      typeIndex,
-      bgImage,
-      logoImage,
-      addressModel,
-      userData);
+    runtimeType,
+    isLoading,
+    isReferralLoading,
+    isSaveLoading,
+    isLoadingHistory,
+    typeIndex,
+    bgImage,
+    logoImage,
+    addressModel,
+    userData,
+  );
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -296,16 +308,17 @@ class _$ProfileStateImpl extends _ProfileState {
 }
 
 abstract class _ProfileState extends ProfileState {
-  const factory _ProfileState(
-      {final bool isLoading,
-      final bool isReferralLoading,
-      final bool isSaveLoading,
-      final bool isLoadingHistory,
-      final int typeIndex,
-      final String bgImage,
-      final String logoImage,
-      final AddressData? addressModel,
-      final UserData? userData}) = _$ProfileStateImpl;
+  const factory _ProfileState({
+    final bool isLoading,
+    final bool isReferralLoading,
+    final bool isSaveLoading,
+    final bool isLoadingHistory,
+    final int typeIndex,
+    final String bgImage,
+    final String logoImage,
+    final AddressData? addressModel,
+    final UserData? userData,
+  }) = _$ProfileStateImpl;
   const _ProfileState._() : super._();
 
   @override
@@ -334,4 +347,3 @@ abstract class _ProfileState extends ProfileState {
   _$$ProfileStateImplCopyWith<_$ProfileStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-

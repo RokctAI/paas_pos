@@ -10,7 +10,7 @@ class CustomBouncingScrollSimulation extends Simulation {
     required this.trailingExtent,
     required this.spring,
     super.tolerance,
-  })  : assert(leadingExtent <= trailingExtent) {
+  }) : assert(leadingExtent <= trailingExtent) {
     if (position < leadingExtent) {
       _springSimulation = _underScrollSimulation(
         position,
@@ -31,7 +31,9 @@ class CustomBouncingScrollSimulation extends Simulation {
         _springSimulation = _overscrollSimulation(
           trailingExtent,
           math.min(
-              _frictionSimulation.dx(_springTime), maxSpringTransferVelocity),
+            _frictionSimulation.dx(_springTime),
+            maxSpringTransferVelocity,
+          ),
         );
         assert(_springTime.isFinite);
       } else if (velocity < 0.0 && finalX < leadingExtent) {
@@ -39,7 +41,9 @@ class CustomBouncingScrollSimulation extends Simulation {
         _springSimulation = _underScrollSimulation(
           leadingExtent,
           math.min(
-              _frictionSimulation.dx(_springTime), maxSpringTransferVelocity),
+            _frictionSimulation.dx(_springTime),
+            maxSpringTransferVelocity,
+          ),
         );
         assert(_springTime.isFinite);
       } else {
@@ -95,4 +99,3 @@ class CustomBouncingScrollSimulation extends Simulation {
     return '${objectRuntimeType(this, 'BouncingScrollSimulation')}(leadingExtent: $leadingExtent, trailingExtent: $trailingExtent)';
   }
 }
-

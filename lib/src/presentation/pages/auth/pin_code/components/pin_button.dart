@@ -10,12 +10,8 @@ class PinButton extends StatelessWidget {
   final IconData? iconData;
   final VoidCallback onTap;
 
-  const PinButton({
-    Key? key,
-    this.title,
-    this.iconData,
-    required this.onTap,
-  }) : super(key: key);
+  const PinButton({Key? key, this.title, this.iconData, required this.onTap})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +28,7 @@ class PinButton extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [
-                  AppStyle.white,
-                  AppStyle.white.withOpacity(0.7),
-                ],
+                colors: [AppStyle.white, AppStyle.white.withOpacity(0.7)],
               ),
               borderRadius: BorderRadius.circular(16.r),
               boxShadow: [
@@ -57,12 +50,12 @@ class PinButton extends StatelessWidget {
                       ),
                     )
                   : iconData != null
-                      ? Icon(
-                          iconData!,
-                          size: 28.r,
-                          color: AppStyle.black.withOpacity(0.8),
-                        )
-                      : const SizedBox.shrink(),
+                  ? Icon(
+                      iconData!,
+                      size: 28.r,
+                      color: AppStyle.black.withOpacity(0.8),
+                    )
+                  : const SizedBox.shrink(),
             ),
           ),
         ),
@@ -70,4 +63,3 @@ class PinButton extends StatelessWidget {
     );
   }
 }
-

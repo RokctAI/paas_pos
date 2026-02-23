@@ -16,9 +16,7 @@ class SelectMap extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifierMap = ref.read(editProfileProvider.notifier);
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.r),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       child: Container(
         height: MediaQuery.sizeOf(context).height / 4,
         width: (MediaQuery.sizeOf(context).width - 100) / 4,
@@ -31,27 +29,28 @@ class SelectMap extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-        AppHelpers.getTranslation(
-        TrKeys.selectMap),
+              AppHelpers.getTranslation(TrKeys.selectMap),
               style: GoogleFonts.inter(
-                  fontWeight: FontWeight.w700, fontSize: 28.r),
+                fontWeight: FontWeight.w700,
+                fontSize: 28.r,
+              ),
             ),
             20.verticalSpace,
             ConfirmButton(
-                title: AppHelpers.getTranslation(
-                    TrKeys.shopLocation),
-                onTap: () {
-                  Navigator.pop(context);
-                  notifierMap.setShopEdit(2);
-                }),
+              title: AppHelpers.getTranslation(TrKeys.shopLocation),
+              onTap: () {
+                Navigator.pop(context);
+                notifierMap.setShopEdit(2);
+              },
+            ),
             16.verticalSpace,
             ConfirmButton(
-                title: AppHelpers.getTranslation(
-                    TrKeys.deliveryZone),
-                onTap: () {
-                  Navigator.pop(context);
-                  notifierMap.setShopEdit(3);
-                }),
+              title: AppHelpers.getTranslation(TrKeys.deliveryZone),
+              onTap: () {
+                Navigator.pop(context);
+                notifierMap.setShopEdit(3);
+              },
+            ),
             16.verticalSpace,
           ],
         ),
@@ -59,4 +58,3 @@ class SelectMap extends ConsumerWidget {
     );
   }
 }
-

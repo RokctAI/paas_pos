@@ -15,9 +15,8 @@ class CustomerState with _$CustomerState {
     @Default(null) UserData? selectUser,
     @Default(0) int totalCount,
     @Default(null) UserData? user,
-    @Default(null) String? imageFile
+    @Default(null) String? imageFile,
   }) = _CustomerState;
 
   const CustomerState._();
 }
-

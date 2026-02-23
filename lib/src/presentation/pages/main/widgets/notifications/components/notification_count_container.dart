@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../theme/theme.dart';
 
-
 class NotificationCountsContainer extends StatelessWidget {
   final String? count;
   final Color? color;
@@ -16,8 +15,9 @@ class NotificationCountsContainer extends StatelessWidget {
       height: 24.r,
       width: 38.r,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: AppStyle.black),
+        borderRadius: BorderRadius.circular(100),
+        color: AppStyle.black,
+      ),
       child: Center(
         child: Text(
           count ?? '',
@@ -31,4 +31,3 @@ class NotificationCountsContainer extends StatelessWidget {
     );
   }
 }
-

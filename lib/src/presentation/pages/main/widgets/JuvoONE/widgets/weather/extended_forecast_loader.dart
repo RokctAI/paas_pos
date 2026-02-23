@@ -17,10 +17,12 @@ class ExtendedForecastLoader extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  ConsumerState<ExtendedForecastLoader> createState() => _ExtendedForecastLoaderState();
+  ConsumerState<ExtendedForecastLoader> createState() =>
+      _ExtendedForecastLoaderState();
 }
 
-class _ExtendedForecastLoaderState extends ConsumerState<ExtendedForecastLoader> {
+class _ExtendedForecastLoaderState
+    extends ConsumerState<ExtendedForecastLoader> {
   bool _isExpanded = false;
   bool _isLoading = false;
 
@@ -32,10 +34,9 @@ class _ExtendedForecastLoaderState extends ConsumerState<ExtendedForecastLoader>
     });
 
     try {
-      await ref.read(openWeatherProvider.notifier).loadExtendedForecast(
-        widget.latitude,
-        widget.longitude,
-      );
+      await ref
+          .read(openWeatherProvider.notifier)
+          .loadExtendedForecast(widget.latitude, widget.longitude);
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -75,17 +76,17 @@ class _ExtendedForecastLoaderState extends ConsumerState<ExtendedForecastLoader>
           ),
           trailing: _isLoading
               ? SizedBox(
-            width: 24.sp,
-            height: 24.sp,
-            child: CircularProgressIndicator(
-              strokeWidth: 2.5,
-              valueColor: AlwaysStoppedAnimation<Color>(AppStyle.black),
-            ),
-          )
+                  width: 24.sp,
+                  height: 24.sp,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.5,
+                    valueColor: AlwaysStoppedAnimation<Color>(AppStyle.black),
+                  ),
+                )
               : Icon(
-            _isExpanded ? Icons.expand_less : Icons.expand_more,
-            color: AppStyle.black,
-          ),
+                  _isExpanded ? Icons.expand_less : Icons.expand_more,
+                  color: AppStyle.black,
+                ),
           onTap: () async {
             if (_isLoading) return;
 

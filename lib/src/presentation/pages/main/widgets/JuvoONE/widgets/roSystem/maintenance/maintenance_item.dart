@@ -27,12 +27,14 @@ class MaintenanceItem {
       filterLocation: json['filter_location'] != null
           ? FilterLocation.values.firstWhere(
               (e) => e.toString().split('.').last == json['filter_location'],
-          orElse: () => FilterLocation.pre)
+              orElse: () => FilterLocation.pre,
+            )
           : null,
       filterType: json['filter_type'] != null
           ? FilterType.values.firstWhere(
               (e) => e.toString().split('.').last == json['filter_type'],
-          orElse: () => FilterType.sediment)
+              orElse: () => FilterType.sediment,
+            )
           : null,
       membraneCount: json['membrane_count'] as int?,
     );

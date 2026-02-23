@@ -63,6 +63,7 @@ class PlanProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
   // Create Vision
   Future<bool> createVision(Map<String, dynamic> data) async {
     _isLoading = true;
@@ -222,7 +223,10 @@ class PlanProvider with ChangeNotifier {
   }
 
   // Update Strategic Objective
-  Future<bool> updateStrategicObjective(String uuid, Map<String, dynamic> data) async {
+  Future<bool> updateStrategicObjective(
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     _isLoading = true;
     _error = null;
     notifyListeners();

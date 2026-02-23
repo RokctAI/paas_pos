@@ -35,11 +35,7 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
   // Use the inject utility for provider
   late PlanProvider _planProvider;
 
-  final List<String> _timeHorizons = [
-    'Short-term',
-    'Medium-term',
-    'Long-term',
-  ];
+  final List<String> _timeHorizons = ['Short-term', 'Medium-term', 'Long-term'];
 
   final List<String> _statuses = [
     'Not Started',
@@ -76,11 +72,15 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.isEditing
-          ? 'Edit Strategic Objective'
-          : 'Add Strategic Objective',
-          style: const TextStyle(
-              fontWeight: FontWeight.bold, color: AppStyle.black)),
+      title: Text(
+        widget.isEditing
+            ? 'Edit Strategic Objective'
+            : 'Add Strategic Objective',
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: AppStyle.black,
+        ),
+      ),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -98,11 +98,7 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      _getPillarIcon(),
-                      color: _getPillarColor(),
-                      size: 20,
-                    ),
+                    Icon(_getPillarIcon(), color: _getPillarColor(), size: 20),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
@@ -159,9 +155,7 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: _timeHorizon,
-                decoration: AppStyle.inputDecoration(
-                  labelText: 'Time Horizon',
-                ),
+                decoration: AppStyle.inputDecoration(labelText: 'Time Horizon'),
                 items: _timeHorizons.map((horizon) {
                   return DropdownMenuItem<String>(
                     value: horizon,
@@ -179,9 +173,7 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: _status,
-                decoration: AppStyle.inputDecoration(
-                  labelText: 'Status',
-                ),
+                decoration: AppStyle.inputDecoration(labelText: 'Status'),
                 items: _statuses.map((status) {
                   return DropdownMenuItem<String>(
                     value: status,
@@ -205,8 +197,10 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
               InkWell(
                 onTap: _selectStartDate,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: AppStyle.grey),
                     borderRadius: BorderRadius.circular(4),
@@ -250,8 +244,10 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
               InkWell(
                 onTap: _selectTargetDate,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: AppStyle.grey),
                     borderRadius: BorderRadius.circular(4),
@@ -297,9 +293,7 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
         ),
         ElevatedButton(
           onPressed: _isLoading ? null : _submitForm,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppStyle.primary,
-          ),
+          style: ElevatedButton.styleFrom(backgroundColor: AppStyle.primary),
           child: _isLoading
               ? const SizedBox(
                   width: 20,
@@ -404,7 +398,9 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
       bool success;
       if (widget.isEditing && widget.initialObjective != null) {
         success = await _planProvider.updateStrategicObjective(
-            widget.initialObjective!.uuid, data);
+          widget.initialObjective!.uuid,
+          data,
+        );
       } else {
         success = await _planProvider.createStrategicObjective(data);
       }
@@ -417,9 +413,11 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(widget.isEditing
-                ? 'Objective updated successfully'
-                : 'Objective created successfully'),
+            content: Text(
+              widget.isEditing
+                  ? 'Objective updated successfully'
+                  : 'Objective created successfully',
+            ),
             backgroundColor: AppStyle.green,
           ),
         );
@@ -427,4 +425,3 @@ class _AddObjectiveDialogState extends State<AddObjectiveDialog> {
     }
   }
 }
-

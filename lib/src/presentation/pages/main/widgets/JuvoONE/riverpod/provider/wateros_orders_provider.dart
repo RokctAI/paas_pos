@@ -5,9 +5,12 @@ import '../../../../../../../models/data/order_data.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Define the provider
-final waterosOrdersProvider = StateNotifierProvider<WaterosOrdersNotifier, AsyncValue<List<OrderData>>>((ref) {
-  return WaterosOrdersNotifier();
-});
+final waterosOrdersProvider =
+    StateNotifierProvider<WaterosOrdersNotifier, AsyncValue<List<OrderData>>>((
+      ref,
+    ) {
+      return WaterosOrdersNotifier();
+    });
 
 // Define the notifier
 class WaterosOrdersNotifier extends StateNotifier<AsyncValue<List<OrderData>>> {
@@ -36,8 +39,8 @@ class WaterosOrdersNotifier extends StateNotifier<AsyncValue<List<OrderData>>> {
         state = AsyncValue.data(orders);
       } else {
         state = AsyncValue.error(
-            res.statusMessage ?? 'Unknown error',
-            StackTrace.current
+          res.statusMessage ?? 'Unknown error',
+          StackTrace.current,
         );
       }
     } catch (e, stackTrace) {

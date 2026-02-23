@@ -9,7 +9,6 @@ import '../../../../../../core/utils/utils.dart';
 import '../../../../../theme/app_style.dart';
 import 'package:http/http.dart' as http;
 
-
 class ApiStatusIndicator extends StatefulWidget {
   const ApiStatusIndicator({super.key});
 
@@ -36,15 +35,14 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator>
     );
 
     _fadeAnimation = Tween<double>(begin: 1.0, end: 0.3).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.easeInOut,
-      ),
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
 
     _checkStatus();
-    _statusCheckTimer =
-        Timer.periodic(const Duration(minutes: 1), (_) => _checkStatus());
+    _statusCheckTimer = Timer.periodic(
+      const Duration(minutes: 1),
+      (_) => _checkStatus(),
+    );
   }
 
   @override
@@ -76,8 +74,9 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator>
 
   Future<void> _checkApiStatus() async {
     try {
-      final response =
-      await http.get(Uri.parse('${AppConstants.baseUrl}/api/v1/rest/status'));
+      final response = await http.get(
+        Uri.parse('${AppConstants.baseUrl}/api/v1/rest/status'),
+      );
       setState(() {
         _isApiOk = response.statusCode == 200;
       });
@@ -138,16 +137,16 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator>
                   duration: const Duration(milliseconds: 200),
                   child: _showContainer
                       ? Text(
-                    _isOnline && _isApiOk
-                        ? AppHelpers.getTranslation(TrKeys.online)
-                        : AppHelpers.getTranslation(TrKeys.offline),
-                    key: const ValueKey("text"),
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14.sp,
-                      color: AppStyle.black,
-                    ),
-                  )
+                          _isOnline && _isApiOk
+                              ? AppHelpers.getTranslation(TrKeys.online)
+                              : AppHelpers.getTranslation(TrKeys.offline),
+                          key: const ValueKey("text"),
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14.sp,
+                            color: AppStyle.black,
+                          ),
+                        )
                       : const SizedBox.shrink(key: ValueKey("empty")),
                 ),
               ),

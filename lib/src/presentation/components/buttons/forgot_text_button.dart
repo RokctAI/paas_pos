@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../theme/theme.dart';
 
-
 class ForgotTextButton extends ConsumerWidget {
   final String title;
   final Function() onPressed;
@@ -40,4 +39,3 @@ class ForgotTextButton extends ConsumerWidget {
     );
   }
 }
-

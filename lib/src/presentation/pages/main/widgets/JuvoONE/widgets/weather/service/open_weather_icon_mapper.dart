@@ -11,39 +11,39 @@ class OpenWeatherIconMapper {
     final baseCode = iconCode.substring(0, 2); // Get main weather code
 
     switch (baseCode) {
-    // Clear sky
+      // Clear sky
       case '01':
         return Remix.sun_fill;
 
-    // Few clouds
+      // Few clouds
       case '02':
         return Remix.sun_cloudy_fill;
 
-    // Scattered clouds
+      // Scattered clouds
       case '03':
         return Remix.cloudy_fill;
 
-    // Broken clouds
+      // Broken clouds
       case '04':
         return Remix.cloud_fill;
 
-    // Shower rain
+      // Shower rain
       case '09':
         return Remix.showers_fill;
 
-    // Rain
+      // Rain
       case '10':
         return Remix.heavy_showers_fill;
 
-    // Thunderstorm
+      // Thunderstorm
       case '11':
         return Remix.thunderstorms_fill;
 
-    // Snow
+      // Snow
       case '13':
         return Remix.snowy_fill;
 
-    // Mist, fog, etc.
+      // Mist, fog, etc.
       case '50':
         return Remix.mist_fill;
 

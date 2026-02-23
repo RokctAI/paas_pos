@@ -9,36 +9,31 @@ import '../state/pin_code_state.dart';
 class PinCodeNotifier extends StateNotifier<PinCodeState> {
   PinCodeNotifier() : super(const PinCodeState());
 
-  void setPinCode({
-    required String code,
-    required VoidCallback onSuccess,
-  }) {
+  void setPinCode({required String code, required VoidCallback onSuccess}) {
     if (state.pinCode.length < 4) {
       state = state.copyWith(
-          pinCode: state.pinCode + code, isPinCodeNotValid: false);
+        pinCode: state.pinCode + code,
+        isPinCodeNotValid: false,
+      );
     }
     checkCode(onSuccess: onSuccess, isNotSet: state.pinCode.length == 4);
   }
 
-  void setNewPinCode({
-    required String code,
-    required VoidCallback onSuccess,
-  }) {
+  void setNewPinCode({required String code, required VoidCallback onSuccess}) {
     if (state.pinCode.length < 4) {
       state = state.copyWith(
-          pinCode: state.pinCode + code, isPinCodeNotValid: false);
+        pinCode: state.pinCode + code,
+        isPinCodeNotValid: false,
+      );
     }
-     if (state.pinCode.length ==4) {
+    if (state.pinCode.length == 4) {
       LocalStorage.setPinCode(state.pinCode);
       state = state.copyWith(isPinCodeNotValid: false);
       onSuccess.call();
     }
   }
 
-  checkCode({
-    required VoidCallback onSuccess,
-    bool isNotSet = true,
-  }) {
+  checkCode({required VoidCallback onSuccess, bool isNotSet = true}) {
     if (state.pinCode.length == 4) {
       String pinCode = LocalStorage.getPinCode();
       if (pinCode == state.pinCode) {
@@ -54,9 +49,7 @@ class PinCodeNotifier extends StateNotifier<PinCodeState> {
     }
   }
 
-  checkNewCode({
-    required VoidCallback onSuccess,
-  }) {
+  checkNewCode({required VoidCallback onSuccess}) {
     if (state.pinCode.length == 4) {
       LocalStorage.setPinCode(state.pinCode);
       onSuccess();
@@ -71,7 +64,8 @@ class PinCodeNotifier extends StateNotifier<PinCodeState> {
     }
     if (state.pinCode.isNotEmpty) {
       state = state.copyWith(
-          pinCode: state.pinCode.substring(0, state.pinCode.length - 1));
+        pinCode: state.pinCode.substring(0, state.pinCode.length - 1),
+      );
     }
   }
 
@@ -79,4 +73,3 @@ class PinCodeNotifier extends StateNotifier<PinCodeState> {
     state = state.copyWith(pinCode: "", isPinCodeNotValid: false);
   }
 }
-

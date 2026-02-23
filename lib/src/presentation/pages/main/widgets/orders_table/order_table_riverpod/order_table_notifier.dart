@@ -23,8 +23,11 @@ class OrderTableNotifier extends StateNotifier<OrderTableState> {
   }
 
   void changeTabIndex(int index) {
-    state = state
-        .copyWith(selectTabIndex: index, isAllSelect: false, selectOrders: []);
+    state = state.copyWith(
+      selectTabIndex: index,
+      isAllSelect: false,
+      selectOrders: [],
+    );
   }
 
   // void setUsersQuery(BuildContext context, String query) {
@@ -82,18 +85,21 @@ class OrderTableNotifier extends StateNotifier<OrderTableState> {
   }
 
   void setMarkerIcon(LatLng latLng) async {
-    state = state.copyWith(setOfMarker: {
-      Marker(
-        markerId: const MarkerId("1"),
-        draggable: true,
-        consumeTapEvents: true,
-        flat: true,
-        // ignore: deprecated_member_use
-        icon: await BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(size: Size(48.r, 75.r)), Assets.pngMarker),
-        position: latLng,
-      )
-    });
+    state = state.copyWith(
+      setOfMarker: {
+        Marker(
+          markerId: const MarkerId("1"),
+          draggable: true,
+          consumeTapEvents: true,
+          flat: true,
+          // ignore: deprecated_member_use
+          icon: await BitmapDescriptor.fromAssetImage(
+            ImageConfiguration(size: Size(48.r, 75.r)),
+            Assets.pngMarker,
+          ),
+          position: latLng,
+        ),
+      },
+    );
   }
 }
-

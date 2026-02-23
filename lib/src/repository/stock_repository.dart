@@ -17,4 +17,3 @@ abstract class StockRepository {
     num? priceFrom,
   });
 }
-

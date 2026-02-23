@@ -21,4 +21,3 @@ class CurrenciesRepositoryImpl extends CurrenciesRepository {
     }
   }
 }
-

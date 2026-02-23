@@ -205,7 +205,11 @@ class TankApiService {
     }
   }
 
-  static Future<void> updatePumpStatus(int id, bool isOn, double currentFlowRate) async {
+  static Future<void> updatePumpStatus(
+    int id,
+    bool isOn,
+    double currentFlowRate,
+  ) async {
     if (!await _checkConnectivity()) {
       throw Exception('No internet connection');
     }
@@ -213,10 +217,7 @@ class TankApiService {
     try {
       final headers = await _getHeaders();
       final Map<String, dynamic> payload = {
-        'pump_status': {
-          'isOn': isOn,
-          'flowRate': isOn ? currentFlowRate : 0.0
-        }
+        'pump_status': {'isOn': isOn, 'flowRate': isOn ? currentFlowRate : 0.0},
       };
 
       if (kDebugMode) {
@@ -256,7 +257,7 @@ class TankApiService {
         'pump_status': {
           'isOn': isOn,
           // Not including flowRate in payload so it won't be updated
-        }
+        },
       };
 
       if (kDebugMode) {
@@ -279,6 +280,4 @@ class TankApiService {
       rethrow;
     }
   }
-
-
 }

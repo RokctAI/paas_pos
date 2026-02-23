@@ -2,10 +2,7 @@ import '../data/meta.dart';
 import '../data/product_data.dart';
 
 class ProductsPaginateResponse {
-  ProductsPaginateResponse({
-    List<ProductData>? data,
-    Meta? meta,
-  }) {
+  ProductsPaginateResponse({List<ProductData>? data, Meta? meta}) {
     _data = data;
     // _links = links;
     _meta = meta;
@@ -24,14 +21,8 @@ class ProductsPaginateResponse {
   List<ProductData>? _data;
   Meta? _meta;
 
-  ProductsPaginateResponse copyWith({
-    List<ProductData>? data,
-    Meta? meta,
-  }) =>
-      ProductsPaginateResponse(
-        data: data ?? _data,
-        meta: meta ?? _meta,
-      );
+  ProductsPaginateResponse copyWith({List<ProductData>? data, Meta? meta}) =>
+      ProductsPaginateResponse(data: data ?? _data, meta: meta ?? _meta);
 
   List<ProductData>? get data => _data;
 

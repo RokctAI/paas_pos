@@ -19,13 +19,12 @@ class ProductCalculateResponse {
     bool? status,
     String? message,
     ProductCalculateResponseData? data,
-  }) =>
-      ProductCalculateResponse(
-        timestamp: timestamp ?? this.timestamp,
-        status: status ?? this.status,
-        message: message ?? this.message,
-        data: data ?? this.data,
-      );
+  }) => ProductCalculateResponse(
+    timestamp: timestamp ?? this.timestamp,
+    status: status ?? this.status,
+    message: message ?? this.message,
+    data: data ?? this.data,
+  );
 
   factory ProductCalculateResponse.fromJson(Map<String, dynamic> json) =>
       ProductCalculateResponse(
@@ -40,19 +39,15 @@ class ProductCalculateResponse {
       );
 
   Map<String, dynamic> toJson() => {
-        "timestamp": timestamp?.toIso8601String(),
-        "status": status,
-        "message": message,
-        "data": data?.toJson(),
-      };
+    "timestamp": timestamp?.toIso8601String(),
+    "status": status,
+    "message": message,
+    "data": data?.toJson(),
+  };
 }
 
 class ProductCalculateResponseData {
-  ProductCalculateResponseData({
-    this.status,
-    this.code,
-    this.data,
-  });
+  ProductCalculateResponseData({this.status, this.code, this.data});
 
   bool? status;
   String? code;
@@ -62,12 +57,11 @@ class ProductCalculateResponseData {
     bool? status,
     String? code,
     PriceDate? data,
-  }) =>
-      ProductCalculateResponseData(
-        status: status ?? this.status,
-        code: code ?? this.code,
-        data: data ?? this.data,
-      );
+  }) => ProductCalculateResponseData(
+    status: status ?? this.status,
+    code: code ?? this.code,
+    data: data ?? this.data,
+  );
 
   factory ProductCalculateResponseData.fromJson(Map<String, dynamic> json) =>
       ProductCalculateResponseData(
@@ -77,10 +71,10 @@ class ProductCalculateResponseData {
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status,
-        "code": code,
-        "data": data?.toJson(),
-      };
+    "status": status,
+    "code": code,
+    "data": data?.toJson(),
+  };
 }
 
 class PriceDate {
@@ -125,28 +119,28 @@ class PriceDate {
     num? couponPrice,
     ShopData? shop,
     double? km,
-  }) =>
-      PriceDate(
-        stocks: stocks ?? this.stocks,
-        totalTax: totalTax ?? this.totalTax,
-        price: price ?? this.price,
-        totalShopTax: totalShopTax ?? this.totalShopTax,
-        totalPrice: totalPrice ?? this.totalPrice,
-        totalDiscount: totalDiscount ?? this.totalDiscount,
-        deliveryFee: deliveryFee ?? this.deliveryFee,
-        serviceFee: serviceFee ?? this.serviceFee,
-        rate: rate ?? this.rate,
-        couponPrice: couponPrice ?? this.couponPrice,
-        shop: shop ?? this.shop,
-        km: km ?? this.km,
-      );
+  }) => PriceDate(
+    stocks: stocks ?? this.stocks,
+    totalTax: totalTax ?? this.totalTax,
+    price: price ?? this.price,
+    totalShopTax: totalShopTax ?? this.totalShopTax,
+    totalPrice: totalPrice ?? this.totalPrice,
+    totalDiscount: totalDiscount ?? this.totalDiscount,
+    deliveryFee: deliveryFee ?? this.deliveryFee,
+    serviceFee: serviceFee ?? this.serviceFee,
+    rate: rate ?? this.rate,
+    couponPrice: couponPrice ?? this.couponPrice,
+    shop: shop ?? this.shop,
+    km: km ?? this.km,
+  );
 
   factory PriceDate.fromJson(Map<String, dynamic> json) {
     return PriceDate(
       stocks: json["stocks"] == null
           ? []
           : List<ProductData>.from(
-              json["stocks"]!.map((x) => ProductData.fromJson(x))),
+              json["stocks"]!.map((x) => ProductData.fromJson(x)),
+            ),
       totalTax: json["total_tax"]?.toDouble(),
       price: json["price"],
       totalShopTax: json["total_shop_tax"]?.toDouble(),
@@ -162,20 +156,19 @@ class PriceDate {
   }
 
   Map<String, dynamic> toJson() => {
-        "stocks": stocks == null
-            ? []
-            : List<dynamic>.from(stocks!.map((x) => x.toJson())),
-        "total_tax": totalTax,
-        "price": price,
-        "total_shop_tax": totalShopTax,
-        "total_price": totalPrice,
-        "total_discount": totalDiscount,
-        "service_fee": serviceFee,
-        "delivery_fee": deliveryFee,
-        "rate": rate,
-        "coupon_price": couponPrice,
-        "shop": shop?.toJson(),
-        "km": km,
-      };
+    "stocks": stocks == null
+        ? []
+        : List<dynamic>.from(stocks!.map((x) => x.toJson())),
+    "total_tax": totalTax,
+    "price": price,
+    "total_shop_tax": totalShopTax,
+    "total_price": totalPrice,
+    "total_discount": totalDiscount,
+    "service_fee": serviceFee,
+    "delivery_fee": deliveryFee,
+    "rate": rate,
+    "coupon_price": couponPrice,
+    "shop": shop?.toJson(),
+    "km": km,
+  };
 }
-

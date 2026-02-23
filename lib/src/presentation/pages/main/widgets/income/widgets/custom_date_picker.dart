@@ -8,9 +8,11 @@ class CustomDatePicker extends StatefulWidget {
   final List<DateTime?> range;
   final ValueChanged<List<DateTime?>> onChange;
 
-  const CustomDatePicker(
-      {super.key, required this.range, required this.onChange})
-     ;
+  const CustomDatePicker({
+    super.key,
+    required this.range,
+    required this.onChange,
+  });
 
   @override
   State<CustomDatePicker> createState() => _CustomDatePickerState();
@@ -21,13 +23,25 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     calendarType: CalendarDatePicker2Type.range,
     selectedDayHighlightColor: AppStyle.primary,
     weekdayLabelTextStyle: GoogleFonts.inter(
-        fontSize: 14.sp, letterSpacing: -0.3, color: AppStyle.black),
+      fontSize: 14.sp,
+      letterSpacing: -0.3,
+      color: AppStyle.black,
+    ),
     controlsTextStyle: GoogleFonts.inter(
-        fontSize: 14.sp, letterSpacing: -0.3, color: AppStyle.black),
+      fontSize: 14.sp,
+      letterSpacing: -0.3,
+      color: AppStyle.black,
+    ),
     dayTextStyle: GoogleFonts.inter(
-        fontSize: 14.sp, letterSpacing: -0.3, color: AppStyle.black),
+      fontSize: 14.sp,
+      letterSpacing: -0.3,
+      color: AppStyle.black,
+    ),
     disabledDayTextStyle: GoogleFonts.inter(
-        fontSize: 14.sp, letterSpacing: -0.3, color: AppStyle.icon),
+      fontSize: 14.sp,
+      letterSpacing: -0.3,
+      color: AppStyle.icon,
+    ),
     dayBorderRadius: BorderRadius.circular(10.r),
   );
 
@@ -41,4 +55,3 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     );
   }
 }
-

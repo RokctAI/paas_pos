@@ -8,10 +8,7 @@ import '../../theme/theme.dart';
 class SelectFilterButton extends StatelessWidget {
   final String title;
 
-  const SelectFilterButton({
-    super.key,
-    required this.title,
-  });
+  const SelectFilterButton({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -39,4 +36,3 @@ class SelectFilterButton extends StatelessWidget {
     );
   }
 }
-

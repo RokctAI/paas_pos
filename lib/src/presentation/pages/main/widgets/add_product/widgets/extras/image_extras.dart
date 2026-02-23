@@ -81,4 +81,3 @@ class ImageExtras extends ConsumerWidget {
     );
   }
 }
-

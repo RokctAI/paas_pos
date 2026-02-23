@@ -7,8 +7,11 @@ class CustomCheckbox extends StatelessWidget {
   final bool isActive;
   final VoidCallback onTap;
 
-  const CustomCheckbox({super.key, required this.isActive, required this.onTap})
-     ;
+  const CustomCheckbox({
+    super.key,
+    required this.isActive,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +32,9 @@ class CustomCheckbox extends StatelessWidget {
         ),
         duration: const Duration(milliseconds: 500),
         child: isActive
-            ? Icon(
-                FlutterRemix.check_fill,
-                color: AppStyle.black,
-                size: 18.r,
-              )
+            ? Icon(FlutterRemix.check_fill, color: AppStyle.black, size: 18.r)
             : const SizedBox.shrink(),
       ),
     );
   }
 }
-

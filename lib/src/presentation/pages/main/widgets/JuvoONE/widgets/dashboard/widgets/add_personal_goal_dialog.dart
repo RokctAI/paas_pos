@@ -85,8 +85,9 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title:
-          Text(widget.isEditing ? 'Edit Personal Goal' : 'Add Personal Goal'),
+      title: Text(
+        widget.isEditing ? 'Edit Personal Goal' : 'Add Personal Goal',
+      ),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -96,9 +97,7 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
             children: [
               DropdownButtonFormField<String>(
                 value: _area,
-                decoration: AppStyle.inputDecoration(
-                  labelText: 'Life Area',
-                ),
+                decoration: AppStyle.inputDecoration(labelText: 'Life Area'),
                 items: _areas.map((area) {
                   return DropdownMenuItem<String>(
                     value: area,
@@ -145,9 +144,7 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
                 value: _status,
-                decoration: AppStyle.inputDecoration(
-                  labelText: 'Status',
-                ),
+                decoration: AppStyle.inputDecoration(labelText: 'Status'),
                 items: _statuses.map((status) {
                   return DropdownMenuItem<String>(
                     value: status,
@@ -171,8 +168,10 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
               InkWell(
                 onTap: _selectTargetDate,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: AppStyle.grey),
                     borderRadius: BorderRadius.circular(4),
@@ -220,7 +219,9 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
                     onTap: () => _selectStrategicObjective(),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 12),
+                        vertical: 8,
+                        horizontal: 12,
+                      ),
                       decoration: BoxDecoration(
                         border: Border.all(color: AppStyle.grey),
                         borderRadius: BorderRadius.circular(4),
@@ -274,9 +275,7 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
         ),
         ElevatedButton(
           onPressed: _isLoading ? null : _submitForm,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppStyle.primary,
-          ),
+          style: ElevatedButton.styleFrom(backgroundColor: AppStyle.primary),
           child: _isLoading
               ? const SizedBox(
                   width: 20,
@@ -321,9 +320,9 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
 
   Future<void> _selectStrategicObjective() async {
     if (_planProvider.vision == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No vision data available')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('No vision data available')));
       return;
     }
 
@@ -353,8 +352,9 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
               itemCount: allObjectives.length,
               itemBuilder: (context, index) {
                 final objective = allObjectives[index];
-                final pillar = _planProvider.vision!.pillars
-                    .firstWhere((p) => p.id == objective.pillarId);
+                final pillar = _planProvider.vision!.pillars.firstWhere(
+                  (p) => p.id == objective.pillarId,
+                );
                 return ListTile(
                   title: Text(objective.title),
                   subtitle: Text(pillar.name),
@@ -406,10 +406,13 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
       bool success;
       if (widget.isEditing && widget.initialGoal != null) {
         success = await _personalMasteryProvider.updatePersonalMasteryGoal(
-            widget.initialGoal!.uuid, data);
+          widget.initialGoal!.uuid,
+          data,
+        );
       } else {
-        success =
-            await _personalMasteryProvider.createPersonalMasteryGoal(data);
+        success = await _personalMasteryProvider.createPersonalMasteryGoal(
+          data,
+        );
       }
 
       setState(() {
@@ -420,9 +423,11 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
         Navigator.of(context).pop();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(widget.isEditing
-                ? 'Goal updated successfully'
-                : 'Goal created successfully'),
+            content: Text(
+              widget.isEditing
+                  ? 'Goal updated successfully'
+                  : 'Goal created successfully',
+            ),
             backgroundColor: AppStyle.green,
           ),
         );
@@ -430,4 +435,3 @@ class _AddPersonalGoalDialogState extends State<AddPersonalGoalDialog> {
     }
   }
 }
-

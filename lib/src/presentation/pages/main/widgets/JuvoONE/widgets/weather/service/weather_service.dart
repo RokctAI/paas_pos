@@ -18,8 +18,7 @@ class WeatherService {
   static const int maxRetries = 3;
   DateTime? _lastWeatherUpdate;
 
-  WeatherService({http.Client? client})
-      : _client = client ?? http.Client() {
+  WeatherService({http.Client? client}) : _client = client ?? http.Client() {
     _initializeConnectivityMonitoring();
   }
 
@@ -33,11 +32,11 @@ class WeatherService {
         .asyncMap((_) => AppConnectivity.connectivity())
         .distinct()
         .listen((isConnected) {
-      _connectivityController.add(isConnected);
-      if (isConnected) {
-        _handleConnectionRestored();
-      }
-    });
+          _connectivityController.add(isConnected);
+          if (isConnected) {
+            _handleConnectionRestored();
+          }
+        });
   }
 
   Stream<bool> get connectivityStream => _connectivityController.stream;
@@ -50,7 +49,8 @@ class WeatherService {
     try {
       // Check if we've updated recently
       if (_lastWeatherUpdate != null &&
-          DateTime.now().difference(_lastWeatherUpdate!) < const Duration(minutes: 30)) {
+          DateTime.now().difference(_lastWeatherUpdate!) <
+              const Duration(minutes: 30)) {
         print('Skipping connection restored update - too recent');
         return;
       }
@@ -58,8 +58,8 @@ class WeatherService {
       final location = LocalStorage.getShopLocation();
       if (location != null) {
         await getCurrentWeather(
-            location.latitude ?? AppConstants.demoLatitude,
-            location.longitude ?? AppConstants.demoLongitude
+          location.latitude ?? AppConstants.demoLatitude,
+          location.longitude ?? AppConstants.demoLongitude,
         );
         _lastWeatherUpdate = DateTime.now();
       }
@@ -80,8 +80,12 @@ class WeatherService {
     }
 
     try {
-      final uri = Uri.parse('$geoNamesUrl?lat=$lat&lng=$lon&username=$geoNamesUsername');
-      final response = await _client.get(uri).timeout(const Duration(seconds: 10));
+      final uri = Uri.parse(
+        '$geoNamesUrl?lat=$lat&lng=$lon&username=$geoNamesUsername',
+      );
+      final response = await _client
+          .get(uri)
+          .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
@@ -106,7 +110,8 @@ class WeatherService {
   Future<void> _cacheCityName(double lat, double lon, String cityName) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final cacheKey = 'city_cache_${lat.toStringAsFixed(4)}_${lon.toStringAsFixed(4)}';
+      final cacheKey =
+          'city_cache_${lat.toStringAsFixed(4)}_${lon.toStringAsFixed(4)}';
       await prefs.setString(cacheKey, cityName);
     } catch (e) {
       print('Error caching city name: $e');
@@ -116,7 +121,8 @@ class WeatherService {
   Future<String?> _getCachedCityName(double lat, double lon) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final cacheKey = 'city_cache_${lat.toStringAsFixed(4)}_${lon.toStringAsFixed(4)}';
+      final cacheKey =
+          'city_cache_${lat.toStringAsFixed(4)}_${lon.toStringAsFixed(4)}';
       return prefs.getString(cacheKey);
     } catch (e) {
       print('Error getting cached city name: $e');
@@ -136,9 +142,7 @@ class WeatherService {
 
       final weatherData = await _fetchWithRetry(
         'api/method/paas.api.system.system.get_weather',
-        {
-          'location': cityLocation,
-        },
+        {'location': cityLocation},
       );
 
       _lastWeatherUpdate = DateTime.now();
@@ -150,22 +154,24 @@ class WeatherService {
   }
 
   Future<Map<String, dynamic>> _fetchWithRetry(
-      String endpoint,
-      Map<String, String> queryParams, {
-        int attempt = 1,
-      }) async {
+    String endpoint,
+    Map<String, String> queryParams, {
+    int attempt = 1,
+  }) async {
     try {
       final url = '${AppConstants.baseUrl}$endpoint';
       final uri = Uri.parse(url).replace(queryParameters: queryParams);
       final token = LocalStorage.getToken();
 
-      final response = await _client.get(
-        uri,
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      ).timeout(const Duration(seconds: 10));
+      final response = await _client
+          .get(
+            uri,
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+          )
+          .timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         return json.decode(response.statusCode == 204 ? '{}' : response.body);
@@ -215,13 +221,13 @@ class WeatherServiceException implements Exception {
 // Providers
 final weatherServiceProvider = Provider((ref) => WeatherService());
 
-final weatherProvider = StateNotifierProvider<WeatherNotifier, AsyncValue<WeatherState>>((ref) {
-  final weatherService = ref.watch(weatherServiceProvider);
-  return WeatherNotifier(weatherService);
-});
+final weatherProvider =
+    StateNotifierProvider<WeatherNotifier, AsyncValue<WeatherState>>((ref) {
+      final weatherService = ref.watch(weatherServiceProvider);
+      return WeatherNotifier(weatherService);
+    });
 
 final connectivityProvider = StreamProvider<bool>((ref) {
   final weatherService = ref.watch(weatherServiceProvider);
   return weatherService.connectivityStream;
 });
-

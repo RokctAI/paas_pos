@@ -33,8 +33,10 @@ class LocalStorage {
   static Future<void> setFloatAmount(double amount) async {
     await setDouble('float_amount', amount);
     final now = DateTime.now();
-    await _preferences?.setString('float_date',
-        "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}");
+    await _preferences?.setString(
+      'float_date',
+      "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}",
+    );
     await _preferences?.setBool('shift_open', true);
   }
 
@@ -55,7 +57,8 @@ class LocalStorage {
     if (floatDateStr == null) return false;
 
     final now = DateTime.now();
-    final todayStr = "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
+    final todayStr =
+        "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
     final isNewDay = floatDateStr != todayStr;
 
     return isNewDay && isShiftOpen() && getFloatAmount() > 0;
@@ -70,7 +73,7 @@ class LocalStorage {
   // Language and translation methods
   static Future<void> setOtherTranslations({
     required Map<String, dynamic>? translations,
-    required String key
+    required String key,
   }) async {
     SharedPreferences? local = await SharedPreferences.getInstance();
     final String encoded = jsonEncode(translations);
@@ -78,7 +81,7 @@ class LocalStorage {
   }
 
   static Future<Map<String, dynamic>> getOtherTranslations({
-    required String key
+    required String key,
   }) async {
     SharedPreferences? local = await SharedPreferences.getInstance();
     final String encoded = local.getString(key) ?? '';
@@ -137,8 +140,7 @@ class LocalStorage {
   static String getToken() =>
       _preferences?.getString(StorageKeys.keyToken) ?? '';
 
-  static void deleteToken() =>
-      _preferences?.remove(StorageKeys.keyToken);
+  static void deleteToken() => _preferences?.remove(StorageKeys.keyToken);
 
   static Future<void> setPinCode(String pinCode) async {
     if (_preferences != null) {
@@ -149,14 +151,14 @@ class LocalStorage {
   static String getPinCode() =>
       _preferences?.getString(StorageKeys.pinCode) ?? '';
 
-  static void deletePinCode() =>
-      _preferences?.remove(StorageKeys.pinCode);
+  static void deletePinCode() => _preferences?.remove(StorageKeys.pinCode);
 
   // Settings methods
   static Future<void> setSettingsList(List<SettingsData> settings) async {
     if (_preferences != null) {
-      final List<String> strings =
-      settings.map((setting) => jsonEncode(setting.toJson())).toList();
+      final List<String> strings = settings
+          .map((setting) => jsonEncode(setting.toJson()))
+          .toList();
       await _preferences!.setStringList(StorageKeys.keyGlobalSettings, strings);
     }
   }
@@ -183,7 +185,9 @@ class LocalStorage {
   static void deleteActiveLocale() =>
       _preferences?.remove(StorageKeys.keyActiveLocale);
 
-  static Future<void> setTranslations(Map<String, dynamic>? translations) async {
+  static Future<void> setTranslations(
+    Map<String, dynamic>? translations,
+  ) async {
     if (_preferences != null) {
       final String encoded = jsonEncode(translations);
       await _preferences!.setString(StorageKeys.keyTranslations, encoded);
@@ -206,13 +210,17 @@ class LocalStorage {
   static Future<void> setSelectedCurrency(CurrencyData currency) async {
     if (_preferences != null) {
       final String currencyString = jsonEncode(currency.toJson());
-      await _preferences!.setString(StorageKeys.keySelectedCurrency, currencyString);
+      await _preferences!.setString(
+        StorageKeys.keySelectedCurrency,
+        currencyString,
+      );
     }
   }
 
   static CurrencyData getSelectedCurrency() {
     final map = jsonDecode(
-        _preferences?.getString(StorageKeys.keySelectedCurrency) ?? '');
+      _preferences?.getString(StorageKeys.keySelectedCurrency) ?? '',
+    );
     return CurrencyData.fromJson(map);
   }
 
@@ -223,8 +231,9 @@ class LocalStorage {
   static Future<void> setBags(List<BagData> bags) async {
     if (_preferences != null) {
       try {
-        final List<String> strings =
-        bags.map((bag) => jsonEncode(bag.toJson())).toList();
+        final List<String> strings = bags
+            .map((bag) => jsonEncode(bag.toJson()))
+            .toList();
         await _preferences!.setStringList(StorageKeys.keyBags, strings);
         if (kDebugMode) {
           if (kDebugMode) {
@@ -262,8 +271,7 @@ class LocalStorage {
     }
   }
 
-  static void deleteCartProducts() =>
-      _preferences?.remove(StorageKeys.keyBags);
+  static void deleteCartProducts() => _preferences?.remove(StorageKeys.keyBags);
 
   // User and shop data methods
   static Future<void> setUser(UserData? user) async {
@@ -281,8 +289,7 @@ class LocalStorage {
     return UserData.fromJson(map);
   }
 
-  static void deleteUser() =>
-      _preferences?.remove(StorageKeys.keyUser);
+  static void deleteUser() => _preferences?.remove(StorageKeys.keyUser);
 
   static Future<void> setShopData(ShopData shopData) async {
     if (_preferences != null) {
@@ -326,8 +333,8 @@ class LocalStorage {
   static Future<void> saveUserShopLocation(UserData? userData) async {
     if (userData?.shop?.location != null) {
       final location = LocationData(
-          latitude: double.tryParse(userData!.shop!.location!.latitude ?? ''),
-          longitude: double.tryParse(userData.shop!.location!.longitude ?? '')
+        latitude: double.tryParse(userData!.shop!.location!.latitude ?? ''),
+        longitude: double.tryParse(userData.shop!.location!.longitude ?? ''),
       );
       await setShopLocation(location);
     }
@@ -346,7 +353,10 @@ class LocalStorage {
     if (_preferences != null) {
       await _preferences!.setString(AppConstants.YOCO_PUBLIC_KEY, publicKey);
       await _preferences!.setString(AppConstants.YOCO_PRIVATE_KEY, privateKey);
-      await _preferences!.setString(AppConstants.YOCO_ENVIRONMENT, isTest ? 'test' : 'live');
+      await _preferences!.setString(
+        AppConstants.YOCO_ENVIRONMENT,
+        isTest ? 'test' : 'live',
+      );
     }
   }
 
@@ -369,11 +379,11 @@ class LocalStorage {
       _preferences?.getString(AppConstants.YOCO_PAIRED_DEVICE);
 
   static bool hasYocoCredentials() {
-    bool hasEnvironment = _preferences?.getString(AppConstants.YOCO_ENVIRONMENT) != null;
+    bool hasEnvironment =
+        _preferences?.getString(AppConstants.YOCO_ENVIRONMENT) != null;
     bool hasPublicKey = getYocoPublicKey()?.isNotEmpty ?? false;
     return hasEnvironment && hasPublicKey;
   }
-
 
   static Future<void> setString(String key, String value) async {
     await _preferences?.setString(key, value);

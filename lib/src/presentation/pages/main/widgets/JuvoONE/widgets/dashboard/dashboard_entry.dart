@@ -8,7 +8,6 @@ import 'providers/content_provider.dart';
 import 'shop_dashboard_grid.dart';
 import 'dash_tabs.dart';
 
-
 class DashboardEntry extends ConsumerStatefulWidget {
   const DashboardEntry({super.key});
 
@@ -31,7 +30,9 @@ class _DashboardEntryState extends ConsumerState<DashboardEntry> {
 
       if (userData?.shop?.id != null) {
         // Pre-fetch orders data for this shop
-        await ref.read(waterosOrdersProvider.notifier).fetchOrders(userData!.shop!.id);
+        await ref
+            .read(waterosOrdersProvider.notifier)
+            .fetchOrders(userData!.shop!.id);
       }
     } catch (e) {
       if (kDebugMode) {
@@ -49,11 +50,7 @@ class _DashboardEntryState extends ConsumerState<DashboardEntry> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     // Watch the content from the provider

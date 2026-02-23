@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../theme/theme.dart';
 
-
 class CustomTabBar extends StatelessWidget {
   final TabController? tabController;
   final List<Tab> tabs;
@@ -35,4 +34,3 @@ class CustomTabBar extends StatelessWidget {
     );
   }
 }
-

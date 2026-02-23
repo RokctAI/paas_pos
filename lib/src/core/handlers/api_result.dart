@@ -8,4 +8,3 @@ class ApiResult<T> with _$ApiResult<T> {
 
   const factory ApiResult.failure({required String error}) = Failure<T>;
 }
-

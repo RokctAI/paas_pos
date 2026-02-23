@@ -31,7 +31,9 @@ class PersonalMasteryGoal {
       title: json['title'],
       description: json['description'],
       relatedObjectiveId: json['related_objective_id']?.toString(),
-      targetDate: json['target_date'] != null ? DateTime.parse(json['target_date']) : null,
+      targetDate: json['target_date'] != null
+          ? DateTime.parse(json['target_date'])
+          : null,
       status: json['status'],
     );
   }

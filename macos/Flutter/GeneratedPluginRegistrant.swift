@@ -42,4 +42,3 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   FLTWebViewFlutterPlugin.register(with: registry.registrar(forPlugin: "FLTWebViewFlutterPlugin"))
   WindowManagerPlugin.register(with: registry.registrar(forPlugin: "WindowManagerPlugin"))
 }
-

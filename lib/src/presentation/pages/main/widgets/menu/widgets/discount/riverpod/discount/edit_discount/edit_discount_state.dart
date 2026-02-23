@@ -20,4 +20,3 @@ class EditDiscountState with _$EditDiscountState {
 
   const EditDiscountState._();
 }
-

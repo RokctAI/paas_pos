@@ -26,38 +26,34 @@ class ReadyOrdersNotifier extends StateNotifier<ReadyOrdersState> {
       if (_searchProductsTimer?.isActive ?? false) {
         _searchProductsTimer?.cancel();
       }
-      _searchProductsTimer = Timer(
-        const Duration(milliseconds: 500),
-        () {
-          state = state.copyWith(hasMore: true, orders: []);
-          _page = 0;
-          fetchReadyOrders(
-            checkYourNetwork: () {
-              AppHelpers.showSnackBar(
-                context,
-                AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-              );
-            },
-          );
-        },
-      );
-    } else {
-      if (_searchProductsTimer?.isActive ?? false) {
-        _searchProductsTimer?.cancel();
-      }
-      _searchProductsTimer = Timer(
-        const Duration(milliseconds: 500),
-        () {
-          state = state.copyWith(hasMore: true, orders: []);
-          _page = 0;
-          fetchReadyOrders(checkYourNetwork: () {
+      _searchProductsTimer = Timer(const Duration(milliseconds: 500), () {
+        state = state.copyWith(hasMore: true, orders: []);
+        _page = 0;
+        fetchReadyOrders(
+          checkYourNetwork: () {
             AppHelpers.showSnackBar(
               context,
               AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
             );
-          });
-        },
-      );
+          },
+        );
+      });
+    } else {
+      if (_searchProductsTimer?.isActive ?? false) {
+        _searchProductsTimer?.cancel();
+      }
+      _searchProductsTimer = Timer(const Duration(milliseconds: 500), () {
+        state = state.copyWith(hasMore: true, orders: []);
+        _page = 0;
+        fetchReadyOrders(
+          checkYourNetwork: () {
+            AppHelpers.showSnackBar(
+              context,
+              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+            );
+          },
+        );
+      });
     }
   }
 
@@ -71,7 +67,7 @@ class ReadyOrdersNotifier extends StateNotifier<ReadyOrdersState> {
   }) async {
     if (isRefresh) {
       _page = 0;
-      state = state.copyWith(hasMore: true,orders: []);
+      state = state.copyWith(hasMore: true, orders: []);
       _refreshTime?.cancel();
     }
     if (!state.hasMore) {
@@ -87,15 +83,18 @@ class ReadyOrdersNotifier extends StateNotifier<ReadyOrdersState> {
     );
     response.when(
       success: (data) {
-        List<OrderData> orders =
-            isRefresh || state.query.isNotEmpty ? [] : List.from(state.orders);
+        List<OrderData> orders = isRefresh || state.query.isNotEmpty
+            ? []
+            : List.from(state.orders);
         final List<OrderData> newOrders = data.data?.orders ?? [];
         for (OrderData element in newOrders) {
           if (!orders.map((item) => item.id).contains(element.id)) {
             orders.add(element);
           }
         }
-        state = state.copyWith(hasMore: newOrders.length >= (end == null ? 7 : 15));
+        state = state.copyWith(
+          hasMore: newOrders.length >= (end == null ? 7 : 15),
+        );
         if (_page == 1 && !isRefresh) {
           state = state.copyWith(
             isLoading: false,
@@ -121,17 +120,21 @@ class ReadyOrdersNotifier extends StateNotifier<ReadyOrdersState> {
               from: start,
             );
             response.when(
-                success: (data) {
-                  // List<OrderData> orders = List.from(state.orders);
-                  // for (OrderData element in data.data?.orders ?? []) {
-                  //   if (!orders.map((item) => item.id).contains(element.id)) {
-                  //     orders.insert(0, element);
-                  //   }
-                  // }
-                  state = state.copyWith(orders: data.data?.orders??[],totalCount: data.data?.statistic?.readyOrdersCount ?? 0);
-                  updateTotal?.call(data.data?.statistic?.readyOrdersCount ?? 0);
-                },
-                failure: (f) {});
+              success: (data) {
+                // List<OrderData> orders = List.from(state.orders);
+                // for (OrderData element in data.data?.orders ?? []) {
+                //   if (!orders.map((item) => item.id).contains(element.id)) {
+                //     orders.insert(0, element);
+                //   }
+                // }
+                state = state.copyWith(
+                  orders: data.data?.orders ?? [],
+                  totalCount: data.data?.statistic?.readyOrdersCount ?? 0,
+                );
+                updateTotal?.call(data.data?.statistic?.readyOrdersCount ?? 0);
+              },
+              failure: (f) {},
+            );
           });
         }
       },
@@ -154,14 +157,18 @@ class ReadyOrdersNotifier extends StateNotifier<ReadyOrdersState> {
     );
     response.when(
       success: (data) {
-        AppHelpers.showSnackBar(context,
-            "#${orderData.id} ${AppHelpers.getTranslation(TrKeys.orderStatusChanged)}",
-            isIcon: true);
+        AppHelpers.showSnackBar(
+          context,
+          "#${orderData.id} ${AppHelpers.getTranslation(TrKeys.orderStatusChanged)}",
+          isIcon: true,
+        );
       },
       failure: (failure) {
         debugPrint('===> update order status fail $failure');
-        AppHelpers.showSnackBar(context,
-            AppHelpers.getTranslation(TrKeys.somethingWentWrongWithTheServer));
+        AppHelpers.showSnackBar(
+          context,
+          AppHelpers.getTranslation(TrKeys.somethingWentWrongWithTheServer),
+        );
       },
     );
   }
@@ -172,24 +179,23 @@ class ReadyOrdersNotifier extends StateNotifier<ReadyOrdersState> {
     state = state.copyWith(orders: list, totalCount: state.totalCount - 1);
   }
 
-  deleteOrder(
-    BuildContext context, {
-    required orderId,
-  }) async {
+  deleteOrder(BuildContext context, {required orderId}) async {
     removeList(getIndex(orderId));
-    final response = await _ordersRepository.deleteOrder(
-      orderId: orderId,
-    );
+    final response = await _ordersRepository.deleteOrder(orderId: orderId);
     response.when(
       success: (data) {
         AppHelpers.showSnackBar(
-            context, "#$orderId ${AppHelpers.getTranslation(TrKeys.deleted)}",
-            isIcon: true);
+          context,
+          "#$orderId ${AppHelpers.getTranslation(TrKeys.deleted)}",
+          isIcon: true,
+        );
       },
       failure: (failure) {
         debugPrint('===> delete order fail $failure');
-        AppHelpers.showSnackBar(context,
-            AppHelpers.getTranslation(TrKeys.somethingWentWrongWithTheServer));
+        AppHelpers.showSnackBar(
+          context,
+          AppHelpers.getTranslation(TrKeys.somethingWentWrongWithTheServer),
+        );
       },
     );
   }
@@ -204,8 +210,7 @@ class ReadyOrdersNotifier extends StateNotifier<ReadyOrdersState> {
     return 0;
   }
 
-
-  void stopTimer(){
+  void stopTimer() {
     _refreshTime?.cancel();
   }
 
@@ -214,4 +219,3 @@ class ReadyOrdersNotifier extends StateNotifier<ReadyOrdersState> {
     setOrdersQuery(context, '');
   }
 }
-

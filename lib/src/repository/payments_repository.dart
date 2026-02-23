@@ -24,7 +24,5 @@ abstract class PaymentsRepository {
     String? note,
   });
 
-  Future<ApiResult<void>> deleteTransaction({
-    required int transactionId,
-  });
+  Future<ApiResult<void>> deleteTransaction({required int transactionId});
 }

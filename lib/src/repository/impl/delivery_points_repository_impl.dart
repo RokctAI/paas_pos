@@ -12,10 +12,7 @@ class DeliveryPointsRepositoryImpl implements DeliveryPointsRepository {
     required double longitude,
   }) async {
     try {
-      final data = {
-        'latitude': latitude,
-        'longitude': longitude,
-      };
+      final data = {'latitude': latitude, 'longitude': longitude};
       final client = dioHttp.client(requireAuth: true);
       final response = await client.get(
         '/api/v1/method/paas.doctype.delivery_point.delivery_point.get_nearest_delivery_points',

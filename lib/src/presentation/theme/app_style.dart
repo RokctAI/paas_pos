@@ -39,13 +39,17 @@ class AppStyle {
   static const Color starColor = Color(0xFFFFA826);
   static const Color doorColor = Color(0xFFFFC636);
   static const Color dragElement = Color(0xFFE5E5E5);
-  static const Color addProductSearchedToBasket =
-      Color.fromRGBO(255, 255, 255, 0.62);
+  static const Color addProductSearchedToBasket = Color.fromRGBO(
+    255,
+    255,
+    255,
+    0.62,
+  );
   static const Color rate = Color(0xFFFFB800);
   static const Color red = Color(0xFFFF6B6B);
   static const Color redBg = Color(0xFF3A2A2A);
   static const Color blueBonus = Color(0xFF4DA8FF);
-  static const Color accentColor = Color(0xFFFF6633);//Color(0xFFFF5722);
+  static const Color accentColor = Color(0xFFFF6633); //Color(0xFFFF5722);
   static const Color divider = Color.fromRGBO(255, 255, 255, 0.04);
   static const Color reviewText = Color(0xFFA0A0A0);
   static const Color bannerGradient1 = Color.fromRGBO(255, 255, 255, 0.5);
@@ -85,22 +89,20 @@ class AppStyle {
   static const Color infoColor = Color(0xFF2196F3);
 
   // Pillar colors
-  static const Color peopleColor = Color(0xFF8E44AD);    // Purple
-  static const Color systemsColor = Color(0xFF3498DB);   // Blue
-  static const Color financeColor = Color(0xFF2ECC71);   // Green
+  static const Color peopleColor = Color(0xFF8E44AD); // Purple
+  static const Color systemsColor = Color(0xFF3498DB); // Blue
+  static const Color financeColor = Color(0xFF2ECC71); // Green
   static const Color customersColor = Color(0xFFE67E22); // Orange
-  static const Color socialColor = Color(0xFFE74C3C);    // Red
-  static const Color brown = Colors.brown;    // Brown
-  static const Color teal = Colors.teal;    // Teal
+  static const Color socialColor = Color(0xFFE74C3C); // Red
+  static const Color brown = Colors.brown; // Brown
+  static const Color teal = Colors.teal; // Teal
 
   // Button styles
   static final ButtonStyle primaryButtonStyle = ElevatedButton.styleFrom(
     backgroundColor: primary,
     foregroundColor: Colors.white,
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
-    ),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
   );
 
   static final ButtonStyle secondaryButtonStyle = ElevatedButton.styleFrom(
@@ -132,15 +134,9 @@ class AppStyle {
     color: textGrey,
   );
 
-  static const TextStyle bodyText = TextStyle(
-    fontSize: 16,
-    color: textGrey,
-  );
+  static const TextStyle bodyText = TextStyle(fontSize: 16, color: textGrey);
 
-  static const TextStyle caption = TextStyle(
-    fontSize: 14,
-    color: textHint,
-  );
+  static const TextStyle caption = TextStyle(fontSize: 14, color: textHint);
 
   // Card styles
   static final BoxDecoration cardDecoration = BoxDecoration(
@@ -167,9 +163,7 @@ class AppStyle {
       hintText: hintText,
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(color: Colors.grey.shade300),
@@ -223,61 +217,52 @@ class AppStyle {
   static Color get brandGreen {
     return AppConstants.enableJuvoONE ? blueBonus : const Color(0xFFFF6600);
   }
+
   static Color get primary {
     return AppConstants.enableJuvoONE ? blueBonus : const Color(0xFFFF6600);
   }
 
   //static const Color primary = Color(0xFFFF6600);
 
-
   // MaterialColor definitions
-  static const MaterialColor green = MaterialColor(
-    0xFF16AA16,
-    <int, Color>{
-      50: Color(0xFFE8F5E9),
-      100: Color(0xFFC8E6C9),
-      200: Color(0xFFA5D6A7),
-      300: Color(0xFF81C784),
-      400: Color(0xFF66BB6A),
-      500: Color(0xFF16AA16),
-      600: Color(0xFF43A047),
-      700: Color(0xFF388E3C),
-      800: Color(0xFF2E7D32),
-      900: Color(0xFF1B5E20),
-    },
-  );
+  static const MaterialColor green = MaterialColor(0xFF16AA16, <int, Color>{
+    50: Color(0xFFE8F5E9),
+    100: Color(0xFFC8E6C9),
+    200: Color(0xFFA5D6A7),
+    300: Color(0xFF81C784),
+    400: Color(0xFF66BB6A),
+    500: Color(0xFF16AA16),
+    600: Color(0xFF43A047),
+    700: Color(0xFF388E3C),
+    800: Color(0xFF2E7D32),
+    900: Color(0xFF1B5E20),
+  });
 
-  static const MaterialColor blue = MaterialColor(
-    0xFF4DA8FF,
-    <int, Color>{
-      50: Color(0xFFE3F2FD),
-      100: Color(0xFFBBDEFB),
-      200: Color(0xFF90CAF9),
-      300: Color(0xFF64B5F6),
-      400: Color(0xFF42A5F5),
-      500: Color(0xFF4DA8FF),
-      600: Color(0xFF1E88E5),
-      700: Color(0xFF1976D2),
-      800: Color(0xFF1565C0),
-      900: Color(0xFF0D47A1),
-    },
-  );
+  static const MaterialColor blue = MaterialColor(0xFF4DA8FF, <int, Color>{
+    50: Color(0xFFE3F2FD),
+    100: Color(0xFFBBDEFB),
+    200: Color(0xFF90CAF9),
+    300: Color(0xFF64B5F6),
+    400: Color(0xFF42A5F5),
+    500: Color(0xFF4DA8FF),
+    600: Color(0xFF1E88E5),
+    700: Color(0xFF1976D2),
+    800: Color(0xFF1565C0),
+    900: Color(0xFF0D47A1),
+  });
 
-  static const MaterialColor grey = MaterialColor(
-    0xFF2A2A2A,
-    <int, Color>{
-      50: Color(0xFFFAFAFA),
-      100: Color(0xFFF5F5F5),
-      200: Color(0xFFEEEEEE),
-      300: Color(0xFFE0E0E0),
-      400: Color(0xFFBDBDBD),
-      500: Color(0xFF9E9E9E),
-      600: Color(0xFF757575),
-      700: Color(0xFF616161),
-      800: Color(0xFF424242),
-      900: Color(0xFF212121),
-    },
-  );
+  static const MaterialColor grey = MaterialColor(0xFF2A2A2A, <int, Color>{
+    50: Color(0xFFFAFAFA),
+    100: Color(0xFFF5F5F5),
+    200: Color(0xFFEEEEEE),
+    300: Color(0xFFE0E0E0),
+    400: Color(0xFFBDBDBD),
+    500: Color(0xFF9E9E9E),
+    600: Color(0xFF757575),
+    700: Color(0xFF616161),
+    800: Color(0xFF424242),
+    900: Color(0xFF212121),
+  });
 
   static const success = Color(0xff31D0AA);
 
@@ -289,140 +274,135 @@ class AppStyle {
   static const Color shimmerHighlightDark = Color.fromRGBO(194, 194, 194, 0.65);
   static const Color borderDark = Color(0xFF494B4D);
 
-
-
   /// font styles
-  static interBold(
-          {double size = 18,
-          Color color = AppStyle.black,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size.sp,
-          fontWeight: FontWeight.bold,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: TextDecoration.none);
+  static interBold({
+    double size = 18,
+    Color color = AppStyle.black,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size.sp,
+    fontWeight: FontWeight.bold,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: TextDecoration.none,
+  );
 
-  static interSemi(
-          {double size = 18,
-          Color color = AppStyle.black,
-          TextDecoration decoration = TextDecoration.none,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w700,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: decoration);
+  static interSemi({
+    double size = 18,
+    Color color = AppStyle.black,
+    TextDecoration decoration = TextDecoration.none,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w700,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: decoration,
+  );
 
-  static interNoSemi(
-          {double size = 18,
-          Color color = AppStyle.black,
-          TextDecoration decoration = TextDecoration.none,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w600,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: decoration);
+  static interNoSemi({
+    double size = 18,
+    Color color = AppStyle.black,
+    TextDecoration decoration = TextDecoration.none,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w600,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: decoration,
+  );
 
-  static interNormal(
-          {double size = 16,
-          Color color = AppStyle.black,
-          TextDecoration textDecoration = TextDecoration.none,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w500,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: textDecoration);
+  static interNormal({
+    double size = 16,
+    Color color = AppStyle.black,
+    TextDecoration textDecoration = TextDecoration.none,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w500,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: textDecoration,
+  );
 
-  static interRegular(
-          {double size = 16,
-          Color color = AppStyle.black,
-          TextDecoration textDecoration = TextDecoration.none,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size,
-          fontWeight: FontWeight.w400,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: textDecoration);
-
+  static interRegular({
+    double size = 16,
+    Color color = AppStyle.black,
+    TextDecoration textDecoration = TextDecoration.none,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size,
+    fontWeight: FontWeight.w400,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: textDecoration,
+  );
 
   ///Juvo Font Styles - Using Montserrat
   static logoFontBold({
     double size = 18,
     Color color = AppStyle.black,
-    double letterSpacing = 0
-  }) =>
-      GoogleFonts.montserrat(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w700, // Bold 700
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: TextDecoration.none
-      );
+    double letterSpacing = 0,
+  }) => GoogleFonts.montserrat(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w700, // Bold 700
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: TextDecoration.none,
+  );
 
   static logoFontBoldItalic({
     double size = 18,
     Color color = AppStyle.black,
-    double letterSpacing = 0
-  }) =>
-      GoogleFonts.montserrat(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w700, // Bold 700
-          fontStyle: FontStyle.italic,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: TextDecoration.none
-      );
+    double letterSpacing = 0,
+  }) => GoogleFonts.montserrat(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w700, // Bold 700
+    fontStyle: FontStyle.italic,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: TextDecoration.none,
+  );
 
   static logoFontBlackItalic({
     double size = 18,
     Color color = AppStyle.black,
-    double letterSpacing = 0
-  }) =>
-      GoogleFonts.montserrat(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w900, // Black 900
-          fontStyle: FontStyle.italic,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: TextDecoration.none
-      );
+    double letterSpacing = 0,
+  }) => GoogleFonts.montserrat(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w900, // Black 900
+    fontStyle: FontStyle.italic,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: TextDecoration.none,
+  );
 
-// Logo Motto styles - Using Montserrat
+  // Logo Motto styles - Using Montserrat
   static logoMottoRegular({
     double size = 16,
     Color color = AppStyle.black,
     TextDecoration textDecoration = TextDecoration.none,
-    double letterSpacing = 0
-  }) =>
-      GoogleFonts.montserrat(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w400, // Regular 400
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: textDecoration
-      );
+    double letterSpacing = 0,
+  }) => GoogleFonts.montserrat(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w400, // Regular 400
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: textDecoration,
+  );
 
   static logoMottoRegularItalic({
     double size = 16,
     Color color = AppStyle.black,
     TextDecoration textDecoration = TextDecoration.none,
-    double letterSpacing = 0
-  }) =>
-      GoogleFonts.montserrat(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w400, // Regular 400
-          fontStyle: FontStyle.italic,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: textDecoration
-      );
-
+    double letterSpacing = 0,
+  }) => GoogleFonts.montserrat(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w400, // Regular 400
+    fontStyle: FontStyle.italic,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: textDecoration,
+  );
 }
-

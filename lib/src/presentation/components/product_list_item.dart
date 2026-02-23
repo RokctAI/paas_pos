@@ -37,13 +37,11 @@ class ProductListItem extends StatelessWidget {
                 height: 18.r,
                 margin: EdgeInsets.only(right: 10.r),
                 decoration: BoxDecoration(
-                  color:
-                      isSelected ? AppStyle.primary : AppStyle.transparent,
+                  color: isSelected ? AppStyle.primary : AppStyle.transparent,
                   shape: BoxShape.circle,
                   border: Border.all(
-                      color: !isSelected
-                          ? AppStyle.hint
-                          : AppStyle.primary),
+                    color: !isSelected ? AppStyle.hint : AppStyle.primary,
+                  ),
                 ),
                 child: Icon(
                   FlutterRemix.check_line,
@@ -69,4 +67,3 @@ class ProductListItem extends StatelessWidget {
     );
   }
 }
-

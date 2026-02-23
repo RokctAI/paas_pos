@@ -9,7 +9,6 @@ import 'package:admin_desktop/src/core/utils/local_storage.dart';
 import 'package:admin_desktop/src/models/models.dart';
 import '../../../../../../../components/components.dart';
 
-
 class DiscountItem extends StatelessWidget {
   final DiscountData discountData;
   final VoidCallback onTap;
@@ -43,11 +42,12 @@ class DiscountItem extends StatelessWidget {
                 height: 56.r,
                 padding: REdgeInsets.symmetric(vertical: 15),
                 decoration: BoxDecoration(
-                    color: discountData.active! ? AppStyle.green : AppStyle.red,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(10.r),
-                      bottomRight: Radius.circular(10.r),
-                    )),
+                  color: discountData.active! ? AppStyle.green : AppStyle.red,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(10.r),
+                    bottomRight: Radius.circular(10.r),
+                  ),
+                ),
               ),
               12.horizontalSpace,
               CommonImage(
@@ -72,7 +72,7 @@ class DiscountItem extends StatelessWidget {
                                 color: AppStyle.black,
                                 fontSize: 13.sp,
                                 letterSpacing: -0.3,
-                                fontWeight: FontWeight.w700
+                                fontWeight: FontWeight.w700,
                               ),
                               children: [
                                 TextSpan(
@@ -85,7 +85,8 @@ class DiscountItem extends StatelessWidget {
                                 ),
                                 TextSpan(
                                   text: AppHelpers.getTranslation(
-                                      discountData.type ?? ''),
+                                    discountData.type ?? '',
+                                  ),
                                   style: GoogleFonts.inter(
                                     color: AppStyle.black,
                                     fontSize: 12.sp,
@@ -137,17 +138,14 @@ class DiscountItem extends StatelessWidget {
                     Text(
                       '${AppHelpers.dateFormat(discountData.start)} - ${AppHelpers.dateFormat(discountData.end)}',
                       style: GoogleFonts.inter(fontSize: 12.sp),
-                    )
+                    ),
                   ],
                 ),
               ),
               8.horizontalSpace,
               Row(
                 children: [
-                  CircleButton(
-                    onTap: onTap,
-                    icon: FlutterRemix.pencil_line,
-                  ),
+                  CircleButton(onTap: onTap, icon: FlutterRemix.pencil_line),
                   8.horizontalSpace,
                   CircleButton(
                     onTap: onDelete,
@@ -163,4 +161,3 @@ class DiscountItem extends StatelessWidget {
     );
   }
 }
-

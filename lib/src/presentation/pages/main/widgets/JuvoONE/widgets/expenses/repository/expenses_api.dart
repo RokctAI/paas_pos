@@ -10,7 +10,6 @@ import '../expenses_statistics.dart';
 import '../../roSystem/models/data/expense_data.dart';
 import '../expenses_type.dart';
 
-
 class ExpenseService {
   static const String baseUrl = '${AppConstants.baseUrl}api/v1/rest/resources';
 
@@ -43,13 +42,16 @@ class ExpenseService {
 
     final queryParams = {
       'shop_id': actualShopId.toString(),
-      if (startDate != null) 'date_from': DateFormat('yyyy-MM-dd').format(startDate),
+      if (startDate != null)
+        'date_from': DateFormat('yyyy-MM-dd').format(startDate),
       if (endDate != null) 'date_to': DateFormat('yyyy-MM-dd').format(endDate),
       'page': page.toString(),
       'per_page': perPage.toString(),
     };
 
-    final uri = Uri.parse('$baseUrl/expenses').replace(queryParameters: queryParams);
+    final uri = Uri.parse(
+      '$baseUrl/expenses',
+    ).replace(queryParameters: queryParams);
     if (kDebugMode) {
       print('⭐️ Expenses Request URI: $uri');
     } // Debug the request URL
@@ -73,7 +75,9 @@ class ExpenseService {
         }
         throw Exception(data['message'] ?? 'Failed to load expenses');
       }
-      throw Exception('Failed to load expenses. Status: ${response.statusCode}');
+      throw Exception(
+        'Failed to load expenses. Status: ${response.statusCode}',
+      );
     } catch (e) {
       if (kDebugMode) {
         print('⭐️ Error in getExpenses: $e');
@@ -95,10 +99,7 @@ class ExpenseService {
         print('⭐️ Headers: $headers');
       }
 
-      final response = await http.get(
-        uri,
-        headers: headers,
-      );
+      final response = await http.get(uri, headers: headers);
 
       if (kDebugMode) {
         print('⭐️ Response Status Code: ${response.statusCode}');
@@ -126,19 +127,19 @@ class ExpenseService {
 
           if (data['data'] is! List) {
             if (kDebugMode) {
-              print('⭐️ Warning: data field is not a List (${data['data'].runtimeType})');
+              print(
+                '⭐️ Warning: data field is not a List (${data['data'].runtimeType})',
+              );
             }
             return [];
           }
 
-          final types = (data['data'] as List)
-              .map((json) {
+          final types = (data['data'] as List).map((json) {
             if (kDebugMode) {
               print('⭐️ Processing type: $json');
             }
             return ExpenseType.fromJson(json);
-          })
-              .toList();
+          }).toList();
 
           if (kDebugMode) {
             print('⭐️ Successfully parsed ${types.length} expense types');
@@ -151,7 +152,9 @@ class ExpenseService {
       }
 
       print('⭐️ Non-200 status code received');
-      throw Exception('Failed to load expense types. Status: ${response.statusCode}. Body: ${response.body}');
+      throw Exception(
+        'Failed to load expense types. Status: ${response.statusCode}. Body: ${response.body}',
+      );
     } catch (e, stackTrace) {
       print('⭐️ Error in getExpenseTypes: $e');
       print('⭐️ Stack Trace: $stackTrace');
@@ -167,11 +170,15 @@ class ExpenseService {
       final headers = await _getHeaders();
 
       final queryParams = {
-        if (startDate != null) 'date_from': DateFormat('yyyy-MM-dd').format(startDate),
-        if (endDate != null) 'date_to': DateFormat('yyyy-MM-dd').format(endDate),
+        if (startDate != null)
+          'date_from': DateFormat('yyyy-MM-dd').format(startDate),
+        if (endDate != null)
+          'date_to': DateFormat('yyyy-MM-dd').format(endDate),
       };
 
-      final uri = Uri.parse('$baseUrl/expenses/type-statistics').replace(queryParameters: queryParams);
+      final uri = Uri.parse(
+        '$baseUrl/expenses/type-statistics',
+      ).replace(queryParameters: queryParams);
 
       final response = await http.get(uri, headers: headers);
 
@@ -190,11 +197,11 @@ class ExpenseService {
           // Ensure 'data' is a List before mapping
           if (data['data'] is List) {
             final stats = (data['data'] as List)
-                .map((dynamic json) =>
-            json is Map<String, dynamic>
-                ? ExpenseTypeStats.fromJson(json)
-                : null
-            )
+                .map(
+                  (dynamic json) => json is Map<String, dynamic>
+                      ? ExpenseTypeStats.fromJson(json)
+                      : null,
+                )
                 .whereType<ExpenseTypeStats>()
                 .toList();
 
@@ -212,11 +219,15 @@ class ExpenseService {
         if (kDebugMode) {
           print('⭐️ Expense Type Stats API Error: ${data['message']}');
         }
-        throw Exception(data['message'] ?? 'Failed to load expense type statistics');
+        throw Exception(
+          data['message'] ?? 'Failed to load expense type statistics',
+        );
       }
 
       // If status code is not 200, throw an exception with details
-      throw Exception('Failed to load expense type statistics. Status: ${response.statusCode}. Body: ${response.body}');
+      throw Exception(
+        'Failed to load expense type statistics. Status: ${response.statusCode}. Body: ${response.body}',
+      );
     } catch (e, stackTrace) {
       if (kDebugMode) {
         print('⭐️ Error in getExpenseTypeStats: $e');
@@ -247,7 +258,9 @@ class ExpenseService {
         }
         throw Exception(data['message'] ?? 'Failed to create expense');
       }
-      throw Exception('Failed to create expense. Status: ${response.statusCode}');
+      throw Exception(
+        'Failed to create expense. Status: ${response.statusCode}',
+      );
     } catch (e) {
       throw Exception('Error creating expense: ${e.toString()}');
     }
@@ -292,14 +305,19 @@ class ExpenseService {
         }
         throw Exception(data['message'] ?? 'Failed to update expense');
       }
-      throw Exception('Failed to update expense. Status: ${response.statusCode}');
+      throw Exception(
+        'Failed to update expense. Status: ${response.statusCode}',
+      );
     } catch (e) {
       throw Exception('Error updating expense: ${e.toString()}');
     }
   }
 
   // PATCH /expenses/{id}
-  Future<Expense> partialUpdateExpense(int id, Map<String, dynamic> updates) async {
+  Future<Expense> partialUpdateExpense(
+    int id,
+    Map<String, dynamic> updates,
+  ) async {
     try {
       final headers = await _getHeaders();
       final response = await http.patch(
@@ -315,7 +333,9 @@ class ExpenseService {
         }
         throw Exception(data['message'] ?? 'Failed to update expense');
       }
-      throw Exception('Failed to update expense. Status: ${response.statusCode}');
+      throw Exception(
+        'Failed to update expense. Status: ${response.statusCode}',
+      );
     } catch (e) {
       throw Exception('Error updating expense: ${e.toString()}');
     }
@@ -331,7 +351,9 @@ class ExpenseService {
       );
 
       if (response.statusCode != 200) {
-        throw Exception('Failed to delete expense. Status: ${response.statusCode}');
+        throw Exception(
+          'Failed to delete expense. Status: ${response.statusCode}',
+        );
       }
 
       final data = json.decode(response.body);
@@ -353,11 +375,21 @@ class ExpenseService {
 
     final queryParams = {
       'shop_id': actualShopId.toString(),
-      if (startDate != null) 'date_from': startDate.toString().substring(0, startDate.toString().indexOf(" ")),
-      if (endDate != null) 'date_to': endDate.toString().substring(0, endDate.toString().indexOf(" ")),
+      if (startDate != null)
+        'date_from': startDate.toString().substring(
+          0,
+          startDate.toString().indexOf(" "),
+        ),
+      if (endDate != null)
+        'date_to': endDate.toString().substring(
+          0,
+          endDate.toString().indexOf(" "),
+        ),
     };
 
-    final uri = Uri.parse('$baseUrl/expenses/statistics').replace(queryParameters: queryParams);
+    final uri = Uri.parse(
+      '$baseUrl/expenses/statistics',
+    ).replace(queryParameters: queryParams);
 
     try {
       final headers = await _getHeaders();
@@ -370,7 +402,9 @@ class ExpenseService {
         }
         throw Exception(data['message'] ?? 'Failed to load statistics');
       }
-      throw Exception('Failed to load statistics. Status: ${response.statusCode}');
+      throw Exception(
+        'Failed to load statistics. Status: ${response.statusCode}',
+      );
     } catch (e) {
       throw Exception('Error fetching statistics: ${e.toString()}');
     }
@@ -382,10 +416,14 @@ final expenseServiceProvider = Provider<ExpenseService>((ref) {
   return ExpenseService();
 });
 
-final expenseTypeStatsProvider = FutureProvider.family<List<ExpenseTypeStats>, ExpenseTypeStatsParams>((ref, params) async {
-  final expenseService = ref.read(expenseServiceProvider);
-  return expenseService.getExpenseTypeStats(
-    startDate: params.startDate,
-    endDate: params.endDate,
-  );
-});
+final expenseTypeStatsProvider =
+    FutureProvider.family<List<ExpenseTypeStats>, ExpenseTypeStatsParams>((
+      ref,
+      params,
+    ) async {
+      final expenseService = ref.read(expenseServiceProvider);
+      return expenseService.getExpenseTypeStats(
+        startDate: params.startDate,
+        endDate: params.endDate,
+      );
+    });

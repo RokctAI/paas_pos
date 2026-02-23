@@ -28,7 +28,7 @@ class WeatherWidget extends ConsumerWidget {
 
     try {
       return hourlyData.firstWhere(
-            (hour) => DateTime.parse(hour['time']).hour == now.hour,
+        (hour) => DateTime.parse(hour['time']).hour == now.hour,
       );
     } catch (e) {
       print('Error getting current hour data: $e');
@@ -42,7 +42,8 @@ class WeatherWidget extends ConsumerWidget {
   }
 
   String _cleanText(String text) {
-    return text.replaceAll(' nearby', '')
+    return text
+        .replaceAll(' nearby', '')
         .replaceAll(' possible', '')
         .replaceAll('Patchy ', '');
   }
@@ -71,11 +72,15 @@ class WeatherWidget extends ConsumerWidget {
         Color textColor;
 
         if (weatherState.alerts.isNotEmpty && cyclePosition == 1) {
-          displayText = _cleanText(weatherState.alerts.first['event'] ?? 'Weather Alert');
+          displayText = _cleanText(
+            weatherState.alerts.first['event'] ?? 'Weather Alert',
+          );
           textColor = AppStyle.red;
         } else {
           final currentHourData = _getCurrentHourData(weatherState);
-          displayText = _cleanText(currentHourData?['condition']?['text'] ?? '');
+          displayText = _cleanText(
+            currentHourData?['condition']?['text'] ?? '',
+          );
           textColor = AppStyle.black;
         }
 
@@ -83,11 +88,7 @@ class WeatherWidget extends ConsumerWidget {
           padding: EdgeInsets.only(top: 0.5.sp),
           child: Text(
             displayText,
-            style: TextStyle(
-              fontSize: 10.sp,
-              color: textColor,
-              height: 1,
-            ),
+            style: TextStyle(fontSize: 10.sp, color: textColor, height: 1),
           ),
         );
       },
@@ -160,11 +161,7 @@ class WeatherWidget extends ConsumerWidget {
                     ),
                   ),
                   SizedBox(width: 4.sp),
-                  Icon(
-                    Remix.refresh_line,
-                    size: 16.sp,
-                    color: AppStyle.red,
-                  ),
+                  Icon(Remix.refresh_line, size: 16.sp, color: AppStyle.red),
                 ],
               ),
             ),
@@ -182,11 +179,14 @@ class WeatherWidget extends ConsumerWidget {
               showDialog(
                 context: context,
                 barrierDismissible: true,
-                builder: (context) => WeatherForecastDialog(weatherState: weatherState),
+                builder: (context) =>
+                    WeatherForecastDialog(weatherState: weatherState),
               );
             },
             child: Tooltip(
-              message: !weatherState.showTemperature ? '${weatherState.cityName} Weather' : '',
+              message: !weatherState.showTemperature
+                  ? '${weatherState.cityName} Weather'
+                  : '',
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -214,7 +214,9 @@ class WeatherWidget extends ConsumerWidget {
                               child: TemperatureBadge(
                                 temperature: currentHourData['temp_c'].round(),
                                 fontSize: 10,
-                                backgroundColor: AppStyle.black.withOpacity(0.8),
+                                backgroundColor: AppStyle.black.withOpacity(
+                                  0.8,
+                                ),
                               ),
                             ),
                           if (!weatherState.showTemperature) ...[
@@ -234,12 +236,16 @@ class WeatherWidget extends ConsumerWidget {
                             if (uv != null &&
                                 currentHourData['humidity'] != null &&
                                 uv >= WeatherForecastDialog.minUV &&
-                                currentHourData['humidity'] >= WeatherForecastDialog.minHumidity)
+                                currentHourData['humidity'] >=
+                                    WeatherForecastDialog.minHumidity)
                               Positioned(
                                 left: 36.sp,
-                                top: (chanceOfRain != null &&
-                                    chanceOfRain >= AppConstants.rainPOP &&
-                                    currentHourData['will_it_rain'] == 1) ? 20 : -4,
+                                top:
+                                    (chanceOfRain != null &&
+                                        chanceOfRain >= AppConstants.rainPOP &&
+                                        currentHourData['will_it_rain'] == 1)
+                                    ? 20
+                                    : -4,
                                 child: TemperatureBadge(
                                   temperature: uv.round(),
                                   suffix: 'UV',
@@ -270,19 +276,19 @@ class WeatherWidget extends ConsumerWidget {
                       duration: const Duration(milliseconds: 300),
                       child: weatherState.showTemperature
                           ? Text(
-                        weatherState.cityName,
-                        key: const ValueKey('cityname'),
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          color: AppStyle.black,
-                          height: 1,
-                        ),
-                      )
+                              weatherState.cityName,
+                              key: const ValueKey('cityname'),
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: AppStyle.black,
+                                height: 1,
+                              ),
+                            )
                           : RainFeedbackWidget(
-                        key: const ValueKey('feedback'),
-                        weatherState: weatherState,
-                        showCityName: false,
-                      ),
+                              key: const ValueKey('feedback'),
+                              weatherState: weatherState,
+                              showCityName: false,
+                            ),
                     ),
                   ),
                 ],
@@ -294,10 +300,7 @@ class WeatherWidget extends ConsumerWidget {
       loading: () => SizedBox(
         width: 24.sp,
         height: 24.sp,
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-          color: AppStyle.black,
-        ),
+        child: CircularProgressIndicator(strokeWidth: 2, color: AppStyle.black),
       ),
       error: (error, stack) => MouseRegion(
         cursor: SystemMouseCursors.click,
@@ -357,11 +360,7 @@ class WeatherWidget extends ConsumerWidget {
                 ),
               ),
               SizedBox(width: 4.sp),
-              Icon(
-                Remix.refresh_line,
-                size: 16.sp,
-                color: AppStyle.red,
-              ),
+              Icon(Remix.refresh_line, size: 16.sp, color: AppStyle.red),
             ],
           ),
         ),

@@ -63,49 +63,50 @@ class SectionButton extends StatelessWidget {
               : null,
           child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.r),
-                border: Border.all(color: borderColor),
-                color: isActive ? bgColor : AppStyle.white,
-                boxShadow: isShadow
-                    ? [
-                  BoxShadow(
-                    blurRadius: 2,
-                    offset: const Offset(0, 1),
-                    color: AppStyle.black.withOpacity(0.07),
-                  )
-                ]
-                    : []),
+              borderRadius: BorderRadius.circular(15.r),
+              border: Border.all(color: borderColor),
+              color: isActive ? bgColor : AppStyle.white,
+              boxShadow: isShadow
+                  ? [
+                      BoxShadow(
+                        blurRadius: 2,
+                        offset: const Offset(0, 1),
+                        color: AppStyle.black.withOpacity(0.07),
+                      ),
+                    ]
+                  : [],
+            ),
             height: height.r,
             padding: REdgeInsets.symmetric(horizontal: paddingSize ?? 24),
             alignment: Alignment.center,
             child: isLoading
                 ? SizedBox(
-              height: 24.r,
-              width: 24.r,
-              child: CircularProgressIndicator(
-                strokeWidth: 2.r,
-                color: isActive ? AppStyle.white : AppStyle.black,
-              ),
-            )
+                    height: 24.r,
+                    width: 24.r,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.r,
+                      color: isActive ? AppStyle.white : AppStyle.black,
+                    ),
+                  )
                 : icon ??
-                Row(
-                  children: [
-                    prefixIcon ?? const SizedBox.shrink(),
-                    prefixIcon != null
-                        ? 12.r.horizontalSpace
-                        : const SizedBox.shrink(),
-                    Text(
-                      title,
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w500,
-                        fontSize: textSize?.sp ?? 14.sp,
-                        color: isActive
-                            ? AppStyle.black
-                            : AppStyle.reviewText,
+                      Row(
+                        children: [
+                          prefixIcon ?? const SizedBox.shrink(),
+                          prefixIcon != null
+                              ? 12.r.horizontalSpace
+                              : const SizedBox.shrink(),
+                          Text(
+                            title,
+                            style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w500,
+                              fontSize: textSize?.sp ?? 14.sp,
+                              color: isActive
+                                  ? AppStyle.black
+                                  : AppStyle.reviewText,
+                            ),
+                          ),
+                        ],
                       ),
-                    )
-                  ],
-                ),
           ),
         ),
       ),

@@ -34,8 +34,9 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           side: BorderSide(
-              color: borderColor == Colors.transparent ? background : borderColor,
-              width: 2.r),
+            color: borderColor == Colors.transparent ? background : borderColor,
+            width: 2.r,
+          ),
           elevation: 0,
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
@@ -47,34 +48,29 @@ class CustomButton extends StatelessWidget {
         onPressed: isLoading ? null : onPressed,
         child: isLoading
             ? SizedBox(
-          width: 20.r,
-          height: 20.r,
-          child: CircularProgressIndicator(
-            color: textColor,
-            strokeWidth: 2.r,
-          ),
-        )
+                width: 20.r,
+                height: 20.r,
+                child: CircularProgressIndicator(
+                  color: textColor,
+                  strokeWidth: 2.r,
+                ),
+              )
             : Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            icon == null
-                ? const SizedBox()
-                : Row(
-              children: [
-                icon!,
-                10.horizontalSpace,
-              ],
-            ),
-            Text(
-              title,
-              style: AppStyle.interNormal(
-                size: 15,
-                color: textColor,
-                letterSpacing: -14 * 0.01,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  icon == null
+                      ? const SizedBox()
+                      : Row(children: [icon!, 10.horizontalSpace]),
+                  Text(
+                    title,
+                    style: AppStyle.interNormal(
+                      size: 15,
+                      color: textColor,
+                      letterSpacing: -14 * 0.01,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }

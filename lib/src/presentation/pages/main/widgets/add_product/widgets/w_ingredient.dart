@@ -14,13 +14,13 @@ class WIngredientScreen extends StatelessWidget {
   final ValueChanged<int> add;
   final ValueChanged<int> remove;
 
-  const WIngredientScreen(
-      {required this.list,
-      super.key,
-      required this.onChange,
-      required this.add,
-      required this.remove})
-     ;
+  const WIngredientScreen({
+    required this.list,
+    super.key,
+    required this.onChange,
+    required this.add,
+    required this.remove,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -70,4 +70,3 @@ class WIngredientScreen extends StatelessWidget {
           );
   }
 }
-

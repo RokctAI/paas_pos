@@ -28,7 +28,12 @@ class UsageStats extends ConsumerWidget {
       if (kDebugMode) {
         print("Error loading orders: ${waterosOrdersAsync.error}");
       }
-      return const Center(child: Text("Error loading usage data", style: TextStyle(color: Colors.red)));
+      return const Center(
+        child: Text(
+          "Error loading usage data",
+          style: TextStyle(color: Colors.red),
+        ),
+      );
     }
 
     // Ensure we have data
@@ -56,19 +61,12 @@ class UsageStats extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         children: [
-          Icon(
-            Remix.drop_line,
-            size: 20,
-            color: AppStyle.blue[500],
-          ),
+          Icon(Remix.drop_line, size: 20, color: AppStyle.blue[500]),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
               '$label: $value L',
-              style: const TextStyle(
-                fontSize: 14,
-                color: AppStyle.black,
-              ),
+              style: const TextStyle(fontSize: 14, color: AppStyle.black),
             ),
           ),
         ],
@@ -99,7 +97,9 @@ class UsageStats extends ConsumerWidget {
 
   int calculateUsage(List<OrderData> orders, DateTime start, DateTime end) {
     if (kDebugMode) {
-      print('Calculating usage from ${start.toIso8601String()} to ${end.toIso8601String()}');
+      print(
+        'Calculating usage from ${start.toIso8601String()} to ${end.toIso8601String()}',
+      );
       print('Using date field: ${AppConstants.dateAt}');
     }
 

@@ -15,16 +15,10 @@ String stockPaginateResponseToJson(StockPaginateResponse data) =>
 class StockPaginateResponse {
   List<Stocks>? data;
 
-  StockPaginateResponse({
-    this.data,
-  });
+  StockPaginateResponse({this.data});
 
-  StockPaginateResponse copyWith({
-    List<Stocks>? data,
-  }) =>
-      StockPaginateResponse(
-        data: data ?? this.data,
-      );
+  StockPaginateResponse copyWith({List<Stocks>? data}) =>
+      StockPaginateResponse(data: data ?? this.data);
 
   factory StockPaginateResponse.fromJson(Map<String, dynamic> json) =>
       StockPaginateResponse(
@@ -34,9 +28,8 @@ class StockPaginateResponse {
       );
 
   Map<String, dynamic> toJson() => {
-        "data": data == null
-            ? []
-            : List<dynamic>.from(data!.map((x) => x.toJson())),
-      };
+    "data": data == null
+        ? []
+        : List<dynamic>.from(data!.map((x) => x.toJson())),
+  };
 }
-

@@ -15,12 +15,12 @@ class PumpRuntimeManager {
   Timer? _updateTimer;
   final void Function() onWaterLevelUpdate;
   final List<Tank> _tanks;
-  final double Function(Tank) calculateWaterLevel;  // Add this line
+  final double Function(Tank) calculateWaterLevel; // Add this line
 
   PumpRuntimeManager({
     required this.onWaterLevelUpdate,
     required List<Tank> tanks,
-    required this.calculateWaterLevel,  // Add this line
+    required this.calculateWaterLevel, // Add this line
   }) : _tanks = tanks {
     _restorePumpStates();
   }
@@ -28,7 +28,9 @@ class PumpRuntimeManager {
   Future<void> _restorePumpStates() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final pumpKeys = prefs.getKeys().where((key) => key.startsWith(_storageKey));
+      final pumpKeys = prefs.getKeys().where(
+        (key) => key.startsWith(_storageKey),
+      );
 
       for (final key in pumpKeys) {
         final pumpDataString = prefs.getString(key);
@@ -45,12 +47,16 @@ class PumpRuntimeManager {
     }
   }
 
-  Future<void> startPump(int tankId, double flowRate, double currentLevel) async {
+  Future<void> startPump(
+    int tankId,
+    double flowRate,
+    double currentLevel,
+  ) async {
     final pumpData = {
       'startTime': DateTime.now().toIso8601String(),
       'flowRate': flowRate,
       'initialLevel': currentLevel,
-      'isRunning': true
+      'isRunning': true,
     };
 
     final prefs = await SharedPreferences.getInstance();
@@ -92,10 +98,13 @@ class PumpRuntimeManager {
 
       // Get tanks
       final rawTank = _tanks.firstWhere((tank) => tank.type == TankType.raw);
-      final purifiedTank = _tanks.firstWhere((tank) => tank.type == TankType.purified);
+      final purifiedTank = _tanks.firstWhere(
+        (tank) => tank.type == TankType.purified,
+      );
 
       // Get current RO system efficiency
-      final systemEfficiency = await ROSystemEfficiency.calculateSystemEfficiency();
+      final systemEfficiency =
+          await ROSystemEfficiency.calculateSystemEfficiency();
       final efficiencyPercentage = systemEfficiency / 100;
 
       // Update raw water tank level (decreasing)
@@ -106,10 +115,17 @@ class PumpRuntimeManager {
         await TankApiService.updateTankStatus(rawTank.id!, TankStatus.empty);
         return;
       }
-      await TankApiService.updateTankStatus(rawTank.id!, rawTankCurrentLevel <= 0.05 * rawTank.capacity ? TankStatus.empty : TankStatus.quarterEmpty);
+      await TankApiService.updateTankStatus(
+        rawTank.id!,
+        rawTankCurrentLevel <= 0.05 * rawTank.capacity
+            ? TankStatus.empty
+            : TankStatus.quarterEmpty,
+      );
 
       // For purified tank, calculate water gained from RO
-      final currentLevelWithUsage = calculateWaterLevel(purifiedTank);  // Includes usage reduction
+      final currentLevelWithUsage = calculateWaterLevel(
+        purifiedTank,
+      ); // Includes usage reduction
       final purifiedWaterGained = litersUsed * efficiencyPercentage;
       final newPurifiedLevel = currentLevelWithUsage + purifiedWaterGained;
 
@@ -117,7 +133,10 @@ class PumpRuntimeManager {
       if (newPurifiedLevel >= purifiedTank.capacity) {
         await TankApiService.updatePumpOnlyStatus(tankId, false);
         await stopPump(tankId);
-        await TankApiService.updateTankStatus(purifiedTank.id!, TankStatus.full);
+        await TankApiService.updateTankStatus(
+          purifiedTank.id!,
+          TankStatus.full,
+        );
         final updatedTank = purifiedTank;
         updatedTank.lastFull = DateTime.now();
         await TankApiService.updateTank(updatedTank);
@@ -126,11 +145,20 @@ class PumpRuntimeManager {
 
       // Update purified tank status based on level without updating last_full
       if (newPurifiedLevel <= 0) {
-        await TankApiService.updateTankStatus(purifiedTank.id!, TankStatus.empty);
+        await TankApiService.updateTankStatus(
+          purifiedTank.id!,
+          TankStatus.empty,
+        );
       } else if (newPurifiedLevel <= 0.25 * purifiedTank.capacity) {
-        await TankApiService.updateTankStatus(purifiedTank.id!, TankStatus.quarterEmpty);
+        await TankApiService.updateTankStatus(
+          purifiedTank.id!,
+          TankStatus.quarterEmpty,
+        );
       } else if (newPurifiedLevel <= 0.5 * purifiedTank.capacity) {
-        await TankApiService.updateTankStatus(purifiedTank.id!, TankStatus.halfEmpty);
+        await TankApiService.updateTankStatus(
+          purifiedTank.id!,
+          TankStatus.halfEmpty,
+        );
       }
 
       onWaterLevelUpdate();
@@ -139,7 +167,11 @@ class PumpRuntimeManager {
     }
   }
 
-  Future<void> _updateTankStatus(int tankId, double currentLevel, double capacity) async {
+  Future<void> _updateTankStatus(
+    int tankId,
+    double currentLevel,
+    double capacity,
+  ) async {
     final levelPercentage = (currentLevel / capacity) * 100;
 
     TankStatus newStatus;

@@ -28,7 +28,8 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
     super.initState();
 
     // Determine shop ID
-    final effectiveShopId = widget.shopId ?? LocalStorage.getUser()?.shop?.id?.toString();
+    final effectiveShopId =
+        widget.shopId ?? LocalStorage.getUser()?.shop?.id?.toString();
 
     if (kDebugMode) {
       print('Initializing TodoTasksScreenState');
@@ -48,105 +49,111 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-    backgroundColor: AppStyle.white,
-    body: (colors) => ChangeNotifierProvider.value(
-    value: _taskProvider,
-    child: Consumer<TaskProvider>(
-    builder: (context, taskProvider, child) {
-          if (taskProvider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      backgroundColor: AppStyle.white,
+      body: (colors) => ChangeNotifierProvider.value(
+        value: _taskProvider,
+        child: Consumer<TaskProvider>(
+          builder: (context, taskProvider, child) {
+            if (taskProvider.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          if (taskProvider.error != null) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Error: ${taskProvider.error}',
-                    style: const TextStyle(color: AppStyle.red),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => taskProvider.fetchTasks(widget.shopId),
-                    child: const Text('Retry'),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          final filteredTasks = _getFilteredTasks(taskProvider.tasks);
-
-          if (filteredTasks.isEmpty) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'No tasks found',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => _showAddTaskDialog(context),
-                    child: const Text('Create Task'),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
+            if (taskProvider.error != null) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Chip(
-                      label: Text('Filter: $_selectedFilter'),
-                      deleteIcon: const Icon(Icons.clear),
-                      onDeleted: _selectedFilter == 'All' ? null : () {
-                        setState(() {
-                          _selectedFilter = 'All';
-                        });
-                      },
+                    Text(
+                      'Error: ${taskProvider.error}',
+                      style: const TextStyle(color: AppStyle.red),
                     ),
-                    const SizedBox(width: 8),
-                    Chip(
-                      label: Text('Sort: $_selectedSort'),
-                      backgroundColor: AppStyle.accentColor.withOpacity(0.1),
-                    ),
-                    Spacer(),
-                    IconButton(
-                      icon: const Icon(Icons.filter_list, color: AppStyle.black),
-                      onPressed: _showFilterDialog,
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.sort, color: AppStyle.black),
-                      onPressed: _showSortDialog,
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () => taskProvider.fetchTasks(widget.shopId),
+                      child: const Text('Retry'),
                     ),
                   ],
                 ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: filteredTasks.length,
-                  itemBuilder: (context, index) {
-                    return _buildTaskItem(filteredTasks[index]);
-                  },
-                ),
-              ),
-            ],
-          );
-        },
-      ),
-    ),floatingActionButton: (colors) => FloatingActionButton(
-      onPressed: () => _showAddTaskDialog(context),
-      backgroundColor: AppStyle.accentColor,
-      child: const Icon(Icons.add)),
-    );
+              );
+            }
 
+            final filteredTasks = _getFilteredTasks(taskProvider.tasks);
+
+            if (filteredTasks.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'No tasks found',
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () => _showAddTaskDialog(context),
+                      child: const Text('Create Task'),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      Chip(
+                        label: Text('Filter: $_selectedFilter'),
+                        deleteIcon: const Icon(Icons.clear),
+                        onDeleted: _selectedFilter == 'All'
+                            ? null
+                            : () {
+                                setState(() {
+                                  _selectedFilter = 'All';
+                                });
+                              },
+                      ),
+                      const SizedBox(width: 8),
+                      Chip(
+                        label: Text('Sort: $_selectedSort'),
+                        backgroundColor: AppStyle.accentColor.withOpacity(0.1),
+                      ),
+                      Spacer(),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.filter_list,
+                          color: AppStyle.black,
+                        ),
+                        onPressed: _showFilterDialog,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.sort, color: AppStyle.black),
+                        onPressed: _showSortDialog,
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: filteredTasks.length,
+                    itemBuilder: (context, index) {
+                      return _buildTaskItem(filteredTasks[index]);
+                    },
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+      floatingActionButton: (colors) => FloatingActionButton(
+        onPressed: () => _showAddTaskDialog(context),
+        backgroundColor: AppStyle.accentColor,
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 
   List<TodoTask> _getFilteredTasks(List<TodoTask> tasks) {
@@ -163,24 +170,31 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
     filtered.sort((a, b) {
       switch (_selectedSort) {
         case 'Due Date':
-        // Handle null due dates
+          // Handle null due dates
           if (a.dueDate == null && b.dueDate == null) return 0;
           if (a.dueDate == null) return 1;
           if (b.dueDate == null) return -1;
           return a.dueDate!.compareTo(b.dueDate!);
 
         case 'Priority':
-        // Convert priority to numeric value for sorting
+          // Convert priority to numeric value for sorting
           int getPriorityValue(String priority) {
             switch (priority) {
-              case 'Urgent': return 0;
-              case 'High': return 1;
-              case 'Medium': return 2;
-              case 'Low': return 3;
-              default: return 4;
+              case 'Urgent':
+                return 0;
+              case 'High':
+                return 1;
+              case 'Medium':
+                return 2;
+              case 'Low':
+                return 3;
+              default:
+                return 4;
             }
           }
-          return getPriorityValue(a.priority).compareTo(getPriorityValue(b.priority));
+          return getPriorityValue(
+            a.priority,
+          ).compareTo(getPriorityValue(b.priority));
 
         case 'Title':
           return a.title.compareTo(b.title);
@@ -230,7 +244,8 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
         priorityColor = AppStyle.grey;
     }
 
-    bool isOverdue = task.dueDate != null &&
+    bool isOverdue =
+        task.dueDate != null &&
         task.dueDate!.isBefore(DateTime.now()) &&
         task.status != 'Done';
 
@@ -254,12 +269,17 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        decoration: task.status == 'Done' ? TextDecoration.lineThrough : null,
+                        decoration: task.status == 'Done'
+                            ? TextDecoration.lineThrough
+                            : null,
                       ),
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: priorityColor.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(4),
@@ -280,10 +300,7 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
                   padding: const EdgeInsets.only(left: 24, top: 8),
                   child: Text(
                     task.description!,
-                    style: TextStyle(
-                      color: AppStyle.grey[600],
-                      fontSize: 14,
-                    ),
+                    style: TextStyle(color: AppStyle.grey[600], fontSize: 14),
                   ),
                 ),
               Padding(
@@ -301,7 +318,9 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
                         '${task.dueDate!.day}/${task.dueDate!.month}/${task.dueDate!.year}',
                         style: TextStyle(
                           color: isOverdue ? AppStyle.red : AppStyle.grey[600],
-                          fontWeight: isOverdue ? FontWeight.bold : FontWeight.normal,
+                          fontWeight: isOverdue
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                         ),
                       ),
                       if (isOverdue)
@@ -316,11 +335,7 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
                     ],
                     if (task.assignedTo != null) ...[
                       const SizedBox(width: 16),
-                      const Icon(
-                        Icons.person,
-                        size: 14,
-                        color: AppStyle.grey,
-                      ),
+                      const Icon(Icons.person, size: 14, color: AppStyle.grey),
                       const SizedBox(width: 4),
                       Text(
                         'Assigned', // Ideally show the user's name here
@@ -366,14 +381,16 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
                       icon: Icons.play_arrow,
                       label: 'Start',
                       onTap: () => _updateTaskStatus(task, 'In Progress'),
-                      enabled: task.status == 'Todo' || task.status == 'Blocked',
+                      enabled:
+                          task.status == 'Todo' || task.status == 'Blocked',
                     ),
                     const SizedBox(width: 16),
                     _buildActionButton(
                       icon: Icons.block,
                       label: 'Block',
                       onTap: () => _updateTaskStatus(task, 'Blocked'),
-                      enabled: task.status != 'Blocked' && task.status != 'Done',
+                      enabled:
+                          task.status != 'Blocked' && task.status != 'Done',
                     ),
                   ],
                 ),
@@ -389,10 +406,7 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
     return Container(
       width: 12,
       height: 12,
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-      ),
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
     );
   }
 
@@ -408,11 +422,7 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
         onTap: enabled ? onTap : null,
         child: Row(
           children: [
-            Icon(
-              icon,
-              size: 16,
-              color: AppStyle.primary,
-            ),
+            Icon(icon, size: 16, color: AppStyle.primary),
             const SizedBox(width: 4),
             Text(
               label,
@@ -450,7 +460,7 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
               child: const Text('Close'),
             ),
           ],
-            backgroundColor: AppStyle.white
+          backgroundColor: AppStyle.white,
         );
       },
     );
@@ -498,7 +508,7 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
               child: const Text('Close'),
             ),
           ],
-            backgroundColor: AppStyle.white
+          backgroundColor: AppStyle.white,
         );
       },
     );
@@ -539,19 +549,14 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AddTaskDialog(
-          initialTask: task,
-          isEditing: true,
-        );
+        return AddTaskDialog(initialTask: task, isEditing: true);
       },
     );
   }
 
   void _updateTaskStatus(TodoTask task, String newStatus) {
     final taskProvider = Provider.of<TaskProvider>(context, listen: false);
-    final data = {
-      'status': newStatus,
-    };
+    final data = {'status': newStatus};
 
     taskProvider.updateTask(task.uuid, data).then((success) {
       if (success) {

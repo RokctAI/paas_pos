@@ -115,8 +115,9 @@ class ProductData {
         _addons?.add(Addons.fromJson(v));
       });
     }
-    _category =
-    json['category'] != null ? Category.fromJson(json['category']) : null;
+    _category = json['category'] != null
+        ? Category.fromJson(json['category'])
+        : null;
     _brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
     _unit = json['unit'] != null ? Unit.fromJson(json['unit']) : null;
     if (json['reviews'] != null) {
@@ -385,15 +386,14 @@ class Unit {
     String? createdAt,
     String? updatedAt,
     Translation? translation,
-  }) =>
-      Unit(
-        id: id ?? _id,
-        active: active ?? _active,
-        position: position ?? _position,
-        createdAt: createdAt ?? _createdAt,
-        updatedAt: updatedAt ?? _updatedAt,
-        translation: translation ?? _translation,
-      );
+  }) => Unit(
+    id: id ?? _id,
+    active: active ?? _active,
+    position: position ?? _position,
+    createdAt: createdAt ?? _createdAt,
+    updatedAt: updatedAt ?? _updatedAt,
+    translation: translation ?? _translation,
+  );
 
   int? get id => _id;
 
@@ -422,11 +422,7 @@ class Unit {
 }
 
 class Brand {
-  Brand({
-    int? id,
-    String? uuid,
-    String? title,
-  }) {
+  Brand({int? id, String? uuid, String? title}) {
     _id = id;
     _uuid = uuid;
     _title = title;
@@ -442,16 +438,8 @@ class Brand {
   String? _uuid;
   String? _title;
 
-  Brand copyWith({
-    int? id,
-    String? uuid,
-    String? title,
-  }) =>
-      Brand(
-        id: id ?? _id,
-        uuid: uuid ?? _uuid,
-        title: title ?? _title,
-      );
+  Brand copyWith({int? id, String? uuid, String? title}) =>
+      Brand(id: id ?? _id, uuid: uuid ?? _uuid, title: title ?? _title);
 
   int? get id => _id;
 
@@ -469,12 +457,7 @@ class Brand {
 }
 
 class Category {
-  Category({
-    int? id,
-    String? uuid,
-    int? parentId,
-    Translation? translation,
-  }) {
+  Category({int? id, String? uuid, int? parentId, Translation? translation}) {
     _id = id;
     _uuid = uuid;
     _parentId = parentId;
@@ -500,13 +483,12 @@ class Category {
     String? uuid,
     int? parentId,
     Translation? translation,
-  }) =>
-      Category(
-        id: id ?? _id,
-        uuid: uuid ?? _uuid,
-        parentId: parentId ?? _parentId,
-        translation: translation ?? _translation,
-      );
+  }) => Category(
+    id: id ?? _id,
+    uuid: uuid ?? _uuid,
+    parentId: parentId ?? _parentId,
+    translation: translation ?? _translation,
+  );
 
   int? get id => _id;
 
@@ -602,8 +584,8 @@ class Stocks {
     _product = (json?['product'] != null
         ? ProductData.fromJson(json['product'])
         : (json?['countable'] != null
-            ? ProductData.fromJson(json["countable"])
-            : null));
+              ? ProductData.fromJson(json["countable"])
+              : null));
   }
 
   int? _id;
@@ -636,22 +618,22 @@ class Stocks {
     List<Extras>? extras,
     List<Addons>? addons,
     ProductData? product,
-  }) =>
-      Stocks(
-          bonus: bonus ?? _bonus,
-          id: id ?? _id,
-          countableId: countableId ?? _countableId,
-          price: price ?? _price,
-          img: img ?? _img,
-          sku: sku ?? _sku,
-          translation: translation ?? _translation,
-          quantity: quantity ?? _quantity,
-          discount: discount ?? _discount,
-          tax: tax ?? _tax,
-          totalPrice: totalPrice ?? _totalPrice,
-          extras: extras ?? _extras,
-          product: product ?? _product,
-          addons: addons ?? _addons);
+  }) => Stocks(
+    bonus: bonus ?? _bonus,
+    id: id ?? _id,
+    countableId: countableId ?? _countableId,
+    price: price ?? _price,
+    img: img ?? _img,
+    sku: sku ?? _sku,
+    translation: translation ?? _translation,
+    quantity: quantity ?? _quantity,
+    discount: discount ?? _discount,
+    tax: tax ?? _tax,
+    totalPrice: totalPrice ?? _totalPrice,
+    extras: extras ?? _extras,
+    product: product ?? _product,
+    addons: addons ?? _addons,
+  );
 
   int? get id => _id;
 
@@ -702,12 +684,7 @@ class Stocks {
 }
 
 class Extras {
-  Extras({
-    int? id,
-    int? extraGroupId,
-    String? value,
-    Group? group,
-  }) {
+  Extras({int? id, int? extraGroupId, String? value, Group? group}) {
     _id = id;
     _extraGroupId = extraGroupId;
     _value = value;
@@ -734,13 +711,12 @@ class Extras {
     String? value,
     bool? active,
     Group? group,
-  }) =>
-      Extras(
-        id: id ?? _id,
-        extraGroupId: extraGroupId ?? _extraGroupId,
-        value: value ?? _value,
-        group: group ?? _group,
-      );
+  }) => Extras(
+    id: id ?? _id,
+    extraGroupId: extraGroupId ?? _extraGroupId,
+    value: value ?? _value,
+    group: group ?? _group,
+  );
 
   int? get id => _id;
 
@@ -766,12 +742,7 @@ class Extras {
 }
 
 class Group {
-  Group({
-    int? id,
-    String? type,
-    bool? active,
-    Translation? translation,
-  }) {
+  Group({int? id, String? type, bool? active, Translation? translation}) {
     _id = id;
     _type = type;
     _active = active;
@@ -796,13 +767,12 @@ class Group {
     String? type,
     bool? active,
     Translation? translation,
-  }) =>
-      Group(
-        id: id ?? _id,
-        type: type ?? _type,
-        active: active ?? _active,
-        translation: translation ?? _translation,
-      );
+  }) => Group(
+    id: id ?? _id,
+    type: type ?? _type,
+    active: active ?? _active,
+    translation: translation ?? _translation,
+  );
 
   int? get id => _id;
 
@@ -825,11 +795,7 @@ class Group {
 }
 
 class Properties {
-  Properties({
-    String? locale,
-    String? key,
-    String? value,
-  }) {
+  Properties({String? locale, String? key, String? value}) {
     _locale = locale;
     _key = key;
     _value = value;
@@ -845,11 +811,7 @@ class Properties {
   String? _key;
   String? _value;
 
-  Properties copyWith({
-    String? locale,
-    String? key,
-    String? value,
-  }) =>
+  Properties copyWith({String? locale, String? key, String? value}) =>
       Properties(
         locale: locale ?? _locale,
         key: key ?? _key,
@@ -870,4 +832,3 @@ class Properties {
     return map;
   }
 }
-

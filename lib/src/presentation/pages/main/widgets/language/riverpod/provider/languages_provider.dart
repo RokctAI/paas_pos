@@ -5,6 +5,5 @@ import '../state/languages_state.dart';
 
 final languagesProvider =
     StateNotifierProvider<LanguagesNotifier, LanguagesState>(
-  (ref) => LanguagesNotifier(settingsRepository),
-);
-
+      (ref) => LanguagesNotifier(settingsRepository),
+    );

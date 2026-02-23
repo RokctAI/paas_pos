@@ -33,8 +33,10 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
   }) {
     final newList = state.selectedIndexes.sublist(0, index);
     newList.add(value);
-    final postList =
-        List.filled(state.selectedIndexes.length - newList.length, 0);
+    final postList = List.filled(
+      state.selectedIndexes.length - newList.length,
+      0,
+    );
     newList.addAll(postList);
     initialSetSelectedIndexes(newList, bagIndex);
   }
@@ -52,16 +54,20 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
         final TypedExtra extras = getFirstExtras(state.selectedIndexes[0]);
         groupExtras.add(extras);
       } else {
-        final TypedExtra extras =
-            getUniqueExtras(groupExtras, state.selectedIndexes, i);
+        final TypedExtra extras = getUniqueExtras(
+          groupExtras,
+          state.selectedIndexes,
+          i,
+        );
         groupExtras.add(extras);
       }
     }
     final Stocks? selectedStock = getSelectedStock(groupExtras);
     final int minQty = state.product?.minQty ?? 0;
     final int selectedStockQty = selectedStock?.quantity ?? 0;
-    final int stockCount =
-        minQty <= selectedStockQty ? minQty : selectedStockQty;
+    final int stockCount = minQty <= selectedStockQty
+        ? minQty
+        : selectedStockQty;
     state = state.copyWith(
       typedExtras: groupExtras,
       selectedStock: selectedStock,
@@ -79,10 +85,7 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
     state = state.copyWith(product: newProduct);
   }
 
-  void addIngredient(
-    BuildContext context,
-    int selectIndex,
-  ) {
+  void addIngredient(BuildContext context, int selectIndex) {
     if ((state.selectedStock?.addons?[selectIndex].product?.maxQty ?? 0) >
             (state.selectedStock?.addons?[selectIndex].quantity ?? 0) &&
         (state.selectedStock?.addons?[selectIndex].product?.stock?.quantity ??
@@ -96,8 +99,10 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
       ProductData? newProduct = product?.copyWith(stocks: [newStock!]);
       state = state.copyWith(product: newProduct);
     } else {
-      AppHelpers.showSnackBar(context,
-          "${AppHelpers.getTranslation(TrKeys.maxQty)} ${state.selectedStock?.addons?[selectIndex].quantity ?? 1}");
+      AppHelpers.showSnackBar(
+        context,
+        "${AppHelpers.getTranslation(TrKeys.maxQty)} ${state.selectedStock?.addons?[selectIndex].quantity ?? 1}",
+      );
     }
   }
 
@@ -113,7 +118,9 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
       state = state.copyWith(product: newProduct);
     } else {
       AppHelpers.showSnackBar(
-          context, AppHelpers.getTranslation(TrKeys.minQty));
+        context,
+        AppHelpers.getTranslation(TrKeys.minQty),
+      );
     }
   }
 
@@ -145,7 +152,8 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
       uniques.add(state.initialStocks[i].extras?[0].value ?? '');
       title = state.initialStocks[i].extras?[0].group?.translation?.title ?? '';
       type = AppHelpers.getExtraTypeByValue(
-          state.initialStocks[i].extras?[0].group?.type);
+        state.initialStocks[i].extras?[0].group?.type,
+      );
     }
     final setOfUniques = uniques.toSet().toList();
     final List<UiExtra> extras = [];
@@ -177,7 +185,8 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
       uniques.add(includedStocks[i].extras?[index].value ?? '');
       title = includedStocks[i].extras?[index].group?.translation?.title ?? '';
       type = AppHelpers.getExtraTypeByValue(
-          includedStocks[i].extras?[index].group?.type ?? '');
+        includedStocks[i].extras?[index].group?.type ?? '',
+      );
     }
     final setOfUniques = uniques.toSet().toList();
     final List<UiExtra> extras = [];
@@ -253,13 +262,18 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
           newStockIndex = i;
         }
         if (bagProducts[i].stockId == state.selectedStock?.id) {
-            state.selectedStock?.addons?.where((element) => element.active ?? false).forEach((e) {
-              if (bagProducts[i].carts?.map((i) => i.stockId).contains(e.product?.stock?.id) ?? false) {
-                newStockIndex = i;
-              } else {
-                newStockIndex = -1;
-              }
-            });
+          state.selectedStock?.addons
+              ?.where((element) => element.active ?? false)
+              .forEach((e) {
+                if (bagProducts[i].carts
+                        ?.map((i) => i.stockId)
+                        .contains(e.product?.stock?.id) ??
+                    false) {
+                  newStockIndex = i;
+                } else {
+                  newStockIndex = -1;
+                }
+              });
         }
       }
     }
@@ -267,11 +281,13 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
     List<BagProductData> list = [];
     state.selectedStock?.addons?.forEach((element) {
       if (element.active ?? false) {
-        list.add(BagProductData(
-          stockId: element.product?.stock?.id,
-          parentId: state.selectedStock?.id,
-          quantity: element.quantity,
-        ));
+        list.add(
+          BagProductData(
+            stockId: element.product?.stock?.id,
+            parentId: state.selectedStock?.id,
+            quantity: element.quantity,
+          ),
+        );
       }
     });
 
@@ -279,9 +295,10 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
       bagProducts.insert(
         0,
         BagProductData(
-            stockId: state.selectedStock?.id,
-            quantity: state.stockCount,
-            carts: list),
+          stockId: state.selectedStock?.id,
+          quantity: state.stockCount,
+          carts: list,
+        ),
       );
     } else {
       int oldCount = bagProducts[newStockIndex].quantity ?? 0;
@@ -289,9 +306,10 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
       bagProducts.insert(
         newStockIndex,
         BagProductData(
-            stockId: state.selectedStock?.id,
-            quantity: state.stockCount + oldCount,
-            carts: list),
+          stockId: state.selectedStock?.id,
+          quantity: state.stockCount + oldCount,
+          carts: list,
+        ),
       );
     }
 
@@ -309,4 +327,3 @@ class AddProductNotifier extends StateNotifier<AddProductState> {
     );
   }
 }
-

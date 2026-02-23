@@ -80,12 +80,20 @@ class TodoTask {
       description: json['description'],
       status: json['status'],
       priority: json['priority'],
-      dueDate: json['due_date'] != null ? DateTime.parse(json['due_date']) : null,
-      assignedTo: json['assigned_to'] != null ? json['assigned_to'].toString() : null,
+      dueDate: json['due_date'] != null
+          ? DateTime.parse(json['due_date'])
+          : null,
+      assignedTo: json['assigned_to'] != null
+          ? json['assigned_to'].toString()
+          : null,
       createdAt: DateTime.parse(json['created_at']),
-      updatedAt: json['updated_at'] != null ? DateTime.parse(json['updated_at']) : null,
+      updatedAt: json['updated_at'] != null
+          ? DateTime.parse(json['updated_at'])
+          : null,
       kpiId: json['kpi_id'] != null ? json['kpi_id'].toString() : null,
-      objectiveId: json['objective_id'] != null ? json['objective_id'].toString() : null,
+      objectiveId: json['objective_id'] != null
+          ? json['objective_id'].toString()
+          : null,
       appId: json['app_id'] != null ? json['app_id'].toString() : null,
       roadmapVersion: json['roadmap_version'],
       tenderOcid: json['tender_ocid'],

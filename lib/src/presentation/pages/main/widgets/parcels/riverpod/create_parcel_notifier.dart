@@ -50,7 +50,9 @@ class CreateParcelNotifier extends StateNotifier<CreateParcelState> {
     response.when(
       success: (data) {
         state = state.copyWith(
-            isFetchingOptions: false, parcelOptions: data.data ?? []);
+          isFetchingOptions: false,
+          parcelOptions: data.data ?? [],
+        );
       },
       failure: (failure) {
         state = state.copyWith(isFetchingOptions: false);
@@ -59,8 +61,11 @@ class CreateParcelNotifier extends StateNotifier<CreateParcelState> {
     );
   }
 
-  Future<void> fetchDeliveryPoints(BuildContext context,
-      {required double latitude, required double longitude}) async {
+  Future<void> fetchDeliveryPoints(
+    BuildContext context, {
+    required double latitude,
+    required double longitude,
+  }) async {
     state = state.copyWith(isFetchingPoints: true);
     final response = await _deliveryPointsRepository.getDeliveryPoints(
       latitude: latitude,
@@ -69,7 +74,9 @@ class CreateParcelNotifier extends StateNotifier<CreateParcelState> {
     response.when(
       success: (data) {
         state = state.copyWith(
-            isFetchingPoints: false, deliveryPoints: data.data ?? []);
+          isFetchingPoints: false,
+          deliveryPoints: data.data ?? [],
+        );
       },
       failure: (failure) {
         state = state.copyWith(isFetchingPoints: false);
@@ -80,7 +87,10 @@ class CreateParcelNotifier extends StateNotifier<CreateParcelState> {
 
   Future<void> searchUsers(BuildContext context, String query) async {
     if (query.isEmpty) {
-      state = state.copyWith(searchedCustomers: [], isSearchingCustomers: false);
+      state = state.copyWith(
+        searchedCustomers: [],
+        isSearchingCustomers: false,
+      );
       return;
     }
     state = state.copyWith(isSearchingCustomers: true);
@@ -88,7 +98,9 @@ class CreateParcelNotifier extends StateNotifier<CreateParcelState> {
     response.when(
       success: (data) {
         state = state.copyWith(
-            isSearchingCustomers: false, searchedCustomers: data.data ?? []);
+          isSearchingCustomers: false,
+          searchedCustomers: data.data ?? [],
+        );
       },
       failure: (failure) {
         state = state.copyWith(isSearchingCustomers: false);
@@ -97,7 +109,10 @@ class CreateParcelNotifier extends StateNotifier<CreateParcelState> {
     );
   }
 
-  Future<void> createParcel(BuildContext context, VoidCallback onSuccess) async {
+  Future<void> createParcel(
+    BuildContext context,
+    VoidCallback onSuccess,
+  ) async {
     if (state.selectedParcelOption == null) {
       // TODO: Show error message
       debugPrint("Parcel option not selected");
@@ -148,7 +163,7 @@ class CreateParcelNotifier extends StateNotifier<CreateParcelState> {
           "address_to": {
             "latitude": state.selectedCustomLocation?.latitude,
             "longitude": state.selectedCustomLocation?.longitude,
-          }
+          },
         });
         break;
     }

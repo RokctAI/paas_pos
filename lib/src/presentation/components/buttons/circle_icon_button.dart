@@ -29,14 +29,9 @@ class CircleIconButton extends StatelessWidget {
           width: size.r,
           height: size.r,
           alignment: Alignment.center,
-          child: Icon(
-            iconData,
-            size: (size / 2).r,
-            color: icon,
-          ),
+          child: Icon(iconData, size: (size / 2).r, color: icon),
         ),
       ),
     );
   }
 }
-

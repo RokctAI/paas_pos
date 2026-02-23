@@ -6,26 +6,17 @@ import '../models/data/count_of_notifications_data.dart';
 import '../models/data/read_one_notification_data.dart';
 
 abstract class NotificationRepository {
-  Future<ApiResult<TransactionListResponse>> getTransactions({
-    int? page,
-  });
+  Future<ApiResult<TransactionListResponse>> getTransactions({int? page});
 
-  Future<ApiResult<NotificationResponse>> getNotifications({
-    int? page,
-  });
+  Future<ApiResult<NotificationResponse>> getNotifications({int? page});
 
   Future<ApiResult<NotificationResponse>> getAllNotifications();
 
-  Future<ApiResult<ReadOneNotificationResponse>> readOne({
-    int? id,
-  });
+  Future<ApiResult<ReadOneNotificationResponse>> readOne({int? id});
 
   Future<ApiResult<NotificationResponse>> readAll();
 
-  Future<ApiResult<NotificationResponse>> showSingleUser({
-    int? id,
-  });
+  Future<ApiResult<NotificationResponse>> showSingleUser({int? id});
 
   Future<ApiResult<CountNotificationModel>> getCount();
 }
-

@@ -42,16 +42,18 @@ class _CreateStoriesPageState extends ConsumerState<CreateStoriesPage> {
                 Text(
                   AppHelpers.getTranslation(TrKeys.stories),
                   style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 22,
-                      color: AppStyle.black),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22,
+                    color: AppStyle.black,
+                  ),
                 ),
                 const Spacer(),
                 IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(FlutterRemix.close_fill))
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(FlutterRemix.close_fill),
+                ),
               ],
             ),
             Padding(
@@ -73,11 +75,13 @@ class _CreateStoriesPageState extends ConsumerState<CreateStoriesPage> {
                     textController: state.textEditingController,
                     onTap: () {
                       AppHelpers.showAlertDialog(
-                          context: context,
-                          child: SizedBox(
-                              height: MediaQuery.sizeOf(context).height/1.5,
-                              width: MediaQuery.sizeOf(context).width/3,
-                              child: const ProductsModal()));
+                        context: context,
+                        child: SizedBox(
+                          height: MediaQuery.sizeOf(context).height / 1.5,
+                          width: MediaQuery.sizeOf(context).width / 3,
+                          child: const ProductsModal(),
+                        ),
+                      );
                     },
                   ),
                   24.verticalSpace,
@@ -118,4 +122,3 @@ class _CreateStoriesPageState extends ConsumerState<CreateStoriesPage> {
     );
   }
 }
-

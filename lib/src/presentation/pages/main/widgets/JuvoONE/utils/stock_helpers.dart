@@ -25,7 +25,8 @@ class StockHelpers {
   }
 
   /// Creates a new stock based on an existing one
-  static Stocks createStockFromTemplate(Stocks template, {
+  static Stocks createStockFromTemplate(
+    Stocks template, {
     int? id,
     num? price,
     int? quantity,
@@ -39,23 +40,30 @@ class StockHelpers {
       quantity: quantity ?? template.quantity,
       tax: template.tax,
       extras: extras ?? template.extras,
-      addons: addons ?? template.addons?.map((a) => Addons(
-        id: a.id,
-        stockId: a.stockId,
-        addonId: a.addonId,
-        product: a.product,
-        price: a.price,
-        quantity: a.quantity,
-        active: a.active,
-        stocks: a.stocks,
-      )).toList(),
+      addons:
+          addons ??
+          template.addons
+              ?.map(
+                (a) => Addons(
+                  id: a.id,
+                  stockId: a.stockId,
+                  addonId: a.addonId,
+                  product: a.product,
+                  price: a.price,
+                  quantity: a.quantity,
+                  active: a.active,
+                  stocks: a.stocks,
+                ),
+              )
+              .toList(),
       product: template.product,
       translation: template.translation,
     );
   }
 
   /// Creates a new addon based on an existing one
-  static Addons createAddonFromTemplate(Addons template, {
+  static Addons createAddonFromTemplate(
+    Addons template, {
     int? quantity,
     num? price,
     bool? active,
@@ -117,13 +125,19 @@ class StockHelpers {
     }
 
     // Sort groups by title
-    groups.sort((a, b) => (a.translation?.title ?? '').compareTo(b.translation?.title ?? ''));
+    groups.sort(
+      (a, b) =>
+          (a.translation?.title ?? '').compareTo(b.translation?.title ?? ''),
+    );
 
     return groups;
   }
 
   /// Gets unique extras values for a specific group
-  static List<Extras> getUniqueExtrasForGroup(List<Stocks> stocks, int groupId) {
+  static List<Extras> getUniqueExtrasForGroup(
+    List<Stocks> stocks,
+    int groupId,
+  ) {
     final Set<String> uniqueValues = {};
     final List<Extras> extras = [];
 

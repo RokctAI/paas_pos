@@ -13,10 +13,10 @@ class PaymentsRepositoryImpl extends PaymentsRepository {
   Future<ApiResult<PaymentsResponse>> getPayments() async {
     try {
       final client = dioHttp.client(requireAuth: true);
-      final response = await client.get('/api/v1/method/paas.api.get_payment_gateways');
-      return ApiResult.success(
-        data: PaymentsResponse.fromJson(response.data),
+      final response = await client.get(
+        '/api/v1/method/paas.api.get_payment_gateways',
       );
+      return ApiResult.success(data: PaymentsResponse.fromJson(response.data));
     } catch (e) {
       debugPrint('==> get payments failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -33,7 +33,8 @@ class PaymentsRepositoryImpl extends PaymentsRepository {
       'reference_doctype': 'Order',
       'reference_name': orderId,
       'payment_gateway': paymentId,
-      if (terminalTransactionId != null) 'transaction_id': terminalTransactionId,
+      if (terminalTransactionId != null)
+        'transaction_id': terminalTransactionId,
     };
 
     try {
@@ -61,9 +62,7 @@ class PaymentsRepositoryImpl extends PaymentsRepository {
         '/api/v1/method/paas.api.get_transaction',
         queryParameters: {'id': transactionId},
       );
-      return ApiResult.success(
-        data: TransactionData.fromJson(response.data),
-      );
+      return ApiResult.success(data: TransactionData.fromJson(response.data));
     } catch (e) {
       debugPrint('==> get transaction failure: $e');
       return ApiResult.failure(error: AppHelpers.errorHandler(e));
@@ -98,7 +97,11 @@ class PaymentsRepositoryImpl extends PaymentsRepository {
   // - deleteTransaction
 
   @override
-  Future<ApiResult<TransactionData>> updateTransactionStatus({required int transactionId, required String status, String? note}) {
+  Future<ApiResult<TransactionData>> updateTransactionStatus({
+    required int transactionId,
+    required String status,
+    String? note,
+  }) {
     throw UnimplementedError();
   }
 

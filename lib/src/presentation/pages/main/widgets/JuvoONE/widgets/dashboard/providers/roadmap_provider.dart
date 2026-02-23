@@ -105,7 +105,9 @@ class RoadmapProvider with ChangeNotifier {
         success: (version) {
           // Add the new version to our list and re-sort
           _versions.add(version);
-          _versions.sort((a, b) => _compareVersions(b.versionNumber, a.versionNumber));
+          _versions.sort(
+            (a, b) => _compareVersions(b.versionNumber, a.versionNumber),
+          );
           _clearError();
           return true;
         },
@@ -126,7 +128,10 @@ class RoadmapProvider with ChangeNotifier {
     }
   }
 
-  Future<bool> updateRoadmapVersion(String uuid, Map<String, dynamic> data) async {
+  Future<bool> updateRoadmapVersion(
+    String uuid,
+    Map<String, dynamic> data,
+  ) async {
     _isLoading = true;
     _error = null;
     notifyListeners();
@@ -141,7 +146,9 @@ class RoadmapProvider with ChangeNotifier {
           if (index != -1) {
             _versions[index] = updatedVersion;
             // Re-sort if version number changed
-            _versions.sort((a, b) => _compareVersions(b.versionNumber, a.versionNumber));
+            _versions.sort(
+              (a, b) => _compareVersions(b.versionNumber, a.versionNumber),
+            );
           }
           _clearError();
           return true;

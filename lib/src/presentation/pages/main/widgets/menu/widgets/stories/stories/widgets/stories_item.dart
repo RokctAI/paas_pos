@@ -87,4 +87,3 @@ class StoriesItem extends StatelessWidget {
     );
   }
 }
-

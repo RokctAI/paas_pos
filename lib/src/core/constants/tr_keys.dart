@@ -491,6 +491,7 @@ class TrKeys {
   static const String thisOrderDelivered = 'this.order.is.delivered';
   static const String noOrderIsSelected = 'no.order.is.selected';
   static String errorWithCreatingOrder = 'error.with.creating.order';
+
   ///MaintenancePOPUP
   static const maintenanceAlerts = 'Maintenance.Alerts';
   static const noMaintenanceAlerts = 'No.Maintenance.Alerts';
@@ -510,8 +511,7 @@ class TrKeys {
   static String foods = 'foods';
   static String extras = 'extras';
 
-
-///from Manager App
+  ///from Manager App
   static const String gallery = 'gallery';
   static const String sku = 'sku';
   static const String input = 'input';
@@ -525,7 +525,8 @@ class TrKeys {
   static const String bgCanNotBeEmpty = 'bg.can.no.be.empty';
   static const String generateImageWithChatGPT = 'generate_image_with_chatGPT';
   static const String orderImage = 'order.image';
-  static const String thisImageWasUploadDriver = 'this.image.was.uploaded.by.driver';
+  static const String thisImageWasUploadDriver =
+      'this.image.was.uploaded.by.driver';
   static const String areYouSure = 'are.you.sure';
   static const String deleteAccount = 'delete.account';
   static const String userAlready = 'user.already';
@@ -571,12 +572,10 @@ class TrKeys {
   static const String sendOtp = 'we_are_send_OTP_code_to';
   static const String enterOtp = 'enter_OTP_code';
   static const String send = "send";
-  static const String resetPasswordText =
-      "reset_password_text";
+  static const String resetPasswordText = "reset_password_text";
   static const String orAccessQuickly = 'or_access_quickly';
   static const String keepMeLoggedIn = 'keep_me_logged_in';
-  static const String noProducts =
-      "no_products";
+  static const String noProducts = "no_products";
   static const String noNotices = "no_notices";
   static const String fm = "fm";
   static const String time = "time";
@@ -674,9 +673,8 @@ class TrKeys {
   static const String pleaseTryAgain = 'your_request_rejected_please_try_again';
   static const String calculator = 'calculator';
 
-  static String orderProcessingError ='orderProcessingError';
+  static String orderProcessingError = 'orderProcessingError';
 
-  static String invalidStockData ='invalidStockData';
-////keys from Manager App ends here
+  static String invalidStockData = 'invalidStockData';
+  ////keys from Manager App ends here
 }
-

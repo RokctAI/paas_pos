@@ -23,8 +23,7 @@ class SplashNotifier extends StateNotifier<SplashState> {
         response.when(
           success: (data) async {
             await LocalStorage.setSettingsList(data.data ?? []);
-            await LocalStorage
-                .setActiveLocale(AppHelpers.getInitialLocale());
+            await LocalStorage.setActiveLocale(AppHelpers.getInitialLocale());
             getTranslations(
               goLogin: () {
                 context.replaceRoute(const LoginRoute());
@@ -90,4 +89,3 @@ class SplashNotifier extends StateNotifier<SplashState> {
     );
   }
 }
-
