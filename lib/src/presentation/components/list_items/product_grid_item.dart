@@ -4,26 +4,31 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:admin_desktop/src/core/constants/constants.dart';
 import 'package:admin_desktop/src/core/utils/utils.dart';
 import 'package:admin_desktop/src/models/models.dart';
+import '../../theme/theme/theme.dart';
 import '../components.dart';
 import '../../theme/theme.dart';
 
 class ProductGridItem extends StatelessWidget {
   final ProductData product;
   final Function() onTap;
+  final CustomColorSet colors;
 
   const ProductGridItem({
     super.key,
     required this.product,
     required this.onTap,
+    required this.colors,
   });
 
   @override
   Widget build(BuildContext context) {
-    final bool isOutOfStock = product.stocks == null || product.stocks!.isEmpty;
+    final bool isOutOfStock =
+        (product.stocks?.isEmpty ?? true) ||
+        (product.stocks?[0].quantity ?? 0) == 0;
     final bool hasDiscount = isOutOfStock
         ? false
         : (product.stocks?[0].discount != null &&
-            (product.stocks?[0].discount ?? 0) > 0);
+              (product.stocks?[0].discount ?? 0) > 0);
     return InkWell(
       borderRadius: BorderRadius.circular(10.r),
       onTap: onTap,
@@ -32,19 +37,12 @@ class ProductGridItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.r),
           color: AppStyle.white,
         ),
-        constraints: BoxConstraints(
-          maxWidth: 227.r,
-          maxHeight: 246.r,
-        ),
+        constraints: BoxConstraints(maxWidth: 227.r, maxHeight: 246.r),
         padding: REdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: CommonImage(
-                imageUrl: product.img,
-              ),
-            ),
+            Expanded(child: CommonImage(imageUrl: product.img)),
             16.verticalSpace,
             Text(
               '${product.translation?.title}',
@@ -79,8 +77,9 @@ class ProductGridItem extends StatelessWidget {
                     children: [
                       Text(
                         AppHelpers.numberFormat(
-                            (product.stocks?.first.discount ?? 0) +
-                                (product.stocks?.first.totalPrice ?? 0)),
+                          (product.stocks?.first.discount ?? 0) +
+                              (product.stocks?.first.totalPrice ?? 0),
+                        ),
                         style: GoogleFonts.inter(
                           decoration: TextDecoration.lineThrough,
                           fontSize: 16.sp,
@@ -93,9 +92,9 @@ class ProductGridItem extends StatelessWidget {
                     ],
                   ),
                 Text(
-                  AppHelpers.numberFormat(isOutOfStock
-                      ? 0
-                      : (product.stocks?.first.totalPrice ?? 0)),
+                  AppHelpers.numberFormat(
+                    isOutOfStock ? 0 : (product.stocks?.first.totalPrice ?? 0),
+                  ),
                   style: GoogleFonts.inter(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,

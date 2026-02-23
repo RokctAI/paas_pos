@@ -35,7 +35,7 @@ class PinCodeNotifier extends StateNotifier<PinCodeState> {
     }
   }
 
-  checkCode({
+  void checkCode({
     required VoidCallback onSuccess,
     bool isNotSet = true,
   }) {
@@ -54,7 +54,7 @@ class PinCodeNotifier extends StateNotifier<PinCodeState> {
     }
   }
 
-  checkNewCode({
+  void checkNewCode({
     required VoidCallback onSuccess,
   }) {
     if (state.pinCode.length == 4) {

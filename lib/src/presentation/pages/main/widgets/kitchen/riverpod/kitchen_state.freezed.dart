@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,333 +9,293 @@ part of 'kitchen_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$KitchenState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  String get selectType => throw _privateConstructorUsedError;
-  bool get hasMore => throw _privateConstructorUsedError;
-  String get detailStatus => throw _privateConstructorUsedError;
-  bool get isUpdatingStatus => throw _privateConstructorUsedError;
-  List<OrderData> get orders => throw _privateConstructorUsedError;
-  OrderData? get selectOrder => throw _privateConstructorUsedError;
-  String get query => throw _privateConstructorUsedError;
-  int get selectIndex => throw _privateConstructorUsedError;
 
-  /// Create a copy of KitchenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $KitchenStateCopyWith<KitchenState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isLoading; String get selectType; bool get hasMore; String get detailStatus; bool get isUpdatingStatus; List<OrderData> get orders; OrderData? get selectOrder; String get query; int get selectIndex;
+/// Create a copy of KitchenState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$KitchenStateCopyWith<KitchenState> get copyWith => _$KitchenStateCopyWithImpl<KitchenState>(this as KitchenState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is KitchenState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.selectType, selectType) || other.selectType == selectType)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.detailStatus, detailStatus) || other.detailStatus == detailStatus)&&(identical(other.isUpdatingStatus, isUpdatingStatus) || other.isUpdatingStatus == isUpdatingStatus)&&const DeepCollectionEquality().equals(other.orders, orders)&&(identical(other.selectOrder, selectOrder) || other.selectOrder == selectOrder)&&(identical(other.query, query) || other.query == query)&&(identical(other.selectIndex, selectIndex) || other.selectIndex == selectIndex));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,selectType,hasMore,detailStatus,isUpdatingStatus,const DeepCollectionEquality().hash(orders),selectOrder,query,selectIndex);
+
+@override
+String toString() {
+  return 'KitchenState(isLoading: $isLoading, selectType: $selectType, hasMore: $hasMore, detailStatus: $detailStatus, isUpdatingStatus: $isUpdatingStatus, orders: $orders, selectOrder: $selectOrder, query: $query, selectIndex: $selectIndex)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $KitchenStateCopyWith<$Res> {
-  factory $KitchenStateCopyWith(
-          KitchenState value, $Res Function(KitchenState) then) =
-      _$KitchenStateCopyWithImpl<$Res, KitchenState>;
-  @useResult
-  $Res call(
-      {bool isLoading,
-      String selectType,
-      bool hasMore,
-      String detailStatus,
-      bool isUpdatingStatus,
-      List<OrderData> orders,
-      OrderData? selectOrder,
-      String query,
-      int selectIndex});
-}
+abstract mixin class $KitchenStateCopyWith<$Res>  {
+  factory $KitchenStateCopyWith(KitchenState value, $Res Function(KitchenState) _then) = _$KitchenStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isLoading, String selectType, bool hasMore, String detailStatus, bool isUpdatingStatus, List<OrderData> orders, OrderData? selectOrder, String query, int selectIndex
+});
 
+
+
+
+}
 /// @nodoc
-class _$KitchenStateCopyWithImpl<$Res, $Val extends KitchenState>
+class _$KitchenStateCopyWithImpl<$Res>
     implements $KitchenStateCopyWith<$Res> {
-  _$KitchenStateCopyWithImpl(this._value, this._then);
+  _$KitchenStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final KitchenState _self;
+  final $Res Function(KitchenState) _then;
 
-  /// Create a copy of KitchenState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? selectType = null,
-    Object? hasMore = null,
-    Object? detailStatus = null,
-    Object? isUpdatingStatus = null,
-    Object? orders = null,
-    Object? selectOrder = freezed,
-    Object? query = null,
-    Object? selectIndex = null,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectType: null == selectType
-          ? _value.selectType
-          : selectType // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      detailStatus: null == detailStatus
-          ? _value.detailStatus
-          : detailStatus // ignore: cast_nullable_to_non_nullable
-              as String,
-      isUpdatingStatus: null == isUpdatingStatus
-          ? _value.isUpdatingStatus
-          : isUpdatingStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
-      orders: null == orders
-          ? _value.orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<OrderData>,
-      selectOrder: freezed == selectOrder
-          ? _value.selectOrder
-          : selectOrder // ignore: cast_nullable_to_non_nullable
-              as OrderData?,
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      selectIndex: null == selectIndex
-          ? _value.selectIndex
-          : selectIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
+/// Create a copy of KitchenState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? selectType = null,Object? hasMore = null,Object? detailStatus = null,Object? isUpdatingStatus = null,Object? orders = null,Object? selectOrder = freezed,Object? query = null,Object? selectIndex = null,}) {
+  return _then(_self.copyWith(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,selectType: null == selectType ? _self.selectType : selectType // ignore: cast_nullable_to_non_nullable
+as String,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,detailStatus: null == detailStatus ? _self.detailStatus : detailStatus // ignore: cast_nullable_to_non_nullable
+as String,isUpdatingStatus: null == isUpdatingStatus ? _self.isUpdatingStatus : isUpdatingStatus // ignore: cast_nullable_to_non_nullable
+as bool,orders: null == orders ? _self.orders : orders // ignore: cast_nullable_to_non_nullable
+as List<OrderData>,selectOrder: freezed == selectOrder ? _self.selectOrder : selectOrder // ignore: cast_nullable_to_non_nullable
+as OrderData?,query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String,selectIndex: null == selectIndex ? _self.selectIndex : selectIndex // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [KitchenState].
+extension KitchenStatePatterns on KitchenState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _KitchenState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _KitchenState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _KitchenState value)  $default,){
+final _that = this;
+switch (_that) {
+case _KitchenState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _KitchenState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _KitchenState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  String selectType,  bool hasMore,  String detailStatus,  bool isUpdatingStatus,  List<OrderData> orders,  OrderData? selectOrder,  String query,  int selectIndex)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _KitchenState() when $default != null:
+return $default(_that.isLoading,_that.selectType,_that.hasMore,_that.detailStatus,_that.isUpdatingStatus,_that.orders,_that.selectOrder,_that.query,_that.selectIndex);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  String selectType,  bool hasMore,  String detailStatus,  bool isUpdatingStatus,  List<OrderData> orders,  OrderData? selectOrder,  String query,  int selectIndex)  $default,) {final _that = this;
+switch (_that) {
+case _KitchenState():
+return $default(_that.isLoading,_that.selectType,_that.hasMore,_that.detailStatus,_that.isUpdatingStatus,_that.orders,_that.selectOrder,_that.query,_that.selectIndex);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  String selectType,  bool hasMore,  String detailStatus,  bool isUpdatingStatus,  List<OrderData> orders,  OrderData? selectOrder,  String query,  int selectIndex)?  $default,) {final _that = this;
+switch (_that) {
+case _KitchenState() when $default != null:
+return $default(_that.isLoading,_that.selectType,_that.hasMore,_that.detailStatus,_that.isUpdatingStatus,_that.orders,_that.selectOrder,_that.query,_that.selectIndex);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$KitchenStateImplCopyWith<$Res>
-    implements $KitchenStateCopyWith<$Res> {
-  factory _$$KitchenStateImplCopyWith(
-          _$KitchenStateImpl value, $Res Function(_$KitchenStateImpl) then) =
-      __$$KitchenStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {bool isLoading,
-      String selectType,
-      bool hasMore,
-      String detailStatus,
-      bool isUpdatingStatus,
-      List<OrderData> orders,
-      OrderData? selectOrder,
-      String query,
-      int selectIndex});
+
+
+class _KitchenState extends KitchenState {
+  const _KitchenState({this.isLoading = true, this.selectType = TrKeys.all, this.hasMore = true, this.detailStatus = "", this.isUpdatingStatus = false, final  List<OrderData> orders = const [], this.selectOrder = null, this.query = '', this.selectIndex = 0}): _orders = orders,super._();
+  
+
+@override@JsonKey() final  bool isLoading;
+@override@JsonKey() final  String selectType;
+@override@JsonKey() final  bool hasMore;
+@override@JsonKey() final  String detailStatus;
+@override@JsonKey() final  bool isUpdatingStatus;
+ final  List<OrderData> _orders;
+@override@JsonKey() List<OrderData> get orders {
+  if (_orders is EqualUnmodifiableListView) return _orders;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_orders);
+}
+
+@override@JsonKey() final  OrderData? selectOrder;
+@override@JsonKey() final  String query;
+@override@JsonKey() final  int selectIndex;
+
+/// Create a copy of KitchenState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$KitchenStateCopyWith<_KitchenState> get copyWith => __$KitchenStateCopyWithImpl<_KitchenState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _KitchenState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.selectType, selectType) || other.selectType == selectType)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.detailStatus, detailStatus) || other.detailStatus == detailStatus)&&(identical(other.isUpdatingStatus, isUpdatingStatus) || other.isUpdatingStatus == isUpdatingStatus)&&const DeepCollectionEquality().equals(other._orders, _orders)&&(identical(other.selectOrder, selectOrder) || other.selectOrder == selectOrder)&&(identical(other.query, query) || other.query == query)&&(identical(other.selectIndex, selectIndex) || other.selectIndex == selectIndex));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,selectType,hasMore,detailStatus,isUpdatingStatus,const DeepCollectionEquality().hash(_orders),selectOrder,query,selectIndex);
+
+@override
+String toString() {
+  return 'KitchenState(isLoading: $isLoading, selectType: $selectType, hasMore: $hasMore, detailStatus: $detailStatus, isUpdatingStatus: $isUpdatingStatus, orders: $orders, selectOrder: $selectOrder, query: $query, selectIndex: $selectIndex)';
+}
+
+
 }
 
 /// @nodoc
-class __$$KitchenStateImplCopyWithImpl<$Res>
-    extends _$KitchenStateCopyWithImpl<$Res, _$KitchenStateImpl>
-    implements _$$KitchenStateImplCopyWith<$Res> {
-  __$$KitchenStateImplCopyWithImpl(
-      _$KitchenStateImpl _value, $Res Function(_$KitchenStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$KitchenStateCopyWith<$Res> implements $KitchenStateCopyWith<$Res> {
+  factory _$KitchenStateCopyWith(_KitchenState value, $Res Function(_KitchenState) _then) = __$KitchenStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isLoading, String selectType, bool hasMore, String detailStatus, bool isUpdatingStatus, List<OrderData> orders, OrderData? selectOrder, String query, int selectIndex
+});
 
-  /// Create a copy of KitchenState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? selectType = null,
-    Object? hasMore = null,
-    Object? detailStatus = null,
-    Object? isUpdatingStatus = null,
-    Object? orders = null,
-    Object? selectOrder = freezed,
-    Object? query = null,
-    Object? selectIndex = null,
-  }) {
-    return _then(_$KitchenStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectType: null == selectType
-          ? _value.selectType
-          : selectType // ignore: cast_nullable_to_non_nullable
-              as String,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      detailStatus: null == detailStatus
-          ? _value.detailStatus
-          : detailStatus // ignore: cast_nullable_to_non_nullable
-              as String,
-      isUpdatingStatus: null == isUpdatingStatus
-          ? _value.isUpdatingStatus
-          : isUpdatingStatus // ignore: cast_nullable_to_non_nullable
-              as bool,
-      orders: null == orders
-          ? _value._orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<OrderData>,
-      selectOrder: freezed == selectOrder
-          ? _value.selectOrder
-          : selectOrder // ignore: cast_nullable_to_non_nullable
-              as OrderData?,
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      selectIndex: null == selectIndex
-          ? _value.selectIndex
-          : selectIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$KitchenStateCopyWithImpl<$Res>
+    implements _$KitchenStateCopyWith<$Res> {
+  __$KitchenStateCopyWithImpl(this._self, this._then);
 
-class _$KitchenStateImpl extends _KitchenState {
-  const _$KitchenStateImpl(
-      {this.isLoading = true,
-      this.selectType = TrKeys.all,
-      this.hasMore = true,
-      this.detailStatus = "",
-      this.isUpdatingStatus = false,
-      final List<OrderData> orders = const [],
-      this.selectOrder = null,
-      this.query = '',
-      this.selectIndex = 0})
-      : _orders = orders,
-        super._();
+  final _KitchenState _self;
+  final $Res Function(_KitchenState) _then;
 
-  @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  @JsonKey()
-  final String selectType;
-  @override
-  @JsonKey()
-  final bool hasMore;
-  @override
-  @JsonKey()
-  final String detailStatus;
-  @override
-  @JsonKey()
-  final bool isUpdatingStatus;
-  final List<OrderData> _orders;
-  @override
-  @JsonKey()
-  List<OrderData> get orders {
-    if (_orders is EqualUnmodifiableListView) return _orders;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_orders);
-  }
-
-  @override
-  @JsonKey()
-  final OrderData? selectOrder;
-  @override
-  @JsonKey()
-  final String query;
-  @override
-  @JsonKey()
-  final int selectIndex;
-
-  @override
-  String toString() {
-    return 'KitchenState(isLoading: $isLoading, selectType: $selectType, hasMore: $hasMore, detailStatus: $detailStatus, isUpdatingStatus: $isUpdatingStatus, orders: $orders, selectOrder: $selectOrder, query: $query, selectIndex: $selectIndex)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$KitchenStateImpl &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.selectType, selectType) ||
-                other.selectType == selectType) &&
-            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
-            (identical(other.detailStatus, detailStatus) ||
-                other.detailStatus == detailStatus) &&
-            (identical(other.isUpdatingStatus, isUpdatingStatus) ||
-                other.isUpdatingStatus == isUpdatingStatus) &&
-            const DeepCollectionEquality().equals(other._orders, _orders) &&
-            (identical(other.selectOrder, selectOrder) ||
-                other.selectOrder == selectOrder) &&
-            (identical(other.query, query) || other.query == query) &&
-            (identical(other.selectIndex, selectIndex) ||
-                other.selectIndex == selectIndex));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      selectType,
-      hasMore,
-      detailStatus,
-      isUpdatingStatus,
-      const DeepCollectionEquality().hash(_orders),
-      selectOrder,
-      query,
-      selectIndex);
-
-  /// Create a copy of KitchenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$KitchenStateImplCopyWith<_$KitchenStateImpl> get copyWith =>
-      __$$KitchenStateImplCopyWithImpl<_$KitchenStateImpl>(this, _$identity);
+/// Create a copy of KitchenState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? selectType = null,Object? hasMore = null,Object? detailStatus = null,Object? isUpdatingStatus = null,Object? orders = null,Object? selectOrder = freezed,Object? query = null,Object? selectIndex = null,}) {
+  return _then(_KitchenState(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,selectType: null == selectType ? _self.selectType : selectType // ignore: cast_nullable_to_non_nullable
+as String,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,detailStatus: null == detailStatus ? _self.detailStatus : detailStatus // ignore: cast_nullable_to_non_nullable
+as String,isUpdatingStatus: null == isUpdatingStatus ? _self.isUpdatingStatus : isUpdatingStatus // ignore: cast_nullable_to_non_nullable
+as bool,orders: null == orders ? _self._orders : orders // ignore: cast_nullable_to_non_nullable
+as List<OrderData>,selectOrder: freezed == selectOrder ? _self.selectOrder : selectOrder // ignore: cast_nullable_to_non_nullable
+as OrderData?,query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String,selectIndex: null == selectIndex ? _self.selectIndex : selectIndex // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-abstract class _KitchenState extends KitchenState {
-  const factory _KitchenState(
-      {final bool isLoading,
-      final String selectType,
-      final bool hasMore,
-      final String detailStatus,
-      final bool isUpdatingStatus,
-      final List<OrderData> orders,
-      final OrderData? selectOrder,
-      final String query,
-      final int selectIndex}) = _$KitchenStateImpl;
-  const _KitchenState._() : super._();
 
-  @override
-  bool get isLoading;
-  @override
-  String get selectType;
-  @override
-  bool get hasMore;
-  @override
-  String get detailStatus;
-  @override
-  bool get isUpdatingStatus;
-  @override
-  List<OrderData> get orders;
-  @override
-  OrderData? get selectOrder;
-  @override
-  String get query;
-  @override
-  int get selectIndex;
-
-  /// Create a copy of KitchenState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$KitchenStateImplCopyWith<_$KitchenStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

@@ -53,7 +53,7 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
             height: MediaQuery.of(context).size.height / 2,
             child: Center(
               child: state.isBookingLoading
-                  ? const CircularProgressIndicator(color: AppStyle.primary,strokeWidth: 3.3,)
+                  ? CircularProgressIndicator(color: AppStyle.primary,strokeWidth: 3.3,)
                   : Text(AppHelpers.getTranslation(TrKeys.noBooking)),
             ))
         : Column(
@@ -98,7 +98,7 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                             builder: (context, child) {
                               return Theme(
                                 data: Theme.of(context).copyWith(
-                                  colorScheme: const ColorScheme.light(
+                                  colorScheme: ColorScheme.light(
                                     primary: AppStyle.primary,
                                     onPrimary: AppStyle.black,
                                     onSurface: AppStyle.black,
@@ -151,7 +151,7 @@ class _NewOrderScreenState extends ConsumerState<NewOrderScreen> {
                               builder: (context, child) {
                                 return Theme(
                                   data: Theme.of(context).copyWith(
-                                    colorScheme: const ColorScheme.light(
+                                    colorScheme: ColorScheme.light(
                                       primary: AppStyle.primary,
                                       onPrimary: AppStyle.black,
                                       onSurface: AppStyle.black,

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,304 +9,299 @@ part of 'edit_stories_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$EditStoriesState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  ProductData? get selectProduct => throw _privateConstructorUsedError;
-  List<ProductData> get products => throw _privateConstructorUsedError;
-  List<String> get images => throw _privateConstructorUsedError;
-  List<String> get listOfUrls => throw _privateConstructorUsedError;
-  StoriesData? get story => throw _privateConstructorUsedError;
-  TextEditingController? get textEditingController =>
-      throw _privateConstructorUsedError;
 
-  /// Create a copy of EditStoriesState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $EditStoriesStateCopyWith<EditStoriesState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isLoading; ProductData? get selectProduct; List<ProductData> get products; List<String> get images; List<String> get listOfUrls; StoriesData? get story; TextEditingController? get textEditingController;
+/// Create a copy of EditStoriesState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$EditStoriesStateCopyWith<EditStoriesState> get copyWith => _$EditStoriesStateCopyWithImpl<EditStoriesState>(this as EditStoriesState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EditStoriesState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.selectProduct, selectProduct) || other.selectProduct == selectProduct)&&const DeepCollectionEquality().equals(other.products, products)&&const DeepCollectionEquality().equals(other.images, images)&&const DeepCollectionEquality().equals(other.listOfUrls, listOfUrls)&&(identical(other.story, story) || other.story == story)&&(identical(other.textEditingController, textEditingController) || other.textEditingController == textEditingController));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,selectProduct,const DeepCollectionEquality().hash(products),const DeepCollectionEquality().hash(images),const DeepCollectionEquality().hash(listOfUrls),story,textEditingController);
+
+@override
+String toString() {
+  return 'EditStoriesState(isLoading: $isLoading, selectProduct: $selectProduct, products: $products, images: $images, listOfUrls: $listOfUrls, story: $story, textEditingController: $textEditingController)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $EditStoriesStateCopyWith<$Res> {
-  factory $EditStoriesStateCopyWith(
-          EditStoriesState value, $Res Function(EditStoriesState) then) =
-      _$EditStoriesStateCopyWithImpl<$Res, EditStoriesState>;
-  @useResult
-  $Res call(
-      {bool isLoading,
-      ProductData? selectProduct,
-      List<ProductData> products,
-      List<String> images,
-      List<String> listOfUrls,
-      StoriesData? story,
-      TextEditingController? textEditingController});
-}
+abstract mixin class $EditStoriesStateCopyWith<$Res>  {
+  factory $EditStoriesStateCopyWith(EditStoriesState value, $Res Function(EditStoriesState) _then) = _$EditStoriesStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isLoading, ProductData? selectProduct, List<ProductData> products, List<String> images, List<String> listOfUrls, StoriesData? story, TextEditingController? textEditingController
+});
 
+
+
+
+}
 /// @nodoc
-class _$EditStoriesStateCopyWithImpl<$Res, $Val extends EditStoriesState>
+class _$EditStoriesStateCopyWithImpl<$Res>
     implements $EditStoriesStateCopyWith<$Res> {
-  _$EditStoriesStateCopyWithImpl(this._value, this._then);
+  _$EditStoriesStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final EditStoriesState _self;
+  final $Res Function(EditStoriesState) _then;
 
-  /// Create a copy of EditStoriesState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? selectProduct = freezed,
-    Object? products = null,
-    Object? images = null,
-    Object? listOfUrls = null,
-    Object? story = freezed,
-    Object? textEditingController = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectProduct: freezed == selectProduct
-          ? _value.selectProduct
-          : selectProduct // ignore: cast_nullable_to_non_nullable
-              as ProductData?,
-      products: null == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductData>,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      listOfUrls: null == listOfUrls
-          ? _value.listOfUrls
-          : listOfUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      story: freezed == story
-          ? _value.story
-          : story // ignore: cast_nullable_to_non_nullable
-              as StoriesData?,
-      textEditingController: freezed == textEditingController
-          ? _value.textEditingController
-          : textEditingController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-    ) as $Val);
-  }
+/// Create a copy of EditStoriesState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? selectProduct = freezed,Object? products = null,Object? images = null,Object? listOfUrls = null,Object? story = freezed,Object? textEditingController = freezed,}) {
+  return _then(_self.copyWith(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,selectProduct: freezed == selectProduct ? _self.selectProduct : selectProduct // ignore: cast_nullable_to_non_nullable
+as ProductData?,products: null == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
+as List<ProductData>,images: null == images ? _self.images : images // ignore: cast_nullable_to_non_nullable
+as List<String>,listOfUrls: null == listOfUrls ? _self.listOfUrls : listOfUrls // ignore: cast_nullable_to_non_nullable
+as List<String>,story: freezed == story ? _self.story : story // ignore: cast_nullable_to_non_nullable
+as StoriesData?,textEditingController: freezed == textEditingController ? _self.textEditingController : textEditingController // ignore: cast_nullable_to_non_nullable
+as TextEditingController?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [EditStoriesState].
+extension EditStoriesStatePatterns on EditStoriesState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _EditStoriesState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _EditStoriesState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _EditStoriesState value)  $default,){
+final _that = this;
+switch (_that) {
+case _EditStoriesState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _EditStoriesState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _EditStoriesState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  ProductData? selectProduct,  List<ProductData> products,  List<String> images,  List<String> listOfUrls,  StoriesData? story,  TextEditingController? textEditingController)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _EditStoriesState() when $default != null:
+return $default(_that.isLoading,_that.selectProduct,_that.products,_that.images,_that.listOfUrls,_that.story,_that.textEditingController);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  ProductData? selectProduct,  List<ProductData> products,  List<String> images,  List<String> listOfUrls,  StoriesData? story,  TextEditingController? textEditingController)  $default,) {final _that = this;
+switch (_that) {
+case _EditStoriesState():
+return $default(_that.isLoading,_that.selectProduct,_that.products,_that.images,_that.listOfUrls,_that.story,_that.textEditingController);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  ProductData? selectProduct,  List<ProductData> products,  List<String> images,  List<String> listOfUrls,  StoriesData? story,  TextEditingController? textEditingController)?  $default,) {final _that = this;
+switch (_that) {
+case _EditStoriesState() when $default != null:
+return $default(_that.isLoading,_that.selectProduct,_that.products,_that.images,_that.listOfUrls,_that.story,_that.textEditingController);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$EditStoriesStateImplCopyWith<$Res>
-    implements $EditStoriesStateCopyWith<$Res> {
-  factory _$$EditStoriesStateImplCopyWith(_$EditStoriesStateImpl value,
-          $Res Function(_$EditStoriesStateImpl) then) =
-      __$$EditStoriesStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {bool isLoading,
-      ProductData? selectProduct,
-      List<ProductData> products,
-      List<String> images,
-      List<String> listOfUrls,
-      StoriesData? story,
-      TextEditingController? textEditingController});
+
+
+class _EditStoriesState extends EditStoriesState {
+  const _EditStoriesState({this.isLoading = false, this.selectProduct = null, final  List<ProductData> products = const [], final  List<String> images = const [], final  List<String> listOfUrls = const [], this.story = null, this.textEditingController = null}): _products = products,_images = images,_listOfUrls = listOfUrls,super._();
+  
+
+@override@JsonKey() final  bool isLoading;
+@override@JsonKey() final  ProductData? selectProduct;
+ final  List<ProductData> _products;
+@override@JsonKey() List<ProductData> get products {
+  if (_products is EqualUnmodifiableListView) return _products;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_products);
+}
+
+ final  List<String> _images;
+@override@JsonKey() List<String> get images {
+  if (_images is EqualUnmodifiableListView) return _images;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_images);
+}
+
+ final  List<String> _listOfUrls;
+@override@JsonKey() List<String> get listOfUrls {
+  if (_listOfUrls is EqualUnmodifiableListView) return _listOfUrls;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_listOfUrls);
+}
+
+@override@JsonKey() final  StoriesData? story;
+@override@JsonKey() final  TextEditingController? textEditingController;
+
+/// Create a copy of EditStoriesState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$EditStoriesStateCopyWith<_EditStoriesState> get copyWith => __$EditStoriesStateCopyWithImpl<_EditStoriesState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EditStoriesState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.selectProduct, selectProduct) || other.selectProduct == selectProduct)&&const DeepCollectionEquality().equals(other._products, _products)&&const DeepCollectionEquality().equals(other._images, _images)&&const DeepCollectionEquality().equals(other._listOfUrls, _listOfUrls)&&(identical(other.story, story) || other.story == story)&&(identical(other.textEditingController, textEditingController) || other.textEditingController == textEditingController));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,selectProduct,const DeepCollectionEquality().hash(_products),const DeepCollectionEquality().hash(_images),const DeepCollectionEquality().hash(_listOfUrls),story,textEditingController);
+
+@override
+String toString() {
+  return 'EditStoriesState(isLoading: $isLoading, selectProduct: $selectProduct, products: $products, images: $images, listOfUrls: $listOfUrls, story: $story, textEditingController: $textEditingController)';
+}
+
+
 }
 
 /// @nodoc
-class __$$EditStoriesStateImplCopyWithImpl<$Res>
-    extends _$EditStoriesStateCopyWithImpl<$Res, _$EditStoriesStateImpl>
-    implements _$$EditStoriesStateImplCopyWith<$Res> {
-  __$$EditStoriesStateImplCopyWithImpl(_$EditStoriesStateImpl _value,
-      $Res Function(_$EditStoriesStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$EditStoriesStateCopyWith<$Res> implements $EditStoriesStateCopyWith<$Res> {
+  factory _$EditStoriesStateCopyWith(_EditStoriesState value, $Res Function(_EditStoriesState) _then) = __$EditStoriesStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isLoading, ProductData? selectProduct, List<ProductData> products, List<String> images, List<String> listOfUrls, StoriesData? story, TextEditingController? textEditingController
+});
 
-  /// Create a copy of EditStoriesState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? selectProduct = freezed,
-    Object? products = null,
-    Object? images = null,
-    Object? listOfUrls = null,
-    Object? story = freezed,
-    Object? textEditingController = freezed,
-  }) {
-    return _then(_$EditStoriesStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectProduct: freezed == selectProduct
-          ? _value.selectProduct
-          : selectProduct // ignore: cast_nullable_to_non_nullable
-              as ProductData?,
-      products: null == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductData>,
-      images: null == images
-          ? _value._images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      listOfUrls: null == listOfUrls
-          ? _value._listOfUrls
-          : listOfUrls // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      story: freezed == story
-          ? _value.story
-          : story // ignore: cast_nullable_to_non_nullable
-              as StoriesData?,
-      textEditingController: freezed == textEditingController
-          ? _value.textEditingController
-          : textEditingController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController?,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$EditStoriesStateCopyWithImpl<$Res>
+    implements _$EditStoriesStateCopyWith<$Res> {
+  __$EditStoriesStateCopyWithImpl(this._self, this._then);
 
-class _$EditStoriesStateImpl extends _EditStoriesState {
-  const _$EditStoriesStateImpl(
-      {this.isLoading = false,
-      this.selectProduct = null,
-      final List<ProductData> products = const [],
-      final List<String> images = const [],
-      final List<String> listOfUrls = const [],
-      this.story = null,
-      this.textEditingController = null})
-      : _products = products,
-        _images = images,
-        _listOfUrls = listOfUrls,
-        super._();
+  final _EditStoriesState _self;
+  final $Res Function(_EditStoriesState) _then;
 
-  @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  @JsonKey()
-  final ProductData? selectProduct;
-  final List<ProductData> _products;
-  @override
-  @JsonKey()
-  List<ProductData> get products {
-    if (_products is EqualUnmodifiableListView) return _products;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
-  }
-
-  final List<String> _images;
-  @override
-  @JsonKey()
-  List<String> get images {
-    if (_images is EqualUnmodifiableListView) return _images;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_images);
-  }
-
-  final List<String> _listOfUrls;
-  @override
-  @JsonKey()
-  List<String> get listOfUrls {
-    if (_listOfUrls is EqualUnmodifiableListView) return _listOfUrls;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_listOfUrls);
-  }
-
-  @override
-  @JsonKey()
-  final StoriesData? story;
-  @override
-  @JsonKey()
-  final TextEditingController? textEditingController;
-
-  @override
-  String toString() {
-    return 'EditStoriesState(isLoading: $isLoading, selectProduct: $selectProduct, products: $products, images: $images, listOfUrls: $listOfUrls, story: $story, textEditingController: $textEditingController)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$EditStoriesStateImpl &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.selectProduct, selectProduct) ||
-                other.selectProduct == selectProduct) &&
-            const DeepCollectionEquality().equals(other._products, _products) &&
-            const DeepCollectionEquality().equals(other._images, _images) &&
-            const DeepCollectionEquality()
-                .equals(other._listOfUrls, _listOfUrls) &&
-            (identical(other.story, story) || other.story == story) &&
-            (identical(other.textEditingController, textEditingController) ||
-                other.textEditingController == textEditingController));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      selectProduct,
-      const DeepCollectionEquality().hash(_products),
-      const DeepCollectionEquality().hash(_images),
-      const DeepCollectionEquality().hash(_listOfUrls),
-      story,
-      textEditingController);
-
-  /// Create a copy of EditStoriesState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$EditStoriesStateImplCopyWith<_$EditStoriesStateImpl> get copyWith =>
-      __$$EditStoriesStateImplCopyWithImpl<_$EditStoriesStateImpl>(
-          this, _$identity);
+/// Create a copy of EditStoriesState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? selectProduct = freezed,Object? products = null,Object? images = null,Object? listOfUrls = null,Object? story = freezed,Object? textEditingController = freezed,}) {
+  return _then(_EditStoriesState(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,selectProduct: freezed == selectProduct ? _self.selectProduct : selectProduct // ignore: cast_nullable_to_non_nullable
+as ProductData?,products: null == products ? _self._products : products // ignore: cast_nullable_to_non_nullable
+as List<ProductData>,images: null == images ? _self._images : images // ignore: cast_nullable_to_non_nullable
+as List<String>,listOfUrls: null == listOfUrls ? _self._listOfUrls : listOfUrls // ignore: cast_nullable_to_non_nullable
+as List<String>,story: freezed == story ? _self.story : story // ignore: cast_nullable_to_non_nullable
+as StoriesData?,textEditingController: freezed == textEditingController ? _self.textEditingController : textEditingController // ignore: cast_nullable_to_non_nullable
+as TextEditingController?,
+  ));
 }
 
-abstract class _EditStoriesState extends EditStoriesState {
-  const factory _EditStoriesState(
-          {final bool isLoading,
-          final ProductData? selectProduct,
-          final List<ProductData> products,
-          final List<String> images,
-          final List<String> listOfUrls,
-          final StoriesData? story,
-          final TextEditingController? textEditingController}) =
-      _$EditStoriesStateImpl;
-  const _EditStoriesState._() : super._();
 
-  @override
-  bool get isLoading;
-  @override
-  ProductData? get selectProduct;
-  @override
-  List<ProductData> get products;
-  @override
-  List<String> get images;
-  @override
-  List<String> get listOfUrls;
-  @override
-  StoriesData? get story;
-  @override
-  TextEditingController? get textEditingController;
-
-  /// Create a copy of EditStoriesState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EditStoriesStateImplCopyWith<_$EditStoriesStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

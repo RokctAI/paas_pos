@@ -72,7 +72,7 @@ class _ChartPageState extends State<ChartPage> {
     );
 
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       child: Text(
           DateFormat(widget.isDay ? "HH:00" : "MMM d")
               .format(widget.times[value.ceil()]),

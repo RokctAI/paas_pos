@@ -1,5 +1,6 @@
 import 'package:admin_desktop/src/core/constants/constants.dart';
 import 'package:admin_desktop/src/models/data/addons_data.dart';
+import 'package:admin_desktop/src/models/data/currency_data.dart';
 import 'package:admin_desktop/src/models/data/product_data.dart';
 import 'package:admin_desktop/src/presentation/components/buttons/animation_button_effect.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart' as intl;
-
 import 'package:admin_desktop/src/core/utils/utils.dart';
 import 'package:admin_desktop/src/presentation/theme/theme.dart';
 
 class CartOrderItem extends StatelessWidget {
   final ProductData? cart;
-  final String? symbol;
+  final CurrencyData? currency;
   final VoidCallback add;
   final VoidCallback remove;
   final VoidCallback delete;
@@ -30,7 +29,7 @@ class CartOrderItem extends StatelessWidget {
     required this.delete,
     this.isActive = true,
     this.isOwn = true,
-    required this.symbol,
+    required this.currency,
   });
 
   @override
@@ -111,21 +110,21 @@ class CartOrderItem extends StatelessWidget {
                                         color: AppStyle.black,
                                       ),
                                       children: [
-                                        if (cart?.stock?.extras?.isNotEmpty ??
-                                            false)
-                                          TextSpan(
-                                            text:
+                                    if (cart?.stock?.extras?.isNotEmpty ??
+                                        false)
+                                      TextSpan(
+                                        text:
                                             " (${cart?.stock?.extras?.first.value ?? ""})",
-                                            style: GoogleFonts.inter(
-                                              fontSize: 14.sp,
-                                              color: AppStyle.hint,
-                                            ),
-                                          )
-                                      ])),
+                                        style: GoogleFonts.inter(
+                                          fontSize: 14.sp,
+                                          color: AppStyle.hint,
+                                        ),
+                                      )
+                                  ])),
                               8.verticalSpace,
                               for (Addons e in (cart?.addons ?? []))
                                 Text(
-                                  "${e.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat((e.price ?? 0) / (e.quantity ?? 1), symbol: symbol)} x ${(e.quantity ?? 1)} )",
+                                  "${e.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat((e.price ?? 0) / (e.quantity ?? 1), currency: currency)} x ${(e.quantity ?? 1)} )",
                                   style: GoogleFonts.inter(
                                     fontSize: 12.sp,
                                     color: AppStyle.unselectedTab,
@@ -139,21 +138,21 @@ class CartOrderItem extends StatelessWidget {
                       4.horizontalSpace,
                       (cart?.stock?.bonus != null || (cart?.bonus ?? false))
                           ? Positioned(
-                        bottom: 4.r,
-                        right: 4.r,
-                        child: Container(
-                          width: 22.w,
-                          height: 22.h,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppStyle.blue),
-                          child: Icon(
-                            FlutterRemix.gift_2_fill,
-                            size: 14.r,
-                            color: AppStyle.white,
-                          ),
-                        ),
-                      )
+                              bottom: 4.r,
+                              right: 4.r,
+                              child: Container(
+                                width: 22.w,
+                                height: 22.h,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppStyle.blue),
+                                child: Icon(
+                                  FlutterRemix.gift_2_fill,
+                                  size: 14.r,
+                                  color: AppStyle.white,
+                                ),
+                              ),
+                            )
                           : const SizedBox.shrink(),
                     ],
                   ),
@@ -171,7 +170,7 @@ class CartOrderItem extends StatelessWidget {
                           "${(cart?.quantity ?? 1).toString()}x",
                           style: GoogleFonts.inter(
                               fontSize: 14.sp,
-                              color: AppStyle.black,
+                              color: AppStyle.buttonFontColor,
                               fontWeight: FontWeight.w700),
                         ),
                       ),
@@ -224,57 +223,56 @@ class CartOrderItem extends StatelessWidget {
                       const Spacer(),
                       !(cart?.stock?.bonus != null || (cart?.bonus ?? false))
                           ? Column(
-                        children: [
-                          Text(
-                            intl.NumberFormat.currency(
-                              symbol: symbol ??
-                                  LocalStorage.getSelectedCurrency()
-                                      .symbol,
-                            ).format((cart?.discount ?? 0) != 0
-                                ? disSumPrice
-                                : sumPrice),
-                            style: GoogleFonts.inter(
-                                fontWeight: FontWeight.w600,
-                                fontSize: (cart?.discount ?? 0) != 0
-                                    ? 12.sp
-                                    : 16.sp,
-                                color: AppStyle.black,
-                                decoration: (cart?.discount ?? 0) != 0
-                                    ? TextDecoration.lineThrough
-                                    : TextDecoration.none),
-                          ),
-                          (cart?.discount ?? 0) != 0
-                              ? Container(
-                            margin: EdgeInsets.only(top: 8.r),
-                            decoration: BoxDecoration(
-                                color: AppStyle.red,
-                                borderRadius:
-                                BorderRadius.circular(30.r)),
-                            padding: EdgeInsets.all(4.r),
-                            child: Row(
                               children: [
-                                SvgPicture.asset(
-                                    "assets/svg/discount.svg"),
-                                4.horizontalSpace,
                                 Text(
                                   AppHelpers.numberFormat(
-                                    sumPrice,
-                                    symbol: symbol,
+                                    (cart?.discount ?? 0) != 0
+                                        ? disSumPrice
+                                        : sumPrice,
+                                    currency: currency,
                                   ),
-
-                                  /// usage
-
                                   style: GoogleFonts.inter(
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 14.sp,
-                                      color: AppStyle.white),
-                                )
+                                      fontSize: (cart?.discount ?? 0) != 0
+                                          ? 12.sp
+                                          : 16.sp,
+                                      color: AppStyle.black,
+                                      decoration: (cart?.discount ?? 0) != 0
+                                          ? TextDecoration.lineThrough
+                                          : TextDecoration.none),
+                                ),
+                                (cart?.discount ?? 0) != 0
+                                    ? Container(
+                                        margin: EdgeInsets.only(top: 8.r),
+                                        decoration: BoxDecoration(
+                                            color: AppStyle.red,
+                                            borderRadius:
+                                                BorderRadius.circular(30.r)),
+                                        padding: EdgeInsets.all(4.r),
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                                "assets/svg/discount.svg"),
+                                            4.horizontalSpace,
+                                            Text(
+                                              AppHelpers.numberFormat(
+                                                sumPrice,
+                                                currency: currency,
+                                              ),
+
+                                              /// usage
+
+                                              style: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 14.sp,
+                                                  color: AppStyle.white),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    : const SizedBox.shrink()
                               ],
-                            ),
-                          )
-                              : const SizedBox.shrink()
-                        ],
-                      )
+                            )
                           : const SizedBox.shrink(),
                       16.horizontalSpace,
                     ],
@@ -297,28 +295,26 @@ class CartOrderItem extends StatelessWidget {
                 children: [
                   RichText(
                       text: TextSpan(
-                          text: cart
-                              ?.stock?.product?.translation?.title,
+                          text: cart?.stock?.product?.translation?.title,
                           style: GoogleFonts.inter(
                             fontSize: 14.sp,
                             color: AppStyle.black,
                           ),
                           children: [
-                            if (cart?.stock?.extras?.isNotEmpty ??
-                                false)
-                              TextSpan(
-                                text:
+                        if (cart?.stock?.extras?.isNotEmpty ?? false)
+                          TextSpan(
+                            text:
                                 " (${cart?.stock?.extras?.first.value ?? ""})",
-                                style: GoogleFonts.inter(
-                                  fontSize: 14.sp,
-                                  color: AppStyle.hint,
-                                ),
-                              )
-                          ])),
+                            style: GoogleFonts.inter(
+                              fontSize: 14.sp,
+                              color: AppStyle.hint,
+                            ),
+                          )
+                      ])),
                   8.verticalSpace,
                   for (Addons e in (cart?.addons ?? []))
                     Text(
-                      "${e.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat((e.price ?? 0) / (e.quantity ?? 1), symbol: symbol)} x ${(e.quantity ?? 1)} )",
+                      "${e.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat((e.price ?? 0) / (e.quantity ?? 1), currency: currency)} x ${(e.quantity ?? 1)} )",
                       style: GoogleFonts.inter(
                         fontSize: 13.sp,
                         color: AppStyle.black,
@@ -330,9 +326,8 @@ class CartOrderItem extends StatelessWidget {
                       Expanded(
                         child: Text(
                           "${AppHelpers.numberFormat(
-                            (cart?.stock?.price ?? 0) /
-                                (cart?.quantity ?? 1),
-                            symbol: symbol,
+                            (cart?.stock?.price ?? 0) / (cart?.quantity ?? 1),
+                            currency: currency,
                           )} X ${cart?.quantity ?? 1}",
                           style: GoogleFonts.inter(
                             fontSize: 14.sp,

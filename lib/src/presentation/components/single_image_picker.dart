@@ -49,11 +49,12 @@ class SingleImagePicker extends StatelessWidget {
             ? ButtonEffectAnimation(
           onTap: () async => AppHelpers.getPhotoGallery(onImageChange),
           child: DottedBorder(
-            dashPattern: const [8],
-            color: AppStyle.primary,
-            strokeWidth: 2.6,
-            borderType: BorderType.RRect,
-            radius: Radius.circular(14.r),
+            options: RectDottedBorderOptions(
+              dashPattern: const [8],
+              color: AppStyle.primary,
+              strokeWidth: 2.6,
+            ),
+
             child: Center(
               child: Icon(
                 FlutterRemix.upload_cloud_2_line,

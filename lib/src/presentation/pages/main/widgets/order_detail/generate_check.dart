@@ -33,7 +33,9 @@ class _GenerateCheckPageState extends State<GenerateCheckPage> {
         (widget.orderData?.totalDiscount ?? 0));
     return Container(
       decoration: BoxDecoration(
-          color: AppStyle.white, borderRadius: BorderRadius.circular(10.r)),
+        color: AppStyle.white,
+        borderRadius: BorderRadius.circular(10.r),
+      ),
       padding: EdgeInsets.all(16.r),
       child: SingleChildScrollView(
         child: Column(
@@ -129,6 +131,7 @@ class _GenerateCheckPageState extends State<GenerateCheckPage> {
                 shrinkWrap: true,
                 itemCount: widget.orderData?.details?.length ?? 0,
                 itemBuilder: (context, index) {
+                  final detail = widget.orderData?.details?[index];
                   return Padding(
                     padding: EdgeInsets.only(bottom: 16.r),
                     child: Column(
@@ -141,23 +144,41 @@ class _GenerateCheckPageState extends State<GenerateCheckPage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "${widget.orderData?.details?[index].stock?.product?.translation?.title ?? ""} x ${widget.orderData?.details?[index].quantity ?? ""}",
-                                    style: GoogleFonts.inter(
-                                        fontWeight: FontWeight.w600,
+                                  RichText(
+                                    text: TextSpan(
+                                      text: detail
+                                          ?.stock?.product?.translation?.title,
+                                      style: GoogleFonts.inter(
                                         fontSize: 14.sp,
-                                        color: AppStyle.black),
+                                        color: AppStyle.black,
+                                      ),
+                                      children: [
+                                        if (detail?.stock?.extras?.isNotEmpty ??
+                                            false)
+                                          ...?detail?.stock?.extras
+                                              ?.map((e) => TextSpan(
+                                                    text: " (${e.value ?? ""})",
+                                                    style: GoogleFonts.inter(
+                                                      fontSize: 14.sp,
+                                                      color: AppStyle.black,
+                                                    ),
+                                                  )),
+                                        TextSpan(
+                                            text:
+                                                " x ${widget.orderData?.details?[index].quantity ?? ""}",
+                                            style: GoogleFonts.inter(
+                                              fontSize: 14.sp,
+                                              color: AppStyle.black,
+                                            )),
+                                      ],
+                                    ),
                                   ),
                                   6.verticalSpace,
-                                  for (Addons e in (widget
-                                          .orderData?.details?[index].addons ??
-                                      []))
+                                  for (Addons e in (detail?.addons ?? []))
                                     Text(
                                       "${e.stocks?.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat(
                                         (e.price ?? 0) / (e.quantity ?? 1),
-                                        symbol: widget
-                                                .orderData?.currency?.symbol ??
-                                            "",
+                                        currency: widget.orderData?.currency,
                                       )} x ${(e.quantity ?? 1)} )",
                                       style: GoogleFonts.inter(
                                         fontSize: 14.sp,
@@ -167,11 +188,11 @@ class _GenerateCheckPageState extends State<GenerateCheckPage> {
                                 ],
                               ),
                             ),
+                            4.horizontalSpace,
                             Text(
                               AppHelpers.numberFormat(
-                                widget.orderData?.details?[index].totalPrice ??
-                                    0,
-                                symbol: widget.orderData?.currency?.symbol,
+                                detail?.totalPrice,
+                                currency: widget.orderData?.currency,
                               ),
                               style: GoogleFonts.inter(
                                   fontWeight: FontWeight.w500,

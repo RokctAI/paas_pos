@@ -5,11 +5,10 @@ import 'dart:developer';
 
 import 'package:admin_desktop/src/models/data/addons_data.dart';
 import 'package:admin_desktop/src/presentation/pages/main/widgets/order_detail/printer/bluetooth_printer.dart';
-import 'package:admin_desktop/src/printer/printer_help.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_esc_pos_utils/flutter_esc_pos_utils.dart';
+import 'package:flutter_pos_printer_platform_image_3/flutter_pos_printer_platform_image_3.dart';
 import 'dart:io';
-
 import 'package:intl/intl.dart';
 
 import 'package:admin_desktop/src/core/constants/constants.dart';
@@ -220,19 +219,20 @@ class _PrintPageState extends State<PrintPage> {
     for (int index = 0;
         index < (widget.orderData?.details?.length ?? 0);
         index++) {
+      final detail = widget.orderData?.details?[index];
       bytes += generator.setStyles(const PosStyles(align: PosAlign.center));
       bytes += generator.row([
         PosColumn(
           width: 8,
           text:
-              "$customSpace${widget.orderData?.details?[index].stock?.product?.translation?.title ?? ""} x ${widget.orderData?.details?[index].quantity ?? ""}",
+              "$customSpace${detail?.stock?.product?.translation?.title ?? ""} ${(detail?.stock?.extras?.isNotEmpty ?? false) ? "(${detail?.stock?.extras?.map((e) => e.value ?? '')})" : ''} x ${detail?.quantity ?? ""}",
           styles: const PosStyles(align: PosAlign.left, bold: true),
         ),
         PosColumn(
           width: 4,
           text: AppHelpers.numberFormat(
-            widget.orderData?.details?[index].totalPrice ?? 0,
-            symbol: widget.orderData?.currency?.symbol,
+            detail?.totalPrice ?? 0,
+            currency: widget.orderData?.currency,
           ),
           styles: const PosStyles(align: PosAlign.right, bold: true),
         ),
@@ -247,7 +247,7 @@ class _PrintPageState extends State<PrintPage> {
             text:
                 "$customSpace${addons.stocks?.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat(
               (addons.price ?? 0) / (addons.quantity ?? 1),
-              symbol: widget.orderData?.currency?.symbol ?? "",
+              currency: widget.orderData?.currency,
             )} x ${(addons.quantity ?? 1)} )",
             styles: const PosStyles(align: PosAlign.left),
           ),
@@ -378,7 +378,6 @@ class _PrintPageState extends State<PrintPage> {
             model: TcpPrinterInput(ipAddress: bluetoothPrinter.address!));
         if (!connectedTCP) debugPrint(' --- please review your connection ---');
         break;
-      default:
     }
     if (bluetoothPrinter.typePrinter == PrinterType.bluetooth &&
         Platform.isAndroid) {

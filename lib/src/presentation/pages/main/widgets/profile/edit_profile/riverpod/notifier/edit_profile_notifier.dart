@@ -43,10 +43,10 @@ class EditProfileNotifier extends StateNotifier<EditProfileState> {
     }
   }
 
-  changeIndex(int index) {
+  void changeIndex(int index) {
     state = state.copyWith(selectIndex: index);
   }
-  setShopEdit(int isShopEdit) {
+  void setShopEdit(int isShopEdit) {
     state = state.copyWith(isShopEdit: isShopEdit);
   }
   void setShowPassword(bool show) {

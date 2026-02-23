@@ -124,7 +124,7 @@ class OrderStatusScreen extends StatelessWidget {
                           duration: const Duration(milliseconds: 500),
                           height: 6.h,
                           width: 12.w,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: AppStyle.primary,
                           ),
                         ),
@@ -142,7 +142,7 @@ class OrderStatusScreen extends StatelessWidget {
                           duration: const Duration(milliseconds: 500),
                           height: 6.r,
                           width: 12.r,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: AppStyle.primary,
                           ),
                         ),
@@ -159,7 +159,7 @@ class OrderStatusScreen extends StatelessWidget {
                           duration: const Duration(milliseconds: 500),
                           height: 6.r,
                           width: 12.r,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: AppStyle.primary,
                           ),
                         ),

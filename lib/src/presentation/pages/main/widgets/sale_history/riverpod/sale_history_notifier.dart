@@ -15,12 +15,12 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
   SaleHistoryNotifier(this._settingsRepository)
       : super(const SaleHistoryState());
 
-  changeIndex(int index) {
+  void changeIndex(int index) {
     state = state.copyWith(selectIndex: index, hasMore: false);
     fetchSale();
   }
 
-  fetchSaleCarts() async {
+  Future<void> fetchSaleCarts() async {
     final response = await _settingsRepository.getSaleCart();
     response.when(
       success: (data) async {
@@ -30,7 +30,7 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
     );
   }
 
-  fetchSale() async {
+  Future<void> fetchSale() async {
     final response =
         await _settingsRepository.getSaleHistory(state.selectIndex, 1);
     state = state.copyWith(

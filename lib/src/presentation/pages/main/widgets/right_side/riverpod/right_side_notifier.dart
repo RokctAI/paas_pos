@@ -30,10 +30,11 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     );
   }
 
-  setCalculate(String item) {
+  void setCalculate(String item) {
     if (item == "-1" && state.calculate.isNotEmpty) {
       state = state.copyWith(
-          calculate: state.calculate.substring(0, state.calculate.length - 1));
+        calculate: state.calculate.substring(0, state.calculate.length - 1),
+      );
       return;
     } else if (state.calculate.length > 25) {
       return;
@@ -71,10 +72,7 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     );
   }
 
-  Future<void> checkPromoCode(
-      BuildContext context,
-      String? promoCode,
-      ) async {
+  Future<void> checkPromoCode(BuildContext context, String? promoCode) async {
     final connected = await AppConnectivity.connectivity();
     if (connected) {
       state = state.copyWith(isPromoCodeLoading: true, isActive: false);
@@ -90,31 +88,31 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
           state = state.copyWith(isPromoCodeLoading: false, isActive: true);
         },
         failure: (failure) {
-          state = state.copyWith(
-            isPromoCodeLoading: false,
-            isActive: false,
-          );
+          state = state.copyWith(isPromoCodeLoading: false, isActive: false);
         },
       );
     } else {
       if (context.mounted) {
         AppHelpers.showSnackBar(
-            context, AppHelpers.getTranslation(TrKeys.noInternetConnection));
+          context,
+          AppHelpers.getTranslation(TrKeys.noInternetConnection),
+        );
       }
     }
   }
 
   void addANewBag() {
     List<BagData> newBags = List.from(state.bags);
-    newBags.add(BagData(
+    newBags.add(
+      BagData(
         index: newBags.length,
         bagProducts: [],
         selectedPayment: state.payments
-            .where(
-              (element) => element.tag == 'cash',
-        )
+            .where((element) => element.tag == 'cash')
             .first,
-        selectedCurrency: LocalStorage.getSelectedCurrency()));
+        selectedCurrency: LocalStorage.getSelectedCurrency(),
+      ),
+    );
     LocalStorage.setBags(newBags);
     state = state.copyWith(bags: newBags);
   }
@@ -124,6 +122,7 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
       selectedBagIndex: index,
       selectedUser: state.bags[index].selectedUser,
     );
+    fetchCarts();
   }
 
   void removeBag(int index) {
@@ -131,12 +130,14 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     List<BagData> newBags = [];
     bags.removeAt(index);
     for (int i = 0; i < bags.length; i++) {
-      newBags.add(BagData(index: i, bagProducts: bags[i].bagProducts));
+      newBags.add(bags[i].copyWith(index: i));
     }
     LocalStorage.setBags(newBags);
-    final int selectedIndex =
-    state.selectedBagIndex == index ? 0 : state.selectedBagIndex;
+    final int selectedIndex = state.selectedBagIndex == index
+        ? 0
+        : state.selectedBagIndex;
     state = state.copyWith(bags: newBags, selectedBagIndex: selectedIndex);
+    fetchCarts();
   }
 
   void removeOrderedBag(BuildContext context) {
@@ -153,15 +154,16 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     }
     LocalStorage.setBags(newBags);
     state = state.copyWith(
-        bags: newBags,
-        selectedBagIndex: 0,
-        selectedUser: null,
-        selectedAddress: null,
-        selectedCurrency: null,
-        selectedPayment: null,
-        orderType: LocalStorage.getUser()?.role == 'waiter'
-            ? TrKeys.dine
-            : TrKeys.pickup);
+      bags: newBags,
+      selectedBagIndex: 0,
+      selectedUser: null,
+      selectedAddress: null,
+      selectedCurrency: null,
+      selectedPayment: null,
+      orderType: LocalStorage.getUser()?.role == 'waiter'
+          ? TrKeys.dine
+          : TrKeys.pickup,
+    );
     setInitialBagData(context, newBags[0]);
   }
 
@@ -174,7 +176,8 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
         users: [],
       );
       final response = await usersRepository.searchUsers(
-          query: state.usersQuery.isEmpty ? null : state.usersQuery);
+        query: state.usersQuery.isEmpty ? null : state.usersQuery,
+      );
       response.when(
         success: (data) async {
           final List<UserData> users = data.users ?? [];
@@ -208,7 +211,8 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     if (connected) {
       state = state.copyWith(isSectionLoading: true, sections: []);
       final response = await tableRepository.getSection(
-          query: state.sectionQuery.isEmpty ? null : state.sectionQuery);
+        query: state.sectionQuery.isEmpty ? null : state.sectionQuery,
+      );
       response.when(
         success: (data) async {
           state = state.copyWith(
@@ -231,9 +235,10 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     if (connected) {
       state = state.copyWith(isTableLoading: true, tables: []);
       final response = await tableRepository.getTables(
-          query: state.tableQuery.isEmpty ? null : state.tableQuery,
-          type: TrKeys.available,
-          shopSectionId: state.selectedSection?.id);
+        query: state.tableQuery.isEmpty ? null : state.tableQuery,
+        type: TrKeys.available,
+        shopSectionId: state.selectedSection?.id,
+      );
       response.when(
         success: (data) async {
           state = state.copyWith(
@@ -263,20 +268,17 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     if (_searchUsersTimer?.isActive ?? false) {
       _searchUsersTimer?.cancel();
     }
-    _searchUsersTimer = Timer(
-      const Duration(milliseconds: 500),
-          () {
-        state = state.copyWith(users: [], dropdownUsers: []);
-        fetchUsers(
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
-              context,
-              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-            );
-          },
-        );
-      },
-    );
+    _searchUsersTimer = Timer(const Duration(milliseconds: 500), () {
+      state = state.copyWith(users: [], dropdownUsers: []);
+      fetchUsers(
+        checkYourNetwork: () {
+          AppHelpers.showSnackBar(
+            context,
+            AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+          );
+        },
+      );
+    });
   }
 
   void setSectionQuery(BuildContext context, String query) {
@@ -285,20 +287,17 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     if (_searchSectionTimer?.isActive ?? false) {
       _searchSectionTimer?.cancel();
     }
-    _searchSectionTimer = Timer(
-      const Duration(milliseconds: 500),
-          () {
-        state = state.copyWith(sections: []);
-        fetchSections(
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
-              context,
-              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-            );
-          },
-        );
-      },
-    );
+    _searchSectionTimer = Timer(const Duration(milliseconds: 500), () {
+      state = state.copyWith(sections: []);
+      fetchSections(
+        checkYourNetwork: () {
+          AppHelpers.showSnackBar(
+            context,
+            AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+          );
+        },
+      );
+    });
   }
 
   void setTableQuery(BuildContext context, String query) {
@@ -307,20 +306,17 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     if (_searchTableTimer?.isActive ?? false) {
       _searchTableTimer?.cancel();
     }
-    _searchTableTimer = Timer(
-      const Duration(milliseconds: 500),
-          () {
-        state = state.copyWith(sections: []);
-        fetchTables(
-          checkYourNetwork: () {
-            AppHelpers.showSnackBar(
-              context,
-              AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
-            );
-          },
-        );
-      },
-    );
+    _searchTableTimer = Timer(const Duration(milliseconds: 500), () {
+      state = state.copyWith(sections: []);
+      fetchTables(
+        checkYourNetwork: () {
+          AppHelpers.showSnackBar(
+            context,
+            AppHelpers.getTranslation(TrKeys.checkYourNetworkConnection),
+          );
+        },
+      );
+    });
   }
 
   void setSelectedUser(BuildContext context, int index) {
@@ -375,8 +371,10 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
 
   void removeSelectedUser() {
     final List<BagData> bags = List.from(LocalStorage.getBags());
-    final BagData bag = bags[state.selectedBagIndex]
-        .copyWith(selectedUser: null, selectedAddress: null);
+    final BagData bag = bags[state.selectedBagIndex].copyWith(
+      selectedUser: null,
+      selectedAddress: null,
+    );
     bags[state.selectedBagIndex] = bag;
     LocalStorage.setBags(bags);
     state = state.copyWith(bags: bags, selectedUser: null);
@@ -384,8 +382,9 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
 
   void removeSelectedSection() {
     final List<BagData> bags = List.from(LocalStorage.getBags());
-    final BagData bag =
-    bags[state.selectedBagIndex].copyWith(selectedSection: null);
+    final BagData bag = bags[state.selectedBagIndex].copyWith(
+      selectedSection: null,
+    );
     bags[state.selectedBagIndex] = bag;
     LocalStorage.setBags(bags);
     state = state.copyWith(bags: bags, selectedSection: null);
@@ -393,8 +392,9 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
 
   void removeSelectedTable() {
     final List<BagData> bags = List.from(LocalStorage.getBags());
-    final BagData bag =
-    bags[state.selectedBagIndex].copyWith(selectedTable: null);
+    final BagData bag = bags[state.selectedBagIndex].copyWith(
+      selectedTable: null,
+    );
     bags[state.selectedBagIndex] = bag;
     LocalStorage.setBags(bags);
     state = state.copyWith(bags: bags, selectedTable: null);
@@ -404,8 +404,9 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     final connected = await AppConnectivity.connectivity();
     if (connected) {
       state = state.copyWith(isUserDetailsLoading: true);
-      final response =
-      await usersRepository.getUserDetails(state.selectedUser?.uuid ?? '');
+      final response = await usersRepository.getUserDetails(
+        state.selectedUser?.uuid ?? '',
+      );
       response.when(
         success: (data) async {
           state = state.copyWith(
@@ -427,8 +428,10 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     PaymentData? selectedPayment = state.selectedPayment;
     if (state.selectedPayment?.tag != 'cash') {
       final List<PaymentData> payments = List.from(state.payments);
-      selectedPayment = payments.firstWhere((e) => e.tag == 'cash',
-          orElse: () => PaymentData());
+      selectedPayment = payments.firstWhere(
+        (e) => e.tag == 'cash',
+        orElse: () => PaymentData(),
+      );
     }
     state = state.copyWith(
       orderType: type ?? state.orderType,
@@ -446,8 +449,10 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     final List<BagData> bags = List.from(LocalStorage.getBags());
 
     final user = bags[state.selectedBagIndex].selectedUser;
-    final BagData bag = bags[state.selectedBagIndex]
-        .copyWith(selectedAddress: address, selectedUser: user);
+    final BagData bag = bags[state.selectedBagIndex].copyWith(
+      selectedAddress: address,
+      selectedUser: user,
+    );
     bags[state.selectedBagIndex] = bag;
     LocalStorage.setBags(bags);
     state = state.copyWith(bags: bags, selectedAddress: address);
@@ -455,15 +460,16 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
 
   void setInitialBagData(BuildContext context, BagData bag) {
     state = state.copyWith(
-        selectedAddress: bag.selectedAddress,
-        selectedUser: bag.selectedUser,
-        selectedCurrency: bag.selectedCurrency,
-        selectedPayment: bag.selectedPayment,
-        orderType: state.orderType.isEmpty
-            ? LocalStorage.getUser()?.role == 'waiter'
-            ? TrKeys.dine
-            : TrKeys.pickup
-            : state.orderType);
+      selectedAddress: bag.selectedAddress,
+      selectedUser: bag.selectedUser,
+      selectedCurrency: bag.selectedCurrency,
+      selectedPayment: bag.selectedPayment,
+      orderType: state.orderType.isEmpty
+          ? LocalStorage.getUser()?.role == 'waiter'
+                ? TrKeys.dine
+                : TrKeys.pickup
+          : state.orderType,
+    );
     if (bag.selectedUser != null) {
       fetchUserDetails(
         checkYourNetwork: () {
@@ -583,15 +589,15 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     state = state.copyWith(bags: bags, selectedPayment: paymentData);
   }
 
-  Future<void> fetchCarts(
-      {VoidCallback? checkYourNetwork, bool isNotLoading = false}) async {
+  Future<void> fetchCarts({
+    VoidCallback? checkYourNetwork,
+    bool isNotLoading = false,
+  }) async {
     final connected = await AppConnectivity.connectivity();
 
     if (connected) {
       if (isNotLoading) {
-        state = state.copyWith(
-          isButtonLoading: true,
-        );
+        state = state.copyWith(isButtonLoading: true);
       } else {
         state = state.copyWith(
           isProductCalculateLoading: true,
@@ -604,8 +610,10 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
           LocalStorage.getBags()[state.selectedBagIndex].bagProducts ?? [];
       if (bagProducts.isNotEmpty) {
         final response = await productsRepository.getAllCalculations(
-            bagProducts, state.orderType,
-            coupon: state.coupon);
+          bagProducts,
+          state.orderType,
+          coupon: state.coupon,
+        );
         response.when(
           success: (data) async {
             state = state.copyWith(
@@ -644,14 +652,16 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     var newPagination = state.paginateResponse?.copyWith(stocks: []);
     state = state.copyWith(paginateResponse: newPagination);
     List<BagData> bags = List.from(LocalStorage.getBags());
-    bags[state.selectedBagIndex] =
-        bags[state.selectedBagIndex].copyWith(bagProducts: []);
+    bags[state.selectedBagIndex] = bags[state.selectedBagIndex].copyWith(
+      bagProducts: [],
+    );
     LocalStorage.setBags(bags);
   }
 
   void deleteProductFromBag(BuildContext context, BagProductData bagProduct) {
     final List<BagProductData> bagProducts = List.from(
-        LocalStorage.getBags()[state.selectedBagIndex].bagProducts ?? []);
+      LocalStorage.getBags()[state.selectedBagIndex].bagProducts ?? [],
+    );
     int index = 0;
     for (int i = 0; i < bagProducts.length; i++) {
       if (bagProducts[i].stockId == bagProduct.stockId) {
@@ -661,8 +671,9 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     }
     bagProducts.removeAt(index);
     List<BagData> bags = List.from(LocalStorage.getBags());
-    bags[state.selectedBagIndex] =
-        bags[state.selectedBagIndex].copyWith(bagProducts: bagProducts);
+    bags[state.selectedBagIndex] = bags[state.selectedBagIndex].copyWith(
+      bagProducts: bagProducts,
+    );
     LocalStorage.setBags(bags);
     fetchCarts(
       checkYourNetwork: () {
@@ -688,8 +699,9 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     bagProducts.removeAt(productIndex);
 
     List<BagData> bags = List.from(LocalStorage.getBags());
-    bags[state.selectedBagIndex] =
-        bags[state.selectedBagIndex].copyWith(bagProducts: bagProducts);
+    bags[state.selectedBagIndex] = bags[state.selectedBagIndex].copyWith(
+      bagProducts: bagProducts,
+    );
     LocalStorage.setBags(bags);
 
     fetchCarts(isNotLoading: true);
@@ -703,7 +715,7 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
       ProductData? newProduct = product?.copyWith(
         quantity: ((product.quantity ?? 0) - 1),
       );
-      if(newProduct?.quantity == 0){
+      if (newProduct?.quantity == 0) {
         clearBag();
       }
       List<ProductData>? listOfProduct = state.paginateResponse?.stocks;
@@ -714,8 +726,9 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
       state = state.copyWith(paginateResponse: newData);
       final List<BagProductData> bagProducts =
           LocalStorage.getBags()[state.selectedBagIndex].bagProducts ?? [];
-      BagProductData newProductData = bagProducts[productIndex]
-          .copyWith(quantity: (bagProducts[productIndex].quantity ?? 0) - 1);
+      BagProductData newProductData = bagProducts[productIndex].copyWith(
+        quantity: (bagProducts[productIndex].quantity ?? 0) - 1,
+      );
       bagProducts.removeAt(productIndex);
       bagProducts.insert(productIndex, newProductData);
 
@@ -743,8 +756,9 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
       // }
 
       List<BagData> bags = List.from(LocalStorage.getBags());
-      bags[state.selectedBagIndex] =
-          bags[state.selectedBagIndex].copyWith(bagProducts: bagProducts);
+      bags[state.selectedBagIndex] = bags[state.selectedBagIndex].copyWith(
+        bagProducts: bagProducts,
+      );
       LocalStorage.setBags(bags);
     } else {
       List<ProductData>? listOfProduct = state.paginateResponse?.stocks;
@@ -759,8 +773,10 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
           bagProducts.removeAt(i);
           if (bagProducts.isNotEmpty) {
             final response = await productsRepository.getAllCalculations(
-                bagProducts, state.orderType,
-                coupon: state.coupon);
+              bagProducts,
+              state.orderType,
+              coupon: state.coupon,
+            );
 
             response.when(
               success: (data) {},
@@ -776,13 +792,14 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
       }
 
       List<BagData> bags = List.from(LocalStorage.getBags());
-      bags[state.selectedBagIndex] =
-          bags[state.selectedBagIndex].copyWith(bagProducts: bagProducts);
+      bags[state.selectedBagIndex] = bags[state.selectedBagIndex].copyWith(
+        bagProducts: bagProducts,
+      );
       LocalStorage.setBags(bags);
     }
     timer = Timer(
       const Duration(milliseconds: 500),
-          () => fetchCarts(isNotLoading: true),
+      () => fetchCarts(isNotLoading: true),
     );
   }
 
@@ -801,11 +818,11 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     final List<BagProductData> bagProducts =
         LocalStorage.getBags()[state.selectedBagIndex].bagProducts ?? [];
 
-    BagProductData newProductData = bagProducts[productIndex]
-        .copyWith(quantity: (bagProducts[productIndex].quantity ?? 0) + 1);
+    BagProductData newProductData = bagProducts[productIndex].copyWith(
+      quantity: (bagProducts[productIndex].quantity ?? 0) + 1,
+    );
     bagProducts.removeAt(productIndex);
     bagProducts.insert(productIndex, newProductData);
-
 
     // for (int i = 0; i < bagProducts.length; i++) {
     //   if (bagProducts[i].stockId == product?.stock?.id &&
@@ -831,12 +848,13 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     // }
 
     List<BagData> bags = List.from(LocalStorage.getBags());
-    bags[state.selectedBagIndex] =
-        bags[state.selectedBagIndex].copyWith(bagProducts: bagProducts);
+    bags[state.selectedBagIndex] = bags[state.selectedBagIndex].copyWith(
+      bagProducts: bagProducts,
+    );
     LocalStorage.setBags(bags);
     timer = Timer(
       const Duration(milliseconds: 500),
-          () => fetchCarts(isNotLoading: true),
+      () => fetchCarts(isNotLoading: true),
     );
   }
 
@@ -880,7 +898,8 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
       if (state.orderType == TrKeys.delivery) {
         if (state.selectedUser?.phone?.isEmpty ?? true) {
           state = state.copyWith(
-              selectedUser: state.selectedUser?.copyWith(phone: _phone));
+            selectedUser: state.selectedUser?.copyWith(phone: _phone),
+          );
         }
       }
       if (active) {
@@ -891,12 +910,15 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     }
   }
 
-  setNote(String note) {
+  void setNote(String note) {
     state = state.copyWith(comment: note);
   }
 
-  Future createOrder(BuildContext context, OrderBodyData data,
-      {VoidCallback? onSuccess}) async {
+  Future createOrder(
+    BuildContext context,
+    OrderBodyData data, {
+    VoidCallback? onSuccess,
+  }) async {
     final connected = await AppConnectivity.connectivity();
     if (connected) {
       state = state.copyWith(isOrderLoading: true);
@@ -905,7 +927,9 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
           wallet < (state.paginateResponse?.totalPrice ?? 0)) {
         if (context.mounted) {
           AppHelpers.showSnackBar(
-              context, AppHelpers.getTranslation(TrKeys.notEnoughMoney));
+            context,
+            AppHelpers.getTranslation(TrKeys.notEnoughMoney),
+          );
         }
 
         state = state.copyWith(isOrderLoading: false);
@@ -920,18 +944,21 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
           switch (data.bagData.selectedPayment?.tag) {
             case 'cash':
               paymentsRepository.createTransaction(
-                  orderId: res.data?.id ?? 0,
-                  paymentId: data.bagData.selectedPayment?.id ?? 0);
+                orderId: res.data?.id ?? 0,
+                paymentId: data.bagData.selectedPayment?.id ?? 0,
+              );
               break;
             case 'wallet':
               paymentsRepository.createTransaction(
-                  orderId: res.data?.id ?? 0,
-                  paymentId: data.bagData.selectedPayment?.id ?? 0);
+                orderId: res.data?.id ?? 0,
+                paymentId: data.bagData.selectedPayment?.id ?? 0,
+              );
               break;
             default:
               paymentsRepository.createTransaction(
-                  orderId: res.data?.id ?? 0,
-                  paymentId: data.bagData.selectedPayment?.id ?? 0);
+                orderId: res.data?.id ?? 0,
+                paymentId: data.bagData.selectedPayment?.id ?? 0,
+              );
               break;
           }
         },
@@ -945,9 +972,10 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
     } else {
       if (context.mounted) {
         AppHelpers.showSnackBar(
-            context, AppHelpers.getTranslation(TrKeys.noInternetConnection));
+          context,
+          AppHelpers.getTranslation(TrKeys.noInternetConnection),
+        );
       }
     }
   }
 }
-

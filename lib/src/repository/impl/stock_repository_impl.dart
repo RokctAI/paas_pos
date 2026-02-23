@@ -34,9 +34,6 @@ class StockRepositoryImpl implements StockRepository {
         case ProductStatus.unpublished:
           statusText = 'unpublished';
           break;
-        default:
-          statusText = 'published';
-          break;
       }
     }
 

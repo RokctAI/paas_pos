@@ -204,17 +204,6 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
               .fetchCanceledOrders(isRefresh: true);
         };
         break;
-
-      default:
-        list = [];
-        header = '';
-        hasMore = false;
-        onViewMore = () {};
-        itemColor = AppStyle.transparent;
-        count = "0";
-        isLoading = false;
-        onRefresh = () {};
-        break;
     }
 
     return DragAndDropList(

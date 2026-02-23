@@ -25,7 +25,7 @@ class SuccessfullDialog extends StatelessWidget {
           Container(
             height: 68.h,
             width: 68.w,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 color: AppStyle.primary, shape: BoxShape.circle),
             child: const Center(
                 child: Icon(

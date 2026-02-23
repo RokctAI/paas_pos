@@ -32,7 +32,8 @@ class UserInformation extends StatelessWidget {
     subTotal = (order?.totalPrice ?? 0) -
         (order?.tax ?? 0) -
         (order?.deliveryFee ?? 0) +
-        (order?.totalDiscount ?? 0)+ (order?.couponPrice ?? 0);
+        (order?.totalDiscount ?? 0) +
+        (order?.couponPrice ?? 0);
     return Container(
       decoration: BoxDecoration(
         color: AppStyle.white,
@@ -101,8 +102,8 @@ class UserInformation extends StatelessWidget {
               children: [
                 Text(
                   AppHelpers.getTranslation(TrKeys.deliveryAddress),
-                  style: GoogleFonts.inter(
-                      fontSize: 16.sp, color: AppStyle.icon),
+                  style:
+                      GoogleFonts.inter(fontSize: 16.sp, color: AppStyle.icon),
                 ),
                 12.verticalSpace,
                 Text(
@@ -120,8 +121,8 @@ class UserInformation extends StatelessWidget {
               children: [
                 Text(
                   AppHelpers.getTranslation(TrKeys.phoneNumber),
-                  style: GoogleFonts.inter(
-                      fontSize: 16.sp, color: AppStyle.icon),
+                  style:
+                      GoogleFonts.inter(fontSize: 16.sp, color: AppStyle.icon),
                 ),
                 12.verticalSpace,
                 Text(
@@ -138,8 +139,8 @@ class UserInformation extends StatelessWidget {
               children: [
                 Text(
                   AppHelpers.getTranslation(TrKeys.tableName),
-                  style: GoogleFonts.inter(
-                      fontSize: 16.sp, color: AppStyle.icon),
+                  style:
+                      GoogleFonts.inter(fontSize: 16.sp, color: AppStyle.icon),
                 ),
                 12.verticalSpace,
                 Text(
@@ -186,7 +187,7 @@ class UserInformation extends StatelessWidget {
             Text(
               AppHelpers.numberFormat(
                 subTotal,
-                symbol: order?.currency?.symbol,
+                currency: order?.currency,
               ),
               style: GoogleFonts.inter(
                 color: AppStyle.black,
@@ -213,7 +214,7 @@ class UserInformation extends StatelessWidget {
             Text(
               AppHelpers.numberFormat(
                 order?.tax ?? 0,
-                symbol: order?.currency?.symbol,
+                currency: order?.currency,
               ),
               style: GoogleFonts.inter(
                 color: AppStyle.black,
@@ -240,7 +241,7 @@ class UserInformation extends StatelessWidget {
             Text(
               AppHelpers.numberFormat(
                 order?.deliveryFee ?? 0,
-                symbol: order?.currency?.symbol,
+                currency: order?.currency,
               ),
               style: GoogleFonts.inter(
                 color: AppStyle.black,
@@ -267,7 +268,7 @@ class UserInformation extends StatelessWidget {
             Text(
               "-${AppHelpers.numberFormat(
                 order?.totalDiscount ?? 0,
-                symbol: order?.currency?.symbol,
+                currency: order?.currency,
               )}",
               style: GoogleFonts.inter(
                 color: AppStyle.red,
@@ -277,7 +278,8 @@ class UserInformation extends StatelessWidget {
               ),
             ),
           ],
-        ),  20.verticalSpace,
+        ),
+        20.verticalSpace,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -293,7 +295,7 @@ class UserInformation extends StatelessWidget {
             Text(
               "-${AppHelpers.numberFormat(
                 order?.couponPrice ?? 0,
-                symbol: order?.currency?.symbol,
+                currency: order?.currency,
               )}",
               style: GoogleFonts.inter(
                 color: AppStyle.red,
@@ -320,7 +322,7 @@ class UserInformation extends StatelessWidget {
             Text(
               AppHelpers.numberFormat(
                 order?.totalPrice ?? 0,
-                symbol: order?.currency?.symbol,
+                currency: order?.currency,
               ),
               style: GoogleFonts.inter(
                 color: AppStyle.black,

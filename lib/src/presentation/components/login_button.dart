@@ -9,8 +9,8 @@ class LoginButton extends StatelessWidget {
   final String title;
   final bool isLoading;
   final bool isActive;
-  final Color bgColor;
-  final Color titleColor;
+  final Color? bgColor;
+  final Color? titleColor;
   final Function()? onPressed;
 
   const LoginButton({
@@ -19,8 +19,8 @@ class LoginButton extends StatelessWidget {
     required this.onPressed,
     this.isLoading = false,
     this.isActive = true,
-    this.bgColor = AppStyle.primary,
-    this.titleColor = AppStyle.white,
+    this.bgColor,
+    this.titleColor,
   });
 
   @override
@@ -28,7 +28,7 @@ class LoginButton extends StatelessWidget {
     return AnimationButtonEffect(
       child: Material(
         borderRadius: BorderRadius.circular(8.r),
-        color: isActive ? bgColor : AppStyle.selectedItemsText,
+        color: isActive ? (bgColor ?? AppStyle.primary) : AppStyle.selectedItemsText,
         child: InkWell(
           onTap: onPressed,
           borderRadius: BorderRadius.circular(8.r),
@@ -55,7 +55,7 @@ class LoginButton extends StatelessWidget {
                     title,
                     style: GoogleFonts.inter(
                       fontSize: 16.sp,
-                      color: isActive ? titleColor : AppStyle.black,
+                      color: isActive ? titleColor?? AppStyle.buttonFontColor : AppStyle.black,
                       fontWeight: FontWeight.w400,
                     ),
                   ),

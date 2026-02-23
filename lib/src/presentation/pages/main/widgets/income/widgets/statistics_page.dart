@@ -74,7 +74,7 @@ class StatisticPage extends StatelessWidget {
               Container(
                 height: 14.r,
                 width: 14.r,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: AppStyle.primary,
                   shape: BoxShape.circle,
                 ),

@@ -92,14 +92,14 @@ class TablesBoard extends ConsumerWidget {
                   ],
                 ),
                 if (state.isLoading)
-                  const Center(
+                  Center(
                     child: CircularProgressIndicator(color: AppStyle.primary),
                   ),
               ],
             ),
           ),
         if (tableListData.isEmpty && state.isLoading)
-          const Expanded(
+          Expanded(
             child: Center(
               child: CircularProgressIndicator(color: AppStyle.primary),
             ),

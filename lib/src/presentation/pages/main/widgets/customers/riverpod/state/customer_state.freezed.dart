@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,355 +9,296 @@ part of 'customer_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$CustomerState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  bool get isMoreLoading => throw _privateConstructorUsedError;
-  bool get createUserLoading => throw _privateConstructorUsedError;
-  bool get hasMore => throw _privateConstructorUsedError;
-  String get query => throw _privateConstructorUsedError;
-  List<UserData> get users => throw _privateConstructorUsedError;
-  UserData? get selectUser => throw _privateConstructorUsedError;
-  int get totalCount => throw _privateConstructorUsedError;
-  UserData? get user => throw _privateConstructorUsedError;
-  String? get imageFile => throw _privateConstructorUsedError;
 
-  /// Create a copy of CustomerState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CustomerStateCopyWith<CustomerState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isLoading; bool get isMoreLoading; bool get createUserLoading; bool get hasMore; String get query; List<UserData> get users; UserData? get selectUser; int get totalCount; UserData? get user; String? get imageFile;
+/// Create a copy of CustomerState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CustomerStateCopyWith<CustomerState> get copyWith => _$CustomerStateCopyWithImpl<CustomerState>(this as CustomerState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CustomerState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isMoreLoading, isMoreLoading) || other.isMoreLoading == isMoreLoading)&&(identical(other.createUserLoading, createUserLoading) || other.createUserLoading == createUserLoading)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.query, query) || other.query == query)&&const DeepCollectionEquality().equals(other.users, users)&&(identical(other.selectUser, selectUser) || other.selectUser == selectUser)&&(identical(other.totalCount, totalCount) || other.totalCount == totalCount)&&(identical(other.user, user) || other.user == user)&&(identical(other.imageFile, imageFile) || other.imageFile == imageFile));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,isMoreLoading,createUserLoading,hasMore,query,const DeepCollectionEquality().hash(users),selectUser,totalCount,user,imageFile);
+
+@override
+String toString() {
+  return 'CustomerState(isLoading: $isLoading, isMoreLoading: $isMoreLoading, createUserLoading: $createUserLoading, hasMore: $hasMore, query: $query, users: $users, selectUser: $selectUser, totalCount: $totalCount, user: $user, imageFile: $imageFile)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CustomerStateCopyWith<$Res> {
-  factory $CustomerStateCopyWith(
-          CustomerState value, $Res Function(CustomerState) then) =
-      _$CustomerStateCopyWithImpl<$Res, CustomerState>;
-  @useResult
-  $Res call(
-      {bool isLoading,
-      bool isMoreLoading,
-      bool createUserLoading,
-      bool hasMore,
-      String query,
-      List<UserData> users,
-      UserData? selectUser,
-      int totalCount,
-      UserData? user,
-      String? imageFile});
-}
+abstract mixin class $CustomerStateCopyWith<$Res>  {
+  factory $CustomerStateCopyWith(CustomerState value, $Res Function(CustomerState) _then) = _$CustomerStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isLoading, bool isMoreLoading, bool createUserLoading, bool hasMore, String query, List<UserData> users, UserData? selectUser, int totalCount, UserData? user, String? imageFile
+});
 
+
+
+
+}
 /// @nodoc
-class _$CustomerStateCopyWithImpl<$Res, $Val extends CustomerState>
+class _$CustomerStateCopyWithImpl<$Res>
     implements $CustomerStateCopyWith<$Res> {
-  _$CustomerStateCopyWithImpl(this._value, this._then);
+  _$CustomerStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CustomerState _self;
+  final $Res Function(CustomerState) _then;
 
-  /// Create a copy of CustomerState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? isMoreLoading = null,
-    Object? createUserLoading = null,
-    Object? hasMore = null,
-    Object? query = null,
-    Object? users = null,
-    Object? selectUser = freezed,
-    Object? totalCount = null,
-    Object? user = freezed,
-    Object? imageFile = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMoreLoading: null == isMoreLoading
-          ? _value.isMoreLoading
-          : isMoreLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      createUserLoading: null == createUserLoading
-          ? _value.createUserLoading
-          : createUserLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      users: null == users
-          ? _value.users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      selectUser: freezed == selectUser
-          ? _value.selectUser
-          : selectUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      imageFile: freezed == imageFile
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of CustomerState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? isMoreLoading = null,Object? createUserLoading = null,Object? hasMore = null,Object? query = null,Object? users = null,Object? selectUser = freezed,Object? totalCount = null,Object? user = freezed,Object? imageFile = freezed,}) {
+  return _then(_self.copyWith(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,isMoreLoading: null == isMoreLoading ? _self.isMoreLoading : isMoreLoading // ignore: cast_nullable_to_non_nullable
+as bool,createUserLoading: null == createUserLoading ? _self.createUserLoading : createUserLoading // ignore: cast_nullable_to_non_nullable
+as bool,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String,users: null == users ? _self.users : users // ignore: cast_nullable_to_non_nullable
+as List<UserData>,selectUser: freezed == selectUser ? _self.selectUser : selectUser // ignore: cast_nullable_to_non_nullable
+as UserData?,totalCount: null == totalCount ? _self.totalCount : totalCount // ignore: cast_nullable_to_non_nullable
+as int,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserData?,imageFile: freezed == imageFile ? _self.imageFile : imageFile // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [CustomerState].
+extension CustomerStatePatterns on CustomerState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CustomerState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CustomerState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CustomerState value)  $default,){
+final _that = this;
+switch (_that) {
+case _CustomerState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CustomerState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CustomerState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  bool isMoreLoading,  bool createUserLoading,  bool hasMore,  String query,  List<UserData> users,  UserData? selectUser,  int totalCount,  UserData? user,  String? imageFile)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CustomerState() when $default != null:
+return $default(_that.isLoading,_that.isMoreLoading,_that.createUserLoading,_that.hasMore,_that.query,_that.users,_that.selectUser,_that.totalCount,_that.user,_that.imageFile);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  bool isMoreLoading,  bool createUserLoading,  bool hasMore,  String query,  List<UserData> users,  UserData? selectUser,  int totalCount,  UserData? user,  String? imageFile)  $default,) {final _that = this;
+switch (_that) {
+case _CustomerState():
+return $default(_that.isLoading,_that.isMoreLoading,_that.createUserLoading,_that.hasMore,_that.query,_that.users,_that.selectUser,_that.totalCount,_that.user,_that.imageFile);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  bool isMoreLoading,  bool createUserLoading,  bool hasMore,  String query,  List<UserData> users,  UserData? selectUser,  int totalCount,  UserData? user,  String? imageFile)?  $default,) {final _that = this;
+switch (_that) {
+case _CustomerState() when $default != null:
+return $default(_that.isLoading,_that.isMoreLoading,_that.createUserLoading,_that.hasMore,_that.query,_that.users,_that.selectUser,_that.totalCount,_that.user,_that.imageFile);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$CustomerStateImplCopyWith<$Res>
-    implements $CustomerStateCopyWith<$Res> {
-  factory _$$CustomerStateImplCopyWith(
-          _$CustomerStateImpl value, $Res Function(_$CustomerStateImpl) then) =
-      __$$CustomerStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {bool isLoading,
-      bool isMoreLoading,
-      bool createUserLoading,
-      bool hasMore,
-      String query,
-      List<UserData> users,
-      UserData? selectUser,
-      int totalCount,
-      UserData? user,
-      String? imageFile});
+
+
+class _CustomerState extends CustomerState {
+  const _CustomerState({this.isLoading = false, this.isMoreLoading = false, this.createUserLoading = false, this.hasMore = true, this.query = '', final  List<UserData> users = const [], this.selectUser = null, this.totalCount = 0, this.user = null, this.imageFile = null}): _users = users,super._();
+  
+
+@override@JsonKey() final  bool isLoading;
+@override@JsonKey() final  bool isMoreLoading;
+@override@JsonKey() final  bool createUserLoading;
+@override@JsonKey() final  bool hasMore;
+@override@JsonKey() final  String query;
+ final  List<UserData> _users;
+@override@JsonKey() List<UserData> get users {
+  if (_users is EqualUnmodifiableListView) return _users;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_users);
+}
+
+@override@JsonKey() final  UserData? selectUser;
+@override@JsonKey() final  int totalCount;
+@override@JsonKey() final  UserData? user;
+@override@JsonKey() final  String? imageFile;
+
+/// Create a copy of CustomerState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CustomerStateCopyWith<_CustomerState> get copyWith => __$CustomerStateCopyWithImpl<_CustomerState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CustomerState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isMoreLoading, isMoreLoading) || other.isMoreLoading == isMoreLoading)&&(identical(other.createUserLoading, createUserLoading) || other.createUserLoading == createUserLoading)&&(identical(other.hasMore, hasMore) || other.hasMore == hasMore)&&(identical(other.query, query) || other.query == query)&&const DeepCollectionEquality().equals(other._users, _users)&&(identical(other.selectUser, selectUser) || other.selectUser == selectUser)&&(identical(other.totalCount, totalCount) || other.totalCount == totalCount)&&(identical(other.user, user) || other.user == user)&&(identical(other.imageFile, imageFile) || other.imageFile == imageFile));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,isMoreLoading,createUserLoading,hasMore,query,const DeepCollectionEquality().hash(_users),selectUser,totalCount,user,imageFile);
+
+@override
+String toString() {
+  return 'CustomerState(isLoading: $isLoading, isMoreLoading: $isMoreLoading, createUserLoading: $createUserLoading, hasMore: $hasMore, query: $query, users: $users, selectUser: $selectUser, totalCount: $totalCount, user: $user, imageFile: $imageFile)';
+}
+
+
 }
 
 /// @nodoc
-class __$$CustomerStateImplCopyWithImpl<$Res>
-    extends _$CustomerStateCopyWithImpl<$Res, _$CustomerStateImpl>
-    implements _$$CustomerStateImplCopyWith<$Res> {
-  __$$CustomerStateImplCopyWithImpl(
-      _$CustomerStateImpl _value, $Res Function(_$CustomerStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$CustomerStateCopyWith<$Res> implements $CustomerStateCopyWith<$Res> {
+  factory _$CustomerStateCopyWith(_CustomerState value, $Res Function(_CustomerState) _then) = __$CustomerStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isLoading, bool isMoreLoading, bool createUserLoading, bool hasMore, String query, List<UserData> users, UserData? selectUser, int totalCount, UserData? user, String? imageFile
+});
 
-  /// Create a copy of CustomerState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? isMoreLoading = null,
-    Object? createUserLoading = null,
-    Object? hasMore = null,
-    Object? query = null,
-    Object? users = null,
-    Object? selectUser = freezed,
-    Object? totalCount = null,
-    Object? user = freezed,
-    Object? imageFile = freezed,
-  }) {
-    return _then(_$CustomerStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isMoreLoading: null == isMoreLoading
-          ? _value.isMoreLoading
-          : isMoreLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      createUserLoading: null == createUserLoading
-          ? _value.createUserLoading
-          : createUserLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasMore: null == hasMore
-          ? _value.hasMore
-          : hasMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      query: null == query
-          ? _value.query
-          : query // ignore: cast_nullable_to_non_nullable
-              as String,
-      users: null == users
-          ? _value._users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      selectUser: freezed == selectUser
-          ? _value.selectUser
-          : selectUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      totalCount: null == totalCount
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      user: freezed == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      imageFile: freezed == imageFile
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$CustomerStateCopyWithImpl<$Res>
+    implements _$CustomerStateCopyWith<$Res> {
+  __$CustomerStateCopyWithImpl(this._self, this._then);
 
-class _$CustomerStateImpl extends _CustomerState {
-  const _$CustomerStateImpl(
-      {this.isLoading = false,
-      this.isMoreLoading = false,
-      this.createUserLoading = false,
-      this.hasMore = true,
-      this.query = '',
-      final List<UserData> users = const [],
-      this.selectUser = null,
-      this.totalCount = 0,
-      this.user = null,
-      this.imageFile = null})
-      : _users = users,
-        super._();
+  final _CustomerState _self;
+  final $Res Function(_CustomerState) _then;
 
-  @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  @JsonKey()
-  final bool isMoreLoading;
-  @override
-  @JsonKey()
-  final bool createUserLoading;
-  @override
-  @JsonKey()
-  final bool hasMore;
-  @override
-  @JsonKey()
-  final String query;
-  final List<UserData> _users;
-  @override
-  @JsonKey()
-  List<UserData> get users {
-    if (_users is EqualUnmodifiableListView) return _users;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_users);
-  }
-
-  @override
-  @JsonKey()
-  final UserData? selectUser;
-  @override
-  @JsonKey()
-  final int totalCount;
-  @override
-  @JsonKey()
-  final UserData? user;
-  @override
-  @JsonKey()
-  final String? imageFile;
-
-  @override
-  String toString() {
-    return 'CustomerState(isLoading: $isLoading, isMoreLoading: $isMoreLoading, createUserLoading: $createUserLoading, hasMore: $hasMore, query: $query, users: $users, selectUser: $selectUser, totalCount: $totalCount, user: $user, imageFile: $imageFile)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CustomerStateImpl &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.isMoreLoading, isMoreLoading) ||
-                other.isMoreLoading == isMoreLoading) &&
-            (identical(other.createUserLoading, createUserLoading) ||
-                other.createUserLoading == createUserLoading) &&
-            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
-            (identical(other.query, query) || other.query == query) &&
-            const DeepCollectionEquality().equals(other._users, _users) &&
-            (identical(other.selectUser, selectUser) ||
-                other.selectUser == selectUser) &&
-            (identical(other.totalCount, totalCount) ||
-                other.totalCount == totalCount) &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.imageFile, imageFile) ||
-                other.imageFile == imageFile));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      isMoreLoading,
-      createUserLoading,
-      hasMore,
-      query,
-      const DeepCollectionEquality().hash(_users),
-      selectUser,
-      totalCount,
-      user,
-      imageFile);
-
-  /// Create a copy of CustomerState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CustomerStateImplCopyWith<_$CustomerStateImpl> get copyWith =>
-      __$$CustomerStateImplCopyWithImpl<_$CustomerStateImpl>(this, _$identity);
+/// Create a copy of CustomerState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? isMoreLoading = null,Object? createUserLoading = null,Object? hasMore = null,Object? query = null,Object? users = null,Object? selectUser = freezed,Object? totalCount = null,Object? user = freezed,Object? imageFile = freezed,}) {
+  return _then(_CustomerState(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,isMoreLoading: null == isMoreLoading ? _self.isMoreLoading : isMoreLoading // ignore: cast_nullable_to_non_nullable
+as bool,createUserLoading: null == createUserLoading ? _self.createUserLoading : createUserLoading // ignore: cast_nullable_to_non_nullable
+as bool,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
+as bool,query: null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String,users: null == users ? _self._users : users // ignore: cast_nullable_to_non_nullable
+as List<UserData>,selectUser: freezed == selectUser ? _self.selectUser : selectUser // ignore: cast_nullable_to_non_nullable
+as UserData?,totalCount: null == totalCount ? _self.totalCount : totalCount // ignore: cast_nullable_to_non_nullable
+as int,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserData?,imageFile: freezed == imageFile ? _self.imageFile : imageFile // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-abstract class _CustomerState extends CustomerState {
-  const factory _CustomerState(
-      {final bool isLoading,
-      final bool isMoreLoading,
-      final bool createUserLoading,
-      final bool hasMore,
-      final String query,
-      final List<UserData> users,
-      final UserData? selectUser,
-      final int totalCount,
-      final UserData? user,
-      final String? imageFile}) = _$CustomerStateImpl;
-  const _CustomerState._() : super._();
 
-  @override
-  bool get isLoading;
-  @override
-  bool get isMoreLoading;
-  @override
-  bool get createUserLoading;
-  @override
-  bool get hasMore;
-  @override
-  String get query;
-  @override
-  List<UserData> get users;
-  @override
-  UserData? get selectUser;
-  @override
-  int get totalCount;
-  @override
-  UserData? get user;
-  @override
-  String? get imageFile;
-
-  /// Create a copy of CustomerState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CustomerStateImplCopyWith<_$CustomerStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

@@ -78,10 +78,10 @@ class _CustomersPageState extends ConsumerState<CustomersPage> {
                                         height: 56.r,
                                         backgroundColor: AppStyle.primary,
                                         iconData: Icons.add,
-                                        icon: AppStyle.black,
+                                        // icon: AppStyle.black,
                                         title: AppHelpers.getTranslation(
                                             TrKeys.addCustomer),
-                                        textColor: AppStyle.black,
+                                        // textColor: AppStyle.black,
                                         onPressed: () {
                                           showDialog(
                                             context: context,

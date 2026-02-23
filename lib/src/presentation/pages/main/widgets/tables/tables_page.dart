@@ -77,19 +77,23 @@ class _TablesPageState extends ConsumerState<TablesPage> {
                               isLoading: state.isLoading,
                             ),
                             const Spacer(),
-                            ViewMode(
-                              title: AppHelpers.getTranslation(TrKeys.board),
-                              isActive: !state.isListView,
-                              icon: FlutterRemix.dashboard_line,
-                              onTap: () => notifier.changeViewMode(0),
-                            ),
-                            ViewMode(
-                              title: AppHelpers.getTranslation(TrKeys.list),
-                              isActive: state.isListView,
-                              isLeft: false,
-                              icon: FlutterRemix.menu_fill,
-                              onTap: () => notifier.changeViewMode(1),
-                            ),
+            Row(
+              children: [
+                ViewMode(
+                  title: TrKeys.board,
+                  isActive: !state.isListView,
+                  icon: FlutterRemix.dashboard_line,
+                  onTap: () => notifier.changeViewMode(0),
+                ),
+                ViewMode(
+                  title: TrKeys.list,
+                  isActive: state.isListView,
+                  isLeft: false,
+                  icon: FlutterRemix.menu_fill,
+                  onTap: () => notifier.changeViewMode(1),
+                ),
+              ],
+            ),
                           ],
                         ),
                         Expanded(
@@ -225,7 +229,7 @@ class _TablesPageState extends ConsumerState<TablesPage> {
     );
   }
 
-  _tableStatus({
+  Padding _tableStatus({
     required String tableStatus,
     required int tableCount,
     required Color statusColor,
@@ -258,7 +262,7 @@ class _TablesPageState extends ConsumerState<TablesPage> {
               child: SizedBox(
                   height: 18.r,
                   width: 18.r,
-                  child: const CircularProgressIndicator(
+                  child: CircularProgressIndicator(
                     color: AppStyle.primary,
                     strokeWidth: 2.2,
                   )),

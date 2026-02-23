@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:admin_desktop/src/core/utils/app_helpers.dart';
+import 'package:admin_desktop/src/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -154,14 +154,16 @@ class ResponsiveTable extends StatelessWidget {
                       height: double.infinity,
                       width: double.infinity,
                       padding: REdgeInsets.symmetric(
-                          horizontal: withCount == 1 ? 12 : 0, vertical: heightCount == 1 ? 12 : 0),
+                          horizontal: withCount == 1 ? 12 : 0,
+                          vertical: heightCount == 1 ? 12 : 0),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8.r)),
                       child: Center(
                         child: Container(
                           padding: REdgeInsets.symmetric(
-                              horizontal: withCount == 1 ? 6 : 12, vertical:  12),
+                              horizontal: withCount == 1 ? 6 : 12,
+                              vertical: 12),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.r),
                               color: type == TrKeys.occupied
@@ -178,7 +180,7 @@ class ResponsiveTable extends StatelessWidget {
                                   ? AppStyle.white
                                   : AppStyle.reviewText,
                               fontWeight: FontWeight.w500,
-                              fontSize: withCount == 1 ? 14.sp: 15.sp,
+                              fontSize: withCount == 1 ? 14.sp : 15.sp,
                               decoration: TextDecoration.none,
                             ),
                           ),

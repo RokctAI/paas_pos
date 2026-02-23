@@ -45,7 +45,7 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
     final notifier = ref.read(addProductProvider.notifier);
     final rightSideNotifier = ref.read(rightSideProvider.notifier);
     final List<Stocks> stocks = state.product?.stocks ?? <Stocks>[];
-    if (stocks.isEmpty) {
+    if (stocks.isEmpty || (stocks[0].quantity ?? 0) == 0) {
       return Dialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.r),

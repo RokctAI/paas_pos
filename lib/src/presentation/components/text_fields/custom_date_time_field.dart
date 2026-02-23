@@ -86,7 +86,7 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
     _selectedDateTimeSpinner = widget.initialDate ?? DateTime.now().add(const Duration(minutes: 1));
   }
 
-  setInitialTimes() {
+  void setInitialTimes() {
     switch (widget.mode) {
       case CupertinoDatePickerMode.time:
         time = _selectedDateTime == null
@@ -139,7 +139,7 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
         });
   }
 
-  _showMenu() {
+  void _showMenu() {
     _overlayEntry = OverlayEntry(
       builder: (context) {
         double screenWidth = MediaQuery.sizeOf(context).width;
@@ -386,14 +386,14 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
     );
   }
 
-  _hideMenu() {
+  void _hideMenu() {
     if (_overlayEntry != null) {
       _overlayEntry?.remove();
       _overlayEntry = null;
     }
   }
 
-  _updateView() {
+  void _updateView() {
     bool menuIsShowing = _controller?.menuIsShowing ?? false;
     if (menuIsShowing) {
       _showMenu();

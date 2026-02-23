@@ -14,7 +14,7 @@ class SectionButton extends StatelessWidget {
   final bool isActive;
   final bool isTab;
   final bool isShadow;
-  final Color bgColor;
+  final Color? bgColor;
   final Color border;
   final Color textColor;
   final double? textSize;
@@ -28,7 +28,7 @@ class SectionButton extends StatelessWidget {
     this.height = 50,
     this.isLoading = false,
     this.isActive = true,
-    this.bgColor = AppStyle.primary,
+    this.bgColor,
     this.border = AppStyle.transparent,
     this.textColor = AppStyle.white,
     this.icon,
@@ -44,7 +44,7 @@ class SectionButton extends StatelessWidget {
     return AnimationButtonEffect(
       child: Material(
         borderRadius: BorderRadius.circular(15.r),
-        color: isActive ? bgColor : AppStyle.white,
+        color: isActive ? (bgColor ?? AppStyle.primary) : AppStyle.white,
         child: InkWell(
           borderRadius: BorderRadius.circular(15.r),
           onTap: isTab
@@ -91,7 +91,7 @@ class SectionButton extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             fontSize: textSize?.sp ?? 14.sp,
                             color: isActive
-                                ? AppStyle.black
+                                ? AppStyle.buttonFontColor
                                 : AppStyle.reviewText,
                           ),
                         )

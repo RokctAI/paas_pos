@@ -1,26 +1,26 @@
 abstract class AppConstants {
   AppConstants._();
 
-  static const String baseUrl = "https://api.foodyman.org/";
-  static const String webUrl = "https://foodyman.org/";
+  static const String baseUrl = String.fromEnvironment('BASE_URL');
+  static const String webUrl = String.fromEnvironment('WEB_URL');
 
-  static const bool autoTrn = true;
-  static const bool isDemo = true;
+  static const bool autoTrn = bool.fromEnvironment('AUTO_TRN');
+  static const bool isDemo = bool.fromEnvironment('IS_DEMO');
 
   static bool playMusicOnOrderStatusChange = true;
-  static bool keepPlayingOnNewOrder = true;
+  static bool keepPlayingOnNewOrder = false;
 
-  static const String demoSellerLogin = 'sellers@githubit.com';
-  static const String demoSellerPassword = 'seller';
-  static const String demoCookerLogin = 'cook@githubit.com';
-  static const String demoCookerPassword = 'cook';
-  static const String demoWaiterLogin = 'waiter@githubit.com';
-  static const String demoWaiterPassword = 'githubit';
+  static const String demoSellerLogin = String.fromEnvironment('DEMO_SELLER_LOGIN');
+  static const String demoSellerPassword = String.fromEnvironment('DEMO_SELLER_PASSWORD');
+  static const String demoCookerLogin = String.fromEnvironment('DEMO_COOKER_LOGIN');
+  static const String demoCookerPassword = String.fromEnvironment('DEMO_COOKER_PASSWORD');
+  static const String demoWaiterLogin = String.fromEnvironment('DEMO_WAITER_LOGIN');
+  static const String demoWaiterPassword = String.fromEnvironment('DEMO_WAITER_PASSWORD');
 
 
   static const Duration refreshTime = Duration(seconds: 10);
-  static const double demoLatitude = 41.304223;
-  static const double demoLongitude = 69.2348277;
+  static final double demoLatitude = double.parse(const String.fromEnvironment('DEMO_LATITUDE'));
+  static final double demoLongitude = double.parse(const String.fromEnvironment('DEMO_LONGITUDE'));
   static const double pinLoadingMin = 0.116666667;
   static const double pinLoadingMax = 0.611111111;
   static const Duration animationDuration = Duration(milliseconds: 375);

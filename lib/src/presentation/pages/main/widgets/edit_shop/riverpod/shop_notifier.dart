@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:multi_dropdown/models/value_item.dart';
 import 'package:admin_desktop/src/core/constants/constants.dart';
 import 'package:admin_desktop/src/core/utils/utils.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
 import '../../../../../../models/data/edit_shop_data.dart';
 import '../../../../../../models/data/location_data.dart';
 import 'package:admin_desktop/src/models/models.dart';
@@ -149,9 +149,9 @@ class ShopNotifier extends StateNotifier<ShopState> {
     required VoidCallback onSuccess,
     required LocationData? location,
     String? displayName,
-    List<ValueItem>? category,
-    List<ValueItem>? tag,
-    List<ValueItem>? type,
+    List<DropdownItem<String>>? category,
+    List<DropdownItem<String>>? tag,
+    List<DropdownItem<String>>? type,
   }) async {
     state = state.copyWith(isSave: true);
     final response = await shopsRepository.updateShopData(
@@ -259,7 +259,7 @@ class ShopNotifier extends StateNotifier<ShopState> {
     state = state.copyWith(orderType: type ?? state.orderType);
   }
 
-  setNote(String note) {
+  void setNote(String note) {
     state = state.copyWith(comment: note);
   }
 

@@ -17,17 +17,17 @@ void main() async {
     await Firebase.initializeApp();
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   }
-  // if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
-  //   doWhenWindowReady(() {
-  //     const initialSize = Size(1280, 720);
-  //     const minSize = Size(1024, 576);
-  //     const maxSize = Size(1280, 720);
-  //     appWindow.maxSize = maxSize;
-  //     appWindow.minSize = minSize;
-  //     appWindow.size = initialSize; //default size
-  //     appWindow.show();
-  //   });
-  // }
+  if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
+    doWhenWindowReady(() {
+      const initialSize = Size(1280, 720);
+      const minSize = Size(1024, 576);
+      const maxSize = Size(7680, 4320);
+      appWindow.maxSize = maxSize;
+      appWindow.minSize = minSize;
+      appWindow.size = initialSize; //default size
+      appWindow.show();
+    });
+  }
 
   await LocalStorage.init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft,DeviceOrientation.landscapeRight]);

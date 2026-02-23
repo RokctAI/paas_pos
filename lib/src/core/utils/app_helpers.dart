@@ -19,30 +19,35 @@ class AppHelpers {
 
   static String numberFormat(
     num? number, {
-    String? symbol,
+    // String? symbol,
+    CurrencyData? currency,
     int? decimalDigits,
   }) {
     number = number ?? 0;
+    if (currency != null &&
+        currency.id != LocalStorage.getSelectedCurrency().id) {
+      number = number * (currency.rate ?? 1);
+    }
     if (LocalStorage.getSelectedCurrency().position == "before") {
-      return  NumberFormat.currency(
+      return NumberFormat.currency(
         customPattern: '\u00a4 #,###.#',
-        symbol: (symbol ?? LocalStorage.getSelectedCurrency().symbol),
+        symbol: (currency?.symbol ?? LocalStorage.getSelectedCurrency().symbol),
         decimalDigits: decimalDigits ?? (number > 99999 ? 0 : 2),
       ).format(number);
     } else {
       return NumberFormat.currency(
         customPattern: '#,###.# \u00a4',
-        symbol: (symbol ?? LocalStorage.getSelectedCurrency().symbol),
+        symbol: (currency?.symbol ?? LocalStorage.getSelectedCurrency().symbol),
         decimalDigits: decimalDigits ?? (number > 99999 ? 0 : 2),
       ).format(number);
     }
   }
 
-  static String? getAppName() {
+  static String getAppName() {
     final List<SettingsData> settings = LocalStorage.getSettingsList();
     for (final setting in settings) {
       if (setting.key == 'title') {
-        return setting.value;
+        return setting.value ?? '';
       }
     }
     return '';
@@ -71,7 +76,8 @@ class AppHelpers {
   static bool isNumberRequiredToOrder() {
     return LocalStorage.getSettingsList()
             .firstWhere(
-                (element) => element.key == "before_order_phone_required")
+                (element) => element.key == "before_order_phone_required",
+                orElse: () => SettingsData(key: "", value: "0"))
             .value ==
         '1';
   }
@@ -168,7 +174,7 @@ class AppHelpers {
     return DateFormat("yyyy-MM-dd").format(time ?? DateTime.now());
   }
 
-  static getPhotoGallery(ValueChanged<String> onChange) async {
+  static Future<void> getPhotoGallery(ValueChanged<String> onChange) async {
     if (Platform.isMacOS) {
       FilePickerResult? result;
       try {
@@ -238,7 +244,7 @@ class AppHelpers {
     );
   }
 
-  static showSnackBar(BuildContext context, String title,
+  static void showSnackBar(BuildContext context, String title,
       {bool isIcon = false}) {
     ScaffoldMessenger.of(context).clearSnackBars();
     final snackBar = SnackBar(
@@ -252,7 +258,7 @@ class AppHelpers {
           if (isIcon)
             Padding(
               padding: EdgeInsets.only(right: 8.r),
-              child: const Icon(
+              child: Icon(
                 FlutterRemix.checkbox_circle_fill,
                 color: AppStyle.primary,
               ),
@@ -490,7 +496,7 @@ class AppHelpers {
     return PositionModel(top: top, left: left, right: right, bottom: bottom);
   }
 
-  static String errorHandler(e) {
+  static String errorHandler(dynamic e) {
     try {
       return (e.runtimeType == DioException)
           ? ((e as DioException).response?.data["message"] == "Bad request."
@@ -518,4 +524,3 @@ class AppHelpers {
     }
   }
 }
-

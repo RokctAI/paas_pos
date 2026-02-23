@@ -14,7 +14,7 @@ class ConfirmButton extends StatelessWidget {
   final bool isActive;
   final bool isTab;
   final bool isShadow;
-  final Color bgColor;
+  final Color? bgColor;
   final Color border;
   final Color textColor;
   final double? textSize;
@@ -28,7 +28,7 @@ class ConfirmButton extends StatelessWidget {
     this.height = 50,
     this.isLoading = false,
     this.isActive = true,
-    this.bgColor = AppStyle.primary,
+    this.bgColor,
     this.border = AppStyle.transparent,
     this.textColor = AppStyle.white,
     this.icon,
@@ -44,7 +44,7 @@ class ConfirmButton extends StatelessWidget {
     return AnimationButtonEffect(
       child: Material(
         borderRadius: BorderRadius.circular(15.r),
-        color: isActive ? bgColor : AppStyle.dontHaveAccBtnBack,
+        color: isActive ? (bgColor ?? AppStyle.primary) : AppStyle.dontHaveAccBtnBack,
         child: InkWell(
           borderRadius: BorderRadius.circular(15.r),
           onTap: isTab
@@ -91,7 +91,7 @@ class ConfirmButton extends StatelessWidget {
                           style: GoogleFonts.inter(
                             fontWeight: FontWeight.w500,
                             fontSize: textSize?.sp ?? 16.sp,
-                            color: isActive ? textColor : AppStyle.black,
+                            color: isActive ? AppStyle.buttonFontColor : AppStyle.black,
                           ),
                         )
                       ],

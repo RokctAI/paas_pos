@@ -2,6 +2,6 @@ class SecretVars {
   SecretVars._();
 
   /// api variables
-  static const String baseUrl = "https://api.foodyman.org";
-  static const String webUrl = "https://foodyman.org";
+  static const String baseUrl = String.fromEnvironment('BASE_URL');
+  static const String webUrl = String.fromEnvironment('WEB_URL');
 }

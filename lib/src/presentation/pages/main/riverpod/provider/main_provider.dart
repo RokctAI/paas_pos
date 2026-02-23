@@ -6,8 +6,7 @@ import '../state/main_state.dart';
 
 final mainProvider = StateNotifierProvider<MainNotifier, MainState>(
   (ref) => MainNotifier(
-    productsRepository,
-    categoriesRepository,
+
     brandsRepository,
     usersRepository,
   ),

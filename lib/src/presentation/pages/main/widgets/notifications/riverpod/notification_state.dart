@@ -3,10 +3,10 @@ import 'package:admin_desktop/src/models/data/notification_data.dart';
 import 'package:admin_desktop/src/models/data/notification_transactions_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
- part 'notification_state.freezed.dart';
+part 'notification_state.freezed.dart';
 
 @freezed
-class NotificationState with _$NotificationState {
+abstract class NotificationState with _$NotificationState {
   const factory NotificationState({
     @Default([]) List<TransactionModel> transaction,
     @Default(0) int totalCount,

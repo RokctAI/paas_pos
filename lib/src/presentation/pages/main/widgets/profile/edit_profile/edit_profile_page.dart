@@ -68,7 +68,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     super.dispose();
   }
 
-  getInfo() {
+  void getInfo() {
     firstName.text = LocalStorage.getUser()?.firstname ?? '';
     lastName.text = LocalStorage.getUser()?.lastname ?? '';
     dateOfBirth.text = LocalStorage.getUser()?.birthday ?? '';

@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -13,10 +14,7 @@ part of 'app_router.dart';
 /// [HelpPage]
 class HelpRoute extends PageRouteInfo<void> {
   const HelpRoute({List<PageRouteInfo>? children})
-      : super(
-          HelpRoute.name,
-          initialChildren: children,
-        );
+    : super(HelpRoute.name, initialChildren: children);
 
   static const String name = 'HelpRoute';
 
@@ -32,10 +30,7 @@ class HelpRoute extends PageRouteInfo<void> {
 /// [LoginPage]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
-      : super(
-          LoginRoute.name,
-          initialChildren: children,
-        );
+    : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
@@ -51,10 +46,7 @@ class LoginRoute extends PageRouteInfo<void> {
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})
-      : super(
-          MainRoute.name,
-          initialChildren: children,
-        );
+    : super(MainRoute.name, initialChildren: children);
 
   static const String name = 'MainRoute';
 
@@ -74,13 +66,10 @@ class PinCodeRoute extends PageRouteInfo<PinCodeRouteArgs> {
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
-          PinCodeRoute.name,
-          args: PinCodeRouteArgs(
-            isNewPassword: isNewPassword,
-            key: key,
-          ),
-          initialChildren: children,
-        );
+         PinCodeRoute.name,
+         args: PinCodeRouteArgs(isNewPassword: isNewPassword, key: key),
+         initialChildren: children,
+       );
 
   static const String name = 'PinCodeRoute';
 
@@ -88,19 +77,13 @@ class PinCodeRoute extends PageRouteInfo<PinCodeRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<PinCodeRouteArgs>();
-      return PinCodePage(
-        args.isNewPassword,
-        key: args.key,
-      );
+      return PinCodePage(args.isNewPassword, key: args.key);
     },
   );
 }
 
 class PinCodeRouteArgs {
-  const PinCodeRouteArgs({
-    required this.isNewPassword,
-    this.key,
-  });
+  const PinCodeRouteArgs({required this.isNewPassword, this.key});
 
   final bool isNewPassword;
 
@@ -110,16 +93,23 @@ class PinCodeRouteArgs {
   String toString() {
     return 'PinCodeRouteArgs{isNewPassword: $isNewPassword, key: $key}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PinCodeRouteArgs) return false;
+    return isNewPassword == other.isNewPassword && key == other.key;
+  }
+
+  @override
+  int get hashCode => isNewPassword.hashCode ^ key.hashCode;
 }
 
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
-      : super(
-          SplashRoute.name,
-          initialChildren: children,
-        );
+    : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 

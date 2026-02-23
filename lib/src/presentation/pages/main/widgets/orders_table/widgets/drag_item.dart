@@ -93,7 +93,7 @@ class DragItem extends ConsumerWidget {
                 icon: FlutterRemix.money_dollar_circle_line,
                 value: AppHelpers.numberFormat(
                   orderData.totalPrice ?? 0,
-                  symbol: orderData.currency?.symbol,
+                  currency: orderData.currency,
                 ),
               ),
               IconTitle(

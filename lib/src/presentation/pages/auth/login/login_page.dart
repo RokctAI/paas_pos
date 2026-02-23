@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../generated/assets.dart';
@@ -53,15 +52,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           42.verticalSpace,
                           Row(
                             children: [
-                              SvgPicture.asset(
-                                Assets.svgLogo,
-                                height: 40,
-                                width: 40,
-                              ),
-                              12.horizontalSpace,
                               Expanded(
                                 child: Text(
-                                  AppHelpers.getAppName() ?? "foodyman",
+                                  AppHelpers.getAppName(),
                                   style: GoogleFonts.inter(
                                       fontSize: 32.sp,
                                       color: AppStyle.black,
@@ -156,7 +149,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               },
                             ),
                           ),
-                          42.verticalSpace,
+                          36.verticalSpace,
                           Row(
                             children: [
                               CustomCheckbox(isActive: true, onTap: () {}),

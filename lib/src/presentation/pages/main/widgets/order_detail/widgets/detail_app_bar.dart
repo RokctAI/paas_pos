@@ -36,7 +36,6 @@ class DetailAppBar extends StatelessWidget {
               icon: FlutterRemix.bank_card_line,
               desc: AppHelpers.numberFormat(
                 orderData?.totalPrice ?? 0,
-                symbol: LocalStorage.getSelectedCurrency().symbol,
               )),
           AppbarItem(
             title: AppHelpers.getTranslation(TrKeys.messages),

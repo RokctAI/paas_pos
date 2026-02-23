@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:admin_desktop/src/core/constants/constants.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:admin_desktop/src/core/utils/utils.dart';
@@ -83,7 +83,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
           if (Platform.isAndroid || Platform.isIOS) {
             String? fcmToken;
             try {
-              fcmToken = await FirebaseMessaging.instance.getToken();
+               // fcmToken = await FirebaseMessaging.instance.getToken();
             } catch (e) {
               debugPrint('===> error with getting firebase token $e');
             }

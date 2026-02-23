@@ -29,3 +29,4 @@ export 'buttons/status_button.dart';
 export '../pages//main/widgets/customers/components/custom_button.dart';
 export 'buttons/animation_button_effect.dart';
 export 'text_fields/custom_textformfield.dart';
+export 'product_type_tabs.dart';

@@ -1,15 +1,11 @@
-
 import 'package:admin_desktop/src/models/response/sale_cart_response.dart';
 import 'package:admin_desktop/src/models/response/sale_history_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
-
-
 part 'sale_history_state.freezed.dart';
 
 @freezed
-class SaleHistoryState with _$SaleHistoryState {
+abstract class SaleHistoryState with _$SaleHistoryState {
   const factory SaleHistoryState({
     @Default(true) bool isLoading,
     @Default(false) bool isMoreLoading,

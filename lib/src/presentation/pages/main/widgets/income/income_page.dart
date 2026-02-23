@@ -186,7 +186,7 @@ class _InComePageState extends ConsumerState<InComePage> {
                     Row(
                       children: [
                         Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppStyle.primary,
                           ),

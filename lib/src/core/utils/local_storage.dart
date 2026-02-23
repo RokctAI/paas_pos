@@ -91,7 +91,7 @@ abstract class LocalStorage {
 
   static void deleteToken() => _preferences?.remove(StorageKeys.keyToken);
 
-  static setPinCode(String pinCode) async {
+  static Future<void> setPinCode(String pinCode) async {
     if (_preferences != null) {
       await _preferences!.setString(StorageKeys.pinCode, pinCode);
     }

@@ -20,14 +20,14 @@ class TablesNotifier extends StateNotifier<TablesState> {
 
   TablesNotifier(this.tableRepository) : super(const TablesState());
 
-  initial() async {
+  Future<void> initial() async {
     await fetchSectionList(isRefresh: true);
     fetchTable(isRefresh: true);
     getWorkingDay();
     getCloseDay();
   }
 
-  refresh() {
+  void refresh() {
     clearTime();
     changeListTabIndex(state.selectListTabIndex);
   }
@@ -40,7 +40,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
     clearTime();
   }
 
-  createOrder() async {
+  Future<void> createOrder() async {
     var res = await tableRepository.setBookings(
         bookingId: state.bookingsData?.id ?? 0,
         tableId: state.selectTableId,
@@ -102,7 +102,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
     return true;
   }
 
-  setTimeOfDay(TimeOfDay dateTime) {
+  bool setTimeOfDay(TimeOfDay dateTime) {
     DateTime start = state.selectDateTime!.copyWith(hour: 1);
     DateTime end = state.selectDateTime!.copyWith(hour: 23);
     for (Date element in state.workingDayData?.dates ?? []) {
@@ -179,11 +179,11 @@ class TablesNotifier extends StateNotifier<TablesState> {
     return true;
   }
 
-  setDuration(String duration) async {
+  Future<void> setDuration(String duration) async {
     state = state.copyWith(selectDuration: duration);
   }
 
-  setSelectTable(int index) async {
+  Future<void> setSelectTable(int index) async {
     state = state.copyWith(
         selectTableId: state.tableListData[index]?.id ?? 0,
         isBookingLoading: true);
@@ -196,12 +196,12 @@ class TablesNotifier extends StateNotifier<TablesState> {
     });
   }
 
-  changeIndex(int index) {
+  void changeIndex(int index) {
     state = state.copyWith(selectTabIndex: index);
     fetchTable(isRefresh: true, start: state.start, end: state.end);
   }
 
-  changeSelectOrder(int index) async {
+  Future<void> changeSelectOrder(int index) async {
     state = state.copyWith(selectOrderIndex: index);
     state = state.copyWith(selectOrderIndex: index);
     // final response = await tableRepository.getTableInfo(
@@ -213,7 +213,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
     //     failure: (e) {});
   }
 
-  changeListTabIndex(int index) {
+  void changeListTabIndex(int index) {
     state = state.copyWith(
         selectListTabIndex: index,
         tableBookingData: [],
@@ -221,14 +221,14 @@ class TablesNotifier extends StateNotifier<TablesState> {
     fetchBookings(isRefresh: true, start: state.start, end: state.end);
   }
 
-  changeSection(int index) {
+  void changeSection(int index) {
     if (!state.isLoading) {
       state = state.copyWith(selectSection: index, tableListData: []);
       fetchTable(isRefresh: true, start: state.start, end: state.end);
     }
   }
 
-  setSection({String? title, int? index}) {
+  void setSection({String? title, int? index}) {
     if (title != null) {
       for (int i = 0; i < state.shopSectionList.length; i++) {
         if (state.shopSectionList[i]?.translation?.title == title) {
@@ -243,7 +243,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
     }
   }
 
-  addNewSection(
+  Future<void> addNewSection(
       {required String name,
       required num area,
       required BuildContext context}) async {
@@ -404,7 +404,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
     );
   }
 
-  addTable({
+  Future<void> addTable({
     required TableModel tableModel,
     required BuildContext context,
   }) async {
@@ -422,7 +422,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
     });
   }
 
-  deleteTable({required int index}) async {
+  Future<void> deleteTable({required int index}) async {
     List<TableData> list = List.from(state.tableListData);
     int id = list[index].id ?? 0;
     list.removeAt(index);
@@ -431,7 +431,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
     await getStatistic(start: state.start, end: state.end);
   }
 
-  getWorkingDay() async {
+  Future<void> getWorkingDay() async {
     var res = await tableRepository.getWorkingDay();
     res.when(
         success: (success) {
@@ -440,7 +440,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
         failure: (failure) {});
   }
 
-  getCloseDay() async {
+  Future<void> getCloseDay() async {
     var res = await tableRepository.getCloseDay();
     res.when(
         success: (success) {
@@ -450,7 +450,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
         failure: (failure) {});
   }
 
-  getStatistic({DateTime? start, DateTime? end}) async {
+  Future<void> getStatistic({DateTime? start, DateTime? end}) async {
     state = state.copyWith(isStatisticLoading: true);
     var res = await tableRepository.getStatistic(to: end, from: start);
     res.when(
@@ -461,7 +461,7 @@ class TablesNotifier extends StateNotifier<TablesState> {
         failure: (failure) {});
   }
 
-  changeStatus(BuildContext context, {required String status}) async {
+  Future<void> changeStatus(BuildContext context, {required String status}) async {
     state = state.copyWith(
       isCancelLoading: status == TrKeys.canceled,
       isButtonLoading: status != TrKeys.canceled,
@@ -481,11 +481,11 @@ class TablesNotifier extends StateNotifier<TablesState> {
     });
   }
 
-  setTime(DateTime? start, DateTime? end) {
+  void setTime(DateTime? start, DateTime? end) {
     state = state.copyWith(start: start, end: end);
   }
 
-  clearTime() {
+  void clearTime() {
     state = state.copyWith(start: null, end: null);
   }
 }

@@ -27,7 +27,7 @@ class InvoiceDownload extends StatelessWidget {
                 return LayoutBuilder(builder: (context, constraints) {
                   return SimpleDialog(
                     title: SizedBox(
-                      height: constraints.maxHeight * 0.7,
+                      height: constraints.maxHeight * 0.8,
                       width: 300.r,
                       child: GenerateCheckPage(orderData: orderData),
                     ),

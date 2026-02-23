@@ -17,7 +17,7 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
   Timer? _searchProductsTimer;
   Timer? _refreshTime;
 
-  changeType(String type) {
+  void changeType(String type) {
     state = state.copyWith(selectType: type, orders: []);
     fetchOrders(isRefresh: true);
   }
@@ -49,13 +49,13 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
     state = state.copyWith(detailStatus: status);
   }
 
-  selectIndex(int index) async {
+  Future<void> selectIndex(int index) async {
     state =
         state.copyWith(selectIndex: index, selectOrder: state.orders[index]);
     fetchOrderDetails();
   }
 
-  fetchOrderDetails() async {
+  Future<void> fetchOrderDetails() async {
     final response = await _ordersRepository.getOrderDetailsKitchen(
         orderId: state.selectOrder?.id);
     response.when(

@@ -1,3 +1,5 @@
+import 'package:admin_desktop/src/core/utils/local_storage.dart';
+import 'package:admin_desktop/src/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 class AppStyle {
   AppStyle._();
 
-  static const Color primary = Color(0xFF83EA00);
   static const Color bottomNavigationBarColor = Color(0xFF191919);
   static const Color enterOrderButton = Color(0xFFF4F8F7);
   static const Color tabBarborder = Color(0xFFDEDFE1);
@@ -56,7 +57,6 @@ class AppStyle {
   static const Color shadowBottom = Color(0x33000000);
   static const success = Color(0xff31D0AA);
 
-
   static const Color editProfileCircle = Color(0xFFF4F5F8);
   static const green = Color(0xFF16AA16);
   static const Color revenueColor = Color(0xFFFF8A00);
@@ -89,64 +89,91 @@ class AppStyle {
   static const Color partnerChatBack = Color(0xFF1A222C);
   static const Color yourChatBack = Color(0xFF25303F);
 
+  static Color get primary =>
+      _getColorFromSettings('primary_color', const Color(0xFF83EA00));
+
+  static Color get buttonFontColor =>
+      _getColorFromSettings('primary_button_font_color', black);
+
+  static Color _getColorFromSettings(String key, Color defaultColor) {
+    final settings = LocalStorage.getSettingsList();
+    final setting = settings.firstWhere(
+      (s) => s.key == key,
+      orElse: () => SettingsData(),
+    );
+
+    if (setting.value == null) return defaultColor;
+
+    try {
+      return Color(int.parse('0xFF${setting.value!.substring(1, 7)}'));
+    } catch (e) {
+      return defaultColor;
+    }
+  }
+
   /// font style
 
-  static interBold(
-          {double size = 18,
-          Color color = AppStyle.black,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size.sp,
-          fontWeight: FontWeight.bold,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: TextDecoration.none);
+  static TextStyle interBold({
+    double size = 18,
+    Color color = AppStyle.black,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size.sp,
+    fontWeight: FontWeight.bold,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: TextDecoration.none,
+  );
 
-  static interSemi(
-          {double size = 18,
-          Color color = AppStyle.black,
-          TextDecoration decoration = TextDecoration.none,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w700,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: decoration);
+  static TextStyle interSemi({
+    double size = 18,
+    Color color = AppStyle.black,
+    TextDecoration decoration = TextDecoration.none,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w700,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: decoration,
+  );
 
-  static interNoSemi(
-          {double size = 18,
-          Color color = AppStyle.black,
-          TextDecoration decoration = TextDecoration.none,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w600,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: decoration);
+  static TextStyle interNoSemi({
+    double size = 18,
+    Color color = AppStyle.black,
+    TextDecoration decoration = TextDecoration.none,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w600,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: decoration,
+  );
 
-  static interNormal(
-          {double size = 16,
-          Color color = AppStyle.black,
-          TextDecoration textDecoration = TextDecoration.none,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size.sp,
-          fontWeight: FontWeight.w500,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: textDecoration);
+  static TextStyle interNormal({
+    double size = 16,
+    Color color = AppStyle.black,
+    TextDecoration textDecoration = TextDecoration.none,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size.sp,
+    fontWeight: FontWeight.w500,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: textDecoration,
+  );
 
-  static interRegular(
-          {double size = 16,
-          Color color = AppStyle.black,
-          TextDecoration textDecoration = TextDecoration.none,
-          double letterSpacing = 0}) =>
-      GoogleFonts.inter(
-          fontSize: size,
-          fontWeight: FontWeight.w400,
-          color: color,
-          letterSpacing: letterSpacing.sp,
-          decoration: textDecoration);
+  static TextStyle interRegular({
+    double size = 16,
+    Color color = AppStyle.black,
+    TextDecoration textDecoration = TextDecoration.none,
+    double letterSpacing = 0,
+  }) => GoogleFonts.inter(
+    fontSize: size,
+    fontWeight: FontWeight.w400,
+    color: color,
+    letterSpacing: letterSpacing.sp,
+    decoration: textDecoration,
+  );
 }

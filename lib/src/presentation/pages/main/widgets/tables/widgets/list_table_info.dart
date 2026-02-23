@@ -29,7 +29,7 @@ class ListTableInfo extends ConsumerWidget {
       decoration: BoxDecoration(
           color: AppStyle.white, borderRadius: BorderRadius.circular(10)),
       child: state.isInfoLoading
-          ? const Center(
+          ? Center(
               child: CircularProgressIndicator(color: AppStyle.primary),
             )
           : bookingData != null || state.selectOrderIndex != null

@@ -9,7 +9,7 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
 
   IncomeNotifier(this._settingsRepository) : super(const IncomeState());
 
-  changeIndex(String type) {
+  void changeIndex(String type) {
     state = state.copyWith(selectType: type);
     fetchIncomeCarts();
     fetchIncomeCharts();
@@ -17,7 +17,7 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
   }
 
 
-  fetchIncomeCarts({DateTime? start, DateTime? end}) async {
+  Future<void> fetchIncomeCarts({DateTime? start, DateTime? end}) async {
     state = state.copyWith(start: start, end: end);
     final response = await _settingsRepository.getIncomeCart(
         type: state.selectType,
@@ -36,7 +36,7 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
     );
   }
 
-  fetchIncomeStatistic({DateTime? start, DateTime? end}) async {
+  Future<void> fetchIncomeStatistic({DateTime? start, DateTime? end}) async {
     final response = await _settingsRepository.getIncomeStatistic(
         type: state.selectType,
         from: start ??
@@ -54,7 +54,7 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
     );
   }
 
-  fetchIncomeCharts({DateTime? start, DateTime? end}) async {
+  Future<void> fetchIncomeCharts({DateTime? start, DateTime? end}) async {
     final response = await _settingsRepository.getIncomeChart(
         type: start == null ? state.selectType : TrKeys.month,
         from: start ??

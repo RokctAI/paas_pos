@@ -11,32 +11,94 @@ import 'package:admin_desktop/src/presentation/pages/main/widgets/right_side/riv
 import 'package:admin_desktop/src/presentation/pages/main/widgets/right_side/riverpod/right_side_state.dart';
 import 'package:admin_desktop/src/presentation/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_remix/flutter_remix.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../right_side/riverpod/right_side_provider.dart';
 
-class OrderCalculate extends ConsumerWidget {
+class OrderCalculate extends ConsumerStatefulWidget {
   const OrderCalculate({super.key});
 
   @override
-  Widget build(BuildContext context, ref) {
+  ConsumerState<OrderCalculate> createState() => _OrderCalculateState();
+}
+
+class _OrderCalculateState extends ConsumerState<OrderCalculate> {
+
+  late FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _focusNode.requestFocus();
+    });
+  }
+
+  final Map<LogicalKeyboardKey, String> numberKeys = {
+    LogicalKeyboardKey.digit0: '0',
+    LogicalKeyboardKey.digit1: '1',
+    LogicalKeyboardKey.digit2: '2',
+    LogicalKeyboardKey.digit3: '3',
+    LogicalKeyboardKey.digit4: '4',
+    LogicalKeyboardKey.digit5: '5',
+    LogicalKeyboardKey.digit6: '6',
+    LogicalKeyboardKey.digit7: '7',
+    LogicalKeyboardKey.digit8: '8',
+    LogicalKeyboardKey.digit9: '9',
+    LogicalKeyboardKey.period: '.',
+
+    LogicalKeyboardKey.numpad0: '0',
+    LogicalKeyboardKey.numpad1: '1',
+    LogicalKeyboardKey.numpad2: '2',
+    LogicalKeyboardKey.numpad3: '3',
+    LogicalKeyboardKey.numpad4: '4',
+    LogicalKeyboardKey.numpad5: '5',
+    LogicalKeyboardKey.numpad6: '6',
+    LogicalKeyboardKey.numpad7: '7',
+    LogicalKeyboardKey.numpad8: '8',
+    LogicalKeyboardKey.numpad9: '9',
+     LogicalKeyboardKey.numpadDecimal: '.',
+  };
+
+  @override
+  Widget build(BuildContext context) {
     final notifier = ref.read(mainProvider.notifier);
     final rightNotifier = ref.read(rightSideProvider.notifier);
     final state = ref.read(mainProvider);
     final stateRight = ref.watch(rightSideProvider);
     return Scaffold(
       backgroundColor: AppStyle.mainBack,
-      body: Padding(
-        padding: EdgeInsets.all(16.r),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _informationWidget(notifier, rightNotifier, state, stateRight),
-            16.horizontalSpace,
-            calculator(stateRight, rightNotifier)
-          ],
+      body: RawKeyboardListener(
+        focusNode: _focusNode,
+        autofocus: true,
+        onKey: (event) {
+          if (event is RawKeyDownEvent) {
+            final key = event.logicalKey;
+
+            if (numberKeys.containsKey(key)) {
+              rightNotifier.setCalculate(numberKeys[key]!);
+            }
+
+            if (key == LogicalKeyboardKey.backspace) {
+              rightNotifier.setCalculate("-1");
+            }
+            
+          }
+        },
+        child: Padding(
+          padding: EdgeInsets.all(16.r),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _informationWidget(notifier, rightNotifier, state, stateRight),
+              16.horizontalSpace,
+              calculator(stateRight, rightNotifier)
+            ],
+          ),
         ),
       ),
     );
@@ -67,6 +129,7 @@ class OrderCalculate extends ConsumerWidget {
                         Text(
                           AppHelpers.numberFormat(
                             stateRight.selectedUser?.wallet?.price ?? 0,
+                            currency: stateRight.bags[stateRight.selectedBagIndex].selectedCurrency,
                           ),
                           style: GoogleFonts.inter(
                               fontSize: 26.sp, fontWeight: FontWeight.w600),
@@ -297,7 +360,7 @@ class OrderCalculate extends ConsumerWidget {
                             fontSize: 16.sp, color: AppStyle.icon),
                       ),
                       Text(
-                        stateRight.orderType,
+                       AppHelpers.getTranslation( stateRight.orderType),
                         style: GoogleFonts.inter(
                             fontSize: 16.sp, color: AppStyle.icon),
                       ),
@@ -360,6 +423,7 @@ class OrderCalculate extends ConsumerWidget {
                                     stateRight.paginateResponse
                                         ?.stocks?[index].totalPrice ??
                                         0,
+                                  currency: stateRight.bags[stateRight.selectedBagIndex].selectedCurrency,
                                 ),
                                 style: GoogleFonts.inter(
                                     fontWeight: FontWeight.w500,

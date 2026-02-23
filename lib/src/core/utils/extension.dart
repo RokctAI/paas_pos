@@ -31,7 +31,7 @@ extension Time on DateTime {
   DateTime addTime(TimeOfDay time) => DateTime(year, month, day, time.hour, time.minute);
 }
 extension ExtendedIterable<E> on Iterable<E> {
-   mapIndexed<T>(T Function(E e, int i) f) {
+   List<T> mapIndexed<T>(T Function(E e, int i) f) {
     var i = 0;
     return map((e) => f(e, i++)).toList();
   }

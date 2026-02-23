@@ -26,6 +26,48 @@ class ProductsRepositoryImpl extends ProductsRepository {
             ? LocalStorage.getUser()?.invite?.shopId
             : shopId,
       if (query != null) 'search': query,
+       'type': 'single',
+      'perPage': 12,
+      'page': page,
+      'lang': LocalStorage.getLanguage()?.locale ?? 'en',
+      "status": "published",
+      "addon_status": "published"
+    };
+    try {
+      final client = dioHttp.client(requireAuth: true);
+      final response = await client.get(
+        LocalStorage.getUser()?.role == TrKeys.waiter
+            ? '/api/v1/rest/products/paginate'
+            : '/api/v1/dashboard/${LocalStorage.getUser()?.role}/products/paginate',
+        queryParameters: data,
+      );
+      return ApiResult.success(
+        data: ProductsPaginateResponse.fromJson(response.data),
+      );
+    } catch (e) {
+      debugPrint('==> get products failure: $e');
+      return ApiResult.failure(error: AppHelpers.errorHandler(e));
+    }
+  }
+
+  @override
+  Future<ApiResult<ProductsPaginateResponse>> getCombosPaginate({
+    String? query,
+    int? categoryId,
+    int? brandId,
+    int? shopId,
+    required int page,
+  }) async {
+    final data = {
+      if (brandId != null) 'brand_id': brandId,
+      if (categoryId != null) 'category_id': categoryId,
+      if (shopId != null ||
+          LocalStorage.getUser()?.role == TrKeys.waiter)
+        'shop_id': LocalStorage.getUser()?.role == TrKeys.waiter
+            ? LocalStorage.getUser()?.invite?.shopId
+            : shopId,
+      if (query != null) 'search': query,
+      'type': 'combo',
       'perPage': 12,
       'page': page,
       'lang': LocalStorage.getLanguage()?.locale ?? 'en',

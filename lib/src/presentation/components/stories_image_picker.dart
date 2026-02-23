@@ -31,7 +31,7 @@ class StoriesImagePicker extends StatelessWidget {
     return _editExtrasImage(context);
   }
 
-  _editExtrasImage(BuildContext context) {
+  Column _editExtrasImage(BuildContext context) {
     int itemCount = (listOfImages?.length ?? 0) + (imageUrls?.length ?? 0);
     return Column(
       children: [

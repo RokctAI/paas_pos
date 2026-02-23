@@ -49,6 +49,7 @@ class PriceInfo extends StatelessWidget {
             Text(
               AppHelpers.numberFormat(
                 state.paginateResponse?.price ?? 0,
+                currency: bag.selectedCurrency,
               ),
               style: GoogleFonts.inter(
                 color: AppStyle.black,
@@ -73,8 +74,10 @@ class PriceInfo extends StatelessWidget {
               ),
             ),
             Text(
-              AppHelpers.numberFormat(state.paginateResponse?.totalTax ?? 0,
-                  symbol: bag.selectedCurrency?.symbol),
+              AppHelpers.numberFormat(
+                state.paginateResponse?.totalTax ?? 0,
+                currency: bag.selectedCurrency,
+              ),
               style: GoogleFonts.inter(
                 color: AppStyle.black,
                 fontSize: 16.sp,
@@ -98,8 +101,10 @@ class PriceInfo extends StatelessWidget {
               ),
             ),
             Text(
-              AppHelpers.numberFormat(state.paginateResponse?.serviceFee ?? 0,
-                  symbol: bag.selectedCurrency?.symbol),
+              AppHelpers.numberFormat(
+                state.paginateResponse?.serviceFee ?? 0,
+                currency: bag.selectedCurrency,
+              ),
               style: GoogleFonts.inter(
                 color: AppStyle.black,
                 fontSize: 16.sp,
@@ -123,8 +128,10 @@ class PriceInfo extends StatelessWidget {
               ),
             ),
             Text(
-              AppHelpers.numberFormat(state.paginateResponse?.deliveryFee ?? 0,
-                  symbol: bag.selectedCurrency?.symbol),
+              AppHelpers.numberFormat(
+                state.paginateResponse?.deliveryFee ?? 0,
+                currency: bag.selectedCurrency,
+              ),
               style: GoogleFonts.inter(
                 color: AppStyle.black,
                 fontSize: 16.sp,
@@ -148,7 +155,10 @@ class PriceInfo extends StatelessWidget {
               ),
             ),
             Text(
-              "-${AppHelpers.numberFormat(state.paginateResponse?.totalDiscount ?? 0, symbol: bag.selectedCurrency?.symbol)}",
+              "-${AppHelpers.numberFormat(
+                state.paginateResponse?.totalDiscount ?? 0,
+                currency: bag.selectedCurrency,
+              )}",
               style: GoogleFonts.inter(
                 color: AppStyle.red,
                 fontSize: 16.sp,
@@ -173,7 +183,10 @@ class PriceInfo extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "-${AppHelpers.numberFormat(state.paginateResponse?.couponPrice ?? 0, symbol: bag.selectedCurrency?.symbol)}",
+                    "-${AppHelpers.numberFormat(
+                      state.paginateResponse?.couponPrice ?? 0,
+                      currency: bag.selectedCurrency,
+                    )}",
                     style: GoogleFonts.inter(
                       color: AppStyle.red,
                       fontSize: 16.sp,
@@ -199,8 +212,10 @@ class PriceInfo extends StatelessWidget {
               ),
             ),
             Text(
-              AppHelpers.numberFormat(state.paginateResponse?.totalPrice ?? 0,
-                  symbol: bag.selectedCurrency?.symbol),
+              AppHelpers.numberFormat(
+                state.paginateResponse?.totalPrice ?? 0,
+                currency: bag.selectedCurrency,
+              ),
               style: GoogleFonts.inter(
                 color: AppStyle.black,
                 fontSize: 22.sp,
@@ -227,9 +242,11 @@ class PriceInfo extends StatelessWidget {
                   ),
                   Text(
                     AppHelpers.numberFormat(
-                        (state.paginateResponse?.totalPrice ?? 0) -
-                            (double.tryParse(state.calculate) ?? 0),
-                        symbol: bag.selectedCurrency?.symbol),
+                      (state.paginateResponse?.totalPrice ?? 0)
+                              -
+                          (double.tryParse(state.calculate) ?? 0) /  (bag.selectedCurrency?.rate ?? 1),
+                      currency: bag.selectedCurrency,
+                    ),
                     style: GoogleFonts.inter(
                       color: AppStyle.black,
                       fontSize: 22.sp,
@@ -290,7 +307,7 @@ class PriceInfo extends StatelessWidget {
                           child: Column(
                             children: [
                               Container(
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                     color: AppStyle.primary,
                                     shape: BoxShape.circle),
                                 padding: EdgeInsets.all(12.r),

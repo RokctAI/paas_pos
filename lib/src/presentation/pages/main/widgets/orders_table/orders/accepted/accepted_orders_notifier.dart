@@ -145,7 +145,7 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
     );
   }
 
-  addList(OrderData orderData, BuildContext context) async {
+  Future<void> addList(OrderData orderData, BuildContext context) async {
     List<OrderData> list = List.from(state.orders);
     list.insert(0, orderData);
     state = state.copyWith(orders: list, totalCount: state.totalCount + 1);
@@ -182,13 +182,13 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
     );
   }
 
-  removeList(int index) {
+  void removeList(int index) {
     List<OrderData> list = List.from(state.orders);
     list.removeAt(index);
     state = state.copyWith(orders: list, totalCount: state.totalCount - 1);
   }
 
-  deleteOrder(BuildContext context,
+  Future<void> deleteOrder(BuildContext context,
       {required orderId,}) async {
    
 
@@ -210,7 +210,7 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
     );
   }
 
-  int getIndex(id) {
+  int getIndex(int id) {
     List<OrderData> list = List.from(state.orders);
     for (int i = 0; i < list.length; i++) {
       if (list[i].id == id) {

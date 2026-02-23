@@ -8,7 +8,7 @@ import 'package:admin_desktop/src/core/constants/constants.dart';
 part 'income_state.freezed.dart';
 
 @freezed
-class IncomeState with _$IncomeState {
+abstract class IncomeState with _$IncomeState {
   const factory IncomeState({
     @Default(true) bool isLoading,
     @Default(TrKeys.week) String selectType,

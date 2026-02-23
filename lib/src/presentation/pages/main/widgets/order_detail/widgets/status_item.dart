@@ -35,7 +35,7 @@ class StatusItemPage extends StatelessWidget {
           ),
           padding: EdgeInsets.all(8.r),
           child: isOldStatus
-              ? const Icon(
+              ? Icon(
                   FlutterRemix.check_line,
                   color: AppStyle.primary,
                 )

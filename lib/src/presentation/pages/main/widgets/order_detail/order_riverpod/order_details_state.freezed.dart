@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,363 +9,302 @@ part of 'order_details_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$OrderDetailsState {
-  bool get isLoading => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
-  String get detailStatus => throw _privateConstructorUsedError;
-  String get usersQuery => throw _privateConstructorUsedError;
-  bool get isUsersLoading => throw _privateConstructorUsedError;
-  List<UserData> get users => throw _privateConstructorUsedError;
-  UserData? get selectedUser => throw _privateConstructorUsedError;
-  bool get isUpdating => throw _privateConstructorUsedError;
-  List<DropDownItemData> get dropdownUsers =>
-      throw _privateConstructorUsedError;
-  OrderData? get order => throw _privateConstructorUsedError;
 
-  /// Create a copy of OrderDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $OrderDetailsStateCopyWith<OrderDetailsState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isLoading; String get status; String get detailStatus; String get usersQuery; bool get isUsersLoading; List<UserData> get users; UserData? get selectedUser; bool get isUpdating; List<DropDownItemData> get dropdownUsers; OrderData? get order;
+/// Create a copy of OrderDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$OrderDetailsStateCopyWith<OrderDetailsState> get copyWith => _$OrderDetailsStateCopyWithImpl<OrderDetailsState>(this as OrderDetailsState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderDetailsState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.status, status) || other.status == status)&&(identical(other.detailStatus, detailStatus) || other.detailStatus == detailStatus)&&(identical(other.usersQuery, usersQuery) || other.usersQuery == usersQuery)&&(identical(other.isUsersLoading, isUsersLoading) || other.isUsersLoading == isUsersLoading)&&const DeepCollectionEquality().equals(other.users, users)&&(identical(other.selectedUser, selectedUser) || other.selectedUser == selectedUser)&&(identical(other.isUpdating, isUpdating) || other.isUpdating == isUpdating)&&const DeepCollectionEquality().equals(other.dropdownUsers, dropdownUsers)&&(identical(other.order, order) || other.order == order));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,status,detailStatus,usersQuery,isUsersLoading,const DeepCollectionEquality().hash(users),selectedUser,isUpdating,const DeepCollectionEquality().hash(dropdownUsers),order);
+
+@override
+String toString() {
+  return 'OrderDetailsState(isLoading: $isLoading, status: $status, detailStatus: $detailStatus, usersQuery: $usersQuery, isUsersLoading: $isUsersLoading, users: $users, selectedUser: $selectedUser, isUpdating: $isUpdating, dropdownUsers: $dropdownUsers, order: $order)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $OrderDetailsStateCopyWith<$Res> {
-  factory $OrderDetailsStateCopyWith(
-          OrderDetailsState value, $Res Function(OrderDetailsState) then) =
-      _$OrderDetailsStateCopyWithImpl<$Res, OrderDetailsState>;
-  @useResult
-  $Res call(
-      {bool isLoading,
-      String status,
-      String detailStatus,
-      String usersQuery,
-      bool isUsersLoading,
-      List<UserData> users,
-      UserData? selectedUser,
-      bool isUpdating,
-      List<DropDownItemData> dropdownUsers,
-      OrderData? order});
-}
+abstract mixin class $OrderDetailsStateCopyWith<$Res>  {
+  factory $OrderDetailsStateCopyWith(OrderDetailsState value, $Res Function(OrderDetailsState) _then) = _$OrderDetailsStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isLoading, String status, String detailStatus, String usersQuery, bool isUsersLoading, List<UserData> users, UserData? selectedUser, bool isUpdating, List<DropDownItemData> dropdownUsers, OrderData? order
+});
 
+
+
+
+}
 /// @nodoc
-class _$OrderDetailsStateCopyWithImpl<$Res, $Val extends OrderDetailsState>
+class _$OrderDetailsStateCopyWithImpl<$Res>
     implements $OrderDetailsStateCopyWith<$Res> {
-  _$OrderDetailsStateCopyWithImpl(this._value, this._then);
+  _$OrderDetailsStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final OrderDetailsState _self;
+  final $Res Function(OrderDetailsState) _then;
 
-  /// Create a copy of OrderDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? status = null,
-    Object? detailStatus = null,
-    Object? usersQuery = null,
-    Object? isUsersLoading = null,
-    Object? users = null,
-    Object? selectedUser = freezed,
-    Object? isUpdating = null,
-    Object? dropdownUsers = null,
-    Object? order = freezed,
-  }) {
-    return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      detailStatus: null == detailStatus
-          ? _value.detailStatus
-          : detailStatus // ignore: cast_nullable_to_non_nullable
-              as String,
-      usersQuery: null == usersQuery
-          ? _value.usersQuery
-          : usersQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      isUsersLoading: null == isUsersLoading
-          ? _value.isUsersLoading
-          : isUsersLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      users: null == users
-          ? _value.users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      selectedUser: freezed == selectedUser
-          ? _value.selectedUser
-          : selectedUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      isUpdating: null == isUpdating
-          ? _value.isUpdating
-          : isUpdating // ignore: cast_nullable_to_non_nullable
-              as bool,
-      dropdownUsers: null == dropdownUsers
-          ? _value.dropdownUsers
-          : dropdownUsers // ignore: cast_nullable_to_non_nullable
-              as List<DropDownItemData>,
-      order: freezed == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as OrderData?,
-    ) as $Val);
-  }
+/// Create a copy of OrderDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? status = null,Object? detailStatus = null,Object? usersQuery = null,Object? isUsersLoading = null,Object? users = null,Object? selectedUser = freezed,Object? isUpdating = null,Object? dropdownUsers = null,Object? order = freezed,}) {
+  return _then(_self.copyWith(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,detailStatus: null == detailStatus ? _self.detailStatus : detailStatus // ignore: cast_nullable_to_non_nullable
+as String,usersQuery: null == usersQuery ? _self.usersQuery : usersQuery // ignore: cast_nullable_to_non_nullable
+as String,isUsersLoading: null == isUsersLoading ? _self.isUsersLoading : isUsersLoading // ignore: cast_nullable_to_non_nullable
+as bool,users: null == users ? _self.users : users // ignore: cast_nullable_to_non_nullable
+as List<UserData>,selectedUser: freezed == selectedUser ? _self.selectedUser : selectedUser // ignore: cast_nullable_to_non_nullable
+as UserData?,isUpdating: null == isUpdating ? _self.isUpdating : isUpdating // ignore: cast_nullable_to_non_nullable
+as bool,dropdownUsers: null == dropdownUsers ? _self.dropdownUsers : dropdownUsers // ignore: cast_nullable_to_non_nullable
+as List<DropDownItemData>,order: freezed == order ? _self.order : order // ignore: cast_nullable_to_non_nullable
+as OrderData?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [OrderDetailsState].
+extension OrderDetailsStatePatterns on OrderDetailsState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _OrderDetailsState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _OrderDetailsState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _OrderDetailsState value)  $default,){
+final _that = this;
+switch (_that) {
+case _OrderDetailsState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _OrderDetailsState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _OrderDetailsState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  String status,  String detailStatus,  String usersQuery,  bool isUsersLoading,  List<UserData> users,  UserData? selectedUser,  bool isUpdating,  List<DropDownItemData> dropdownUsers,  OrderData? order)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _OrderDetailsState() when $default != null:
+return $default(_that.isLoading,_that.status,_that.detailStatus,_that.usersQuery,_that.isUsersLoading,_that.users,_that.selectedUser,_that.isUpdating,_that.dropdownUsers,_that.order);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  String status,  String detailStatus,  String usersQuery,  bool isUsersLoading,  List<UserData> users,  UserData? selectedUser,  bool isUpdating,  List<DropDownItemData> dropdownUsers,  OrderData? order)  $default,) {final _that = this;
+switch (_that) {
+case _OrderDetailsState():
+return $default(_that.isLoading,_that.status,_that.detailStatus,_that.usersQuery,_that.isUsersLoading,_that.users,_that.selectedUser,_that.isUpdating,_that.dropdownUsers,_that.order);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  String status,  String detailStatus,  String usersQuery,  bool isUsersLoading,  List<UserData> users,  UserData? selectedUser,  bool isUpdating,  List<DropDownItemData> dropdownUsers,  OrderData? order)?  $default,) {final _that = this;
+switch (_that) {
+case _OrderDetailsState() when $default != null:
+return $default(_that.isLoading,_that.status,_that.detailStatus,_that.usersQuery,_that.isUsersLoading,_that.users,_that.selectedUser,_that.isUpdating,_that.dropdownUsers,_that.order);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$OrderDetailsStateImplCopyWith<$Res>
-    implements $OrderDetailsStateCopyWith<$Res> {
-  factory _$$OrderDetailsStateImplCopyWith(_$OrderDetailsStateImpl value,
-          $Res Function(_$OrderDetailsStateImpl) then) =
-      __$$OrderDetailsStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {bool isLoading,
-      String status,
-      String detailStatus,
-      String usersQuery,
-      bool isUsersLoading,
-      List<UserData> users,
-      UserData? selectedUser,
-      bool isUpdating,
-      List<DropDownItemData> dropdownUsers,
-      OrderData? order});
+
+
+class _OrderDetailsState extends OrderDetailsState {
+  const _OrderDetailsState({this.isLoading = false, this.status = "", this.detailStatus = "", this.usersQuery = '', this.isUsersLoading = false, final  List<UserData> users = const [], this.selectedUser, this.isUpdating = false, final  List<DropDownItemData> dropdownUsers = const [], this.order}): _users = users,_dropdownUsers = dropdownUsers,super._();
+  
+
+@override@JsonKey() final  bool isLoading;
+@override@JsonKey() final  String status;
+@override@JsonKey() final  String detailStatus;
+@override@JsonKey() final  String usersQuery;
+@override@JsonKey() final  bool isUsersLoading;
+ final  List<UserData> _users;
+@override@JsonKey() List<UserData> get users {
+  if (_users is EqualUnmodifiableListView) return _users;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_users);
+}
+
+@override final  UserData? selectedUser;
+@override@JsonKey() final  bool isUpdating;
+ final  List<DropDownItemData> _dropdownUsers;
+@override@JsonKey() List<DropDownItemData> get dropdownUsers {
+  if (_dropdownUsers is EqualUnmodifiableListView) return _dropdownUsers;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_dropdownUsers);
+}
+
+@override final  OrderData? order;
+
+/// Create a copy of OrderDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$OrderDetailsStateCopyWith<_OrderDetailsState> get copyWith => __$OrderDetailsStateCopyWithImpl<_OrderDetailsState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderDetailsState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.status, status) || other.status == status)&&(identical(other.detailStatus, detailStatus) || other.detailStatus == detailStatus)&&(identical(other.usersQuery, usersQuery) || other.usersQuery == usersQuery)&&(identical(other.isUsersLoading, isUsersLoading) || other.isUsersLoading == isUsersLoading)&&const DeepCollectionEquality().equals(other._users, _users)&&(identical(other.selectedUser, selectedUser) || other.selectedUser == selectedUser)&&(identical(other.isUpdating, isUpdating) || other.isUpdating == isUpdating)&&const DeepCollectionEquality().equals(other._dropdownUsers, _dropdownUsers)&&(identical(other.order, order) || other.order == order));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isLoading,status,detailStatus,usersQuery,isUsersLoading,const DeepCollectionEquality().hash(_users),selectedUser,isUpdating,const DeepCollectionEquality().hash(_dropdownUsers),order);
+
+@override
+String toString() {
+  return 'OrderDetailsState(isLoading: $isLoading, status: $status, detailStatus: $detailStatus, usersQuery: $usersQuery, isUsersLoading: $isUsersLoading, users: $users, selectedUser: $selectedUser, isUpdating: $isUpdating, dropdownUsers: $dropdownUsers, order: $order)';
+}
+
+
 }
 
 /// @nodoc
-class __$$OrderDetailsStateImplCopyWithImpl<$Res>
-    extends _$OrderDetailsStateCopyWithImpl<$Res, _$OrderDetailsStateImpl>
-    implements _$$OrderDetailsStateImplCopyWith<$Res> {
-  __$$OrderDetailsStateImplCopyWithImpl(_$OrderDetailsStateImpl _value,
-      $Res Function(_$OrderDetailsStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$OrderDetailsStateCopyWith<$Res> implements $OrderDetailsStateCopyWith<$Res> {
+  factory _$OrderDetailsStateCopyWith(_OrderDetailsState value, $Res Function(_OrderDetailsState) _then) = __$OrderDetailsStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isLoading, String status, String detailStatus, String usersQuery, bool isUsersLoading, List<UserData> users, UserData? selectedUser, bool isUpdating, List<DropDownItemData> dropdownUsers, OrderData? order
+});
 
-  /// Create a copy of OrderDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isLoading = null,
-    Object? status = null,
-    Object? detailStatus = null,
-    Object? usersQuery = null,
-    Object? isUsersLoading = null,
-    Object? users = null,
-    Object? selectedUser = freezed,
-    Object? isUpdating = null,
-    Object? dropdownUsers = null,
-    Object? order = freezed,
-  }) {
-    return _then(_$OrderDetailsStateImpl(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String,
-      detailStatus: null == detailStatus
-          ? _value.detailStatus
-          : detailStatus // ignore: cast_nullable_to_non_nullable
-              as String,
-      usersQuery: null == usersQuery
-          ? _value.usersQuery
-          : usersQuery // ignore: cast_nullable_to_non_nullable
-              as String,
-      isUsersLoading: null == isUsersLoading
-          ? _value.isUsersLoading
-          : isUsersLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      users: null == users
-          ? _value._users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserData>,
-      selectedUser: freezed == selectedUser
-          ? _value.selectedUser
-          : selectedUser // ignore: cast_nullable_to_non_nullable
-              as UserData?,
-      isUpdating: null == isUpdating
-          ? _value.isUpdating
-          : isUpdating // ignore: cast_nullable_to_non_nullable
-              as bool,
-      dropdownUsers: null == dropdownUsers
-          ? _value._dropdownUsers
-          : dropdownUsers // ignore: cast_nullable_to_non_nullable
-              as List<DropDownItemData>,
-      order: freezed == order
-          ? _value.order
-          : order // ignore: cast_nullable_to_non_nullable
-              as OrderData?,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$OrderDetailsStateCopyWithImpl<$Res>
+    implements _$OrderDetailsStateCopyWith<$Res> {
+  __$OrderDetailsStateCopyWithImpl(this._self, this._then);
 
-class _$OrderDetailsStateImpl extends _OrderDetailsState {
-  const _$OrderDetailsStateImpl(
-      {this.isLoading = false,
-      this.status = "",
-      this.detailStatus = "",
-      this.usersQuery = '',
-      this.isUsersLoading = false,
-      final List<UserData> users = const [],
-      this.selectedUser,
-      this.isUpdating = false,
-      final List<DropDownItemData> dropdownUsers = const [],
-      this.order})
-      : _users = users,
-        _dropdownUsers = dropdownUsers,
-        super._();
+  final _OrderDetailsState _self;
+  final $Res Function(_OrderDetailsState) _then;
 
-  @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  @JsonKey()
-  final String status;
-  @override
-  @JsonKey()
-  final String detailStatus;
-  @override
-  @JsonKey()
-  final String usersQuery;
-  @override
-  @JsonKey()
-  final bool isUsersLoading;
-  final List<UserData> _users;
-  @override
-  @JsonKey()
-  List<UserData> get users {
-    if (_users is EqualUnmodifiableListView) return _users;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_users);
-  }
-
-  @override
-  final UserData? selectedUser;
-  @override
-  @JsonKey()
-  final bool isUpdating;
-  final List<DropDownItemData> _dropdownUsers;
-  @override
-  @JsonKey()
-  List<DropDownItemData> get dropdownUsers {
-    if (_dropdownUsers is EqualUnmodifiableListView) return _dropdownUsers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dropdownUsers);
-  }
-
-  @override
-  final OrderData? order;
-
-  @override
-  String toString() {
-    return 'OrderDetailsState(isLoading: $isLoading, status: $status, detailStatus: $detailStatus, usersQuery: $usersQuery, isUsersLoading: $isUsersLoading, users: $users, selectedUser: $selectedUser, isUpdating: $isUpdating, dropdownUsers: $dropdownUsers, order: $order)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OrderDetailsStateImpl &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.detailStatus, detailStatus) ||
-                other.detailStatus == detailStatus) &&
-            (identical(other.usersQuery, usersQuery) ||
-                other.usersQuery == usersQuery) &&
-            (identical(other.isUsersLoading, isUsersLoading) ||
-                other.isUsersLoading == isUsersLoading) &&
-            const DeepCollectionEquality().equals(other._users, _users) &&
-            (identical(other.selectedUser, selectedUser) ||
-                other.selectedUser == selectedUser) &&
-            (identical(other.isUpdating, isUpdating) ||
-                other.isUpdating == isUpdating) &&
-            const DeepCollectionEquality()
-                .equals(other._dropdownUsers, _dropdownUsers) &&
-            (identical(other.order, order) || other.order == order));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isLoading,
-      status,
-      detailStatus,
-      usersQuery,
-      isUsersLoading,
-      const DeepCollectionEquality().hash(_users),
-      selectedUser,
-      isUpdating,
-      const DeepCollectionEquality().hash(_dropdownUsers),
-      order);
-
-  /// Create a copy of OrderDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OrderDetailsStateImplCopyWith<_$OrderDetailsStateImpl> get copyWith =>
-      __$$OrderDetailsStateImplCopyWithImpl<_$OrderDetailsStateImpl>(
-          this, _$identity);
+/// Create a copy of OrderDetailsState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? status = null,Object? detailStatus = null,Object? usersQuery = null,Object? isUsersLoading = null,Object? users = null,Object? selectedUser = freezed,Object? isUpdating = null,Object? dropdownUsers = null,Object? order = freezed,}) {
+  return _then(_OrderDetailsState(
+isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as bool,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,detailStatus: null == detailStatus ? _self.detailStatus : detailStatus // ignore: cast_nullable_to_non_nullable
+as String,usersQuery: null == usersQuery ? _self.usersQuery : usersQuery // ignore: cast_nullable_to_non_nullable
+as String,isUsersLoading: null == isUsersLoading ? _self.isUsersLoading : isUsersLoading // ignore: cast_nullable_to_non_nullable
+as bool,users: null == users ? _self._users : users // ignore: cast_nullable_to_non_nullable
+as List<UserData>,selectedUser: freezed == selectedUser ? _self.selectedUser : selectedUser // ignore: cast_nullable_to_non_nullable
+as UserData?,isUpdating: null == isUpdating ? _self.isUpdating : isUpdating // ignore: cast_nullable_to_non_nullable
+as bool,dropdownUsers: null == dropdownUsers ? _self._dropdownUsers : dropdownUsers // ignore: cast_nullable_to_non_nullable
+as List<DropDownItemData>,order: freezed == order ? _self.order : order // ignore: cast_nullable_to_non_nullable
+as OrderData?,
+  ));
 }
 
-abstract class _OrderDetailsState extends OrderDetailsState {
-  const factory _OrderDetailsState(
-      {final bool isLoading,
-      final String status,
-      final String detailStatus,
-      final String usersQuery,
-      final bool isUsersLoading,
-      final List<UserData> users,
-      final UserData? selectedUser,
-      final bool isUpdating,
-      final List<DropDownItemData> dropdownUsers,
-      final OrderData? order}) = _$OrderDetailsStateImpl;
-  const _OrderDetailsState._() : super._();
 
-  @override
-  bool get isLoading;
-  @override
-  String get status;
-  @override
-  String get detailStatus;
-  @override
-  String get usersQuery;
-  @override
-  bool get isUsersLoading;
-  @override
-  List<UserData> get users;
-  @override
-  UserData? get selectedUser;
-  @override
-  bool get isUpdating;
-  @override
-  List<DropDownItemData> get dropdownUsers;
-  @override
-  OrderData? get order;
-
-  /// Create a copy of OrderDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OrderDetailsStateImplCopyWith<_$OrderDetailsStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

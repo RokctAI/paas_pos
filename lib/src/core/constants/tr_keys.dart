@@ -1,12 +1,16 @@
 class TrKeys {
   TrKeys._();
+
   static const String selectDesiredOrderHistory =
       "select_the_desired_order_history_range";
   static const String income = 'income';
   static const String help = 'help';
   static const String cook = 'cook';
+  static const String combo = 'combo';
+  static const String comboCategories = 'combo.categories';
   static const String table = 'table';
   static const String bonus = 'bonus';
+  static const String pleaseAddSection = 'please.add.section';
   static const String thisOrderCancelled = 'this.order.cancelled';
   static const String thisOrderReady = 'this.order.ready';
   static const String callToSupport = 'call_to_support';
@@ -476,4 +480,3 @@ class TrKeys {
   static const String imageCantEmpty = 'image.cant.empty';
   static const String successfullyEdited = 'successfully_edited';
 }
-

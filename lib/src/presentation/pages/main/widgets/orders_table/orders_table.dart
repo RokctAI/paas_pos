@@ -177,15 +177,13 @@ class _OrdersTablesState extends ConsumerState<OrdersTablesPage> {
                                       ),
                                       const Spacer(),
                                       ViewMode(
-                                        title: AppHelpers.getTranslation(
-                                            TrKeys.board),
+                                        title: TrKeys.board,
                                         isActive: !state.isListView,
                                         icon: FlutterRemix.dashboard_line,
                                         onTap: () => notifier.changeViewMode(0),
                                       ),
                                       ViewMode(
-                                        title: AppHelpers.getTranslation(
-                                            TrKeys.list),
+                                        title: TrKeys.list,
                                         isActive: state.isListView,
                                         isLeft: false,
                                         icon: FlutterRemix.menu_fill,

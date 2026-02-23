@@ -12,6 +12,12 @@ abstract class ProductsRepository {
     required int page,
   });
 
+  Future<ApiResult<ProductsPaginateResponse>> getCombosPaginate({
+    String? query,
+    int? categoryId,
+    int? shopId,
+    required int page,
+  });
   Future<ApiResult<ProductCalculateResponse>> getAllCalculations(
       List<BagProductData> bagProducts,String type, {String? coupon});
 }

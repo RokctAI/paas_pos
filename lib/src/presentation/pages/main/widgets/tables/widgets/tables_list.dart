@@ -124,7 +124,7 @@ class TablesList extends ConsumerWidget {
             ),
           ),
         if (state.isLoading)
-          const Center(
+          Center(
             child: CircularProgressIndicator(
               color: AppStyle.primary,
             ),

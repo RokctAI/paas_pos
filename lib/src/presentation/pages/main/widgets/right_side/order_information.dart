@@ -4,7 +4,7 @@ import 'package:admin_desktop/src/core/constants/constants.dart';
 import 'package:admin_desktop/src/core/utils/app_helpers.dart';
 import 'package:admin_desktop/src/core/utils/app_validators.dart';
 import 'package:admin_desktop/src/core/utils/local_storage.dart';
-import 'package:admin_desktop/src/models/data/bag_data.dart';
+import 'package:admin_desktop/src/models/models.dart';
 import 'package:admin_desktop/src/presentation/components/components.dart';
 
 import 'package:admin_desktop/src/presentation/pages/main/riverpod/provider/main_provider.dart';
@@ -438,25 +438,47 @@ class OrderInformation extends ConsumerWidget {
                                             color: AppStyle.transparent,
                                             shape: BoxShape.circle,
                                             border: Border.all(
-                                                color: AppStyle.black),
+                                                color:state.orderType
+                                                .toLowerCase() ==
+                                                e.toString().toLowerCase()
+                                                ? AppStyle.buttonFontColor
+                                                : AppStyle.black,),
                                           ),
                                           padding: EdgeInsets.all(6.r),
                                           child: e == TrKeys.delivery
                                               ? Icon(
                                                   FlutterRemix.takeaway_fill,
                                                   size: 18.sp,
+                                            color: state.orderType
+                                                .toLowerCase() ==
+                                                e.toString().toLowerCase()
+                                                ? AppStyle.buttonFontColor
+                                                : AppStyle.black,
                                                 )
                                               : e == TrKeys.pickup
                                                   ? SvgPicture.asset(
-                                                      "assets/svg/pickup.svg")
+                                                      "assets/svg/pickup.svg",color: state.orderType
+                                              .toLowerCase() ==
+                                              e.toString().toLowerCase()
+                                              ? AppStyle.buttonFontColor
+                                              : AppStyle.black,)
                                                   : SvgPicture.asset(
-                                                      "assets/svg/dine.svg"),
+                                                      "assets/svg/dine.svg",color:state.orderType
+                                              .toLowerCase() ==
+                                              e.toString().toLowerCase()
+                                              ? AppStyle.buttonFontColor
+                                              : AppStyle.black,),
                                         ),
                                         8.horizontalSpace,
                                         Text(
                                           AppHelpers.getTranslation(e),
                                           style: GoogleFonts.inter(
                                               fontSize: 14.sp,
+                                              color: state.orderType
+                                                          .toLowerCase() ==
+                                                      e.toString().toLowerCase()
+                                                  ? AppStyle.buttonFontColor
+                                                  : AppStyle.black,
                                               fontWeight: FontWeight.w600),
                                         )
                                       ],
@@ -485,7 +507,7 @@ class OrderInformation extends ConsumerWidget {
                             builder: (context, child) {
                               return Theme(
                                 data: Theme.of(context).copyWith(
-                                  colorScheme: const ColorScheme.light(
+                                  colorScheme: ColorScheme.light(
                                     primary: AppStyle.primary,
                                     onPrimary: AppStyle.black,
                                     onSurface: AppStyle.black,
@@ -531,7 +553,7 @@ class OrderInformation extends ConsumerWidget {
                             builder: (context, child) {
                               return Theme(
                                 data: Theme.of(context).copyWith(
-                                  colorScheme: const ColorScheme.light(
+                                  colorScheme: ColorScheme.light(
                                     primary: AppStyle.primary,
                                     onPrimary: AppStyle.black,
                                     onSurface: AppStyle.black,
@@ -620,7 +642,7 @@ class OrderInformation extends ConsumerWidget {
                       Text(
                         AppHelpers.numberFormat(
                           state.paginateResponse?.totalPrice,
-                          symbol: bag.selectedCurrency?.symbol,
+                          currency: bag.selectedCurrency,
                         ),
                         style: GoogleFonts.inter(
                           color: AppStyle.black,
@@ -649,33 +671,33 @@ class OrderInformation extends ConsumerWidget {
         _priceItem(
           title: TrKeys.subtotal,
           price: state.paginateResponse?.price,
-          symbol: bag.selectedCurrency?.symbol,
+          currency: bag.selectedCurrency,
         ),
         _priceItem(
           title: TrKeys.tax,
           price: state.paginateResponse?.totalTax,
-          symbol: bag.selectedCurrency?.symbol,
+          currency: bag.selectedCurrency,
         ),
         _priceItem(
           title: TrKeys.serviceFee,
           price: state.paginateResponse?.serviceFee,
-          symbol: bag.selectedCurrency?.symbol,
+          currency: bag.selectedCurrency,
         ),
         _priceItem(
           title: TrKeys.deliveryFee,
           price: state.paginateResponse?.deliveryFee,
-          symbol: bag.selectedCurrency?.symbol,
+          currency: bag.selectedCurrency,
         ),
         _priceItem(
           title: TrKeys.discount,
           price: state.paginateResponse?.totalDiscount,
-          symbol: bag.selectedCurrency?.symbol,
+          currency: bag.selectedCurrency,
           isDiscount: true,
         ),
         _priceItem(
           title: TrKeys.promoCode,
           price: state.paginateResponse?.couponPrice,
-          symbol: bag.selectedCurrency?.symbol,
+          currency: bag.selectedCurrency,
           isDiscount: true,
         ),
         const Divider(),
@@ -683,10 +705,10 @@ class OrderInformation extends ConsumerWidget {
     );
   }
 
-  _priceItem({
+  RenderObjectWidget _priceItem({
     required String title,
     required num? price,
-    required String? symbol,
+    required CurrencyData? currency,
     bool isDiscount = false,
   }) {
     return (price ?? 0) != 0
@@ -706,7 +728,7 @@ class OrderInformation extends ConsumerWidget {
                   ),
                   Text(
                     (isDiscount ? "-" : '') +
-                        AppHelpers.numberFormat(price, symbol: symbol),
+                        AppHelpers.numberFormat(price, currency: currency),
                     style: GoogleFonts.inter(
                       color: isDiscount ? AppStyle.red : AppStyle.black,
                       fontSize: 14.sp,

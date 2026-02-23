@@ -62,7 +62,7 @@ class CustomColorSet {
 
     final categoryTitleColor = isLight ? AppStyle.black : AppStyle.white;
 
-    const primary = AppStyle.primary;
+    final primary = AppStyle.primary;
 
     const white = AppStyle.white;
 
@@ -72,7 +72,7 @@ class CustomColorSet {
 
     final newBoxColor = isLight ? AppStyle.icon : AppStyle.iconButtonBack;
 
-    const success = AppStyle.primary;
+    final success = AppStyle.primary;
 
     const error = AppStyle.red;
 

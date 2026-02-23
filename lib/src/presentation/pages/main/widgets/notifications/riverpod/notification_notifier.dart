@@ -60,7 +60,7 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
     );
   }
 
-  changeFirst() {
+  void changeFirst() {
     state =
         state.copyWith(isFirstTimeNotification: true, isFirstTransaction: true);
   }
@@ -201,7 +201,7 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
     );
   }
 
-  updateTotal() {
+  void updateTotal() {
     state = state.copyWith(
         totalCount: (state.countOfNotifications?.notification ?? 0) +
             (state.countOfNotifications?.transaction ?? 0));

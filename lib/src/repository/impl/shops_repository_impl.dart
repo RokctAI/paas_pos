@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:multi_dropdown/models/value_item.dart';
 
 import 'package:admin_desktop/src/core/di/dependency_manager.dart';
 import 'package:admin_desktop/src/core/handlers/handlers.dart';
 import 'package:admin_desktop/src/core/utils/utils.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
 import '../../models/data/edit_shop_data.dart';
 import 'package:admin_desktop/src/models/models.dart';
 import '../repository.dart';
@@ -127,9 +127,9 @@ class ShopsRepositoryImpl extends ShopsRepository {
       {required EditShopData editShopData,
       required String? logoImg,
       required String? backImg,
-      List<ValueItem>? category,
-      List<ValueItem>? tag,
-      List<ValueItem>? type,
+      List<DropdownItem<String>>? category,
+      List<DropdownItem<String>>? tag,
+      List<DropdownItem<String>>? type,
       String? displayName}) async {
     final data = <String, dynamic>{
       for (int i = 0; i < (category?.length ?? 0); i++)

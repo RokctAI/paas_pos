@@ -44,9 +44,6 @@ class GalleryRepository implements GalleryRepositoryFacade {
       case UploadType.discounts:
         type = 'discounts';
         break;
-      default:
-        type = 'extras';
-        break;
     }
     final data = FormData.fromMap(
       {
