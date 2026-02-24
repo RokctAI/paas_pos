@@ -81,7 +81,8 @@ class _CreateParcelDialogState extends ConsumerState<CreateParcelDialog>
                     notifier.selectParcelOption(newValue);
                   }
                 },
-                items: state.parcelOptions.map<DropdownMenuItem<ParcelOptionData>>((
+                items: state.parcelOptions
+                    .map<DropdownMenuItem<ParcelOptionData>>((
                   ParcelOptionData value,
                 ) {
                   return DropdownMenuItem<ParcelOptionData>(

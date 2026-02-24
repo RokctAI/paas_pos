@@ -59,8 +59,8 @@ class ConfirmButton extends StatelessWidget {
           onTap: isTab
               ? onTap
               : isActive
-              ? onTap
-              : null,
+                  ? onTap
+                  : null,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.r),
@@ -89,23 +89,23 @@ class ConfirmButton extends StatelessWidget {
                     ),
                   )
                 : icon ??
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          prefixIcon ?? const SizedBox.shrink(),
-                          prefixIcon != null
-                              ? 12.r.horizontalSpace
-                              : const SizedBox.shrink(),
-                          Text(
-                            title,
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w500,
-                              fontSize: textSize?.sp ?? 16.sp,
-                              color: isActive ? textColor : AppStyle.black,
-                            ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        prefixIcon ?? const SizedBox.shrink(),
+                        prefixIcon != null
+                            ? 12.r.horizontalSpace
+                            : const SizedBox.shrink(),
+                        Text(
+                          title,
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w500,
+                            fontSize: textSize?.sp ?? 16.sp,
+                            color: isActive ? textColor : AppStyle.black,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ),
           ),
         ),
       ),

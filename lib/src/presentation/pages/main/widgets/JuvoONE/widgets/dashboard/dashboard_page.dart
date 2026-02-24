@@ -211,19 +211,17 @@ class _DashboardPageState extends ConsumerState<DashboardPage>
             });
 
             // Only fetch tanks data as it's affected by order changes
-            _fetchTanks()
-                .then((newTanks) {
-                  if (mounted) {
-                    setState(() {
-                      _tanks = newTanks;
-                    });
-                  }
-                })
-                .catchError((e) {
-                  if (kDebugMode) {
-                    print('Error updating tanks after order change: $e');
-                  }
+            _fetchTanks().then((newTanks) {
+              if (mounted) {
+                setState(() {
+                  _tanks = newTanks;
                 });
+              }
+            }).catchError((e) {
+              if (kDebugMode) {
+                print('Error updating tanks after order change: $e');
+              }
+            });
           }
         }
       } catch (e) {
@@ -363,9 +361,8 @@ class _DashboardPageState extends ConsumerState<DashboardPage>
       // Fetch data independently to maintain state
       final shopDataFuture = _fetchShopData();
       final tanksFuture = _fetchTanks();
-      final ordersFuture = ref
-          .read(waterosOrdersProvider.notifier)
-          .fetchOrders(_shopId);
+      final ordersFuture =
+          ref.read(waterosOrdersProvider.notifier).fetchOrders(_shopId);
 
       // Execute async operations that modify state directly
       // We don't include these in Future.wait since they update state internally
@@ -537,12 +534,12 @@ class _DashboardPageState extends ConsumerState<DashboardPage>
               if (purifiedTanks is Map) {
                 purifiedTanks.forEach((key, tankInfo) {
                   if (tankInfo['total_capacity'] != null) {
-                    totalCapacity += (tankInfo['total_capacity'] as num)
-                        .toDouble();
+                    totalCapacity +=
+                        (tankInfo['total_capacity'] as num).toDouble();
                   }
                   if (tankInfo['remaining_capacity'] != null) {
-                    totalRemaining += (tankInfo['remaining_capacity'] as num)
-                        .toDouble();
+                    totalRemaining +=
+                        (tankInfo['remaining_capacity'] as num).toDouble();
                   }
                 });
               }
@@ -939,8 +936,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage>
                 SizedBox(height: 16.h),
                 PumpStatus(
                   isOn: selectedTankData.pumpStatus['isOn'] as bool? ?? false,
-                  flowRate:
-                      (selectedTankData.pumpStatus['flowRate'] as num?)
+                  flowRate: (selectedTankData.pumpStatus['flowRate'] as num?)
                           ?.toDouble() ??
                       0.0,
                   tankId: selectedTankIndex != null
@@ -969,19 +965,17 @@ class _DashboardPageState extends ConsumerState<DashboardPage>
                   },
                 ),
                 WaterQuality(
-                  ph:
-                      (selectedTankData.waterQuality['ph'] as num?)
+                  ph: (selectedTankData.waterQuality['ph'] as num?)
                           ?.toDouble() ??
                       0.0,
                   tds:
                       (selectedTankData.waterQuality['tds'] as num?)?.toInt() ??
-                      0,
+                          0,
                   temperature:
                       (selectedTankData.waterQuality['temperature'] as num?)
-                          ?.toDouble() ??
-                      0.0,
-                  hardness:
-                      (selectedTankData.waterQuality['hardness'] as num?)
+                              ?.toDouble() ??
+                          0.0,
+                  hardness: (selectedTankData.waterQuality['hardness'] as num?)
                           ?.toInt() ??
                       0,
                 ),

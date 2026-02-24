@@ -133,8 +133,7 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
         }
       } else {
         return ApiResult.failure(
-          error:
-              response.data['message'] ??
+          error: response.data['message'] ??
               'Failed to create personal mastery goal',
         );
       }
@@ -192,8 +191,7 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
         }
       } else {
         return ApiResult.failure(
-          error:
-              response.data['message'] ??
+          error: response.data['message'] ??
               'Failed to update personal mastery goal',
         );
       }
@@ -220,8 +218,7 @@ class PersonalMasteryRepositoryImpl implements PersonalMasteryRepository {
         return const ApiResult.success(data: true);
       } else {
         return ApiResult.failure(
-          error:
-              response.data['message'] ??
+          error: response.data['message'] ??
               'Failed to delete personal mastery goal',
         );
       }

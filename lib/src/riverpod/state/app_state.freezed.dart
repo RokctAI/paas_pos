@@ -52,16 +52,15 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   $Res call({Object? isDarkMode = null, Object? lang = null}) {
     return _then(
       _value.copyWith(
-            isDarkMode: null == isDarkMode
-                ? _value.isDarkMode
-                : isDarkMode // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            lang: null == lang
-                ? _value.lang
-                : lang // ignore: cast_nullable_to_non_nullable
-                      as String,
-          )
-          as $Val,
+        isDarkMode: null == isDarkMode
+            ? _value.isDarkMode
+            : isDarkMode // ignore: cast_nullable_to_non_nullable
+                as bool,
+        lang: null == lang
+            ? _value.lang
+            : lang // ignore: cast_nullable_to_non_nullable
+                as String,
+      ) as $Val,
     );
   }
 }
@@ -97,11 +96,11 @@ class __$$AppStateImplCopyWithImpl<$Res>
         isDarkMode: null == isDarkMode
             ? _value.isDarkMode
             : isDarkMode // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         lang: null == lang
             ? _value.lang
             : lang // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
       ),
     );
   }

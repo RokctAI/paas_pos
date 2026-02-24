@@ -18,14 +18,14 @@ class DashboardRoute extends PageRouteInfo<DashboardRouteArgs> {
     VoidCallback? onBackToGrid,
     List<PageRouteInfo>? children,
   }) : super(
-         DashboardRoute.name,
-         args: DashboardRouteArgs(
-           key: key,
-           shopId: shopId,
-           onBackToGrid: onBackToGrid,
-         ),
-         initialChildren: children,
-       );
+          DashboardRoute.name,
+          args: DashboardRouteArgs(
+            key: key,
+            shopId: shopId,
+            onBackToGrid: onBackToGrid,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'DashboardRoute';
 
@@ -63,7 +63,7 @@ class DashboardRouteArgs {
 /// [HelpPage]
 class HelpRoute extends PageRouteInfo<void> {
   const HelpRoute({List<PageRouteInfo>? children})
-    : super(HelpRoute.name, initialChildren: children);
+      : super(HelpRoute.name, initialChildren: children);
 
   static const String name = 'HelpRoute';
 
@@ -79,7 +79,7 @@ class HelpRoute extends PageRouteInfo<void> {
 /// [LoginPage]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
-    : super(LoginRoute.name, initialChildren: children);
+      : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
@@ -95,7 +95,7 @@ class LoginRoute extends PageRouteInfo<void> {
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})
-    : super(MainRoute.name, initialChildren: children);
+      : super(MainRoute.name, initialChildren: children);
 
   static const String name = 'MainRoute';
 
@@ -115,10 +115,10 @@ class PinCodeRoute extends PageRouteInfo<PinCodeRouteArgs> {
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
-         PinCodeRoute.name,
-         args: PinCodeRouteArgs(isNewPassword: isNewPassword, key: key),
-         initialChildren: children,
-       );
+          PinCodeRoute.name,
+          args: PinCodeRouteArgs(isNewPassword: isNewPassword, key: key),
+          initialChildren: children,
+        );
 
   static const String name = 'PinCodeRoute';
 
@@ -148,7 +148,7 @@ class PinCodeRouteArgs {
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
-    : super(SplashRoute.name, initialChildren: children);
+      : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 

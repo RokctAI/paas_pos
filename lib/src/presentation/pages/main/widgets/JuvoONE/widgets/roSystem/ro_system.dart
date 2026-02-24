@@ -305,8 +305,7 @@ class ROSystemEfficiency {
           FilterLocation location = FilterLocation.pre;
           if (locationStr == 'ro')
             location = FilterLocation.ro;
-          else if (locationStr == 'post')
-            location = FilterLocation.post;
+          else if (locationStr == 'post') location = FilterLocation.post;
 
           totalFilterEfficiency += calculateComponentEfficiency(
             installationDate: installDate,
@@ -363,8 +362,7 @@ class ROSystemEfficiency {
     // Base efficiency based on age
     double baseEfficiency = 100.0;
     if (replacementLifespan != null) {
-      baseEfficiency =
-          100.0 *
+      baseEfficiency = 100.0 *
           (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
     }
 
@@ -372,8 +370,7 @@ class ROSystemEfficiency {
     if (lastMaintenanceDate != null) {
       final daysSinceMaintenance = now.difference(lastMaintenanceDate).inDays;
       if (daysSinceMaintenance <= maintenanceEffectDays) {
-        final maintenanceMultiplier =
-            1 +
+        final maintenanceMultiplier = 1 +
             (maintenanceBoost / 100) *
                 (1 - daysSinceMaintenance / maintenanceEffectDays);
         baseEfficiency = (baseEfficiency * maintenanceMultiplier).clamp(

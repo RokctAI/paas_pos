@@ -25,8 +25,8 @@ class Tank {
     this.lastFull,
     DateTime? createdAt,
     DateTime? updatedAt,
-  }) : createdAt = createdAt ?? DateTime.now(),
-       updatedAt = updatedAt ?? DateTime.now();
+  })  : createdAt = createdAt ?? DateTime.now(),
+        updatedAt = updatedAt ?? DateTime.now();
 
   factory Tank.fromJson(Map<String, dynamic> json) {
     final status = TankStatus.values.firstWhere(
@@ -49,15 +49,14 @@ class Tank {
           : (json['capacity'] as num).toDouble(),
       status: status,
       pumpStatus: json['pump_status'] ?? {'isOn': false, 'flowRate': 0.0},
-      waterQuality:
-          json['water_quality'] ??
+      waterQuality: json['water_quality'] ??
           {'ph': 7.0, 'tds': 0, 'temperature': 25.0, 'hardness': 0},
       // If last_full is null and status is full, use createdAt as the starting point
       lastFull: json['last_full'] != null
           ? DateTime.parse(json['last_full'])
           : (status == TankStatus.full
-                ? DateTime.parse(json['created_at'])
-                : null),
+              ? DateTime.parse(json['created_at'])
+              : null),
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
     );

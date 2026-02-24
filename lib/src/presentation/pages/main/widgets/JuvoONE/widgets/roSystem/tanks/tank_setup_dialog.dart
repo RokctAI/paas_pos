@@ -59,10 +59,9 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
     // Initialize pump status with defaults
     _isPumpOn = widget.initialTank?.pumpStatus['isOn'] ?? false;
     _flowRateController = TextEditingController(
-      text:
-          (widget.initialTank?.pumpStatus['flowRate'] ??
-                  (isPurified ? 6.0 : 8.3))
-              .toString(),
+      text: (widget.initialTank?.pumpStatus['flowRate'] ??
+              (isPurified ? 6.0 : 8.3))
+          .toString(),
     );
 
     // Initialize water quality with defaults
@@ -74,16 +73,14 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
           .toString(),
     );
     _temperatureController = TextEditingController(
-      text:
-          (widget.initialTank?.waterQuality['temperature'] ??
-                  (isPurified ? 20.0 : 25.0))
-              .toString(),
+      text: (widget.initialTank?.waterQuality['temperature'] ??
+              (isPurified ? 20.0 : 25.0))
+          .toString(),
     );
     _hardnessController = TextEditingController(
-      text:
-          (widget.initialTank?.waterQuality['hardness'] ??
-                  (isPurified ? 0 : 90))
-              .toString(),
+      text: (widget.initialTank?.waterQuality['hardness'] ??
+              (isPurified ? 0 : 90))
+          .toString(),
     );
   }
 
@@ -208,7 +205,6 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                     labelStyle: TextStyle(color: AppStyle.black),
                     hintStyle: TextStyle(color: AppStyle.hint),
                   ),
-
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter tank number';
@@ -241,9 +237,8 @@ class _TankSetupDialogState extends State<TankSetupDialog> {
                         // Update controllers with new default values
                         _flowRateController.text = isPurified ? '6.0' : '8.3';
                         _tdsController.text = isPurified ? '16' : '150';
-                        _temperatureController.text = isPurified
-                            ? '20.0'
-                            : '25.0';
+                        _temperatureController.text =
+                            isPurified ? '20.0' : '25.0';
                         _hardnessController.text = isPurified ? '0' : '90';
                       });
                     }

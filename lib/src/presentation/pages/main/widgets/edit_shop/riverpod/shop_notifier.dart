@@ -193,9 +193,8 @@ class ShopNotifier extends StateNotifier<ShopState> {
             ? num.tryParse(_perKm)
             : state.editShopData?.perKm,
         deliveryTime: DeliveryTime(
-          from: _from.isNotEmpty
-              ? _from
-              : state.editShopData?.deliveryTime?.from,
+          from:
+              _from.isNotEmpty ? _from : state.editShopData?.deliveryTime?.from,
           to: _to.isNotEmpty ? _to : state.editShopData?.deliveryTime?.to,
         ),
         tax: _tax.isNotEmpty ? num.tryParse(_tax) : state.editShopData?.tax,

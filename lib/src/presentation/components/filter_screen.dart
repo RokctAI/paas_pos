@@ -113,9 +113,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       ref
                           .read(orderTableProvider.notifier)
                           .setTime(_newList.first, _newList.last);
-                      ref
-                          .read(newOrdersProvider.notifier)
-                          .fetchNewOrders(
+                      ref.read(newOrdersProvider.notifier).fetchNewOrders(
                             start: _newList.first,
                             end: _newList.last,
                             isRefresh: true,
@@ -134,16 +132,12 @@ class _FilterScreenState extends State<FilterScreen> {
                             end: _newList.last,
                             isRefresh: true,
                           );
-                      ref
-                          .read(onAWayOrdersProvider.notifier)
-                          .fetchOnAWayOrders(
+                      ref.read(onAWayOrdersProvider.notifier).fetchOnAWayOrders(
                             start: _newList.first,
                             end: _newList.last,
                             isRefresh: true,
                           );
-                      ref
-                          .read(readyOrdersProvider.notifier)
-                          .fetchReadyOrders(
+                      ref.read(readyOrdersProvider.notifier).fetchReadyOrders(
                             start: _newList.first,
                             end: _newList.last,
                             isRefresh: true,
@@ -179,9 +173,7 @@ class _FilterScreenState extends State<FilterScreen> {
                           .read(tablesProvider.notifier)
                           .setTime(_newList.first, _newList.last);
 
-                      ref
-                          .read(tablesProvider.notifier)
-                          .fetchBookings(
+                      ref.read(tablesProvider.notifier).fetchBookings(
                             start: _newList.first,
                             end: _newList.last,
                             isRefresh: true,

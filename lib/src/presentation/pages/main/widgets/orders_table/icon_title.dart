@@ -46,10 +46,10 @@ class IconTitle extends StatelessWidget {
                       color: isCanceled
                           ? AppStyle.red
                           : isPaid
-                          ? AppStyle.inStockText
-                          : isProgress
-                          ? AppStyle.rate
-                          : AppStyle.black.withOpacity(0.8),
+                              ? AppStyle.inStockText
+                              : isProgress
+                                  ? AppStyle.rate
+                                  : AppStyle.black.withOpacity(0.8),
                     ),
                   ),
                 ],

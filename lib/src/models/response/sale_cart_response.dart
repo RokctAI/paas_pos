@@ -31,12 +31,13 @@ class SaleCartResponse {
     double? cash,
     double? other,
     List<SaleHistoryModel>? sales,
-  }) => SaleCartResponse(
-    deliveryFee: deliveryFee ?? this.deliveryFee,
-    cash: cash ?? this.cash,
-    other: other ?? this.other,
-    sales: sales ?? this.sales,
-  );
+  }) =>
+      SaleCartResponse(
+        deliveryFee: deliveryFee ?? this.deliveryFee,
+        cash: cash ?? this.cash,
+        other: other ?? this.other,
+        sales: sales ?? this.sales,
+      );
 
   factory SaleCartResponse.fromJson(Map<String, dynamic> json) =>
       SaleCartResponse(
@@ -51,11 +52,11 @@ class SaleCartResponse {
       );
 
   Map<String, dynamic> toJson() => {
-    "delivery_fee": deliveryFee,
-    "cash": cash,
-    "other": other,
-    "sales": sales == null
-        ? []
-        : List<dynamic>.from(sales!.map((x) => x.toJson())),
-  };
+        "delivery_fee": deliveryFee,
+        "cash": cash,
+        "other": other,
+        "sales": sales == null
+            ? []
+            : List<dynamic>.from(sales!.map((x) => x.toJson())),
+      };
 }

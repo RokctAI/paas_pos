@@ -30,9 +30,8 @@ class StatusItemPage extends StatelessWidget {
             color: isActive ? AppStyle.primary : AppStyle.white,
             shape: BoxShape.circle,
             border: Border.all(
-              color: isActive || isOldStatus
-                  ? AppStyle.primary
-                  : AppStyle.border,
+              color:
+                  isActive || isOldStatus ? AppStyle.primary : AppStyle.border,
             ),
           ),
           padding: EdgeInsets.all(8.r),

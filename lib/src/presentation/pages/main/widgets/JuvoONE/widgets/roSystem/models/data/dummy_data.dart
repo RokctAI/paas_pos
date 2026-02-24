@@ -9,9 +9,8 @@ final List<Map<String, dynamic>> dummyData = [
         'type': 'raw',
         'capacity': 4900,
         'lastUpdated': DateTime.now().toIso8601String(),
-        'lastFull': DateTime.now()
-            .subtract(const Duration(hours: 2))
-            .toIso8601String(),
+        'lastFull':
+            DateTime.now().subtract(const Duration(hours: 2)).toIso8601String(),
         'waterQuality': {
           'ph': 7.3,
           'tds': 175,
@@ -40,9 +39,8 @@ final List<Map<String, dynamic>> dummyData = [
         'type': 'raw',
         'capacity': 2000,
         'lastUpdated': DateTime.now().toIso8601String(),
-        'lastFull': DateTime.now()
-            .subtract(const Duration(hours: 8))
-            .toIso8601String(),
+        'lastFull':
+            DateTime.now().subtract(const Duration(hours: 8)).toIso8601String(),
         'waterQuality': {
           'ph': 7.1,
           'tds': 170,
@@ -91,9 +89,8 @@ final List<Map<String, dynamic>> dummyData = [
         'type': 'raw',
         'capacity': 4900,
         'lastUpdated': DateTime.now().toIso8601String(),
-        'lastFull': DateTime.now()
-            .subtract(const Duration(hours: 1))
-            .toIso8601String(),
+        'lastFull':
+            DateTime.now().subtract(const Duration(hours: 1)).toIso8601String(),
         'waterQuality': {
           'ph': 7.4,
           'tds': 178,
@@ -107,9 +104,8 @@ final List<Map<String, dynamic>> dummyData = [
         'type': 'purified',
         'capacity': 4900,
         'lastUpdated': DateTime.now().toIso8601String(),
-        'lastFull': DateTime.now()
-            .subtract(const Duration(hours: 3))
-            .toIso8601String(),
+        'lastFull':
+            DateTime.now().subtract(const Duration(hours: 3)).toIso8601String(),
         'waterQuality': {
           'ph': 6.7,
           'tds': 13,
@@ -123,9 +119,8 @@ final List<Map<String, dynamic>> dummyData = [
         'type': 'raw',
         'capacity': 2000,
         'lastUpdated': DateTime.now().toIso8601String(),
-        'lastFull': DateTime.now()
-            .subtract(const Duration(hours: 5))
-            .toIso8601String(),
+        'lastFull':
+            DateTime.now().subtract(const Duration(hours: 5)).toIso8601String(),
         'waterQuality': {
           'ph': 7.2,
           'tds': 176,

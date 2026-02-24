@@ -85,48 +85,47 @@ class _$OrderDetailsStateCopyWithImpl<$Res, $Val extends OrderDetailsState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            status: null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                      as String,
-            detailStatus: null == detailStatus
-                ? _value.detailStatus
-                : detailStatus // ignore: cast_nullable_to_non_nullable
-                      as String,
-            usersQuery: null == usersQuery
-                ? _value.usersQuery
-                : usersQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            isUsersLoading: null == isUsersLoading
-                ? _value.isUsersLoading
-                : isUsersLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            users: null == users
-                ? _value.users
-                : users // ignore: cast_nullable_to_non_nullable
-                      as List<UserData>,
-            selectedUser: freezed == selectedUser
-                ? _value.selectedUser
-                : selectedUser // ignore: cast_nullable_to_non_nullable
-                      as UserData?,
-            isUpdating: null == isUpdating
-                ? _value.isUpdating
-                : isUpdating // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            dropdownUsers: null == dropdownUsers
-                ? _value.dropdownUsers
-                : dropdownUsers // ignore: cast_nullable_to_non_nullable
-                      as List<DropDownItemData>,
-            order: freezed == order
-                ? _value.order
-                : order // ignore: cast_nullable_to_non_nullable
-                      as OrderData?,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        status: null == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                as String,
+        detailStatus: null == detailStatus
+            ? _value.detailStatus
+            : detailStatus // ignore: cast_nullable_to_non_nullable
+                as String,
+        usersQuery: null == usersQuery
+            ? _value.usersQuery
+            : usersQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        isUsersLoading: null == isUsersLoading
+            ? _value.isUsersLoading
+            : isUsersLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        users: null == users
+            ? _value.users
+            : users // ignore: cast_nullable_to_non_nullable
+                as List<UserData>,
+        selectedUser: freezed == selectedUser
+            ? _value.selectedUser
+            : selectedUser // ignore: cast_nullable_to_non_nullable
+                as UserData?,
+        isUpdating: null == isUpdating
+            ? _value.isUpdating
+            : isUpdating // ignore: cast_nullable_to_non_nullable
+                as bool,
+        dropdownUsers: null == dropdownUsers
+            ? _value.dropdownUsers
+            : dropdownUsers // ignore: cast_nullable_to_non_nullable
+                as List<DropDownItemData>,
+        order: freezed == order
+            ? _value.order
+            : order // ignore: cast_nullable_to_non_nullable
+                as OrderData?,
+      ) as $Val,
     );
   }
 }
@@ -184,43 +183,43 @@ class __$$OrderDetailsStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         status: null == status
             ? _value.status
             : status // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         detailStatus: null == detailStatus
             ? _value.detailStatus
             : detailStatus // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         usersQuery: null == usersQuery
             ? _value.usersQuery
             : usersQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         isUsersLoading: null == isUsersLoading
             ? _value.isUsersLoading
             : isUsersLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         users: null == users
             ? _value._users
             : users // ignore: cast_nullable_to_non_nullable
-                  as List<UserData>,
+                as List<UserData>,
         selectedUser: freezed == selectedUser
             ? _value.selectedUser
             : selectedUser // ignore: cast_nullable_to_non_nullable
-                  as UserData?,
+                as UserData?,
         isUpdating: null == isUpdating
             ? _value.isUpdating
             : isUpdating // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         dropdownUsers: null == dropdownUsers
             ? _value._dropdownUsers
             : dropdownUsers // ignore: cast_nullable_to_non_nullable
-                  as List<DropDownItemData>,
+                as List<DropDownItemData>,
         order: freezed == order
             ? _value.order
             : order // ignore: cast_nullable_to_non_nullable
-                  as OrderData?,
+                as OrderData?,
       ),
     );
   }
@@ -240,9 +239,9 @@ class _$OrderDetailsStateImpl extends _OrderDetailsState {
     this.isUpdating = false,
     final List<DropDownItemData> dropdownUsers = const [],
     this.order,
-  }) : _users = users,
-       _dropdownUsers = dropdownUsers,
-       super._();
+  })  : _users = users,
+        _dropdownUsers = dropdownUsers,
+        super._();
 
   @override
   @JsonKey()
@@ -318,18 +317,18 @@ class _$OrderDetailsStateImpl extends _OrderDetailsState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    status,
-    detailStatus,
-    usersQuery,
-    isUsersLoading,
-    const DeepCollectionEquality().hash(_users),
-    selectedUser,
-    isUpdating,
-    const DeepCollectionEquality().hash(_dropdownUsers),
-    order,
-  );
+        runtimeType,
+        isLoading,
+        status,
+        detailStatus,
+        usersQuery,
+        isUsersLoading,
+        const DeepCollectionEquality().hash(_users),
+        selectedUser,
+        isUpdating,
+        const DeepCollectionEquality().hash(_dropdownUsers),
+        order,
+      );
 
   /// Create a copy of OrderDetailsState
   /// with the given fields replaced by the non-null parameter values.

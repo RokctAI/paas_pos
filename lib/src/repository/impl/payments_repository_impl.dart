@@ -81,9 +81,8 @@ class PaymentsRepositoryImpl extends PaymentsRepository {
       );
 
       final List<dynamic> data = response.data['data'] ?? [];
-      final List<TransactionData> transactions = data
-          .map((json) => TransactionData.fromJson(json))
-          .toList();
+      final List<TransactionData> transactions =
+          data.map((json) => TransactionData.fromJson(json)).toList();
 
       return ApiResult.success(data: transactions);
     } catch (e) {

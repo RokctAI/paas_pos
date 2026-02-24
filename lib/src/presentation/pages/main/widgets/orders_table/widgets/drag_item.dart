@@ -20,8 +20,8 @@ import 'custom_popup_item.dart';
 // Timer state provider
 final orderTimerProvider =
     StateNotifierProvider.family<OrderTimerNotifier, OrderTimerState, String>(
-      (ref, orderId) => OrderTimerNotifier(),
-    );
+  (ref, orderId) => OrderTimerNotifier(),
+);
 
 // Timer state
 class OrderTimerState {

@@ -51,34 +51,31 @@ class TablesNotifier extends StateNotifier<TablesState> {
         state.selectTimeOfDay?.hour ?? 0,
         state.selectTimeOfDay?.minute ?? 0,
       ),
-      endDate:
-          DateTime(
-            state.selectDateTime?.year ?? 0,
-            state.selectDateTime?.month ?? 0,
-            state.selectDateTime?.day ?? 0,
-            state.selectTimeOfDay?.hour ?? 0,
-            state.selectTimeOfDay?.minute ?? 0,
-          ).add(
-            Duration(
-              hours:
-                  int.tryParse(
-                    state.selectDuration?.substring(
-                          0,
-                          state.selectDuration?.indexOf(":"),
-                        ) ??
-                        "0",
-                  ) ??
-                  0,
-              minutes:
-                  int.tryParse(
-                    state.selectDuration?.substring(
-                          (state.selectDuration?.indexOf(":") ?? 0) + 1,
-                        ) ??
-                        "0",
-                  ) ??
-                  0,
-            ),
-          ),
+      endDate: DateTime(
+        state.selectDateTime?.year ?? 0,
+        state.selectDateTime?.month ?? 0,
+        state.selectDateTime?.day ?? 0,
+        state.selectTimeOfDay?.hour ?? 0,
+        state.selectTimeOfDay?.minute ?? 0,
+      ).add(
+        Duration(
+          hours: int.tryParse(
+                state.selectDuration?.substring(
+                      0,
+                      state.selectDuration?.indexOf(":"),
+                    ) ??
+                    "0",
+              ) ??
+              0,
+          minutes: int.tryParse(
+                state.selectDuration?.substring(
+                      (state.selectDuration?.indexOf(":") ?? 0) + 1,
+                    ) ??
+                    "0",
+              ) ??
+              0,
+        ),
+      ),
     );
     res.when(
       success: (success) {
@@ -94,22 +91,20 @@ class TablesNotifier extends StateNotifier<TablesState> {
               orElse: () => null,
             )) !=
             null ||
-        (state.workingDayData?.dates
-                .firstWhere(
-                  (element) =>
-                      element.day.toLowerCase() ==
-                      DateFormat("EEEE").format(dateTime).toLowerCase(),
-                  orElse: () {
-                    return Date(
-                      id: 0,
-                      day: "",
-                      from: "",
-                      to: "",
-                      disabled: false,
-                    );
-                  },
-                )
-                .disabled ??
+        (state.workingDayData?.dates.firstWhere(
+              (element) =>
+                  element.day.toLowerCase() ==
+                  DateFormat("EEEE").format(dateTime).toLowerCase(),
+              orElse: () {
+                return Date(
+                  id: 0,
+                  day: "",
+                  from: "",
+                  to: "",
+                  disabled: false,
+                );
+              },
+            ).disabled ??
             false)) {
       state = state.copyWith(
         errorSelectDate: AppHelpers.getTranslation(TrKeys.plsSelectOtherDay),
@@ -381,10 +376,10 @@ class TablesNotifier extends StateNotifier<TablesState> {
       type: state.selectTabIndex == 1
           ? TrKeys.available
           : state.selectTabIndex == 2
-          ? TrKeys.booked
-          : state.selectTabIndex == 3
-          ? TrKeys.occupied
-          : null,
+              ? TrKeys.booked
+              : state.selectTabIndex == 3
+                  ? TrKeys.occupied
+                  : null,
       to: end,
       from: start,
       shopSectionId: state.shopSectionList.isEmpty
@@ -394,9 +389,8 @@ class TablesNotifier extends StateNotifier<TablesState> {
 
     response.when(
       success: (data) async {
-        List<TableData> tableListData = isRefresh
-            ? []
-            : List.from(state.tableListData);
+        List<TableData> tableListData =
+            isRefresh ? [] : List.from(state.tableListData);
         final List<TableData> newTables = data.data ?? [];
         tableListData.addAll(newTables);
         state = state.copyWith(hasMore: newTables.length >= 10);
@@ -430,19 +424,18 @@ class TablesNotifier extends StateNotifier<TablesState> {
       type: state.selectListTabIndex == 1
           ? TrKeys.newKey
           : state.selectListTabIndex == 2
-          ? TrKeys.accepted
-          : state.selectListTabIndex == 3
-          ? TrKeys.canceled
-          : null,
+              ? TrKeys.accepted
+              : state.selectListTabIndex == 3
+                  ? TrKeys.canceled
+                  : null,
       to: end,
       from: start,
     );
 
     response.when(
       success: (data) {
-        List<TableBookingData> tableBookingData = isRefresh
-            ? []
-            : List.from(state.tableListData);
+        List<TableBookingData> tableBookingData =
+            isRefresh ? [] : List.from(state.tableListData);
         final List<TableBookingData> newTables = data.data;
         tableBookingData.addAll(newTables);
         state = state.copyWith(hasMore: newTables.length >= 10);

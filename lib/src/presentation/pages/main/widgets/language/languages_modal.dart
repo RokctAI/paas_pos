@@ -64,8 +64,7 @@ class LanguagesModal extends ConsumerWidget {
                         notifier.change(index, afterUpdate: afterUpdate);
                         Navigator.pop(context);
                       },
-                      isActive:
-                          LocalStorage.getLanguage()?.locale ==
+                      isActive: LocalStorage.getLanguage()?.locale ==
                           state.languages[index].locale,
                       title: state.languages[index].title ?? '',
                     );

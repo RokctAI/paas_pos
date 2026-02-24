@@ -18,7 +18,7 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
   Timer? _refreshTime;
 
   AcceptedOrdersNotifier(this._ordersRepository)
-    : super(const AcceptedOrdersState());
+      : super(const AcceptedOrdersState());
 
   void setOrdersQuery(BuildContext context, String query) {
     if (state.query == query) {
@@ -85,9 +85,8 @@ class AcceptedOrdersNotifier extends StateNotifier<AcceptedOrdersState> {
     );
     response.when(
       success: (data) {
-        List<OrderData> orders = isRefresh || state.query.isNotEmpty
-            ? []
-            : List.from(state.orders);
+        List<OrderData> orders =
+            isRefresh || state.query.isNotEmpty ? [] : List.from(state.orders);
         final List<OrderData> newOrders = data.data?.orders ?? [];
         for (OrderData element in newOrders) {
           if (!orders.map((item) => item.id).contains(element.id)) {

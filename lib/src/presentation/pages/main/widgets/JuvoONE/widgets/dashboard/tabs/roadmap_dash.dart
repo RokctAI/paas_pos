@@ -221,13 +221,11 @@ class _AppRoadmapScreenState extends State<AppRoadmapScreen> {
     // Group tasks by status
     final Map<String, List<TodoTask>> tasksByStatus = {
       'Todo': versionTasks.where((task) => task.status == 'Todo').toList(),
-      'In Progress': versionTasks
-          .where((task) => task.status == 'In Progress')
-          .toList(),
+      'In Progress':
+          versionTasks.where((task) => task.status == 'In Progress').toList(),
       'Done': versionTasks.where((task) => task.status == 'Done').toList(),
-      'Blocked': versionTasks
-          .where((task) => task.status == 'Blocked')
-          .toList(),
+      'Blocked':
+          versionTasks.where((task) => task.status == 'Blocked').toList(),
     };
 
     return Column(

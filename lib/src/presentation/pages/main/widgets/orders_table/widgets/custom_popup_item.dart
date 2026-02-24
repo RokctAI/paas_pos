@@ -68,7 +68,6 @@ class CustomPopup extends ConsumerWidget {
         Navigator.pop(context);
         showDialog(
           context: context,
-
           builder: (_) => AlertDialog(
             titlePadding: const EdgeInsets.all(16),
             actionsPadding: const EdgeInsets.all(16),

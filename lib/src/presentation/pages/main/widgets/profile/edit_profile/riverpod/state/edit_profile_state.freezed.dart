@@ -117,92 +117,91 @@ class _$EditProfileStateCopyWithImpl<$Res, $Val extends EditProfileState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            checked: null == checked
-                ? _value.checked
-                : checked // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isShopEdit: null == isShopEdit
-                ? _value.isShopEdit
-                : isShopEdit // ignore: cast_nullable_to_non_nullable
-                      as int,
-            isSuccess: null == isSuccess
-                ? _value.isSuccess
-                : isSuccess // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            email: null == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                      as String,
-            firstName: null == firstName
-                ? _value.firstName
-                : firstName // ignore: cast_nullable_to_non_nullable
-                      as String,
-            lastName: null == lastName
-                ? _value.lastName
-                : lastName // ignore: cast_nullable_to_non_nullable
-                      as String,
-            phone: null == phone
-                ? _value.phone
-                : phone // ignore: cast_nullable_to_non_nullable
-                      as String,
-            secondPhone: null == secondPhone
-                ? _value.secondPhone
-                : secondPhone // ignore: cast_nullable_to_non_nullable
-                      as String,
-            birth: null == birth
-                ? _value.birth
-                : birth // ignore: cast_nullable_to_non_nullable
-                      as String,
-            gender: null == gender
-                ? _value.gender
-                : gender // ignore: cast_nullable_to_non_nullable
-                      as String,
-            url: null == url
-                ? _value.url
-                : url // ignore: cast_nullable_to_non_nullable
-                      as String,
-            imagePath: null == imagePath
-                ? _value.imagePath
-                : imagePath // ignore: cast_nullable_to_non_nullable
-                      as String,
-            image: freezed == image
-                ? _value.image
-                : image // ignore: cast_nullable_to_non_nullable
-                      as XFile?,
-            userData: freezed == userData
-                ? _value.userData
-                : userData // ignore: cast_nullable_to_non_nullable
-                      as UserData?,
-            selectIndex: freezed == selectIndex
-                ? _value.selectIndex
-                : selectIndex // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            showPassword: null == showPassword
-                ? _value.showPassword
-                : showPassword // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            showOldPassword: null == showOldPassword
-                ? _value.showOldPassword
-                : showOldPassword // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            showPincode: null == showPincode
-                ? _value.showPincode
-                : showPincode // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            password: null == password
-                ? _value.password
-                : password // ignore: cast_nullable_to_non_nullable
-                      as String,
-            confirmPassword: null == confirmPassword
-                ? _value.confirmPassword
-                : confirmPassword // ignore: cast_nullable_to_non_nullable
-                      as String,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        checked: null == checked
+            ? _value.checked
+            : checked // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isShopEdit: null == isShopEdit
+            ? _value.isShopEdit
+            : isShopEdit // ignore: cast_nullable_to_non_nullable
+                as int,
+        isSuccess: null == isSuccess
+            ? _value.isSuccess
+            : isSuccess // ignore: cast_nullable_to_non_nullable
+                as bool,
+        email: null == email
+            ? _value.email
+            : email // ignore: cast_nullable_to_non_nullable
+                as String,
+        firstName: null == firstName
+            ? _value.firstName
+            : firstName // ignore: cast_nullable_to_non_nullable
+                as String,
+        lastName: null == lastName
+            ? _value.lastName
+            : lastName // ignore: cast_nullable_to_non_nullable
+                as String,
+        phone: null == phone
+            ? _value.phone
+            : phone // ignore: cast_nullable_to_non_nullable
+                as String,
+        secondPhone: null == secondPhone
+            ? _value.secondPhone
+            : secondPhone // ignore: cast_nullable_to_non_nullable
+                as String,
+        birth: null == birth
+            ? _value.birth
+            : birth // ignore: cast_nullable_to_non_nullable
+                as String,
+        gender: null == gender
+            ? _value.gender
+            : gender // ignore: cast_nullable_to_non_nullable
+                as String,
+        url: null == url
+            ? _value.url
+            : url // ignore: cast_nullable_to_non_nullable
+                as String,
+        imagePath: null == imagePath
+            ? _value.imagePath
+            : imagePath // ignore: cast_nullable_to_non_nullable
+                as String,
+        image: freezed == image
+            ? _value.image
+            : image // ignore: cast_nullable_to_non_nullable
+                as XFile?,
+        userData: freezed == userData
+            ? _value.userData
+            : userData // ignore: cast_nullable_to_non_nullable
+                as UserData?,
+        selectIndex: freezed == selectIndex
+            ? _value.selectIndex
+            : selectIndex // ignore: cast_nullable_to_non_nullable
+                as int?,
+        showPassword: null == showPassword
+            ? _value.showPassword
+            : showPassword // ignore: cast_nullable_to_non_nullable
+                as bool,
+        showOldPassword: null == showOldPassword
+            ? _value.showOldPassword
+            : showOldPassword // ignore: cast_nullable_to_non_nullable
+                as bool,
+        showPincode: null == showPincode
+            ? _value.showPincode
+            : showPincode // ignore: cast_nullable_to_non_nullable
+                as bool,
+        password: null == password
+            ? _value.password
+            : password // ignore: cast_nullable_to_non_nullable
+                as String,
+        confirmPassword: null == confirmPassword
+            ? _value.confirmPassword
+            : confirmPassword // ignore: cast_nullable_to_non_nullable
+                as String,
+      ) as $Val,
     );
   }
 }
@@ -282,87 +281,87 @@ class __$$EditProfileStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         checked: null == checked
             ? _value.checked
             : checked // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isShopEdit: null == isShopEdit
             ? _value.isShopEdit
             : isShopEdit // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         isSuccess: null == isSuccess
             ? _value.isSuccess
             : isSuccess // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         email: null == email
             ? _value.email
             : email // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         firstName: null == firstName
             ? _value.firstName
             : firstName // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         lastName: null == lastName
             ? _value.lastName
             : lastName // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         phone: null == phone
             ? _value.phone
             : phone // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         secondPhone: null == secondPhone
             ? _value.secondPhone
             : secondPhone // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         birth: null == birth
             ? _value.birth
             : birth // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         gender: null == gender
             ? _value.gender
             : gender // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         url: null == url
             ? _value.url
             : url // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         imagePath: null == imagePath
             ? _value.imagePath
             : imagePath // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         image: freezed == image
             ? _value.image
             : image // ignore: cast_nullable_to_non_nullable
-                  as XFile?,
+                as XFile?,
         userData: freezed == userData
             ? _value.userData
             : userData // ignore: cast_nullable_to_non_nullable
-                  as UserData?,
+                as UserData?,
         selectIndex: freezed == selectIndex
             ? _value.selectIndex
             : selectIndex // ignore: cast_nullable_to_non_nullable
-                  as int?,
+                as int?,
         showPassword: null == showPassword
             ? _value.showPassword
             : showPassword // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         showOldPassword: null == showOldPassword
             ? _value.showOldPassword
             : showOldPassword // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         showPincode: null == showPincode
             ? _value.showPincode
             : showPincode // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         password: null == password
             ? _value.password
             : password // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         confirmPassword: null == confirmPassword
             ? _value.confirmPassword
             : confirmPassword // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
       ),
     );
   }
@@ -508,29 +507,29 @@ class _$EditProfileStateImpl extends _EditProfileState {
 
   @override
   int get hashCode => Object.hashAll([
-    runtimeType,
-    isLoading,
-    checked,
-    isShopEdit,
-    isSuccess,
-    email,
-    firstName,
-    lastName,
-    phone,
-    secondPhone,
-    birth,
-    gender,
-    url,
-    imagePath,
-    image,
-    userData,
-    selectIndex,
-    showPassword,
-    showOldPassword,
-    showPincode,
-    password,
-    confirmPassword,
-  ]);
+        runtimeType,
+        isLoading,
+        checked,
+        isShopEdit,
+        isSuccess,
+        email,
+        firstName,
+        lastName,
+        phone,
+        secondPhone,
+        birth,
+        gender,
+        url,
+        imagePath,
+        image,
+        userData,
+        selectIndex,
+        showPassword,
+        showOldPassword,
+        showPincode,
+        password,
+        confirmPassword,
+      ]);
 
   /// Create a copy of EditProfileState
   /// with the given fields replaced by the non-null parameter values.

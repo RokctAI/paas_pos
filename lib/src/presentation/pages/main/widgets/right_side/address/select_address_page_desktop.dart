@@ -81,8 +81,7 @@ class _SelectAddressDesktopPageState
   Future<void> _loadMap() async {
     final lat = widget.location?.latitude ?? AppConstants.demoLatitude;
     final lng = widget.location?.longitude ?? AppConstants.demoLongitude;
-    final html =
-        '''
+    final html = '''
       <!DOCTYPE html>
       <html>
         <head>

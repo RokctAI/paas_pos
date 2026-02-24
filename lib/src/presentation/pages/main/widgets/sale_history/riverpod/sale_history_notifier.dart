@@ -13,7 +13,7 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
   int historyPage = 0;
 
   SaleHistoryNotifier(this._settingsRepository)
-    : super(const SaleHistoryState());
+      : super(const SaleHistoryState());
 
   changeIndex(int index) {
     state = state.copyWith(selectIndex: index, hasMore: false);
@@ -37,8 +37,8 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
       state.selectIndex == 0
           ? state.listDriver
           : state.selectIndex == 1
-          ? state.listToday
-          : state.listHistory,
+              ? state.listToday
+              : state.listHistory,
     );
   }
 
@@ -51,8 +51,8 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
       isLoading: state.selectIndex == 0
           ? state.listDriver.isEmpty
           : state.selectIndex == 1
-          ? state.listToday.isEmpty
-          : state.listHistory.isEmpty,
+              ? state.listToday.isEmpty
+              : state.listHistory.isEmpty,
     );
     response.when(
       success: (data) async {
@@ -105,8 +105,8 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
           state.selectIndex == 0
               ? ++driverPage
               : state.selectIndex == 1
-              ? ++salePage
-              : ++historyPage,
+                  ? ++salePage
+                  : ++historyPage,
         );
 
         response.when(
@@ -156,8 +156,8 @@ class SaleHistoryNotifier extends StateNotifier<SaleHistoryState> {
           state.selectIndex == 0
               ? ++driverPage
               : state.selectIndex == 1
-              ? ++salePage
-              : ++historyPage,
+                  ? ++salePage
+                  : ++historyPage,
         );
         response.when(
           success: (data) async {

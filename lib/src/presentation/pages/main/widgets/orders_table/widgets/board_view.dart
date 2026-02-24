@@ -101,8 +101,8 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         list = widget.listNew;
         header = AppHelpers.getTranslation(TrKeys.newKey);
         hasMore = ref.watch(newOrdersProvider).hasMore;
-        onViewMore = () =>
-            ref.read(newOrdersProvider.notifier).fetchNewOrders();
+        onViewMore =
+            () => ref.read(newOrdersProvider.notifier).fetchNewOrders();
         itemColor = AppStyle.blue;
         count = ref.watch(newOrdersProvider).totalCount.toString();
         isLoading = ref.watch(newOrdersProvider).isLoading;
@@ -129,8 +129,8 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         list = widget.listCooking;
         header = AppHelpers.getTranslation(TrKeys.cooking);
         hasMore = ref.watch(cookingOrdersProvider).hasMore;
-        onViewMore = () =>
-            ref.read(cookingOrdersProvider.notifier).fetchCookingOrders();
+        onViewMore =
+            () => ref.read(cookingOrdersProvider.notifier).fetchCookingOrders();
         itemColor = AppStyle.rate;
         count = ref.watch(cookingOrdersProvider).totalCount.toString();
         isLoading = ref.watch(cookingOrdersProvider).isLoading;
@@ -144,8 +144,8 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         list = widget.listReady;
         header = AppHelpers.getTranslation(TrKeys.ready);
         hasMore = ref.watch(readyOrdersProvider).hasMore;
-        onViewMore = () =>
-            ref.read(readyOrdersProvider.notifier).fetchReadyOrders();
+        onViewMore =
+            () => ref.read(readyOrdersProvider.notifier).fetchReadyOrders();
         itemColor = AppStyle.revenueColor;
         count = ref.watch(readyOrdersProvider).totalCount.toString();
         isLoading = ref.watch(readyOrdersProvider).isLoading;
@@ -159,8 +159,8 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         list = widget.listOnAWay;
         header = AppHelpers.getTranslation(TrKeys.onAWay);
         hasMore = ref.watch(onAWayOrdersProvider).hasMore;
-        onViewMore = () =>
-            ref.read(onAWayOrdersProvider.notifier).fetchOnAWayOrders();
+        onViewMore =
+            () => ref.read(onAWayOrdersProvider.notifier).fetchOnAWayOrders();
         itemColor = AppStyle.black;
         count = ref.watch(onAWayOrdersProvider).totalCount.toString();
         isLoading = ref.watch(onAWayOrdersProvider).isLoading;
@@ -275,9 +275,7 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
         switch (newListIndex) {
           case 1:
             {
-              ref
-                  .read(acceptedOrdersProvider.notifier)
-                  .addList(
+              ref.read(acceptedOrdersProvider.notifier).addList(
                     ref.watch(newOrdersProvider).orders[oldItemIndex],
                     context,
                   );
@@ -286,14 +284,12 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
           case 2:
             {
               if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-                ref
-                    .read(cookingOrdersProvider.notifier)
-                    .addList(
+                ref.read(cookingOrdersProvider.notifier).addList(
                       oldListIndex == 0
                           ? ref.watch(newOrdersProvider).orders[oldItemIndex]
                           : ref
-                                .watch(acceptedOrdersProvider)
-                                .orders[oldItemIndex],
+                              .watch(acceptedOrdersProvider)
+                              .orders[oldItemIndex],
                       context,
                     );
               }
@@ -302,18 +298,16 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
           case 3:
             {
               if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-                ref
-                    .read(readyOrdersProvider.notifier)
-                    .addList(
+                ref.read(readyOrdersProvider.notifier).addList(
                       oldListIndex == 0
                           ? ref.watch(newOrdersProvider).orders[oldItemIndex]
                           : oldListIndex == 1
-                          ? ref
-                                .watch(acceptedOrdersProvider)
-                                .orders[oldItemIndex]
-                          : ref
-                                .watch(cookingOrdersProvider)
-                                .orders[oldItemIndex],
+                              ? ref
+                                  .watch(acceptedOrdersProvider)
+                                  .orders[oldItemIndex]
+                              : ref
+                                  .watch(cookingOrdersProvider)
+                                  .orders[oldItemIndex],
                       context,
                     );
               }
@@ -322,41 +316,41 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
           case 4:
             {
               if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-                ref
-                    .read(onAWayOrdersProvider.notifier)
-                    .addList(
+                ref.read(onAWayOrdersProvider.notifier).addList(
                       oldListIndex == 0
                           ? ref.watch(newOrdersProvider).orders[oldItemIndex]
                           : oldListIndex == 1
-                          ? ref
-                                .watch(acceptedOrdersProvider)
-                                .orders[oldItemIndex]
-                          : oldListIndex == 2
-                          ? ref
-                                .watch(cookingOrdersProvider)
-                                .orders[oldItemIndex]
-                          : ref.watch(readyOrdersProvider).orders[oldItemIndex],
+                              ? ref
+                                  .watch(acceptedOrdersProvider)
+                                  .orders[oldItemIndex]
+                              : oldListIndex == 2
+                                  ? ref
+                                      .watch(cookingOrdersProvider)
+                                      .orders[oldItemIndex]
+                                  : ref
+                                      .watch(readyOrdersProvider)
+                                      .orders[oldItemIndex],
                       context,
                     );
               } else {
-                ref
-                    .read(deliveredOrdersProvider.notifier)
-                    .addList(
+                ref.read(deliveredOrdersProvider.notifier).addList(
                       oldListIndex == 0
                           ? ref.watch(newOrdersProvider).orders[oldItemIndex]
                           : oldListIndex == 1
-                          ? ref
-                                .watch(acceptedOrdersProvider)
-                                .orders[oldItemIndex]
-                          : oldListIndex == 2
-                          ? ref
-                                .watch(cookingOrdersProvider)
-                                .orders[oldItemIndex]
-                          : oldListIndex == 3
-                          ? ref.watch(readyOrdersProvider).orders[oldItemIndex]
-                          : ref
-                                .watch(onAWayOrdersProvider)
-                                .orders[oldItemIndex],
+                              ? ref
+                                  .watch(acceptedOrdersProvider)
+                                  .orders[oldItemIndex]
+                              : oldListIndex == 2
+                                  ? ref
+                                      .watch(cookingOrdersProvider)
+                                      .orders[oldItemIndex]
+                                  : oldListIndex == 3
+                                      ? ref
+                                          .watch(readyOrdersProvider)
+                                          .orders[oldItemIndex]
+                                      : ref
+                                          .watch(onAWayOrdersProvider)
+                                          .orders[oldItemIndex],
                       context,
                     );
               }
@@ -365,45 +359,45 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
           case 5:
             {
               if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-                ref
-                    .read(deliveredOrdersProvider.notifier)
-                    .addList(
+                ref.read(deliveredOrdersProvider.notifier).addList(
                       oldListIndex == 0
                           ? ref.watch(newOrdersProvider).orders[oldItemIndex]
                           : oldListIndex == 1
-                          ? ref
-                                .watch(acceptedOrdersProvider)
-                                .orders[oldItemIndex]
-                          : oldListIndex == 2
-                          ? ref
-                                .watch(cookingOrdersProvider)
-                                .orders[oldItemIndex]
-                          : oldListIndex == 3
-                          ? ref.watch(readyOrdersProvider).orders[oldItemIndex]
-                          : ref
-                                .watch(onAWayOrdersProvider)
-                                .orders[oldItemIndex],
+                              ? ref
+                                  .watch(acceptedOrdersProvider)
+                                  .orders[oldItemIndex]
+                              : oldListIndex == 2
+                                  ? ref
+                                      .watch(cookingOrdersProvider)
+                                      .orders[oldItemIndex]
+                                  : oldListIndex == 3
+                                      ? ref
+                                          .watch(readyOrdersProvider)
+                                          .orders[oldItemIndex]
+                                      : ref
+                                          .watch(onAWayOrdersProvider)
+                                          .orders[oldItemIndex],
                       context,
                     );
               } else {
-                ref
-                    .read(canceledOrdersProvider.notifier)
-                    .addList(
+                ref.read(canceledOrdersProvider.notifier).addList(
                       oldListIndex == 0
                           ? ref.watch(newOrdersProvider).orders[oldItemIndex]
                           : oldListIndex == 1
-                          ? ref
-                                .watch(acceptedOrdersProvider)
-                                .orders[oldItemIndex]
-                          : oldListIndex == 2
-                          ? ref
-                                .watch(cookingOrdersProvider)
-                                .orders[oldItemIndex]
-                          : oldListIndex == 3
-                          ? ref.watch(readyOrdersProvider).orders[oldItemIndex]
-                          : ref
-                                .watch(deliveredOrdersProvider)
-                                .orders[oldItemIndex],
+                              ? ref
+                                  .watch(acceptedOrdersProvider)
+                                  .orders[oldItemIndex]
+                              : oldListIndex == 2
+                                  ? ref
+                                      .watch(cookingOrdersProvider)
+                                      .orders[oldItemIndex]
+                                  : oldListIndex == 3
+                                      ? ref
+                                          .watch(readyOrdersProvider)
+                                          .orders[oldItemIndex]
+                                      : ref
+                                          .watch(deliveredOrdersProvider)
+                                          .orders[oldItemIndex],
                       context,
                     );
               }
@@ -412,26 +406,28 @@ class _BoardViewState extends ConsumerState<BoardViewMode> {
           case 6:
             {
               if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-                ref
-                    .read(canceledOrdersProvider.notifier)
-                    .addList(
+                ref.read(canceledOrdersProvider.notifier).addList(
                       oldListIndex == 0
                           ? ref.watch(newOrdersProvider).orders[oldItemIndex]
                           : oldListIndex == 1
-                          ? ref
-                                .watch(acceptedOrdersProvider)
-                                .orders[oldItemIndex]
-                          : oldListIndex == 2
-                          ? ref
-                                .watch(cookingOrdersProvider)
-                                .orders[oldItemIndex]
-                          : oldListIndex == 3
-                          ? ref.watch(readyOrdersProvider).orders[oldItemIndex]
-                          : oldListIndex == 4
-                          ? ref.watch(onAWayOrdersProvider).orders[oldItemIndex]
-                          : ref
-                                .watch(deliveredOrdersProvider)
-                                .orders[oldItemIndex],
+                              ? ref
+                                  .watch(acceptedOrdersProvider)
+                                  .orders[oldItemIndex]
+                              : oldListIndex == 2
+                                  ? ref
+                                      .watch(cookingOrdersProvider)
+                                      .orders[oldItemIndex]
+                                  : oldListIndex == 3
+                                      ? ref
+                                          .watch(readyOrdersProvider)
+                                          .orders[oldItemIndex]
+                                      : oldListIndex == 4
+                                          ? ref
+                                              .watch(onAWayOrdersProvider)
+                                              .orders[oldItemIndex]
+                                          : ref
+                                              .watch(deliveredOrdersProvider)
+                                              .orders[oldItemIndex],
                       context,
                     );
               }

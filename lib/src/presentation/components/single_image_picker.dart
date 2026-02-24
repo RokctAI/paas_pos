@@ -66,9 +66,8 @@ class SingleImagePicker extends StatelessWidget {
                   CommonImage(
                     height: height ?? size + 16,
                     width: width ?? size,
-                    fileImage: imageFilePath != null
-                        ? File(imageFilePath!)
-                        : null,
+                    fileImage:
+                        imageFilePath != null ? File(imageFilePath!) : null,
                     imageUrl: imageUrl,
                     radius: 16,
                     // fit: BoxFit.cover,
@@ -96,27 +95,27 @@ class SingleImagePicker extends StatelessWidget {
                             ),
                           )
                         : isEdit
-                        ? ButtonEffectAnimation(
-                            onTap: () async =>
-                                AppHelpers.getPhotoGallery(onImageChange),
-                            child: BlurWrap(
-                              radius: BorderRadius.circular(20.r),
-                              child: Container(
-                                height: 36.r,
-                                width: 36.r,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppStyle.white.withOpacity(0.15),
+                            ? ButtonEffectAnimation(
+                                onTap: () async =>
+                                    AppHelpers.getPhotoGallery(onImageChange),
+                                child: BlurWrap(
+                                  radius: BorderRadius.circular(20.r),
+                                  child: Container(
+                                    height: 36.r,
+                                    width: 36.r,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppStyle.white.withOpacity(0.15),
+                                    ),
+                                    child: Icon(
+                                      FlutterRemix.add_fill,
+                                      color: AppStyle.white,
+                                      size: 18.r,
+                                    ),
+                                  ),
                                 ),
-                                child: Icon(
-                                  FlutterRemix.add_fill,
-                                  color: AppStyle.white,
-                                  size: 18.r,
-                                ),
-                              ),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
+                              )
+                            : const SizedBox.shrink(),
                   ),
                 ],
               ),

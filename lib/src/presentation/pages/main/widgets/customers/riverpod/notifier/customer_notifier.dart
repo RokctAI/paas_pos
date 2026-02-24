@@ -17,7 +17,7 @@ class CustomerNotifier extends StateNotifier<CustomerState> {
   int _page = 0;
 
   CustomerNotifier(this._usersRepository, this._galleryRepository)
-    : super(const CustomerState());
+      : super(const CustomerState());
 
   void setUser(UserData? user) {
     state = state.copyWith(selectUser: user);
@@ -128,17 +128,17 @@ class CustomerNotifier extends StateNotifier<CustomerState> {
                 child: Consumer(
                   builder:
                       (BuildContext context, WidgetRef ref, Widget? child) {
-                        return SuccessfullDialog(
-                          title: AppHelpers.getTranslation(
-                            TrKeys.customerAdded,
-                          ),
-                          content: AppHelpers.getTranslation(TrKeys.goToHome),
-                          onPressed: () {
-                            Navigator.pop(context);
-                            ref.read(mainProvider.notifier).changeIndex(0);
-                          },
-                        );
+                    return SuccessfullDialog(
+                      title: AppHelpers.getTranslation(
+                        TrKeys.customerAdded,
+                      ),
+                      content: AppHelpers.getTranslation(TrKeys.goToHome),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        ref.read(mainProvider.notifier).changeIndex(0);
                       },
+                    );
+                  },
                 ),
               ),
             );

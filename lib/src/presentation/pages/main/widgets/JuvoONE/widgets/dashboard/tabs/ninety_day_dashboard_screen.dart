@@ -148,11 +148,11 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
                     padding: const EdgeInsets.all(16),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                          childAspectRatio: 1.2,
-                        ),
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 1.2,
+                    ),
                     itemCount: filteredPriorities.length,
                     itemBuilder: (context, index) {
                       return _buildPriorityCard(
@@ -197,11 +197,9 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
     PlanProvider planProvider,
   ) {
     return priorities.where((objective) {
-      final statusMatch =
-          _selectedStatus == 'All Statuses' ||
+      final statusMatch = _selectedStatus == 'All Statuses' ||
           objective.status == _selectedStatus;
-      final pillarMatch =
-          _selectedPillar == 'All Pillars' ||
+      final pillarMatch = _selectedPillar == 'All Pillars' ||
           _getPillarName(objective, planProvider) == _selectedPillar;
       return statusMatch && pillarMatch;
     }).toList();
@@ -336,9 +334,8 @@ class _NinetyDayDashboardScreenState extends State<NinetyDayDashboardScreen> {
 
     // Calculate progress based on KPIs
     int totalKpis = objective.kpis.length;
-    int completedKpis = objective.kpis
-        .where((kpi) => kpi.status == 'Completed')
-        .length;
+    int completedKpis =
+        objective.kpis.where((kpi) => kpi.status == 'Completed').length;
     double progress = totalKpis > 0 ? completedKpis / totalKpis : 0;
 
     // Determine if any KPIs are overdue

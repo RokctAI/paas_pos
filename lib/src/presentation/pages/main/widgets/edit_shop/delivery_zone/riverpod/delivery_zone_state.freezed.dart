@@ -69,28 +69,27 @@ class _$DeliveryZoneStateCopyWithImpl<$Res, $Val extends DeliveryZoneState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isSaving: null == isSaving
-                ? _value.isSaving
-                : isSaving // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            deliveryZones: null == deliveryZones
-                ? _value.deliveryZones
-                : deliveryZones // ignore: cast_nullable_to_non_nullable
-                      as List<List<double>>,
-            tappedPoints: null == tappedPoints
-                ? _value.tappedPoints
-                : tappedPoints // ignore: cast_nullable_to_non_nullable
-                      as List<LatLng>,
-            polygon: null == polygon
-                ? _value.polygon
-                : polygon // ignore: cast_nullable_to_non_nullable
-                      as Set<Polygon>,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isSaving: null == isSaving
+            ? _value.isSaving
+            : isSaving // ignore: cast_nullable_to_non_nullable
+                as bool,
+        deliveryZones: null == deliveryZones
+            ? _value.deliveryZones
+            : deliveryZones // ignore: cast_nullable_to_non_nullable
+                as List<List<double>>,
+        tappedPoints: null == tappedPoints
+            ? _value.tappedPoints
+            : tappedPoints // ignore: cast_nullable_to_non_nullable
+                as List<LatLng>,
+        polygon: null == polygon
+            ? _value.polygon
+            : polygon // ignore: cast_nullable_to_non_nullable
+                as Set<Polygon>,
+      ) as $Val,
     );
   }
 }
@@ -138,23 +137,23 @@ class __$$DeliveryZoneStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isSaving: null == isSaving
             ? _value.isSaving
             : isSaving // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         deliveryZones: null == deliveryZones
             ? _value._deliveryZones
             : deliveryZones // ignore: cast_nullable_to_non_nullable
-                  as List<List<double>>,
+                as List<List<double>>,
         tappedPoints: null == tappedPoints
             ? _value._tappedPoints
             : tappedPoints // ignore: cast_nullable_to_non_nullable
-                  as List<LatLng>,
+                as List<LatLng>,
         polygon: null == polygon
             ? _value._polygon
             : polygon // ignore: cast_nullable_to_non_nullable
-                  as Set<Polygon>,
+                as Set<Polygon>,
       ),
     );
   }
@@ -169,10 +168,10 @@ class _$DeliveryZoneStateImpl extends _DeliveryZoneState {
     final List<List<double>> deliveryZones = const [],
     final List<LatLng> tappedPoints = const [],
     final Set<Polygon> polygon = const {},
-  }) : _deliveryZones = deliveryZones,
-       _tappedPoints = tappedPoints,
-       _polygon = polygon,
-       super._();
+  })  : _deliveryZones = deliveryZones,
+        _tappedPoints = tappedPoints,
+        _polygon = polygon,
+        super._();
 
   @override
   @JsonKey()
@@ -234,13 +233,13 @@ class _$DeliveryZoneStateImpl extends _DeliveryZoneState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    isSaving,
-    const DeepCollectionEquality().hash(_deliveryZones),
-    const DeepCollectionEquality().hash(_tappedPoints),
-    const DeepCollectionEquality().hash(_polygon),
-  );
+        runtimeType,
+        isLoading,
+        isSaving,
+        const DeepCollectionEquality().hash(_deliveryZones),
+        const DeepCollectionEquality().hash(_tappedPoints),
+        const DeepCollectionEquality().hash(_polygon),
+      );
 
   /// Create a copy of DeliveryZoneState
   /// with the given fields replaced by the non-null parameter values.

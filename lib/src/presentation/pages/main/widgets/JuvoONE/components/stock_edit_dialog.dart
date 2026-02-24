@@ -412,9 +412,7 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
 
     setState(() => isLoading = true);
 
-    final response = await ref
-        .read(productsRepositoryProvider)
-        .updateStocks(
+    final response = await ref.read(productsRepositoryProvider).updateStocks(
           stocks: updatedStocks,
           deletedStocks: [],
           uuid: widget.product.uuid!,
@@ -465,8 +463,7 @@ class _StockEditDialogState extends ConsumerState<StockEditDialog> {
           if (widget.product.stocks?.any((s) => s.extras?.isNotEmpty == true) ??
               false)
             ExtrasSelectionWidget(
-              stocks:
-                  widget.product.stocks ??
+              stocks: widget.product.stocks ??
                   [], // Use all product stocks to show all possible extras
               selectedExtras: selectedExtras,
               onExtraSelected: _handleExtraSelected,
@@ -816,8 +813,7 @@ class ExtrasSelectionWidget extends StatelessWidget {
                   spacing: 8.r,
                   runSpacing: 8.r,
                   children: extras.map((extra) {
-                    final isSelected =
-                        selectedExtras[groupId.toString()]?.any(
+                    final isSelected = selectedExtras[groupId.toString()]?.any(
                           (e) => e.id == extra.id && e.value == extra.value,
                         ) ??
                         false;

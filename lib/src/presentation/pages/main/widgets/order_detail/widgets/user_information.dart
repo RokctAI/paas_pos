@@ -29,8 +29,7 @@ class UserInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     num subTotal = 0;
-    subTotal =
-        (order?.totalPrice ?? 0) -
+    subTotal = (order?.totalPrice ?? 0) -
         (order?.tax ?? 0) -
         (order?.deliveryFee ?? 0) +
         (order?.totalDiscount ?? 0) +

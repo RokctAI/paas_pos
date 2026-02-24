@@ -35,9 +35,8 @@ class TaskRepositoryImpl implements TaskRepository {
         final jsonData = response.data;
         if (jsonData['success'] == true && jsonData['data'] != null) {
           final List<dynamic> tasksJson = jsonData['data'];
-          final tasks = tasksJson
-              .map((taskJson) => TodoTask.fromJson(taskJson))
-              .toList();
+          final tasks =
+              tasksJson.map((taskJson) => TodoTask.fromJson(taskJson)).toList();
           return ApiResult.success(data: tasks);
         } else {
           return ApiResult.failure(

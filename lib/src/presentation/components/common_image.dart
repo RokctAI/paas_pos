@@ -62,93 +62,93 @@ class CommonImage extends StatelessWidget {
               fit: BoxFit.cover,
             )
           : AppHelpers.checkIsSvg(imageUrl)
-          ? SvgPicture.network(
-              '$imageUrl',
-              width: isResponsive ? width.r : width,
-              height: isResponsive ? height.r : height,
-              fit: BoxFit.cover,
-              placeholderBuilder: (_) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(radius.r),
-                  color: AppStyle.white,
-                ),
-              ),
-            )
-          : CachedNetworkImage(
-              imageUrl: '$imageUrl',
-              width: isResponsive ? width.r : width,
-              height: isResponsive ? height.r : height,
-              fit: BoxFit.cover,
-              progressIndicatorBuilder: (context, url, progress) {
-                return MakeShimmer(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        isResponsive ? radius.r : radius,
-                      ),
-                      color: AppStyle.mainBack,
-                    ),
-                  ),
-                );
-              },
-              errorWidget: (context, url, error) {
-                // Check if this is a user-related image
-                if (orderData != null || userData != null) {
-                  final String firstName = _getFirstName() ?? "";
-                  final String lastName = _getLastName() ?? "";
-                  final bool hasName =
-                      firstName.isNotEmpty || lastName.isNotEmpty;
-
-                  final String initials = hasName
-                      ? "${firstName.isNotEmpty ? firstName[0] : ""}${lastName.isNotEmpty ? lastName[0] : ""}"
-                      : "";
-
-                  return Container(
-                    width: isResponsive ? width.r : width,
-                    height: isResponsive ? height.r : height,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        isResponsive ? radius.r : radius,
-                      ),
-                      color: AppStyle.primary,
-                    ),
-                    alignment: Alignment.center,
-                    child: hasName
-                        ? Text(
-                            initials.toUpperCase(),
-                            style: TextStyle(
-                              color: AppStyle.black,
-                              fontSize: isResponsive ? 20.r : 20,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )
-                        : Icon(
-                            FlutterRemix.account_circle_fill,
-                            color: AppStyle.black,
-                            size: isResponsive ? 20.r : 20,
-                          ),
-                  );
-                }
-                // Default error widget for non-user images
-                return Container(
+              ? SvgPicture.network(
+                  '$imageUrl',
                   width: isResponsive ? width.r : width,
                   height: isResponsive ? height.r : height,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      isResponsive ? radius.r : radius,
+                  fit: BoxFit.cover,
+                  placeholderBuilder: (_) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(radius.r),
+                      color: AppStyle.white,
                     ),
-                    border: Border.all(color: AppStyle.border),
-                    color: AppStyle.mainBack,
                   ),
-                  alignment: Alignment.center,
-                  child: Icon(
-                    FlutterRemix.image_line,
-                    color: AppStyle.black.withOpacity(0.5),
-                    size: isResponsive ? 20.r : 20,
-                  ),
-                );
-              },
-            ),
+                )
+              : CachedNetworkImage(
+                  imageUrl: '$imageUrl',
+                  width: isResponsive ? width.r : width,
+                  height: isResponsive ? height.r : height,
+                  fit: BoxFit.cover,
+                  progressIndicatorBuilder: (context, url, progress) {
+                    return MakeShimmer(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            isResponsive ? radius.r : radius,
+                          ),
+                          color: AppStyle.mainBack,
+                        ),
+                      ),
+                    );
+                  },
+                  errorWidget: (context, url, error) {
+                    // Check if this is a user-related image
+                    if (orderData != null || userData != null) {
+                      final String firstName = _getFirstName() ?? "";
+                      final String lastName = _getLastName() ?? "";
+                      final bool hasName =
+                          firstName.isNotEmpty || lastName.isNotEmpty;
+
+                      final String initials = hasName
+                          ? "${firstName.isNotEmpty ? firstName[0] : ""}${lastName.isNotEmpty ? lastName[0] : ""}"
+                          : "";
+
+                      return Container(
+                        width: isResponsive ? width.r : width,
+                        height: isResponsive ? height.r : height,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            isResponsive ? radius.r : radius,
+                          ),
+                          color: AppStyle.primary,
+                        ),
+                        alignment: Alignment.center,
+                        child: hasName
+                            ? Text(
+                                initials.toUpperCase(),
+                                style: TextStyle(
+                                  color: AppStyle.black,
+                                  fontSize: isResponsive ? 20.r : 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )
+                            : Icon(
+                                FlutterRemix.account_circle_fill,
+                                color: AppStyle.black,
+                                size: isResponsive ? 20.r : 20,
+                              ),
+                      );
+                    }
+                    // Default error widget for non-user images
+                    return Container(
+                      width: isResponsive ? width.r : width,
+                      height: isResponsive ? height.r : height,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          isResponsive ? radius.r : radius,
+                        ),
+                        border: Border.all(color: AppStyle.border),
+                        color: AppStyle.mainBack,
+                      ),
+                      alignment: Alignment.center,
+                      child: Icon(
+                        FlutterRemix.image_line,
+                        color: AppStyle.black.withOpacity(0.5),
+                        size: isResponsive ? 20.r : 20,
+                      ),
+                    );
+                  },
+                ),
     );
   }
 }

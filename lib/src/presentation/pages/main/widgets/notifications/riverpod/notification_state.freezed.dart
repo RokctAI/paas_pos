@@ -104,72 +104,71 @@ class _$NotificationStateCopyWithImpl<$Res, $Val extends NotificationState>
   }) {
     return _then(
       _value.copyWith(
-            transaction: null == transaction
-                ? _value.transaction
-                : transaction // ignore: cast_nullable_to_non_nullable
-                      as List<TransactionModel>,
-            totalCount: null == totalCount
-                ? _value.totalCount
-                : totalCount // ignore: cast_nullable_to_non_nullable
-                      as int,
-            isTransactionsLoading: null == isTransactionsLoading
-                ? _value.isTransactionsLoading
-                : isTransactionsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMoreTransactions: null == hasMoreTransactions
-                ? _value.hasMoreTransactions
-                : hasMoreTransactions // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            notifications: null == notifications
-                ? _value.notifications
-                : notifications // ignore: cast_nullable_to_non_nullable
-                      as List<NotificationModel>,
-            countOfNotifications: freezed == countOfNotifications
-                ? _value.countOfNotifications
-                : countOfNotifications // ignore: cast_nullable_to_non_nullable
-                      as CountNotificationModel?,
-            totalCountNotification: null == totalCountNotification
-                ? _value.totalCountNotification
-                : totalCountNotification // ignore: cast_nullable_to_non_nullable
-                      as int,
-            isNotificationLoading: null == isNotificationLoading
-                ? _value.isNotificationLoading
-                : isNotificationLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isMoreNotificationLoading: null == isMoreNotificationLoading
-                ? _value.isMoreNotificationLoading
-                : isMoreNotificationLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMoreNotification: null == hasMoreNotification
-                ? _value.hasMoreNotification
-                : hasMoreNotification // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isReadAllLoading: null == isReadAllLoading
-                ? _value.isReadAllLoading
-                : isReadAllLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isShowUserLoading: null == isShowUserLoading
-                ? _value.isShowUserLoading
-                : isShowUserLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isAllNotificationsLoading: null == isAllNotificationsLoading
-                ? _value.isAllNotificationsLoading
-                : isAllNotificationsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isFirstTimeNotification: null == isFirstTimeNotification
-                ? _value.isFirstTimeNotification
-                : isFirstTimeNotification // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isFirstTransaction: null == isFirstTransaction
-                ? _value.isFirstTransaction
-                : isFirstTransaction // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            total: null == total
-                ? _value.total
-                : total // ignore: cast_nullable_to_non_nullable
-                      as int,
-          )
-          as $Val,
+        transaction: null == transaction
+            ? _value.transaction
+            : transaction // ignore: cast_nullable_to_non_nullable
+                as List<TransactionModel>,
+        totalCount: null == totalCount
+            ? _value.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                as int,
+        isTransactionsLoading: null == isTransactionsLoading
+            ? _value.isTransactionsLoading
+            : isTransactionsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMoreTransactions: null == hasMoreTransactions
+            ? _value.hasMoreTransactions
+            : hasMoreTransactions // ignore: cast_nullable_to_non_nullable
+                as bool,
+        notifications: null == notifications
+            ? _value.notifications
+            : notifications // ignore: cast_nullable_to_non_nullable
+                as List<NotificationModel>,
+        countOfNotifications: freezed == countOfNotifications
+            ? _value.countOfNotifications
+            : countOfNotifications // ignore: cast_nullable_to_non_nullable
+                as CountNotificationModel?,
+        totalCountNotification: null == totalCountNotification
+            ? _value.totalCountNotification
+            : totalCountNotification // ignore: cast_nullable_to_non_nullable
+                as int,
+        isNotificationLoading: null == isNotificationLoading
+            ? _value.isNotificationLoading
+            : isNotificationLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isMoreNotificationLoading: null == isMoreNotificationLoading
+            ? _value.isMoreNotificationLoading
+            : isMoreNotificationLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMoreNotification: null == hasMoreNotification
+            ? _value.hasMoreNotification
+            : hasMoreNotification // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isReadAllLoading: null == isReadAllLoading
+            ? _value.isReadAllLoading
+            : isReadAllLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isShowUserLoading: null == isShowUserLoading
+            ? _value.isShowUserLoading
+            : isShowUserLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isAllNotificationsLoading: null == isAllNotificationsLoading
+            ? _value.isAllNotificationsLoading
+            : isAllNotificationsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isFirstTimeNotification: null == isFirstTimeNotification
+            ? _value.isFirstTimeNotification
+            : isFirstTimeNotification // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isFirstTransaction: null == isFirstTransaction
+            ? _value.isFirstTransaction
+            : isFirstTransaction // ignore: cast_nullable_to_non_nullable
+                as bool,
+        total: null == total
+            ? _value.total
+            : total // ignore: cast_nullable_to_non_nullable
+                as int,
+      ) as $Val,
     );
   }
 }
@@ -239,67 +238,67 @@ class __$$NotificationStateImplCopyWithImpl<$Res>
         transaction: null == transaction
             ? _value._transaction
             : transaction // ignore: cast_nullable_to_non_nullable
-                  as List<TransactionModel>,
+                as List<TransactionModel>,
         totalCount: null == totalCount
             ? _value.totalCount
             : totalCount // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         isTransactionsLoading: null == isTransactionsLoading
             ? _value.isTransactionsLoading
             : isTransactionsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMoreTransactions: null == hasMoreTransactions
             ? _value.hasMoreTransactions
             : hasMoreTransactions // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         notifications: null == notifications
             ? _value._notifications
             : notifications // ignore: cast_nullable_to_non_nullable
-                  as List<NotificationModel>,
+                as List<NotificationModel>,
         countOfNotifications: freezed == countOfNotifications
             ? _value.countOfNotifications
             : countOfNotifications // ignore: cast_nullable_to_non_nullable
-                  as CountNotificationModel?,
+                as CountNotificationModel?,
         totalCountNotification: null == totalCountNotification
             ? _value.totalCountNotification
             : totalCountNotification // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         isNotificationLoading: null == isNotificationLoading
             ? _value.isNotificationLoading
             : isNotificationLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isMoreNotificationLoading: null == isMoreNotificationLoading
             ? _value.isMoreNotificationLoading
             : isMoreNotificationLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMoreNotification: null == hasMoreNotification
             ? _value.hasMoreNotification
             : hasMoreNotification // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isReadAllLoading: null == isReadAllLoading
             ? _value.isReadAllLoading
             : isReadAllLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isShowUserLoading: null == isShowUserLoading
             ? _value.isShowUserLoading
             : isShowUserLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isAllNotificationsLoading: null == isAllNotificationsLoading
             ? _value.isAllNotificationsLoading
             : isAllNotificationsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isFirstTimeNotification: null == isFirstTimeNotification
             ? _value.isFirstTimeNotification
             : isFirstTimeNotification // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isFirstTransaction: null == isFirstTransaction
             ? _value.isFirstTransaction
             : isFirstTransaction // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         total: null == total
             ? _value.total
             : total // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
       ),
     );
   }
@@ -325,9 +324,9 @@ class _$NotificationStateImpl extends _NotificationState {
     this.isFirstTimeNotification = false,
     this.isFirstTransaction = false,
     this.total = 0,
-  }) : _transaction = transaction,
-       _notifications = notifications,
-       super._();
+  })  : _transaction = transaction,
+        _notifications = notifications,
+        super._();
 
   final List<TransactionModel> _transaction;
   @override
@@ -448,24 +447,24 @@ class _$NotificationStateImpl extends _NotificationState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_transaction),
-    totalCount,
-    isTransactionsLoading,
-    hasMoreTransactions,
-    const DeepCollectionEquality().hash(_notifications),
-    countOfNotifications,
-    totalCountNotification,
-    isNotificationLoading,
-    isMoreNotificationLoading,
-    hasMoreNotification,
-    isReadAllLoading,
-    isShowUserLoading,
-    isAllNotificationsLoading,
-    isFirstTimeNotification,
-    isFirstTransaction,
-    total,
-  );
+        runtimeType,
+        const DeepCollectionEquality().hash(_transaction),
+        totalCount,
+        isTransactionsLoading,
+        hasMoreTransactions,
+        const DeepCollectionEquality().hash(_notifications),
+        countOfNotifications,
+        totalCountNotification,
+        isNotificationLoading,
+        isMoreNotificationLoading,
+        hasMoreNotification,
+        isReadAllLoading,
+        isShowUserLoading,
+        isAllNotificationsLoading,
+        isFirstTimeNotification,
+        isFirstTransaction,
+        total,
+      );
 
   /// Create a copy of NotificationState
   /// with the given fields replaced by the non-null parameter values.

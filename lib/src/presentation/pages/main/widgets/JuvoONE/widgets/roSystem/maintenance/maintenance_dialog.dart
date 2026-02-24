@@ -160,10 +160,8 @@ class _MaintenanceDialogState extends State<MaintenanceDialog> {
     if (activeItem == null) return '';
 
     if (activeItem!.type == 'filter') {
-      final filterLocation = activeItem!.filterLocation
-          ?.toString()
-          .split('.')
-          .last;
+      final filterLocation =
+          activeItem!.filterLocation?.toString().split('.').last;
       if (filterLocation != null) {
         final filterDisplayName = switch (filterLocation) {
           'pre' => AppHelpers.getTranslation(TrKeys.preFilter),

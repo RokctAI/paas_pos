@@ -7,10 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // Define the provider
 final waterosOrdersProvider =
     StateNotifierProvider<WaterosOrdersNotifier, AsyncValue<List<OrderData>>>((
-      ref,
-    ) {
-      return WaterosOrdersNotifier();
-    });
+  ref,
+) {
+  return WaterosOrdersNotifier();
+});
 
 // Define the notifier
 class WaterosOrdersNotifier extends StateNotifier<AsyncValue<List<OrderData>>> {

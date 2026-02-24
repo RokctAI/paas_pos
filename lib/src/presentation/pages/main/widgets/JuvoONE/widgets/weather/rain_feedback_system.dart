@@ -124,9 +124,8 @@ class RainFeedbackSystem {
     final feedbackList = await getFeedbackHistory();
     if (feedbackList.isEmpty) return 0.0;
 
-    final correctPredictions = feedbackList
-        .where((feedback) => feedback.wasCorrect)
-        .length;
+    final correctPredictions =
+        feedbackList.where((feedback) => feedback.wasCorrect).length;
 
     return (correctPredictions / feedbackList.length) * 100;
   }

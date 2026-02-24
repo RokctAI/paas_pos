@@ -54,16 +54,15 @@ class _$PinCodeStateCopyWithImpl<$Res, $Val extends PinCodeState>
   $Res call({Object? isPinCodeNotValid = null, Object? pinCode = null}) {
     return _then(
       _value.copyWith(
-            isPinCodeNotValid: null == isPinCodeNotValid
-                ? _value.isPinCodeNotValid
-                : isPinCodeNotValid // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            pinCode: null == pinCode
-                ? _value.pinCode
-                : pinCode // ignore: cast_nullable_to_non_nullable
-                      as String,
-          )
-          as $Val,
+        isPinCodeNotValid: null == isPinCodeNotValid
+            ? _value.isPinCodeNotValid
+            : isPinCodeNotValid // ignore: cast_nullable_to_non_nullable
+                as bool,
+        pinCode: null == pinCode
+            ? _value.pinCode
+            : pinCode // ignore: cast_nullable_to_non_nullable
+                as String,
+      ) as $Val,
     );
   }
 }
@@ -99,11 +98,11 @@ class __$$PinCodeStateImplCopyWithImpl<$Res>
         isPinCodeNotValid: null == isPinCodeNotValid
             ? _value.isPinCodeNotValid
             : isPinCodeNotValid // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         pinCode: null == pinCode
             ? _value.pinCode
             : pinCode // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
       ),
     );
   }
@@ -113,7 +112,7 @@ class __$$PinCodeStateImplCopyWithImpl<$Res>
 
 class _$PinCodeStateImpl extends _PinCodeState {
   const _$PinCodeStateImpl({this.isPinCodeNotValid = false, this.pinCode = ''})
-    : super._();
+      : super._();
 
   @override
   @JsonKey()

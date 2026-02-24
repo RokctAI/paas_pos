@@ -78,40 +78,39 @@ class _$AddProductStateCopyWithImpl<$Res, $Val extends AddProductState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isReviewing: null == isReviewing
-                ? _value.isReviewing
-                : isReviewing // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            typedExtras: null == typedExtras
-                ? _value.typedExtras
-                : typedExtras // ignore: cast_nullable_to_non_nullable
-                      as List<TypedExtra>,
-            initialStocks: null == initialStocks
-                ? _value.initialStocks
-                : initialStocks // ignore: cast_nullable_to_non_nullable
-                      as List<Stocks>,
-            selectedIndexes: null == selectedIndexes
-                ? _value.selectedIndexes
-                : selectedIndexes // ignore: cast_nullable_to_non_nullable
-                      as List<int>,
-            stockCount: null == stockCount
-                ? _value.stockCount
-                : stockCount // ignore: cast_nullable_to_non_nullable
-                      as int,
-            product: freezed == product
-                ? _value.product
-                : product // ignore: cast_nullable_to_non_nullable
-                      as ProductData?,
-            selectedStock: freezed == selectedStock
-                ? _value.selectedStock
-                : selectedStock // ignore: cast_nullable_to_non_nullable
-                      as Stocks?,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isReviewing: null == isReviewing
+            ? _value.isReviewing
+            : isReviewing // ignore: cast_nullable_to_non_nullable
+                as bool,
+        typedExtras: null == typedExtras
+            ? _value.typedExtras
+            : typedExtras // ignore: cast_nullable_to_non_nullable
+                as List<TypedExtra>,
+        initialStocks: null == initialStocks
+            ? _value.initialStocks
+            : initialStocks // ignore: cast_nullable_to_non_nullable
+                as List<Stocks>,
+        selectedIndexes: null == selectedIndexes
+            ? _value.selectedIndexes
+            : selectedIndexes // ignore: cast_nullable_to_non_nullable
+                as List<int>,
+        stockCount: null == stockCount
+            ? _value.stockCount
+            : stockCount // ignore: cast_nullable_to_non_nullable
+                as int,
+        product: freezed == product
+            ? _value.product
+            : product // ignore: cast_nullable_to_non_nullable
+                as ProductData?,
+        selectedStock: freezed == selectedStock
+            ? _value.selectedStock
+            : selectedStock // ignore: cast_nullable_to_non_nullable
+                as Stocks?,
+      ) as $Val,
     );
   }
 }
@@ -165,35 +164,35 @@ class __$$AddProductStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isReviewing: null == isReviewing
             ? _value.isReviewing
             : isReviewing // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         typedExtras: null == typedExtras
             ? _value._typedExtras
             : typedExtras // ignore: cast_nullable_to_non_nullable
-                  as List<TypedExtra>,
+                as List<TypedExtra>,
         initialStocks: null == initialStocks
             ? _value._initialStocks
             : initialStocks // ignore: cast_nullable_to_non_nullable
-                  as List<Stocks>,
+                as List<Stocks>,
         selectedIndexes: null == selectedIndexes
             ? _value._selectedIndexes
             : selectedIndexes // ignore: cast_nullable_to_non_nullable
-                  as List<int>,
+                as List<int>,
         stockCount: null == stockCount
             ? _value.stockCount
             : stockCount // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         product: freezed == product
             ? _value.product
             : product // ignore: cast_nullable_to_non_nullable
-                  as ProductData?,
+                as ProductData?,
         selectedStock: freezed == selectedStock
             ? _value.selectedStock
             : selectedStock // ignore: cast_nullable_to_non_nullable
-                  as Stocks?,
+                as Stocks?,
       ),
     );
   }
@@ -211,10 +210,10 @@ class _$AddProductStateImpl extends _AddProductState {
     this.stockCount = 0,
     this.product,
     this.selectedStock,
-  }) : _typedExtras = typedExtras,
-       _initialStocks = initialStocks,
-       _selectedIndexes = selectedIndexes,
-       super._();
+  })  : _typedExtras = typedExtras,
+        _initialStocks = initialStocks,
+        _selectedIndexes = selectedIndexes,
+        super._();
 
   @override
   @JsonKey()
@@ -292,16 +291,16 @@ class _$AddProductStateImpl extends _AddProductState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    isReviewing,
-    const DeepCollectionEquality().hash(_typedExtras),
-    const DeepCollectionEquality().hash(_initialStocks),
-    const DeepCollectionEquality().hash(_selectedIndexes),
-    stockCount,
-    product,
-    selectedStock,
-  );
+        runtimeType,
+        isLoading,
+        isReviewing,
+        const DeepCollectionEquality().hash(_typedExtras),
+        const DeepCollectionEquality().hash(_initialStocks),
+        const DeepCollectionEquality().hash(_selectedIndexes),
+        stockCount,
+        product,
+        selectedStock,
+      );
 
   /// Create a copy of AddProductState
   /// with the given fields replaced by the non-null parameter values.

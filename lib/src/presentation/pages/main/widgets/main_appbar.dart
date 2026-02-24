@@ -48,28 +48,27 @@ class MainAppbar extends ConsumerWidget {
                                 ),
                               )
                             : index == 1
-                            ? CategoryTabBarItem(
-                                isActive: state.selectedCategory?.id == null,
-                                onTap: () {
-                                  notifier.setSelectedCategory(context, -1);
-                                },
-                                title: AppHelpers.getTranslation(TrKeys.all),
-                              )
-                            : CategoryTabBarItem(
-                                isActive:
-                                    state.categories[index - 2].id ==
-                                    state.selectedCategory?.id,
-                                onTap: () {
-                                  notifier.setSelectedCategory(
-                                    context,
-                                    index - 2,
+                                ? CategoryTabBarItem(
+                                    isActive:
+                                        state.selectedCategory?.id == null,
+                                    onTap: () {
+                                      notifier.setSelectedCategory(context, -1);
+                                    },
+                                    title:
+                                        AppHelpers.getTranslation(TrKeys.all),
+                                  )
+                                : CategoryTabBarItem(
+                                    isActive: state.categories[index - 2].id ==
+                                        state.selectedCategory?.id,
+                                    onTap: () {
+                                      notifier.setSelectedCategory(
+                                        context,
+                                        index - 2,
+                                      );
+                                    },
+                                    title: state.categories[index - 2]
+                                        .translation?.title,
                                   );
-                                },
-                                title: state
-                                    .categories[index - 2]
-                                    .translation
-                                    ?.title,
-                              );
                       },
                     ),
                   ),

@@ -54,16 +54,15 @@ class _$StockStateCopyWithImpl<$Res, $Val extends StockState>
   $Res call({Object? isLoading = null, Object? stocks = null}) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            stocks: null == stocks
-                ? _value.stocks
-                : stocks // ignore: cast_nullable_to_non_nullable
-                      as List<Stocks>,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        stocks: null == stocks
+            ? _value.stocks
+            : stocks // ignore: cast_nullable_to_non_nullable
+                as List<Stocks>,
+      ) as $Val,
     );
   }
 }
@@ -99,11 +98,11 @@ class __$$StockStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         stocks: null == stocks
             ? _value._stocks
             : stocks // ignore: cast_nullable_to_non_nullable
-                  as List<Stocks>,
+                as List<Stocks>,
       ),
     );
   }
@@ -115,8 +114,8 @@ class _$StockStateImpl extends _StockState {
   const _$StockStateImpl({
     this.isLoading = false,
     final List<Stocks> stocks = const [],
-  }) : _stocks = stocks,
-       super._();
+  })  : _stocks = stocks,
+        super._();
 
   @override
   @JsonKey()
@@ -147,10 +146,10 @@ class _$StockStateImpl extends _StockState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    const DeepCollectionEquality().hash(_stocks),
-  );
+        runtimeType,
+        isLoading,
+        const DeepCollectionEquality().hash(_stocks),
+      );
 
   /// Create a copy of StockState
   /// with the given fields replaced by the non-null parameter values.

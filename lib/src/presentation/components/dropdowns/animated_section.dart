@@ -31,15 +31,14 @@ class _AnimatedSectionState extends State<AnimatedSection>
   }
 
   void prepareAnimations() {
-    animController =
-        AnimationController(
-          vsync: this,
-          duration: const Duration(milliseconds: 300),
-        )..addStatusListener((status) {
-          if (status == AnimationStatus.dismissed) {
-            widget.animationDismissed();
-          }
-        });
+    animController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.dismissed) {
+          widget.animationDismissed();
+        }
+      });
 
     animation = CurvedAnimation(
       parent: animController,

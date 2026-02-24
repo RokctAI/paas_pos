@@ -24,11 +24,7 @@ class CustomPasswords extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   text:
-                      '${AppHelpers.getTranslation(type == TrKeys.seller
-                          ? TrKeys.sellerLogin
-                          : type == TrKeys.cooker
-                          ? TrKeys.cookerLogin
-                          : TrKeys.waiterLogin)}:',
+                      '${AppHelpers.getTranslation(type == TrKeys.seller ? TrKeys.sellerLogin : type == TrKeys.cooker ? TrKeys.cookerLogin : TrKeys.waiterLogin)}:',
                   style: GoogleFonts.inter(
                     fontSize: 14.sp,
                     letterSpacing: -0.3,
@@ -37,11 +33,7 @@ class CustomPasswords extends StatelessWidget {
                   children: [
                     TextSpan(
                       text:
-                          ' ${type == TrKeys.seller
-                              ? AppConstants.demoSellerLogin
-                              : type == TrKeys.cooker
-                              ? AppConstants.demoCookerLogin
-                              : AppConstants.demoWaiterLogin}',
+                          ' ${type == TrKeys.seller ? AppConstants.demoSellerLogin : type == TrKeys.cooker ? AppConstants.demoCookerLogin : AppConstants.demoWaiterLogin}',
                       style: GoogleFonts.inter(
                         letterSpacing: -0.3,
                         fontSize: 14.sp,
@@ -64,11 +56,7 @@ class CustomPasswords extends StatelessWidget {
                   children: [
                     TextSpan(
                       text:
-                          ' ${type == TrKeys.seller
-                              ? AppConstants.demoSellerPassword
-                              : type == TrKeys.cooker
-                              ? AppConstants.demoCookerPassword
-                              : AppConstants.demoWaiterPassword}',
+                          ' ${type == TrKeys.seller ? AppConstants.demoSellerPassword : type == TrKeys.cooker ? AppConstants.demoCookerPassword : AppConstants.demoWaiterPassword}',
                       style: GoogleFonts.inter(
                         letterSpacing: -0.3,
                         fontSize: 14.sp,

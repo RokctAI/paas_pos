@@ -434,8 +434,7 @@ class _PlanOnPageScreenState extends State<PlanOnPageScreen> {
                         ),
                       ]
                     : pillarKpis.map((kpi) {
-                        bool isOverdue =
-                            kpi.status != 'Completed' &&
+                        bool isOverdue = kpi.status != 'Completed' &&
                             kpi.dueDate.isBefore(DateTime.now());
 
                         return GestureDetector(

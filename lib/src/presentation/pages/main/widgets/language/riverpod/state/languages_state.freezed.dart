@@ -66,24 +66,23 @@ class _$LanguagesStateCopyWithImpl<$Res, $Val extends LanguagesState>
   }) {
     return _then(
       _value.copyWith(
-            languages: null == languages
-                ? _value.languages
-                : languages // ignore: cast_nullable_to_non_nullable
-                      as List<LanguageData>,
-            index: null == index
-                ? _value.index
-                : index // ignore: cast_nullable_to_non_nullable
-                      as int,
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isSelectLanguage: null == isSelectLanguage
-                ? _value.isSelectLanguage
-                : isSelectLanguage // ignore: cast_nullable_to_non_nullable
-                      as bool,
-          )
-          as $Val,
+        languages: null == languages
+            ? _value.languages
+            : languages // ignore: cast_nullable_to_non_nullable
+                as List<LanguageData>,
+        index: null == index
+            ? _value.index
+            : index // ignore: cast_nullable_to_non_nullable
+                as int,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isSelectLanguage: null == isSelectLanguage
+            ? _value.isSelectLanguage
+            : isSelectLanguage // ignore: cast_nullable_to_non_nullable
+                as bool,
+      ) as $Val,
     );
   }
 }
@@ -129,19 +128,19 @@ class __$$LanguagesStateImplCopyWithImpl<$Res>
         languages: null == languages
             ? _value._languages
             : languages // ignore: cast_nullable_to_non_nullable
-                  as List<LanguageData>,
+                as List<LanguageData>,
         index: null == index
             ? _value.index
             : index // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isSelectLanguage: null == isSelectLanguage
             ? _value.isSelectLanguage
             : isSelectLanguage // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
       ),
     );
   }
@@ -155,8 +154,8 @@ class _$LanguagesStateImpl extends _LanguagesState {
     this.index = 0,
     this.isLoading = false,
     this.isSelectLanguage = false,
-  }) : _languages = languages,
-       super._();
+  })  : _languages = languages,
+        super._();
 
   final List<LanguageData> _languages;
   @override
@@ -200,12 +199,12 @@ class _$LanguagesStateImpl extends _LanguagesState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_languages),
-    index,
-    isLoading,
-    isSelectLanguage,
-  );
+        runtimeType,
+        const DeepCollectionEquality().hash(_languages),
+        index,
+        isLoading,
+        isSelectLanguage,
+      );
 
   /// Create a copy of LanguagesState
   /// with the given fields replaced by the non-null parameter values.

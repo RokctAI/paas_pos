@@ -168,14 +168,14 @@ class _DynamicHeaderComponentState
       width: 130.w,
       child: AppConstants.enableJuvoONE
           ? (_showJuvoONEAnimation
-                ? JuvoONETypingAnimation(
-                    onAnimationComplete: () {
-                      setState(() {
-                        _showJuvoONEAnimation = false;
-                      });
-                    },
-                  )
-                : _buildDynamicContent())
+              ? JuvoONETypingAnimation(
+                  onAnimationComplete: () {
+                    setState(() {
+                      _showJuvoONEAnimation = false;
+                    });
+                  },
+                )
+              : _buildDynamicContent())
           : _buildDynamicContent(),
     );
   }

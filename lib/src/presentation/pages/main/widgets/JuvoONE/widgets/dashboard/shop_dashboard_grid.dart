@@ -18,13 +18,10 @@ import 'dashboard_page.dart';
 import 'shop_dashboard_card.dart';
 
 // Provider to store the list of shops with their dashboard summaries
-final shopsDashboardProvider =
-    StateNotifierProvider<
-      ShopsDashboardNotifier,
-      AsyncValue<List<ShopDashboardSummary>>
-    >((ref) {
-      return ShopsDashboardNotifier();
-    });
+final shopsDashboardProvider = StateNotifierProvider<ShopsDashboardNotifier,
+    AsyncValue<List<ShopDashboardSummary>>>((ref) {
+  return ShopsDashboardNotifier();
+});
 
 // Provider to track the currently selected shop
 final selectedShopProvider = StateProvider<int?>((ref) => null);
@@ -206,8 +203,8 @@ class ShopsDashboardNotifier
       final membraneCount = roSystem['membrane_count'] as int? ?? 0;
       final membraneInstallationDate =
           roSystem['membrane_installation_date'] != null
-          ? DateTime.parse(roSystem['membrane_installation_date'])
-          : DateTime.now();
+              ? DateTime.parse(roSystem['membrane_installation_date'])
+              : DateTime.now();
 
       double totalEfficiency = 0.0;
       int componentCount = 0;
@@ -275,8 +272,7 @@ class ShopsDashboardNotifier
 
     double baseEfficiency = 100.0;
     if (replacementLifespan != null) {
-      baseEfficiency =
-          100.0 *
+      baseEfficiency = 100.0 *
           (1 - (daysSinceInstallation / replacementLifespan)).clamp(0.0, 1.0);
     }
 
@@ -288,8 +284,7 @@ class ShopsDashboardNotifier
       const maintenanceBoost = 20.0; // Maintenance can boost efficiency by 20%
 
       if (daysSinceMaintenance <= maintenanceEffectDays) {
-        final maintenanceMultiplier =
-            1 +
+        final maintenanceMultiplier = 1 +
             (maintenanceBoost / 100) *
                 (1 - daysSinceMaintenance / maintenanceEffectDays);
         baseEfficiency = (baseEfficiency * maintenanceMultiplier).clamp(
@@ -397,9 +392,8 @@ class _ShopsDashboardGridState extends ConsumerState<ShopsDashboardGrid> {
                 padding: EdgeInsets.all(16.r),
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: MediaQuery.of(context).size.width > 1200
-                        ? 3
-                        : 2,
+                    crossAxisCount:
+                        MediaQuery.of(context).size.width > 1200 ? 3 : 2,
                     crossAxisSpacing: 12.r, // Reduced spacing
                     mainAxisSpacing: 12.r, // Reduced spacing
                     childAspectRatio:
@@ -437,45 +431,39 @@ class _ShopsDashboardGridState extends ConsumerState<ShopsDashboardGrid> {
                               MaintenanceService.getROSystemByShopId(shopId);
 
                           // Preload energy consumption data
-                          final energyFuture = EnergyService()
-                              .fetchEnergyConsumption(shopId);
+                          final energyFuture =
+                              EnergyService().fetchEnergyConsumption(shopId);
 
                           // Wait for all preloading to complete
                           await Future.wait([
                             ordersFuture,
-                            tanksFuture
-                                .then((tanks) {
-                                  // Cache the tanks data in a provider if needed
-                                })
-                                .catchError((e) {
-                                  if (kDebugMode) {
-                                    print('Error preloading tanks: $e');
-                                  }
-                                  // Continue despite errors
-                                  return null;
-                                }),
-                            roSystemFuture
-                                .then((roSystem) {
-                                  // Cache the RO system data if needed
-                                })
-                                .catchError((e) {
-                                  if (kDebugMode) {
-                                    print('Error preloading RO system: $e');
-                                  }
-                                  // Continue despite errors
-                                  return null;
-                                }),
-                            energyFuture
-                                .then((energyData) {
-                                  // Cache the energy data if needed
-                                })
-                                .catchError((e) {
-                                  if (kDebugMode) {
-                                    print('Error preloading energy data: $e');
-                                  }
-                                  // Continue despite errors
-                                  return null;
-                                }),
+                            tanksFuture.then((tanks) {
+                              // Cache the tanks data in a provider if needed
+                            }).catchError((e) {
+                              if (kDebugMode) {
+                                print('Error preloading tanks: $e');
+                              }
+                              // Continue despite errors
+                              return null;
+                            }),
+                            roSystemFuture.then((roSystem) {
+                              // Cache the RO system data if needed
+                            }).catchError((e) {
+                              if (kDebugMode) {
+                                print('Error preloading RO system: $e');
+                              }
+                              // Continue despite errors
+                              return null;
+                            }),
+                            energyFuture.then((energyData) {
+                              // Cache the energy data if needed
+                            }).catchError((e) {
+                              if (kDebugMode) {
+                                print('Error preloading energy data: $e');
+                              }
+                              // Continue despite errors
+                              return null;
+                            }),
                           ]);
 
                           // Remove loading overlay

@@ -65,5 +65,5 @@ class CalculatorNotifier extends StateNotifier<CalculatorState> {
 
 final calculatorProvider =
     StateNotifierProvider<CalculatorNotifier, CalculatorState>(
-      (ref) => CalculatorNotifier(),
-    );
+  (ref) => CalculatorNotifier(),
+);

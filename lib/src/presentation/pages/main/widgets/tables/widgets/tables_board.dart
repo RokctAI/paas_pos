@@ -56,18 +56,17 @@ class TablesBoard extends ConsumerWidget {
                               shopSectionId:
                                   tableListData[i]?.shopSectionId ?? 0,
                             ),
-                            type:
-                                (state.tableStatistic?.occupiedIds.contains(
+                            type: (state.tableStatistic?.occupiedIds.contains(
                                       tableListData[i]?.id ?? 0,
                                     ) ??
                                     false)
                                 ? TrKeys.occupied
                                 : (state.tableStatistic?.bookedIds.contains(
-                                        tableListData[i]?.id ?? 0,
-                                      ) ??
-                                      false)
-                                ? TrKeys.booked
-                                : TrKeys.available,
+                                          tableListData[i]?.id ?? 0,
+                                        ) ??
+                                        false)
+                                    ? TrKeys.booked
+                                    : TrKeys.available,
                           ),
                           childWhenDragging: const SizedBox.shrink(),
                           child: GestureDetector(
@@ -86,18 +85,17 @@ class TablesBoard extends ConsumerWidget {
                                 shopSectionId:
                                     tableListData[i]?.shopSectionId ?? 0,
                               ),
-                              type:
-                                  (state.tableStatistic?.occupiedIds.contains(
+                              type: (state.tableStatistic?.occupiedIds.contains(
                                         tableListData[i]?.id ?? 0,
                                       ) ??
                                       false)
                                   ? TrKeys.occupied
                                   : (state.tableStatistic?.bookedIds.contains(
-                                          tableListData[i]?.id ?? 0,
-                                        ) ??
-                                        false)
-                                  ? TrKeys.booked
-                                  : TrKeys.available,
+                                            tableListData[i]?.id ?? 0,
+                                          ) ??
+                                          false)
+                                      ? TrKeys.booked
+                                      : TrKeys.available,
                             ),
                           ),
                         ),

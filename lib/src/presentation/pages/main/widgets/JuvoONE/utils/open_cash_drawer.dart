@@ -446,8 +446,7 @@ class _CashDrawerConfigFormState extends State<CashDrawerConfigForm> {
 
   void _saveConfiguration() {
     final newConfig = CashDrawerConfig(
-      id:
-          widget.initialConfig?.id ??
+      id: widget.initialConfig?.id ??
           DateTime.now().millisecondsSinceEpoch.toString(),
       name: _nameController.text,
       type: _selectedType,

@@ -60,10 +60,7 @@ class BoardTableInfo extends ConsumerWidget {
                                 bgColor: AppStyle.border,
                                 isTab: true,
                                 isActive: state.selectSection == index,
-                                title:
-                                    state
-                                        .shopSectionList[index]
-                                        ?.translation
+                                title: state.shopSectionList[index]?.translation
                                         ?.title ??
                                     "",
                                 onTap: () => notifier.changeSection(index),

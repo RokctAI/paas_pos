@@ -33,33 +33,34 @@ class CustomerModel {
     String? password,
     String? imageUrl,
     List<AddressData>? addresses,
-  }) => CustomerModel(
-    id: id ?? this.id,
-    firstname: firstname ?? this.firstname,
-    lastname: lastname ?? this.lastname,
-    email: email ?? this.email,
-    phone: phone ?? this.phone,
-    role: role ?? this.role,
-    password: password ?? this.password,
-    imageUrl: imageUrl ?? this.imageUrl,
-    addresses: addresses ?? this.addresses,
-  );
+  }) =>
+      CustomerModel(
+        id: id ?? this.id,
+        firstname: firstname ?? this.firstname,
+        lastname: lastname ?? this.lastname,
+        email: email ?? this.email,
+        phone: phone ?? this.phone,
+        role: role ?? this.role,
+        password: password ?? this.password,
+        imageUrl: imageUrl ?? this.imageUrl,
+        addresses: addresses ?? this.addresses,
+      );
 
   factory CustomerModel.fromJson(Map<String, dynamic> json) => CustomerModel(
-    id: json["id"],
-    firstname: json["firstname"],
-    lastname: json["lastname"],
-    email: json["email"],
-    phone: json["phone"],
-    role: json["role"],
-    password: json["password"],
-    imageUrl: json["img"],
-    addresses: json["addresses"] == null
-        ? []
-        : List<AddressData>.from(
-            json["addresses"].map((x) => AddressData.fromJson(x)),
-          ),
-  );
+        id: json["id"],
+        firstname: json["firstname"],
+        lastname: json["lastname"],
+        email: json["email"],
+        phone: json["phone"],
+        role: json["role"],
+        password: json["password"],
+        imageUrl: json["img"],
+        addresses: json["addresses"] == null
+            ? []
+            : List<AddressData>.from(
+                json["addresses"].map((x) => AddressData.fromJson(x)),
+              ),
+      );
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> jsonMap = {

@@ -84,8 +84,7 @@ class StoriesImagePicker extends StatelessWidget {
                                   try {
                                     path = imageUrls?[index] ?? "";
                                   } catch (e) {
-                                    path =
-                                        listOfImages?[(index -
+                                    path = listOfImages?[(index -
                                             (imageUrls?.length ?? 0))] ??
                                         "";
                                   }

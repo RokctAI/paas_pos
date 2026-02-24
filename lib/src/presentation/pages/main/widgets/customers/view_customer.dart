@@ -243,17 +243,15 @@ class _OrderDots extends ConsumerWidget {
                       )
                       .toList()
                       .firstWhereOrNull((order) {
-                        final numberPart = order.note!.split('|').last.trim();
-                        return int.tryParse(numberPart) != null;
-                      });
+                    final numberPart = order.note!.split('|').last.trim();
+                    return int.tryParse(numberPart) != null;
+                  });
 
                   debugPrint('Latest order note: ${latestOrder?.note}');
 
                   if (latestOrder?.note != null) {
-                    final numberPart = latestOrder!.note!
-                        .split('|')
-                        .last
-                        .trim();
+                    final numberPart =
+                        latestOrder!.note!.split('|').last.trim();
                     final orderNumber = int.tryParse(numberPart) ?? 0;
                     activeCount = orderNumber.clamp(0, 4);
                     debugPrint('Active count: $activeCount');

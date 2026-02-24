@@ -73,8 +73,7 @@ class CalculatorWidget extends ConsumerWidget {
         backgroundColor: isOperation ? Colors.orange : Colors.grey[300],
         foregroundColor: isOperation ? Colors.white : Colors.black,
       ),
-      onPressed:
-          onPressed ??
+      onPressed: onPressed ??
           () {
             if (isOperation) {
               ref.read(calculatorProvider.notifier).setOperation(label);

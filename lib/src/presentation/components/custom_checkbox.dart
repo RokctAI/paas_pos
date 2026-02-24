@@ -25,9 +25,8 @@ class CustomCheckbox extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.r),
           border: Border.all(
             width: 2,
-            color: isActive
-                ? AppStyle.transparent
-                : AppStyle.unselectedBottomItem,
+            color:
+                isActive ? AppStyle.transparent : AppStyle.unselectedBottomItem,
           ),
         ),
         duration: const Duration(milliseconds: 500),

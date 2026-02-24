@@ -146,9 +146,8 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
       BagData(
         index: newBags.length,
         bagProducts: [],
-        selectedPayment: state.payments
-            .where((element) => element.tag == 'cash')
-            .first,
+        selectedPayment:
+            state.payments.where((element) => element.tag == 'cash').first,
         selectedCurrency: LocalStorage.getSelectedCurrency(),
       ),
     );
@@ -171,9 +170,8 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
       newBags.add(BagData(index: i, bagProducts: bags[i].bagProducts));
     }
     LocalStorage.setBags(newBags);
-    final int selectedIndex = state.selectedBagIndex == index
-        ? 0
-        : state.selectedBagIndex;
+    final int selectedIndex =
+        state.selectedBagIndex == index ? 0 : state.selectedBagIndex;
     state = state.copyWith(bags: newBags, selectedBagIndex: selectedIndex);
   }
 
@@ -633,8 +631,8 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
       selectedPayment: bag.selectedPayment,
       orderType: state.orderType.isEmpty
           ? LocalStorage.getUser()?.role == 'waiter'
-                ? TrKeys.dine
-                : TrKeys.pickup
+              ? TrKeys.dine
+              : TrKeys.pickup
           : state.orderType,
     );
     if (bag.selectedUser != null) {
@@ -836,8 +834,8 @@ class RightSideNotifier extends StateNotifier<RightSideState> {
               paymentId: data.bagData.selectedPayment?.id ?? 0,
               terminalTransactionId:
                   data.bagData.selectedPayment?.tag == 'terminal'
-                  ? state.terminalTransactionId
-                  : null,
+                      ? state.terminalTransactionId
+                      : null,
             );
 
             if (!context.mounted) return;

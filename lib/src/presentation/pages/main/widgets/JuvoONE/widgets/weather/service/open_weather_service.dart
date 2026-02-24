@@ -91,9 +91,9 @@ class OpenWeatherService {
       final uri = Uri.parse(url).replace(queryParameters: queryParams);
       print('Fetching URL: $uri');
 
-      final response = await _client
-          .get(uri, headers: {'Accept': 'application/json'})
-          .timeout(const Duration(seconds: 10));
+      final response = await _client.get(uri, headers: {
+        'Accept': 'application/json'
+      }).timeout(const Duration(seconds: 10));
 
       print('Response status code: ${response.statusCode}');
 
@@ -176,11 +176,11 @@ final openWeatherServiceProvider = Provider((ref) => OpenWeatherService());
 
 final openWeatherProvider =
     StateNotifierProvider<OpenWeatherNotifier, AsyncValue<OpenWeatherState>>((
-      ref,
-    ) {
-      final weatherService = ref.watch(openWeatherServiceProvider);
-      return OpenWeatherNotifier(weatherService);
-    });
+  ref,
+) {
+  final weatherService = ref.watch(openWeatherServiceProvider);
+  return OpenWeatherNotifier(weatherService);
+});
 
 class OpenWeatherNotifier extends StateNotifier<AsyncValue<OpenWeatherState>> {
   final OpenWeatherService _weatherService;

@@ -166,9 +166,8 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final percentage = ((widget.level / widget.capacity) * 100).round();
-    final baseWaterColor = widget.type == 'raw'
-        ? AppStyle.green
-        : AppStyle.blue[500]!;
+    final baseWaterColor =
+        widget.type == 'raw' ? AppStyle.green : AppStyle.blue[500]!;
     final backgroundColor = AppStyle.grey[700];
 
     final height = (widget.width * 3) / 4;
@@ -222,16 +221,14 @@ class _WaterTankState extends State<WaterTank> with TickerProviderStateMixin {
                           bottom: 0,
                           left: 0,
                           right: 0,
-                          height:
-                              height *
+                          height: height *
                               (widget.level / widget.capacity +
                                   _bounceAnimation.value),
                           child: CustomPaint(
                             painter: WaterSurfacePainter(
                               tiltFactor: _tiltAnimation.value,
                               baseColor: baseWaterColor,
-                              level:
-                                  widget.level / widget.capacity +
+                              level: widget.level / widget.capacity +
                                   _bounceAnimation.value,
                               percentage: percentage,
                             ),

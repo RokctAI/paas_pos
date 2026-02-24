@@ -20,7 +20,7 @@ class SelectAddressNotifier extends StateNotifier<SelectAddressState> {
   final GeolocatorPlatform _geolocatorPlatform = GeolocatorPlatform.instance;
 
   SelectAddressNotifier(this._usersRepository)
-    : super(SelectAddressState(textController: TextEditingController()));
+      : super(SelectAddressState(textController: TextEditingController()));
 
   void setQuery(BuildContext context) {
     if (state.textController?.text.trim().isNotEmpty ?? false) {

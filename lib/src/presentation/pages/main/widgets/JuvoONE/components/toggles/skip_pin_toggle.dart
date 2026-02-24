@@ -7,8 +7,8 @@ import '../../../../../../theme/app_style.dart';
 
 final skipPINToggleProvider =
     StateNotifierProvider<SkipPINToggleNotifier, bool>(
-      (ref) => SkipPINToggleNotifier(),
-    );
+  (ref) => SkipPINToggleNotifier(),
+);
 
 class SkipPINToggleNotifier extends StateNotifier<bool> {
   SkipPINToggleNotifier() : super(false) {

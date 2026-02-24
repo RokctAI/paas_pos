@@ -74,8 +74,8 @@ class SecondScreenNotifier extends StateNotifier<SecondScreenState> {
 
 final secondScreenProvider =
     StateNotifierProvider<SecondScreenNotifier, SecondScreenState>(
-      (ref) => SecondScreenNotifier(),
-    );
+  (ref) => SecondScreenNotifier(),
+);
 
 class SecondScreenService {
   HttpServer? _server;

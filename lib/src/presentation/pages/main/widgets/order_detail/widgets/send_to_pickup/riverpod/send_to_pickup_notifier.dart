@@ -10,7 +10,7 @@ class SendToPickupNotifier extends StateNotifier<SendToPickupState> {
   final ParcelRepository _parcelRepository;
 
   SendToPickupNotifier(this._deliveryPointsRepository, this._parcelRepository)
-    : super(const SendToPickupState());
+      : super(const SendToPickupState());
 
   Future<void> fetchDeliveryPoints(
     BuildContext context, {
@@ -52,8 +52,7 @@ class SendToPickupNotifier extends StateNotifier<SendToPickupState> {
 
     state = state.copyWith(isLoading: true);
 
-    final items =
-        order.details?.map((detail) {
+    final items = order.details?.map((detail) {
           return {
             "item_code": detail.stock?.product?.id,
             "item_name": detail.stock?.product?.translation?.title,

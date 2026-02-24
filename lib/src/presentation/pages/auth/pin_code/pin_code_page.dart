@@ -144,8 +144,8 @@ class _PinCodePageState extends ConsumerState<PinCodePage> {
                           widget.isNewPassword
                               ? TrKeys.enterNewPinCode
                               : state.isPinCodeNotValid == false
-                              ? TrKeys.enterPinCode
-                              : TrKeys.enterPinCodeError,
+                                  ? TrKeys.enterPinCode
+                                  : TrKeys.enterPinCodeError,
                         ),
                         style: GoogleFonts.inter(
                           color: state.isPinCodeNotValid == false
@@ -210,8 +210,8 @@ class _PinCodePageState extends ConsumerState<PinCodePage> {
                             iconData: index == 9
                                 ? FlutterRemix.close_circle_line
                                 : index == 11
-                                ? FlutterRemix.delete_back_2_line
-                                : null,
+                                    ? FlutterRemix.delete_back_2_line
+                                    : null,
                             onTap: () {
                               if (index == 9) {
                                 handlePinCodeInput('clear');

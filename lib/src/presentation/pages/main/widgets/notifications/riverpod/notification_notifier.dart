@@ -14,7 +14,7 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
   int _notificationPage = 0;
 
   NotificationNotifier(this._notificationRepository)
-    : super(const NotificationState());
+      : super(const NotificationState());
 
   Future<void> fetchAllTransactions({
     bool isRefresh = false,
@@ -35,9 +35,8 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
     );
     response.when(
       success: (data) {
-        List<TransactionModel> transactions = isRefresh
-            ? []
-            : List.from(state.transaction);
+        List<TransactionModel> transactions =
+            isRefresh ? [] : List.from(state.transaction);
         final List<TransactionModel> newTransactions = data.data ?? [];
         transactions.addAll(newTransactions);
         state = state.copyWith(
@@ -218,8 +217,7 @@ class NotificationNotifier extends StateNotifier<NotificationState> {
 
   updateTotal() {
     state = state.copyWith(
-      totalCount:
-          (state.countOfNotifications?.notification ?? 0) +
+      totalCount: (state.countOfNotifications?.notification ?? 0) +
           (state.countOfNotifications?.transaction ?? 0),
     );
   }

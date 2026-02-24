@@ -14,8 +14,7 @@ class CashDrawerButton extends StatelessWidget {
     return FutureBuilder<List<CashDrawerConfig>>(
       future: CashDrawerManager.getConfigurations(),
       builder: (context, snapshot) {
-        bool isEnabled =
-            snapshot.connectionState == ConnectionState.done &&
+        bool isEnabled = snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData &&
             snapshot.data!.isNotEmpty;
 

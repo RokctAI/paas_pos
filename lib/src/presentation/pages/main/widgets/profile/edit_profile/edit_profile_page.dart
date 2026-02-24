@@ -118,8 +118,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             imagePath: state.imagePath,
                             isEmptyorNot:
                                 (LocalStorage.getUser()?.img?.isNotEmpty ??
-                                    false) &&
-                                state.imagePath.isEmpty,
+                                        false) &&
+                                    state.imagePath.isEmpty,
                             isEmptyorNot2: state.imagePath.isNotEmpty,
                             localStoreImage: LocalStorage.getUser()?.img ?? "",
                             onthisTap: () {
@@ -343,8 +343,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                   ),
                                   onPressed: () =>
                                       notifier.setShowPersonalPincode(
-                                        !state.showPincode,
-                                      ),
+                                    !state.showPincode,
+                                  ),
                                 ),
                               ),
                             ),
@@ -392,31 +392,29 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             ),
           )
         : state.isShopEdit == 1
-        ? const EditShop()
-        : state.isShopEdit == 2
-        ? SelectAddressPage(
-            isShopEdit: true,
-            location: LocationData(
-              latitude: double.tryParse(
-                stateRight.editShopData?.location?.latitude ??
-                    AppConstants.demoLatitude.toString(),
-              ),
-              longitude: double.tryParse(
-                stateRight.editShopData?.location?.longitude ??
-                    AppConstants.demoLongitude.toString(),
-              ),
-            ),
-            onSelect: (address) {
-              notifier.setShopEdit(1);
-              ref
-                  .read(shopProvider.notifier)
-                  .updateShopData(
-                    onSuccess: () {},
-                    location: address.location,
-                    displayName: address.address ?? '',
-                  );
-            },
-          )
-        : const DeliveryZonePage();
+            ? const EditShop()
+            : state.isShopEdit == 2
+                ? SelectAddressPage(
+                    isShopEdit: true,
+                    location: LocationData(
+                      latitude: double.tryParse(
+                        stateRight.editShopData?.location?.latitude ??
+                            AppConstants.demoLatitude.toString(),
+                      ),
+                      longitude: double.tryParse(
+                        stateRight.editShopData?.location?.longitude ??
+                            AppConstants.demoLongitude.toString(),
+                      ),
+                    ),
+                    onSelect: (address) {
+                      notifier.setShopEdit(1);
+                      ref.read(shopProvider.notifier).updateShopData(
+                            onSuccess: () {},
+                            location: address.location,
+                            displayName: address.address ?? '',
+                          );
+                    },
+                  )
+                : const DeliveryZonePage();
   }
 }

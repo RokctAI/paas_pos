@@ -76,36 +76,35 @@ class _$EditStoriesStateCopyWithImpl<$Res, $Val extends EditStoriesState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            selectProduct: freezed == selectProduct
-                ? _value.selectProduct
-                : selectProduct // ignore: cast_nullable_to_non_nullable
-                      as ProductData?,
-            products: null == products
-                ? _value.products
-                : products // ignore: cast_nullable_to_non_nullable
-                      as List<ProductData>,
-            images: null == images
-                ? _value.images
-                : images // ignore: cast_nullable_to_non_nullable
-                      as List<String>,
-            listOfUrls: null == listOfUrls
-                ? _value.listOfUrls
-                : listOfUrls // ignore: cast_nullable_to_non_nullable
-                      as List<String>,
-            story: freezed == story
-                ? _value.story
-                : story // ignore: cast_nullable_to_non_nullable
-                      as StoriesData?,
-            textEditingController: freezed == textEditingController
-                ? _value.textEditingController
-                : textEditingController // ignore: cast_nullable_to_non_nullable
-                      as TextEditingController?,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        selectProduct: freezed == selectProduct
+            ? _value.selectProduct
+            : selectProduct // ignore: cast_nullable_to_non_nullable
+                as ProductData?,
+        products: null == products
+            ? _value.products
+            : products // ignore: cast_nullable_to_non_nullable
+                as List<ProductData>,
+        images: null == images
+            ? _value.images
+            : images // ignore: cast_nullable_to_non_nullable
+                as List<String>,
+        listOfUrls: null == listOfUrls
+            ? _value.listOfUrls
+            : listOfUrls // ignore: cast_nullable_to_non_nullable
+                as List<String>,
+        story: freezed == story
+            ? _value.story
+            : story // ignore: cast_nullable_to_non_nullable
+                as StoriesData?,
+        textEditingController: freezed == textEditingController
+            ? _value.textEditingController
+            : textEditingController // ignore: cast_nullable_to_non_nullable
+                as TextEditingController?,
+      ) as $Val,
     );
   }
 }
@@ -157,31 +156,31 @@ class __$$EditStoriesStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         selectProduct: freezed == selectProduct
             ? _value.selectProduct
             : selectProduct // ignore: cast_nullable_to_non_nullable
-                  as ProductData?,
+                as ProductData?,
         products: null == products
             ? _value._products
             : products // ignore: cast_nullable_to_non_nullable
-                  as List<ProductData>,
+                as List<ProductData>,
         images: null == images
             ? _value._images
             : images // ignore: cast_nullable_to_non_nullable
-                  as List<String>,
+                as List<String>,
         listOfUrls: null == listOfUrls
             ? _value._listOfUrls
             : listOfUrls // ignore: cast_nullable_to_non_nullable
-                  as List<String>,
+                as List<String>,
         story: freezed == story
             ? _value.story
             : story // ignore: cast_nullable_to_non_nullable
-                  as StoriesData?,
+                as StoriesData?,
         textEditingController: freezed == textEditingController
             ? _value.textEditingController
             : textEditingController // ignore: cast_nullable_to_non_nullable
-                  as TextEditingController?,
+                as TextEditingController?,
       ),
     );
   }
@@ -198,10 +197,10 @@ class _$EditStoriesStateImpl extends _EditStoriesState {
     final List<String> listOfUrls = const [],
     this.story = null,
     this.textEditingController = null,
-  }) : _products = products,
-       _images = images,
-       _listOfUrls = listOfUrls,
-       super._();
+  })  : _products = products,
+        _images = images,
+        _listOfUrls = listOfUrls,
+        super._();
 
   @override
   @JsonKey()
@@ -270,15 +269,15 @@ class _$EditStoriesStateImpl extends _EditStoriesState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    selectProduct,
-    const DeepCollectionEquality().hash(_products),
-    const DeepCollectionEquality().hash(_images),
-    const DeepCollectionEquality().hash(_listOfUrls),
-    story,
-    textEditingController,
-  );
+        runtimeType,
+        isLoading,
+        selectProduct,
+        const DeepCollectionEquality().hash(_products),
+        const DeepCollectionEquality().hash(_images),
+        const DeepCollectionEquality().hash(_listOfUrls),
+        story,
+        textEditingController,
+      );
 
   /// Create a copy of EditStoriesState
   /// with the given fields replaced by the non-null parameter values.

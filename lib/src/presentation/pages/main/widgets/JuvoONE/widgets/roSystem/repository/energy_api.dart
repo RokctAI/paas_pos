@@ -11,10 +11,10 @@ class EnergyService {
 
   // Use your app's standard headers
   Map<String, String> get _headers => {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': 'Bearer ${LocalStorage.getToken()}',
-  };
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${LocalStorage.getToken()}',
+      };
 
   static Future<int?> _getShopId() async {
     final userData = LocalStorage.getUser();

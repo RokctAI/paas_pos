@@ -10,10 +10,10 @@ class MaintenanceProgress {
   });
 
   Map<String, dynamic> toJson() => {
-    'vesselId': vesselId,
-    'currentStage': currentStage,
-    'stageStartTime': stageStartTime.toIso8601String(),
-  };
+        'vesselId': vesselId,
+        'currentStage': currentStage,
+        'stageStartTime': stageStartTime.toIso8601String(),
+      };
 
   factory MaintenanceProgress.fromJson(Map<String, dynamic> json) {
     return MaintenanceProgress(

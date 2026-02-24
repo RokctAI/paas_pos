@@ -5,9 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final createParcelProvider =
     StateNotifierProvider<CreateParcelNotifier, CreateParcelState>(
-      (ref) => CreateParcelNotifier(
-        parcelRepository,
-        deliveryPointsRepository,
-        usersRepository,
-      ),
-    );
+  (ref) => CreateParcelNotifier(
+    parcelRepository,
+    deliveryPointsRepository,
+    usersRepository,
+  ),
+);

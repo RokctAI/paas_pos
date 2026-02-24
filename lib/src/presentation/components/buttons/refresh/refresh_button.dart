@@ -125,9 +125,7 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
   }
 
   Future<void> _refreshProductsPage() async {
-    ref
-        .read(mainProvider.notifier)
-        .fetchProducts(
+    ref.read(mainProvider.notifier).fetchProducts(
           isRefresh: true,
           checkYourNetwork: () {
             if (mounted) {
@@ -311,8 +309,8 @@ class _RefreshButtonState extends ConsumerState<RefreshButton>
                 color: isLoading
                     ? AppStyle.grey[400]
                     : _isHovered
-                    ? widget.color ?? AppStyle.brandGreen
-                    : widget.color ?? AppStyle.black,
+                        ? widget.color ?? AppStyle.brandGreen
+                        : widget.color ?? AppStyle.black,
                 size: widget.size ?? 24,
               ),
             ),

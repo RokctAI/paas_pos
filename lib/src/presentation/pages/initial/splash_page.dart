@@ -30,17 +30,15 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     super.initState();
     Future.delayed(Duration.zero, () {
       if (mounted) {
-        ref
-            .read(splashProvider.notifier)
-            .fetchGlobalSettings(
+        ref.read(splashProvider.notifier).fetchGlobalSettings(
+          context,
+          checkYourNetwork: () {
+            AppHelpers.showSnackBar(
               context,
-              checkYourNetwork: () {
-                AppHelpers.showSnackBar(
-                  context,
-                  TrKeys.checkYourNetworkConnection,
-                );
-              },
+              TrKeys.checkYourNetworkConnection,
             );
+          },
+        );
       }
     });
   }

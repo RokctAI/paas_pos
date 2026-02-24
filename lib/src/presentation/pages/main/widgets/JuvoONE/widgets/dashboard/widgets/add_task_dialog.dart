@@ -390,8 +390,8 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             type == 'KPI'
                 ? Icons.speed
                 : type == 'Objective'
-                ? Icons.assignment
-                : Icons.phone_android,
+                    ? Icons.assignment
+                    : Icons.phone_android,
             color: AppStyle.primary,
             size: 16,
           ),

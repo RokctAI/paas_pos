@@ -203,8 +203,7 @@ class OrderInformation extends ConsumerWidget {
                           color: AppStyle.white,
                           elevation: 10,
                           child: SelectFromButton(
-                            title:
-                                state.selectedCurrency?.title ??
+                            title: state.selectedCurrency?.title ??
                                 (state.currencies.length == 1
                                     ? '${state.currencies.first.title}(${state.currencies.first.symbol})'
                                     : AppHelpers.getTranslation(
@@ -307,8 +306,7 @@ class OrderInformation extends ConsumerWidget {
                             color: AppStyle.white,
                             elevation: 10,
                             child: SelectFromButton(
-                              title:
-                                  state.selectedAddress?.address ??
+                              title: state.selectedAddress?.address ??
                                   AppHelpers.getTranslation(
                                     TrKeys.selectAddress,
                                   ),
@@ -364,7 +362,7 @@ class OrderInformation extends ConsumerWidget {
                               state.selectedPayment?.isTerminal == true
                                   ? "terminal"
                                   : state.selectedPayment?.tag ??
-                                        TrKeys.selectPayment,
+                                      TrKeys.selectPayment,
                             ),
                           ),
                         ),
@@ -548,9 +546,7 @@ class OrderInformation extends ConsumerWidget {
                           notifier.setSelectedOrderType(e);
                           if (state.orderType.toLowerCase() !=
                               e.toString().toLowerCase()) {
-                            ref
-                                .read(rightSideProvider.notifier)
-                                .fetchCarts(
+                            ref.read(rightSideProvider.notifier).fetchCarts(
                                   checkYourNetwork: () {
                                     AppHelpers.showSnackBar(
                                       context,
@@ -567,8 +563,7 @@ class OrderInformation extends ConsumerWidget {
                           child: Container(
                             margin: EdgeInsets.symmetric(horizontal: 4.r),
                             decoration: BoxDecoration(
-                              color:
-                                  state.orderType.toLowerCase() ==
+                              color: state.orderType.toLowerCase() ==
                                       e.toString().toLowerCase()
                                   ? AppStyle.primary
                                   : AppStyle.editProfileCircle,
@@ -592,12 +587,12 @@ class OrderInformation extends ConsumerWidget {
                                             size: 18.sp,
                                           )
                                         : e == TrKeys.pickup
-                                        ? SvgPicture.asset(
-                                            "assets/svg/pickup.svg",
-                                          )
-                                        : SvgPicture.asset(
-                                            "assets/svg/dine.svg",
-                                          ),
+                                            ? SvgPicture.asset(
+                                                "assets/svg/pickup.svg",
+                                              )
+                                            : SvgPicture.asset(
+                                                "assets/svg/dine.svg",
+                                              ),
                                   ),
                                   8.horizontalSpace,
                                   Text(
@@ -657,8 +652,7 @@ class OrderInformation extends ConsumerWidget {
             ),
             Text(
               NumberFormat.currency(
-                symbol:
-                    bag.selectedCurrency?.symbol ??
+                symbol: bag.selectedCurrency?.symbol ??
                     LocalStorage.getSelectedCurrency().symbol,
               ).format(state.paginateResponse?.price ?? 0),
               style: GoogleFonts.inter(

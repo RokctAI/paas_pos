@@ -30,7 +30,7 @@ class SettingsMenu extends ConsumerWidget {
     final isSeller = user?.role == TrKeys.seller;
     final double menuHeight = isSeller
         ? MediaQuery.of(context).size.height /
-              1.2 // Original height for sellers
+            1.2 // Original height for sellers
         : MediaQuery.of(context).size.height / 1.8;
 
     return ClipRRect(
@@ -105,14 +105,12 @@ class SettingsMenu extends ConsumerWidget {
                     title: AppHelpers.getTranslation(TrKeys.stories),
                     onTap: () => _showStoriesDialog(context),
                   ),
-
                   _buildMenuItem(
                     context,
                     icon: FlutterRemix.truck_line,
                     title: AppHelpers.getTranslation(TrKeys.deliveries),
                     onTap: () => _showDeliveriesDialog(context),
                   ),
-
                   if (user?.role == TrKeys.seller) ...[
                     const Divider(),
                     _buildMenuItemWithCustomLeading(

@@ -128,10 +128,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                   TrKeys.emailIsNotValid,
                                 )
                               : (state.isLoginError
-                                    ? AppHelpers.getTranslation(
-                                        TrKeys.loginCredentialsAreNotValid,
-                                      )
-                                    : null),
+                                  ? AppHelpers.getTranslation(
+                                      TrKeys.loginCredentialsAreNotValid,
+                                    )
+                                  : null),
                           onFieldSubmitted: (value) => notifier.login(
                             context: context,
                             goToMain: () {
@@ -156,10 +156,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                       .passwordShouldContainMinimum8Characters,
                                 )
                               : (state.isLoginError
-                                    ? AppHelpers.getTranslation(
-                                        TrKeys.loginCredentialsAreNotValid,
-                                      )
-                                    : null),
+                                  ? AppHelpers.getTranslation(
+                                      TrKeys.loginCredentialsAreNotValid,
+                                    )
+                                  : null),
                           suffixIcon: IconButton(
                             splashRadius: 25.r,
                             icon: Icon(

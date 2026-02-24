@@ -124,100 +124,99 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
   }) {
     return _then(
       _value.copyWith(
-            isProductsLoading: null == isProductsLoading
-                ? _value.isProductsLoading
-                : isProductsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isMoreProductsLoading: null == isMoreProductsLoading
-                ? _value.isMoreProductsLoading
-                : isMoreProductsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isShopsLoading: null == isShopsLoading
-                ? _value.isShopsLoading
-                : isShopsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isBrandsLoading: null == isBrandsLoading
-                ? _value.isBrandsLoading
-                : isBrandsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isCategoriesLoading: null == isCategoriesLoading
-                ? _value.isCategoriesLoading
-                : isCategoriesLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMore: null == hasMore
-                ? _value.hasMore
-                : hasMore // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            selectIndex: null == selectIndex
-                ? _value.selectIndex
-                : selectIndex // ignore: cast_nullable_to_non_nullable
-                      as int,
-            products: null == products
-                ? _value.products
-                : products // ignore: cast_nullable_to_non_nullable
-                      as List<ProductData>,
-            shops: null == shops
-                ? _value.shops
-                : shops // ignore: cast_nullable_to_non_nullable
-                      as List<ShopData>,
-            categories: null == categories
-                ? _value.categories
-                : categories // ignore: cast_nullable_to_non_nullable
-                      as List<CategoryData>,
-            brands: null == brands
-                ? _value.brands
-                : brands // ignore: cast_nullable_to_non_nullable
-                      as List<BrandData>,
-            dropDownShops: null == dropDownShops
-                ? _value.dropDownShops
-                : dropDownShops // ignore: cast_nullable_to_non_nullable
-                      as List<DropDownItemData>,
-            dropDownCategories: null == dropDownCategories
-                ? _value.dropDownCategories
-                : dropDownCategories // ignore: cast_nullable_to_non_nullable
-                      as List<DropDownItemData>,
-            dropDownBrands: null == dropDownBrands
-                ? _value.dropDownBrands
-                : dropDownBrands // ignore: cast_nullable_to_non_nullable
-                      as List<DropDownItemData>,
-            query: null == query
-                ? _value.query
-                : query // ignore: cast_nullable_to_non_nullable
-                      as String,
-            shopQuery: null == shopQuery
-                ? _value.shopQuery
-                : shopQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            categoryQuery: null == categoryQuery
-                ? _value.categoryQuery
-                : categoryQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            brandQuery: null == brandQuery
-                ? _value.brandQuery
-                : brandQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            selectedShop: freezed == selectedShop
-                ? _value.selectedShop
-                : selectedShop // ignore: cast_nullable_to_non_nullable
-                      as ShopData?,
-            selectedCategory: freezed == selectedCategory
-                ? _value.selectedCategory
-                : selectedCategory // ignore: cast_nullable_to_non_nullable
-                      as CategoryData?,
-            selectedBrand: freezed == selectedBrand
-                ? _value.selectedBrand
-                : selectedBrand // ignore: cast_nullable_to_non_nullable
-                      as BrandData?,
-            selectedOrder: freezed == selectedOrder
-                ? _value.selectedOrder
-                : selectedOrder // ignore: cast_nullable_to_non_nullable
-                      as OrderData?,
-            priceDate: freezed == priceDate
-                ? _value.priceDate
-                : priceDate // ignore: cast_nullable_to_non_nullable
-                      as PriceDate?,
-          )
-          as $Val,
+        isProductsLoading: null == isProductsLoading
+            ? _value.isProductsLoading
+            : isProductsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isMoreProductsLoading: null == isMoreProductsLoading
+            ? _value.isMoreProductsLoading
+            : isMoreProductsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isShopsLoading: null == isShopsLoading
+            ? _value.isShopsLoading
+            : isShopsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isBrandsLoading: null == isBrandsLoading
+            ? _value.isBrandsLoading
+            : isBrandsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isCategoriesLoading: null == isCategoriesLoading
+            ? _value.isCategoriesLoading
+            : isCategoriesLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                as bool,
+        selectIndex: null == selectIndex
+            ? _value.selectIndex
+            : selectIndex // ignore: cast_nullable_to_non_nullable
+                as int,
+        products: null == products
+            ? _value.products
+            : products // ignore: cast_nullable_to_non_nullable
+                as List<ProductData>,
+        shops: null == shops
+            ? _value.shops
+            : shops // ignore: cast_nullable_to_non_nullable
+                as List<ShopData>,
+        categories: null == categories
+            ? _value.categories
+            : categories // ignore: cast_nullable_to_non_nullable
+                as List<CategoryData>,
+        brands: null == brands
+            ? _value.brands
+            : brands // ignore: cast_nullable_to_non_nullable
+                as List<BrandData>,
+        dropDownShops: null == dropDownShops
+            ? _value.dropDownShops
+            : dropDownShops // ignore: cast_nullable_to_non_nullable
+                as List<DropDownItemData>,
+        dropDownCategories: null == dropDownCategories
+            ? _value.dropDownCategories
+            : dropDownCategories // ignore: cast_nullable_to_non_nullable
+                as List<DropDownItemData>,
+        dropDownBrands: null == dropDownBrands
+            ? _value.dropDownBrands
+            : dropDownBrands // ignore: cast_nullable_to_non_nullable
+                as List<DropDownItemData>,
+        query: null == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                as String,
+        shopQuery: null == shopQuery
+            ? _value.shopQuery
+            : shopQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        categoryQuery: null == categoryQuery
+            ? _value.categoryQuery
+            : categoryQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        brandQuery: null == brandQuery
+            ? _value.brandQuery
+            : brandQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        selectedShop: freezed == selectedShop
+            ? _value.selectedShop
+            : selectedShop // ignore: cast_nullable_to_non_nullable
+                as ShopData?,
+        selectedCategory: freezed == selectedCategory
+            ? _value.selectedCategory
+            : selectedCategory // ignore: cast_nullable_to_non_nullable
+                as CategoryData?,
+        selectedBrand: freezed == selectedBrand
+            ? _value.selectedBrand
+            : selectedBrand // ignore: cast_nullable_to_non_nullable
+                as BrandData?,
+        selectedOrder: freezed == selectedOrder
+            ? _value.selectedOrder
+            : selectedOrder // ignore: cast_nullable_to_non_nullable
+                as OrderData?,
+        priceDate: freezed == priceDate
+            ? _value.priceDate
+            : priceDate // ignore: cast_nullable_to_non_nullable
+                as PriceDate?,
+      ) as $Val,
     );
   }
 }
@@ -301,95 +300,95 @@ class __$$MainStateImplCopyWithImpl<$Res>
         isProductsLoading: null == isProductsLoading
             ? _value.isProductsLoading
             : isProductsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isMoreProductsLoading: null == isMoreProductsLoading
             ? _value.isMoreProductsLoading
             : isMoreProductsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isShopsLoading: null == isShopsLoading
             ? _value.isShopsLoading
             : isShopsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isBrandsLoading: null == isBrandsLoading
             ? _value.isBrandsLoading
             : isBrandsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isCategoriesLoading: null == isCategoriesLoading
             ? _value.isCategoriesLoading
             : isCategoriesLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         selectIndex: null == selectIndex
             ? _value.selectIndex
             : selectIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         products: null == products
             ? _value._products
             : products // ignore: cast_nullable_to_non_nullable
-                  as List<ProductData>,
+                as List<ProductData>,
         shops: null == shops
             ? _value._shops
             : shops // ignore: cast_nullable_to_non_nullable
-                  as List<ShopData>,
+                as List<ShopData>,
         categories: null == categories
             ? _value._categories
             : categories // ignore: cast_nullable_to_non_nullable
-                  as List<CategoryData>,
+                as List<CategoryData>,
         brands: null == brands
             ? _value._brands
             : brands // ignore: cast_nullable_to_non_nullable
-                  as List<BrandData>,
+                as List<BrandData>,
         dropDownShops: null == dropDownShops
             ? _value._dropDownShops
             : dropDownShops // ignore: cast_nullable_to_non_nullable
-                  as List<DropDownItemData>,
+                as List<DropDownItemData>,
         dropDownCategories: null == dropDownCategories
             ? _value._dropDownCategories
             : dropDownCategories // ignore: cast_nullable_to_non_nullable
-                  as List<DropDownItemData>,
+                as List<DropDownItemData>,
         dropDownBrands: null == dropDownBrands
             ? _value._dropDownBrands
             : dropDownBrands // ignore: cast_nullable_to_non_nullable
-                  as List<DropDownItemData>,
+                as List<DropDownItemData>,
         query: null == query
             ? _value.query
             : query // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         shopQuery: null == shopQuery
             ? _value.shopQuery
             : shopQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         categoryQuery: null == categoryQuery
             ? _value.categoryQuery
             : categoryQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         brandQuery: null == brandQuery
             ? _value.brandQuery
             : brandQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         selectedShop: freezed == selectedShop
             ? _value.selectedShop
             : selectedShop // ignore: cast_nullable_to_non_nullable
-                  as ShopData?,
+                as ShopData?,
         selectedCategory: freezed == selectedCategory
             ? _value.selectedCategory
             : selectedCategory // ignore: cast_nullable_to_non_nullable
-                  as CategoryData?,
+                as CategoryData?,
         selectedBrand: freezed == selectedBrand
             ? _value.selectedBrand
             : selectedBrand // ignore: cast_nullable_to_non_nullable
-                  as BrandData?,
+                as BrandData?,
         selectedOrder: freezed == selectedOrder
             ? _value.selectedOrder
             : selectedOrder // ignore: cast_nullable_to_non_nullable
-                  as OrderData?,
+                as OrderData?,
         priceDate: freezed == priceDate
             ? _value.priceDate
             : priceDate // ignore: cast_nullable_to_non_nullable
-                  as PriceDate?,
+                as PriceDate?,
       ),
     );
   }
@@ -422,14 +421,14 @@ class _$MainStateImpl extends _MainState {
     this.selectedBrand,
     this.selectedOrder,
     this.priceDate,
-  }) : _products = products,
-       _shops = shops,
-       _categories = categories,
-       _brands = brands,
-       _dropDownShops = dropDownShops,
-       _dropDownCategories = dropDownCategories,
-       _dropDownBrands = dropDownBrands,
-       super._();
+  })  : _products = products,
+        _shops = shops,
+        _categories = categories,
+        _brands = brands,
+        _dropDownShops = dropDownShops,
+        _dropDownCategories = dropDownCategories,
+        _dropDownBrands = dropDownBrands,
+        super._();
 
   @override
   @JsonKey()
@@ -602,31 +601,31 @@ class _$MainStateImpl extends _MainState {
 
   @override
   int get hashCode => Object.hashAll([
-    runtimeType,
-    isProductsLoading,
-    isMoreProductsLoading,
-    isShopsLoading,
-    isBrandsLoading,
-    isCategoriesLoading,
-    hasMore,
-    selectIndex,
-    const DeepCollectionEquality().hash(_products),
-    const DeepCollectionEquality().hash(_shops),
-    const DeepCollectionEquality().hash(_categories),
-    const DeepCollectionEquality().hash(_brands),
-    const DeepCollectionEquality().hash(_dropDownShops),
-    const DeepCollectionEquality().hash(_dropDownCategories),
-    const DeepCollectionEquality().hash(_dropDownBrands),
-    query,
-    shopQuery,
-    categoryQuery,
-    brandQuery,
-    selectedShop,
-    selectedCategory,
-    selectedBrand,
-    selectedOrder,
-    priceDate,
-  ]);
+        runtimeType,
+        isProductsLoading,
+        isMoreProductsLoading,
+        isShopsLoading,
+        isBrandsLoading,
+        isCategoriesLoading,
+        hasMore,
+        selectIndex,
+        const DeepCollectionEquality().hash(_products),
+        const DeepCollectionEquality().hash(_shops),
+        const DeepCollectionEquality().hash(_categories),
+        const DeepCollectionEquality().hash(_brands),
+        const DeepCollectionEquality().hash(_dropDownShops),
+        const DeepCollectionEquality().hash(_dropDownCategories),
+        const DeepCollectionEquality().hash(_dropDownBrands),
+        query,
+        shopQuery,
+        categoryQuery,
+        brandQuery,
+        selectedShop,
+        selectedCategory,
+        selectedBrand,
+        selectedOrder,
+        priceDate,
+      ]);
 
   /// Create a copy of MainState
   /// with the given fields replaced by the non-null parameter values.

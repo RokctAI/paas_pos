@@ -429,9 +429,8 @@ class MaintenanceApiService {
       final shopId = await _getShopId();
 
       // Don't include type in query if requesting all records
-      final queryString = type == 'all'
-          ? 'shop_id=$shopId'
-          : 'shop_id=$shopId&type=$type';
+      final queryString =
+          type == 'all' ? 'shop_id=$shopId' : 'shop_id=$shopId&type=$type';
 
       final response = await http.get(
         Uri.parse('$_baseUrl/maintenance-records?$queryString'),
@@ -553,9 +552,8 @@ class MaintenanceApiService {
       }
 
       // Process membrane maintenance similarly
-      final membraneRecords = records
-          .where((r) => r.type == 'membrane')
-          .toList();
+      final membraneRecords =
+          records.where((r) => r.type == 'membrane').toList();
       if (membraneRecords.isNotEmpty) {
         final futureDates = membraneRecords
             .map((r) => r.maintenanceDate)

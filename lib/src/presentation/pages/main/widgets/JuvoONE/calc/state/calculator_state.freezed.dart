@@ -59,20 +59,19 @@ class _$CalculatorStateCopyWithImpl<$Res, $Val extends CalculatorState>
   }) {
     return _then(
       _value.copyWith(
-            display: null == display
-                ? _value.display
-                : display // ignore: cast_nullable_to_non_nullable
-                      as String,
-            currentOperation: null == currentOperation
-                ? _value.currentOperation
-                : currentOperation // ignore: cast_nullable_to_non_nullable
-                      as String,
-            previousValue: freezed == previousValue
-                ? _value.previousValue
-                : previousValue // ignore: cast_nullable_to_non_nullable
-                      as double?,
-          )
-          as $Val,
+        display: null == display
+            ? _value.display
+            : display // ignore: cast_nullable_to_non_nullable
+                as String,
+        currentOperation: null == currentOperation
+            ? _value.currentOperation
+            : currentOperation // ignore: cast_nullable_to_non_nullable
+                as String,
+        previousValue: freezed == previousValue
+            ? _value.previousValue
+            : previousValue // ignore: cast_nullable_to_non_nullable
+                as double?,
+      ) as $Val,
     );
   }
 }
@@ -112,15 +111,15 @@ class __$$CalculatorStateImplCopyWithImpl<$Res>
         display: null == display
             ? _value.display
             : display // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         currentOperation: null == currentOperation
             ? _value.currentOperation
             : currentOperation // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         previousValue: freezed == previousValue
             ? _value.previousValue
             : previousValue // ignore: cast_nullable_to_non_nullable
-                  as double?,
+                as double?,
       ),
     );
   }

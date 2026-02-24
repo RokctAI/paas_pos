@@ -19,9 +19,7 @@ class _PickupPointSelectionViewState
     // Assuming the shop's location is available from a provider.
     // For now, using a default location.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(createParcelProvider.notifier)
-          .fetchDeliveryPoints(
+      ref.read(createParcelProvider.notifier).fetchDeliveryPoints(
             context,
             latitude: 41.0082, // Default latitude
             longitude: 28.9784, // Default longitude

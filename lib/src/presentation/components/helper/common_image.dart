@@ -124,58 +124,59 @@ class CommonImage extends StatelessWidget {
               ],
             )
           : fileImage != null
-          ? Image.file(fileImage!, height: height, width: width, fit: fit)
-          : AppHelpers.checkIsSvg(url)
-          ? SvgPicture.network(
-              '$url',
-              width: width?.r,
-              height: height?.r,
-              fit: BoxFit.cover,
-              placeholderBuilder: (_) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(radius.r),
-                  color: AppStyle.white,
-                ),
-              ),
-            )
-          : CachedNetworkImage(
-              imageUrl: '$url',
-              width: width?.r,
-              height: height?.r,
-              fit: fit ?? BoxFit.cover,
-              progressIndicatorBuilder: (_, __, ___) => Container(
-                height: height?.r,
-                width: width?.r,
-                decoration: const BoxDecoration(color: AppStyle.shimmerBase),
-                child: (width ?? 0) > 58
-                    ? Center(
-                        child: Text(
-                          AppHelpers.getTranslation(
-                            AppHelpers.getAppName().toString(),
-                          ),
-                          style: AppStyle.interNormal(
-                            color: AppStyle.textGrey,
-                            size: 12,
-                          ),
+              ? Image.file(fileImage!, height: height, width: width, fit: fit)
+              : AppHelpers.checkIsSvg(url)
+                  ? SvgPicture.network(
+                      '$url',
+                      width: width?.r,
+                      height: height?.r,
+                      fit: BoxFit.cover,
+                      placeholderBuilder: (_) => Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(radius.r),
+                          color: AppStyle.white,
                         ),
-                      )
-                    : const SizedBox.shrink(),
-              ),
-              errorWidget: (_, __, ___) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(errorRadius.r),
-                  color: errorBackground ?? AppStyle.greyColor,
-                ),
-                alignment: Alignment.center,
-                child: title?.isNotEmpty ?? false
-                    ? Text(title!)
-                    : Icon(
-                        FlutterRemix.image_line,
-                        color: AppStyle.black.withOpacity(0.5),
-                        size: 20.r,
                       ),
-              ),
-            ),
+                    )
+                  : CachedNetworkImage(
+                      imageUrl: '$url',
+                      width: width?.r,
+                      height: height?.r,
+                      fit: fit ?? BoxFit.cover,
+                      progressIndicatorBuilder: (_, __, ___) => Container(
+                        height: height?.r,
+                        width: width?.r,
+                        decoration:
+                            const BoxDecoration(color: AppStyle.shimmerBase),
+                        child: (width ?? 0) > 58
+                            ? Center(
+                                child: Text(
+                                  AppHelpers.getTranslation(
+                                    AppHelpers.getAppName().toString(),
+                                  ),
+                                  style: AppStyle.interNormal(
+                                    color: AppStyle.textGrey,
+                                    size: 12,
+                                  ),
+                                ),
+                              )
+                            : const SizedBox.shrink(),
+                      ),
+                      errorWidget: (_, __, ___) => Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(errorRadius.r),
+                          color: errorBackground ?? AppStyle.greyColor,
+                        ),
+                        alignment: Alignment.center,
+                        child: title?.isNotEmpty ?? false
+                            ? Text(title!)
+                            : Icon(
+                                FlutterRemix.image_line,
+                                color: AppStyle.black.withOpacity(0.5),
+                                size: 20.r,
+                              ),
+                      ),
+                    ),
     );
   }
 }

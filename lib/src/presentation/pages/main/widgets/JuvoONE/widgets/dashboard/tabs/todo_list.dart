@@ -244,8 +244,7 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
         priorityColor = AppStyle.grey;
     }
 
-    bool isOverdue =
-        task.dueDate != null &&
+    bool isOverdue = task.dueDate != null &&
         task.dueDate!.isBefore(DateTime.now()) &&
         task.status != 'Done';
 
@@ -318,9 +317,8 @@ class _TodoTasksScreenState extends State<TodoTasksScreen> {
                         '${task.dueDate!.day}/${task.dueDate!.month}/${task.dueDate!.year}',
                         style: TextStyle(
                           color: isOverdue ? AppStyle.red : AppStyle.grey[600],
-                          fontWeight: isOverdue
-                              ? FontWeight.bold
-                              : FontWeight.normal,
+                          fontWeight:
+                              isOverdue ? FontWeight.bold : FontWeight.normal,
                         ),
                       ),
                       if (isOverdue)
