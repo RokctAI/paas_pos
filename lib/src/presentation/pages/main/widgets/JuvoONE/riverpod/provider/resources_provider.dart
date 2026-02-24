@@ -32,5 +32,5 @@ class ResourcesNotifier extends StateNotifier<AsyncValue<ResourceData?>> {
 
 final resourcesProvider =
     StateNotifierProvider<ResourcesNotifier, AsyncValue<ResourceData?>>((ref) {
-      return ResourcesNotifier();
-    });
+  return ResourcesNotifier();
+});

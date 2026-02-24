@@ -156,9 +156,8 @@ class LocalStorage {
   // Settings methods
   static Future<void> setSettingsList(List<SettingsData> settings) async {
     if (_preferences != null) {
-      final List<String> strings = settings
-          .map((setting) => jsonEncode(setting.toJson()))
-          .toList();
+      final List<String> strings =
+          settings.map((setting) => jsonEncode(setting.toJson())).toList();
       await _preferences!.setStringList(StorageKeys.keyGlobalSettings, strings);
     }
   }
@@ -231,9 +230,8 @@ class LocalStorage {
   static Future<void> setBags(List<BagData> bags) async {
     if (_preferences != null) {
       try {
-        final List<String> strings = bags
-            .map((bag) => jsonEncode(bag.toJson()))
-            .toList();
+        final List<String> strings =
+            bags.map((bag) => jsonEncode(bag.toJson())).toList();
         await _preferences!.setStringList(StorageKeys.keyBags, strings);
         if (kDebugMode) {
           if (kDebugMode) {

@@ -220,11 +220,10 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
             )
             .toList()
             .firstWhereOrNull((order) {
-              if (order.note == null || !order.note!.contains('|'))
-                return false;
-              final numberPart = order.note!.split('|').last.trim();
-              return int.tryParse(numberPart) != null;
-            });
+          if (order.note == null || !order.note!.contains('|')) return false;
+          final numberPart = order.note!.split('|').last.trim();
+          return int.tryParse(numberPart) != null;
+        });
 
         // Calculate next number
         int nextNumber = 1;
@@ -377,9 +376,8 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
         }
       }
 
-      final note = _isNoUserMode
-          ? "no_user_order_$_tapCount"
-          : _tapCount.toString();
+      final note =
+          _isNoUserMode ? "no_user_order_$_tapCount" : _tapCount.toString();
 
       // Create a temporary BagData without storing it
       final tempBag = BagData(
@@ -552,9 +550,9 @@ class _QuickSaleState extends ConsumerState<QuickSale> {
                                                 TextSpan(
                                                   text:
                                                       snapshot.data!.length >= 5
-                                                      ? snapshot.data!
-                                                            .substring(0, 5)
-                                                      : snapshot.data!,
+                                                          ? snapshot.data!
+                                                              .substring(0, 5)
+                                                          : snapshot.data!,
                                                   style: GoogleFonts.inter(
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 16.sp,

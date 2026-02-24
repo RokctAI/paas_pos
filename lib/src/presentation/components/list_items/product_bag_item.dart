@@ -103,10 +103,7 @@ class CartOrderItem extends StatelessWidget {
                                   RichText(
                                     text: TextSpan(
                                       text: cart
-                                          ?.stock
-                                          ?.product
-                                          ?.translation
-                                          ?.title,
+                                          ?.stock?.product?.translation?.title,
                                       style: GoogleFonts.inter(
                                         fontSize: 14.sp,
                                         color: AppStyle.black,
@@ -272,9 +269,9 @@ class CartOrderItem extends StatelessWidget {
                                                 4.horizontalSpace,
                                                 Text(
                                                   intl.NumberFormat.currency(
-                                                    symbol:
-                                                        symbol ??
-                                                        LocalStorage.getSelectedCurrency()
+                                                    symbol: symbol ??
+                                                        LocalStorage
+                                                                .getSelectedCurrency()
                                                             .symbol,
                                                   ).format(sumPrice),
                                                   style: GoogleFonts.inter(
@@ -319,10 +316,7 @@ class CartOrderItem extends StatelessWidget {
                                 RichText(
                                   text: TextSpan(
                                     text: cart
-                                        ?.stock
-                                        ?.product
-                                        ?.translation
-                                        ?.title,
+                                        ?.stock?.product?.translation?.title,
                                     style: GoogleFonts.inter(
                                       fontSize: 16,
                                       color: AppStyle.black,
@@ -366,9 +360,9 @@ class CartOrderItem extends StatelessWidget {
                                             children: [
                                               Text(
                                                 intl.NumberFormat.currency(
-                                                  symbol:
-                                                      symbol ??
-                                                      LocalStorage.getSelectedCurrency()
+                                                  symbol: symbol ??
+                                                      LocalStorage
+                                                              .getSelectedCurrency()
                                                           .symbol,
                                                 ).format(
                                                   (cart?.discount ?? 0) != 0
@@ -379,14 +373,14 @@ class CartOrderItem extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   fontSize:
                                                       (cart?.discount ?? 0) != 0
-                                                      ? 12
-                                                      : 16,
+                                                          ? 12
+                                                          : 16,
                                                   color: AppStyle.black,
                                                   decoration:
                                                       (cart?.discount ?? 0) != 0
-                                                      ? TextDecoration
-                                                            .lineThrough
-                                                      : TextDecoration.none,
+                                                          ? TextDecoration
+                                                              .lineThrough
+                                                          : TextDecoration.none,
                                                 ),
                                               ),
                                               (cart?.discount ?? 0) != 0
@@ -397,9 +391,10 @@ class CartOrderItem extends StatelessWidget {
                                                       decoration: BoxDecoration(
                                                         color: AppStyle.red,
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                              30.r,
-                                                            ),
+                                                            BorderRadius
+                                                                .circular(
+                                                          30.r,
+                                                        ),
                                                       ),
                                                       padding: EdgeInsets.all(
                                                         4.r,
@@ -411,22 +406,22 @@ class CartOrderItem extends StatelessWidget {
                                                           ),
                                                           4.horizontalSpace,
                                                           Text(
-                                                            intl.NumberFormat.currency(
-                                                              symbol:
-                                                                  symbol ??
-                                                                  LocalStorage.getSelectedCurrency()
+                                                            intl.NumberFormat
+                                                                .currency(
+                                                              symbol: symbol ??
+                                                                  LocalStorage
+                                                                          .getSelectedCurrency()
                                                                       .symbol,
                                                             ).format(sumPrice),
-                                                            style:
-                                                                GoogleFonts.inter(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      14.sp,
-                                                                  color: AppStyle
-                                                                      .white,
-                                                                ),
+                                                            style: GoogleFonts
+                                                                .inter(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 14.sp,
+                                                              color: AppStyle
+                                                                  .white,
+                                                            ),
                                                           ),
                                                         ],
                                                       ),

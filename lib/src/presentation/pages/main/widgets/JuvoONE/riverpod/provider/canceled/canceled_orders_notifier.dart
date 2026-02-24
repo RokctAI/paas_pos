@@ -16,7 +16,7 @@ class CanceledOrdersNotifier extends StateNotifier<CanceledOrdersState> {
   Timer? _refreshTime;
 
   CanceledOrdersNotifier(this._ordersRepository)
-    : super(const CanceledOrdersState());
+      : super(const CanceledOrdersState());
 
   void setOrdersQuery(BuildContext context, String query) {
     if (state.query == query) {
@@ -83,9 +83,8 @@ class CanceledOrdersNotifier extends StateNotifier<CanceledOrdersState> {
     );
     response.when(
       success: (data) {
-        List<OrderData> orders = isRefresh || state.query.isNotEmpty
-            ? []
-            : List.from(state.orders);
+        List<OrderData> orders =
+            isRefresh || state.query.isNotEmpty ? [] : List.from(state.orders);
         final List<OrderData> newOrders = data.data?.orders ?? [];
         orders.addAll(newOrders);
         state = state.copyWith(

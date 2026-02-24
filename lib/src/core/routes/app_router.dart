@@ -7,11 +7,11 @@ part 'app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    MaterialRoute(path: '/', page: SplashRoute.page),
-    MaterialRoute(path: '/login', page: LoginRoute.page),
-    MaterialRoute(path: '/pin_code', page: PinCodeRoute.page),
-    MaterialRoute(path: '/main', page: MainRoute.page),
-    MaterialRoute(path: '/help', page: HelpRoute.page),
-    MaterialRoute(path: '/dashboard/:shopId', page: DashboardRoute.page),
-  ];
+        MaterialRoute(path: '/', page: SplashRoute.page),
+        MaterialRoute(path: '/login', page: LoginRoute.page),
+        MaterialRoute(path: '/pin_code', page: PinCodeRoute.page),
+        MaterialRoute(path: '/main', page: MainRoute.page),
+        MaterialRoute(path: '/help', page: HelpRoute.page),
+        MaterialRoute(path: '/dashboard/:shopId', page: DashboardRoute.page),
+      ];
 }

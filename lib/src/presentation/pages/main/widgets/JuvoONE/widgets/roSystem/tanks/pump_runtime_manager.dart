@@ -29,8 +29,8 @@ class PumpRuntimeManager {
     try {
       final prefs = await SharedPreferences.getInstance();
       final pumpKeys = prefs.getKeys().where(
-        (key) => key.startsWith(_storageKey),
-      );
+            (key) => key.startsWith(_storageKey),
+          );
 
       for (final key in pumpKeys) {
         final pumpDataString = prefs.getString(key);

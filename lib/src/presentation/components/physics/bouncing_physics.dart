@@ -35,8 +35,7 @@ class CustomBouncingScrollPhysics extends ScrollPhysics {
       overscrollPastStart,
       overscrollPastEnd,
     );
-    final bool easing =
-        (overscrollPastStart > 0.0 && offset < 0.0) ||
+    final bool easing = (overscrollPastStart > 0.0 && offset < 0.0) ||
         (overscrollPastEnd > 0.0 && offset > 0.0);
 
     final double friction = easing

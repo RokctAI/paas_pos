@@ -82,44 +82,43 @@ class _$AddDiscountStateCopyWithImpl<$Res, $Val extends AddDiscountState>
   }) {
     return _then(
       _value.copyWith(
-            type: null == type
-                ? _value.type
-                : type // ignore: cast_nullable_to_non_nullable
-                      as String,
-            active: null == active
-                ? _value.active
-                : active // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            price: null == price
-                ? _value.price
-                : price // ignore: cast_nullable_to_non_nullable
-                      as int,
-            imageFile: freezed == imageFile
-                ? _value.imageFile
-                : imageFile // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            stocks: null == stocks
-                ? _value.stocks
-                : stocks // ignore: cast_nullable_to_non_nullable
-                      as List<Stocks>,
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            startDate: freezed == startDate
-                ? _value.startDate
-                : startDate // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
-            endDate: freezed == endDate
-                ? _value.endDate
-                : endDate // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
-            dateController: freezed == dateController
-                ? _value.dateController
-                : dateController // ignore: cast_nullable_to_non_nullable
-                      as TextEditingController?,
-          )
-          as $Val,
+        type: null == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                as String,
+        active: null == active
+            ? _value.active
+            : active // ignore: cast_nullable_to_non_nullable
+                as bool,
+        price: null == price
+            ? _value.price
+            : price // ignore: cast_nullable_to_non_nullable
+                as int,
+        imageFile: freezed == imageFile
+            ? _value.imageFile
+            : imageFile // ignore: cast_nullable_to_non_nullable
+                as String?,
+        stocks: null == stocks
+            ? _value.stocks
+            : stocks // ignore: cast_nullable_to_non_nullable
+                as List<Stocks>,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        startDate: freezed == startDate
+            ? _value.startDate
+            : startDate // ignore: cast_nullable_to_non_nullable
+                as DateTime?,
+        endDate: freezed == endDate
+            ? _value.endDate
+            : endDate // ignore: cast_nullable_to_non_nullable
+                as DateTime?,
+        dateController: freezed == dateController
+            ? _value.dateController
+            : dateController // ignore: cast_nullable_to_non_nullable
+                as TextEditingController?,
+      ) as $Val,
     );
   }
 }
@@ -175,39 +174,39 @@ class __$$AddDiscountStateImplCopyWithImpl<$Res>
         type: null == type
             ? _value.type
             : type // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         active: null == active
             ? _value.active
             : active // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         price: null == price
             ? _value.price
             : price // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         imageFile: freezed == imageFile
             ? _value.imageFile
             : imageFile // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         stocks: null == stocks
             ? _value._stocks
             : stocks // ignore: cast_nullable_to_non_nullable
-                  as List<Stocks>,
+                as List<Stocks>,
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         startDate: freezed == startDate
             ? _value.startDate
             : startDate // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
+                as DateTime?,
         endDate: freezed == endDate
             ? _value.endDate
             : endDate // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
+                as DateTime?,
         dateController: freezed == dateController
             ? _value.dateController
             : dateController // ignore: cast_nullable_to_non_nullable
-                  as TextEditingController?,
+                as TextEditingController?,
       ),
     );
   }
@@ -226,8 +225,8 @@ class _$AddDiscountStateImpl extends _AddDiscountState {
     this.startDate,
     this.endDate,
     this.dateController,
-  }) : _stocks = stocks,
-       super._();
+  })  : _stocks = stocks,
+        super._();
 
   @override
   @JsonKey()
@@ -286,17 +285,17 @@ class _$AddDiscountStateImpl extends _AddDiscountState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    type,
-    active,
-    price,
-    imageFile,
-    const DeepCollectionEquality().hash(_stocks),
-    isLoading,
-    startDate,
-    endDate,
-    dateController,
-  );
+        runtimeType,
+        type,
+        active,
+        price,
+        imageFile,
+        const DeepCollectionEquality().hash(_stocks),
+        isLoading,
+        startDate,
+        endDate,
+        dateController,
+      );
 
   /// Create a copy of AddDiscountState
   /// with the given fields replaced by the non-null parameter values.

@@ -81,44 +81,43 @@ class _$KitchenStateCopyWithImpl<$Res, $Val extends KitchenState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            selectType: null == selectType
-                ? _value.selectType
-                : selectType // ignore: cast_nullable_to_non_nullable
-                      as String,
-            hasMore: null == hasMore
-                ? _value.hasMore
-                : hasMore // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            detailStatus: null == detailStatus
-                ? _value.detailStatus
-                : detailStatus // ignore: cast_nullable_to_non_nullable
-                      as String,
-            isUpdatingStatus: null == isUpdatingStatus
-                ? _value.isUpdatingStatus
-                : isUpdatingStatus // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            orders: null == orders
-                ? _value.orders
-                : orders // ignore: cast_nullable_to_non_nullable
-                      as List<OrderData>,
-            selectOrder: freezed == selectOrder
-                ? _value.selectOrder
-                : selectOrder // ignore: cast_nullable_to_non_nullable
-                      as OrderData?,
-            query: null == query
-                ? _value.query
-                : query // ignore: cast_nullable_to_non_nullable
-                      as String,
-            selectIndex: null == selectIndex
-                ? _value.selectIndex
-                : selectIndex // ignore: cast_nullable_to_non_nullable
-                      as int,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        selectType: null == selectType
+            ? _value.selectType
+            : selectType // ignore: cast_nullable_to_non_nullable
+                as String,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                as bool,
+        detailStatus: null == detailStatus
+            ? _value.detailStatus
+            : detailStatus // ignore: cast_nullable_to_non_nullable
+                as String,
+        isUpdatingStatus: null == isUpdatingStatus
+            ? _value.isUpdatingStatus
+            : isUpdatingStatus // ignore: cast_nullable_to_non_nullable
+                as bool,
+        orders: null == orders
+            ? _value.orders
+            : orders // ignore: cast_nullable_to_non_nullable
+                as List<OrderData>,
+        selectOrder: freezed == selectOrder
+            ? _value.selectOrder
+            : selectOrder // ignore: cast_nullable_to_non_nullable
+                as OrderData?,
+        query: null == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                as String,
+        selectIndex: null == selectIndex
+            ? _value.selectIndex
+            : selectIndex // ignore: cast_nullable_to_non_nullable
+                as int,
+      ) as $Val,
     );
   }
 }
@@ -174,39 +173,39 @@ class __$$KitchenStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         selectType: null == selectType
             ? _value.selectType
             : selectType // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         detailStatus: null == detailStatus
             ? _value.detailStatus
             : detailStatus // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         isUpdatingStatus: null == isUpdatingStatus
             ? _value.isUpdatingStatus
             : isUpdatingStatus // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         orders: null == orders
             ? _value._orders
             : orders // ignore: cast_nullable_to_non_nullable
-                  as List<OrderData>,
+                as List<OrderData>,
         selectOrder: freezed == selectOrder
             ? _value.selectOrder
             : selectOrder // ignore: cast_nullable_to_non_nullable
-                  as OrderData?,
+                as OrderData?,
         query: null == query
             ? _value.query
             : query // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         selectIndex: null == selectIndex
             ? _value.selectIndex
             : selectIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
       ),
     );
   }
@@ -225,8 +224,8 @@ class _$KitchenStateImpl extends _KitchenState {
     this.selectOrder = null,
     this.query = '',
     this.selectIndex = 0,
-  }) : _orders = orders,
-       super._();
+  })  : _orders = orders,
+        super._();
 
   @override
   @JsonKey()
@@ -291,17 +290,17 @@ class _$KitchenStateImpl extends _KitchenState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    selectType,
-    hasMore,
-    detailStatus,
-    isUpdatingStatus,
-    const DeepCollectionEquality().hash(_orders),
-    selectOrder,
-    query,
-    selectIndex,
-  );
+        runtimeType,
+        isLoading,
+        selectType,
+        hasMore,
+        detailStatus,
+        isUpdatingStatus,
+        const DeepCollectionEquality().hash(_orders),
+        selectOrder,
+        query,
+        selectIndex,
+      );
 
   /// Create a copy of KitchenState
   /// with the given fields replaced by the non-null parameter values.

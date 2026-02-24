@@ -269,9 +269,8 @@ class _AddPillarDialogState extends State<AddPillarDialog> {
             ? _descriptionController.text
             : null,
         'icon': _iconController.text.isNotEmpty ? _iconController.text : null,
-        'color': _colorController.text.isNotEmpty
-            ? _colorController.text
-            : null,
+        'color':
+            _colorController.text.isNotEmpty ? _colorController.text : null,
         'display_order': _displayOrder,
       };
 

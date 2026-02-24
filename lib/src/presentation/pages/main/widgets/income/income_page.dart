@@ -59,7 +59,6 @@ class _InComePageState extends ConsumerState<InComePage> {
             children: [
               _carts(state),
               10.verticalSpace,
-
               Row(
                 children: [
                   PieChartPage(

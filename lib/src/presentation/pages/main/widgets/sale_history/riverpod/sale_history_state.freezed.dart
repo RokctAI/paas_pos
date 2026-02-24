@@ -78,40 +78,39 @@ class _$SaleHistoryStateCopyWithImpl<$Res, $Val extends SaleHistoryState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isMoreLoading: null == isMoreLoading
-                ? _value.isMoreLoading
-                : isMoreLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            selectIndex: null == selectIndex
-                ? _value.selectIndex
-                : selectIndex // ignore: cast_nullable_to_non_nullable
-                      as int,
-            hasMore: null == hasMore
-                ? _value.hasMore
-                : hasMore // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            saleCart: freezed == saleCart
-                ? _value.saleCart
-                : saleCart // ignore: cast_nullable_to_non_nullable
-                      as SaleCartResponse?,
-            listHistory: null == listHistory
-                ? _value.listHistory
-                : listHistory // ignore: cast_nullable_to_non_nullable
-                      as List<SaleHistoryModel>,
-            listDriver: null == listDriver
-                ? _value.listDriver
-                : listDriver // ignore: cast_nullable_to_non_nullable
-                      as List<SaleHistoryModel>,
-            listToday: null == listToday
-                ? _value.listToday
-                : listToday // ignore: cast_nullable_to_non_nullable
-                      as List<SaleHistoryModel>,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isMoreLoading: null == isMoreLoading
+            ? _value.isMoreLoading
+            : isMoreLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        selectIndex: null == selectIndex
+            ? _value.selectIndex
+            : selectIndex // ignore: cast_nullable_to_non_nullable
+                as int,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                as bool,
+        saleCart: freezed == saleCart
+            ? _value.saleCart
+            : saleCart // ignore: cast_nullable_to_non_nullable
+                as SaleCartResponse?,
+        listHistory: null == listHistory
+            ? _value.listHistory
+            : listHistory // ignore: cast_nullable_to_non_nullable
+                as List<SaleHistoryModel>,
+        listDriver: null == listDriver
+            ? _value.listDriver
+            : listDriver // ignore: cast_nullable_to_non_nullable
+                as List<SaleHistoryModel>,
+        listToday: null == listToday
+            ? _value.listToday
+            : listToday // ignore: cast_nullable_to_non_nullable
+                as List<SaleHistoryModel>,
+      ) as $Val,
     );
   }
 }
@@ -165,35 +164,35 @@ class __$$SaleHistoryStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isMoreLoading: null == isMoreLoading
             ? _value.isMoreLoading
             : isMoreLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         selectIndex: null == selectIndex
             ? _value.selectIndex
             : selectIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         saleCart: freezed == saleCart
             ? _value.saleCart
             : saleCart // ignore: cast_nullable_to_non_nullable
-                  as SaleCartResponse?,
+                as SaleCartResponse?,
         listHistory: null == listHistory
             ? _value._listHistory
             : listHistory // ignore: cast_nullable_to_non_nullable
-                  as List<SaleHistoryModel>,
+                as List<SaleHistoryModel>,
         listDriver: null == listDriver
             ? _value._listDriver
             : listDriver // ignore: cast_nullable_to_non_nullable
-                  as List<SaleHistoryModel>,
+                as List<SaleHistoryModel>,
         listToday: null == listToday
             ? _value._listToday
             : listToday // ignore: cast_nullable_to_non_nullable
-                  as List<SaleHistoryModel>,
+                as List<SaleHistoryModel>,
       ),
     );
   }
@@ -211,10 +210,10 @@ class _$SaleHistoryStateImpl extends _SaleHistoryState {
     final List<SaleHistoryModel> listHistory = const [],
     final List<SaleHistoryModel> listDriver = const [],
     final List<SaleHistoryModel> listToday = const [],
-  }) : _listHistory = listHistory,
-       _listDriver = listDriver,
-       _listToday = listToday,
-       super._();
+  })  : _listHistory = listHistory,
+        _listDriver = listDriver,
+        _listToday = listToday,
+        super._();
 
   @override
   @JsonKey()
@@ -293,16 +292,16 @@ class _$SaleHistoryStateImpl extends _SaleHistoryState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    isMoreLoading,
-    selectIndex,
-    hasMore,
-    saleCart,
-    const DeepCollectionEquality().hash(_listHistory),
-    const DeepCollectionEquality().hash(_listDriver),
-    const DeepCollectionEquality().hash(_listToday),
-  );
+        runtimeType,
+        isLoading,
+        isMoreLoading,
+        selectIndex,
+        hasMore,
+        saleCart,
+        const DeepCollectionEquality().hash(_listHistory),
+        const DeepCollectionEquality().hash(_listDriver),
+        const DeepCollectionEquality().hash(_listToday),
+      );
 
   /// Create a copy of SaleHistoryState
   /// with the given fields replaced by the non-null parameter values.

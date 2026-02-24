@@ -16,7 +16,7 @@ class CookingOrdersNotifier extends StateNotifier<CookingOrdersState> {
   Timer? _refreshTime;
 
   CookingOrdersNotifier(this._ordersRepository)
-    : super(const CookingOrdersState());
+      : super(const CookingOrdersState());
 
   void setOrdersQuery(BuildContext context, String query) {
     if (state.query == query) {

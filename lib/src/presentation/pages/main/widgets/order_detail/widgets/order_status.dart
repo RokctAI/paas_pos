@@ -94,183 +94,181 @@ class OrderStatusScreen extends StatelessWidget {
                   ],
                 )
               : status == OrderStatus.delivered
-              ? Row(
-                  children: [
-                    OrderStatusItem(
-                      icon: Icon(
-                        Icons.done_all,
-                        size: 24.r,
-                        color: AppStyle.black,
-                      ),
-                      bgColor: AppStyle.primary,
-                      isActive: true,
-                      isProgress: false,
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      height: 6.h,
-                      width: 12.w,
-                      decoration: BoxDecoration(color: AppStyle.primary),
-                    ),
-                    OrderStatusItem(
-                      icon: Icon(
-                        Icons.restaurant_rounded,
-                        size: 24.r,
-                        color: AppStyle.black,
-                      ),
-                      bgColor: AppStyle.primary,
-                      isActive: true,
-                      isProgress: false,
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      height: 6.r,
-                      width: 12.r,
-                      decoration: BoxDecoration(color: AppStyle.primary),
-                    ),
-                    OrderStatusItem(
-                      icon: Icon(
-                        Remix.run_fill,
-                        size: 24.r,
-                        color: AppStyle.black,
-                      ),
-                      bgColor: AppStyle.primary,
-                      isActive: true,
-                      isProgress: false,
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      height: 6.r,
-                      width: 12.r,
-                      decoration: BoxDecoration(color: AppStyle.primary),
-                    ),
-                    OrderStatusItem(
-                      icon: Icon(Icons.flag, size: 24.r, color: AppStyle.black),
-                      bgColor: AppStyle.primary,
-                      isActive: true,
-                      isProgress: false,
-                    ),
-                  ],
-                )
-              : Row(
-                  children: [
-                    OrderStatusItem(
-                      icon: Icon(
-                        Icons.done_all,
-                        size: 24.r,
-                        color: AppStyle.black,
-                      ),
-                      isActive: status != OrderStatus.newOrder,
-                      isProgress: status == OrderStatus.newOrder,
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      height: 6.r,
-                      width: 12.r,
-                      decoration: BoxDecoration(
-                        color: status != OrderStatus.newOrder
-                            ? AppStyle.primary
-                            : AppStyle.white,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-                          AppHelpers.showAlertDialog(
-                            context: context,
-                            child: const DialogStatus(
-                              orderStatus: OrderStatus.ready,
-                            ),
-                          );
-                        }
-                      },
-                      child: AnimationButtonEffect(
-                        child: OrderStatusItem(
+                  ? Row(
+                      children: [
+                        OrderStatusItem(
+                          icon: Icon(
+                            Icons.done_all,
+                            size: 24.r,
+                            color: AppStyle.black,
+                          ),
+                          bgColor: AppStyle.primary,
+                          isActive: true,
+                          isProgress: false,
+                        ),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: 6.h,
+                          width: 12.w,
+                          decoration: BoxDecoration(color: AppStyle.primary),
+                        ),
+                        OrderStatusItem(
                           icon: Icon(
                             Icons.restaurant_rounded,
                             size: 24.r,
                             color: AppStyle.black,
                           ),
-                          isActive:
-                              status == OrderStatus.ready ||
-                              status == OrderStatus.onAWay,
-                          isProgress: status == OrderStatus.accepted,
+                          bgColor: AppStyle.primary,
+                          isActive: true,
+                          isProgress: false,
                         ),
-                      ),
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      height: 6.r,
-                      width: 12.r,
-                      decoration: BoxDecoration(
-                        color:
-                            status == OrderStatus.ready ||
-                                status == OrderStatus.onAWay
-                            ? AppStyle.primary
-                            : AppStyle.white,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-                          AppHelpers.showAlertDialog(
-                            context: context,
-                            child: const DialogStatus(
-                              orderStatus: OrderStatus.onAWay,
-                            ),
-                          );
-                        }
-                      },
-                      child: AnimationButtonEffect(
-                        child: OrderStatusItem(
-                          icon: Icon(
-                            status == OrderStatus.onAWay
-                                ? Remix.run_fill
-                                : Remix.walk_fill,
-                            size: 24.r,
-                          ),
-                          isActive: status == OrderStatus.onAWay,
-                          isProgress:
-                              status == OrderStatus.ready ||
-                              status == OrderStatus.delivered,
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: 6.r,
+                          width: 12.r,
+                          decoration: BoxDecoration(color: AppStyle.primary),
                         ),
-                      ),
-                    ),
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      height: 6.r,
-                      width: 12.r,
-                      decoration: BoxDecoration(
-                        color: status == OrderStatus.onAWay
-                            ? AppStyle.primary
-                            : AppStyle.white,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        if (LocalStorage.getUser()?.role != TrKeys.waiter) {
-                          AppHelpers.showAlertDialog(
-                            context: context,
-                            child: const DialogStatus(
-                              orderStatus: OrderStatus.delivered,
-                            ),
-                          );
-                        }
-                      },
-                      child: AnimationButtonEffect(
-                        child: OrderStatusItem(
+                        OrderStatusItem(
                           icon: Icon(
-                            Icons.flag,
+                            Remix.run_fill,
                             size: 24.r,
                             color: AppStyle.black,
                           ),
-                          isActive: false,
+                          bgColor: AppStyle.primary,
+                          isActive: true,
                           isProgress: false,
                         ),
-                      ),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: 6.r,
+                          width: 12.r,
+                          decoration: BoxDecoration(color: AppStyle.primary),
+                        ),
+                        OrderStatusItem(
+                          icon: Icon(Icons.flag,
+                              size: 24.r, color: AppStyle.black),
+                          bgColor: AppStyle.primary,
+                          isActive: true,
+                          isProgress: false,
+                        ),
+                      ],
+                    )
+                  : Row(
+                      children: [
+                        OrderStatusItem(
+                          icon: Icon(
+                            Icons.done_all,
+                            size: 24.r,
+                            color: AppStyle.black,
+                          ),
+                          isActive: status != OrderStatus.newOrder,
+                          isProgress: status == OrderStatus.newOrder,
+                        ),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: 6.r,
+                          width: 12.r,
+                          decoration: BoxDecoration(
+                            color: status != OrderStatus.newOrder
+                                ? AppStyle.primary
+                                : AppStyle.white,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (LocalStorage.getUser()?.role != TrKeys.waiter) {
+                              AppHelpers.showAlertDialog(
+                                context: context,
+                                child: const DialogStatus(
+                                  orderStatus: OrderStatus.ready,
+                                ),
+                              );
+                            }
+                          },
+                          child: AnimationButtonEffect(
+                            child: OrderStatusItem(
+                              icon: Icon(
+                                Icons.restaurant_rounded,
+                                size: 24.r,
+                                color: AppStyle.black,
+                              ),
+                              isActive: status == OrderStatus.ready ||
+                                  status == OrderStatus.onAWay,
+                              isProgress: status == OrderStatus.accepted,
+                            ),
+                          ),
+                        ),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: 6.r,
+                          width: 12.r,
+                          decoration: BoxDecoration(
+                            color: status == OrderStatus.ready ||
+                                    status == OrderStatus.onAWay
+                                ? AppStyle.primary
+                                : AppStyle.white,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (LocalStorage.getUser()?.role != TrKeys.waiter) {
+                              AppHelpers.showAlertDialog(
+                                context: context,
+                                child: const DialogStatus(
+                                  orderStatus: OrderStatus.onAWay,
+                                ),
+                              );
+                            }
+                          },
+                          child: AnimationButtonEffect(
+                            child: OrderStatusItem(
+                              icon: Icon(
+                                status == OrderStatus.onAWay
+                                    ? Remix.run_fill
+                                    : Remix.walk_fill,
+                                size: 24.r,
+                              ),
+                              isActive: status == OrderStatus.onAWay,
+                              isProgress: status == OrderStatus.ready ||
+                                  status == OrderStatus.delivered,
+                            ),
+                          ),
+                        ),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          height: 6.r,
+                          width: 12.r,
+                          decoration: BoxDecoration(
+                            color: status == OrderStatus.onAWay
+                                ? AppStyle.primary
+                                : AppStyle.white,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (LocalStorage.getUser()?.role != TrKeys.waiter) {
+                              AppHelpers.showAlertDialog(
+                                context: context,
+                                child: const DialogStatus(
+                                  orderStatus: OrderStatus.delivered,
+                                ),
+                              );
+                            }
+                          },
+                          child: AnimationButtonEffect(
+                            child: OrderStatusItem(
+                              icon: Icon(
+                                Icons.flag,
+                                size: 24.r,
+                                color: AppStyle.black,
+                              ),
+                              isActive: false,
+                              isProgress: false,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
         ],
       ),
     );

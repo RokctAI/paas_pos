@@ -27,9 +27,8 @@ class AppRepositoryImpl implements AppRepository {
         final jsonData = response.data;
         if (jsonData['success'] == true && jsonData['data'] != null) {
           final List<dynamic> appsJson = jsonData['data'];
-          final apps = appsJson
-              .map((appJson) => App.fromJson(appJson))
-              .toList();
+          final apps =
+              appsJson.map((appJson) => App.fromJson(appJson)).toList();
           return ApiResult.success(data: apps);
         } else {
           return ApiResult.failure(

@@ -508,8 +508,7 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
               ),
               borderRadius: BorderRadius.circular(AppConstants.radius.r),
             ),
-            padding:
-                widget.contentPadding ??
+            padding: widget.contentPadding ??
                 REdgeInsets.symmetric(vertical: 14, horizontal: 12),
             child: Row(
               children: [
@@ -528,9 +527,8 @@ class _CustomDateTimeFieldState extends State<CustomDateTimeField>
                 Icon(
                   iconAssets,
                   size: widget.iconSize,
-                  color: state.value == null
-                      ? AppStyle.textHint
-                      : AppStyle.white,
+                  color:
+                      state.value == null ? AppStyle.textHint : AppStyle.white,
                 ),
               ],
             ),

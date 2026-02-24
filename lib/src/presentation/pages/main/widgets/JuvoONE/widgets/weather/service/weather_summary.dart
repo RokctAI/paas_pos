@@ -68,8 +68,12 @@ class WeatherSummary extends StatelessWidget {
     if (temp >= 40)
       return ['scorching', 'extreme', 'brutal', 'searing'][Random().nextInt(4)];
     if (temp >= 35)
-      return ['very hot', 'intensely warm', 'sweltering', 'blazing'][Random()
-          .nextInt(4)];
+      return [
+        'very hot',
+        'intensely warm',
+        'sweltering',
+        'blazing'
+      ][Random().nextInt(4)];
     if (temp >= 30)
       return [
         'quite warm',
@@ -102,8 +106,7 @@ class WeatherSummary extends StatelessWidget {
     final hours = forecast['hour'] as List?;
     final location = weatherState.cityName;
     final date = DateTime.parse(forecast['date']);
-    final isToday =
-        DateFormat('yyyy-MM-dd').format(date) ==
+    final isToday = DateFormat('yyyy-MM-dd').format(date) ==
         DateFormat('yyyy-MM-dd').format(DateTime.now());
     final alerts = forecast['alerts']?['alert'] as List? ?? [];
     final isCurrentWeather = hours == null || hours.isEmpty;

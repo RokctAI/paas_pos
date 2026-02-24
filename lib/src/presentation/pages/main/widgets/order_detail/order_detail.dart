@@ -47,8 +47,7 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
   Widget build(BuildContext context) {
     final state = ref.watch(orderDetailsProvider);
     num subTotal = 0;
-    subTotal =
-        ((state.order?.totalPrice ?? 0) -
+    subTotal = ((state.order?.totalPrice ?? 0) -
         (state.order?.tax ?? 0) -
         (state.order?.deliveryFee ?? 0) +
         (state.order?.totalDiscount ?? 0));
@@ -253,16 +252,14 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
                 ref.watch(orderDetailsProvider).detailStatus == status
                     ? null
                     : ref
-                          .read(orderDetailsProvider.notifier)
-                          .updateOrderDetailStatus(
-                            status: ref
-                                .watch(orderDetailsProvider)
-                                .detailStatus,
-                            id: id,
-                            success: () {
-                              Navigator.pop(context);
-                            },
-                          );
+                        .read(orderDetailsProvider.notifier)
+                        .updateOrderDetailStatus(
+                          status: ref.watch(orderDetailsProvider).detailStatus,
+                          id: id,
+                          success: () {
+                            Navigator.pop(context);
+                          },
+                        );
               },
             ),
           ),
@@ -367,40 +364,38 @@ class _OrderDetailPageState extends ConsumerState<OrderDetailPage> {
               onTap: () {
                 ref.watch(orderDetailsProvider).status.isEmpty
                     ? null
-                    : ref
-                          .read(orderDetailsProvider.notifier)
-                          .updateOrderStatus(
-                            status: AppHelpers.getOrderStatus(
-                              ref.watch(orderDetailsProvider).status,
-                            ),
-                            success: () {
-                              Navigator.pop(context);
-                              if (AppHelpers.getAutoPrint() &&
-                                  AppHelpers.getOrderStatus(
-                                        ref.watch(orderDetailsProvider).status,
-                                      ) ==
-                                      OrderStatus.accepted) {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return LayoutBuilder(
-                                      builder: (context, constraints) {
-                                        return SimpleDialog(
-                                          title: SizedBox(
-                                            height: constraints.maxHeight * 0.7,
-                                            width: 300.r,
-                                            child: GenerateCheckPage(
-                                              orderData: state.order,
-                                            ),
+                    : ref.read(orderDetailsProvider.notifier).updateOrderStatus(
+                          status: AppHelpers.getOrderStatus(
+                            ref.watch(orderDetailsProvider).status,
+                          ),
+                          success: () {
+                            Navigator.pop(context);
+                            if (AppHelpers.getAutoPrint() &&
+                                AppHelpers.getOrderStatus(
+                                      ref.watch(orderDetailsProvider).status,
+                                    ) ==
+                                    OrderStatus.accepted) {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return LayoutBuilder(
+                                    builder: (context, constraints) {
+                                      return SimpleDialog(
+                                        title: SizedBox(
+                                          height: constraints.maxHeight * 0.7,
+                                          width: 300.r,
+                                          child: GenerateCheckPage(
+                                            orderData: state.order,
                                           ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                );
-                              }
-                            },
-                          );
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            }
+                          },
+                        );
               },
             ),
           ),

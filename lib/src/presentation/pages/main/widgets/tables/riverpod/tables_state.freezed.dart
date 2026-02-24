@@ -161,148 +161,147 @@ class _$TablesStateCopyWithImpl<$Res, $Val extends TablesState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isInfoLoading: null == isInfoLoading
-                ? _value.isInfoLoading
-                : isInfoLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isBookingLoading: null == isBookingLoading
-                ? _value.isBookingLoading
-                : isBookingLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isSectionLoading: null == isSectionLoading
-                ? _value.isSectionLoading
-                : isSectionLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isStatisticLoading: null == isStatisticLoading
-                ? _value.isStatisticLoading
-                : isStatisticLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isButtonLoading: null == isButtonLoading
-                ? _value.isButtonLoading
-                : isButtonLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isCancelLoading: null == isCancelLoading
-                ? _value.isCancelLoading
-                : isCancelLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMore: null == hasMore
-                ? _value.hasMore
-                : hasMore // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMoreSections: null == hasMoreSections
-                ? _value.hasMoreSections
-                : hasMoreSections // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMoreBookings: null == hasMoreBookings
-                ? _value.hasMoreBookings
-                : hasMoreBookings // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            showFilter: null == showFilter
-                ? _value.showFilter
-                : showFilter // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isListView: null == isListView
-                ? _value.isListView
-                : isListView // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            selectTabIndex: null == selectTabIndex
-                ? _value.selectTabIndex
-                : selectTabIndex // ignore: cast_nullable_to_non_nullable
-                      as int,
-            selectListTabIndex: null == selectListTabIndex
-                ? _value.selectListTabIndex
-                : selectListTabIndex // ignore: cast_nullable_to_non_nullable
-                      as int,
-            selectSection: null == selectSection
-                ? _value.selectSection
-                : selectSection // ignore: cast_nullable_to_non_nullable
-                      as int,
-            selectAddSection: null == selectAddSection
-                ? _value.selectAddSection
-                : selectAddSection // ignore: cast_nullable_to_non_nullable
-                      as int,
-            selectTableId: null == selectTableId
-                ? _value.selectTableId
-                : selectTableId // ignore: cast_nullable_to_non_nullable
-                      as int,
-            selectOrderIndex: freezed == selectOrderIndex
-                ? _value.selectOrderIndex
-                : selectOrderIndex // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            tableListData: null == tableListData
-                ? _value.tableListData
-                : tableListData // ignore: cast_nullable_to_non_nullable
-                      as List<TableData?>,
-            tableBookingData: null == tableBookingData
-                ? _value.tableBookingData
-                : tableBookingData // ignore: cast_nullable_to_non_nullable
-                      as List<TableBookingData?>,
-            sectionListTitle: null == sectionListTitle
-                ? _value.sectionListTitle
-                : sectionListTitle // ignore: cast_nullable_to_non_nullable
-                      as List<String>,
-            shopSectionList: null == shopSectionList
-                ? _value.shopSectionList
-                : shopSectionList // ignore: cast_nullable_to_non_nullable
-                      as List<ShopSection?>,
-            disableDates: null == disableDates
-                ? _value.disableDates
-                : disableDates // ignore: cast_nullable_to_non_nullable
-                      as List<DisableDates?>,
-            tableStatistic: freezed == tableStatistic
-                ? _value.tableStatistic
-                : tableStatistic // ignore: cast_nullable_to_non_nullable
-                      as TableStatisticData?,
-            workingDayData: freezed == workingDayData
-                ? _value.workingDayData
-                : workingDayData // ignore: cast_nullable_to_non_nullable
-                      as WorkingDayData?,
-            bookingsData: freezed == bookingsData
-                ? _value.bookingsData
-                : bookingsData // ignore: cast_nullable_to_non_nullable
-                      as BookingsData?,
-            selectDateTime: freezed == selectDateTime
-                ? _value.selectDateTime
-                : selectDateTime // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
-            selectTimeOfDay: freezed == selectTimeOfDay
-                ? _value.selectTimeOfDay
-                : selectTimeOfDay // ignore: cast_nullable_to_non_nullable
-                      as TimeOfDay?,
-            selectDuration: freezed == selectDuration
-                ? _value.selectDuration
-                : selectDuration // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            errorSelectDate: freezed == errorSelectDate
-                ? _value.errorSelectDate
-                : errorSelectDate // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            errorSelectTime: freezed == errorSelectTime
-                ? _value.errorSelectTime
-                : errorSelectTime // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            closeDays: null == closeDays
-                ? _value.closeDays
-                : closeDays // ignore: cast_nullable_to_non_nullable
-                      as List<BookingShopClosedDate?>,
-            times: null == times
-                ? _value.times
-                : times // ignore: cast_nullable_to_non_nullable
-                      as List<DateTime?>,
-            start: freezed == start
-                ? _value.start
-                : start // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
-            end: freezed == end
-                ? _value.end
-                : end // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isInfoLoading: null == isInfoLoading
+            ? _value.isInfoLoading
+            : isInfoLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isBookingLoading: null == isBookingLoading
+            ? _value.isBookingLoading
+            : isBookingLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isSectionLoading: null == isSectionLoading
+            ? _value.isSectionLoading
+            : isSectionLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isStatisticLoading: null == isStatisticLoading
+            ? _value.isStatisticLoading
+            : isStatisticLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isButtonLoading: null == isButtonLoading
+            ? _value.isButtonLoading
+            : isButtonLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isCancelLoading: null == isCancelLoading
+            ? _value.isCancelLoading
+            : isCancelLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMoreSections: null == hasMoreSections
+            ? _value.hasMoreSections
+            : hasMoreSections // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMoreBookings: null == hasMoreBookings
+            ? _value.hasMoreBookings
+            : hasMoreBookings // ignore: cast_nullable_to_non_nullable
+                as bool,
+        showFilter: null == showFilter
+            ? _value.showFilter
+            : showFilter // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isListView: null == isListView
+            ? _value.isListView
+            : isListView // ignore: cast_nullable_to_non_nullable
+                as bool,
+        selectTabIndex: null == selectTabIndex
+            ? _value.selectTabIndex
+            : selectTabIndex // ignore: cast_nullable_to_non_nullable
+                as int,
+        selectListTabIndex: null == selectListTabIndex
+            ? _value.selectListTabIndex
+            : selectListTabIndex // ignore: cast_nullable_to_non_nullable
+                as int,
+        selectSection: null == selectSection
+            ? _value.selectSection
+            : selectSection // ignore: cast_nullable_to_non_nullable
+                as int,
+        selectAddSection: null == selectAddSection
+            ? _value.selectAddSection
+            : selectAddSection // ignore: cast_nullable_to_non_nullable
+                as int,
+        selectTableId: null == selectTableId
+            ? _value.selectTableId
+            : selectTableId // ignore: cast_nullable_to_non_nullable
+                as int,
+        selectOrderIndex: freezed == selectOrderIndex
+            ? _value.selectOrderIndex
+            : selectOrderIndex // ignore: cast_nullable_to_non_nullable
+                as int?,
+        tableListData: null == tableListData
+            ? _value.tableListData
+            : tableListData // ignore: cast_nullable_to_non_nullable
+                as List<TableData?>,
+        tableBookingData: null == tableBookingData
+            ? _value.tableBookingData
+            : tableBookingData // ignore: cast_nullable_to_non_nullable
+                as List<TableBookingData?>,
+        sectionListTitle: null == sectionListTitle
+            ? _value.sectionListTitle
+            : sectionListTitle // ignore: cast_nullable_to_non_nullable
+                as List<String>,
+        shopSectionList: null == shopSectionList
+            ? _value.shopSectionList
+            : shopSectionList // ignore: cast_nullable_to_non_nullable
+                as List<ShopSection?>,
+        disableDates: null == disableDates
+            ? _value.disableDates
+            : disableDates // ignore: cast_nullable_to_non_nullable
+                as List<DisableDates?>,
+        tableStatistic: freezed == tableStatistic
+            ? _value.tableStatistic
+            : tableStatistic // ignore: cast_nullable_to_non_nullable
+                as TableStatisticData?,
+        workingDayData: freezed == workingDayData
+            ? _value.workingDayData
+            : workingDayData // ignore: cast_nullable_to_non_nullable
+                as WorkingDayData?,
+        bookingsData: freezed == bookingsData
+            ? _value.bookingsData
+            : bookingsData // ignore: cast_nullable_to_non_nullable
+                as BookingsData?,
+        selectDateTime: freezed == selectDateTime
+            ? _value.selectDateTime
+            : selectDateTime // ignore: cast_nullable_to_non_nullable
+                as DateTime?,
+        selectTimeOfDay: freezed == selectTimeOfDay
+            ? _value.selectTimeOfDay
+            : selectTimeOfDay // ignore: cast_nullable_to_non_nullable
+                as TimeOfDay?,
+        selectDuration: freezed == selectDuration
+            ? _value.selectDuration
+            : selectDuration // ignore: cast_nullable_to_non_nullable
+                as String?,
+        errorSelectDate: freezed == errorSelectDate
+            ? _value.errorSelectDate
+            : errorSelectDate // ignore: cast_nullable_to_non_nullable
+                as String?,
+        errorSelectTime: freezed == errorSelectTime
+            ? _value.errorSelectTime
+            : errorSelectTime // ignore: cast_nullable_to_non_nullable
+                as String?,
+        closeDays: null == closeDays
+            ? _value.closeDays
+            : closeDays // ignore: cast_nullable_to_non_nullable
+                as List<BookingShopClosedDate?>,
+        times: null == times
+            ? _value.times
+            : times // ignore: cast_nullable_to_non_nullable
+                as List<DateTime?>,
+        start: freezed == start
+            ? _value.start
+            : start // ignore: cast_nullable_to_non_nullable
+                as DateTime?,
+        end: freezed == end
+            ? _value.end
+            : end // ignore: cast_nullable_to_non_nullable
+                as DateTime?,
+      ) as $Val,
     );
   }
 }
@@ -410,143 +409,143 @@ class __$$TablesStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isInfoLoading: null == isInfoLoading
             ? _value.isInfoLoading
             : isInfoLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isBookingLoading: null == isBookingLoading
             ? _value.isBookingLoading
             : isBookingLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isSectionLoading: null == isSectionLoading
             ? _value.isSectionLoading
             : isSectionLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isStatisticLoading: null == isStatisticLoading
             ? _value.isStatisticLoading
             : isStatisticLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isButtonLoading: null == isButtonLoading
             ? _value.isButtonLoading
             : isButtonLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isCancelLoading: null == isCancelLoading
             ? _value.isCancelLoading
             : isCancelLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMoreSections: null == hasMoreSections
             ? _value.hasMoreSections
             : hasMoreSections // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMoreBookings: null == hasMoreBookings
             ? _value.hasMoreBookings
             : hasMoreBookings // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         showFilter: null == showFilter
             ? _value.showFilter
             : showFilter // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isListView: null == isListView
             ? _value.isListView
             : isListView // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         selectTabIndex: null == selectTabIndex
             ? _value.selectTabIndex
             : selectTabIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         selectListTabIndex: null == selectListTabIndex
             ? _value.selectListTabIndex
             : selectListTabIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         selectSection: null == selectSection
             ? _value.selectSection
             : selectSection // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         selectAddSection: null == selectAddSection
             ? _value.selectAddSection
             : selectAddSection // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         selectTableId: null == selectTableId
             ? _value.selectTableId
             : selectTableId // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         selectOrderIndex: freezed == selectOrderIndex
             ? _value.selectOrderIndex
             : selectOrderIndex // ignore: cast_nullable_to_non_nullable
-                  as int?,
+                as int?,
         tableListData: null == tableListData
             ? _value._tableListData
             : tableListData // ignore: cast_nullable_to_non_nullable
-                  as List<TableData?>,
+                as List<TableData?>,
         tableBookingData: null == tableBookingData
             ? _value._tableBookingData
             : tableBookingData // ignore: cast_nullable_to_non_nullable
-                  as List<TableBookingData?>,
+                as List<TableBookingData?>,
         sectionListTitle: null == sectionListTitle
             ? _value._sectionListTitle
             : sectionListTitle // ignore: cast_nullable_to_non_nullable
-                  as List<String>,
+                as List<String>,
         shopSectionList: null == shopSectionList
             ? _value._shopSectionList
             : shopSectionList // ignore: cast_nullable_to_non_nullable
-                  as List<ShopSection?>,
+                as List<ShopSection?>,
         disableDates: null == disableDates
             ? _value._disableDates
             : disableDates // ignore: cast_nullable_to_non_nullable
-                  as List<DisableDates?>,
+                as List<DisableDates?>,
         tableStatistic: freezed == tableStatistic
             ? _value.tableStatistic
             : tableStatistic // ignore: cast_nullable_to_non_nullable
-                  as TableStatisticData?,
+                as TableStatisticData?,
         workingDayData: freezed == workingDayData
             ? _value.workingDayData
             : workingDayData // ignore: cast_nullable_to_non_nullable
-                  as WorkingDayData?,
+                as WorkingDayData?,
         bookingsData: freezed == bookingsData
             ? _value.bookingsData
             : bookingsData // ignore: cast_nullable_to_non_nullable
-                  as BookingsData?,
+                as BookingsData?,
         selectDateTime: freezed == selectDateTime
             ? _value.selectDateTime
             : selectDateTime // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
+                as DateTime?,
         selectTimeOfDay: freezed == selectTimeOfDay
             ? _value.selectTimeOfDay
             : selectTimeOfDay // ignore: cast_nullable_to_non_nullable
-                  as TimeOfDay?,
+                as TimeOfDay?,
         selectDuration: freezed == selectDuration
             ? _value.selectDuration
             : selectDuration // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         errorSelectDate: freezed == errorSelectDate
             ? _value.errorSelectDate
             : errorSelectDate // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         errorSelectTime: freezed == errorSelectTime
             ? _value.errorSelectTime
             : errorSelectTime // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         closeDays: null == closeDays
             ? _value._closeDays
             : closeDays // ignore: cast_nullable_to_non_nullable
-                  as List<BookingShopClosedDate?>,
+                as List<BookingShopClosedDate?>,
         times: null == times
             ? _value._times
             : times // ignore: cast_nullable_to_non_nullable
-                  as List<DateTime?>,
+                as List<DateTime?>,
         start: freezed == start
             ? _value.start
             : start // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
+                as DateTime?,
         end: freezed == end
             ? _value.end
             : end // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
+                as DateTime?,
       ),
     );
   }
@@ -591,14 +590,14 @@ class _$TablesStateImpl extends _TablesState {
     final List<DateTime?> times = const [],
     this.start = null,
     this.end = null,
-  }) : _tableListData = tableListData,
-       _tableBookingData = tableBookingData,
-       _sectionListTitle = sectionListTitle,
-       _shopSectionList = shopSectionList,
-       _disableDates = disableDates,
-       _closeDays = closeDays,
-       _times = times,
-       super._();
+  })  : _tableListData = tableListData,
+        _tableBookingData = tableBookingData,
+        _sectionListTitle = sectionListTitle,
+        _shopSectionList = shopSectionList,
+        _disableDates = disableDates,
+        _closeDays = closeDays,
+        _times = times,
+        super._();
 
   @override
   @JsonKey()
@@ -842,43 +841,43 @@ class _$TablesStateImpl extends _TablesState {
 
   @override
   int get hashCode => Object.hashAll([
-    runtimeType,
-    isLoading,
-    isInfoLoading,
-    isBookingLoading,
-    isSectionLoading,
-    isStatisticLoading,
-    isButtonLoading,
-    isCancelLoading,
-    hasMore,
-    hasMoreSections,
-    hasMoreBookings,
-    showFilter,
-    isListView,
-    selectTabIndex,
-    selectListTabIndex,
-    selectSection,
-    selectAddSection,
-    selectTableId,
-    selectOrderIndex,
-    const DeepCollectionEquality().hash(_tableListData),
-    const DeepCollectionEquality().hash(_tableBookingData),
-    const DeepCollectionEquality().hash(_sectionListTitle),
-    const DeepCollectionEquality().hash(_shopSectionList),
-    const DeepCollectionEquality().hash(_disableDates),
-    tableStatistic,
-    workingDayData,
-    bookingsData,
-    selectDateTime,
-    selectTimeOfDay,
-    selectDuration,
-    errorSelectDate,
-    errorSelectTime,
-    const DeepCollectionEquality().hash(_closeDays),
-    const DeepCollectionEquality().hash(_times),
-    start,
-    end,
-  ]);
+        runtimeType,
+        isLoading,
+        isInfoLoading,
+        isBookingLoading,
+        isSectionLoading,
+        isStatisticLoading,
+        isButtonLoading,
+        isCancelLoading,
+        hasMore,
+        hasMoreSections,
+        hasMoreBookings,
+        showFilter,
+        isListView,
+        selectTabIndex,
+        selectListTabIndex,
+        selectSection,
+        selectAddSection,
+        selectTableId,
+        selectOrderIndex,
+        const DeepCollectionEquality().hash(_tableListData),
+        const DeepCollectionEquality().hash(_tableBookingData),
+        const DeepCollectionEquality().hash(_sectionListTitle),
+        const DeepCollectionEquality().hash(_shopSectionList),
+        const DeepCollectionEquality().hash(_disableDates),
+        tableStatistic,
+        workingDayData,
+        bookingsData,
+        selectDateTime,
+        selectTimeOfDay,
+        selectDuration,
+        errorSelectDate,
+        errorSelectTime,
+        const DeepCollectionEquality().hash(_closeDays),
+        const DeepCollectionEquality().hash(_times),
+        start,
+        end,
+      ]);
 
   /// Create a copy of TablesState
   /// with the given fields replaced by the non-null parameter values.

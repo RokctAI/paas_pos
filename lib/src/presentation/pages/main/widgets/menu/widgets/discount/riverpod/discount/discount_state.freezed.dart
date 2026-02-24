@@ -59,20 +59,19 @@ class _$DiscountStateCopyWithImpl<$Res, $Val extends DiscountState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMore: null == hasMore
-                ? _value.hasMore
-                : hasMore // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            discounts: null == discounts
-                ? _value.discounts
-                : discounts // ignore: cast_nullable_to_non_nullable
-                      as List<DiscountData>,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                as bool,
+        discounts: null == discounts
+            ? _value.discounts
+            : discounts // ignore: cast_nullable_to_non_nullable
+                as List<DiscountData>,
+      ) as $Val,
     );
   }
 }
@@ -112,15 +111,15 @@ class __$$DiscountStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         discounts: null == discounts
             ? _value._discounts
             : discounts // ignore: cast_nullable_to_non_nullable
-                  as List<DiscountData>,
+                as List<DiscountData>,
       ),
     );
   }
@@ -133,8 +132,8 @@ class _$DiscountStateImpl extends _DiscountState {
     this.isLoading = false,
     this.hasMore = true,
     final List<DiscountData> discounts = const [],
-  }) : _discounts = discounts,
-       super._();
+  })  : _discounts = discounts,
+        super._();
 
   @override
   @JsonKey()
@@ -172,11 +171,11 @@ class _$DiscountStateImpl extends _DiscountState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    hasMore,
-    const DeepCollectionEquality().hash(_discounts),
-  );
+        runtimeType,
+        isLoading,
+        hasMore,
+        const DeepCollectionEquality().hash(_discounts),
+      );
 
   /// Create a copy of DiscountState
   /// with the given fields replaced by the non-null parameter values.

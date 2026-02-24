@@ -6,8 +6,8 @@ import '../../../../../../theme/app_style.dart';
 
 final secondScreenToggleProvider =
     StateNotifierProvider<SecondScreenToggleNotifier, bool>(
-      (ref) => SecondScreenToggleNotifier(),
-    );
+  (ref) => SecondScreenToggleNotifier(),
+);
 
 class SecondScreenToggleNotifier extends StateNotifier<bool> {
   SecondScreenToggleNotifier() : super(AppConstants.secondScreen) {

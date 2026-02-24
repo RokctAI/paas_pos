@@ -77,16 +77,17 @@ class CategoryTabs extends StatelessWidget {
                   child: Icon(Remix.equalizer_2_fill, color: AppStyle.black),
                 )
               : index == 1
-              ? CategoryTabItem(
-                  isActive: selectedCategory?.id == null,
-                  onTap: () => onCategorySelected(-1),
-                  title: AppHelpers.getTranslation(TrKeys.all),
-                )
-              : CategoryTabItem(
-                  isActive: categories[index - 2].id == selectedCategory?.id,
-                  onTap: () => onCategorySelected(index - 2),
-                  title: categories[index - 2].translation?.title,
-                );
+                  ? CategoryTabItem(
+                      isActive: selectedCategory?.id == null,
+                      onTap: () => onCategorySelected(-1),
+                      title: AppHelpers.getTranslation(TrKeys.all),
+                    )
+                  : CategoryTabItem(
+                      isActive:
+                          categories[index - 2].id == selectedCategory?.id,
+                      onTap: () => onCategorySelected(index - 2),
+                      title: categories[index - 2].translation?.title,
+                    );
         },
       ),
     );

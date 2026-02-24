@@ -50,9 +50,8 @@ class ResourceData {
       data['maintenance'] = maintenance!.toJson();
     }
     if (energyPurchases != null) {
-      data['energyPurchases'] = energyPurchases!
-          .map((v) => v.toJson())
-          .toList();
+      data['energyPurchases'] =
+          energyPurchases!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -190,9 +189,8 @@ class ROSystemData {
       data['membranes'] = membranes!.map((v) => v.toJson()).toList();
     }
     if (megaCharVessels != null) {
-      data['megaCharVessels'] = megaCharVessels!
-          .map((v) => v.toJson())
-          .toList();
+      data['megaCharVessels'] =
+          megaCharVessels!.map((v) => v.toJson()).toList();
     }
     return data;
   }

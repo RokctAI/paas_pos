@@ -78,40 +78,39 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            showPassword: null == showPassword
-                ? _value.showPassword
-                : showPassword // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isCurrenciesLoading: null == isCurrenciesLoading
-                ? _value.isCurrenciesLoading
-                : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isLoginError: null == isLoginError
-                ? _value.isLoginError
-                : isLoginError // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isEmailNotValid: null == isEmailNotValid
-                ? _value.isEmailNotValid
-                : isEmailNotValid // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isPasswordNotValid: null == isPasswordNotValid
-                ? _value.isPasswordNotValid
-                : isPasswordNotValid // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            email: null == email
-                ? _value.email
-                : email // ignore: cast_nullable_to_non_nullable
-                      as String,
-            password: null == password
-                ? _value.password
-                : password // ignore: cast_nullable_to_non_nullable
-                      as String,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        showPassword: null == showPassword
+            ? _value.showPassword
+            : showPassword // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isCurrenciesLoading: null == isCurrenciesLoading
+            ? _value.isCurrenciesLoading
+            : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isLoginError: null == isLoginError
+            ? _value.isLoginError
+            : isLoginError // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isEmailNotValid: null == isEmailNotValid
+            ? _value.isEmailNotValid
+            : isEmailNotValid // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isPasswordNotValid: null == isPasswordNotValid
+            ? _value.isPasswordNotValid
+            : isPasswordNotValid // ignore: cast_nullable_to_non_nullable
+                as bool,
+        email: null == email
+            ? _value.email
+            : email // ignore: cast_nullable_to_non_nullable
+                as String,
+        password: null == password
+            ? _value.password
+            : password // ignore: cast_nullable_to_non_nullable
+                as String,
+      ) as $Val,
     );
   }
 }
@@ -165,35 +164,35 @@ class __$$LoginStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         showPassword: null == showPassword
             ? _value.showPassword
             : showPassword // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isCurrenciesLoading: null == isCurrenciesLoading
             ? _value.isCurrenciesLoading
             : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isLoginError: null == isLoginError
             ? _value.isLoginError
             : isLoginError // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isEmailNotValid: null == isEmailNotValid
             ? _value.isEmailNotValid
             : isEmailNotValid // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isPasswordNotValid: null == isPasswordNotValid
             ? _value.isPasswordNotValid
             : isPasswordNotValid // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         email: null == email
             ? _value.email
             : email // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         password: null == password
             ? _value.password
             : password // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
       ),
     );
   }
@@ -267,16 +266,16 @@ class _$LoginStateImpl extends _LoginState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    showPassword,
-    isCurrenciesLoading,
-    isLoginError,
-    isEmailNotValid,
-    isPasswordNotValid,
-    email,
-    password,
-  );
+        runtimeType,
+        isLoading,
+        showPassword,
+        isCurrenciesLoading,
+        isLoginError,
+        isEmailNotValid,
+        isPasswordNotValid,
+        email,
+        password,
+      );
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.

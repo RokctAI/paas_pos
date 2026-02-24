@@ -341,8 +341,7 @@ class KitchenNotifier extends StateNotifier<KitchenState> {
   Future<void> changeStatus({String? status}) async {
     if (state.selectOrder == null) return;
 
-    final newStatus =
-        status ??
+    final newStatus = status ??
         AppHelpers.getOrderStatusText(
           AppHelpers.getOrderStatus(
             state.selectOrder?.status,

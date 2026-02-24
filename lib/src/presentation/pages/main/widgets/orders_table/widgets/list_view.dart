@@ -79,10 +79,8 @@ class ListViewMode extends ConsumerWidget {
                   8.r.horizontalSpace,
                   ListTopBar(
                     title: AppHelpers.getTranslation(TrKeys.accepted),
-                    count: ref
-                        .watch(acceptedOrdersProvider)
-                        .totalCount
-                        .toString(),
+                    count:
+                        ref.watch(acceptedOrdersProvider).totalCount.toString(),
                     onRefresh: () {
                       ref
                           .read(acceptedOrdersProvider.notifier)
@@ -94,13 +92,10 @@ class ListViewMode extends ConsumerWidget {
                     onTap: () => notifier.changeTabIndex(1),
                   ),
                   8.r.horizontalSpace,
-
                   ListTopBar(
                     title: AppHelpers.getTranslation(TrKeys.cooking),
-                    count: ref
-                        .watch(cookingOrdersProvider)
-                        .totalCount
-                        .toString(),
+                    count:
+                        ref.watch(cookingOrdersProvider).totalCount.toString(),
                     onRefresh: () {
                       ref
                           .read(cookingOrdersProvider.notifier)
@@ -112,7 +107,6 @@ class ListViewMode extends ConsumerWidget {
                     onTap: () => notifier.changeTabIndex(2),
                   ),
                   8.r.horizontalSpace,
-
                   ListTopBar(
                     title: AppHelpers.getTranslation(TrKeys.ready),
                     count: ref.watch(readyOrdersProvider).totalCount.toString(),
@@ -127,13 +121,10 @@ class ListViewMode extends ConsumerWidget {
                     onTap: () => notifier.changeTabIndex(3),
                   ),
                   8.r.horizontalSpace,
-
                   ListTopBar(
                     title: AppHelpers.getTranslation(TrKeys.onAWay),
-                    count: ref
-                        .watch(onAWayOrdersProvider)
-                        .totalCount
-                        .toString(),
+                    count:
+                        ref.watch(onAWayOrdersProvider).totalCount.toString(),
                     onRefresh: () {
                       ref
                           .read(onAWayOrdersProvider.notifier)
@@ -145,7 +136,6 @@ class ListViewMode extends ConsumerWidget {
                     onTap: () => notifier.changeTabIndex(4),
                   ),
                   8.r.horizontalSpace,
-
                   ListTopBar(
                     title: AppHelpers.getTranslation(TrKeys.delivered),
                     count: ref
@@ -163,13 +153,10 @@ class ListViewMode extends ConsumerWidget {
                     onTap: () => notifier.changeTabIndex(5),
                   ),
                   8.r.horizontalSpace,
-
                   ListTopBar(
                     title: AppHelpers.getTranslation(TrKeys.canceled),
-                    count: ref
-                        .watch(canceledOrdersProvider)
-                        .totalCount
-                        .toString(),
+                    count:
+                        ref.watch(canceledOrdersProvider).totalCount.toString(),
                     onRefresh: () {
                       ref
                           .read(canceledOrdersProvider.notifier)
@@ -196,74 +183,91 @@ class ListViewMode extends ConsumerWidget {
                     isLoading: ref.watch(newOrdersProvider).isLoading,
                   )
                 : state.selectTabIndex == 1
-                ? ListMainItem(
-                    orderList: listAccepts,
-                    color: AppStyle.deepPurple,
-                    hasMore: ref.watch(acceptedOrdersProvider).hasMore,
-                    onViewMore: () {
-                      ref
-                          .read(acceptedOrdersProvider.notifier)
-                          .fetchAcceptedOrders();
-                    },
-                    isLoading: ref.watch(acceptedOrdersProvider).isLoading,
-                  )
-                : state.selectTabIndex == 2
-                ? ListMainItem(
-                    orderList: listCooking,
-                    color: AppStyle.rate,
-                    hasMore: ref.watch(cookingOrdersProvider).hasMore,
-                    onViewMore: () {
-                      ref
-                          .read(cookingOrdersProvider.notifier)
-                          .fetchCookingOrders();
-                    },
-                    isLoading: ref.watch(cookingOrdersProvider).isLoading,
-                  )
-                : state.selectTabIndex == 3
-                ? ListMainItem(
-                    orderList: listReady,
-                    color: AppStyle.revenueColor,
-                    hasMore: ref.watch(readyOrdersProvider).hasMore,
-                    onViewMore: () {
-                      ref.read(readyOrdersProvider.notifier).fetchReadyOrders();
-                    },
-                    isLoading: ref.watch(readyOrdersProvider).isLoading,
-                  )
-                : state.selectTabIndex == 4
-                ? ListMainItem(
-                    orderList: listOnAWay,
-                    color: AppStyle.black,
-                    hasMore: ref.watch(onAWayOrdersProvider).hasMore,
-                    onViewMore: () {
-                      ref
-                          .read(onAWayOrdersProvider.notifier)
-                          .fetchOnAWayOrders();
-                    },
-                    isLoading: ref.watch(onAWayOrdersProvider).isLoading,
-                  )
-                : state.selectTabIndex == 5
-                ? ListMainItem(
-                    orderList: listDelivered,
-                    color: AppStyle.primary,
-                    hasMore: ref.watch(deliveredOrdersProvider).hasMore,
-                    onViewMore: () {
-                      ref
-                          .read(deliveredOrdersProvider.notifier)
-                          .fetchDeliveredOrders();
-                    },
-                    isLoading: ref.read(deliveredOrdersProvider).isLoading,
-                  )
-                : ListMainItem(
-                    orderList: listCanceled,
-                    color: AppStyle.red,
-                    hasMore: ref.watch(canceledOrdersProvider).hasMore,
-                    onViewMore: () {
-                      ref
-                          .read(canceledOrdersProvider.notifier)
-                          .fetchCanceledOrders();
-                    },
-                    isLoading: ref.read(canceledOrdersProvider).isLoading,
-                  ),
+                    ? ListMainItem(
+                        orderList: listAccepts,
+                        color: AppStyle.deepPurple,
+                        hasMore: ref.watch(acceptedOrdersProvider).hasMore,
+                        onViewMore: () {
+                          ref
+                              .read(acceptedOrdersProvider.notifier)
+                              .fetchAcceptedOrders();
+                        },
+                        isLoading: ref.watch(acceptedOrdersProvider).isLoading,
+                      )
+                    : state.selectTabIndex == 2
+                        ? ListMainItem(
+                            orderList: listCooking,
+                            color: AppStyle.rate,
+                            hasMore: ref.watch(cookingOrdersProvider).hasMore,
+                            onViewMore: () {
+                              ref
+                                  .read(cookingOrdersProvider.notifier)
+                                  .fetchCookingOrders();
+                            },
+                            isLoading:
+                                ref.watch(cookingOrdersProvider).isLoading,
+                          )
+                        : state.selectTabIndex == 3
+                            ? ListMainItem(
+                                orderList: listReady,
+                                color: AppStyle.revenueColor,
+                                hasMore: ref.watch(readyOrdersProvider).hasMore,
+                                onViewMore: () {
+                                  ref
+                                      .read(readyOrdersProvider.notifier)
+                                      .fetchReadyOrders();
+                                },
+                                isLoading:
+                                    ref.watch(readyOrdersProvider).isLoading,
+                              )
+                            : state.selectTabIndex == 4
+                                ? ListMainItem(
+                                    orderList: listOnAWay,
+                                    color: AppStyle.black,
+                                    hasMore:
+                                        ref.watch(onAWayOrdersProvider).hasMore,
+                                    onViewMore: () {
+                                      ref
+                                          .read(onAWayOrdersProvider.notifier)
+                                          .fetchOnAWayOrders();
+                                    },
+                                    isLoading: ref
+                                        .watch(onAWayOrdersProvider)
+                                        .isLoading,
+                                  )
+                                : state.selectTabIndex == 5
+                                    ? ListMainItem(
+                                        orderList: listDelivered,
+                                        color: AppStyle.primary,
+                                        hasMore: ref
+                                            .watch(deliveredOrdersProvider)
+                                            .hasMore,
+                                        onViewMore: () {
+                                          ref
+                                              .read(deliveredOrdersProvider
+                                                  .notifier)
+                                              .fetchDeliveredOrders();
+                                        },
+                                        isLoading: ref
+                                            .read(deliveredOrdersProvider)
+                                            .isLoading,
+                                      )
+                                    : ListMainItem(
+                                        orderList: listCanceled,
+                                        color: AppStyle.red,
+                                        hasMore: ref
+                                            .watch(canceledOrdersProvider)
+                                            .hasMore,
+                                        onViewMore: () {
+                                          ref
+                                              .read(canceledOrdersProvider
+                                                  .notifier)
+                                              .fetchCanceledOrders();
+                                        },
+                                        isLoading: ref
+                                            .read(canceledOrdersProvider)
+                                            .isLoading,
+                                      ),
           ),
         ],
       ),

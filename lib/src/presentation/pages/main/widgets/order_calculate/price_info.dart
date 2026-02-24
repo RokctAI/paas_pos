@@ -165,8 +165,7 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
           ),
           Text(
             intl.NumberFormat.currency(
-              symbol:
-                  widget.bag.selectedCurrency?.symbol ??
+              symbol: widget.bag.selectedCurrency?.symbol ??
                   LocalStorage.getSelectedCurrency().symbol,
             ).format(amount),
             style: GoogleFonts.inter(
@@ -196,8 +195,7 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
         ),
         Text(
           intl.NumberFormat.currency(
-            symbol:
-                widget.bag.selectedCurrency?.symbol ??
+            symbol: widget.bag.selectedCurrency?.symbol ??
                 LocalStorage.getSelectedCurrency().symbol,
           ).format(amount),
           style: GoogleFonts.inter(
@@ -223,8 +221,7 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
           userId: widget.state.selectedUser?.id ?? 0,
           deliveryFee: (widget.state.paginateResponse?.deliveryFee ?? 0),
           deliveryType: widget.state.orderType,
-          location:
-              widget.state.selectedAddress?.location ??
+          location: widget.state.selectedAddress?.location ??
               LocationData(latitude: 0, longitude: 0),
           address: AddressModel(address: widget.state.selectedAddress?.address),
           deliveryDate: intl.DateFormat(
@@ -232,13 +229,12 @@ class _PriceInfoState extends ConsumerState<PriceInfo> {
           ).format(widget.state.orderDate ?? DateTime.now()),
           deliveryTime: widget.state.orderTime != null
               ? (widget.state.orderTime!.hour.toString().length == 2
-                    ? "${widget.state.orderTime!.hour}:${widget.state.orderTime!.minute.toString().padLeft(2, '0')}"
-                    : "0${widget.state.orderTime!.hour}:${widget.state.orderTime!.minute.toString().padLeft(2, '0')}")
+                  ? "${widget.state.orderTime!.hour}:${widget.state.orderTime!.minute.toString().padLeft(2, '0')}"
+                  : "0${widget.state.orderTime!.hour}:${widget.state.orderTime!.minute.toString().padLeft(2, '0')}")
               : (TimeOfDay.now().hour.toString().length == 2
-                    ? "${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"
-                    : "0${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"),
-          currencyId:
-              widget.state.currencies
+                  ? "${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"
+                  : "0${TimeOfDay.now().hour}:${TimeOfDay.now().minute.toString().padLeft(2, '0')}"),
+          currencyId: widget.state.currencies
                   .firstWhere((element) => element.isDefault ?? false)
                   .id ??
               0,

@@ -47,9 +47,8 @@ class _LoadingAnimationState extends State<LoadingAnimation>
 
   double getResponsiveFontSize(BuildContext context, {bool isMainText = true}) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double scaleFactor = isMainText
-        ? 0.2
-        : 0.05; // 15% for main text, 5% for secondary
+    double scaleFactor =
+        isMainText ? 0.2 : 0.05; // 15% for main text, 5% for secondary
     double fontSize = screenWidth * scaleFactor;
     return isMainText
         ? fontSize.clamp(40, 80) // Larger range for main text

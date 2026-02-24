@@ -13,8 +13,8 @@ class WeatherState {
     int? version,
     DateTime? lastUpdated,
     this.hasError = false,
-  }) : version = version ?? DateTime.now().millisecondsSinceEpoch,
-       lastUpdated = lastUpdated ?? DateTime.now() {
+  })  : version = version ?? DateTime.now().millisecondsSinceEpoch,
+        lastUpdated = lastUpdated ?? DateTime.now() {
     // Basic validation only
     if (!weatherData.containsKey('current') ||
         !weatherData.containsKey('forecast')) {
@@ -97,8 +97,7 @@ class WeatherState {
         'avgtemp_c': dayForecast['day']?['avgtemp_c'] ?? 0.0,
         'daily_chance_of_rain':
             dayForecast['day']?['daily_chance_of_rain'] ?? 0,
-        'condition':
-            dayForecast['day']?['condition'] ??
+        'condition': dayForecast['day']?['condition'] ??
             {'text': 'Unknown', 'code': 1000},
         'sunrise': dayForecast['astro']?['sunrise'] ?? 'Unknown',
         'sunset': dayForecast['astro']?['sunset'] ?? 'Unknown',

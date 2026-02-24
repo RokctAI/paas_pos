@@ -20,7 +20,7 @@ import '../state/edit_profile_state.dart';
 class EditProfileNotifier extends StateNotifier<EditProfileState> {
   final GalleryRepositoryFacade _galleryRepository;
   EditProfileNotifier(this._galleryRepository)
-    : super(const EditProfileState());
+      : super(const EditProfileState());
 
   Future<void> getPhoto() async {
     final ImagePicker picker = ImagePicker();

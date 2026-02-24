@@ -4,8 +4,8 @@ import '../../../../../../core/constants/constants.dart';
 
 final dateRangeProvider =
     StateNotifierProvider<DateRangeNotifier, DateRangeState>((ref) {
-      return DateRangeNotifier();
-    });
+  return DateRangeNotifier();
+});
 
 class DateRangeState {
   final DateTime? start;

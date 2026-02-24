@@ -149,10 +149,7 @@ class AddonTable extends StatelessWidget {
                           const Divider(),
                           Text(
                             (orderDetail
-                                    ?.addons?[j]
-                                    .stocks
-                                    ?.translation
-                                    ?.title ??
+                                    ?.addons?[j].stocks?.translation?.title ??
                                 ""),
                             style: GoogleFonts.inter(
                               fontSize: 16.sp,

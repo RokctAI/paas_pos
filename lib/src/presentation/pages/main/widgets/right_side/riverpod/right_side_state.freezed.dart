@@ -202,204 +202,203 @@ class _$RightSideStateCopyWithImpl<$Res, $Val extends RightSideState>
   }) {
     return _then(
       _value.copyWith(
-            isBagsLoading: null == isBagsLoading
-                ? _value.isBagsLoading
-                : isBagsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isUsersLoading: null == isUsersLoading
-                ? _value.isUsersLoading
-                : isUsersLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isSectionLoading: null == isSectionLoading
-                ? _value.isSectionLoading
-                : isSectionLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isTableLoading: null == isTableLoading
-                ? _value.isTableLoading
-                : isTableLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isUserDetailsLoading: null == isUserDetailsLoading
-                ? _value.isUserDetailsLoading
-                : isUserDetailsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isCurrenciesLoading: null == isCurrenciesLoading
-                ? _value.isCurrenciesLoading
-                : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isPaymentsLoading: null == isPaymentsLoading
-                ? _value.isPaymentsLoading
-                : isPaymentsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isProductCalculateLoading: null == isProductCalculateLoading
-                ? _value.isProductCalculateLoading
-                : isProductCalculateLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isButtonLoading: null == isButtonLoading
-                ? _value.isButtonLoading
-                : isButtonLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isActive: null == isActive
-                ? _value.isActive
-                : isActive // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isOrderLoading: null == isOrderLoading
-                ? _value.isOrderLoading
-                : isOrderLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isPromoCodeLoading: null == isPromoCodeLoading
-                ? _value.isPromoCodeLoading
-                : isPromoCodeLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isLogoImageLoading: null == isLogoImageLoading
-                ? _value.isLogoImageLoading
-                : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isBackImageLoading: null == isBackImageLoading
-                ? _value.isBackImageLoading
-                : isBackImageLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            bags: null == bags
-                ? _value.bags
-                : bags // ignore: cast_nullable_to_non_nullable
-                      as List<BagData>,
-            users: null == users
-                ? _value.users
-                : users // ignore: cast_nullable_to_non_nullable
-                      as List<UserData>,
-            tables: null == tables
-                ? _value.tables
-                : tables // ignore: cast_nullable_to_non_nullable
-                      as List<TableData>,
-            sections: null == sections
-                ? _value.sections
-                : sections // ignore: cast_nullable_to_non_nullable
-                      as List<ShopSection>,
-            dropdownUsers: null == dropdownUsers
-                ? _value.dropdownUsers
-                : dropdownUsers // ignore: cast_nullable_to_non_nullable
-                      as List<DropDownItemData>,
-            userAddresses: null == userAddresses
-                ? _value.userAddresses
-                : userAddresses // ignore: cast_nullable_to_non_nullable
-                      as List<AddressData>,
-            currencies: null == currencies
-                ? _value.currencies
-                : currencies // ignore: cast_nullable_to_non_nullable
-                      as List<CurrencyData>,
-            payments: null == payments
-                ? _value.payments
-                : payments // ignore: cast_nullable_to_non_nullable
-                      as List<PaymentData>,
-            selectedBagIndex: null == selectedBagIndex
-                ? _value.selectedBagIndex
-                : selectedBagIndex // ignore: cast_nullable_to_non_nullable
-                      as int,
-            subtotal: null == subtotal
-                ? _value.subtotal
-                : subtotal // ignore: cast_nullable_to_non_nullable
-                      as double,
-            productTax: null == productTax
-                ? _value.productTax
-                : productTax // ignore: cast_nullable_to_non_nullable
-                      as double,
-            shopTax: null == shopTax
-                ? _value.shopTax
-                : shopTax // ignore: cast_nullable_to_non_nullable
-                      as double,
-            usersQuery: null == usersQuery
-                ? _value.usersQuery
-                : usersQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            tableQuery: null == tableQuery
-                ? _value.tableQuery
-                : tableQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            sectionQuery: null == sectionQuery
-                ? _value.sectionQuery
-                : sectionQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            orderType: null == orderType
-                ? _value.orderType
-                : orderType // ignore: cast_nullable_to_non_nullable
-                      as String,
-            calculate: null == calculate
-                ? _value.calculate
-                : calculate // ignore: cast_nullable_to_non_nullable
-                      as String,
-            terminalTransactionId: freezed == terminalTransactionId
-                ? _value.terminalTransactionId
-                : terminalTransactionId // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            comment: null == comment
-                ? _value.comment
-                : comment // ignore: cast_nullable_to_non_nullable
-                      as String,
-            selectUserError: freezed == selectUserError
-                ? _value.selectUserError
-                : selectUserError // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            selectAddressError: freezed == selectAddressError
-                ? _value.selectAddressError
-                : selectAddressError // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            selectCurrencyError: freezed == selectCurrencyError
-                ? _value.selectCurrencyError
-                : selectCurrencyError // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            selectPaymentError: freezed == selectPaymentError
-                ? _value.selectPaymentError
-                : selectPaymentError // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            selectSectionError: freezed == selectSectionError
-                ? _value.selectSectionError
-                : selectSectionError // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            selectTableError: freezed == selectTableError
-                ? _value.selectTableError
-                : selectTableError // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            coupon: freezed == coupon
-                ? _value.coupon
-                : coupon // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            orderDate: freezed == orderDate
-                ? _value.orderDate
-                : orderDate // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
-            orderTime: freezed == orderTime
-                ? _value.orderTime
-                : orderTime // ignore: cast_nullable_to_non_nullable
-                      as TimeOfDay?,
-            selectedUser: freezed == selectedUser
-                ? _value.selectedUser
-                : selectedUser // ignore: cast_nullable_to_non_nullable
-                      as UserData?,
-            selectedSection: freezed == selectedSection
-                ? _value.selectedSection
-                : selectedSection // ignore: cast_nullable_to_non_nullable
-                      as ShopSection?,
-            selectedTable: freezed == selectedTable
-                ? _value.selectedTable
-                : selectedTable // ignore: cast_nullable_to_non_nullable
-                      as TableData?,
-            selectedAddress: freezed == selectedAddress
-                ? _value.selectedAddress
-                : selectedAddress // ignore: cast_nullable_to_non_nullable
-                      as AddressData?,
-            selectedCurrency: freezed == selectedCurrency
-                ? _value.selectedCurrency
-                : selectedCurrency // ignore: cast_nullable_to_non_nullable
-                      as CurrencyData?,
-            selectedPayment: freezed == selectedPayment
-                ? _value.selectedPayment
-                : selectedPayment // ignore: cast_nullable_to_non_nullable
-                      as PaymentData?,
-            paginateResponse: freezed == paginateResponse
-                ? _value.paginateResponse
-                : paginateResponse // ignore: cast_nullable_to_non_nullable
-                      as PriceDate?,
-          )
-          as $Val,
+        isBagsLoading: null == isBagsLoading
+            ? _value.isBagsLoading
+            : isBagsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isUsersLoading: null == isUsersLoading
+            ? _value.isUsersLoading
+            : isUsersLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isSectionLoading: null == isSectionLoading
+            ? _value.isSectionLoading
+            : isSectionLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isTableLoading: null == isTableLoading
+            ? _value.isTableLoading
+            : isTableLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isUserDetailsLoading: null == isUserDetailsLoading
+            ? _value.isUserDetailsLoading
+            : isUserDetailsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isCurrenciesLoading: null == isCurrenciesLoading
+            ? _value.isCurrenciesLoading
+            : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isPaymentsLoading: null == isPaymentsLoading
+            ? _value.isPaymentsLoading
+            : isPaymentsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isProductCalculateLoading: null == isProductCalculateLoading
+            ? _value.isProductCalculateLoading
+            : isProductCalculateLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isButtonLoading: null == isButtonLoading
+            ? _value.isButtonLoading
+            : isButtonLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isActive: null == isActive
+            ? _value.isActive
+            : isActive // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isOrderLoading: null == isOrderLoading
+            ? _value.isOrderLoading
+            : isOrderLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isPromoCodeLoading: null == isPromoCodeLoading
+            ? _value.isPromoCodeLoading
+            : isPromoCodeLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isLogoImageLoading: null == isLogoImageLoading
+            ? _value.isLogoImageLoading
+            : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isBackImageLoading: null == isBackImageLoading
+            ? _value.isBackImageLoading
+            : isBackImageLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        bags: null == bags
+            ? _value.bags
+            : bags // ignore: cast_nullable_to_non_nullable
+                as List<BagData>,
+        users: null == users
+            ? _value.users
+            : users // ignore: cast_nullable_to_non_nullable
+                as List<UserData>,
+        tables: null == tables
+            ? _value.tables
+            : tables // ignore: cast_nullable_to_non_nullable
+                as List<TableData>,
+        sections: null == sections
+            ? _value.sections
+            : sections // ignore: cast_nullable_to_non_nullable
+                as List<ShopSection>,
+        dropdownUsers: null == dropdownUsers
+            ? _value.dropdownUsers
+            : dropdownUsers // ignore: cast_nullable_to_non_nullable
+                as List<DropDownItemData>,
+        userAddresses: null == userAddresses
+            ? _value.userAddresses
+            : userAddresses // ignore: cast_nullable_to_non_nullable
+                as List<AddressData>,
+        currencies: null == currencies
+            ? _value.currencies
+            : currencies // ignore: cast_nullable_to_non_nullable
+                as List<CurrencyData>,
+        payments: null == payments
+            ? _value.payments
+            : payments // ignore: cast_nullable_to_non_nullable
+                as List<PaymentData>,
+        selectedBagIndex: null == selectedBagIndex
+            ? _value.selectedBagIndex
+            : selectedBagIndex // ignore: cast_nullable_to_non_nullable
+                as int,
+        subtotal: null == subtotal
+            ? _value.subtotal
+            : subtotal // ignore: cast_nullable_to_non_nullable
+                as double,
+        productTax: null == productTax
+            ? _value.productTax
+            : productTax // ignore: cast_nullable_to_non_nullable
+                as double,
+        shopTax: null == shopTax
+            ? _value.shopTax
+            : shopTax // ignore: cast_nullable_to_non_nullable
+                as double,
+        usersQuery: null == usersQuery
+            ? _value.usersQuery
+            : usersQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        tableQuery: null == tableQuery
+            ? _value.tableQuery
+            : tableQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        sectionQuery: null == sectionQuery
+            ? _value.sectionQuery
+            : sectionQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        orderType: null == orderType
+            ? _value.orderType
+            : orderType // ignore: cast_nullable_to_non_nullable
+                as String,
+        calculate: null == calculate
+            ? _value.calculate
+            : calculate // ignore: cast_nullable_to_non_nullable
+                as String,
+        terminalTransactionId: freezed == terminalTransactionId
+            ? _value.terminalTransactionId
+            : terminalTransactionId // ignore: cast_nullable_to_non_nullable
+                as String?,
+        comment: null == comment
+            ? _value.comment
+            : comment // ignore: cast_nullable_to_non_nullable
+                as String,
+        selectUserError: freezed == selectUserError
+            ? _value.selectUserError
+            : selectUserError // ignore: cast_nullable_to_non_nullable
+                as String?,
+        selectAddressError: freezed == selectAddressError
+            ? _value.selectAddressError
+            : selectAddressError // ignore: cast_nullable_to_non_nullable
+                as String?,
+        selectCurrencyError: freezed == selectCurrencyError
+            ? _value.selectCurrencyError
+            : selectCurrencyError // ignore: cast_nullable_to_non_nullable
+                as String?,
+        selectPaymentError: freezed == selectPaymentError
+            ? _value.selectPaymentError
+            : selectPaymentError // ignore: cast_nullable_to_non_nullable
+                as String?,
+        selectSectionError: freezed == selectSectionError
+            ? _value.selectSectionError
+            : selectSectionError // ignore: cast_nullable_to_non_nullable
+                as String?,
+        selectTableError: freezed == selectTableError
+            ? _value.selectTableError
+            : selectTableError // ignore: cast_nullable_to_non_nullable
+                as String?,
+        coupon: freezed == coupon
+            ? _value.coupon
+            : coupon // ignore: cast_nullable_to_non_nullable
+                as String?,
+        orderDate: freezed == orderDate
+            ? _value.orderDate
+            : orderDate // ignore: cast_nullable_to_non_nullable
+                as DateTime?,
+        orderTime: freezed == orderTime
+            ? _value.orderTime
+            : orderTime // ignore: cast_nullable_to_non_nullable
+                as TimeOfDay?,
+        selectedUser: freezed == selectedUser
+            ? _value.selectedUser
+            : selectedUser // ignore: cast_nullable_to_non_nullable
+                as UserData?,
+        selectedSection: freezed == selectedSection
+            ? _value.selectedSection
+            : selectedSection // ignore: cast_nullable_to_non_nullable
+                as ShopSection?,
+        selectedTable: freezed == selectedTable
+            ? _value.selectedTable
+            : selectedTable // ignore: cast_nullable_to_non_nullable
+                as TableData?,
+        selectedAddress: freezed == selectedAddress
+            ? _value.selectedAddress
+            : selectedAddress // ignore: cast_nullable_to_non_nullable
+                as AddressData?,
+        selectedCurrency: freezed == selectedCurrency
+            ? _value.selectedCurrency
+            : selectedCurrency // ignore: cast_nullable_to_non_nullable
+                as CurrencyData?,
+        selectedPayment: freezed == selectedPayment
+            ? _value.selectedPayment
+            : selectedPayment // ignore: cast_nullable_to_non_nullable
+                as PaymentData?,
+        paginateResponse: freezed == paginateResponse
+            ? _value.paginateResponse
+            : paginateResponse // ignore: cast_nullable_to_non_nullable
+                as PriceDate?,
+      ) as $Val,
     );
   }
 }
@@ -535,199 +534,199 @@ class __$$RightSideStateImplCopyWithImpl<$Res>
         isBagsLoading: null == isBagsLoading
             ? _value.isBagsLoading
             : isBagsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isUsersLoading: null == isUsersLoading
             ? _value.isUsersLoading
             : isUsersLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isSectionLoading: null == isSectionLoading
             ? _value.isSectionLoading
             : isSectionLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isTableLoading: null == isTableLoading
             ? _value.isTableLoading
             : isTableLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isUserDetailsLoading: null == isUserDetailsLoading
             ? _value.isUserDetailsLoading
             : isUserDetailsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isCurrenciesLoading: null == isCurrenciesLoading
             ? _value.isCurrenciesLoading
             : isCurrenciesLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isPaymentsLoading: null == isPaymentsLoading
             ? _value.isPaymentsLoading
             : isPaymentsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isProductCalculateLoading: null == isProductCalculateLoading
             ? _value.isProductCalculateLoading
             : isProductCalculateLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isButtonLoading: null == isButtonLoading
             ? _value.isButtonLoading
             : isButtonLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isActive: null == isActive
             ? _value.isActive
             : isActive // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isOrderLoading: null == isOrderLoading
             ? _value.isOrderLoading
             : isOrderLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isPromoCodeLoading: null == isPromoCodeLoading
             ? _value.isPromoCodeLoading
             : isPromoCodeLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isLogoImageLoading: null == isLogoImageLoading
             ? _value.isLogoImageLoading
             : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isBackImageLoading: null == isBackImageLoading
             ? _value.isBackImageLoading
             : isBackImageLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         bags: null == bags
             ? _value._bags
             : bags // ignore: cast_nullable_to_non_nullable
-                  as List<BagData>,
+                as List<BagData>,
         users: null == users
             ? _value._users
             : users // ignore: cast_nullable_to_non_nullable
-                  as List<UserData>,
+                as List<UserData>,
         tables: null == tables
             ? _value._tables
             : tables // ignore: cast_nullable_to_non_nullable
-                  as List<TableData>,
+                as List<TableData>,
         sections: null == sections
             ? _value._sections
             : sections // ignore: cast_nullable_to_non_nullable
-                  as List<ShopSection>,
+                as List<ShopSection>,
         dropdownUsers: null == dropdownUsers
             ? _value._dropdownUsers
             : dropdownUsers // ignore: cast_nullable_to_non_nullable
-                  as List<DropDownItemData>,
+                as List<DropDownItemData>,
         userAddresses: null == userAddresses
             ? _value._userAddresses
             : userAddresses // ignore: cast_nullable_to_non_nullable
-                  as List<AddressData>,
+                as List<AddressData>,
         currencies: null == currencies
             ? _value._currencies
             : currencies // ignore: cast_nullable_to_non_nullable
-                  as List<CurrencyData>,
+                as List<CurrencyData>,
         payments: null == payments
             ? _value._payments
             : payments // ignore: cast_nullable_to_non_nullable
-                  as List<PaymentData>,
+                as List<PaymentData>,
         selectedBagIndex: null == selectedBagIndex
             ? _value.selectedBagIndex
             : selectedBagIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         subtotal: null == subtotal
             ? _value.subtotal
             : subtotal // ignore: cast_nullable_to_non_nullable
-                  as double,
+                as double,
         productTax: null == productTax
             ? _value.productTax
             : productTax // ignore: cast_nullable_to_non_nullable
-                  as double,
+                as double,
         shopTax: null == shopTax
             ? _value.shopTax
             : shopTax // ignore: cast_nullable_to_non_nullable
-                  as double,
+                as double,
         usersQuery: null == usersQuery
             ? _value.usersQuery
             : usersQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         tableQuery: null == tableQuery
             ? _value.tableQuery
             : tableQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         sectionQuery: null == sectionQuery
             ? _value.sectionQuery
             : sectionQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         orderType: null == orderType
             ? _value.orderType
             : orderType // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         calculate: null == calculate
             ? _value.calculate
             : calculate // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         terminalTransactionId: freezed == terminalTransactionId
             ? _value.terminalTransactionId
             : terminalTransactionId // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         comment: null == comment
             ? _value.comment
             : comment // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         selectUserError: freezed == selectUserError
             ? _value.selectUserError
             : selectUserError // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         selectAddressError: freezed == selectAddressError
             ? _value.selectAddressError
             : selectAddressError // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         selectCurrencyError: freezed == selectCurrencyError
             ? _value.selectCurrencyError
             : selectCurrencyError // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         selectPaymentError: freezed == selectPaymentError
             ? _value.selectPaymentError
             : selectPaymentError // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         selectSectionError: freezed == selectSectionError
             ? _value.selectSectionError
             : selectSectionError // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         selectTableError: freezed == selectTableError
             ? _value.selectTableError
             : selectTableError // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         coupon: freezed == coupon
             ? _value.coupon
             : coupon // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
         orderDate: freezed == orderDate
             ? _value.orderDate
             : orderDate // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
+                as DateTime?,
         orderTime: freezed == orderTime
             ? _value.orderTime
             : orderTime // ignore: cast_nullable_to_non_nullable
-                  as TimeOfDay?,
+                as TimeOfDay?,
         selectedUser: freezed == selectedUser
             ? _value.selectedUser
             : selectedUser // ignore: cast_nullable_to_non_nullable
-                  as UserData?,
+                as UserData?,
         selectedSection: freezed == selectedSection
             ? _value.selectedSection
             : selectedSection // ignore: cast_nullable_to_non_nullable
-                  as ShopSection?,
+                as ShopSection?,
         selectedTable: freezed == selectedTable
             ? _value.selectedTable
             : selectedTable // ignore: cast_nullable_to_non_nullable
-                  as TableData?,
+                as TableData?,
         selectedAddress: freezed == selectedAddress
             ? _value.selectedAddress
             : selectedAddress // ignore: cast_nullable_to_non_nullable
-                  as AddressData?,
+                as AddressData?,
         selectedCurrency: freezed == selectedCurrency
             ? _value.selectedCurrency
             : selectedCurrency // ignore: cast_nullable_to_non_nullable
-                  as CurrencyData?,
+                as CurrencyData?,
         selectedPayment: freezed == selectedPayment
             ? _value.selectedPayment
             : selectedPayment // ignore: cast_nullable_to_non_nullable
-                  as PaymentData?,
+                as PaymentData?,
         paginateResponse: freezed == paginateResponse
             ? _value.paginateResponse
             : paginateResponse // ignore: cast_nullable_to_non_nullable
-                  as PriceDate?,
+                as PriceDate?,
       ),
     );
   }
@@ -786,15 +785,15 @@ class _$RightSideStateImpl extends _RightSideState {
     this.selectedCurrency,
     this.selectedPayment,
     this.paginateResponse,
-  }) : _bags = bags,
-       _users = users,
-       _tables = tables,
-       _sections = sections,
-       _dropdownUsers = dropdownUsers,
-       _userAddresses = userAddresses,
-       _currencies = currencies,
-       _payments = payments,
-       super._();
+  })  : _bags = bags,
+        _users = users,
+        _tables = tables,
+        _sections = sections,
+        _dropdownUsers = dropdownUsers,
+        _userAddresses = userAddresses,
+        _currencies = currencies,
+        _payments = payments,
+        super._();
 
   @override
   @JsonKey()
@@ -1098,57 +1097,57 @@ class _$RightSideStateImpl extends _RightSideState {
 
   @override
   int get hashCode => Object.hashAll([
-    runtimeType,
-    isBagsLoading,
-    isUsersLoading,
-    isSectionLoading,
-    isTableLoading,
-    isUserDetailsLoading,
-    isCurrenciesLoading,
-    isPaymentsLoading,
-    isProductCalculateLoading,
-    isButtonLoading,
-    isActive,
-    isOrderLoading,
-    isPromoCodeLoading,
-    isLogoImageLoading,
-    isBackImageLoading,
-    const DeepCollectionEquality().hash(_bags),
-    const DeepCollectionEquality().hash(_users),
-    const DeepCollectionEquality().hash(_tables),
-    const DeepCollectionEquality().hash(_sections),
-    const DeepCollectionEquality().hash(_dropdownUsers),
-    const DeepCollectionEquality().hash(_userAddresses),
-    const DeepCollectionEquality().hash(_currencies),
-    const DeepCollectionEquality().hash(_payments),
-    selectedBagIndex,
-    subtotal,
-    productTax,
-    shopTax,
-    usersQuery,
-    tableQuery,
-    sectionQuery,
-    orderType,
-    calculate,
-    terminalTransactionId,
-    comment,
-    selectUserError,
-    selectAddressError,
-    selectCurrencyError,
-    selectPaymentError,
-    selectSectionError,
-    selectTableError,
-    coupon,
-    orderDate,
-    orderTime,
-    selectedUser,
-    selectedSection,
-    selectedTable,
-    selectedAddress,
-    selectedCurrency,
-    selectedPayment,
-    paginateResponse,
-  ]);
+        runtimeType,
+        isBagsLoading,
+        isUsersLoading,
+        isSectionLoading,
+        isTableLoading,
+        isUserDetailsLoading,
+        isCurrenciesLoading,
+        isPaymentsLoading,
+        isProductCalculateLoading,
+        isButtonLoading,
+        isActive,
+        isOrderLoading,
+        isPromoCodeLoading,
+        isLogoImageLoading,
+        isBackImageLoading,
+        const DeepCollectionEquality().hash(_bags),
+        const DeepCollectionEquality().hash(_users),
+        const DeepCollectionEquality().hash(_tables),
+        const DeepCollectionEquality().hash(_sections),
+        const DeepCollectionEquality().hash(_dropdownUsers),
+        const DeepCollectionEquality().hash(_userAddresses),
+        const DeepCollectionEquality().hash(_currencies),
+        const DeepCollectionEquality().hash(_payments),
+        selectedBagIndex,
+        subtotal,
+        productTax,
+        shopTax,
+        usersQuery,
+        tableQuery,
+        sectionQuery,
+        orderType,
+        calculate,
+        terminalTransactionId,
+        comment,
+        selectUserError,
+        selectAddressError,
+        selectCurrencyError,
+        selectPaymentError,
+        selectSectionError,
+        selectTableError,
+        coupon,
+        orderDate,
+        orderTime,
+        selectedUser,
+        selectedSection,
+        selectedTable,
+        selectedAddress,
+        selectedCurrency,
+        selectedPayment,
+        paginateResponse,
+      ]);
 
   /// Create a copy of RightSideState
   /// with the given fields replaced by the non-null parameter values.

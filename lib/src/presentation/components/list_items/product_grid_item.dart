@@ -265,13 +265,11 @@ class _ProductGridItemState extends ConsumerState<ProductGridItem> {
     final rightSideNotifier = ref.read(rightSideProvider.notifier);
 
     final int stockQuantity = widget.product.stocks?.first.quantity ?? 0;
-    final bool isOutOfStock =
-        widget.product.stocks == null ||
+    final bool isOutOfStock = widget.product.stocks == null ||
         widget.product.stocks!.isEmpty ||
         stockQuantity == 0;
     final bool isLowStock = !isOutOfStock && stockQuantity < 10;
-    final bool hasDiscount =
-        !isOutOfStock &&
+    final bool hasDiscount = !isOutOfStock &&
         (widget.product.stocks?[0].discount != null &&
             (widget.product.stocks?[0].discount ?? 0) > 0);
 
@@ -360,10 +358,9 @@ class _ProductGridItemState extends ConsumerState<ProductGridItem> {
                                   if (sizeInfo.unit?.translation?.title != null)
                                     LayoutBuilder(
                                       builder: (context, constraints) {
-                                        final RenderBox? renderBox =
-                                            _sizeKey.currentContext
-                                                    ?.findRenderObject()
-                                                as RenderBox?;
+                                        final RenderBox? renderBox = _sizeKey
+                                            .currentContext
+                                            ?.findRenderObject() as RenderBox?;
                                         final double width =
                                             renderBox?.size.width ?? 0;
 
@@ -372,9 +369,7 @@ class _ProductGridItemState extends ConsumerState<ProductGridItem> {
                                           child: Center(
                                             child: _buildUnitText(
                                               sizeInfo
-                                                  .unit!
-                                                  .translation!
-                                                  .title!,
+                                                  .unit!.translation!.title!,
                                             ),
                                           ),
                                         );

@@ -13,9 +13,9 @@ class Location {
   String? _longitude;
 
   Location copyWith({String? latitude, String? longitude}) => Location(
-    latitude: latitude ?? _latitude,
-    longitude: longitude ?? _longitude,
-  );
+        latitude: latitude ?? _latitude,
+        longitude: longitude ?? _longitude,
+      );
 
   String? get latitude => _latitude;
 

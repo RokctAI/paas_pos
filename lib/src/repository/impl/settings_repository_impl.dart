@@ -81,8 +81,8 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
       'type': type == 0
           ? "deliveryman"
           : type == 1
-          ? "today"
-          : "history",
+              ? "today"
+              : "history",
       "perPage": 10,
       "page": page,
     };
@@ -201,7 +201,8 @@ class SettingsSettingsRepositoryImpl extends SettingsRepository {
         '/api/v1/method/paas.api.get_languages',
       );
       if (LocalStorage.getLanguage() == null ||
-          !(LanguagesResponse.fromJson(response.data).data
+          !(LanguagesResponse.fromJson(response.data)
+                  .data
                   ?.map((e) => e.id)
                   .contains(LocalStorage.getLanguage()?.id) ??
               true)) {

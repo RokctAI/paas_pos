@@ -110,13 +110,13 @@ class ResponsiveTable extends StatelessWidget {
                 left: left != 0
                     ? chairHeight + chairSpace * 2.5
                     : top == 1
-                    ? chairSpace * 2.5
-                    : 0,
+                        ? chairSpace * 2.5
+                        : 0,
                 right: right != 0
                     ? chairHeight + chairSpace * 2.5
                     : top == 1
-                    ? chairSpace * 2.5
-                    : 0,
+                        ? chairSpace * 2.5
+                        : 0,
               ),
               child: Row(
                 children: List.generate(
@@ -177,15 +177,14 @@ class ResponsiveTable extends StatelessWidget {
                             color: type == TrKeys.occupied
                                 ? AppStyle.red
                                 : type == TrKeys.booked
-                                ? AppStyle.starColor
-                                : AppStyle.addButtonColor,
+                                    ? AppStyle.starColor
+                                    : AppStyle.addButtonColor,
                           ),
                           child: Text(
                             title,
                             maxLines: 2,
                             style: GoogleFonts.inter(
-                              color:
-                                  type == TrKeys.occupied ||
+                              color: type == TrKeys.occupied ||
                                       type == TrKeys.booked
                                   ? AppStyle.white
                                   : AppStyle.reviewText,
@@ -202,7 +201,7 @@ class ResponsiveTable extends StatelessWidget {
                 SizedBox(
                   height: right != 0
                       ? (chairWidth.r * right +
-                            (heightCount - 1) * chairSpace.r)
+                          (heightCount - 1) * chairSpace.r)
                       : 0,
                   width: right != 0 ? chairHeight.r : 0,
                   child: ListView.builder(
@@ -229,13 +228,13 @@ class ResponsiveTable extends StatelessWidget {
                 left: left != 0
                     ? chairHeight + chairSpace * 2.5
                     : bottom == 1
-                    ? chairSpace * 2.5
-                    : 0,
+                        ? chairSpace * 2.5
+                        : 0,
                 right: right != 0
                     ? chairHeight + chairSpace * 2.5
                     : bottom == 1
-                    ? chairSpace * 2.5
-                    : 0,
+                        ? chairSpace * 2.5
+                        : 0,
               ),
               child: Row(
                 children: List.generate(

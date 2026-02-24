@@ -11,7 +11,7 @@ class AddExpense extends StatefulWidget {
   final int shopId;
 
   AddExpense({super.key, int? providedShopId})
-    : shopId = providedShopId ?? _getDefaultShopId();
+      : shopId = providedShopId ?? _getDefaultShopId();
 
   static int _getDefaultShopId() {
     final userData = LocalStorage.getUser();
@@ -176,8 +176,7 @@ class _AddExpenseState extends State<AddExpense> {
           labelStyle: GoogleFonts.inter(color: AppStyle.black),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        validator:
-            validator ??
+        validator: validator ??
             (required
                 ? (value) {
                     if (value == null || value.isEmpty) {

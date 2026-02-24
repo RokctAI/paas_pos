@@ -61,9 +61,8 @@ class Pillar {
       'icon': icon,
       'color': color,
       'display_order': displayOrder,
-      'strategic_objectives': strategicObjectives
-          .map((objective) => objective.toJson())
-          .toList(),
+      'strategic_objectives':
+          strategicObjectives.map((objective) => objective.toJson()).toList(),
     };
   }
 }

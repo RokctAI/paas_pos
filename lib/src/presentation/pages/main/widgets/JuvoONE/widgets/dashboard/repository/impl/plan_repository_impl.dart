@@ -90,9 +90,8 @@ class PlanRepositoryImpl implements PlanRepository {
             .split('T')[0];
       }
       if (data['end_date'] is DateTime) {
-        data['end_date'] = (data['end_date'] as DateTime)
-            ?.toIso8601String()
-            .split('T')[0];
+        data['end_date'] =
+            (data['end_date'] as DateTime)?.toIso8601String().split('T')[0];
       }
 
       final response = await dio.post('$_baseUrl/visions', data: data);

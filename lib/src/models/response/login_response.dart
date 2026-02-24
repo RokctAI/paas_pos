@@ -32,12 +32,13 @@ class LoginResponse {
     bool? status,
     String? message,
     User? data,
-  }) => LoginResponse(
-    timestamp: timestamp ?? _timestamp,
-    status: status ?? _status,
-    message: message ?? _message,
-    data: data ?? _data,
-  );
+  }) =>
+      LoginResponse(
+        timestamp: timestamp ?? _timestamp,
+        status: status ?? _status,
+        message: message ?? _message,
+        data: data ?? _data,
+      );
 
   String? get timestamp => _timestamp;
 

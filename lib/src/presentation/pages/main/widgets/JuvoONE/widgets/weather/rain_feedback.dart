@@ -34,22 +34,22 @@ class RainFeedback {
   }
 
   Map<String, dynamic> toJson() => {
-    'date': date.toIso8601String(),
-    'predictedPOP': predictedPOP,
-    'precipitationMM': precipitationMM,
-    'dailyWillItRain': dailyWillItRain,
-    'userConfirmedRain': userConfirmedRain,
-    'wasEdited': wasEdited,
-  };
+        'date': date.toIso8601String(),
+        'predictedPOP': predictedPOP,
+        'precipitationMM': precipitationMM,
+        'dailyWillItRain': dailyWillItRain,
+        'userConfirmedRain': userConfirmedRain,
+        'wasEdited': wasEdited,
+      };
 
   factory RainFeedback.fromJson(Map<String, dynamic> json) => RainFeedback(
-    date: DateTime.parse(json['date']),
-    predictedPOP: json['predictedPOP'] as int,
-    precipitationMM: (json['precipitationMM'] as num).toDouble(),
-    dailyWillItRain: json['dailyWillItRain'] as int,
-    userConfirmedRain: json['userConfirmedRain'] as bool,
-    wasEdited: json['wasEdited'] ?? false,
-  );
+        date: DateTime.parse(json['date']),
+        predictedPOP: json['predictedPOP'] as int,
+        precipitationMM: (json['precipitationMM'] as num).toDouble(),
+        dailyWillItRain: json['dailyWillItRain'] as int,
+        userConfirmedRain: json['userConfirmedRain'] as bool,
+        wasEdited: json['wasEdited'] ?? false,
+      );
 
   String get dateString => "${date.year}-${date.month}-${date.day}";
 }
@@ -169,9 +169,8 @@ class RainFeedbackSystem {
     final feedbackList = await getFeedbackHistory();
     if (feedbackList.isEmpty) return 0.0;
 
-    final correctPredictions = feedbackList
-        .where((feedback) => feedback.wasCorrect)
-        .length;
+    final correctPredictions =
+        feedbackList.where((feedback) => feedback.wasCorrect).length;
 
     return (correctPredictions / feedbackList.length) * 100;
   }

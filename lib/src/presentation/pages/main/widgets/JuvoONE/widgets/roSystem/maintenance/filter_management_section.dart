@@ -95,7 +95,7 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
     setState(() {
       final filterIndex =
           _filtersByLocation[location]?.indexWhere((f) => f.id == filterId) ??
-          -1;
+              -1;
       if (filterIndex != -1) {
         final filter = _filtersByLocation[location]![filterIndex];
         _filtersByLocation[location]![filterIndex] = Filter(
@@ -119,7 +119,7 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
     setState(() {
       final filterIndex =
           _filtersByLocation[location]?.indexWhere((f) => f.id == filterId) ??
-          -1;
+              -1;
       if (filterIndex != -1) {
         final filter = _filtersByLocation[location]![filterIndex];
         _filtersByLocation[location]![filterIndex] = filter.copyWith(
@@ -225,10 +225,8 @@ class _FilterManagementSectionState extends State<FilterManagementSection> {
                             return DropdownMenuItem(
                               value: type,
                               child: Text(
-                                AppConstants.filterTypes[type
-                                        .toString()
-                                        .split('.')
-                                        .last] ??
+                                AppConstants.filterTypes[
+                                        type.toString().split('.').last] ??
                                     '',
                                 style: GoogleFonts.inter(),
                               ),

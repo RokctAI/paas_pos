@@ -47,8 +47,7 @@ class _PieChartState extends State<PieChartPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
-                  child:
-                      widget.statistic.group?.active?.percent == 0 &&
+                  child: widget.statistic.group?.active?.percent == 0 &&
                           widget.statistic.group?.completed?.percent == 0 &&
                           widget.statistic.group?.ended?.percent == 0
                       ? Center(
@@ -66,19 +65,17 @@ class _PieChartState extends State<PieChartPage> {
                             pieTouchData: PieTouchData(
                               touchCallback:
                                   (FlTouchEvent event, pieTouchResponse) {
-                                    setState(() {
-                                      if (!event.isInterestedForInteractions ||
-                                          pieTouchResponse == null ||
-                                          pieTouchResponse.touchedSection ==
-                                              null) {
-                                        touchedIndex = -1;
-                                        return;
-                                      }
-                                      touchedIndex = pieTouchResponse
-                                          .touchedSection!
-                                          .touchedSectionIndex;
-                                    });
-                                  },
+                                setState(() {
+                                  if (!event.isInterestedForInteractions ||
+                                      pieTouchResponse == null ||
+                                      pieTouchResponse.touchedSection == null) {
+                                    touchedIndex = -1;
+                                    return;
+                                  }
+                                  touchedIndex = pieTouchResponse
+                                      .touchedSection!.touchedSectionIndex;
+                                });
+                              },
                             ),
                             borderData: FlBorderData(show: false),
                             sectionsSpace: 2,

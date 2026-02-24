@@ -54,16 +54,15 @@ class _$StoriesStateCopyWithImpl<$Res, $Val extends StoriesState>
   $Res call({Object? isLoading = null, Object? stories = null}) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            stories: null == stories
-                ? _value.stories
-                : stories // ignore: cast_nullable_to_non_nullable
-                      as List<StoriesData>,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        stories: null == stories
+            ? _value.stories
+            : stories // ignore: cast_nullable_to_non_nullable
+                as List<StoriesData>,
+      ) as $Val,
     );
   }
 }
@@ -99,11 +98,11 @@ class __$$StoriesStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         stories: null == stories
             ? _value._stories
             : stories // ignore: cast_nullable_to_non_nullable
-                  as List<StoriesData>,
+                as List<StoriesData>,
       ),
     );
   }
@@ -115,8 +114,8 @@ class _$StoriesStateImpl extends _StoriesState {
   const _$StoriesStateImpl({
     this.isLoading = false,
     final List<StoriesData> stories = const [],
-  }) : _stories = stories,
-       super._();
+  })  : _stories = stories,
+        super._();
 
   @override
   @JsonKey()
@@ -147,10 +146,10 @@ class _$StoriesStateImpl extends _StoriesState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    const DeepCollectionEquality().hash(_stories),
-  );
+        runtimeType,
+        isLoading,
+        const DeepCollectionEquality().hash(_stories),
+      );
 
   /// Create a copy of StoriesState
   /// with the given fields replaced by the non-null parameter values.

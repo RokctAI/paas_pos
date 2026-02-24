@@ -16,7 +16,7 @@ class OnAWayOrdersNotifier extends StateNotifier<OnAWayOrdersState> {
   Timer? _refreshTime;
 
   OnAWayOrdersNotifier(this._ordersRepository)
-    : super(const OnAWayOrdersState());
+      : super(const OnAWayOrdersState());
 
   void setOrdersQuery(BuildContext context, String query) {
     if (state.query == query) {
@@ -84,9 +84,8 @@ class OnAWayOrdersNotifier extends StateNotifier<OnAWayOrdersState> {
     );
     response.when(
       success: (data) {
-        List<OrderData> orders = isRefresh || state.query.isNotEmpty
-            ? []
-            : List.from(state.orders);
+        List<OrderData> orders =
+            isRefresh || state.query.isNotEmpty ? [] : List.from(state.orders);
         final List<OrderData> newOrders = data.data?.orders ?? [];
         for (OrderData element in newOrders) {
           if (!orders.map((item) => item.id).contains(element.id)) {

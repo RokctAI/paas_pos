@@ -69,28 +69,27 @@ class _$DeliverymanStateCopyWithImpl<$Res, $Val extends DeliverymanState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isUpdate: null == isUpdate
-                ? _value.isUpdate
-                : isUpdate // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMore: null == hasMore
-                ? _value.hasMore
-                : hasMore // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            users: null == users
-                ? _value.users
-                : users // ignore: cast_nullable_to_non_nullable
-                      as List<UserData>,
-            statusIndex: null == statusIndex
-                ? _value.statusIndex
-                : statusIndex // ignore: cast_nullable_to_non_nullable
-                      as int,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isUpdate: null == isUpdate
+            ? _value.isUpdate
+            : isUpdate // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                as bool,
+        users: null == users
+            ? _value.users
+            : users // ignore: cast_nullable_to_non_nullable
+                as List<UserData>,
+        statusIndex: null == statusIndex
+            ? _value.statusIndex
+            : statusIndex // ignore: cast_nullable_to_non_nullable
+                as int,
+      ) as $Val,
     );
   }
 }
@@ -138,23 +137,23 @@ class __$$DeliverymanStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isUpdate: null == isUpdate
             ? _value.isUpdate
             : isUpdate // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         users: null == users
             ? _value._users
             : users // ignore: cast_nullable_to_non_nullable
-                  as List<UserData>,
+                as List<UserData>,
         statusIndex: null == statusIndex
             ? _value.statusIndex
             : statusIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
       ),
     );
   }
@@ -169,8 +168,8 @@ class _$DeliverymanStateImpl extends _DeliverymanState {
     this.hasMore = true,
     final List<UserData> users = const [],
     this.statusIndex = -1,
-  }) : _users = users,
-       super._();
+  })  : _users = users,
+        super._();
 
   @override
   @JsonKey()
@@ -216,13 +215,13 @@ class _$DeliverymanStateImpl extends _DeliverymanState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    isUpdate,
-    hasMore,
-    const DeepCollectionEquality().hash(_users),
-    statusIndex,
-  );
+        runtimeType,
+        isLoading,
+        isUpdate,
+        hasMore,
+        const DeepCollectionEquality().hash(_users),
+        statusIndex,
+      );
 
   /// Create a copy of DeliverymanState
   /// with the given fields replaced by the non-null parameter values.

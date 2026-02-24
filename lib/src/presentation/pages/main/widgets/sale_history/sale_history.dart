@@ -153,8 +153,8 @@ class _SaleHistoryState extends ConsumerState<SaleHistory> {
             list: state.selectIndex == 0
                 ? state.listDriver
                 : state.selectIndex == 1
-                ? state.listToday
-                : state.listHistory,
+                    ? state.listToday
+                    : state.listHistory,
             hasMore: state.hasMore,
             viewMore: () {
               event.fetchSalePage();

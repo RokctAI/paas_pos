@@ -306,8 +306,7 @@ class _AddVisionDialogState extends State<AddVisionDialog> {
           // If not success, show error message from provider
           setState(() {
             _isLoading = false;
-            _errorMessage =
-                _planProvider.error ??
+            _errorMessage = _planProvider.error ??
                 'Failed to save vision. Please try again.';
           });
         }

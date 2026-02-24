@@ -59,8 +59,8 @@ class SectionButton extends StatelessWidget {
           onTap: isTab
               ? onTap
               : isActive
-              ? onTap
-              : null,
+                  ? onTap
+                  : null,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.r),
@@ -89,24 +89,23 @@ class SectionButton extends StatelessWidget {
                     ),
                   )
                 : icon ??
-                      Row(
-                        children: [
-                          prefixIcon ?? const SizedBox.shrink(),
-                          prefixIcon != null
-                              ? 12.r.horizontalSpace
-                              : const SizedBox.shrink(),
-                          Text(
-                            title,
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w500,
-                              fontSize: textSize?.sp ?? 14.sp,
-                              color: isActive
-                                  ? AppStyle.black
-                                  : AppStyle.reviewText,
-                            ),
+                    Row(
+                      children: [
+                        prefixIcon ?? const SizedBox.shrink(),
+                        prefixIcon != null
+                            ? 12.r.horizontalSpace
+                            : const SizedBox.shrink(),
+                        Text(
+                          title,
+                          style: GoogleFonts.inter(
+                            fontWeight: FontWeight.w500,
+                            fontSize: textSize?.sp ?? 14.sp,
+                            color:
+                                isActive ? AppStyle.black : AppStyle.reviewText,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
+                    ),
           ),
         ),
       ),

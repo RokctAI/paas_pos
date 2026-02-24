@@ -79,19 +79,19 @@ class TablesList extends ConsumerWidget {
                 ),
               )
             : state.isLoading
-            ? const SizedBox.shrink()
-            : Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.r),
-                  child: Text(
-                    AppHelpers.getTranslation(TrKeys.thereAreNoOrders),
-                    style: GoogleFonts.inter(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w600,
+                ? const SizedBox.shrink()
+                : Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 16.r),
+                      child: Text(
+                        AppHelpers.getTranslation(TrKeys.thereAreNoOrders),
+                        style: GoogleFonts.inter(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
         if (state.isLoading)
           AnimationLimiter(
             child: GridView.builder(

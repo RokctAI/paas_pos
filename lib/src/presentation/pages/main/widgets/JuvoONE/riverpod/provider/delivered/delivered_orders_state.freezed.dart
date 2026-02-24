@@ -47,10 +47,8 @@ abstract class $DeliveredOrdersStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DeliveredOrdersStateCopyWithImpl<
-  $Res,
-  $Val extends DeliveredOrdersState
->
+class _$DeliveredOrdersStateCopyWithImpl<$Res,
+        $Val extends DeliveredOrdersState>
     implements $DeliveredOrdersStateCopyWith<$Res> {
   _$DeliveredOrdersStateCopyWithImpl(this._value, this._then);
 
@@ -72,28 +70,27 @@ class _$DeliveredOrdersStateCopyWithImpl<
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMore: null == hasMore
-                ? _value.hasMore
-                : hasMore // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            orders: null == orders
-                ? _value.orders
-                : orders // ignore: cast_nullable_to_non_nullable
-                      as List<OrderData>,
-            totalCount: null == totalCount
-                ? _value.totalCount
-                : totalCount // ignore: cast_nullable_to_non_nullable
-                      as int,
-            query: null == query
-                ? _value.query
-                : query // ignore: cast_nullable_to_non_nullable
-                      as String,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                as bool,
+        orders: null == orders
+            ? _value.orders
+            : orders // ignore: cast_nullable_to_non_nullable
+                as List<OrderData>,
+        totalCount: null == totalCount
+            ? _value.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                as int,
+        query: null == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                as String,
+      ) as $Val,
     );
   }
 }
@@ -141,23 +138,23 @@ class __$$DeliveredOrdersStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         orders: null == orders
             ? _value._orders
             : orders // ignore: cast_nullable_to_non_nullable
-                  as List<OrderData>,
+                as List<OrderData>,
         totalCount: null == totalCount
             ? _value.totalCount
             : totalCount // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         query: null == query
             ? _value.query
             : query // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
       ),
     );
   }
@@ -172,8 +169,8 @@ class _$DeliveredOrdersStateImpl extends _DeliveredOrdersState {
     final List<OrderData> orders = const [],
     this.totalCount = 0,
     this.query = '',
-  }) : _orders = orders,
-       super._();
+  })  : _orders = orders,
+        super._();
 
   @override
   @JsonKey()
@@ -218,13 +215,13 @@ class _$DeliveredOrdersStateImpl extends _DeliveredOrdersState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    hasMore,
-    const DeepCollectionEquality().hash(_orders),
-    totalCount,
-    query,
-  );
+        runtimeType,
+        isLoading,
+        hasMore,
+        const DeepCollectionEquality().hash(_orders),
+        totalCount,
+        query,
+      );
 
   /// Create a copy of DeliveredOrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -232,11 +229,11 @@ class _$DeliveredOrdersStateImpl extends _DeliveredOrdersState {
   @override
   @pragma('vm:prefer-inline')
   _$$DeliveredOrdersStateImplCopyWith<_$DeliveredOrdersStateImpl>
-  get copyWith =>
-      __$$DeliveredOrdersStateImplCopyWithImpl<_$DeliveredOrdersStateImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith =>
+          __$$DeliveredOrdersStateImplCopyWithImpl<_$DeliveredOrdersStateImpl>(
+            this,
+            _$identity,
+          );
 }
 
 abstract class _DeliveredOrdersState extends DeliveredOrdersState {
@@ -265,5 +262,5 @@ abstract class _DeliveredOrdersState extends DeliveredOrdersState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeliveredOrdersStateImplCopyWith<_$DeliveredOrdersStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }

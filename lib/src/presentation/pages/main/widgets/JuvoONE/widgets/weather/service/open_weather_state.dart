@@ -5,7 +5,7 @@ class OpenWeatherState {
   final DateTime lastUpdated;
 
   OpenWeatherState({required this.weatherData, DateTime? lastUpdated})
-    : lastUpdated = lastUpdated ?? DateTime.now();
+      : lastUpdated = lastUpdated ?? DateTime.now();
 
   // Get only the additional days (skip first three days)
   List<Map<String, dynamic>> getAdditionalDaysData() {

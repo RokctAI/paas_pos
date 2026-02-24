@@ -86,8 +86,7 @@ class WeatherForecastDialog extends ConsumerWidget {
 
     // Determine the starting index based on whether it's today or a future date
     int initialStartIndex = 0;
-    final isToday =
-        selectedDate.year == DateTime.now().year &&
+    final isToday = selectedDate.year == DateTime.now().year &&
         selectedDate.month == DateTime.now().month &&
         selectedDate.day == DateTime.now().day;
 
@@ -116,10 +115,8 @@ class WeatherForecastDialog extends ConsumerWidget {
 
         final remainingHours = dateHours.length - startIndex;
         final hoursToTake = remainingHours < 24 ? remainingHours : 24;
-        final relevantHours = dateHours
-            .skip(startIndex)
-            .take(hoursToTake)
-            .toList();
+        final relevantHours =
+            dateHours.skip(startIndex).take(hoursToTake).toList();
 
         return Column(
           children: [
@@ -177,8 +174,7 @@ class WeatherForecastDialog extends ConsumerWidget {
                               dateHours[nextStartIndex];
                         }
                       },
-                      isEnabled:
-                          startIndex + 6 < dateHours.length &&
+                      isEnabled: startIndex + 6 < dateHours.length &&
                           startIndex + 11 < dateHours.length,
                     ),
                   ),
@@ -196,8 +192,7 @@ class WeatherForecastDialog extends ConsumerWidget {
                         return ValueListenableBuilder<Map<String, dynamic>?>(
                           valueListenable: selectedHourNotifier,
                           builder: (context, selectedHour, _) {
-                            final isSelected =
-                                selectedHour != null &&
+                            final isSelected = selectedHour != null &&
                                 selectedHour['time'] == hour['time'];
 
                             return GestureDetector(
@@ -302,9 +297,8 @@ class WeatherForecastDialog extends ConsumerWidget {
     final now = DateTime.now();
 
     if (hourTime.day == now.day && hourTime.hour == now.hour) {
-      final todayForecast = weatherState.forecast.isNotEmpty
-          ? weatherState.forecast[0]
-          : null;
+      final todayForecast =
+          weatherState.forecast.isNotEmpty ? weatherState.forecast[0] : null;
       if (todayForecast != null) {
         final hourlyData = todayForecast['hour'] as List<dynamic>;
         try {
@@ -370,8 +364,7 @@ class WeatherForecastDialog extends ConsumerWidget {
                     hour['humidity'] >= minHumidity)
                   Positioned(
                     right: -4,
-                    top:
-                        hour['will_it_rain'] == 1 &&
+                    top: hour['will_it_rain'] == 1 &&
                             hour['chance_of_rain'] > AppConstants.rainPOP
                         ? 44
                         : 20,
@@ -584,8 +577,7 @@ class WeatherForecastDialog extends ConsumerWidget {
     final astro = forecast['astro'];
     final date = DateTime.parse(forecast['date']);
     final condition = day['condition'];
-    final isToday =
-        DateFormat('yyyy-MM-dd').format(date) ==
+    final isToday = DateFormat('yyyy-MM-dd').format(date) ==
         DateFormat('yyyy-MM-dd').format(DateTime.now());
 
     final showHourly = ValueNotifier<bool>(false);
@@ -677,8 +669,7 @@ class WeatherForecastDialog extends ConsumerWidget {
                               day['avghumidity'] >= minHumidity)
                             Positioned(
                               right: -4,
-                              top:
-                                  day['daily_chance_of_rain'] >
+                              top: day['daily_chance_of_rain'] >
                                       AppConstants.rainPOP
                                   ? 44
                                   : 20,
@@ -723,9 +714,8 @@ class WeatherForecastDialog extends ConsumerWidget {
     }
 
     // Get current hour data from today's forecast instead of current weather
-    final todayForecast = weatherState.forecast.isNotEmpty
-        ? weatherState.forecast[0]
-        : null;
+    final todayForecast =
+        weatherState.forecast.isNotEmpty ? weatherState.forecast[0] : null;
     if (todayForecast == null) {
       return _buildEmptyState();
     }
@@ -753,8 +743,8 @@ class WeatherForecastDialog extends ConsumerWidget {
           (value is! num || (value is num && value > 0))) {
         final displayValue = value is num
             ? (value % 1 == 0
-                  ? value.round().toString()
-                  : value.toStringAsFixed(1))
+                ? value.round().toString()
+                : value.toStringAsFixed(1))
             : value.toString();
         allDetails.add(
           _buildSmallDetailItem(icon, '${prefix ?? ''}$displayValue$suffix'),
@@ -875,8 +865,7 @@ class WeatherForecastDialog extends ConsumerWidget {
                         (currentHourData['humidity'] ?? 0) >= minHumidity)
                       Positioned(
                         right: -4,
-                        top:
-                            (currentHourData['chance_of_rain'] ?? 0) >
+                        top: (currentHourData['chance_of_rain'] ?? 0) >
                                 AppConstants.rainPOP
                             ? 44
                             : 20,
@@ -931,8 +920,8 @@ class WeatherForecastDialog extends ConsumerWidget {
           (value is! num || (value is num && value > 0))) {
         final displayValue = value is num
             ? (value % 1 == 0
-                  ? value.round().toString()
-                  : value.toStringAsFixed(1))
+                ? value.round().toString()
+                : value.toStringAsFixed(1))
             : value.toString();
         allDetails.add(
           _buildSmallDetailItem(icon, '${prefix ?? ''}$displayValue$suffix'),
@@ -976,8 +965,8 @@ class WeatherForecastDialog extends ConsumerWidget {
   ) {
     const double itemSpacing = 16.0;
     final itemWidth = 80.0;
-    final maxItemsPerRow = (constraints.maxWidth / (itemWidth + itemSpacing))
-        .floor();
+    final maxItemsPerRow =
+        (constraints.maxWidth / (itemWidth + itemSpacing)).floor();
 
     final rows = <List<Widget>>[];
     var currentRow = <Widget>[];
@@ -1102,8 +1091,7 @@ class WeatherForecastDialog extends ConsumerWidget {
                   currentHourData['humidity'] >= minHumidity)
                 Positioned(
                   right: -4,
-                  top:
-                      currentHourData['will_it_rain'] == 1 &&
+                  top: currentHourData['will_it_rain'] == 1 &&
                           currentHourData['chance_of_rain'] >
                               AppConstants.rainPOP
                       ? 44
@@ -1146,8 +1134,7 @@ class WeatherForecastDialog extends ConsumerWidget {
     final date = DateTime.parse(forecast['date']);
     final day = forecast['day'];
     final condition = day['condition'];
-    final isToday =
-        DateFormat('yyyy-MM-dd').format(date) ==
+    final isToday = DateFormat('yyyy-MM-dd').format(date) ==
         DateFormat('yyyy-MM-dd').format(DateTime.now());
 
     return Padding(
@@ -1193,8 +1180,7 @@ class WeatherForecastDialog extends ConsumerWidget {
               if (day['uv'] >= minUV && day['avghumidity'] >= minHumidity)
                 Positioned(
                   right: -4,
-                  top:
-                      day['daily_will_it_rain'] == 1 &&
+                  top: day['daily_will_it_rain'] == 1 &&
                           day['daily_chance_of_rain'] > 0
                       ? 44
                       : 20,
@@ -1245,8 +1231,7 @@ class WeatherForecastDialog extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width:
-                  ((60.sp + 32.w) *
+              width: ((60.sp + 32.w) *
                   (forecastDays.length + 1)), // Proper width calculation
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

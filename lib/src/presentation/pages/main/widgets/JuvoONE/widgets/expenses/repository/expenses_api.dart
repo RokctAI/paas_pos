@@ -377,14 +377,14 @@ class ExpenseService {
       'shop_id': actualShopId.toString(),
       if (startDate != null)
         'date_from': startDate.toString().substring(
-          0,
-          startDate.toString().indexOf(" "),
-        ),
+              0,
+              startDate.toString().indexOf(" "),
+            ),
       if (endDate != null)
         'date_to': endDate.toString().substring(
-          0,
-          endDate.toString().indexOf(" "),
-        ),
+              0,
+              endDate.toString().indexOf(" "),
+            ),
     };
 
     final uri = Uri.parse(
@@ -418,12 +418,12 @@ final expenseServiceProvider = Provider<ExpenseService>((ref) {
 
 final expenseTypeStatsProvider =
     FutureProvider.family<List<ExpenseTypeStats>, ExpenseTypeStatsParams>((
-      ref,
-      params,
-    ) async {
-      final expenseService = ref.read(expenseServiceProvider);
-      return expenseService.getExpenseTypeStats(
-        startDate: params.startDate,
-        endDate: params.endDate,
-      );
-    });
+  ref,
+  params,
+) async {
+  final expenseService = ref.read(expenseServiceProvider);
+  return expenseService.getExpenseTypeStats(
+    startDate: params.startDate,
+    endDate: params.endDate,
+  );
+});

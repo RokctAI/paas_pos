@@ -65,8 +65,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
     final notifier = ref.read(rightSideProvider.notifier);
     final state = ref.watch(rightSideProvider);
     return AbsorbPointer(
-      absorbing:
-          state.isUserDetailsLoading ||
+      absorbing: state.isUserDetailsLoading ||
           state.isPaymentsLoading ||
           state.isBagsLoading ||
           state.isUsersLoading ||
@@ -253,8 +252,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
             ),
           ),
           BlurLoadingWidget(
-            isLoading:
-                state.isUserDetailsLoading ||
+            isLoading: state.isUserDetailsLoading ||
                 state.isPaymentsLoading ||
                 state.isBagsLoading ||
                 state.isUsersLoading ||
@@ -297,12 +295,9 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
               },
               cart: items[index],
               delete: () {
-                ref
-                    .read(rightSideProvider.notifier)
-                    .deleteProductCount(
+                ref.read(rightSideProvider.notifier).deleteProductCount(
                       bagProductData: state
-                          .bags[state.selectedBagIndex]
-                          .bagProducts?[index],
+                          .bags[state.selectedBagIndex].bagProducts?[index],
                       productIndex: index,
                     );
                 widget.onRemoveItem();
@@ -374,8 +369,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
     final showAllFees = itemCount <= 2;
 
     // Always calculate the total price including all fees
-    final totalPrice =
-        (state.paginateResponse?.price ?? 0) +
+    final totalPrice = (state.paginateResponse?.price ?? 0) +
         (state.paginateResponse?.totalTax ?? 0) +
         (state.paginateResponse?.serviceFee ?? 0) +
         (state.paginateResponse?.deliveryFee ?? 0) -
@@ -408,8 +402,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                         ),
                         Text(
                           NumberFormat.currency(
-                            symbol:
-                                widget.bag.selectedCurrency?.symbol ??
+                            symbol: widget.bag.selectedCurrency?.symbol ??
                                 LocalStorage.getSelectedCurrency().symbol,
                           ).format(state.paginateResponse?.price ?? 0),
                           style: GoogleFonts.inter(
@@ -441,8 +434,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                         ),
                         Text(
                           NumberFormat.currency(
-                            symbol:
-                                widget.bag.selectedCurrency?.symbol ??
+                            symbol: widget.bag.selectedCurrency?.symbol ??
                                 LocalStorage.getSelectedCurrency().symbol,
                           ).format(state.paginateResponse?.totalTax ?? 0),
                           style: GoogleFonts.inter(
@@ -606,8 +598,7 @@ class _PageViewItemState extends ConsumerState<PageViewItem> {
                   ),
                   Text(
                     NumberFormat.currency(
-                      symbol:
-                          widget.bag.selectedCurrency?.symbol ??
+                      symbol: widget.bag.selectedCurrency?.symbol ??
                           LocalStorage.getSelectedCurrency().symbol,
                     ).format(totalPrice),
                     style: GoogleFonts.inter(
@@ -729,10 +720,7 @@ class CartOrderItem extends StatelessWidget {
                                   RichText(
                                     text: TextSpan(
                                       text: cart
-                                          ?.stock
-                                          ?.product
-                                          ?.translation
-                                          ?.title,
+                                          ?.stock?.product?.translation?.title,
                                       style: GoogleFonts.inter(
                                         fontSize: 14.sp,
                                         color: AppStyle.black,
@@ -898,9 +886,9 @@ class CartOrderItem extends StatelessWidget {
                                                 4.horizontalSpace,
                                                 Text(
                                                   NumberFormat.currency(
-                                                    symbol:
-                                                        symbol ??
-                                                        LocalStorage.getSelectedCurrency()
+                                                    symbol: symbol ??
+                                                        LocalStorage
+                                                                .getSelectedCurrency()
                                                             .symbol,
                                                   ).format(sumPrice),
                                                   style: GoogleFonts.inter(
@@ -945,10 +933,7 @@ class CartOrderItem extends StatelessWidget {
                                 RichText(
                                   text: TextSpan(
                                     text: cart
-                                        ?.stock
-                                        ?.product
-                                        ?.translation
-                                        ?.title,
+                                        ?.stock?.product?.translation?.title,
                                     style: GoogleFonts.inter(
                                       fontSize: 16,
                                       color: AppStyle.black,
@@ -992,9 +977,9 @@ class CartOrderItem extends StatelessWidget {
                                             children: [
                                               Text(
                                                 NumberFormat.currency(
-                                                  symbol:
-                                                      symbol ??
-                                                      LocalStorage.getSelectedCurrency()
+                                                  symbol: symbol ??
+                                                      LocalStorage
+                                                              .getSelectedCurrency()
                                                           .symbol,
                                                 ).format(
                                                   (cart?.discount ?? 0) != 0
@@ -1005,14 +990,14 @@ class CartOrderItem extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   fontSize:
                                                       (cart?.discount ?? 0) != 0
-                                                      ? 12
-                                                      : 16,
+                                                          ? 12
+                                                          : 16,
                                                   color: AppStyle.black,
                                                   decoration:
                                                       (cart?.discount ?? 0) != 0
-                                                      ? TextDecoration
-                                                            .lineThrough
-                                                      : TextDecoration.none,
+                                                          ? TextDecoration
+                                                              .lineThrough
+                                                          : TextDecoration.none,
                                                 ),
                                               ),
                                               (cart?.discount ?? 0) != 0
@@ -1023,9 +1008,10 @@ class CartOrderItem extends StatelessWidget {
                                                       decoration: BoxDecoration(
                                                         color: AppStyle.red,
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                              30.r,
-                                                            ),
+                                                            BorderRadius
+                                                                .circular(
+                                                          30.r,
+                                                        ),
                                                       ),
                                                       padding: EdgeInsets.all(
                                                         4.r,
@@ -1037,22 +1023,22 @@ class CartOrderItem extends StatelessWidget {
                                                           ),
                                                           4.horizontalSpace,
                                                           Text(
-                                                            NumberFormat.currency(
-                                                              symbol:
-                                                                  symbol ??
-                                                                  LocalStorage.getSelectedCurrency()
+                                                            NumberFormat
+                                                                .currency(
+                                                              symbol: symbol ??
+                                                                  LocalStorage
+                                                                          .getSelectedCurrency()
                                                                       .symbol,
                                                             ).format(sumPrice),
-                                                            style:
-                                                                GoogleFonts.inter(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      14.sp,
-                                                                  color: AppStyle
-                                                                      .white,
-                                                                ),
+                                                            style: GoogleFonts
+                                                                .inter(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 14.sp,
+                                                              color: AppStyle
+                                                                  .white,
+                                                            ),
                                                           ),
                                                         ],
                                                       ),

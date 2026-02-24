@@ -240,8 +240,7 @@ class WeatherWidget extends ConsumerWidget {
                                     WeatherForecastDialog.minHumidity)
                               Positioned(
                                 left: 36.sp,
-                                top:
-                                    (chanceOfRain != null &&
+                                top: (chanceOfRain != null &&
                                         chanceOfRain >= AppConstants.rainPOP &&
                                         currentHourData['will_it_rain'] == 1)
                                     ? 20

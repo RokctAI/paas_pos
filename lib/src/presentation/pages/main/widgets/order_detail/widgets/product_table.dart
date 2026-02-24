@@ -280,13 +280,8 @@ class ProductTable extends StatelessWidget {
                     children: [
                       const Divider(),
                       Text(
-                        (orderData
-                                ?.details?[i]
-                                .addons?[j]
-                                .stocks
-                                ?.product
-                                ?.translation
-                                ?.title ??
+                        (orderData?.details?[i].addons?[j].stocks?.product
+                                ?.translation?.title ??
                             ""),
                         style: GoogleFonts.inter(
                           fontSize: 14.sp,

@@ -36,7 +36,8 @@ mixin _$NetworkExceptions {
     required TResult Function() unableToProcess,
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? requestCancelled,
@@ -56,7 +57,8 @@ mixin _$NetworkExceptions {
     TResult? Function()? unableToProcess,
     TResult? Function(String error)? defaultError,
     TResult? Function()? unexpectedError,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? requestCancelled,
@@ -77,7 +79,8 @@ mixin _$NetworkExceptions {
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(RequestCancelled value) requestCancelled,
@@ -97,7 +100,8 @@ mixin _$NetworkExceptions {
     required TResult Function(UnableToProcess value) unableToProcess,
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(RequestCancelled value)? requestCancelled,
@@ -117,7 +121,8 @@ mixin _$NetworkExceptions {
     TResult? Function(UnableToProcess value)? unableToProcess,
     TResult? Function(DefaultError value)? defaultError,
     TResult? Function(UnexpectedError value)? unexpectedError,
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(RequestCancelled value)? requestCancelled,
@@ -138,7 +143,8 @@ mixin _$NetworkExceptions {
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -784,7 +790,7 @@ class __$$NotFoundImplCopyWithImpl<$Res>
         null == reason
             ? _value.reason
             : reason // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
       ),
     );
   }
@@ -3185,7 +3191,7 @@ class __$$DefaultErrorImplCopyWithImpl<$Res>
         null == error
             ? _value.error
             : error // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
       ),
     );
   }

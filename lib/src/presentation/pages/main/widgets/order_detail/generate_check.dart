@@ -28,8 +28,7 @@ class _GenerateCheckPageState extends State<GenerateCheckPage> {
   @override
   Widget build(BuildContext context) {
     num subTotal = 0;
-    subTotal =
-        ((widget.orderData?.totalPrice ?? 0) -
+    subTotal = ((widget.orderData?.totalPrice ?? 0) -
         (widget.orderData?.tax ?? 0) -
         (widget.orderData?.deliveryFee ?? 0) +
         (widget.orderData?.totalDiscount ?? 0));
@@ -45,8 +44,7 @@ class _GenerateCheckPageState extends State<GenerateCheckPage> {
     // Show client row if either:
     // 1. Current user is logged in and different from order user
     // 2. Order has a user but current user is not logged in
-    final shouldShowClientRow =
-        (currentUser != null &&
+    final shouldShowClientRow = (currentUser != null &&
             orderUser != null &&
             currentUserName != orderUserName) ||
         (currentUser == null && orderUser != null);
@@ -198,12 +196,9 @@ class _GenerateCheckPageState extends State<GenerateCheckPage> {
                                   ),
                                 ),
                                 6.verticalSpace,
-                                for (Addons e
-                                    in (widget
-                                            .orderData
-                                            ?.details?[index]
-                                            .addons ??
-                                        []))
+                                for (Addons e in (widget
+                                        .orderData?.details?[index].addons ??
+                                    []))
                                   Text(
                                     "${e.stocks?.product?.translation?.title ?? ""} ( ${AppHelpers.numberFormat((e.price ?? 0) / (e.quantity ?? 1), symbol: widget.orderData?.currency?.symbol ?? "")} x ${(e.quantity ?? 1)} )",
                                     style: GoogleFonts.inter(

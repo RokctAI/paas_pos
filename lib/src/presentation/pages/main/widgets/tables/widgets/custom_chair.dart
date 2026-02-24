@@ -23,44 +23,37 @@ class CustomChair extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:
-          chairPosition == ChairPosition.top ||
+      margin: chairPosition == ChairPosition.top ||
               chairPosition == ChairPosition.bottom
           ? EdgeInsets.only(left: chairSpace.r)
           : chairPosition == ChairPosition.left ||
-                chairPosition == ChairPosition.right
-          ? EdgeInsets.only(top: chairSpace.r)
-          : null,
-      height:
-          chairPosition == ChairPosition.top ||
+                  chairPosition == ChairPosition.right
+              ? EdgeInsets.only(top: chairSpace.r)
+              : null,
+      height: chairPosition == ChairPosition.top ||
               chairPosition == ChairPosition.bottom
           ? chairHeight.r
           : chairWidth.r,
-      width:
-          chairPosition == ChairPosition.top ||
+      width: chairPosition == ChairPosition.top ||
               chairPosition == ChairPosition.bottom
           ? chairWidth.r
           : chairHeight.r,
       decoration: BoxDecoration(
         color: AppStyle.black,
         borderRadius: BorderRadius.only(
-          topLeft:
-              chairPosition == ChairPosition.top ||
+          topLeft: chairPosition == ChairPosition.top ||
                   chairPosition == ChairPosition.left
               ? Radius.circular(borderRadiusSize.r)
               : Radius.zero,
-          topRight:
-              chairPosition == ChairPosition.top ||
+          topRight: chairPosition == ChairPosition.top ||
                   chairPosition == ChairPosition.right
               ? Radius.circular(borderRadiusSize.r)
               : Radius.zero,
-          bottomLeft:
-              chairPosition == ChairPosition.bottom ||
+          bottomLeft: chairPosition == ChairPosition.bottom ||
                   chairPosition == ChairPosition.left
               ? Radius.circular(borderRadiusSize.r)
               : Radius.zero,
-          bottomRight:
-              chairPosition == ChairPosition.bottom ||
+          bottomRight: chairPosition == ChairPosition.bottom ||
                   chairPosition == ChairPosition.right
               ? Radius.circular(borderRadiusSize.r)
               : Radius.zero,
@@ -87,44 +80,37 @@ class VerticalChair extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:
-          chairPosition == ChairPosition.top ||
+      margin: chairPosition == ChairPosition.top ||
               chairPosition == ChairPosition.bottom
           ? EdgeInsets.only(left: chairSpace.r)
           : chairPosition == ChairPosition.left ||
-                chairPosition == ChairPosition.right
-          ? EdgeInsets.only(top: chairSpace.r)
-          : null,
-      height:
-          chairPosition == ChairPosition.top ||
+                  chairPosition == ChairPosition.right
+              ? EdgeInsets.only(top: chairSpace.r)
+              : null,
+      height: chairPosition == ChairPosition.top ||
               chairPosition == ChairPosition.bottom
           ? chairHeight.r
           : null,
-      width:
-          chairPosition == ChairPosition.top ||
+      width: chairPosition == ChairPosition.top ||
               chairPosition == ChairPosition.bottom
           ? null
           : chairHeight.r,
       decoration: BoxDecoration(
         color: AppStyle.black,
         borderRadius: BorderRadius.only(
-          topLeft:
-              chairPosition == ChairPosition.top ||
+          topLeft: chairPosition == ChairPosition.top ||
                   chairPosition == ChairPosition.left
               ? Radius.circular(borderRadiusSize.r)
               : Radius.zero,
-          topRight:
-              chairPosition == ChairPosition.top ||
+          topRight: chairPosition == ChairPosition.top ||
                   chairPosition == ChairPosition.right
               ? Radius.circular(borderRadiusSize.r)
               : Radius.zero,
-          bottomLeft:
-              chairPosition == ChairPosition.bottom ||
+          bottomLeft: chairPosition == ChairPosition.bottom ||
                   chairPosition == ChairPosition.left
               ? Radius.circular(borderRadiusSize.r)
               : Radius.zero,
-          bottomRight:
-              chairPosition == ChairPosition.bottom ||
+          bottomRight: chairPosition == ChairPosition.bottom ||
                   chairPosition == ChairPosition.right
               ? Radius.circular(borderRadiusSize.r)
               : Radius.zero,

@@ -33,9 +33,7 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
     super.initState();
     _audioPlayer.setReleaseMode(ReleaseMode.release);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(addProductProvider.notifier)
-          .setProduct(
+      ref.read(addProductProvider.notifier).setProduct(
             widget.product,
             ref.watch(rightSideProvider).selectedBagIndex,
           );
@@ -86,8 +84,7 @@ class _AddProductDialogState extends ConsumerState<AddProductDialog> {
       );
     }
 
-    final bool hasDiscount =
-        (state.selectedStock?.discount != null &&
+    final bool hasDiscount = (state.selectedStock?.discount != null &&
         (state.selectedStock?.discount ?? 0) > 0);
     // final double totalPrice = calculateTotalPrice(state);
     final String price = AppHelpers.numberFormat(

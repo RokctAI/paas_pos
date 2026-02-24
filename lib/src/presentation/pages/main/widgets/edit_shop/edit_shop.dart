@@ -41,38 +41,36 @@ class _EditShopState extends ConsumerState<EditShop> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (ref.watch(shopProvider).isUpdate) {
-        ref
-            .read(shopProvider.notifier)
-            .fetchShopData(
-              onSuccess: () {
-                final state = ref.watch(shopProvider);
-                state.categories?.data?.forEach((element) {
-                  categoryItem.add(
-                    ValueItem(
-                      label: element.translation?.title ?? "",
-                      value: element.id.toString(),
-                    ),
-                  );
-                });
-                state.editShopData?.categoryData?.forEach((element) {
-                  selectedCategory.add(
-                    ValueItem(
-                      label: element.translation?.title ?? "",
-                      value: element.id.toString(),
-                    ),
-                  );
-                });
+        ref.read(shopProvider.notifier).fetchShopData(
+          onSuccess: () {
+            final state = ref.watch(shopProvider);
+            state.categories?.data?.forEach((element) {
+              categoryItem.add(
+                ValueItem(
+                  label: element.translation?.title ?? "",
+                  value: element.id.toString(),
+                ),
+              );
+            });
+            state.editShopData?.categoryData?.forEach((element) {
+              selectedCategory.add(
+                ValueItem(
+                  label: element.translation?.title ?? "",
+                  value: element.id.toString(),
+                ),
+              );
+            });
 
-                state.tag?.data?.forEach((element) {
-                  tagItem.add(
-                    ValueItem(
-                      label: element.translation?.title ?? "",
-                      value: element.id.toString(),
-                    ),
-                  );
-                });
-              },
-            );
+            state.tag?.data?.forEach((element) {
+              tagItem.add(
+                ValueItem(
+                  label: element.translation?.title ?? "",
+                  value: element.id.toString(),
+                ),
+              );
+            });
+          },
+        );
       }
     });
     super.initState();
@@ -253,8 +251,8 @@ class _EditShopState extends ConsumerState<EditShop> {
                                         borderRadius: 10,
                                         onOptionSelected:
                                             (List<ValueItem> selectedOptions) {
-                                              selectedTag = selectedOptions;
-                                            },
+                                          selectedTag = selectedOptions;
+                                        },
                                         options: tagItem,
                                         selectedOptions: selectedTag,
                                         selectionType: SelectionType.multi,
@@ -278,9 +276,7 @@ class _EditShopState extends ConsumerState<EditShop> {
                                   OutlinedBorderTextField(
                                     maxLine: 6,
                                     initialText: state
-                                        .editShopData
-                                        ?.translation
-                                        ?.description,
+                                        .editShopData?.translation?.description,
                                     onChanged: notifier.setDescription,
                                     label: AppHelpers.getTranslation(
                                       TrKeys.description,
@@ -302,9 +298,8 @@ class _EditShopState extends ConsumerState<EditShop> {
                                         borderRadius: 10,
                                         onOptionSelected:
                                             (List<ValueItem> selectedOptions) {
-                                              selectedCategory =
-                                                  selectedOptions;
-                                            },
+                                          selectedCategory = selectedOptions;
+                                        },
                                         options: categoryItem,
                                         selectedOptions: selectedCategory,
                                         selectionType: SelectionType.multi,
@@ -364,8 +359,8 @@ class _EditShopState extends ConsumerState<EditShop> {
                                       FilteringTextInputFormatter.digitsOnly,
                                     ],
                                     validator: AppValidators.emptyCheck,
-                                    initialText: state.editShopData?.price
-                                        .toString(),
+                                    initialText:
+                                        state.editShopData?.price.toString(),
                                     label: AppHelpers.getTranslation(
                                       TrKeys.minPrice,
                                     ),
@@ -404,8 +399,8 @@ class _EditShopState extends ConsumerState<EditShop> {
                                         borderRadius: 10,
                                         onOptionSelected:
                                             (List<ValueItem> selectedOptions) {
-                                              selectedType = selectedOptions;
-                                            },
+                                          selectedType = selectedOptions;
+                                        },
                                         selectedOptions: selectedType,
                                         options: [
                                           ValueItem(

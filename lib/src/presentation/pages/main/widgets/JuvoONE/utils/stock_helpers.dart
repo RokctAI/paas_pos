@@ -40,8 +40,7 @@ class StockHelpers {
       quantity: quantity ?? template.quantity,
       tax: template.tax,
       extras: extras ?? template.extras,
-      addons:
-          addons ??
+      addons: addons ??
           template.addons
               ?.map(
                 (a) => Addons(

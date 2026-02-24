@@ -52,16 +52,15 @@ class _$HelpStateCopyWithImpl<$Res, $Val extends HelpState>
   $Res call({Object? isLoading = null, Object? data = freezed}) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            data: freezed == data
-                ? _value.data
-                : data // ignore: cast_nullable_to_non_nullable
-                      as HelpModel?,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        data: freezed == data
+            ? _value.data
+            : data // ignore: cast_nullable_to_non_nullable
+                as HelpModel?,
+      ) as $Val,
     );
   }
 }
@@ -97,11 +96,11 @@ class __$$HelpStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         data: freezed == data
             ? _value.data
             : data // ignore: cast_nullable_to_non_nullable
-                  as HelpModel?,
+                as HelpModel?,
       ),
     );
   }

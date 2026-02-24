@@ -84,48 +84,47 @@ class _$CustomerStateCopyWithImpl<$Res, $Val extends CustomerState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isMoreLoading: null == isMoreLoading
-                ? _value.isMoreLoading
-                : isMoreLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            createUserLoading: null == createUserLoading
-                ? _value.createUserLoading
-                : createUserLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            hasMore: null == hasMore
-                ? _value.hasMore
-                : hasMore // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            query: null == query
-                ? _value.query
-                : query // ignore: cast_nullable_to_non_nullable
-                      as String,
-            users: null == users
-                ? _value.users
-                : users // ignore: cast_nullable_to_non_nullable
-                      as List<UserData>,
-            selectUser: freezed == selectUser
-                ? _value.selectUser
-                : selectUser // ignore: cast_nullable_to_non_nullable
-                      as UserData?,
-            totalCount: null == totalCount
-                ? _value.totalCount
-                : totalCount // ignore: cast_nullable_to_non_nullable
-                      as int,
-            user: freezed == user
-                ? _value.user
-                : user // ignore: cast_nullable_to_non_nullable
-                      as UserData?,
-            imageFile: freezed == imageFile
-                ? _value.imageFile
-                : imageFile // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isMoreLoading: null == isMoreLoading
+            ? _value.isMoreLoading
+            : isMoreLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        createUserLoading: null == createUserLoading
+            ? _value.createUserLoading
+            : createUserLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        hasMore: null == hasMore
+            ? _value.hasMore
+            : hasMore // ignore: cast_nullable_to_non_nullable
+                as bool,
+        query: null == query
+            ? _value.query
+            : query // ignore: cast_nullable_to_non_nullable
+                as String,
+        users: null == users
+            ? _value.users
+            : users // ignore: cast_nullable_to_non_nullable
+                as List<UserData>,
+        selectUser: freezed == selectUser
+            ? _value.selectUser
+            : selectUser // ignore: cast_nullable_to_non_nullable
+                as UserData?,
+        totalCount: null == totalCount
+            ? _value.totalCount
+            : totalCount // ignore: cast_nullable_to_non_nullable
+                as int,
+        user: freezed == user
+            ? _value.user
+            : user // ignore: cast_nullable_to_non_nullable
+                as UserData?,
+        imageFile: freezed == imageFile
+            ? _value.imageFile
+            : imageFile // ignore: cast_nullable_to_non_nullable
+                as String?,
+      ) as $Val,
     );
   }
 }
@@ -183,43 +182,43 @@ class __$$CustomerStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isMoreLoading: null == isMoreLoading
             ? _value.isMoreLoading
             : isMoreLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         createUserLoading: null == createUserLoading
             ? _value.createUserLoading
             : createUserLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         hasMore: null == hasMore
             ? _value.hasMore
             : hasMore // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         query: null == query
             ? _value.query
             : query // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         users: null == users
             ? _value._users
             : users // ignore: cast_nullable_to_non_nullable
-                  as List<UserData>,
+                as List<UserData>,
         selectUser: freezed == selectUser
             ? _value.selectUser
             : selectUser // ignore: cast_nullable_to_non_nullable
-                  as UserData?,
+                as UserData?,
         totalCount: null == totalCount
             ? _value.totalCount
             : totalCount // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         user: freezed == user
             ? _value.user
             : user // ignore: cast_nullable_to_non_nullable
-                  as UserData?,
+                as UserData?,
         imageFile: freezed == imageFile
             ? _value.imageFile
             : imageFile // ignore: cast_nullable_to_non_nullable
-                  as String?,
+                as String?,
       ),
     );
   }
@@ -239,8 +238,8 @@ class _$CustomerStateImpl extends _CustomerState {
     this.totalCount = 0,
     this.user = null,
     this.imageFile = null,
-  }) : _users = users,
-       super._();
+  })  : _users = users,
+        super._();
 
   @override
   @JsonKey()
@@ -309,18 +308,18 @@ class _$CustomerStateImpl extends _CustomerState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    isMoreLoading,
-    createUserLoading,
-    hasMore,
-    query,
-    const DeepCollectionEquality().hash(_users),
-    selectUser,
-    totalCount,
-    user,
-    imageFile,
-  );
+        runtimeType,
+        isLoading,
+        isMoreLoading,
+        createUserLoading,
+        hasMore,
+        query,
+        const DeepCollectionEquality().hash(_users),
+        selectUser,
+        totalCount,
+        user,
+        imageFile,
+      );
 
   /// Create a copy of CustomerState
   /// with the given fields replaced by the non-null parameter values.

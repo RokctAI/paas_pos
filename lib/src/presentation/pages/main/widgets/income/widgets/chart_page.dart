@@ -144,21 +144,21 @@ class _ChartPageState extends State<ChartPage> {
         handleBuiltInTouches: true,
         getTouchedSpotIndicator:
             (LineChartBarData barData, List<int> spotIndexes) {
-              return spotIndexes.map((index) {
-                return TouchedSpotIndicatorData(
-                  FlLine(color: AppStyle.primary, strokeWidth: 2),
-                  FlDotData(
-                    getDotPainter: (spot, percent, barData, index) =>
-                        FlDotCirclePainter(
-                          radius: 4,
-                          color: AppStyle.white,
-                          strokeWidth: 2,
-                          strokeColor: AppStyle.primary,
-                        ),
-                  ),
-                );
-              }).toList();
-            },
+          return spotIndexes.map((index) {
+            return TouchedSpotIndicatorData(
+              FlLine(color: AppStyle.primary, strokeWidth: 2),
+              FlDotData(
+                getDotPainter: (spot, percent, barData, index) =>
+                    FlDotCirclePainter(
+                  radius: 4,
+                  color: AppStyle.white,
+                  strokeWidth: 2,
+                  strokeColor: AppStyle.primary,
+                ),
+              ),
+            );
+          }).toList();
+        },
       ),
       titlesData: FlTitlesData(
         show: true,

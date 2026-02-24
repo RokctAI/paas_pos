@@ -81,44 +81,43 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   }) {
     return _then(
       _value.copyWith(
-            isLoading: null == isLoading
-                ? _value.isLoading
-                : isLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isReferralLoading: null == isReferralLoading
-                ? _value.isReferralLoading
-                : isReferralLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isSaveLoading: null == isSaveLoading
-                ? _value.isSaveLoading
-                : isSaveLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isLoadingHistory: null == isLoadingHistory
-                ? _value.isLoadingHistory
-                : isLoadingHistory // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            typeIndex: null == typeIndex
-                ? _value.typeIndex
-                : typeIndex // ignore: cast_nullable_to_non_nullable
-                      as int,
-            bgImage: null == bgImage
-                ? _value.bgImage
-                : bgImage // ignore: cast_nullable_to_non_nullable
-                      as String,
-            logoImage: null == logoImage
-                ? _value.logoImage
-                : logoImage // ignore: cast_nullable_to_non_nullable
-                      as String,
-            addressModel: freezed == addressModel
-                ? _value.addressModel
-                : addressModel // ignore: cast_nullable_to_non_nullable
-                      as AddressData?,
-            userData: freezed == userData
-                ? _value.userData
-                : userData // ignore: cast_nullable_to_non_nullable
-                      as UserData?,
-          )
-          as $Val,
+        isLoading: null == isLoading
+            ? _value.isLoading
+            : isLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isReferralLoading: null == isReferralLoading
+            ? _value.isReferralLoading
+            : isReferralLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isSaveLoading: null == isSaveLoading
+            ? _value.isSaveLoading
+            : isSaveLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isLoadingHistory: null == isLoadingHistory
+            ? _value.isLoadingHistory
+            : isLoadingHistory // ignore: cast_nullable_to_non_nullable
+                as bool,
+        typeIndex: null == typeIndex
+            ? _value.typeIndex
+            : typeIndex // ignore: cast_nullable_to_non_nullable
+                as int,
+        bgImage: null == bgImage
+            ? _value.bgImage
+            : bgImage // ignore: cast_nullable_to_non_nullable
+                as String,
+        logoImage: null == logoImage
+            ? _value.logoImage
+            : logoImage // ignore: cast_nullable_to_non_nullable
+                as String,
+        addressModel: freezed == addressModel
+            ? _value.addressModel
+            : addressModel // ignore: cast_nullable_to_non_nullable
+                as AddressData?,
+        userData: freezed == userData
+            ? _value.userData
+            : userData // ignore: cast_nullable_to_non_nullable
+                as UserData?,
+      ) as $Val,
     );
   }
 }
@@ -174,39 +173,39 @@ class __$$ProfileStateImplCopyWithImpl<$Res>
         isLoading: null == isLoading
             ? _value.isLoading
             : isLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isReferralLoading: null == isReferralLoading
             ? _value.isReferralLoading
             : isReferralLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isSaveLoading: null == isSaveLoading
             ? _value.isSaveLoading
             : isSaveLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isLoadingHistory: null == isLoadingHistory
             ? _value.isLoadingHistory
             : isLoadingHistory // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         typeIndex: null == typeIndex
             ? _value.typeIndex
             : typeIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         bgImage: null == bgImage
             ? _value.bgImage
             : bgImage // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         logoImage: null == logoImage
             ? _value.logoImage
             : logoImage // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         addressModel: freezed == addressModel
             ? _value.addressModel
             : addressModel // ignore: cast_nullable_to_non_nullable
-                  as AddressData?,
+                as AddressData?,
         userData: freezed == userData
             ? _value.userData
             : userData // ignore: cast_nullable_to_non_nullable
-                  as UserData?,
+                as UserData?,
       ),
     );
   }
@@ -286,17 +285,17 @@ class _$ProfileStateImpl extends _ProfileState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    isLoading,
-    isReferralLoading,
-    isSaveLoading,
-    isLoadingHistory,
-    typeIndex,
-    bgImage,
-    logoImage,
-    addressModel,
-    userData,
-  );
+        runtimeType,
+        isLoading,
+        isReferralLoading,
+        isSaveLoading,
+        isLoadingHistory,
+        typeIndex,
+        bgImage,
+        logoImage,
+        addressModel,
+        userData,
+      );
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.

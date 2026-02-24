@@ -28,8 +28,7 @@ class WaterSurfacePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color =
-          waterColor // Use the calculated color
+      ..color = waterColor // Use the calculated color
       ..style = PaintingStyle.fill;
 
     final path = Path();
@@ -38,8 +37,7 @@ class WaterSurfacePainter extends CustomPainter {
     for (double i = 0; i <= size.width; i++) {
       final x = i;
       final waveHeight = 5.0;
-      final y =
-          size.height * (1 - level) -
+      final y = size.height * (1 - level) -
           waveHeight *
               math.sin((x / size.width) * 4 * math.pi + tiltFactor * math.pi) +
           (tiltFactor * (x - size.width / 2) / 10);
@@ -53,8 +51,7 @@ class WaterSurfacePainter extends CustomPainter {
 
     // Second layer with transparency
     final secondLayerPaint = Paint()
-      ..color = waterColor
-          .withOpacity(0.3) // Use the same calculated color
+      ..color = waterColor.withOpacity(0.3) // Use the same calculated color
       ..style = PaintingStyle.fill;
 
     final secondPath = Path();
@@ -63,8 +60,7 @@ class WaterSurfacePainter extends CustomPainter {
     for (double i = 0; i <= size.width; i++) {
       final x = i;
       final waveHeight = 3.0;
-      final y =
-          size.height * (1 - level) -
+      final y = size.height * (1 - level) -
           waveHeight *
               math.sin(
                 (x / size.width) * 4 * math.pi +

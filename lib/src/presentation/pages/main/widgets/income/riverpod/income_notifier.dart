@@ -12,7 +12,7 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
   final ExpenseRepository _expenseRepository;
 
   IncomeNotifier(this._settingsRepository, this._expenseRepository)
-    : super(const IncomeState());
+      : super(const IncomeState());
 
   changeIndex(String type) {
     state = state.copyWith(
@@ -31,13 +31,12 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
     state = state.copyWith(start: start, end: end);
     final response = await _settingsRepository.getIncomeCart(
       type: state.selectType,
-      from:
-          start ??
+      from: start ??
           (state.selectType == TrKeys.day
               ? DateTime.now()
               : state.selectType == TrKeys.month
-              ? DateTime.now().subtract(const Duration(days: 30))
-              : DateTime.now().subtract(const Duration(days: 7))),
+                  ? DateTime.now().subtract(const Duration(days: 30))
+                  : DateTime.now().subtract(const Duration(days: 7))),
       to: end ?? DateTime.now(),
     );
     response.when(
@@ -51,13 +50,12 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
   fetchIncomeStatistic({DateTime? start, DateTime? end}) async {
     final response = await _settingsRepository.getIncomeStatistic(
       type: state.selectType,
-      from:
-          start ??
+      from: start ??
           (state.selectType == TrKeys.day
               ? DateTime.now()
               : state.selectType == TrKeys.month
-              ? DateTime.now().subtract(const Duration(days: 30))
-              : DateTime.now().subtract(const Duration(days: 7))),
+                  ? DateTime.now().subtract(const Duration(days: 30))
+                  : DateTime.now().subtract(const Duration(days: 7))),
       to: end ?? DateTime.now(),
     );
     response.when(
@@ -71,13 +69,12 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
   fetchIncomeCharts({DateTime? start, DateTime? end}) async {
     final response = await _settingsRepository.getIncomeChart(
       type: start == null ? state.selectType : TrKeys.month,
-      from:
-          start ??
+      from: start ??
           (state.selectType == TrKeys.day
               ? DateTime.now()
               : state.selectType == TrKeys.month
-              ? DateTime.now().subtract(const Duration(days: 30))
-              : DateTime.now().subtract(const Duration(days: 7))),
+                  ? DateTime.now().subtract(const Duration(days: 30))
+                  : DateTime.now().subtract(const Duration(days: 7))),
       to: end ?? DateTime.now(),
     );
     response.when(
@@ -97,17 +94,17 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
             state.selectType == TrKeys.day
                 ? 24
                 : state.selectType == TrKeys.month
-                ? 30
-                : state.selectType == TrKeys.week
-                ? 7
-                : data.length,
+                    ? 30
+                    : state.selectType == TrKeys.week
+                        ? 7
+                        : data.length,
             (index) => state.selectType == TrKeys.day
                 ? DateTime.now().subtract(Duration(hours: index))
                 : state.selectType == TrKeys.month
-                ? DateTime.now().subtract(Duration(days: index))
-                : state.selectType == TrKeys.week
-                ? DateTime.now().subtract(Duration(days: index))
-                : DateTime.now().subtract(Duration(days: index)),
+                    ? DateTime.now().subtract(Duration(days: index))
+                    : state.selectType == TrKeys.week
+                        ? DateTime.now().subtract(Duration(days: index))
+                        : DateTime.now().subtract(Duration(days: index)),
           );
         }
 
@@ -211,8 +208,7 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
             print('   - Start Date: $startDate');
             print('   - End Date: $endDate');
 
-            final isWithinRange =
-                (expenseDate.isAtSameMomentAs(startDate) ||
+            final isWithinRange = (expenseDate.isAtSameMomentAs(startDate) ||
                     expenseDate.isAfter(startDate)) &&
                 (expenseDate.isAtSameMomentAs(endDate) ||
                     expenseDate.isBefore(endDate));
@@ -223,8 +219,7 @@ class IncomeNotifier extends StateNotifier<IncomeState> {
           }).toList();
 
           // Calculate total expenses only for the filtered expenses
-          totalExpenses =
-              filteredExpenses?.fold(
+          totalExpenses = filteredExpenses?.fold(
                 0.0,
                 (sum, expense) => sum! + (expense.price * expense.qty),
               ) ??

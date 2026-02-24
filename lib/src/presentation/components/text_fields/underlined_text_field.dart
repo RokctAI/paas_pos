@@ -117,8 +117,8 @@ class UnderlinedTextField extends StatelessWidget {
                   color: isError
                       ? AppStyle.red
                       : isSuccess
-                      ? AppStyle.textGrey
-                      : AppStyle.black,
+                          ? AppStyle.textGrey
+                          : AppStyle.black,
                 ),
               ),
             ],

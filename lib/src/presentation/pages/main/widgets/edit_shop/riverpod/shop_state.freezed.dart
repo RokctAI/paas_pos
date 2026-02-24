@@ -131,112 +131,111 @@ class _$ShopStateCopyWithImpl<$Res, $Val extends ShopState>
   }) {
     return _then(
       _value.copyWith(
-            isBagsLoading: null == isBagsLoading
-                ? _value.isBagsLoading
-                : isBagsLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isEditShopData: null == isEditShopData
-                ? _value.isEditShopData
-                : isEditShopData // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isSave: null == isSave
-                ? _value.isSave
-                : isSave // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isUpdate: null == isUpdate
-                ? _value.isUpdate
-                : isUpdate // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isButtonLoading: null == isButtonLoading
-                ? _value.isButtonLoading
-                : isButtonLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isActive: null == isActive
-                ? _value.isActive
-                : isActive // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isLogoImageLoading: null == isLogoImageLoading
-                ? _value.isLogoImageLoading
-                : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isBackImageLoading: null == isBackImageLoading
-                ? _value.isBackImageLoading
-                : isBackImageLoading // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            users: null == users
-                ? _value.users
-                : users // ignore: cast_nullable_to_non_nullable
-                      as List<UserData>,
-            userAddresses: null == userAddresses
-                ? _value.userAddresses
-                : userAddresses // ignore: cast_nullable_to_non_nullable
-                      as List<AddressData>,
-            selectedCloseDay: null == selectedCloseDay
-                ? _value.selectedCloseDay
-                : selectedCloseDay // ignore: cast_nullable_to_non_nullable
-                      as int,
-            shopTax: null == shopTax
-                ? _value.shopTax
-                : shopTax // ignore: cast_nullable_to_non_nullable
-                      as double,
-            usersQuery: null == usersQuery
-                ? _value.usersQuery
-                : usersQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            tableQuery: null == tableQuery
-                ? _value.tableQuery
-                : tableQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            sectionQuery: null == sectionQuery
-                ? _value.sectionQuery
-                : sectionQuery // ignore: cast_nullable_to_non_nullable
-                      as String,
-            orderType: null == orderType
-                ? _value.orderType
-                : orderType // ignore: cast_nullable_to_non_nullable
-                      as String,
-            calculate: null == calculate
-                ? _value.calculate
-                : calculate // ignore: cast_nullable_to_non_nullable
-                      as String,
-            comment: null == comment
-                ? _value.comment
-                : comment // ignore: cast_nullable_to_non_nullable
-                      as String,
-            logoImagePath: null == logoImagePath
-                ? _value.logoImagePath
-                : logoImagePath // ignore: cast_nullable_to_non_nullable
-                      as String,
-            logoImageUrl: null == logoImageUrl
-                ? _value.logoImageUrl
-                : logoImageUrl // ignore: cast_nullable_to_non_nullable
-                      as String,
-            backImagePath: null == backImagePath
-                ? _value.backImagePath
-                : backImagePath // ignore: cast_nullable_to_non_nullable
-                      as String,
-            backImageUrl: null == backImageUrl
-                ? _value.backImageUrl
-                : backImageUrl // ignore: cast_nullable_to_non_nullable
-                      as String,
-            categories: freezed == categories
-                ? _value.categories
-                : categories // ignore: cast_nullable_to_non_nullable
-                      as CategoriesPaginateResponse?,
-            tag: freezed == tag
-                ? _value.tag
-                : tag // ignore: cast_nullable_to_non_nullable
-                      as CategoriesPaginateResponse?,
-            editShopData: freezed == editShopData
-                ? _value.editShopData
-                : editShopData // ignore: cast_nullable_to_non_nullable
-                      as EditShopData?,
-            selectedAddress: freezed == selectedAddress
-                ? _value.selectedAddress
-                : selectedAddress // ignore: cast_nullable_to_non_nullable
-                      as AddressData?,
-          )
-          as $Val,
+        isBagsLoading: null == isBagsLoading
+            ? _value.isBagsLoading
+            : isBagsLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isEditShopData: null == isEditShopData
+            ? _value.isEditShopData
+            : isEditShopData // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isSave: null == isSave
+            ? _value.isSave
+            : isSave // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isUpdate: null == isUpdate
+            ? _value.isUpdate
+            : isUpdate // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isButtonLoading: null == isButtonLoading
+            ? _value.isButtonLoading
+            : isButtonLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isActive: null == isActive
+            ? _value.isActive
+            : isActive // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isLogoImageLoading: null == isLogoImageLoading
+            ? _value.isLogoImageLoading
+            : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        isBackImageLoading: null == isBackImageLoading
+            ? _value.isBackImageLoading
+            : isBackImageLoading // ignore: cast_nullable_to_non_nullable
+                as bool,
+        users: null == users
+            ? _value.users
+            : users // ignore: cast_nullable_to_non_nullable
+                as List<UserData>,
+        userAddresses: null == userAddresses
+            ? _value.userAddresses
+            : userAddresses // ignore: cast_nullable_to_non_nullable
+                as List<AddressData>,
+        selectedCloseDay: null == selectedCloseDay
+            ? _value.selectedCloseDay
+            : selectedCloseDay // ignore: cast_nullable_to_non_nullable
+                as int,
+        shopTax: null == shopTax
+            ? _value.shopTax
+            : shopTax // ignore: cast_nullable_to_non_nullable
+                as double,
+        usersQuery: null == usersQuery
+            ? _value.usersQuery
+            : usersQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        tableQuery: null == tableQuery
+            ? _value.tableQuery
+            : tableQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        sectionQuery: null == sectionQuery
+            ? _value.sectionQuery
+            : sectionQuery // ignore: cast_nullable_to_non_nullable
+                as String,
+        orderType: null == orderType
+            ? _value.orderType
+            : orderType // ignore: cast_nullable_to_non_nullable
+                as String,
+        calculate: null == calculate
+            ? _value.calculate
+            : calculate // ignore: cast_nullable_to_non_nullable
+                as String,
+        comment: null == comment
+            ? _value.comment
+            : comment // ignore: cast_nullable_to_non_nullable
+                as String,
+        logoImagePath: null == logoImagePath
+            ? _value.logoImagePath
+            : logoImagePath // ignore: cast_nullable_to_non_nullable
+                as String,
+        logoImageUrl: null == logoImageUrl
+            ? _value.logoImageUrl
+            : logoImageUrl // ignore: cast_nullable_to_non_nullable
+                as String,
+        backImagePath: null == backImagePath
+            ? _value.backImagePath
+            : backImagePath // ignore: cast_nullable_to_non_nullable
+                as String,
+        backImageUrl: null == backImageUrl
+            ? _value.backImageUrl
+            : backImageUrl // ignore: cast_nullable_to_non_nullable
+                as String,
+        categories: freezed == categories
+            ? _value.categories
+            : categories // ignore: cast_nullable_to_non_nullable
+                as CategoriesPaginateResponse?,
+        tag: freezed == tag
+            ? _value.tag
+            : tag // ignore: cast_nullable_to_non_nullable
+                as CategoriesPaginateResponse?,
+        editShopData: freezed == editShopData
+            ? _value.editShopData
+            : editShopData // ignore: cast_nullable_to_non_nullable
+                as EditShopData?,
+        selectedAddress: freezed == selectedAddress
+            ? _value.selectedAddress
+            : selectedAddress // ignore: cast_nullable_to_non_nullable
+                as AddressData?,
+      ) as $Val,
     );
   }
 }
@@ -326,107 +325,107 @@ class __$$ShopStateImplCopyWithImpl<$Res>
         isBagsLoading: null == isBagsLoading
             ? _value.isBagsLoading
             : isBagsLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isEditShopData: null == isEditShopData
             ? _value.isEditShopData
             : isEditShopData // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isSave: null == isSave
             ? _value.isSave
             : isSave // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isUpdate: null == isUpdate
             ? _value.isUpdate
             : isUpdate // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isButtonLoading: null == isButtonLoading
             ? _value.isButtonLoading
             : isButtonLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isActive: null == isActive
             ? _value.isActive
             : isActive // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isLogoImageLoading: null == isLogoImageLoading
             ? _value.isLogoImageLoading
             : isLogoImageLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         isBackImageLoading: null == isBackImageLoading
             ? _value.isBackImageLoading
             : isBackImageLoading // ignore: cast_nullable_to_non_nullable
-                  as bool,
+                as bool,
         users: null == users
             ? _value._users
             : users // ignore: cast_nullable_to_non_nullable
-                  as List<UserData>,
+                as List<UserData>,
         userAddresses: null == userAddresses
             ? _value._userAddresses
             : userAddresses // ignore: cast_nullable_to_non_nullable
-                  as List<AddressData>,
+                as List<AddressData>,
         selectedCloseDay: null == selectedCloseDay
             ? _value.selectedCloseDay
             : selectedCloseDay // ignore: cast_nullable_to_non_nullable
-                  as int,
+                as int,
         shopTax: null == shopTax
             ? _value.shopTax
             : shopTax // ignore: cast_nullable_to_non_nullable
-                  as double,
+                as double,
         usersQuery: null == usersQuery
             ? _value.usersQuery
             : usersQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         tableQuery: null == tableQuery
             ? _value.tableQuery
             : tableQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         sectionQuery: null == sectionQuery
             ? _value.sectionQuery
             : sectionQuery // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         orderType: null == orderType
             ? _value.orderType
             : orderType // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         calculate: null == calculate
             ? _value.calculate
             : calculate // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         comment: null == comment
             ? _value.comment
             : comment // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         logoImagePath: null == logoImagePath
             ? _value.logoImagePath
             : logoImagePath // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         logoImageUrl: null == logoImageUrl
             ? _value.logoImageUrl
             : logoImageUrl // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         backImagePath: null == backImagePath
             ? _value.backImagePath
             : backImagePath // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         backImageUrl: null == backImageUrl
             ? _value.backImageUrl
             : backImageUrl // ignore: cast_nullable_to_non_nullable
-                  as String,
+                as String,
         categories: freezed == categories
             ? _value.categories
             : categories // ignore: cast_nullable_to_non_nullable
-                  as CategoriesPaginateResponse?,
+                as CategoriesPaginateResponse?,
         tag: freezed == tag
             ? _value.tag
             : tag // ignore: cast_nullable_to_non_nullable
-                  as CategoriesPaginateResponse?,
+                as CategoriesPaginateResponse?,
         editShopData: freezed == editShopData
             ? _value.editShopData
             : editShopData // ignore: cast_nullable_to_non_nullable
-                  as EditShopData?,
+                as EditShopData?,
         selectedAddress: freezed == selectedAddress
             ? _value.selectedAddress
             : selectedAddress // ignore: cast_nullable_to_non_nullable
-                  as AddressData?,
+                as AddressData?,
       ),
     );
   }
@@ -462,9 +461,9 @@ class _$ShopStateImpl extends _ShopState {
     this.tag = null,
     this.editShopData,
     this.selectedAddress,
-  }) : _users = users,
-       _userAddresses = userAddresses,
-       super._();
+  })  : _users = users,
+        _userAddresses = userAddresses,
+        super._();
 
   @override
   @JsonKey()
@@ -618,34 +617,34 @@ class _$ShopStateImpl extends _ShopState {
 
   @override
   int get hashCode => Object.hashAll([
-    runtimeType,
-    isBagsLoading,
-    isEditShopData,
-    isSave,
-    isUpdate,
-    isButtonLoading,
-    isActive,
-    isLogoImageLoading,
-    isBackImageLoading,
-    const DeepCollectionEquality().hash(_users),
-    const DeepCollectionEquality().hash(_userAddresses),
-    selectedCloseDay,
-    shopTax,
-    usersQuery,
-    tableQuery,
-    sectionQuery,
-    orderType,
-    calculate,
-    comment,
-    logoImagePath,
-    logoImageUrl,
-    backImagePath,
-    backImageUrl,
-    categories,
-    tag,
-    editShopData,
-    selectedAddress,
-  ]);
+        runtimeType,
+        isBagsLoading,
+        isEditShopData,
+        isSave,
+        isUpdate,
+        isButtonLoading,
+        isActive,
+        isLogoImageLoading,
+        isBackImageLoading,
+        const DeepCollectionEquality().hash(_users),
+        const DeepCollectionEquality().hash(_userAddresses),
+        selectedCloseDay,
+        shopTax,
+        usersQuery,
+        tableQuery,
+        sectionQuery,
+        orderType,
+        calculate,
+        comment,
+        logoImagePath,
+        logoImageUrl,
+        backImagePath,
+        backImageUrl,
+        categories,
+        tag,
+        editShopData,
+        selectedAddress,
+      ]);
 
   /// Create a copy of ShopState
   /// with the given fields replaced by the non-null parameter values.

@@ -67,9 +67,9 @@ class _CustomClockState extends State<CustomClock> {
                 child: Text(
                   " : ",
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppStyle.black,
-                  ),
+                        fontWeight: FontWeight.bold,
+                        color: AppStyle.black,
+                      ),
                 ),
               ),
             if (widget.digitCount == null || widget.digitCount! > 0) _minute,
@@ -81,40 +81,40 @@ class _CustomClockState extends State<CustomClock> {
   }
 
   Widget _hour() => Container(
-    padding: const EdgeInsets.all(2),
-    alignment: AlignmentDirectional.center,
-    child: SpinnerText(
-      text: _clockModel.is24HourTimeFormat
-          ? hTOhh_24hTrue(_clockModel.hour)
-          : hTOhh_24hFalse(_clockModel.hour)[0],
-      textStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
-        fontWeight: FontWeight.bold,
-        color: AppStyle.black,
-      ),
-    ),
-  );
+        padding: const EdgeInsets.all(2),
+        alignment: AlignmentDirectional.center,
+        child: SpinnerText(
+          text: _clockModel.is24HourTimeFormat
+              ? hTOhh_24hTrue(_clockModel.hour)
+              : hTOhh_24hFalse(_clockModel.hour)[0],
+          textStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
+                fontWeight: FontWeight.bold,
+                color: AppStyle.black,
+              ),
+        ),
+      );
 
   Widget get _minute => Container(
-    padding: const EdgeInsets.all(2),
-    alignment: AlignmentDirectional.center,
-    child: SpinnerText(
-      text: mTOmm(_clockModel.minute),
-      textStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
-        fontWeight: FontWeight.bold,
-        color: AppStyle.black,
-      ),
-    ),
-  );
+        padding: const EdgeInsets.all(2),
+        alignment: AlignmentDirectional.center,
+        child: SpinnerText(
+          text: mTOmm(_clockModel.minute),
+          textStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
+                fontWeight: FontWeight.bold,
+                color: AppStyle.black,
+              ),
+        ),
+      );
 
   Widget get _second => Container(
-    margin: const EdgeInsets.all(1),
-    padding: const EdgeInsets.all(2),
-    alignment: AlignmentDirectional.center,
-    child: SpinnerText(
-      text: sTOss(_clockModel.second),
-      textStyle: Theme.of(
-        context,
-      ).textTheme.bodySmall!.copyWith(fontSize: 10, color: AppStyle.black),
-    ),
-  );
+        margin: const EdgeInsets.all(1),
+        padding: const EdgeInsets.all(2),
+        alignment: AlignmentDirectional.center,
+        child: SpinnerText(
+          text: sTOss(_clockModel.second),
+          textStyle: Theme.of(
+            context,
+          ).textTheme.bodySmall!.copyWith(fontSize: 10, color: AppStyle.black),
+        ),
+      );
 }

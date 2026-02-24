@@ -11,8 +11,7 @@ int calculateROSystemEfficiency(
     return 0; // Return 0 if either roSystem or maintenance is null
   }
 
-  double membraneEfficiency =
-      (roSystem['membranes'] as List<dynamic>?)!
+  double membraneEfficiency = (roSystem['membranes'] as List<dynamic>?)!
           .map(
             (membrane) =>
                 calculateVesselEfficiency(membrane['lastReplaced'] as String?),
@@ -20,8 +19,7 @@ int calculateROSystemEfficiency(
           .fold(0.0, (sum, efficiency) => sum + (efficiency ?? 0)) /
       (roSystem['membranes']?.length ?? 1);
 
-  double megaCharEfficiency =
-      (roSystem['megaCharVessels'] as List<dynamic>?)!
+  double megaCharEfficiency = (roSystem['megaCharVessels'] as List<dynamic>?)!
           .map(
             (vessel) =>
                 calculateVesselEfficiency(vessel['lastReplaced'] as String?),
@@ -29,8 +27,7 @@ int calculateROSystemEfficiency(
           .fold(0.0, (sum, efficiency) => sum + (efficiency ?? 0)) /
       (roSystem['megaCharVessels']?.length ?? 1);
 
-  num softenerEfficiency =
-      calculateVesselEfficiency(
+  num softenerEfficiency = calculateVesselEfficiency(
         maintenance['softenerLastReplaced'] as String?,
       ) ??
       0.0;
@@ -202,8 +199,7 @@ double getFallbackRevenueData(String period) {
 List<Map<String, dynamic>> checkMaintenanceAlerts(Map<String, dynamic> data) {
   List<Map<String, dynamic>> alerts = [];
   DateTime currentDate = DateTime.now();
-  bool isWeekend =
-      currentDate.weekday == DateTime.saturday ||
+  bool isWeekend = currentDate.weekday == DateTime.saturday ||
       currentDate.weekday == DateTime.sunday;
 
   // Weekly backwash check

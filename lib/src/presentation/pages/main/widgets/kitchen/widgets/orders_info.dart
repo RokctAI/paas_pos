@@ -51,22 +51,21 @@ class _FlipNumberState extends State<FlipNumber>
       ),
     );
 
-    _scaleAnimation =
-        TweenSequence<double>([
-          TweenSequenceItem(
-            tween: Tween<double>(begin: 1.0, end: 1.15),
-            weight: 50.0,
-          ),
-          TweenSequenceItem(
-            tween: Tween<double>(begin: 1.15, end: 1.0),
-            weight: 50.0,
-          ),
-        ]).animate(
-          CurvedAnimation(
-            parent: _controller,
-            curve: const Interval(0.0, 1.0, curve: Curves.easeInOut),
-          ),
-        );
+    _scaleAnimation = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 1.0, end: 1.15),
+        weight: 50.0,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 1.15, end: 1.0),
+        weight: 50.0,
+      ),
+    ]).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 1.0, curve: Curves.easeInOut),
+      ),
+    );
   }
 
   @override
@@ -226,9 +225,8 @@ class _OrdersInfoState extends State<OrdersInfo> {
     }
 
     final isReady = widget.orderData.status == 'ready';
-    final backgroundColor = isReady
-        ? AppStyle.black.withOpacity(0.5)
-        : AppStyle.black;
+    final backgroundColor =
+        isReady ? AppStyle.black.withOpacity(0.5) : AppStyle.black;
     final textColor = isReady
         ? AppStyle.white.withOpacity(0.5)
         : (_elapsedMinutes >= 30 ? AppStyle.rate : AppStyle.white);
@@ -384,22 +382,22 @@ class _OrdersInfoState extends State<OrdersInfo> {
                         ),
                       )
                     : widget.orderData.deliveryType == TrKeys.dine
-                    ? Text(
-                        AppHelpers.getTranslation(TrKeys.dine),
-                        style: GoogleFonts.inter(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w600,
-                          color: AppStyle.black,
-                        ),
-                      )
-                    : Text(
-                        AppHelpers.getTranslation(TrKeys.delivery),
-                        style: GoogleFonts.inter(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w600,
-                          color: AppStyle.black,
-                        ),
-                      ),
+                        ? Text(
+                            AppHelpers.getTranslation(TrKeys.dine),
+                            style: GoogleFonts.inter(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                              color: AppStyle.black,
+                            ),
+                          )
+                        : Text(
+                            AppHelpers.getTranslation(TrKeys.delivery),
+                            style: GoogleFonts.inter(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                              color: AppStyle.black,
+                            ),
+                          ),
               ],
             ),
             const Spacer(flex: 2),

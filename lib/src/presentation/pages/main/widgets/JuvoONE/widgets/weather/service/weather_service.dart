@@ -32,11 +32,11 @@ class WeatherService {
         .asyncMap((_) => AppConnectivity.connectivity())
         .distinct()
         .listen((isConnected) {
-          _connectivityController.add(isConnected);
-          if (isConnected) {
-            _handleConnectionRestored();
-          }
-        });
+      _connectivityController.add(isConnected);
+      if (isConnected) {
+        _handleConnectionRestored();
+      }
+    });
   }
 
   Stream<bool> get connectivityStream => _connectivityController.stream;
@@ -83,9 +83,8 @@ class WeatherService {
       final uri = Uri.parse(
         '$geoNamesUrl?lat=$lat&lng=$lon&username=$geoNamesUsername',
       );
-      final response = await _client
-          .get(uri)
-          .timeout(const Duration(seconds: 10));
+      final response =
+          await _client.get(uri).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
@@ -163,15 +162,13 @@ class WeatherService {
       final uri = Uri.parse(url).replace(queryParameters: queryParams);
       final token = LocalStorage.getToken();
 
-      final response = await _client
-          .get(
-            uri,
-            headers: {
-              'Accept': 'application/json',
-              'Authorization': 'Bearer $token',
-            },
-          )
-          .timeout(const Duration(seconds: 10));
+      final response = await _client.get(
+        uri,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      ).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
         return json.decode(response.statusCode == 204 ? '{}' : response.body);
@@ -223,9 +220,9 @@ final weatherServiceProvider = Provider((ref) => WeatherService());
 
 final weatherProvider =
     StateNotifierProvider<WeatherNotifier, AsyncValue<WeatherState>>((ref) {
-      final weatherService = ref.watch(weatherServiceProvider);
-      return WeatherNotifier(weatherService);
-    });
+  final weatherService = ref.watch(weatherServiceProvider);
+  return WeatherNotifier(weatherService);
+});
 
 final connectivityProvider = StreamProvider<bool>((ref) {
   final weatherService = ref.watch(weatherServiceProvider);

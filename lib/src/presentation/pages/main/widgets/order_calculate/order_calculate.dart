@@ -69,9 +69,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(rightSideProvider.notifier).clearCalculate();
       FocusScope.of(context).requestFocus(_focusNode);
-      ref
-          .read(secondScreenProvider.notifier)
-          .updateState(
+      ref.read(secondScreenProvider.notifier).updateState(
             SecondScreenState(
               isOrderCalculateActive: true,
               showBlankScreen: false,
@@ -96,9 +94,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   void _resetSecondScreen() {
-    ref
-        .read(secondScreenProvider.notifier)
-        .updateState(
+    ref.read(secondScreenProvider.notifier).updateState(
           SecondScreenState(
             isOrderCalculateActive: false,
             showBlankScreen: true,
@@ -173,8 +169,7 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
       totalPrice: totalPrice,
       amountReceived: amountReceived,
       change: change,
-      currency:
-          state.currencies
+      currency: state.currencies
               .firstWhere((element) => element.isDefault ?? false)
               .symbol ??
           '',
@@ -205,9 +200,8 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
       _updateSecondScreen(next);
     });
 
-    final secondScreenUrl = ref
-        .watch(secondScreenServiceProvider)
-        .secondScreenUrl;
+    final secondScreenUrl =
+        ref.watch(secondScreenServiceProvider).secondScreenUrl;
 
     return Scaffold(
       backgroundColor: AppStyle.mainBack,
@@ -274,9 +268,8 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
     RightSideState stateRight,
   ) {
     final items = stateRight.paginateResponse?.stocks ?? [];
-    final displayCount = _showAllItems
-        ? items.length
-        : items.length.clamp(0, 3);
+    final displayCount =
+        _showAllItems ? items.length : items.length.clamp(0, 3);
 
     return Expanded(
       child: SingleChildScrollView(
@@ -625,9 +618,8 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
   }
 
   Widget _buildDisplayAmount(RightSideState stateRight) {
-    final displayValue = stateRight.calculate == "0"
-        ? "0"
-        : stateRight.calculate;
+    final displayValue =
+        stateRight.calculate == "0" ? "0" : stateRight.calculate;
 
     return Container(
       width: double.infinity,
@@ -712,8 +704,8 @@ class _OrderCalculateState extends ConsumerState<OrderCalculate> {
                         index == 9
                             ? "00"
                             : index == 10
-                            ? "0"
-                            : (index + 1).toString(),
+                                ? "0"
+                                : (index + 1).toString(),
                         style: GoogleFonts.inter(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.w600,

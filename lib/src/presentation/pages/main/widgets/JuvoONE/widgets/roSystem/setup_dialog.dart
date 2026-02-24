@@ -48,12 +48,10 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
       final system = await MaintenanceApiService.getROSystem();
       if (system != null && mounted) {
         setState(() {
-          _megaCharCount = system.vessels
-              .where((v) => v.type == 'megaChar')
-              .length;
-          _softenerCount = system.vessels
-              .where((v) => v.type == 'softener')
-              .length;
+          _megaCharCount =
+              system.vessels.where((v) => v.type == 'megaChar').length;
+          _softenerCount =
+              system.vessels.where((v) => v.type == 'softener').length;
           _membraneCount = system.membraneCount;
           _filters = system.filters;
           _vesselInstallationDate = system.vessels.isNotEmpty
@@ -546,8 +544,7 @@ class _SystemSetupDialogState extends State<SystemSetupDialog> {
                         : AppStyle.brandGreen,
                     minimumSize: const Size.fromHeight(50),
                   ),
-                  onPressed:
-                      _isLoading ||
+                  onPressed: _isLoading ||
                           _vesselInstallationDate == null ||
                           _membraneInstallationDate == null ||
                           !_filters.any(

@@ -38,9 +38,8 @@ class Vision {
       shopId: json['shop_id']?.toString(),
       statement: json['statement'],
       effectiveDate: DateTime.parse(json['effective_date']),
-      endDate: json['end_date'] != null
-          ? DateTime.parse(json['end_date'])
-          : null,
+      endDate:
+          json['end_date'] != null ? DateTime.parse(json['end_date']) : null,
       isActive: json['is_active'] ?? false,
       createdBy: json['created_by'].toString(),
       pillars: pillars,

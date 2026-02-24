@@ -109,8 +109,8 @@ class MaintenanceService {
               null,
               (latest, record) =>
                   latest == null || record.maintenanceDate.isAfter(latest)
-                  ? record.maintenanceDate
-                  : latest,
+                      ? record.maintenanceDate
+                      : latest,
             );
 
         if (lastMaintenance == null ||
@@ -146,8 +146,8 @@ class MaintenanceService {
       // Membrane check
       final lastMembraneMaintenance = membraneRecords.isNotEmpty
           ? membraneRecords
-                .map((record) => record.maintenanceDate)
-                .reduce((a, b) => a.isAfter(b) ? a : b)
+              .map((record) => record.maintenanceDate)
+              .reduce((a, b) => a.isAfter(b) ? a : b)
           : null;
 
       if (lastMembraneMaintenance == null ||

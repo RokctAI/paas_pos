@@ -9,8 +9,8 @@ import '../repository/ro_system_api.dart';
 
 final maintenanceProvider =
     StateNotifierProvider<MaintenanceNotifier, MaintenanceState>((ref) {
-      return MaintenanceNotifier();
-    });
+  return MaintenanceNotifier();
+});
 
 class MaintenanceState {
   final bool hasMaintenanceItems;
@@ -124,8 +124,8 @@ class _MaintenanceAlertState extends ConsumerState<MaintenanceAlert> {
     final alertColor = state.needsSetup
         ? Colors.amber
         : state.hasMaintenanceItems
-        ? Colors.amber
-        : Colors.grey;
+            ? Colors.amber
+            : Colors.grey;
 
     return Row(
       mainAxisSize: MainAxisSize.min,

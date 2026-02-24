@@ -48,17 +48,15 @@ class CustomColorSet {
     final primary = AppStyle.primary;
     final white = AppStyle.white;
     final icon = AppStyle.icon;
-    final backgroundColor = isLight
-        ? AppStyle.mainBack
-        : AppStyle.iconButtonBack;
+    final backgroundColor =
+        isLight ? AppStyle.mainBack : AppStyle.iconButtonBack;
     final newBoxColor = isLight ? AppStyle.icon : AppStyle.iconButtonBack;
     final success = AppStyle.primary;
     final error = AppStyle.red;
     final transparent = AppStyle.transparent;
     final socialButtonColor = isLight ? AppStyle.icon : AppStyle.iconButtonBack;
-    final bottomBarColor = isLight
-        ? AppStyle.icon.withOpacity(0.8)
-        : AppStyle.iconButtonBack;
+    final bottomBarColor =
+        isLight ? AppStyle.icon.withOpacity(0.8) : AppStyle.iconButtonBack;
 
     return CustomColorSet._(
       categoryColor: categoryColor,
